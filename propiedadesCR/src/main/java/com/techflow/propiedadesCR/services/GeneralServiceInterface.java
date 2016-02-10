@@ -1,4 +1,4 @@
-package com.techflow.newhome.services;
+package com.techflow.propiedadesCR.services;
 
 public interface GeneralServiceInterface {
 	public boolean isLocal();

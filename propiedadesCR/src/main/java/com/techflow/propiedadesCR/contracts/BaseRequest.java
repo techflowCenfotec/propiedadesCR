@@ -1,4 +1,4 @@
-package com.techflow.newhome.contracts;
+package com.techflow.propiedadesCR.contracts;
 
 import java.util.List;
 

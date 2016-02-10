@@ -1,4 +1,4 @@
-package com.techflow.newhome.config;
+package com.techflow.propiedadesCR.config;
 
 import java.io.IOException;
 
@@ -23,7 +23,7 @@ import org.springframework.web.context.WebApplicationContext;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
-import com.techflow.newhome.services.GeneralService;
+import com.techflow.propiedadesCR.services.GeneralService;
 
 @WebFilter(filterName="wsFilter",urlPatterns="/rest/protected/*")
 public class WSFilter implements Filter, ApplicationContextAware{
