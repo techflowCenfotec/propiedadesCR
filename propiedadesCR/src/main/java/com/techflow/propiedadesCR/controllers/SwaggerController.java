@@ -1,4 +1,4 @@
-package com.techflow.newhome.controllers;
+package com.techflow.propiedadesCR.controllers;
 
 import org.apache.log4j.Logger;
 import org.springframework.web.bind.annotation.RequestMapping;

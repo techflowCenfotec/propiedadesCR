@@ -1,4 +1,4 @@
-package com.techflow.newhome.config;
+package com.techflow.propiedadesCR.config;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,15 +14,15 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.techflow.newhome"})
+@ComponentScan(basePackages = {"com.techflow.propiedadesCR"})
 @EnableAutoConfiguration
 
-@EnableJpaRepositories("com.techflow.newhome.repositories")
+@EnableJpaRepositories("com.techflow.propiedadesCR.repositories")
 @EnableTransactionManagement
-@EntityScan(basePackages = {"com.techflow.newhome.ejb"})
-public class HomeApp {
+@EntityScan(basePackages = {"com.techflow.propiedadesCR.ejb"})
+public class PropiedadesCRApp {
 	public static void main(String[] args) {
-        SpringApplication.run(HomeApp.class, args);
+        SpringApplication.run(PropiedadesCRApp.class, args);
     }
 	
 	@Bean
