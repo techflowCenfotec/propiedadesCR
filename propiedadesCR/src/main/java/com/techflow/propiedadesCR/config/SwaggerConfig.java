@@ -1,4 +1,4 @@
-package com.techflow.newhome.config;
+package com.techflow.propiedadesCR.config;
 
 import javax.servlet.ServletContext;
 

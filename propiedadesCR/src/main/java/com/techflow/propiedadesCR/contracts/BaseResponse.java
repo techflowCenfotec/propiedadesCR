@@ -1,4 +1,4 @@
-package com.techflow.newhome.contracts;
+package com.techflow.propiedadesCR.contracts;
 
 public class BaseResponse {
 
