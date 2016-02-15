@@ -28,7 +28,7 @@ public class SwaggerConfig implements ServletContextAware {
 	@Bean
 	public SwaggerSpringMvcPlugin customImplementation() {
 		RelativeSwaggerPathProvider relativeSwaggerPathProvider = new RelativeSwaggerPathProvider(servletContext);
-        relativeSwaggerPathProvider.setApiResourcePrefix("MyApplication");
+        relativeSwaggerPathProvider.setApiResourcePrefix("propiedadesCR");
         return new SwaggerSpringMvcPlugin(this.springSwaggerConfig)
         		.apiInfo(apiInfo())
         		.pathProvider(relativeSwaggerPathProvider);
