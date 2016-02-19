@@ -4,11 +4,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.techflow</groupId>
-  <artifactId>newhome</artifactId>
+  <artifactId>propiedadesCR</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>war</packaging>
 
-  <name>newhome</name>
+  <name>propiedadesCR</name>
   <url>http://maven.apache.org</url>
 
 	<parent>
@@ -21,7 +21,7 @@
   	<quartz.version>2.2.1</quartz.version>
 	<thymeleaf.version>2.1.3.RELEASE</thymeleaf.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <start-class>newhome.HomeApp</start-class>
+    <start-class>propiedadesCR.propiedadesCRApp</start-class>
     <java.version>1.8</java.version><project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
