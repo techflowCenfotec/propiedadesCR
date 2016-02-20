@@ -1,4 +1,4 @@
-package com.techflow.propiedadesCR.ejb;
+package propiedadesCREntities;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -24,7 +24,7 @@ public class Tresidence implements Serializable {
 	private int numberRooms;
 	private double squareMetersConstruction;
 	private Tproperty tproperty;
-	private TresidenceType tresidenceType;
+	private TpropertyType tpropertyType;
 
 	public Tresidence() {
 	}
@@ -144,15 +144,15 @@ public class Tresidence implements Serializable {
 	}
 
 
-	//bi-directional many-to-one association to TresidenceType
+	//bi-directional many-to-one association to TpropertyType
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_residence_type")
-	public TresidenceType getTresidenceType() {
-		return this.tresidenceType;
+	public TpropertyType getTpropertyType() {
+		return this.tpropertyType;
 	}
 
-	public void setTresidenceType(TresidenceType tresidenceType) {
-		this.tresidenceType = tresidenceType;
+	public void setTpropertyType(TpropertyType tpropertyType) {
+		this.tpropertyType = tpropertyType;
 	}
 
 }

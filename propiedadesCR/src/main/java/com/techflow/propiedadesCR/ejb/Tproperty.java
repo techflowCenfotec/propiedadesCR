@@ -1,4 +1,4 @@
-package com.techflow.propiedadesCR.ejb;
+package propiedadesCREntities;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -19,11 +19,11 @@ public class Tproperty implements Serializable {
 	private String location;
 	private String nerabyAreas;
 	private double price;
-	private double squareMetersConstruction;
+	private double squareMeters;
 	private List<Tbenefit> tbenefits;
 	private List<Tuser> tusers;
-	private List<Tlot> tlots;
 	private Tprovince tprovince;
+	private TpropertyType tpropertyType;
 	private List<TpropertyComment> tpropertyComments;
 	private List<TpropertyRating> tpropertyRatings;
 	private List<Tresidence> tresidences;
@@ -81,13 +81,13 @@ public class Tproperty implements Serializable {
 	}
 
 
-	@Column(name="square_meters_construction")
-	public double getSquareMetersConstruction() {
-		return this.squareMetersConstruction;
+	@Column(name="square_meters")
+	public double getSquareMeters() {
+		return this.squareMeters;
 	}
 
-	public void setSquareMetersConstruction(double squareMetersConstruction) {
-		this.squareMetersConstruction = squareMetersConstruction;
+	public void setSquareMeters(double squareMeters) {
+		this.squareMeters = squareMeters;
 	}
 
 
@@ -122,31 +122,6 @@ public class Tproperty implements Serializable {
 	}
 
 
-	//bi-directional many-to-one association to Tlot
-	@OneToMany(mappedBy="tproperty")
-	public List<Tlot> getTlots() {
-		return this.tlots;
-	}
-
-	public void setTlots(List<Tlot> tlots) {
-		this.tlots = tlots;
-	}
-
-	public Tlot addTlot(Tlot tlot) {
-		getTlots().add(tlot);
-		tlot.setTproperty(this);
-
-		return tlot;
-	}
-
-	public Tlot removeTlot(Tlot tlot) {
-		getTlots().remove(tlot);
-		tlot.setTproperty(null);
-
-		return tlot;
-	}
-
-
 	//bi-directional many-to-one association to Tprovince
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_province")
@@ -156,6 +131,18 @@ public class Tproperty implements Serializable {
 
 	public void setTprovince(Tprovince tprovince) {
 		this.tprovince = tprovince;
+	}
+
+
+	//bi-directional many-to-one association to TpropertyType
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_property_type")
+	public TpropertyType getTpropertyType() {
+		return this.tpropertyType;
+	}
+
+	public void setTpropertyType(TpropertyType tpropertyType) {
+		this.tpropertyType = tpropertyType;
 	}
 
 

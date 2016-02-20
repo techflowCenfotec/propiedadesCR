@@ -1,9 +1,9 @@
-package com.techflow.propiedadesCR.ejb;
+package propiedadesCREntities;
 
 import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
-import com.techflow.propiedadesCR.ejb.Tproperty;
+
 
 /**
  * The persistent class for the tbenefits database table.

@@ -1,8 +1,7 @@
-package com.techflow.propiedadesCR.ejb;
+package propiedadesCREntities;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import com.techflow.propiedadesCR.ejb.Tuser;
 
 
 /**
@@ -17,7 +16,7 @@ public class Tanswer implements Serializable {
 	private int idAnswer;
 	private String result;
 	private Tquestion tquestion;
-	private Tuser tuser;
+	private TuserSurvey tuserSurvey;
 
 	public Tanswer() {
 	}
@@ -55,15 +54,15 @@ public class Tanswer implements Serializable {
 	}
 
 
-	//bi-directional many-to-one association to Tuser
+	//bi-directional many-to-one association to TuserSurvey
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_user")
-	public Tuser getTuser() {
-		return this.tuser;
+	@JoinColumn(name="id_survey")
+	public TuserSurvey getTuserSurvey() {
+		return this.tuserSurvey;
 	}
 
-	public void setTuser(Tuser tuser) {
-		this.tuser = tuser;
+	public void setTuserSurvey(TuserSurvey tuserSurvey) {
+		this.tuserSurvey = tuserSurvey;
 	}
 
 }

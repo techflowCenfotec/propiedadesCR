@@ -1,15 +1,7 @@
-package com.techflow.propiedadesCR.ejb;
+package propiedadesCREntities;
 
 import java.io.Serializable;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 /**
@@ -21,23 +13,11 @@ import javax.persistence.Table;
 @NamedQuery(name="TuserPattern.findAll", query="SELECT t FROM TuserPattern t")
 public class TuserPattern implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int idUser;
 	private String pricePattern;
 	private String searchPattern;
 	private Tuser tuser;
 
 	public TuserPattern() {
-	}
-
-
-	@Id
-	@Column(name="id_user")
-	public int getIdUser() {
-		return this.idUser;
-	}
-
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
 	}
 
 
@@ -61,8 +41,8 @@ public class TuserPattern implements Serializable {
 	}
 
 
-	//bi-directional one-to-one association to Tuser
-	@OneToOne(fetch=FetchType.LAZY)
+	//bi-directional many-to-one association to Tuser
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_user")
 	public Tuser getTuser() {
 		return this.tuser;

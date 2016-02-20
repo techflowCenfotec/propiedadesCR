@@ -1,4 +1,4 @@
-package com.techflow.propiedadesCR.ejb;
+package propiedadesCREntities;
 
 import java.io.Serializable;
 import javax.persistence.*;
@@ -18,12 +18,12 @@ public class Tuser implements Serializable {
 	private byte active;
 	private String email;
 	private String firstName;
+	private byte firstTime;
 	private String lastName;
 	private String password;
 	private String phone1;
 	private String phone2;
 	private String userName;
-	private List<Tanswer> tanswers;
 	private List<Tevent> tevents;
 	private List<Tproperty> tproperties;
 	private List<Tmessage> tmessages1;
@@ -32,9 +32,10 @@ public class Tuser implements Serializable {
 	private List<TpropertyRating> tpropertyRatings;
 	private List<TuserComment> tuserComments1;
 	private List<TuserComment> tuserComments2;
-	private TuserPattern tuserPattern;
+	private List<TuserPattern> tuserPatterns;
 	private List<TuserRating> tuserRatings1;
 	private List<TuserRating> tuserRatings2;
+	private List<TuserSurvey> tuserSurveys;
 	private Trole trole;
 
 	public Tuser() {
@@ -77,6 +78,16 @@ public class Tuser implements Serializable {
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+
+
+	@Column(name="first_time")
+	public byte getFirstTime() {
+		return this.firstTime;
+	}
+
+	public void setFirstTime(byte firstTime) {
+		this.firstTime = firstTime;
 	}
 
 
@@ -126,31 +137,6 @@ public class Tuser implements Serializable {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
-	}
-
-
-	//bi-directional many-to-one association to Tanswer
-	@OneToMany(mappedBy="tuser")
-	public List<Tanswer> getTanswers() {
-		return this.tanswers;
-	}
-
-	public void setTanswers(List<Tanswer> tanswers) {
-		this.tanswers = tanswers;
-	}
-
-	public Tanswer addTanswer(Tanswer tanswer) {
-		getTanswers().add(tanswer);
-		tanswer.setTuser(this);
-
-		return tanswer;
-	}
-
-	public Tanswer removeTanswer(Tanswer tanswer) {
-		getTanswers().remove(tanswer);
-		tanswer.setTuser(null);
-
-		return tanswer;
 	}
 
 
@@ -349,14 +335,28 @@ public class Tuser implements Serializable {
 	}
 
 
-	//bi-directional one-to-one association to TuserPattern
-	@OneToOne(mappedBy="tuser", fetch=FetchType.LAZY)
-	public TuserPattern getTuserPattern() {
-		return this.tuserPattern;
+	//bi-directional many-to-one association to TuserPattern
+	@OneToMany(mappedBy="tuser")
+	public List<TuserPattern> getTuserPatterns() {
+		return this.tuserPatterns;
 	}
 
-	public void setTuserPattern(TuserPattern tuserPattern) {
-		this.tuserPattern = tuserPattern;
+	public void setTuserPatterns(List<TuserPattern> tuserPatterns) {
+		this.tuserPatterns = tuserPatterns;
+	}
+
+	public TuserPattern addTuserPattern(TuserPattern tuserPattern) {
+		getTuserPatterns().add(tuserPattern);
+		tuserPattern.setTuser(this);
+
+		return tuserPattern;
+	}
+
+	public TuserPattern removeTuserPattern(TuserPattern tuserPattern) {
+		getTuserPatterns().remove(tuserPattern);
+		tuserPattern.setTuser(null);
+
+		return tuserPattern;
 	}
 
 
@@ -407,6 +407,31 @@ public class Tuser implements Serializable {
 		tuserRatings2.setTuser2(null);
 
 		return tuserRatings2;
+	}
+
+
+	//bi-directional many-to-one association to TuserSurvey
+	@OneToMany(mappedBy="tuser")
+	public List<TuserSurvey> getTuserSurveys() {
+		return this.tuserSurveys;
+	}
+
+	public void setTuserSurveys(List<TuserSurvey> tuserSurveys) {
+		this.tuserSurveys = tuserSurveys;
+	}
+
+	public TuserSurvey addTuserSurvey(TuserSurvey tuserSurvey) {
+		getTuserSurveys().add(tuserSurvey);
+		tuserSurvey.setTuser(this);
+
+		return tuserSurvey;
+	}
+
+	public TuserSurvey removeTuserSurvey(TuserSurvey tuserSurvey) {
+		getTuserSurveys().remove(tuserSurvey);
+		tuserSurvey.setTuser(null);
+
+		return tuserSurvey;
 	}
 
 
