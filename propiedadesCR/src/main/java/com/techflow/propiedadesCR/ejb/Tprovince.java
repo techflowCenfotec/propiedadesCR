@@ -1,4 +1,4 @@
-package propiedadesCREntities;
+package com.techflow.propiedadesCR.ejb;
 
 import java.io.Serializable;
 import javax.persistence.*;
