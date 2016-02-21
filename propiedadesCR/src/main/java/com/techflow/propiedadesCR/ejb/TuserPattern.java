@@ -13,11 +13,23 @@ import javax.persistence.*;
 @NamedQuery(name="TuserPattern.findAll", query="SELECT t FROM TuserPattern t")
 public class TuserPattern implements Serializable {
 	private static final long serialVersionUID = 1L;
+	private int idPattern;
 	private String pricePattern;
 	private String searchPattern;
 	private Tuser tuser;
 
 	public TuserPattern() {
+	}
+
+
+	@Id
+	@Column(name="id_pattern")
+	public int getIdPattern() {
+		return this.idPattern;
+	}
+
+	public void setIdPattern(int idPattern) {
+		this.idPattern = idPattern;
 	}
 
 

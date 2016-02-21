@@ -25,7 +25,6 @@ public class Tuser implements Serializable {
 	private String phone2;
 	private String userName;
 	private List<Tevent> tevents;
-	private List<Tproperty> tproperties;
 	private List<Tmessage> tmessages1;
 	private List<Tmessage> tmessages2;
 	private List<TpropertyComment> tpropertyComments;
@@ -36,6 +35,7 @@ public class Tuser implements Serializable {
 	private List<TuserRating> tuserRatings1;
 	private List<TuserRating> tuserRatings2;
 	private List<TuserSurvey> tuserSurveys;
+	private List<Tproperty> tproperties;
 	private Trole trole;
 
 	public Tuser() {
@@ -162,26 +162,6 @@ public class Tuser implements Serializable {
 		tevent.setTuser(null);
 
 		return tevent;
-	}
-
-
-	//bi-directional many-to-many association to Tproperty
-	@ManyToMany
-	@JoinTable(
-		name="tfavorites"
-		, joinColumns={
-			@JoinColumn(name="id_user")
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="id_property")
-			}
-		)
-	public List<Tproperty> getTproperties() {
-		return this.tproperties;
-	}
-
-	public void setTproperties(List<Tproperty> tproperties) {
-		this.tproperties = tproperties;
 	}
 
 
@@ -432,6 +412,26 @@ public class Tuser implements Serializable {
 		tuserSurvey.setTuser(null);
 
 		return tuserSurvey;
+	}
+
+
+	//bi-directional many-to-many association to Tproperty
+	@ManyToMany
+	@JoinTable(
+		name="tfavorites"
+		, joinColumns={
+			@JoinColumn(name="id_user")
+			}
+		, inverseJoinColumns={
+			@JoinColumn(name="id_property")
+			}
+		)
+	public List<Tproperty> getTproperties() {
+		return this.tproperties;
+	}
+
+	public void setTproperties(List<Tproperty> tproperties) {
+		this.tproperties = tproperties;
 	}
 
 

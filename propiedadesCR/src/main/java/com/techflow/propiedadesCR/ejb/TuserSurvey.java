@@ -15,8 +15,6 @@ import java.util.List;
 public class TuserSurvey implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idSurvey;
-	private String comment;
-	private double raiting;
 	private List<Tanswer> tanswers;
 	private Tuser tuser;
 
@@ -32,25 +30,6 @@ public class TuserSurvey implements Serializable {
 
 	public void setIdSurvey(int idSurvey) {
 		this.idSurvey = idSurvey;
-	}
-
-
-	@Lob
-	public String getComment() {
-		return this.comment;
-	}
-
-	public void setComment(String comment) {
-		this.comment = comment;
-	}
-
-
-	public double getRaiting() {
-		return this.raiting;
-	}
-
-	public void setRaiting(double raiting) {
-		this.raiting = raiting;
 	}
 
 

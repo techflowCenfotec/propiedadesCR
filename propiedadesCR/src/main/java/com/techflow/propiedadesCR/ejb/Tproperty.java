@@ -21,12 +21,12 @@ public class Tproperty implements Serializable {
 	private double price;
 	private double squareMeters;
 	private List<Tbenefit> tbenefits;
-	private List<Tuser> tusers;
-	private Tprovince tprovince;
 	private TpropertyType tpropertyType;
+	private Tprovince tprovince;
 	private List<TpropertyComment> tpropertyComments;
 	private List<TpropertyRating> tpropertyRatings;
 	private List<Tresidence> tresidences;
+	private List<Tuser> tusers;
 
 	public Tproperty() {
 	}
@@ -111,14 +111,15 @@ public class Tproperty implements Serializable {
 	}
 
 
-	//bi-directional many-to-many association to Tuser
-	@ManyToMany(mappedBy="tproperties")
-	public List<Tuser> getTusers() {
-		return this.tusers;
+	//bi-directional many-to-one association to TpropertyType
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_property_type")
+	public TpropertyType getTpropertyType() {
+		return this.tpropertyType;
 	}
 
-	public void setTusers(List<Tuser> tusers) {
-		this.tusers = tusers;
+	public void setTpropertyType(TpropertyType tpropertyType) {
+		this.tpropertyType = tpropertyType;
 	}
 
 
@@ -131,18 +132,6 @@ public class Tproperty implements Serializable {
 
 	public void setTprovince(Tprovince tprovince) {
 		this.tprovince = tprovince;
-	}
-
-
-	//bi-directional many-to-one association to TpropertyType
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_property_type")
-	public TpropertyType getTpropertyType() {
-		return this.tpropertyType;
-	}
-
-	public void setTpropertyType(TpropertyType tpropertyType) {
-		this.tpropertyType = tpropertyType;
 	}
 
 
@@ -218,6 +207,17 @@ public class Tproperty implements Serializable {
 		tresidence.setTproperty(null);
 
 		return tresidence;
+	}
+
+
+	//bi-directional many-to-many association to Tuser
+	@ManyToMany(mappedBy="tproperties")
+	public List<Tuser> getTusers() {
+		return this.tusers;
+	}
+
+	public void setTusers(List<Tuser> tusers) {
+		this.tusers = tusers;
 	}
 
 }
