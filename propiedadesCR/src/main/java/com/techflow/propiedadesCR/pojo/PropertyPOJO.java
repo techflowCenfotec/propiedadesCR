@@ -6,7 +6,7 @@ public class PropertyPOJO {
 	private String location;
 	private String nerabyAreas;
 	private double price;
-	private double squareMetersConstruction;
+	private double squareMeters;
 	private ProvincePOJO province;
 	
 	public PropertyPOJO() {
@@ -43,10 +43,10 @@ public class PropertyPOJO {
 		this.price = price;
 	}
 	public double getSquareMetersConstruction() {
-		return squareMetersConstruction;
+		return squareMeters;
 	}
 	public void setSquareMetersConstruction(double squareMetersConstruction) {
-		this.squareMetersConstruction = squareMetersConstruction;
+		this.squareMeters = squareMetersConstruction;
 	}
 	public ProvincePOJO getProvince() {
 		return province;
