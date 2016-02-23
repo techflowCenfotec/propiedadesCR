@@ -17,7 +17,7 @@ public class Tproperty implements Serializable {
 	private int idProperty;
 	private byte active;
 	private String location;
-	private String nerabyAreas;
+	private String nearbyAreas;
 	private double price;
 	private double squareMeters;
 	private List<Tbenefit> tbenefits;
@@ -62,13 +62,13 @@ public class Tproperty implements Serializable {
 	}
 
 
-	@Column(name="neraby_areas")
-	public String getNerabyAreas() {
-		return this.nerabyAreas;
+	@Column(name="nearby_areas")
+	public String getNearbyAreas() {
+		return this.nearbyAreas;
 	}
 
-	public void setNerabyAreas(String nerabyAreas) {
-		this.nerabyAreas = nerabyAreas;
+	public void setNearbyAreas(String nearbyAreas) {
+		this.nearbyAreas = nearbyAreas;
 	}
 
 

@@ -37,6 +37,7 @@ public class Tuser implements Serializable {
 	private List<TuserSurvey> tuserSurveys;
 	private List<Tproperty> tproperties;
 	private Trole trole;
+	private List<TToDoList> TToDoLists;
 
 	public Tuser() {
 	}
@@ -444,6 +445,31 @@ public class Tuser implements Serializable {
 
 	public void setTrole(Trole trole) {
 		this.trole = trole;
+	}
+
+
+	//bi-directional many-to-one association to TToDoList
+	@OneToMany(mappedBy="tuser")
+	public List<TToDoList> getTToDoLists() {
+		return this.TToDoLists;
+	}
+
+	public void setTToDoLists(List<TToDoList> TToDoLists) {
+		this.TToDoLists = TToDoLists;
+	}
+
+	public TToDoList addTToDoList(TToDoList TToDoList) {
+		getTToDoLists().add(TToDoList);
+		TToDoList.setTuser(this);
+
+		return TToDoList;
+	}
+
+	public TToDoList removeTToDoList(TToDoList TToDoList) {
+		getTToDoLists().remove(TToDoList);
+		TToDoList.setTuser(null);
+
+		return TToDoList;
 	}
 
 }
