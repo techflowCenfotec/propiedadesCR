@@ -35,4 +35,15 @@ public class PropertiesService implements PropertiesServiceInterface {
 		return uiProperties;
 	}
 
+	@Override
+	@Transactional
+	public Boolean saveProperty(PropertiesRequest pr) {
+		
+		Tproperty property = new Tproperty();
+		BeanUtils.copyProperties(pr.getProperty(), property);
+		Tproperty nProperty =  propertiesRepository.save(property);
+		
+		return (nProperty == null) ? false : true;
+	}
+
 }
