@@ -28,16 +28,16 @@ public class SwaggerConfig implements ServletContextAware {
 	@Bean
 	public SwaggerSpringMvcPlugin customImplementation() {
 		RelativeSwaggerPathProvider relativeSwaggerPathProvider = new RelativeSwaggerPathProvider(servletContext);
-        relativeSwaggerPathProvider.setApiResourcePrefix("MyApplication");
+        relativeSwaggerPathProvider.setApiResourcePrefix("propiedadesCR");
         return new SwaggerSpringMvcPlugin(this.springSwaggerConfig)
-        .pathProvider(relativeSwaggerPathProvider);
-        
+        		.apiInfo(apiInfo())
+        		.pathProvider(relativeSwaggerPathProvider);
 	}
 	
 	private ApiInfo apiInfo() {
-		ApiInfo apiInfo = new ApiInfo("NewHome API", "API for NewHome",
-				"NewHome API terms of service", "NewHome email",
-				"NewHome API Licence Type", "NewHome API License URL");
+		ApiInfo apiInfo = new ApiInfo("propiedadesCR API", "API for propiedadesCR",
+				"propiedadesCR API terms of service", "propiedadesCR email",
+				"propiedadesCR API Licence Type", "propiedadesCR API License URL");
 		return apiInfo;
 	}
 	
