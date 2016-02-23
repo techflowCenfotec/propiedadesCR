@@ -24,8 +24,8 @@
         var date = new Date();
         var year = date.getFullYear();
         var main = {
-            brand: 'Material',
-            name: 'Lisa',
+            brand: 'Propiedades CR',
+            name: 'User',
             year: year,
             layout: 'wide',                                 // 'boxed', 'wide'
             menu: 'vertical',                               // 'horizontal', 'vertical'
