@@ -23,7 +23,9 @@ public class Tuser implements Serializable {
 	private String password;
 	private String phone1;
 	private String phone2;
+	private String userImage;
 	private String userName;
+	private List<TToDoList> TToDoLists;
 	private List<Tevent> tevents;
 	private List<Tmessage> tmessages1;
 	private List<Tmessage> tmessages2;
@@ -37,7 +39,6 @@ public class Tuser implements Serializable {
 	private List<TuserSurvey> tuserSurveys;
 	private List<Tproperty> tproperties;
 	private Trole trole;
-	private List<TToDoList> TToDoLists;
 
 	public Tuser() {
 	}
@@ -131,6 +132,16 @@ public class Tuser implements Serializable {
 	}
 
 
+	@Column(name="user_image")
+	public String getUserImage() {
+		return this.userImage;
+	}
+
+	public void setUserImage(String userImage) {
+		this.userImage = userImage;
+	}
+
+
 	@Column(name="user_name")
 	public String getUserName() {
 		return this.userName;
@@ -138,6 +149,31 @@ public class Tuser implements Serializable {
 
 	public void setUserName(String userName) {
 		this.userName = userName;
+	}
+
+
+	//bi-directional many-to-one association to TToDoList
+	@OneToMany(mappedBy="tuser")
+	public List<TToDoList> getTToDoLists() {
+		return this.TToDoLists;
+	}
+
+	public void setTToDoLists(List<TToDoList> TToDoLists) {
+		this.TToDoLists = TToDoLists;
+	}
+
+	public TToDoList addTToDoList(TToDoList TToDoList) {
+		getTToDoLists().add(TToDoList);
+		TToDoList.setTuser(this);
+
+		return TToDoList;
+	}
+
+	public TToDoList removeTToDoList(TToDoList TToDoList) {
+		getTToDoLists().remove(TToDoList);
+		TToDoList.setTuser(null);
+
+		return TToDoList;
 	}
 
 
@@ -445,31 +481,6 @@ public class Tuser implements Serializable {
 
 	public void setTrole(Trole trole) {
 		this.trole = trole;
-	}
-
-
-	//bi-directional many-to-one association to TToDoList
-	@OneToMany(mappedBy="tuser")
-	public List<TToDoList> getTToDoLists() {
-		return this.TToDoLists;
-	}
-
-	public void setTToDoLists(List<TToDoList> TToDoLists) {
-		this.TToDoLists = TToDoLists;
-	}
-
-	public TToDoList addTToDoList(TToDoList TToDoList) {
-		getTToDoLists().add(TToDoList);
-		TToDoList.setTuser(this);
-
-		return TToDoList;
-	}
-
-	public TToDoList removeTToDoList(TToDoList TToDoList) {
-		getTToDoLists().remove(TToDoList);
-		TToDoList.setTuser(null);
-
-		return TToDoList;
 	}
 
 }
