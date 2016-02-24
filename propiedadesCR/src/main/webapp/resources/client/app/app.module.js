@@ -7,6 +7,7 @@
         
         // Custom Feature modules
         ,'app.home'
+        ,'app.todolist'
 
         // 3rd party feature modules
         ,'mgo-angular-wizard'

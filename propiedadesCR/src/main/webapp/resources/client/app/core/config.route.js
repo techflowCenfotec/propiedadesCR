@@ -7,6 +7,7 @@
 
             routes = [
                 'templates/propertiesView/propertiesList',
+                'templates/todolistView/todolistList'
             ]
 
             setRoutes = function(route) {
