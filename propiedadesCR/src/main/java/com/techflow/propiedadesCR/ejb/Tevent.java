@@ -17,6 +17,7 @@ public class Tevent implements Serializable {
 	private int idEvent;
 	private byte active;
 	private String description;
+	private String eventImage;
 	private String name;
 	private Date startDate;
 	private Tuser tuser;
@@ -51,6 +52,16 @@ public class Tevent implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+
+	@Column(name="event_image")
+	public String getEventImage() {
+		return this.eventImage;
+	}
+
+	public void setEventImage(String eventImage) {
+		this.eventImage = eventImage;
 	}
 
 
