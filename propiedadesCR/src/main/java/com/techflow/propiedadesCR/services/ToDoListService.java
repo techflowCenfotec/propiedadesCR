@@ -36,4 +36,15 @@ public class ToDoListService implements ToDoListServiceInterface{
 		return uiToDoList;
 	}
 
+	@Override
+	@Transactional
+	public TToDoList saveToDoList(ToDoListRequest ptoDoListRequest) {
+		TToDoList toDoList = new TToDoList();
+		BeanUtils.copyProperties(ptoDoListRequest.getToDoList(), toDoList);
+		
+		TToDoList newToDoList = toDoListRepository.save(toDoList);
+		
+		return newToDoList;
+	}
+
 }
