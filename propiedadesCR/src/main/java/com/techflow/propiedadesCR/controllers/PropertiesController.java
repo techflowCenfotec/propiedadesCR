@@ -18,10 +18,26 @@ public class PropertiesController {
 	
 	@RequestMapping(value="/getAll", method = RequestMethod.POST)
 	public PropertiesResponse getAll(@RequestBody PropertiesRequest pr) {
+		
 		PropertiesResponse response = new PropertiesResponse();
 		response.setCode(200);
 		response.setCodeMessage("Properties fetch successful");
 		response.setProperties(propertiesInterface.getAll(pr));
+		
+		return response;
+	}
+	
+	@RequestMapping(value="/create", method = RequestMethod.POST)
+	public PropertiesResponse create(@RequestBody PropertiesRequest pr) {
+		
+		PropertiesResponse response = new PropertiesResponse();
+		Boolean state = propertiesInterface.saveProperty(pr);
+		
+		if(state){
+			response.setCode(200);
+			response.setCodeMessage("Properties created successful");
+		}
+		
 		return response;
 	}
 }
