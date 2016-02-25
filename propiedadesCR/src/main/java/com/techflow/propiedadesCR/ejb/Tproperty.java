@@ -19,6 +19,7 @@ public class Tproperty implements Serializable {
 	private String location;
 	private String nearbyAreas;
 	private double price;
+	private String propertyImage;
 	private double squareMeters;
 	private List<Tbenefit> tbenefits;
 	private TpropertyType tpropertyType;
@@ -78,6 +79,16 @@ public class Tproperty implements Serializable {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+
+	@Column(name="property_image")
+	public String getPropertyImage() {
+		return this.propertyImage;
+	}
+
+	public void setPropertyImage(String propertyImage) {
+		this.propertyImage = propertyImage;
 	}
 
 
