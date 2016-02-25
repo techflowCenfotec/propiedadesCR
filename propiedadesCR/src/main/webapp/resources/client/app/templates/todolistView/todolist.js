@@ -15,13 +15,14 @@
 		 	url: link,
 		  	headers: {
 		    	'Content-Type': 'aplication/json',
-		    	'Access-Control-Allow-Origin':'*'
+		    	// 'Access-Control-Allow-Origin':'*'
 		  	},
 		  	data: { test: 'test' }
 		 }
 
-		$http.post(link,request,req).success(function(response) {
-			console.log("yeah!!!",response);
+		$http.post(link,request).success(function(response) {
+			$scope.names= response.toDoList;
+			console.log($scope.names)
 		});
 
 		console.log(request);
