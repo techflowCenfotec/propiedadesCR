@@ -20,18 +20,21 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 public class PassthroughFilter implements Filter{
 
 	final Logger logger = LoggerFactory.getLogger(PassthroughFilter.class);
-
+	
+	@Override
 	public void init(FilterConfig filterConfig) throws ServletException {
 		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext (this);
 	}
 
+	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest servletRequest = (HttpServletRequest)request;
 	    HttpServletResponse servletResponse = (HttpServletResponse) response;
 	    chain.doFilter(servletRequest, servletResponse);
 	}
-
+	
+	@Override
 	public void destroy() {
 	}
 }

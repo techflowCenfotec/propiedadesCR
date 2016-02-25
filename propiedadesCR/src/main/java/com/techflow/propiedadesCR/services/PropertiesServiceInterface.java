@@ -7,4 +7,5 @@ import com.techflow.propiedadesCR.pojo.PropertyPOJO;
 
 public interface PropertiesServiceInterface {
 	List<PropertyPOJO> getAll(PropertiesRequest pr);
+	Boolean saveProperty(PropertiesRequest pr);
 }
