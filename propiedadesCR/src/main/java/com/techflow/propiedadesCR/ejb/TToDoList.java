@@ -15,7 +15,6 @@ import java.util.List;
 public class TToDoList implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idToDoList;
-	private String bank;
 	private String description;
 	private String name;
 	private Tuser tuser;
@@ -33,15 +32,6 @@ public class TToDoList implements Serializable {
 
 	public void setIdToDoList(int idToDoList) {
 		this.idToDoList = idToDoList;
-	}
-
-
-	public String getBank() {
-		return this.bank;
-	}
-
-	public void setBank(String bank) {
-		this.bank = bank;
 	}
 
 
