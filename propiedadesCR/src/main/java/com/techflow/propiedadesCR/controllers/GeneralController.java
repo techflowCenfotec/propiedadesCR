@@ -27,7 +27,7 @@ public class GeneralController {
 	public ModelAndView home(Locale locale, Model model,HttpServletRequest request,HttpServletResponse response) {				
 		
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("home");
+		mav.setViewName("index");
 		return mav;
 	}
 }
