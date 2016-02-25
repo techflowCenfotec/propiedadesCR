@@ -29,7 +29,7 @@
             year: year,
             layout: 'wide',                                 // 'boxed', 'wide'
             menu: 'vertical',                               // 'horizontal', 'vertical'
-            isMenuCollapsed: false,                          // true, false
+            isMenuCollapsed: true,                          // true, false
             fixedHeader: true,                              // true, false
             fixedSidebar: true,                             // true, false
             pageTransition: pageTransitionOpts[0],          // 0, 1, 2, 3... and build your own
