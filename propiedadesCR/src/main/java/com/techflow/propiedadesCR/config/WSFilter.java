@@ -12,7 +12,6 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,17 +28,19 @@ import com.techflow.propiedadesCR.services.GeneralService;
 public class WSFilter implements Filter, ApplicationContextAware{
 	
 	final Logger logger = LoggerFactory.getLogger(WSFilter.class);
-	GeneralService generalService;
+	private GeneralService generalService;
 	private ApplicationContext applicationContext = null;
 	
 	private void setGeneralService(GeneralService generalService) {
 		this.generalService = generalService;
 	}
-
+	
+	@Override
 	public void setApplicationContext(ApplicationContext ac) throws BeansException {
 		this.applicationContext = ac;
 	}
-
+	
+	@Override
 	public void init(FilterConfig config) throws ServletException {
 		SpringBeanAutowiringSupport.processInjectionBasedOnCurrentContext (this);
 		ServletContext servletContext = config.getServletContext();
@@ -47,7 +48,8 @@ public class WSFilter implements Filter, ApplicationContextAware{
 		WebApplicationContext webApplicationContext = WebApplicationContextUtils.getWebApplicationContext(servletContext);
 		setGeneralService((GeneralService) webApplicationContext.getBean("generalService"));
 	}
-
+	
+	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest servletRequest = (HttpServletRequest)request;
