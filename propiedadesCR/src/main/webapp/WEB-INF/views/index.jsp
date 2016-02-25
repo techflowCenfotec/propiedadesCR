@@ -7,13 +7,13 @@
         <title>Propiedades CR - Soluciones de Vivienda</title>
 
         <!-- Needs images, font... therefore can not be part of main.css -->
-        <link rel="stylesheet" href="resources/dist/styles/loader.css">
+        <link rel="stylesheet" href="resources/styles/loader.css">
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,500,700,300,300italic,500italic|Roboto+Condensed:400,300' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" href="resources/dist/bower_components/font-awesome/css/font-awesome.min.css">
-        <link rel="stylesheet" href="resources/dist/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="resources/bower_components/font-awesome/css/font-awesome.min.css">
+        <link rel="stylesheet" href="resources/bower_components/material-design-iconic-font/css/material-design-iconic-font.min.css">
         <!-- end Needs images -->
 
-        <link rel="stylesheet" href="resources/dist/styles/main.css">
+        <link rel="stylesheet" href="resources/styles/main.css">
 
     </head>
     <body data-ng-app="app"
@@ -32,7 +32,7 @@
         <![endif]-->
         <div id="loader-container"></div>
 
-        <header data-ng-include=" 'resources/dist/app/layout/header.html' "
+        <header data-ng-include=" 'resources/app/layout/header.html' "
                  id="header"
                  class="header-container "
                  data-ng-class="{ 'header-fixed': main.fixedHeader,
@@ -47,7 +47,7 @@
 
         <div class="main-container"
              data-ng-class="{ 'app-nav-horizontal': main.menu === 'horizontal' }">
-            <aside data-ng-include=" 'resources/dist/app/layout/sidebar.html' "
+            <aside data-ng-include=" 'resources/app/layout/sidebar.html' "
                    id="nav-container"
                    class="nav-container"  
                    data-ng-class="{ 'nav-fixed': main.fixedSidebar,
@@ -68,12 +68,12 @@
         <script src="http://maps.google.com/maps/api/js"></script>
 
         <!--Core JS-->
-        <script src="resources/dist/scripts/vendor.js"></script>
-        <script src="resources/dist/scripts/ui.js"></script>
-        <script src="resources/dist/scripts/app.js"></script>
-        <script src="resources/dist/scripts/app.route.js"></script>
+        <script src="resources/scripts/vendor.js"></script>
+        <script src="resources/scripts/ui.js"></script>
+        <script src="resources/scripts/app.js"></script>
+        <script src="resources/scripts/app.route.js"></script>
 
         <!--Custom JS files-->
-        <script src="resources/dist/app/templates/propertiesView/propertiesList.js"></script>
-        <script src="resources/dist/app/templates/homeView/home.js"></script>
+        <script src="resources/app/templates/propertiesView/propertiesList.js"></script>
+        <script src="resources/app/templates/homeView/home.js"></script>
         
