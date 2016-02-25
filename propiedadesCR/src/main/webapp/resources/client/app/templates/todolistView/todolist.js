@@ -10,15 +10,14 @@
 		
 		//$http.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
 		
-		 var req = {
-		  	method: 'POST',
-		 	url: link,
-		  	headers: {
-		    	'Content-Type': 'aplication/json',
-		    	// 'Access-Control-Allow-Origin':'*'
-		  	},
-		  	data: { test: 'test' }
-		 }
+		 // var req = {
+		 //  	method: 'POST',
+		 // 	url: link,
+		 //  	headers: {
+		 //    	'Content-Type': 'aplication/json',
+		 //  	},
+		 //  	data: { test: 'test' }
+		 // }
 
 		$http.post(link,request).success(function(response) {
 			$scope.names= response.toDoList;

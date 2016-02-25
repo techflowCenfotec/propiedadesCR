@@ -26,9 +26,9 @@ public class ToDoListService implements ToDoListServiceInterface{
 		return generateToDoListDtos(toDoList);
 	}
 	
-	private List<ToDoListPOJO> generateToDoListDtos(List<TToDoList> toDoList) {
+	private List<ToDoListPOJO> generateToDoListDtos(List<TToDoList> ptoDoListList) {
 		List<ToDoListPOJO> uiToDoList = new ArrayList<ToDoListPOJO>();
-		toDoList.stream().forEach(u -> {
+		ptoDoListList.stream().forEach(u -> {
 			ToDoListPOJO dto = new ToDoListPOJO();
 			BeanUtils.copyProperties(u, dto);
 			uiToDoList.add(dto);

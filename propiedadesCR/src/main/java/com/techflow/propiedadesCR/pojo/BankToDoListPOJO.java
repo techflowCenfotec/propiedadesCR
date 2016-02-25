@@ -1,24 +1,20 @@
 package com.techflow.propiedadesCR.pojo;
 
-public class ToDoListPOJO {
-	private int idToDoList;
-	//private String bank;
+public class BankToDoListPOJO {
+	private int idtBank_to_do_list;
 	private String description;
 	private String name;
-	//private Tuser tuser;
-	//private List<Titem> titems;
 	
-	public ToDoListPOJO(){
+	public BankToDoListPOJO(){
 		super();
 	}
 	
-	public int getIdToDoList() {
-		return idToDoList;
+	public int getIdtBank_to_do_list() {
+		return idtBank_to_do_list;
 	}
-	public void setIdToDoList(int idToDoList) {
-		this.idToDoList = idToDoList;
+	public void setIdtBank_to_do_list(int idtBank_to_do_list) {
+		this.idtBank_to_do_list = idtBank_to_do_list;
 	}
-	
 	public String getDescription() {
 		return description;
 	}

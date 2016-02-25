@@ -3,7 +3,7 @@ package com.techflow.propiedadesCR.contracts;
 import com.techflow.propiedadesCR.pojo.ToDoListPOJO;
 
 public class ToDoListRequest extends BaseRequest{
-	ToDoListPOJO toDoList;
+	private ToDoListPOJO toDoList;
 	
 	public ToDoListRequest(){
 		super();
