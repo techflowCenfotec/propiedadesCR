@@ -1,5 +1,6 @@
 package com.techflow.propiedadesCR.services;
 
+import java.beans.Beans;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,15 +9,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.techflow.propiedadesCR.contracts.BankToDoListItemRequest;
 import com.techflow.propiedadesCR.contracts.BankToDoListRequest;
+import com.techflow.propiedadesCR.ejb.TbankItem;
 import com.techflow.propiedadesCR.ejb.TbankToDoList;
 import com.techflow.propiedadesCR.pojo.BankToDoListPOJO;
+import com.techflow.propiedadesCR.repositories.BankToDoListItemRespository;
 import com.techflow.propiedadesCR.repositories.BankToDoListRepository;
 
 @Service
 public class BankToDoListService implements BankToDoListServiceInterface{
 
 	@Autowired private BankToDoListRepository bankToDoListRepository;
+	@Autowired private BankToDoListItemRespository bankToDoListItemRepository;
 	
 	@Override
 	@Transactional
@@ -43,6 +48,15 @@ public class BankToDoListService implements BankToDoListServiceInterface{
 			uiBankToDoList.add(dto);
 		});
 		return uiBankToDoList;
+	}
+
+	@Override
+	@Transactional
+	public TbankItem saveBankToDoListItem(BankToDoListItemRequest pbankToDoListItemRequest) {
+		TbankItem bankToDoListItem = new TbankItem();
+		BeanUtils.copyProperties(pbankToDoListItemRequest.getBankToDoListItem(), bankToDoListItem);
+		TbankItem newBankToDoListItem = bankToDoListItemRepository.save(bankToDoListItem);
+		return newBankToDoListItem;
 	}
 
 
