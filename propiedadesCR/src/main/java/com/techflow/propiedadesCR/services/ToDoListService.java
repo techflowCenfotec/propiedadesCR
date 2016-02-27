@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.techflow.propiedadesCR.contracts.ToDoListRequest;
 import com.techflow.propiedadesCR.ejb.TToDoList;
+import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.pojo.ToDoListPOJO;
 import com.techflow.propiedadesCR.repositories.ToDoListRepository;
 
@@ -41,7 +42,8 @@ public class ToDoListService implements ToDoListServiceInterface{
 	public TToDoList saveToDoList(ToDoListRequest ptoDoListRequest) {
 		TToDoList toDoList = new TToDoList();
 		BeanUtils.copyProperties(ptoDoListRequest.getToDoList(), toDoList);
-		
+		toDoList.setTuser(new Tuser());
+		BeanUtils.copyProperties(ptoDoListRequest.getToDoList().getTuser(), toDoList.getTuser());
 		TToDoList newToDoList = toDoListRepository.save(toDoList);
 		
 		return newToDoList;

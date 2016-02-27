@@ -29,10 +29,18 @@ public class ToDoListController {
 	@RequestMapping(value="/create", method = RequestMethod.POST)
 	public ToDoListResponse createToDoList(@RequestBody ToDoListRequest ptoDoListRequest){
 		ToDoListResponse response = new ToDoListResponse();
-		TToDoList toDoList = toDoListService.saveToDoList(ptoDoListRequest);
-		if(toDoList != null){
-			response.setCode(200);
-			response.setCodeMessage("to-do list created successfully");
+		boolean idUser = false;
+		
+		if(ptoDoListRequest.getToDoList().getTuser()!=null){
+			idUser=true;
+		}
+		
+		if(idUser){
+			TToDoList toDoList = toDoListService.saveToDoList(ptoDoListRequest);
+			if(toDoList != null){
+				response.setCode(200);
+				response.setCodeMessage("to-do list created successfully");
+			}
 		}
 		return response;
 	}

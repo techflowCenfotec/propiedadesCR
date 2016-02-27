@@ -1,12 +1,13 @@
 package com.techflow.propiedadesCR.pojo;
 
+import java.util.List;
+
 public class ToDoListPOJO {
 	private int idToDoList;
-	//private String bank;
 	private String description;
 	private String name;
-	//private Tuser tuser;
-	//private List<Titem> titems;
+	private UserPOJO tuser;
+	private List<ToDoListItemPOJO> titems;
 	
 	public ToDoListPOJO(){
 		super();
@@ -31,6 +32,23 @@ public class ToDoListPOJO {
 	public void setName(String name) {
 		this.name = name;
 	}
+
+	public UserPOJO getTuser() {
+		return tuser;
+	}
+
+	public void setTuser(UserPOJO tuser) {
+		this.tuser = tuser;
+	}
+
+	public List<ToDoListItemPOJO> getTitems() {
+		return titems;
+	}
+
+	public void setTitems(List<ToDoListItemPOJO> titems) {
+		this.titems = titems;
+	}
+	
 	
 	
 }

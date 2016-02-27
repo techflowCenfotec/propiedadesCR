@@ -12,6 +12,8 @@ import com.techflow.propiedadesCR.contracts.BankToDoListItemRequest;
 import com.techflow.propiedadesCR.contracts.BankToDoListRequest;
 import com.techflow.propiedadesCR.ejb.TbankItem;
 import com.techflow.propiedadesCR.ejb.TbankToDoList;
+import com.techflow.propiedadesCR.pojo.BankPOJO;
+import com.techflow.propiedadesCR.pojo.BankToDoListItemPOJO;
 import com.techflow.propiedadesCR.pojo.BankToDoListPOJO;
 import com.techflow.propiedadesCR.repositories.BankToDoListItemRespository;
 import com.techflow.propiedadesCR.repositories.BankToDoListRepository;
@@ -44,6 +46,9 @@ public class BankToDoListService implements BankToDoListServiceInterface{
 		pbankToDoListList.stream().forEach(u -> {
 			BankToDoListPOJO dto = new BankToDoListPOJO();
 			BeanUtils.copyProperties(u, dto);
+			dto.setTbank(new BankPOJO());
+			BeanUtils.copyProperties(u.getTbank(), dto.getTbank());
+			dto.setTbankItems(null);
 			uiBankToDoList.add(dto);
 		});
 		return uiBankToDoList;
@@ -56,6 +61,31 @@ public class BankToDoListService implements BankToDoListServiceInterface{
 		BeanUtils.copyProperties(pbankToDoListItemRequest.getBankToDoListItem(), bankToDoListItem);
 		TbankItem newBankToDoListItem = bankToDoListItemRepository.save(bankToDoListItem);
 		return newBankToDoListItem;
+	}
+
+	@Override
+	@Transactional
+	public BankToDoListPOJO getBankToDoListById(BankToDoListRequest pbankToDoListRequest) {
+		TbankToDoList bankToDoList = new TbankToDoList();
+		bankToDoList = bankToDoListRepository.findOne(Integer.parseInt(pbankToDoListRequest.getSearchTerm()));
+
+		BankToDoListPOJO dto = new BankToDoListPOJO();
+		BeanUtils.copyProperties(bankToDoList, dto);
+		
+		dto.setTbank(new BankPOJO());
+		BeanUtils.copyProperties(bankToDoList.getTbank(), dto.getTbank());
+		
+		ArrayList<BankToDoListItemPOJO> temp = new ArrayList<>();
+		bankToDoList.getTbankItems().stream().forEach(u -> {
+			BankToDoListItemPOJO item = new BankToDoListItemPOJO();
+			BeanUtils.copyProperties(u, item);
+			item.setTbankToDoList(null);
+			temp.add(item);
+		});
+		
+		dto.setTbankItems(temp);
+		
+		return dto;
 	}
 
 

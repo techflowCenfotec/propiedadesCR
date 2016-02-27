@@ -14,4 +14,6 @@ public interface BankToDoListServiceInterface {
 	TbankToDoList saveBankToDoList(BankToDoListRequest pbankToDoListRequest);
 
 	TbankItem saveBankToDoListItem(BankToDoListItemRequest pbankToDoListItemRequest);
+
+	BankToDoListPOJO getBankToDoListById(BankToDoListRequest pbankToDoListRequest);
 }

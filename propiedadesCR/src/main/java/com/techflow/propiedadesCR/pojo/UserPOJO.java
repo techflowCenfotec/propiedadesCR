@@ -2,33 +2,16 @@ package com.techflow.propiedadesCR.pojo;
 
 public class UserPOJO {
 
-	private int idUsuario;
-	private String firstname;
-	private String lastname;
+	private int idUser;
+	private String firstName;
+	private String lastName;
 	private String email;
 	private String password;
 	
 	public UserPOJO() {
 		super();
 	}
-	public int getIdUsuario() {
-		return idUsuario;
-	}
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
-	}
-	public String getFirstname() {
-		return firstname;
-	}
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-	public String getLastname() {
-		return lastname;
-	}
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
+	
 	public String getEmail() {
 		return email;
 	}
@@ -41,4 +24,30 @@ public class UserPOJO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+
+	public int getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+	
+	
 }

@@ -1,9 +1,14 @@
 package com.techflow.propiedadesCR.pojo;
 
+import java.util.List;
+
 public class BankToDoListPOJO {
 	private int idtBank_to_do_list;
 	private String description;
 	private String name;
+	private BankPOJO tbank;
+	private List<BankToDoListItemPOJO> tbankItems;
+
 	
 	public BankToDoListPOJO(){
 		super();
@@ -26,6 +31,22 @@ public class BankToDoListPOJO {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public BankPOJO getTbank() {
+		return tbank;
+	}
+
+	public void setTbank(BankPOJO tbank) {
+		this.tbank = tbank;
+	}
+
+	public List<BankToDoListItemPOJO> getTbankItems() {
+		return tbankItems;
+	}
+
+	public void setTbankItems(List<BankToDoListItemPOJO> tbankItems) {
+		this.tbankItems = tbankItems;
 	}
 	
 	
