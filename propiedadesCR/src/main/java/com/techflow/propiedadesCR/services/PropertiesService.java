@@ -46,4 +46,9 @@ public class PropertiesService implements PropertiesServiceInterface {
 		return (nProperty == null) ? false : true;
 	}
 
+	@Override
+	public Tproperty getPropertyById(int idProperty) {
+		return propertiesRepository.findOne(idProperty);
+	}
+
 }
