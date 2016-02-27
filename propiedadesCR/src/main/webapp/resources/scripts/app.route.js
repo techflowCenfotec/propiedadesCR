@@ -9,6 +9,7 @@
 		n = [
 			"templates/propertiesView/propertiesList"
 			,"templates/reportsView/reports"
+			, "templates/banktodolistView/banktodolistList"
 		], 
 
 		t = function(a) {
