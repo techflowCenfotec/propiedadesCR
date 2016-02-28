@@ -32,10 +32,12 @@ public class RolesService implements RolesServiceInterface {
 		roles.stream().forEach(r -> {
 			RolePOJO dto = new RolePOJO();
 			BeanUtils.copyProperties(r,dto);
+			dto.setTpermissions(null);
 			uiRoles.add(dto);
 		});	
 		return uiRoles;
 	}
+	
 	
 	@Override
 	@Transactional
@@ -52,20 +54,21 @@ public class RolesService implements RolesServiceInterface {
 	
 	@Override
 	@Transactional
-	public List<RolePOJO> getPermissions(RolesRequest rs) {
-		Trole role = rolesRepository.findOne(rs.getRole().getIdRol());
+	public List<RolePOJO> getRoleAndPermissions(RolesRequest rs) {
+		Trole role = rolesRepository.findOne(rs.getRole().getId_Rol());
 		List<RolePOJO> dtos = new ArrayList<RolePOJO>();
 		RolePOJO dto = new RolePOJO();
 		
 		//initial permissions
 		BeanUtils.copyProperties(role, dto);
 		List<PermissionPOJO> permissions = new ArrayList<PermissionPOJO>();
+		
 		role.getTpermissions().stream().forEach(perm -> {
 			PermissionPOJO permData = new PermissionPOJO();
 			BeanUtils.copyProperties(perm,permData);
 			permissions.add(permData);
 		});
-		dto.setPermissions(permissions); ;
+		dto.setTpermissions(permissions); ;
 		dtos.add(dto);
 		return dtos;
 	}

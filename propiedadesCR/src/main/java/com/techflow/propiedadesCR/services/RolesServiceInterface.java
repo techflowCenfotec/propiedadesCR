@@ -7,7 +7,7 @@ import com.techflow.propiedadesCR.pojo.RolePOJO;
 public interface RolesServiceInterface {
 
 	List<RolePOJO> getAll(RolesRequest rs);
-	List<RolePOJO> getPermissions(RolesRequest rs);
+	List<RolePOJO> getRoleAndPermissions(RolesRequest rs);
 	//List<RolePOJO> getAllByName(RolesRequest rs);
 	Boolean saveRole(RolesRequest rs);
 	//List<RolePOJO> getRoles(RolesRequest rs);

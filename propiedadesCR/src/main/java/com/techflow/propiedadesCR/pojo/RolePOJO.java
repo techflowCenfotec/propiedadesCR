@@ -2,36 +2,36 @@ package com.techflow.propiedadesCR.pojo;
 import java.util.List;
 
 public class RolePOJO {
-	private int idRol;
-	private String nombre;
-	private List<PermissionPOJO> permissions;
+	private int id_Rol;
+	private String nombreRol;
+	private List<PermissionPOJO> tpermissions;
 	
 	public RolePOJO(){
 		super();
 	}
 
-	public int getIdRol() {
-		return idRol;
+	public int getId_Rol() {
+		return id_Rol;
 	}
 
-	public void setIdRol(int pidRol) {
-		this.idRol = pidRol;
+	public void setId_Rol(int id_Rol) {
+		this.id_Rol = id_Rol;
 	}
 
-	public String getNombre() {
-		return nombre;
+	public String getNombreRol() {
+		return nombreRol;
 	}
 
-	public void setNombre(String pnombre) {
-		this.nombre = pnombre;
+	public void setNombreRol(String nombreRol) {
+		this.nombreRol = nombreRol;
 	}
 
-	public List<PermissionPOJO> getPermissions() {
-		return permissions;
+	public List<PermissionPOJO> getTpermissions() {
+		return tpermissions;
 	}
 
-	public void setPermissions(List<PermissionPOJO> ppermissions) {
-		this.permissions = ppermissions;
+	public void setTpermissions(List<PermissionPOJO> tpermissions) {
+		this.tpermissions = tpermissions;
 	}
-	
+
 }
