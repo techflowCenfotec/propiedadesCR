@@ -1,6 +1,10 @@
-<div class="page">
-	<section class="row ui-section" ng-controller="UsersController">
-		 <div class="col-md-12">
+<div class="page page-table" data-ng-controller="listUsersController">
+
+    <div class="row ui-section">
+    <div class="col-lg-8 clearfix">
+        <h2 class="section-header">Listado de usuarios</h2>
+    </div>
+    <div class="col-md-12">
         <section class="panel panel-default table-dynamic">
         <div class="table-filters">
             <div class="row">
@@ -14,9 +18,7 @@
                 </form>
             </div>
             <div class="col-sm-3 col-xs-6 filter-result-info">
-                <span>
-                Showing {{filteredStores.length}}/{{stores.length}} entries
-                </span>                
+                              
             </div>
             </div>
         </div>
@@ -27,45 +29,49 @@
                 <th><div class="th">
                 Nombre
                 <span class="fa fa-angle-up"
-                    data-ng-click=" order('name') "
-                    data-ng-class="{active: row == 'name'}"></span>
+                    data-ng-click=" order('userName') "
+                    data-ng-class="{active: row == 'userName'}"></span>
                 <span class="fa fa-angle-down"
-                    data-ng-click=" order('-name') "
-                    data-ng-class="{active: row == '-name'}"></span>
+                    data-ng-click=" order('-userName') "
+                    data-ng-class="{active: row == '-userName'}"></span>
                 </div></th>
                 <th><div class="th">
                 Correo
                 <span class="fa fa-angle-up"
-                    data-ng-click=" order('price') "
-                    data-ng-class="{active: row == 'price'}"></span>
+                    data-ng-click=" order('email') "
+                    data-ng-class="{active: row == 'email'}"></span>
                 <span class="fa fa-angle-down"
-                    data-ng-click=" order('-price') "
-                    data-ng-class="{active: row == '-price'}"></span>
+                    data-ng-click=" order('-email') "
+                    data-ng-class="{active: row == '-email'}"></span>
                 </div></th>
                 <th><div class="th">
-                Activo	
+                Telefono 1
                 <span class="fa fa-angle-up"
-                    data-ng-click=" order('sales') "
-                    data-ng-class="{active: row == 'sales'}"></span>
+                    data-ng-click=" order('phone1') "
+                    data-ng-class="{active: row == 'phone1'}"></span>
                 <span class="fa fa-angle-down"
-                    data-ng-click=" order('-sales') "
-                    data-ng-class="{active: row == '-sales'}"></span>
+                    data-ng-click=" order('-phone1') "
+                    data-ng-class="{active: row == '-phone1'}"></span>
                 </div></th>
                 <th><div class="th">
-                Rol
+                Telefono 2
                 <span class="fa fa-angle-up"
-                    data-ng-click=" order('rating') "
-                    data-ng-class="{active: row == 'rating'}"></span>
+                    data-ng-click=" order('phone2') "
+                    data-ng-class="{active: row == 'phone2'}"></span>
                 <span class="fa fa-angle-down"
-                    data-ng-click=" order('-rating') "
-                    data-ng-class="{active: row == '-rating'}"></span>
+                    data-ng-click=" order('-phone2') "
+                    data-ng-class="{active: row == '-phone2'}"></span>
                 </div></th>
+                
+                
             </tr>
             </thead>
             <tbody>
-            <tr data-ng-repeat="store in currentPageStores">
-                
-             
+            <tr data-ng-repeat="users in currentPageList">
+                <td>{{users.userName}}</td>
+                <td>{{users.email}}</td>
+                <td>{{users.phone1}}</td>
+                <td>{{users.phone2}}</td>
             </tr>
             </tbody>
         </table>
@@ -85,7 +91,7 @@
             <div class="col-md-6 text-right pagination-container">
                 <uib-pagination class="pagination-sm"
                     ng-model="currentPage"
-                    total-items="filteredStores.length"
+                    total-items="filteredUsers.length"
                     max-size="4"
                     ng-change="select(currentPage)"
                     items-per-page="numPerPage"
@@ -97,8 +103,5 @@
         </footer>
         </section>
     </div>
-
-
-
-	</section>
-</div>
+    </div>
+ </div>
