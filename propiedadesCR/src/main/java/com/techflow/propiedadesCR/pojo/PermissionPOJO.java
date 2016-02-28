@@ -1,19 +1,19 @@
 package com.techflow.propiedadesCR.pojo;
 
 public class PermissionPOJO {
-	private int idPermisos;
+	private int idPermissions;
 	private String descripcion;
 	
 	public PermissionPOJO(){
 		super();
 	}
 
-	public int getIdPermisos() {
-		return idPermisos;
+	public int getIdPermissions() {
+		return idPermissions;
 	}
 
-	public void setIdPermisos(int idPermisos) {
-		this.idPermisos = idPermisos;
+	public void setIdPermissions(int idPermissions) {
+		this.idPermissions = idPermissions;
 	}
 
 	public String getDescripcion() {

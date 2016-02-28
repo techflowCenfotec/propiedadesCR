@@ -10,5 +10,4 @@ public interface RolesServiceInterface {
 	List<RolePOJO> getRoleAndPermissions(RolesRequest rs);
 	//List<RolePOJO> getAllByName(RolesRequest rs);
 	Boolean saveRole(RolesRequest rs);
-	//List<RolePOJO> getRoles(RolesRequest rs);
 }

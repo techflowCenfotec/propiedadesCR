@@ -42,13 +42,11 @@ public class RolesService implements RolesServiceInterface {
 	@Override
 	@Transactional
 	public Boolean saveRole(RolesRequest rs) {
-	
+		
 		Trole role = new Trole();
 		BeanUtils.copyProperties(rs.getRole(), role);	
 		Trole newRole = rolesRepository.save(role);
-		
-		return (newRole == null) ? false : true;
-		
+		return (newRole == null) ? false : true;	
 	}
 
 	

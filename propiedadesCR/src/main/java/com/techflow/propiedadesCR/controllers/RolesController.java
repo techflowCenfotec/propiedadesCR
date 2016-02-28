@@ -25,7 +25,7 @@ public class RolesController {
 	public RolesResponse getAll(@RequestBody RolesRequest rs){	
 		RolesResponse rl = new RolesResponse();
 		rl.setCode(200);
-		rl.setCodeMessage("users fetch success");
+		rl.setCodeMessage("roles fetch success");
 		rl.setRole(rolesService.getAll(rs)); 
 		return rl;		
 	}
@@ -35,8 +35,22 @@ public class RolesController {
 			
 		RolesResponse rl = new RolesResponse();
 		rl.setCode(200);
-		rl.setCodeMessage("users fetch success");
+		rl.setCodeMessage("roles fetch success");
 		rl.setRole(rolesService.getRoleAndPermissions(rs));
 		return rl;		
+	}
+	
+	@RequestMapping(value ="/create", method = RequestMethod.POST)
+	public RolesResponse create(@RequestBody RolesRequest rs){	
+		
+		RolesResponse rl = new RolesResponse();
+		Boolean state = rolesService.saveRole(rs);
+	
+		if(state){
+			rl.setCode(200);
+			rl.setCodeMessage("role created succesfully");
+		}
+		return rl;
+		
 	}
 }
