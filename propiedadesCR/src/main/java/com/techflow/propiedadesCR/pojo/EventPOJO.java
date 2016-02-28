@@ -1,10 +1,14 @@
 package com.techflow.propiedadesCR.pojo;
 
+import java.util.Date;
+
 public class EventPOJO {
 	private int idEvent;
 	private String name;
 	private String description;
-	private String startDate;
+	private Date startDate;
+	private byte active;
+	private String eventImage;
 	
 	
 	public EventPOJO(){
@@ -22,10 +26,30 @@ public class EventPOJO {
 	public void setName(String pname){
 		this.name = pname;
 	}
-	public String getDEscription(){
+	public String getDescription() {
 		return description;
 	}
 	public void setDescription(String pdescription){
 		this.description = pdescription;
 	}
+	public Date getStartDate() {
+		return startDate;
+	}
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+	public byte getActive() {
+		return active;
+	}
+	public void setActive(byte active) {
+		this.active = active;
+	}
+	public String getEventImage() {
+		return eventImage;
+	}
+	public void setEventImage(String eventImage) {
+		this.eventImage = eventImage;
+	}
+	
+	
 }

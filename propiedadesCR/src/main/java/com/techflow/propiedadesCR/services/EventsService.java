@@ -37,14 +37,14 @@ public class EventsService implements EventsServiceInterface {
 
 	@Override
 	@Transactional
-	public Boolean saveEvent(EventsRequest event) {
+	public Tevent saveEvent(EventsRequest er) {
 		
-	//Tevent events = new Tevent();
-	//BeanUtils.copyProperties(event.getEvents(), events);
-	//Tevent nEvent=  EventsRepository.saveEvent(event);
+	Tevent event = new Tevent();
+	BeanUtils.copyProperties(er.getEvent(), event);
+	Tevent nEvent=  eventsRepository.save(event);
 	
 		//return (nEvent == null) ? false : true;
-		return null;
+		return nEvent;
 	}
 
 }
