@@ -30,7 +30,7 @@ function() {
 		,"app.i18n"
 		,"app.home"
 		,"app.properties"
-
+		,"app.users"
 		//3rd Party Modules
 		,"ngMaterial"
 		,"ui.bootstrap"
