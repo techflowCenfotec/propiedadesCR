@@ -1,0 +1,160 @@
+
+  <div class="page page-table" data-ng-controller="CreateUserController">
+    <div class="row ui-section">
+        <div class="col-lg-8 clearfix">
+            <h2 class="section-header">Crear usuario</h2>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default" data-ng-controller="CreateUserController">
+                <div class="panel-body">
+                    <form name="form_createUser" class="form-validation" novalidate data-ng-submit="submitForm($event)">
+                   
+                 
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="">Nombre</label>
+                                    <input  type="text"
+                                            class="form-control"
+                                            required
+                                            name="type_something"
+                                            data-ng-trim='false'
+                                            data-ng-model="form.name"
+                                    >                        
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="">Primer apellido</label>
+                                    <input  type="text"
+                                            class="form-control"
+                                            required
+                                            name="type_something"
+                                            data-ng-trim='false'
+                                            data-ng-model="form.firstName"
+                                    >                        
+                                    <span></span>
+                                </div>
+                                  <div class="col-md-6">
+                                    <label for="">Segundo apellido</label>
+                                    <input  type="text"
+                                            class="form-control"
+                                            required
+                                            name="type_something"
+                                            data-ng-trim='false'
+                                            data-ng-model="form.lastName"
+                                    >                        
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="">Telefono 1</label>
+                                    <input  type="text"
+                                            class="form-control"
+                                            required
+                                            name="type_something"
+                                            data-ng-trim='false'
+                                            data-ng-model="form.phone1"
+                                    >                        
+                                    <span></span>
+                                </div>
+                                  <div class="col-md-6">
+                                    <label for="">Telefono 2</label>
+                                    <input  type="text"
+                                            class="form-control"
+                                            required
+                                            name="type_something"
+                                            data-ng-trim='false'
+                                            data-ng-model="form.phone2"
+                                    >                        
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                          <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                   <label for="">Email</label>
+                            <input  type="email"
+                                    class="form-control"
+                                    required
+                                    data-ng-model="form.email"
+                            >                 
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                          <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="">Contrase&ntilde;a</label>
+                                    <input  type="password"
+                                            class="form-control"
+                                            required
+                                            name="type_something"
+                                            data-ng-trim='false'
+                                            data-ng-model="form.password"
+                                    >                        
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                          <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="">Confirmar contrase&ntilde;a</label>
+                                    <input  type="password"
+                                            class="form-control"
+                                            required
+                                            name="type_something"
+                                            data-ng-trim='false'
+                                            data-ng-model="form.confirmPassword"
+                                    >                        
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">	
+                        <div data-ng-class="{error: onError && form_createUser.inputfile.$invalid}">
+                        
+                        	 <div class="col-md-6">
+								<label>Imagen de perfil</label>
+								<span></span>
+							 </div>
+							  <div class="col-md-6">
+									
+									<input id='fileButton'  type="file" name="inputfile" required data-ng-file-select="onFileSelect($files)" >
+									<span
+									data-ng-show="onError && form_createUser.inputfile.$error.required"
+									class="help-inline">Archivo requerido.
+									</span>
+								<span></span>
+							 </div>
+							</div>
+						</div>
+						
+                        <button type="submit"
+                                ui-wave
+                                class="btn btn-primary btn-w-md"
+                                data-ng-disabled="!canSubmit()"
+                                >Submit</button>
+                        <button class="btn btn-default btn-w-md"
+                                ui-wave
+                                data-ng-disabled="!canRevert()"
+                                data-ng-click="revert()"
+                        >Revert Changes</button>
+                   
+                        <div class="alert alert-info" data-ng-show="showInfoOnSubmit">Se ha creado el usuario :)</div>                 
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

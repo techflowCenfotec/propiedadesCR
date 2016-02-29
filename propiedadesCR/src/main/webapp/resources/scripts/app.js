@@ -30,11 +30,13 @@ function() {
 		,"app.i18n"
 		,"app.home"
 		,"app.properties"
-
+		,"app.createUsers"
+		,"app.usersList"
 		//3rd Party Modules
 		,"ngMaterial"
 		,"ui.bootstrap"
 		,"duScroll"
+		,"angularFileUpload"
 		])
 }(),
 
