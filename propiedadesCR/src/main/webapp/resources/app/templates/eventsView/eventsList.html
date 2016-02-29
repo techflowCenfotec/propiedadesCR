@@ -1,18 +1,28 @@
-<div ng-controller="EventsListController">
-	 <div class="col-md-4">
+<div class="page">
+	
+		<section class="row ui-section" ng-controller="EventsListController">
+
+        	<div class="col-lg-8 clearfix">
+            <h2 class="section-header">Listar Eventos</h2>
+        	</div>
+        	<div class="col-md-12">
+            <div class="row">
+				 <div data-ng-repeat="events in eventsList" class="col-md-4">
                     <div class="card bg-white">
                         <div class="card-image">
-                            <img src="resources/images/assets/600_400-2.jpg">
-                            <span class="card-title">Image Card</span>
+                            <img src={{events.eventImage}}>
+                            <span class="card-title">{{events.name}}</span>
                         </div>
                         <div class="card-content">
-                            <p>Hey there, I am a very simple card. I am good at containing small bits of information.
-                                I am quite convenient because I require little markup to use effectively.</p>
+                            <p>{{events.description}}</p>
                         </div>
                         <div class="card-action">
                             <a href="javascript:;">A link</a>
                             <a href="javascript:;" class="color-primary">A link</a>
                         </div>
                     </div>            
-                </div>
+                </div>  
+              </div>
+           </div>    
+         </section>
 </div>

@@ -3,16 +3,18 @@
 
 	angular.module("app.eventsList",[])
 
-	.controller("EventsListController",["$scope","$http",function(e,a) {
+	.controller("EventsListController",["$scope","$http",function($scope,$http) {
+		$scope.events = [];
 
-		var conn="/rest/protected/events/getAll";
-		e.properties=[],
-		e.requestObject={pageNumber:0,pageSize:0,direction:"",sortBy:[""],searchColumn:"string",searchTerm:"",user:{}},
-		a.post(conn,e.requestObject)
-		.success(function(e){
-			console.log(e)
-		}).error(function(e) {
-			console.log(e)
-		})
+		var link = 'rest/protected/events/getAll';
+		var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","event": {}};
+		
+		$http.post(link,request).success(function(response) {
+			   $scope.events= response.events;
+			   console.log($scope.events);
+			   $scope.eventsList = $scope.events;
+			   
+		});
+		
 	}])
 })();
