@@ -1,7 +1,10 @@
 package com.techflow.propiedadesCR.pojo;
 
 import com.techflow.propiedadesCR.ejb.Trole;
-
+/*
+ * UserPOJO
+ * Esta clase es 
+ */
 public class UserPOJO {
 
 	private int idUsuario;
@@ -22,6 +25,9 @@ public class UserPOJO {
 		super();
 	}
 	public int getIdUsuario() {
+		/*
+		 * Este metodo es usado para traer ell id del usuario
+		 */
 		return idUsuario;
 	}
 	public void setIdUsuario(int idUsuario) {

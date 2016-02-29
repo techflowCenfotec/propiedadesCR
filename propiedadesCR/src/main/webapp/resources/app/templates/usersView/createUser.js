@@ -22,8 +22,8 @@
 		        };
 		        
 		       
-				var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","user": {}};
-				var init;
+//				var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","user": {}};
+//				var init;
 				
 		        original = angular.copy($scope.form);
 		        function revert(){
