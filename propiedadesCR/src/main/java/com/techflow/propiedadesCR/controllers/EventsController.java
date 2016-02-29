@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.techflow.propiedadesCR.contracts.EventsRequest;
@@ -44,17 +48,26 @@ public class EventsController {
 			@RequestParam("file") MultipartFile file,
 			@RequestParam("name") String name,
 			@RequestParam("description")String description,
-			@RequestParam("start_date")Date startDate,
+			@RequestParam("start_date")String startDate,
 			@RequestParam("id_user")int idUser){
+		 
+		Date date = new Date();
+		try {
+			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(startDate);
+		} catch (ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		EventsResponse rs = new EventsResponse();
 		String resultFileName = Utils.writeToFile(file, servletContext);
+		
 		
 		if(!resultFileName.equals("")){
 			EventPOJO  event = new EventPOJO();
 			event.setName(name);
 			event.setDescription(description);
-			event.setStartDate(startDate);
+			event.setStartDate(date);
 			event.setEventImage(resultFileName);
 			event.setActive((byte)1);
 			EventsRequest er = new EventsRequest();

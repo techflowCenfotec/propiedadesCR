@@ -1,0 +1,110 @@
+<div ng-controller="CreateEventController">
+	
+	<div class="row ui-section">
+        <div class="col-lg-8 clearfix">
+            <h2 class="section-header">Crear Evento</h2>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default" data-ng-controller="CreateEventController">
+                <div class="panel-body">
+                    <form name="form_createEvent" class="form-validation" novalidate data-ng-submit="submitForm()">
+                        <div class="form-group">
+                            <label for="">Nombre</label>
+                            <input type="text"
+                                   class="form-control"
+                                   required
+                                   data-ng-model="form.name"
+                            >
+                            <br>
+                            <label for="">Descripci√n</label>
+                            <textarea class="form-control"
+                                      rows="10"
+                                      required
+                                      data-ng-model="form.description"></textarea>
+                        </div>
+                       	<div class=row>	
+         				   <div class="col-lg-4 col-lg-offset-2">
+                            <div class="input-group ui-datepicker">
+                                <input type="text" 
+                                       class="form-control"
+                                       uib-datepicker-popup="{{format}}"
+                                       ng-model="form.dt"
+                                       is-open="popup1.opened"
+                                       min-date="minDate"
+                                       max-date="maxDate"
+                                       datepicker-options="dateOptions"
+                                       date-disabled="disabled(date, mode)"
+                                       ng-required="true"
+                                       close-text="Close"
+                                       alt-input-formats="altInputFormats" />
+                                <span class="input-group-addon" ng-click="open1()"><i class="fa fa-calendar"></i></span>
+                            </div>
+                            <div class="callout callout-info">
+                                <p>Fecha del evento: {{form.dt | date:'fullDate'}}</p>
+                            </div>
+                        </div>  
+        
+                        </div>
+                              <div class="row">	
+                        <div data-ng-class="{error: onError && form_createEvent.inputfile.$invalid}">
+                        
+                        	 <div class="col-md-6">
+								<label>Imagen de perfil</label>
+								<span></span>
+							 </div>
+							  <div class="col-md-6">
+									
+									<input id='fileButton'type="file" name="inputfile" required data-ng-file-select="onFileSelect($files)" >
+									<span
+									data-ng-show="onError && form_createEvent.inputfile.$error.required"
+									class="help-inline">Archivo requerido.
+									</span>
+								<span></span>
+							 </div>
+							</div>
+						</div>
+
+                        <button type="submit"
+                                ui-wave
+                                class="btn btn-primary btn-w-md"
+                                data-ng-disabled="!canSubmit()"
+                                >Guardar</button>
+                        <button class="btn btn-default btn-w-md"
+                                ui-wave
+                                data-ng-disabled="!canRevert()"
+                                data-ng-click="revert()"
+                        >Cancelar</button>
+                        	
+                        <div class="alert alert-info" data-ng-show="showInfoOnSubmit">Evento registrado :)</div>                 
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
