@@ -27,21 +27,13 @@
 		$http.post(link,request).success(function(response) {
 			$scope.users= response.users;
 			init();
-			//console.log($scope.users);
 		
 			
 		});
-
-//		console.log(request);
-		
-
-
         function select(page) {
             var end, start;
-            start = (page - 1) * $scope.numPerPage;
-            console.log('Start'+start);
+            start = (page - 1) * $scope.numPerPage;       
             end = start + $scope.numPerPage;
-           // console.log('Current page list'+$scope.filteredUsers(start, end));
             return $scope.currentPageList = $scope.filteredUsers.slice(start, end);
         };
 
@@ -77,7 +69,6 @@
 
         init = function() {
             $scope.search();
-            console.log('Current page'+$scope.currentPage);
             return $scope.select($scope.currentPage);
         };
     

@@ -37,17 +37,17 @@
 		            return $scope.form_createUser.$valid && !angular.equals($scope.form, original);
 		        };    
 		       $scope.submitForm = function(event) {
-		    	   console.log(event)
+		    	  
 		    	    $scope.saveUser(event);
 		            $scope.showInfoOnSubmit = true;
 		            return revert();
 		        };
 		        $scope.onFileSelect = function($files) {
 		        	$scope.files = $files;
-		        	console.log('File on file select ',$files);
+		        
 		        };
 		        $scope.saveUser = function(event){
-		        	console.log('File'+$scope.files);
+		        	
 		        	if(this.form_createUser.$valid){
 		        		$scope.onError = false;
 		        		
@@ -69,9 +69,9 @@
 		        				file : file,
 		        			}).progress(
 		    					function(evt) {
-		    						console.log('percent: '+ parseInt(100.0 * evt.loaded / evt.total));
+		    						
 		    					}).success(function(data, status, headers, config) {
-		    						console.log(data);
+		    						$("#fileButton").replaceWith("<input id='fileButton'  type='file' name='inputfile' required data-ng-file-select='onFileSelect($files)' >").html();
 		    					});
 		    	    			
 		        		}
