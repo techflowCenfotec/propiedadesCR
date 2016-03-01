@@ -19,12 +19,13 @@ public class PropertyPOJO {
 	private double price;
 	private String propertyImage;
 	private double squareMeters;
-	private List<BenefitsPOJO> tbenefits;
+	private List<Tbenefit> tbenefits;
 	private TpropertyType tpropertyType;
 	private Tprovince tprovince;
-	private List<CommentsPOJO> tpropertyComments;
-	private List<RatingPOJO> tpropertyRatings;
-	private List<UserPOJO> tusers;
+	private List<TpropertyComment> tpropertyComments;
+	private List<TpropertyRating> tpropertyRatings;
+	private List<Tresidence> tresidences;
+	private List<Tuser> tusers;
 	
 	public PropertyPOJO() {
 		super();
@@ -69,68 +70,58 @@ public class PropertyPOJO {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-
 	public String getPropertyImage() {
 		return propertyImage;
 	}
-
 	public void setPropertyImage(String propertyImage) {
 		this.propertyImage = propertyImage;
 	}
-
 	public double getSquareMeters() {
 		return squareMeters;
 	}
-
 	public void setSquareMeters(double squareMeters) {
 		this.squareMeters = squareMeters;
 	}
-
-	public List<BenefitsPOJO> getTbenefits() {
+	public List<Tbenefit> getTbenefits() {
 		return tbenefits;
 	}
-
-	public void setTbenefits(List<BenefitsPOJO> tbenefits) {
+	public void setTbenefits(List<Tbenefit> tbenefits) {
 		this.tbenefits = tbenefits;
 	}
-
 	public TpropertyType getTpropertyType() {
 		return tpropertyType;
 	}
-
 	public void setTpropertyType(TpropertyType tpropertyType) {
 		this.tpropertyType = tpropertyType;
 	}
-
 	public Tprovince getTprovince() {
 		return tprovince;
 	}
-
 	public void setTprovince(Tprovince tprovince) {
 		this.tprovince = tprovince;
 	}
-
-	public List<CommentsPOJO> getTpropertyComments() {
+	public List<TpropertyComment> getTpropertyComments() {
 		return tpropertyComments;
 	}
-
-	public void setTpropertyComments(List<CommentsPOJO> tpropertyComments) {
+	public void setTpropertyComments(List<TpropertyComment> tpropertyComments) {
 		this.tpropertyComments = tpropertyComments;
 	}
-
-	public List<RatingPOJO> getTpropertyRatings() {
+	public List<TpropertyRating> getTpropertyRatings() {
 		return tpropertyRatings;
 	}
-
-	public void setTpropertyRatings(List<RatingPOJO> tpropertyRatings) {
+	public void setTpropertyRatings(List<TpropertyRating> tpropertyRatings) {
 		this.tpropertyRatings = tpropertyRatings;
 	}
-
-	public List<UserPOJO> getTusers() {
+	public List<Tresidence> getTresidences() {
+		return tresidences;
+	}
+	public void setTresidences(List<Tresidence> tresidences) {
+		this.tresidences = tresidences;
+	}
+	public List<Tuser> getTusers() {
 		return tusers;
 	}
-
-	public void setTusers(List<UserPOJO> tusers) {
+	public void setTusers(List<Tuser> tusers) {
 		this.tusers = tusers;
 	}
 }

@@ -1,7 +1,6 @@
 package com.techflow.propiedadesCR.controllers;
 
 import java.util.Arrays;
-
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +20,15 @@ import com.techflow.propiedadesCR.services.PropertyTypeServiceInterface;
 import com.techflow.propiedadesCR.services.ProvinceServiceInterface;
 import com.techflow.propiedadesCR.utils.Utils;
 
+/**
+* <h1>PropertiesController</h1>
+* Java controller that sends or request information
+* about the properties through the service
+*
+* @author  Walter Gómez
+* @version 1.0
+* @since 26/2/2016
+*/
 @RestController
 @RequestMapping(value="rest/protected/properties")
 public class PropertiesController {
@@ -31,6 +39,12 @@ public class PropertiesController {
 	@Autowired private PropertiesServiceInterface propertiesService;
 	@Autowired private BenefitsServiceInterface benefitsService;
 	
+	/**
+	 * Request all properties information through the service.
+	 *  
+	 * @param pr Parameter for the getAll method of the service
+	 * @return a property response object.
+	 */
 	@RequestMapping(value="/getAll", method = RequestMethod.GET)
 	public PropertiesResponse getAll() {
 		PropertiesResponse response = new PropertiesResponse();
@@ -42,7 +56,7 @@ public class PropertiesController {
 	}
 	
 	/**
-	  * Method that submits property information through service
+	  * Method that submits property information through service 
 	  * @param pr Parameter for the saveProperty method of the service
 	  * @return Returns object created.
 	  */

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.techflow.propiedadesCR.contracts.PropertyTypeRequest;
 import com.techflow.propiedadesCR.ejb.TpropertyType;
 import com.techflow.propiedadesCR.pojo.PropertyTypePOJO;
 import com.techflow.propiedadesCR.repositories.PropertyTypeRepository;
@@ -50,5 +49,4 @@ public class PropertyTypeService implements PropertyTypeServiceInterface {
 	public TpropertyType getPropertyTypeById(int idPropertyType) {
 		return pTypeRepository.findOne(idPropertyType);
 	}
-
 }

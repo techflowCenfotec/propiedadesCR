@@ -30,12 +30,12 @@ public class PropertyTypeController {
 	  */
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
 	public PropertyTypeResponse getAll() {
-		
 		PropertyTypeResponse response = new PropertyTypeResponse();
+		
 		response.setCode(200);
 		response.setCodeMessage("Property Type fetch succesful");
 		response.setpTypes(pTypeService.getAll());
-		
+
 		return response;
 	}
 }
