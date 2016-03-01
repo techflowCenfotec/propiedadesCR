@@ -1,0 +1,96 @@
+<section class="page-form-ele page" ng-controller="CreatePropController as ctrl">
+<div class="row ui-section">
+        <div class="col-lg-8 clearfix"> <h2 class="section-header">Registrar Propiedad</h2> </div>
+        <div class="col-md-12">
+            <section class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+
+                            <div layout="column" ng-cloak class="md-inline-form">
+                                <div layout-padding>
+                                    <form id="propertiesForm" name="propertiesForm" flow-init>
+                                    	<div class="gallery-box" ng-repeat="file in $flow.files">
+                                    		<div ng-show="$flow.files.length">
+                                    			<img class="img-thumbnail" flow-img="file" width="200" height="200"/>
+                                    		</div>
+                                    		<div class="btn-group">
+                                    			<a class="btn btn-xs btn-danger" ng-click="file.cancel()">Eliminar</a>
+                                    		</div>
+                                    	</div>
+                                    	<span class="btn btn-default" flow-btn>
+                                    		Subir imágenes
+                                    		<input type="file" 
+                                    			style="visibility:hidden; position:absolute" 
+                                    			multiple="multiple">
+                                    		</input>
+                                    	</span>
+                                    	<div class="divider divider-xl"></div>
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex>
+                                                <label>Provincia</label>
+                                                <md-select ng-model="requestObject.province" aria-label="select">
+                                                    <md-option ng-repeat="province in provinceList" value="{{province.idProvince}}">
+                                                        {{province.name}}
+                                                    </md-option>
+                                                </md-select>
+                                            </md-input-container>
+                                            <md-input-container flex>
+                                                <label>Cantón</label>
+                                                <md-select ng-model="requestObject.county" aria-label="select">
+                                                    <md-option ng-repeat="county in countyList" value="{{county.name}}">
+                                                        {{county.name}}
+                                                    </md-option>
+                                                </md-select>
+                                            </md-input-container>
+                                        </div>
+                                            <md-chips
+				                                    ng-model="ctrl.tags"
+				                                    readonly="ctrl.readonly"
+				                                    placeholder="Ingrese zonas cercanas"
+				                                    delete-button-label="Eliminar etiqueta"
+				                                    delete-hint="Eliminar"
+				                                    secondary-placeholder="+Zonas cercanas"></md-chips>  
+                                        <md-input-container md-no-float class="md-block">
+                                            <div class="col-md-12">
+			                                    <div layout="row" layout-wrap flex>
+			                                        <div flex="30" ng-repeat="benefit in benefitsList">
+			                                            <md-checkbox ng-model="benefit.selected" ng-click="toggle(benefit.idBenefit, selected)" aria-label="checkbox"></md-checkbox>
+			                                            <p>{{ benefit.benefit }}</p>
+			                                        </div>
+			                                    </div>                                    
+			                                </div>
+                                        </md-input-container>
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex>
+                                                <label>Precio</label>
+                                                <input ng-model="requestObject.price">
+                                            </md-input-container>
+                                            <md-input-container flex>
+                                                <label>Tipo propiedad</label>
+                                                <md-select ng-model="requestObject.type">
+                                                    <md-option ng-repeat="type in propertyTypeList" value="{{type.idPropertyType}}">
+                                                        {{type.name}}
+                                                    </md-option>
+                                                </md-select>
+                                            </md-input-container>
+                                          </div>
+                                          <div layout layout-sm="column">
+                                          <md-input-container flex>
+                                              <label>Metros de construcción</label>
+                                              <input ng-model="requestObject.meters"/>
+                                          </md-input-container>
+                                          </div>
+	                                      <md-button type="submit" class="md-raised btn-w-md md-primary" ng-click="saveProperty($event, $flow.files)">Submit</md-button>
+		                                  <md-button class="btn-w-md">Revert</md-button>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>    
+        </div>
+    </div>
+</section>
