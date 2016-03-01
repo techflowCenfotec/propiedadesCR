@@ -30,6 +30,7 @@ function() {
 		,"app.i18n"
 		,"app.home"
 		,"app.properties"
+		,"app.roles"
 
 		//3rd Party Modules
 		,"ngMaterial"

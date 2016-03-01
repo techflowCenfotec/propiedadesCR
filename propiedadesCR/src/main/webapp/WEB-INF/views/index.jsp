@@ -76,4 +76,5 @@
         <!--Custom JS files-->
         <script src="resources/app/templates/propertiesView/propertiesList.js"></script>
         <script src="resources/app/templates/homeView/home.js"></script>
+        <script src="resources/app/templates/roleView/roles.js"></script>
         
