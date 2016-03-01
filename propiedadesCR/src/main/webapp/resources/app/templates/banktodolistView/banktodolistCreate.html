@@ -1,0 +1,164 @@
+<!-- <section class="page-form-ele page" ng-controller="FormCtrl">
+
+    <div class="row ui-section" ng-controller="InputCtrl" >
+        <div class="col-lg-8 clearfix"> <h2 class="section-header">Material Input</h2> </div>
+        <div class="col-md-12">
+            <section class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+
+                            <div layout="column" ng-cloak class="md-inline-form inputdemoBasicUsage">
+                                <div layout-padding>
+                                    <form name="userForm">
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex>
+                                                <label>Company (Disabled)</label>
+                                                <input ng-model="user.company" disabled>
+                                            </md-input-container>
+                                            <md-datepicker ng-model="user.submissionDate" md-placeholder="Enter date"></md-datepicker>
+                                        </div>
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex>
+                                                <label>First name</label>
+                                                <input ng-model="user.firstName">
+                                            </md-input-container>
+                                            <md-input-container flex>
+                                                <label>Last Name</label>
+                                                <input ng-model="theMax">
+                                            </md-input-container>
+                                        </div>
+                                        <md-input-container class="md-block">
+                                            <label>Address</label>
+                                            <input ng-model="user.address">
+                                        </md-input-container>
+                                        <md-input-container md-no-float class="md-block">
+                                            <input ng-model="user.address2" placeholder="Address 2">
+                                        </md-input-container>
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex>
+                                                <label>City</label>
+                                                <input ng-model="user.city">
+                                            </md-input-container>
+                                            <md-input-container flex>
+                                                <label>State</label>
+                                                <md-select ng-model="user.state">
+                                                    <md-option ng-repeat="state in states" value="{{state.abbrev}}">
+                                                        {{state.abbrev}}
+                                                    </md-option>
+                                                </md-select>
+                                            </md-input-container>
+                                            <md-input-container flex>
+                                                <label>Postal Code</label>
+                                                <input name="postalCode" ng-model="user.postalCode" placeholder="12345"
+                                                             required ng-pattern="/^[0-9]{5}$/" md-maxlength="5">
+                                                <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
+                                                    <div ng-message="required" class="my-message">You must supply a postal code.</div>
+                                                    <div ng-message="pattern" class="my-message">That doesn't look like a valid postal
+                                                        code.
+                                                    </div>
+                                                    <div ng-message="md-maxlength" class="my-message">
+                                                        Don't use the long version silly...we don't need to be that specific...
+                                                    </div>
+                                                </div>
+                                            </md-input-container>
+                                        </div>
+                                        <md-input-container class="md-block">
+                                            <label>Biography</label>
+                                            <textarea ng-model="user.biography" columns="1" md-maxlength="150"></textarea>
+                                        </md-input-container>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>    
+        </div>
+    </div>
+</section> -->
+
+  <div class="page page-table" data-ng-controller="banktodolistCreateController">
+    <div class="row ui-section">
+        <div class="col-lg-8 clearfix">
+            <h2 class="section-header">Crear to-do list</h2>
+        </div>
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <form name="form_banktodolistCreate" class="form-validation" novalidate data-ng-submit="submitForm($event)">
+                   
+                 
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="">Nombre</label>
+                                    <input  type="text"
+                                            class="form-control"
+                                            required
+                                            name="type_something"
+                                            data-ng-trim='false'
+                                            data-ng-model="form.name"
+                                    >                        
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                         <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="">Descripcion</label>
+                                    <input  type="text"
+                                            class="form-control"
+                                            required
+                                            name="type_something"
+                                            data-ng-trim='false'
+                                            data-ng-model="form.description"
+                                    >                        
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="">Banco</label>
+                                    <input  type="text"
+                                            class="form-control"
+                                            required
+                                            name="type_something"
+                                            data-ng-trim='false'
+                                            data-ng-model="form.bank"
+                                    > 
+
+
+                                <div class="row">
+                                <div class="col-md-6">
+                                    <h4>Basic Select</h4>
+                                    <md-input-container class="full-width">
+                                        <label>States</label>
+                                        <md-select ng-model="ctrl.userState" aria-label="select">
+                                        <md-option ng-repeat="state in ctrl.states" value="{{state.abbrev}}"> {{state.abbrev}} </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                        
+                        <button type="submit"
+                                ui-wave
+                                class="btn btn-primary btn-w-md"
+                                data-ng-disabled="!canSubmit()"
+                                >Crear</button>
+                        <!-- <button class="btn btn-default btn-w-md"
+                                ui-wave
+                                data-ng-disabled="!canRevert()"
+                                data-ng-click="revert()"
+                        >Revert Changes</button>
+                   
+                        <div class="alert alert-info" data-ng-show="showInfoOnSubmit">Se ha creado el usuario :)</div>                  -->
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

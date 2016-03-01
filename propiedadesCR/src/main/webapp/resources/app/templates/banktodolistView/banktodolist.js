@@ -6,8 +6,6 @@
 
 	.controller('banktodolistController',['$scope','$filter','$http',function($scope,$filter,$http){
 
-
-
 //datagrid
 		$scope.todolistList = [];
         $scope.searchKeywords = '';
@@ -24,7 +22,6 @@
         $scope.currentPage = 1;
         $scope.currentPage = [];
 //
-
 		var link = 'rest/protected/banktodolist/getAll';
 		var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","bankToDoList": {}};
 		var init;

@@ -10,6 +10,7 @@
 			"templates/propertiesView/propertiesList"
 			,"templates/reportsView/reports"
 			, "templates/banktodolistView/banktodolistList"
+			,"templates/banktodolistView/banktodolistCreate"
 		], 
 
 		t = function(a) {

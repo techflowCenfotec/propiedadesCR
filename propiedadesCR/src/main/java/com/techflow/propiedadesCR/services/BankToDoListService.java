@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.techflow.propiedadesCR.contracts.BankToDoListItemRequest;
 import com.techflow.propiedadesCR.contracts.BankToDoListRequest;
+import com.techflow.propiedadesCR.ejb.Tbank;
 import com.techflow.propiedadesCR.ejb.TbankItem;
 import com.techflow.propiedadesCR.ejb.TbankToDoList;
 import com.techflow.propiedadesCR.pojo.BankPOJO;
@@ -36,7 +37,9 @@ public class BankToDoListService implements BankToDoListServiceInterface{
 	public TbankToDoList saveBankToDoList(BankToDoListRequest pbankToDoListRequest) {
 		TbankToDoList bankToDoList = new TbankToDoList();
 		BeanUtils.copyProperties(pbankToDoListRequest.getBankToDoList(), bankToDoList);
-		
+		bankToDoList.setTbank(new Tbank());
+		BeanUtils.copyProperties(pbankToDoListRequest.getBankToDoList().getTbank(), bankToDoList.getTbank());
+
 		TbankToDoList newbankToDoList = bankToDoListRepository.save(bankToDoList);
 		return newbankToDoList;
 	}
