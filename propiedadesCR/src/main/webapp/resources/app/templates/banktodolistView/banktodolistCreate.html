@@ -89,7 +89,19 @@
                 <div class="panel-body">
                     <form name="form_banktodolistCreate" class="form-validation" novalidate data-ng-submit="submitForm($event)">
                    
-                 
+                        
+                        <div class="form-group">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <md-input-container class="full-width">
+                                        <label>Bancos</label>
+                                        <md-select ng-model="form.bank" aria-label="select" required>
+                                        <md-option ng-repeat="bank in banks" value="{{bank.idBank}}"> {{bank.name}} </md-option>
+                                    </md-select>
+                                </md-input-container>
+                            </div>
+                        </div>
+
                         <div class="form-group">
                             <div class="row">
                                 <div class="col-md-6">
@@ -102,6 +114,7 @@
                                             data-ng-model="form.name"
                                     >                        
                                     <span></span>
+
                                 </div>
                             </div>
                         </div>
@@ -120,42 +133,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="">Banco</label>
-                                    <input  type="text"
-                                            class="form-control"
-                                            required
-                                            name="type_something"
-                                            data-ng-trim='false'
-                                            data-ng-model="form.bank"
-                                    > 
-
-
-                                <div class="row">
-                                <div class="col-md-6">
-                                    <h4>Basic Select</h4>
-                                    <md-input-container class="full-width">
-                                        <label>States</label>
-                                        <md-select ng-model="ctrl.userState" aria-label="select">
-                                        <md-option ng-repeat="state in ctrl.states" value="{{state.abbrev}}"> {{state.abbrev}} </md-option>
-                                    </md-select>
-                                </md-input-container>
-                            </div>
                         
+
                         <button type="submit"
                                 ui-wave
                                 class="btn btn-primary btn-w-md"
                                 data-ng-disabled="!canSubmit()"
                                 >Crear</button>
-                        <!-- <button class="btn btn-default btn-w-md"
-                                ui-wave
-                                data-ng-disabled="!canRevert()"
-                                data-ng-click="revert()"
-                        >Revert Changes</button>
                    
-                        <div class="alert alert-info" data-ng-show="showInfoOnSubmit">Se ha creado el usuario :)</div>                  -->
+                        <div class="alert alert-info" data-ng-show="showInfoOnSubmit">Se ha creado el to-do list</div>                 
                     </form>
                 </div>
             </div>
