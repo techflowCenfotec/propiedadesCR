@@ -30,11 +30,15 @@ function() {
 		,"app.i18n"
 		,"app.home"
 		,"app.properties"
+		,"app.events"
+		,"app.eventsList"
 
 		//3rd Party Modules
 		,"ngMaterial"
 		,"ui.bootstrap"
 		,"duScroll"
+		,"angularFileUpload"
+		,"flow"
 		])
 }(),
 
