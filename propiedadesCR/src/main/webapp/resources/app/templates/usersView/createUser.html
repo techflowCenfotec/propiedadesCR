@@ -1,160 +1,139 @@
 
-  <div class="page page-table" data-ng-controller="CreateUserController">
-    <div class="row ui-section">
-        <div class="col-lg-8 clearfix">
-            <h2 class="section-header">Crear usuario</h2>
-        </div>
-        <div class="col-md-12">
-            <div class="panel panel-default" data-ng-controller="CreateUserController">
-                <div class="panel-body">
-                    <form name="form_createUser" class="form-validation" novalidate data-ng-submit="submitForm($event)">
-                   
-                 
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="">Nombre</label>
-                                    <input  type="text"
-                                            class="form-control"
-                                            required
-                                            name="type_something"
-                                            data-ng-trim='false'
-                                            data-ng-model="form.name"
-                                    >                        
-                                    <span></span>
-                                </div>
-                            </div>
-                        </div>
-                         <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="">Primer apellido</label>
-                                    <input  type="text"
-                                            class="form-control"
-                                            required
-                                            name="type_something"
-                                            data-ng-trim='false'
-                                            data-ng-model="form.firstName"
-                                    >                        
-                                    <span></span>
-                                </div>
-                                  <div class="col-md-6">
-                                    <label for="">Segundo apellido</label>
-                                    <input  type="text"
-                                            class="form-control"
-                                            required
-                                            name="type_something"
-                                            data-ng-trim='false'
-                                            data-ng-model="form.lastName"
-                                    >                        
-                                    <span></span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="">Telefono 1</label>
-                                    <input  type="text"
-                                            class="form-control"
-                                            required
-                                            name="type_something"
-                                            data-ng-trim='false'
-                                            data-ng-model="form.phone1"
-                                    >                        
-                                    <span></span>
-                                </div>
-                                  <div class="col-md-6">
-                                    <label for="">Telefono 2</label>
-                                    <input  type="text"
-                                            class="form-control"
-                                            required
-                                            name="type_something"
-                                            data-ng-trim='false'
-                                            data-ng-model="form.phone2"
-                                    >                        
-                                    <span></span>
-                                </div>
-                            </div>
-                        </div>
-                          <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-6">
-                                   <label for="">Email</label>
-                            <input  type="email"
-                                    class="form-control"
-                                    required
-                                    data-ng-model="form.email"
-                            >                 
-                                    <span></span>
-                                </div>
-                            </div>
-                        </div>
-                          <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="">Contrase&ntilde;a</label>
-                                    <input  type="password"
-                                            class="form-control"
-                                            required
-                                            name="type_something"
-                                            data-ng-trim='false'
-                                            data-ng-model="form.password"
-                                    >                        
-                                    <span></span>
-                                </div>
-                            </div>
-                        </div>
-                          <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <label for="">Confirmar contrase&ntilde;a</label>
-                                    <input  type="password"
-                                            class="form-control"
-                                            required
-                                            name="type_something"
-                                            data-ng-trim='false'
-                                            data-ng-model="form.confirmPassword"
-                                    >                        
-                                    <span></span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="row">	
-                        <div data-ng-class="{error: onError && form_createUser.inputfile.$invalid}">
-                        
-                        	 <div class="col-md-6">
-								<label>Imagen de perfil</label>
-								<span></span>
-							 </div>
-							  <div class="col-md-6">
-									
-									<input id='fileButton'  type="file" name="inputfile" required data-ng-file-select="onFileSelect($files)" >
-									<span
-									data-ng-show="onError && form_createUser.inputfile.$error.required"
-									class="help-inline">Archivo requerido.
-									</span>
-								<span></span>
-							 </div>
+<style>
+.thumbnail {
+	max-width: 200px;
+	max-height: 150px;
+	line-height: 20px;
+	margin-bottom: 5px;
+}
+</style>
+
+<div data-ng-controller="CreateUserController" flow-init>
+	<div class="row ui-section">
+		<div class="col-lg-8 clearfix">
+			<h2 class="section-header">Crear usuario</h2>
+		</div>
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<form name="form_createUser" class="form-validation" novalidate
+						data-ng-submit="submitForm($event,$flow.files)">
+
+
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-6">
+									<label for="">Nombre</label> <input type="text"
+										class="form-control" required data-ng-model="form.name">
+									<span></span>
+								</div>
 							</div>
 						</div>
-						
-                        <button type="submit"
-                                ui-wave
-                                class="btn btn-primary btn-w-md"
-                                data-ng-disabled="!canSubmit()"
-                                >Submit</button>
-                        <button class="btn btn-default btn-w-md"
-                                ui-wave
-                                data-ng-disabled="!canRevert()"
-                                data-ng-click="revert()"
-                        >Revert Changes</button>
-                   
-                        <div class="alert alert-info" data-ng-show="showInfoOnSubmit">Se ha creado el usuario :)</div>                 
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-6">
+									<label for="">Primer apellido</label> <input type="text"
+										class="form-control" required data-ng-model="form.firstName">
+									<span></span>
+								</div>
+								<div class="col-md-6">
+									<label for="">Segundo apellido</label> <input type="text"
+										class="form-control" required data-ng-model="form.lastName">
+									<span></span>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-6">
+									<label for="">Telefono 1</label> <input type="text"
+										class="form-control" required data-ng-model="form.phone1">
+									<span></span>
+								</div>
+								<div class="col-md-6">
+									<label for="">Telefono 2</label> <input type="text"
+										class="form-control" required data-ng-model="form.phone2">
+									<span></span>
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-6">
+									<label for="">Email</label> <input type="email"
+										class="form-control" required data-ng-model="form.email">
+									<span></span>
+								</div>
+							</div>
+						</div>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-md-6">
+									<label for="">Contrase&ntilde;a</label> <input type="text"
+										class="form-control" required name="password"
+										data-ng-trim='false' data-ng-model="form.password"> <span></span>
+								</div>
+								<span></span>
+
+								<div class="col-md-6">
+									<label for="">Confirme contrase&ntilde;a</label> <input
+										type="text" class="form-control" required
+										name="confirmPassword" data-ng-trim='false'
+										data-ng-model="form.confirmPassword"
+										data-match="form.password"> <span></span>
+
+								</div>
+							</div>
+						</div>
+
+						<div class="row">
+							<div>
+								<div class="col-lg-8 collg-offset-2">
+
+									<div>
+										<div class="thumbnail" data-ng-hide="$flow.files.length">
+											<img class="thumbnail"
+												src="/propiedadesCR/resources/images/default_user_image.png"
+												width="200" height="200" />
+										</div>
+
+										<div data-ng-show="$flow.files.length">
+											<img class="thumbnail" flow-img="$flow.files[0]" width="200"
+												height="200" />
+										</div>
+
+										<div>
+											<span class="btn btn-default" flow-btn
+												data-ng-hide="$flow.files.length"> Subir foto de
+												perfil <input type="file"
+												style="visibility: hidden; position: absolute;"
+												multiple="multiple" />
+
+											</span> <a class="btn btn-danger" data-ng-show="$flow.files.length"
+												data-ng-click="$flow.files[0].cancel()"> Remover </a>
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+						<div class=row>
+							<div class="col-md-6">
+								<button type="submit" ui-wave class="btn btn-primary btn-w-md"
+									data-ng-disabled="!canSubmit()">Guardar</button>
+							</div>
+							<div class="col-md-6">
+								<a href="#" class="btn btn-danger">Cancelar</a>
+							</div>
+						</div>
+
+						<div class="alert alert-info" data-ng-show="showInfoOnSubmit">Se
+							ha creado el usuario :)</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>

@@ -24,8 +24,8 @@ public class UsersRequest extends BaseRequest {
 		return user;
 	}
 	
-	public void setUser(UserPOJO user) {
-		this.user = user;
+	public void setUser(UserPOJO puser) {
+		this.user = puser;
 	}
 	
 	@Override

@@ -37,6 +37,7 @@ function() {
 		,"ui.bootstrap"
 		,"duScroll"
 		,"angularFileUpload"
+		,"flow"
 		])
 }(),
 

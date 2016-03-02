@@ -1,23 +1,68 @@
 package com.techflow.propiedadesCR.pojo;
 
 import com.techflow.propiedadesCR.ejb.Trole;
-/*
- * UserPOJO
- * Esta clase es 
- */
-public class UserPOJO {
 
+/**
+* <h1>UserPOJO</h1>
+* Descripción de la clase
+* Esta clase se encarga de wrappear los objetos 
+* que se utilizan para el request y response.
+*
+* @author  Jorge Arguedas Arrieta
+*
+* @version 1.0
+*
+* @since 2/25/2016
+*/
+public class UserPOJO {
+	
+	/**
+     * Id del usuario.
+     */
 	private int idUsuario;
+	/**
+     * Nombre de usuario.
+     */
 	private String userName;
+	/**
+     * Primer apellido del usuario.
+     */
 	private String firstName;
+	/**
+     * Segundo apellido del usuario.
+     */
 	private String lastName;
+	/**
+     * Correo del usuario.
+     */
 	private String email;
+	/**
+     * Contraseña del usuario
+     */
 	private String password;
+	/**
+     * Teléfono del usuario
+     */
 	private String phone1;
+	/**
+     * Teléfono del usuario
+     */
 	private String phone2;
+	/**
+     * Imagen de perfil del usuario.
+     */
 	private String userImage;
+	/**
+     * Indica si el usuario esta o no esta activo.
+     */
 	private byte active;
+	/**
+     * Indica si es la primer vez que el usuario entra a la aplicación.
+     */
 	private byte firstTime;
+	/**
+     * Rol asignado al usuario.
+     */
 	private Trole role;
 	
 
@@ -25,79 +70,76 @@ public class UserPOJO {
 		super();
 	}
 	public int getIdUsuario() {
-		/*
-		 * Este metodo es usado para traer ell id del usuario
-		 */
 		return idUsuario;
 	}
-	public void setIdUsuario(int idUsuario) {
-		this.idUsuario = idUsuario;
+	public void setIdUsuario(int pidUsuario) {
+		this.idUsuario = pidUsuario;
 	}
 	public String getUserName() {
 		return userName;
 	}
-	public void setUserName(String userName) {
-		this.userName = userName;
+	public void setUserName(String puserName) {
+		this.userName = puserName;
 	}
 	public String getFirstName() {
 		return firstName;
 	}
 
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
+	public void setFirstName(String pfirstName) {
+		this.firstName = pfirstName;
 	}
 	public String getLastName() {
 		return lastName;
 	}
-	public void setLastName(String lastname) {
-		this.lastName = lastname;
+	public void setLastName(String plastname) {
+		this.lastName = plastname;
 	}
 	public String getEmail() {
 		return email;
 	}
-	public void setEmail(String email) {
-		this.email = email;
+	public void setEmail(String pemail) {
+		this.email = pemail;
 	}
 	public String getPassword() {
 		return password;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPassword(String ppassword) {
+		this.password = ppassword;
 	}
 	public String getPhone1() {
 		return phone1;
 	}
-	public void setPhone1(String phone1) {
-		this.phone1 = phone1;
+	public void setPhone1(String pphone1) {
+		this.phone1 = pphone1;
 	}
 	public String getPhone2() {
 		return phone2;
 	}
-	public void setPhone2(String phone2) {
-		this.phone2 = phone2;
+	public void setPhone2(String pphone2) {
+		this.phone2 = pphone2;
 	}
 	public String getUserImage() {
 		return userImage;
 	}
-	public void setUserImage(String userImage) {
-		this.userImage = userImage;
+	public void setUserImage(String puserImage) {
+		this.userImage = puserImage;
 	}
 	public byte getActive() {
 		return active;
 	}
-	public void setActive(byte active) {
-		this.active = active;
+	public void setActive(byte pactive) {
+		this.active = pactive;
 	}
 	public byte getFirstTime() {
 		return firstTime;
 	}
-	public void setFirstTime(byte firstTime) {
-		this.firstTime = firstTime;
+	public void setFirstTime(byte pfirstTime) {
+		this.firstTime = pfirstTime;
 	}
 	public Trole getRole() {
 		return role;
 	}
-	public void setRole(Trole role) {
-		this.role = role;
+	public void setRole(Trole prole) {
+		this.role = prole;
 	}                        
 }
