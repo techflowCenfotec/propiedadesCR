@@ -1,3 +1,12 @@
+/**
+ * <h1>EventsController</h1>
+ * Descripción de la clase: 
+ * Esta clase es  encargada de recibir la información entre el BackEnd y el FrondEnd
+ * 
+ * @author María Jesús Gutiérrez Calvo.
+ * @version 1.0
+ * @since 25/02/2016
+ */
 
 package com.techflow.propiedadesCR.controllers;
 
@@ -24,13 +33,26 @@ import com.techflow.propiedadesCR.utils.Utils;
 
 @RestController
 @RequestMapping(value="rest/protected/events")
+
 public class EventsController {
 	
-	
+	/**
+	 * servletContext, autowired utilizado para el manejo de archivos.
+	 */
 	@Autowired private ServletContext servletContext;
+	/**
+	 * eventsService, autowired utilizado para los servicios de los eventos.
+	 */
 	@Autowired private EventsServiceInterface eventsService;
 	
 	@RequestMapping(value="/getAll", method = RequestMethod.POST)
+	
+	/**
+	 * Descripción de lo que hace la función:
+	 * Método getAll, trae todos los eventos registrados.
+	 * @param EventRequest, encapsula la información solicitada por el usuario.
+	 * @return response, se retorna la respuesta del BackEnd al FrondEnd.
+	 */
 	public EventsResponse getAll(@RequestBody EventsRequest er) {
 		
 		
@@ -44,6 +66,17 @@ public class EventsController {
 
 	
 	@RequestMapping(value="/create", method = RequestMethod.POST)
+	/**
+	 * Descripción de la función: 
+	 * Método create, envía los datos a la base de datos para registrar el evento.
+	 * @param file, se recibe el archivo subido por el usuario.
+	 * @param name, se recibe el nombre del evento a registrar.
+	 * @param description, se recibe la descripción del evento a registrar.
+	 * @param startDate, se recibe la fecha del evento a registrar.
+	 * @param idUser, se recibe el identificador del usuario que registra el evento.
+	 * @return EventResponse retorna la respuesta del BackEnd al FrondEnd
+	 * @exception ParseException(esta exepción se lanza cuando la fecha no lleva el formato correcto)
+	 */
 	public EventsResponse create(
 			@RequestParam("file") MultipartFile file,
 			@RequestParam("name") String name,

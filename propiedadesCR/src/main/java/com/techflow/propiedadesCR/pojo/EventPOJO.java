@@ -1,13 +1,40 @@
+/**
+ * <h1>EventPojo</h1>
+ * Enfatiza el uso de la clase simple "evento".
+ * 
+ * @author María Jesús Gutiérrez Calvo.
+ * @version 1.0
+ * @since 25/02/2016
+ */
+
 package com.techflow.propiedadesCR.pojo;
 
 import java.util.Date;
 
 public class EventPOJO {
+	/**
+	 * identificador del evento
+	 */
 	private int idEvent;
+	/**
+	 * nombre del evento
+	 */
 	private String name;
+	/**
+	 * descripcion del evento
+	 */
 	private String description;
+	/**
+	 * fecha del evento
+	 */
 	private Date startDate;
+	/**
+	 * estado del evento
+	 */
 	private byte active;
+	/**
+	 * imagen del evento
+	 */
 	private String eventImage;
 	
 	
@@ -35,20 +62,20 @@ public class EventPOJO {
 	public Date getStartDate() {
 		return startDate;
 	}
-	public void setStartDate(Date startDate) {
-		this.startDate = startDate;
+	public void setStartDate(Date pstartDate) {
+		this.startDate = pstartDate;
 	}
 	public byte getActive() {
 		return active;
 	}
-	public void setActive(byte active) {
-		this.active = active;
+	public void setActive(byte pactive) {
+		this.active = pactive;
 	}
 	public String getEventImage() {
 		return eventImage;
 	}
-	public void setEventImage(String eventImage) {
-		this.eventImage = eventImage;
+	public void setEventImage(String peventImage) {
+		this.eventImage = peventImage;
 	}
 	
 	

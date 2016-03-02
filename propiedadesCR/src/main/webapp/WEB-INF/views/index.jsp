@@ -74,6 +74,7 @@
         <script src="resources/scripts/app.route.js"></script>
         <script src="resources/non_bower_components/angular-file-upload-shim.min.js"></script>
   		<script src="resources/non_bower_components/angular-file-upload.min.js"></script>
+  		<script src="resources/non_bower_components/ng-flow-standalone.min.js"></script>
 
         <!--Custom JS files-->
         <script src="resources/app/templates/propertiesView/propertiesList.js"></script>
