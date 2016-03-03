@@ -20,6 +20,6 @@ public class PermissionsRequest {
 	
 	@Override
 	public String toString() {
-		return "RolesRequest [role=" + permission + "]";
+		return "PermissionRequest [permission=" + permission + "]";
 	}	
 }

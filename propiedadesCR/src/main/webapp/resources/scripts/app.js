@@ -31,6 +31,7 @@ function() {
 		,"app.home"
 		,"app.properties"
 		,"app.roles"
+		,"app.addRoles"
 
 		//3rd Party Modules
 		,"ngMaterial"

@@ -10,6 +10,7 @@
 			"templates/propertiesView/propertiesList"
 			,"templates/reportsView/reports"
 			,"templates/roleView/roles"
+			,"templates/roleView/addRoles"
 		], 
 
 		t = function(a) {

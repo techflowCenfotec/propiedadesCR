@@ -9,9 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.techflow.propiedadesCR.contracts.RolesRequest;
+import com.techflow.propiedadesCR.ejb.Tpermission;
 import com.techflow.propiedadesCR.ejb.Trole;
-import com.techflow.propiedadesCR.pojo.RolePOJO;
 import com.techflow.propiedadesCR.pojo.PermissionPOJO;
+import com.techflow.propiedadesCR.pojo.RolePOJO;
+import com.techflow.propiedadesCR.repositories.PermissionsRepository;
 import com.techflow.propiedadesCR.repositories.RoleRepository;
 
 
@@ -19,6 +21,7 @@ import com.techflow.propiedadesCR.repositories.RoleRepository;
 public class RolesService implements RolesServiceInterface {
 
 	@Autowired private RoleRepository rolesRepository;
+	@Autowired private PermissionsRepository permissionsRepository;
 	
 	@Override
 	@Transactional
@@ -41,19 +44,47 @@ public class RolesService implements RolesServiceInterface {
 	
 	@Override
 	@Transactional
-	public Boolean saveRole(RolesRequest rs) {
+	public Boolean saveRole(RolesRequest proleRequest) {
 		
 		Trole role = new Trole();
-		BeanUtils.copyProperties(rs.getRole(), role);	
+		role.setNombreRol(proleRequest.getRole().getNombreRol());
+		
+		List<Tpermission> permissions = new ArrayList<Tpermission>();
+		proleRequest.getRole().getTpermissions().stream().forEach(perm -> {
+			Tpermission p = permissionsRepository.findOne(perm.getIdPermissions());
+			permissions.add(p);
+		});
+		role.setTpermissions(permissions);
 		Trole newRole = rolesRepository.save(role);
-		return (newRole == null) ? false : true;	
+		
+		
+//	
+//		RolePOJO role = new RolePOJO();
+//		Trole trole= new Trole();
+//		PermissionsRequest ppermissionsRequest= new PermissionsRequest();
+//		BeanUtils.copyProperties(proleRequest.getRole(), role);	
+//		
+////		ArrayList<Tpermission> permissionsList= new ArrayList<Tpermission>();
+////		proleRequest.getRole().getTpermissions().stream().forEach(perm -> {
+////			Tpermission permData = new Tpermission();
+////		
+////				//permData= permissionsListObj.get(perm);
+////			BeanUtils.copyProperties(perm,permData);
+////			permissionsList.add(permData);
+////		});
+//		trole.setNombreRol(role.getNombreRol());
+//		Trole newRole = rolesRepository.save(trole);
+////		Trole role = new Trole();
+////		BeanUtils.copyProperties(proleRequest.getRole(), role);	
+////		Trole newRole = rolesRepository.save(role);
+		return (newRole == null) ? false : true;
 	}
 
 	
 	@Override
 	@Transactional
-	public List<RolePOJO> getRoleAndPermissions(RolesRequest rs) {
-		Trole role = rolesRepository.findOne(rs.getRole().getId_Rol());
+	public List<RolePOJO> getRoleAndPermissions(RolesRequest proleRequest) {
+		Trole role = rolesRepository.findOne(proleRequest.getRole().getId_Rol());
 		List<RolePOJO> dtos = new ArrayList<RolePOJO>();
 		RolePOJO dto = new RolePOJO();
 		

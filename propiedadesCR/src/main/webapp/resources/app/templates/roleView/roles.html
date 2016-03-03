@@ -26,7 +26,7 @@
         <table class="table table-bordered table-striped table-responsive">
             <thead>
             <tr>
-                <th><div class="th">
+<!--                 <th><div class="th">
                 Id
                 <span class="fa fa-angle-up"
                     data-ng-click=" order('id_Rol') "
@@ -34,7 +34,7 @@
                 <span class="fa fa-angle-down"
                     data-ng-click=" order('-idTrole') "
                     data-ng-class="{active: row == '-id_Rol'}"></span>
-                </div></th>
+                </div></th> 
                 <th><div class="th">
                 Nombre
                 <span class="fa fa-angle-up"
@@ -58,12 +58,9 @@
             <tbody>
             <tr data-ng-repeat="rolesInSys in currentPageList">
 
-                <td>{{rolesInSys.id_Rol}}</td>
+                <!-- <td>{{rolesInSys.id_Rol}}</td> -->
                 <td>{{rolesInSys.nombreRol}}</td>
-               <td>{{rolesInSys.tpermissions}}</td>
-               <tr data-ng-repeat="rolesInSys in currentPageList">
-               		<td>{{rolesInSys.tpermissions}}</td>
-            	</tr>
+               <!-- <td>{{rolesInSys.tpermissions}}</td> -->
             </tr>
             </tbody>
         </table>
@@ -98,3 +95,4 @@
     </div>
 
 </div>
+

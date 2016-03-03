@@ -24,6 +24,7 @@ public class Trole implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getId_Rol() {
 		return this.id_Rol;
 	}

@@ -6,18 +6,18 @@ import com.techflow.propiedadesCR.pojo.PermissionPOJO;
 
 public class PermissionsResponse extends BaseResponse {
 
-private List<PermissionPOJO> role;
+private List<PermissionPOJO> permission;
 	
 	public PermissionsResponse(){
 		super();
 	}
 
-	public List<PermissionPOJO> getRole() {
-		return role;
+	public List<PermissionPOJO> getPermission() {
+		return permission;
 	}
 
-	public void setRole(List<PermissionPOJO> role) {
-		this.role = role;
+	public void setPermission(List<PermissionPOJO> permission) {
+		this.permission = permission;
 	}
 	
 }

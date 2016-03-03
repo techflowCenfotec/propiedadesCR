@@ -23,6 +23,7 @@ public class Tpermission implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_permissions")
 	public int getIdPermissions() {
 		return this.idPermissions;
