@@ -3,10 +3,30 @@ package com.techflow.propiedadesCR.pojo;
 import java.util.List;
 
 public class ToDoListPOJO {
+	
+	/**
+     * Id del to-do list del usuario
+     */
 	private int idToDoList;
+	
+	/**
+     * Descripcion del to-do list del usuario
+     */
 	private String description;
+	
+	/**
+     * Nombre del to-do list del usuario
+     */
 	private String name;
+	
+	/**
+     * Usuario al que pertenece el to-do list
+     */
 	private UserPOJO tuser;
+	
+	/**
+     * Lista de items del to-do list del usuario
+     */
 	private List<ToDoListItemPOJO> titems;
 	
 	public ToDoListPOJO(){

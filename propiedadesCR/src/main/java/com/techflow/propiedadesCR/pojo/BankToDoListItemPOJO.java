@@ -4,8 +4,19 @@ import com.techflow.propiedadesCR.ejb.TbankToDoList;
 
 public class BankToDoListItemPOJO {
 	
+	/**
+     * Id del item del to-do list del banco
+     */
 	private int idtBank_iitem;
+	
+	/**
+     * Nombre del item del to-do list del banco
+     */
 	private String name;
+	
+	/**
+     * To-do list del banco al que pertence el item
+     */
 	private TbankToDoList tbankToDoList;
 	
 	public BankToDoListItemPOJO(){

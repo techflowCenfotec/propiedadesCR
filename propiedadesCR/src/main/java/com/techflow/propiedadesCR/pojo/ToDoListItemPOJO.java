@@ -2,9 +2,24 @@ package com.techflow.propiedadesCR.pojo;
 
 public class ToDoListItemPOJO {
 	
+    /**
+     * Id del item
+     */
 	private int idItem;
+	
+	/**
+     * Estado del item
+     */
 	private byte done;
+	
+	/**
+     * Nombre del item
+     */
 	private String name;
+	
+	/**
+     * To-do list al que pertenece el item
+     */
 	private ToDoListPOJO TToDoList;
 	
 	public ToDoListItemPOJO() {

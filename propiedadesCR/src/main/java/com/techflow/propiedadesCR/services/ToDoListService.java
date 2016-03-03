@@ -17,8 +17,11 @@ import com.techflow.propiedadesCR.repositories.ToDoListRepository;
 
 @Service
 public class ToDoListService implements ToDoListServiceInterface{
-
+	/**
+     * Objeto que se comunica con la base de datos
+     */
 	@Autowired private ToDoListRepository toDoListRepository;
+	
 	
 	@Override
 	@Transactional

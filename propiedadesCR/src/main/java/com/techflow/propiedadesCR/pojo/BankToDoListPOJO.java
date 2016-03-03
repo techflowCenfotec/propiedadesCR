@@ -3,10 +3,30 @@ package com.techflow.propiedadesCR.pojo;
 import java.util.List;
 
 public class BankToDoListPOJO {
+    
+	/**
+     * Id del to-do list del banco
+     */	
 	private int idtBank_to_do_list;
+    
+	/**
+     * Descripcion del to-do list del banco
+     */
 	private String description;
+	
+    /**
+     * Nombre del to-do list del banco
+     */
 	private String name;
+    
+	/**
+     * Banco al que pertenece el to-do list
+     */
 	private BankPOJO tbank;
+	
+    /**
+     * Lista de items del to-do list
+     */
 	private List<BankToDoListItemPOJO> tbankItems;
 
 	

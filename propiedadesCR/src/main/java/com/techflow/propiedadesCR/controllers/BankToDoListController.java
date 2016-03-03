@@ -16,13 +16,31 @@ import com.techflow.propiedadesCR.ejb.TbankItem;
 import com.techflow.propiedadesCR.ejb.TbankToDoList;
 import com.techflow.propiedadesCR.pojo.BankToDoListPOJO;
 import com.techflow.propiedadesCR.services.BankToDoListServiceInterface;
+/**
+* <h1>Controlador del to-do list de los bancos</h1>
+* Esta clase es la encargada de recibir los pedidos del front-end
+* y manejar todo lo relacionado a los to-do list de los bancos
+*
+* @author  Jimmi Vila
+* @version 1.0
+* @since 22/02/2016
+*/
 
 @RestController
 @RequestMapping(value = "rest/protected/banktodolist")
 public class BankToDoListController {
 
+	/**
+     * Objeto que ofrece los servicios de los to-do list de los bancoss
+     */
 	@Autowired private BankToDoListServiceInterface bankToDoListService;
 	
+	/**
+	  * Este metodo sirve para cargar todos los to-do list de todos los bancos del sistema
+	  * @param pbankToDoListRequest Este parametro es la peticion del front-end
+	  * que se usa para acceder al metodo deseado
+	  * @return response Resultado con la lista de to-do list del sistema
+	  */
 	@RequestMapping(value="/getAll",method = RequestMethod.POST)
 	public BankToDoListResponse getAll(@RequestBody BankToDoListRequest pbankToDoListRequest){
 		BankToDoListResponse response = new BankToDoListResponse();
@@ -32,6 +50,12 @@ public class BankToDoListController {
         return response;
 	}
 	
+	/**
+	  * Este metodo sirve para crear un to-do list nuevo para un banco especifico
+	  * @param pbankToDoListRequest Este parametro es la peticion del front-end
+	  * que se usa para obtener el objeto nuevo que se va ingresar al sistema
+	  * @return response Resultado de la peticion
+	  */
 	@RequestMapping(value="/create",method=RequestMethod.POST)
 	public BankToDoListResponse create(@RequestBody BankToDoListRequest pbankToDoListRequest){
 		BankToDoListResponse response = new BankToDoListResponse();
@@ -47,7 +71,13 @@ public class BankToDoListController {
 		}
 		return response;
 	}
-	
+
+	/**
+	  * Este metodo sirve para crear un item y asignarlo a un to-do list especifico
+	  * @param pbankToDoListItemRequest Este parametro es la peticion del front-end
+	  * que se usa para obtener el objeto nuevo que se va ingresar al sistema
+	  * @return response Resultado de la peticion
+	  */
 	@RequestMapping(value="/createItem",method=RequestMethod.POST)
 	public BankToDoListItemResponse createItem(@RequestBody BankToDoListItemRequest pbankToDoListItemRequest){
 		BankToDoListItemResponse response = new BankToDoListItemResponse();
@@ -61,6 +91,12 @@ public class BankToDoListController {
 		return response;
 	}
 	
+	/**
+	  * Este metodo sirve para levantar un to-do list especifico con sus items
+	  * @param pbankToDoListItemRequest Este parametro es la peticion del front-end
+	  * que se usa para obtener el id dedl to-do list a consultar
+	  * @return response Resultado de la peticion
+	  */
 	@RequestMapping(value="/getById", method=RequestMethod.POST)
 	public BankToDoListResponse getById(@RequestBody BankToDoListRequest pbankToDoListRequest){
 		BankToDoListResponse response = new BankToDoListResponse();
