@@ -13,7 +13,7 @@
 					function($scope, $http, $location, $upload) {
 
 						var original;
-						$scope.files = {};
+
 						$scope.form = {
 							name : '',
 							email : '',
@@ -43,10 +43,8 @@
 							$scope.saveUser(event, $files);
 						};
 						$scope.saveUser = function(event, $files) {
-							
-							var i = 0;
-
-							var file = $files[i].file;
+											
+							var file = $files[0].file;
 							$scope.upload = $upload.upload({
 								url : 'rest/protected/users/create',
 								data : {
@@ -61,7 +59,7 @@
 								},
 								file : file,
 							}).success(function(data, status, headers, config) {
-								//		    					
+										    					
 								$files[0].cancel()
 								$scope.showInfoOnSubmit = true;
 								return revert();
