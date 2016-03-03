@@ -11,7 +11,6 @@
 		
 		$http.post(link,request).success(function(response) {
 			   $scope.events= response.events;
-			   console.log($scope.events);
 			   $scope.eventsList = $scope.events;
 			   
 		});

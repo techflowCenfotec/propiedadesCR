@@ -81,7 +81,7 @@
 
 								};
 								$scope.saveEvent = function($files) {
-									console.log($files);
+									
 									$scope.getDateWithFormat();
 
 									var file = $files[0].file;
