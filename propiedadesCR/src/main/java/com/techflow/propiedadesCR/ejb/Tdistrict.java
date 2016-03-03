@@ -2,6 +2,7 @@ package com.techflow.propiedadesCR.ejb;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -17,12 +18,14 @@ public class Tdistrict implements Serializable {
 	private int code;
 	private String name;
 	private Tcounty tcounty;
+	private List<Tproperty> tproperties;
 
 	public Tdistrict() {
 	}
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_disctrict")
 	public int getIdDisctrict() {
 		return this.idDisctrict;
@@ -60,6 +63,31 @@ public class Tdistrict implements Serializable {
 
 	public void setTcounty(Tcounty tcounty) {
 		this.tcounty = tcounty;
+	}
+
+
+	//bi-directional many-to-one association to Tproperty
+	@OneToMany(mappedBy="tdistrict")
+	public List<Tproperty> getTproperties() {
+		return this.tproperties;
+	}
+
+	public void setTproperties(List<Tproperty> tproperties) {
+		this.tproperties = tproperties;
+	}
+
+	public Tproperty addTproperty(Tproperty tproperty) {
+		getTproperties().add(tproperty);
+		tproperty.setTdistrict(this);
+
+		return tproperty;
+	}
+
+	public Tproperty removeTproperty(Tproperty tproperty) {
+		getTproperties().remove(tproperty);
+		tproperty.setTdistrict(null);
+
+		return tproperty;
 	}
 
 }
