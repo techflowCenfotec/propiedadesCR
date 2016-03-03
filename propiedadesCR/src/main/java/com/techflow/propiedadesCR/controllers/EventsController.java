@@ -1,6 +1,5 @@
 /**
- * <h1>EventsController</h1>
- * Descripción de la clase: 
+ * <h1>Controlador de eventos</h1>
  * Esta clase es  encargada de recibir la información entre el BackEnd y el FrondEnd
  * 
  * @author María Jesús Gutiérrez Calvo.
@@ -35,48 +34,50 @@ import com.techflow.propiedadesCR.utils.Utils;
 @RequestMapping(value="rest/protected/events")
 
 public class EventsController {
-	
 	/**
-	 * servletContext, autowired utilizado para el manejo de archivos.
+	 * Objeto usado para el manejo de archivos.
 	 */
+	
 	@Autowired private ServletContext servletContext;
 	/**
-	 * eventsService, autowired utilizado para los servicios de los eventos.
+	 *  Objeto que ofrece los servicios de los eventos.
 	 */
+	
 	@Autowired private EventsServiceInterface eventsService;
+	
+	/**
+	 * Método getAll Trae todos los eventos registrados.
+	 * @param peventRequest Encapsula la información solicitada por el usuario.
+	 * @return response Se retorna la respuesta del BackEnd al FrondEnd.
+	 */
 	
 	@RequestMapping(value="/getAll", method = RequestMethod.POST)
 	
-	/**
-	 * Descripción de lo que hace la función:
-	 * Método getAll, trae todos los eventos registrados.
-	 * @param EventRequest, encapsula la información solicitada por el usuario.
-	 * @return response, se retorna la respuesta del BackEnd al FrondEnd.
-	 */
-	public EventsResponse getAll(@RequestBody EventsRequest er) {
+	
+	public EventsResponse getAll(@RequestBody EventsRequest peventRequest) {
 		
 		
 		EventsResponse response = new EventsResponse();
 		response.setCode(200);
 		response.setCodeMessage("Events fetch successful");
-		response.setEvents(eventsService.getAll(er));
+		response.setEvents(eventsService.getAll(peventRequest));
 		
 		return response;
 	}
-
-	
-	@RequestMapping(value="/create", method = RequestMethod.POST)
 	/**
-	 * Descripción de la función: 
-	 * Método create, envía los datos a la base de datos para registrar el evento.
-	 * @param file, se recibe el archivo subido por el usuario.
-	 * @param name, se recibe el nombre del evento a registrar.
-	 * @param description, se recibe la descripción del evento a registrar.
-	 * @param startDate, se recibe la fecha del evento a registrar.
-	 * @param idUser, se recibe el identificador del usuario que registra el evento.
-	 * @return EventResponse retorna la respuesta del BackEnd al FrondEnd
+	 * 
+	 * Método create Envía los datos a la base de datos para registrar el evento.
+	 * @param file Se recibe el archivo subido por el usuario.
+	 * @param name Se recibe el nombre del evento a registrar.
+	 * @param description Se recibe la descripción del evento a registrar.
+	 * @param startDate Se recibe la fecha del evento a registrar.
+	 * @param idUser Se recibe el identificador del usuario que registra el evento.
+	 * @return response Retorna la respuesta del BackEnd al FrondEnd
 	 * @exception ParseException(esta exepción se lanza cuando la fecha no lleva el formato correcto)
 	 */
+	
+	@RequestMapping(value="/create", method = RequestMethod.POST)
+	
 	public EventsResponse create(
 			@RequestParam("file") MultipartFile file,
 			@RequestParam("name") String name,
@@ -92,7 +93,7 @@ public class EventsController {
 			e.printStackTrace();
 		}
 		
-		EventsResponse rs = new EventsResponse();
+		EventsResponse response = new EventsResponse();
 		String resultFileName = Utils.writeToFile(file, servletContext);
 		
 		
@@ -108,15 +109,15 @@ public class EventsController {
 			Tevent recentlyCreatedEvent = new Tevent();
 			recentlyCreatedEvent = eventsService.saveEvent(er);
 		if(recentlyCreatedEvent!=null){
-			rs.setCode(200);
-			rs.setCodeMessage("Events created successful");
+			response.setCode(200);
+			response.setCodeMessage("Events created successful");
 		  }
 	    }else{
-	    	rs.setCode(409);
-	    	rs.setErrorMessage("create/edit conflict");
+	    	response.setCode(409);
+	    	response.setErrorMessage("create/edit conflict");
 	    }
 		
-		return rs;
+		return response;
 		
     }
   }

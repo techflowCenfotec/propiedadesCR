@@ -1,5 +1,5 @@
 /**
- * <h1>EventPojo</h1>
+ * <h1>POJO del evento</h1>
  * Enfatiza el uso de la clase simple "evento".
  * 
  * @author María Jesús Gutiérrez Calvo.
@@ -13,27 +13,27 @@ import java.util.Date;
 
 public class EventPOJO {
 	/**
-	 * identificador del evento
+	 * Identificador del evento
 	 */
 	private int idEvent;
 	/**
-	 * nombre del evento
+	 * Nombre del evento
 	 */
 	private String name;
 	/**
-	 * descripcion del evento
+	 * Descripcion del evento
 	 */
 	private String description;
 	/**
-	 * fecha del evento
+	 * Fecha del evento
 	 */
 	private Date startDate;
 	/**
-	 * estado del evento
+	 * Estado del evento
 	 */
 	private byte active;
 	/**
-	 * imagen del evento
+	 * Imagen del evento
 	 */
 	private String eventImage;
 	

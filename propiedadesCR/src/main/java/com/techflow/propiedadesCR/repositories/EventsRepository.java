@@ -1,6 +1,6 @@
 /*
  * <h1>EventsRepository</h1>
- * Descripción de la clase
+ * 
  * Clase encargada de la comunicación con la base de datos.
  * 
  * @author María Jesús Gutiérrez Calvo.
@@ -17,7 +17,7 @@ import org.springframework.data.repository.CrudRepository;
 import com.techflow.propiedadesCR.contracts.EventsRequest;
 import com.techflow.propiedadesCR.ejb.Tevent;
 /**
- * Descripción de la función:
+ *
  * Busca todos los eventos de la tabla Tevent y los guarda en una lista.
  *
  */

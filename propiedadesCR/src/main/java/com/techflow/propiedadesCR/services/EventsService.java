@@ -1,7 +1,7 @@
 /**
- * <h1>EventsService</h1>
- * Descripción de la clase: 
- * Implementa la lista de <EventPOJO> del getAll y el saveEvent del EJB.
+ * <h1>Servicio de los bancos</h1>
+ * Esta clase es la encargada de ofrecer los servicios 
+ * y administrar las transacciones al repositorio.
  * 
  * @author María Jesús Gutiérrez Calvo
  * @version 1.0
@@ -25,31 +25,31 @@ import com.techflow.propiedadesCR.repositories.EventsRepository;
 @Service
 public class EventsService implements EventsServiceInterface {
 	/*
-	 * eventsRepository encargado de la comunicación con la base de datos.
+	 * Objeto que se comunica con la base de datos.
 	 */
 	@Autowired private EventsRepository eventsRepository;
 	
 	@Override
 	@Transactional
 	/**
-	 * Descripción de la función:
-	 * getAll, trae una lista de todos los eventos registrados en la base de datos.
-	 * @param EventsRequest, encapsula la información solicitada por el usuario.
-	 * @return generateEventDtos, genera los objetos POJO que se retornan a la IU. 
+	 * 
+	 * getAll Trae una lista de todos los eventos registrados en la base de datos.
+	 * @param EventsRequest Encapsula la información solicitada por el usuario.
+	 * @return generateEventDtos Genera los objetos POJO que se retornan a la IU. 
 	 */
-	public List<EventPOJO> getAll(EventsRequest er) {
+	public List<EventPOJO> getAll(EventsRequest peventRequest) {
 		List<Tevent> events = eventsRepository.findAll();
 		return generateEventDtos(events);
 	}
 	/**
-	 * Descripción de la función:
-	 * generateEventDtos, genera los objetos POJO que se retornan a la IU.
-	 * @param events, trae la lista de la tabla eventos del ejb.
-	 * @return uiEvents, lista de los objetos POJO.
+	 * 
+	 * generateEventDtos Genera los objetos POJO que se retornan a la IU.
+	 * @param events Trae la lista de la tabla eventos del ejb.
+	 * @return uiEvents Lista de los eventos del sistema.
 	 */
-	private List<EventPOJO> generateEventDtos(List<Tevent> events) {
+	private List<EventPOJO> generateEventDtos(List<Tevent> pevents) {
 		List<EventPOJO> uiEvents = new ArrayList<EventPOJO>();
-		events.stream().forEach(u -> {
+		pevents.stream().forEach(u -> {
 			EventPOJO dto = new EventPOJO();
 			BeanUtils.copyProperties(u, dto);
 			uiEvents.add(dto);
@@ -60,15 +60,15 @@ public class EventsService implements EventsServiceInterface {
 	@Override
 	@Transactional
 	/**
-	 * Descripción de la función:
-	 * saveEvent, registra el evento en el sistema
-	 * @param EventRequest, encapsula la información solicitada por el usuario.
-	 * @return nEvent, retorna el evento creado.
+	 * 
+	 * saveEvent Registra el evento en el sistema
+	 * @param EventRequest Encapsula la información solicitada por el usuario.
+	 * @return nEvent Retorna el evento creado.
 	 */
-	public Tevent saveEvent(EventsRequest er) {
+	public Tevent saveEvent(EventsRequest peventRequest) {
 		
 	Tevent event = new Tevent();
-	BeanUtils.copyProperties(er.getEvent(), event);
+	BeanUtils.copyProperties(peventRequest.getEvent(), event);
 	Tevent nEvent=  eventsRepository.save(event);
 	
 		//return (nEvent == null) ? false : true;
