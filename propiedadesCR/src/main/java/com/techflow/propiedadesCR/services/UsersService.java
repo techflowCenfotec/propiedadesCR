@@ -1,5 +1,5 @@
 /**
-* <h1>Servicio del usuario</h1> 
+* <h1>Servicio de usuarios</h1> 
 * Esta clase  se encarga de comunicarse con el repositorio.
 *
 * @author  Jorge Arguedas Arrieta

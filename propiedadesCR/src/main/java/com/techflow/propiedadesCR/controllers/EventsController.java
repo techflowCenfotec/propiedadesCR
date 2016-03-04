@@ -67,13 +67,16 @@ public class EventsController {
 	/**
 	 * 
 	 * Este método envía los datos a la base de datos para registrar el evento.
+	 * 
 	 * @param pfile Se recibe el archivo subido por el usuario.
 	 * @param pname Se recibe el nombre del evento a registrar.
 	 * @param pdescription Se recibe la descripción del evento a registrar.
 	 * @param pstartDate Se recibe la fecha del evento a registrar.
 	 * @param pidUser Se recibe el identificador del usuario que registra el evento.
 	 * @return response Retorna la respuesta del BackEnd al FrondEnd
-	 * @exception ParseException(esta exepción se lanza cuando la fecha no lleva el formato correcto)
+	 * 
+	 * @throws ParseException Esta exepción se lanza cuando el sistema es incapaz de transformar
+	 * el String pstartDate a startDate ques es de tipo Date.
 	 */
 	
 	@RequestMapping(value="/create", method = RequestMethod.POST)
@@ -85,9 +88,9 @@ public class EventsController {
 			@RequestParam("start_date")String pstartDate,
 			@RequestParam("id_user")int pidUser){
 		 
-		Date date = new Date();
+		Date startDate = new Date();
 		try {
-			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(pstartDate);
+			startDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(pstartDate);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -101,7 +104,7 @@ public class EventsController {
 			EventPOJO  event = new EventPOJO();
 			event.setName(pname);
 			event.setDescription(pdescription);
-			event.setStartDate(date);
+			event.setStartDate(startDate);
 			event.setEventImage(resultFileName);
 			event.setActive((byte)1);
 			EventsRequest eventRequest= new EventsRequest();

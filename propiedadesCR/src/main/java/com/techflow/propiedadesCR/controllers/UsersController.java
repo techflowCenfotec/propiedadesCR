@@ -1,6 +1,6 @@
 
 /**
-* <h1>Controlador del usuario</h1>
+* <h1>Controlador de usuarios</h1>
 * 
 * Esta clase se encarga de realizar la 
 * comunicación entre el backend y el frontend.
@@ -80,7 +80,9 @@ public class UsersController {
       * 
 	  * @return response Retorna la respuesta del servicio hacia el frontend.
 	  *
-	  * @throws java.text.ParseException */
+	  * @throws ParseException Esta exepción se lanza cuando el sistema es incapaz de transformar
+	  * el String pbirthday a birthday ques es de tipo Date.
+	   */
 	@RequestMapping(value ="/create", method = RequestMethod.POST)
 	public UsersResponse create(
 			@RequestParam("file") MultipartFile pfile,
