@@ -78,7 +78,12 @@
 
         <!--Custom JS files-->
         <script src="resources/app/templates/propertiesView/propertiesList.js"></script>
+<<<<<<< HEAD
         <script src="resources/app/templates/usersView/usersList.js"></script>
         <script src="resources/app/templates/usersView/createUser.js"></script>
+=======
+        <script src="resources/app/templates/eventsView/createEvent.js"></script>
+        <script src= "resources/app/templates/eventsView/eventsList.js"></script>
+>>>>>>> b9f7faca40bfafee4bd9ef38ccabcc1791d7c86d
         <script src="resources/app/templates/homeView/home.js"></script>
         

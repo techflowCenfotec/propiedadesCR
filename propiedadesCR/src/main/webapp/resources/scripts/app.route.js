@@ -9,8 +9,13 @@
 		n = [
 			"templates/propertiesView/propertiesList"
 			,"templates/reportsView/reports"
+<<<<<<< HEAD
 			,"templates/usersView/usersList"
 			,"templates/usersView/createUser",			
+=======
+			,"templates/eventsView/createEvent",
+			 "templates/eventsView/eventsList"
+>>>>>>> b9f7faca40bfafee4bd9ef38ccabcc1791d7c86d
 		], 
 
 		t = function(a) {
