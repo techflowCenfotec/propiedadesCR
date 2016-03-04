@@ -2,7 +2,7 @@
 /**
 * <h1>Controlador del usuario</h1>
 * 
-* Esta clase  encarga de realizar la 
+* Esta clase se encarga de realizar la 
 * comunicación entre el backend y el frontend.
 *
 * @author  Jorge Arguedas Arrieta
