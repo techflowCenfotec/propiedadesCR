@@ -21,7 +21,7 @@ public class EventPOJO {
 	 */
 	private String name;
 	/**
-	 * Descripcion del evento
+	 * Descripción del evento
 	 */
 	private String description;
 	/**
@@ -33,7 +33,7 @@ public class EventPOJO {
 	 */
 	private byte active;
 	/**
-	 * Imagen del evento
+	 * Ruta de la imagen del evento
 	 */
 	private String eventImage;
 	

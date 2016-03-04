@@ -1,3 +1,13 @@
+/**
+* <h1>Servicio del usuario</h1> 
+* El servicio es el encargado de comunicarse con el repositorio.
+*
+* @author  Jorge Arguedas Arrieta
+*
+* @version 1.0
+*
+* @since 25/2/2016
+*/
 package com.techflow.propiedadesCR.services;
 
 import java.util.ArrayList;
@@ -12,16 +22,7 @@ import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.pojo.UserPOJO;
 import com.techflow.propiedadesCR.repositories.UsersRepository;
 
-/**
-* <h1>Servicio del usuario</h1> 
-* El servicio es el encargado de comunicarse con el repositorio.
-*
-* @author  Jorge Arguedas Arrieta
-*
-* @version 1.0
-*
-* @since 25/2/2016
-*/
+
 @Service
 public class UsersService implements UsersServiceInterface{
 	
@@ -34,9 +35,9 @@ public class UsersService implements UsersServiceInterface{
 	/**
 	  * Este método retorna todos los usuarios registrados en el sistema
 	  *
-	  * @param usersRequest Este parámetro encapsula la información solicitada por el usuario.
+	  * @param pusersRequest Este parámetro encapsula la información solicitada por el usuario.
 	  *
-	  * @return response Retorna la respuesta del repositorio hacia el controlador.
+	  * @return uiUsers Retorna la respuesta del repositorio hacia el controlador.
 	  */
 	@Override
 	@Transactional
@@ -48,7 +49,7 @@ public class UsersService implements UsersServiceInterface{
 	/**
 	  * Genera los objetos POJOS que se retornaran a la UI.
 	  *
-	  * @param users Lista de usuarios.
+	  * @param pusers Lista de usuarios.
 	  *
 	  * @return uiUsers Se retorna una lista de usuarios POJOS.
 	  */
@@ -65,7 +66,7 @@ public class UsersService implements UsersServiceInterface{
 	/**
 	  * Este método registra un usuario en el sistema.
 	  *
-	  * @param userRequest Encapsula los datos requeridos por el usuario.
+	  * @param puserRequest Encapsula los datos requeridos por el usuario.
       * 
 	  * @return nuser Retorna el usuario creado.
 	  */

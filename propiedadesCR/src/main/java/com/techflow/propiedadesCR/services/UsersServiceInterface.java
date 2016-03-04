@@ -15,6 +15,6 @@ public interface UsersServiceInterface {
 	  *
 	  * @return response Retorna la respuesta del repositorio hacia el controlador.
 	  */
-	List<UserPOJO> getAll(UsersRequest pr);
-	Tuser saveUser(UsersRequest pr);
+	List<UserPOJO> getAll(UsersRequest puserRequest);
+	Tuser saveUser(UsersRequest puserRequest);
 }

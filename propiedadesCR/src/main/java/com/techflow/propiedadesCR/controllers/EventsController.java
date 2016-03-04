@@ -79,35 +79,35 @@ public class EventsController {
 	@RequestMapping(value="/create", method = RequestMethod.POST)
 	
 	public EventsResponse create(
-			@RequestParam("file") MultipartFile file,
-			@RequestParam("name") String name,
-			@RequestParam("description")String description,
-			@RequestParam("start_date")String startDate,
-			@RequestParam("id_user")int idUser){
+			@RequestParam("file") MultipartFile pfile,
+			@RequestParam("name") String pname,
+			@RequestParam("description")String pdescription,
+			@RequestParam("start_date")String pstartDate,
+			@RequestParam("id_user")int pidUser){
 		 
 		Date date = new Date();
 		try {
-			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(startDate);
+			date = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(pstartDate);
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 		EventsResponse response = new EventsResponse();
-		String resultFileName = Utils.writeToFile(file, servletContext);
+		String resultFileName = Utils.writeToFile(pfile, servletContext);
 		
 		
 		if(!resultFileName.equals("")){
 			EventPOJO  event = new EventPOJO();
-			event.setName(name);
-			event.setDescription(description);
+			event.setName(pname);
+			event.setDescription(pdescription);
 			event.setStartDate(date);
 			event.setEventImage(resultFileName);
 			event.setActive((byte)1);
-			EventsRequest er = new EventsRequest();
-			er.setEvent(event);
+			EventsRequest eventRequest= new EventsRequest();
+			eventRequest.setEvent(event);
 			Tevent recentlyCreatedEvent = new Tevent();
-			recentlyCreatedEvent = eventsService.saveEvent(er);
+			recentlyCreatedEvent = eventsService.saveEvent(eventRequest);
 		if(recentlyCreatedEvent!=null){
 			response.setCode(200);
 			response.setCodeMessage("Events created successful");

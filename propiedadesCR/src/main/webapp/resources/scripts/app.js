@@ -30,14 +30,14 @@ function() {
 		,"app.i18n"
 		,"app.home"
 		,"app.properties"
-<<<<<<< HEAD
+
 		,"app.createUsers"
 		,"app.usersList"
-=======
+
 		,"app.events"
 		,"app.eventsList"
 
->>>>>>> b9f7faca40bfafee4bd9ef38ccabcc1791d7c86d
+
 		//3rd Party Modules
 		,"ngMaterial"
 		,"ui.bootstrap"

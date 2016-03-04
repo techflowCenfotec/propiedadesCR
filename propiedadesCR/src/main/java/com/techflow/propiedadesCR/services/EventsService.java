@@ -1,5 +1,5 @@
 /**
- * <h1>Servicio de los bancos</h1>
+ * <h1>Servicio de los eventos</h1>
  * Esta clase es la encargada de ofrecer los servicios 
  * y administrar las transacciones al repositorio.
  * 
@@ -34,8 +34,8 @@ public class EventsService implements EventsServiceInterface {
 	/**
 	 * 
 	 * getAll Trae una lista de todos los eventos registrados en la base de datos.
-	 * @param EventsRequest Encapsula la información solicitada por el usuario.
-	 * @return generateEventDtos Genera los objetos POJO que se retornan a la IU. 
+	 * @param peventRequest Encapsula la información solicitada por el usuario.
+	 * @return uiEvents Genera los objetos POJO que se retornan a la IU. 
 	 */
 	public List<EventPOJO> getAll(EventsRequest peventRequest) {
 		List<Tevent> events = eventsRepository.findAll();
@@ -44,7 +44,7 @@ public class EventsService implements EventsServiceInterface {
 	/**
 	 * 
 	 * generateEventDtos Genera los objetos POJO que se retornan a la IU.
-	 * @param events Trae la lista de la tabla eventos del ejb.
+	 * @param pevents Trae la lista de la tabla eventos del ejb.
 	 * @return uiEvents Lista de los eventos del sistema.
 	 */
 	private List<EventPOJO> generateEventDtos(List<Tevent> pevents) {
@@ -62,7 +62,7 @@ public class EventsService implements EventsServiceInterface {
 	/**
 	 * 
 	 * saveEvent Registra el evento en el sistema
-	 * @param EventRequest Encapsula la información solicitada por el usuario.
+	 * @param peventRequest Encapsula la información solicitada por el usuario.
 	 * @return nEvent Retorna el evento creado.
 	 */
 	public Tevent saveEvent(EventsRequest peventRequest) {

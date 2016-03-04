@@ -1,12 +1,7 @@
-package com.techflow.propiedadesCR.repositories;
-
-import java.util.List;
-import org.springframework.data.repository.CrudRepository;
-import com.techflow.propiedadesCR.ejb.Tuser;
 /**
-* <h1>UsersRepository</h1>
+* <h1>Repositorio de usuarios</h1>
 * 
-* Se encarga de la comunicación con la BD
+* Esta clase se encarga de la comunicación con la BD
 *
 * @author  Jorge Arguedas Arrieta
 *
@@ -14,6 +9,12 @@ import com.techflow.propiedadesCR.ejb.Tuser;
 *
 * @since 25/2/2016
 */
+package com.techflow.propiedadesCR.repositories;
+
+import java.util.List;
+import org.springframework.data.repository.CrudRepository;
+import com.techflow.propiedadesCR.ejb.Tuser;
+
 public interface UsersRepository extends CrudRepository<Tuser, Integer> {
 	/**
 	  * Este método retorna todos los usuarios registrados en el sistema

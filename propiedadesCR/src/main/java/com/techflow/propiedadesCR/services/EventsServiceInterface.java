@@ -7,6 +7,6 @@ import com.techflow.propiedadesCR.ejb.Tevent;
 import com.techflow.propiedadesCR.pojo.EventPOJO;
 
 public interface EventsServiceInterface {
-	List<EventPOJO> getAll(EventsRequest event);
-	Tevent saveEvent(EventsRequest event);
+	List<EventPOJO> getAll(EventsRequest peventRequest);
+	Tevent saveEvent(EventsRequest peventRequest);
 }

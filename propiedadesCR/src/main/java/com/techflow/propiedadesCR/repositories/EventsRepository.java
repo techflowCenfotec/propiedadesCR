@@ -16,13 +16,13 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.techflow.propiedadesCR.contracts.EventsRequest;
 import com.techflow.propiedadesCR.ejb.Tevent;
-/**
- *
- * Busca todos los eventos de la tabla Tevent y los guarda en una lista.
- *
- */
+
 public interface EventsRepository extends CrudRepository<Tevent, Integer>{
-	
+	/**
+	  * Este método retorna todos los eventos registrados en el sistema
+	  *
+	  * @return List<event> Retorna la respuesta de la BD hacia el servicio. 
+	  */
 	List<Tevent> findAll();
 	
 }

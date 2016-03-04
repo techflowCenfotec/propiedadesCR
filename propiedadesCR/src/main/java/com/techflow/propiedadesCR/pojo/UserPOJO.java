@@ -1,9 +1,3 @@
-package com.techflow.propiedadesCR.pojo;
-
-import java.util.Date;
-
-import com.techflow.propiedadesCR.ejb.Trole;
-
 /**
 * <h1>Usuario POJO</h1>
 * Esta clase se encarga de wrappear los objetos 
@@ -15,10 +9,16 @@ import com.techflow.propiedadesCR.ejb.Trole;
 *
 * @since 2/25/2016
 */
+package com.techflow.propiedadesCR.pojo;
+
+import java.util.Date;
+
+import com.techflow.propiedadesCR.ejb.Trole;
+
 public class UserPOJO {
 	
 	/**
-     * Id del usuario.
+     * Identificador del usuario.
      */
 	private int idUsuario;
 	/**

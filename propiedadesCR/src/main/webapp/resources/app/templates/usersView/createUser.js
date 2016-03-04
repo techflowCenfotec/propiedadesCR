@@ -51,7 +51,7 @@
 						};
 						$scope.saveUser = function(event, $files) {
 							$scope.getDateWithFormat();
-							console.log($scope.form.gender);
+							
 							var file = $files[0].file;
 							$scope.upload = $upload.upload({
 								url : 'rest/protected/users/create',

@@ -1,3 +1,16 @@
+
+/**
+* <h1>Controlador del usuario</h1>
+* 
+* El controlador es el encargado de realizar la 
+* comunicación entre el backend y el frontend.
+*
+* @author  Jorge Arguedas Arrieta
+*
+* @version 1.0
+*
+* @since 25/2/2016
+*/
 package com.techflow.propiedadesCR.controllers;
 
 import java.text.SimpleDateFormat;
@@ -20,18 +33,6 @@ import com.techflow.propiedadesCR.pojo.UserPOJO;
 import com.techflow.propiedadesCR.services.UsersServiceInterface;
 import com.techflow.propiedadesCR.utils.Utils;
 
-/**
-* <h1>Controlador del usuario</h1>
-* 
-* El controlador es el encargado de realizar la 
-* comunicación entre el backend y el frontend.
-*
-* @author  Jorge Arguedas Arrieta
-*
-* @version 1.0
-*
-* @since 25/2/2016
-*/
 @RestController
 @RequestMapping(value="rest/protected/users")
 public class UsersController {
