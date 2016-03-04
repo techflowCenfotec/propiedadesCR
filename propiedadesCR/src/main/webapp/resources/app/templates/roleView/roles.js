@@ -26,10 +26,7 @@
 		$http.post(link,request).success(function(response) {
 			$scope.rolesList= response.role;
 			init();
-			console.log($scope.rolesList)
 		});
-		console.log(request);
-		console.log(link);
 
 		function select(page) {
             var end, start;
@@ -37,7 +34,6 @@
             end = start + $scope.numPerPage;
             return $scope.currentPageList = $scope.filteredRole.slice(start, end);
         };
-
 
 		function onFilterChange() {
             $scope.select(1);
@@ -73,7 +69,5 @@
             $scope.search();
             return $scope.select($scope.currentPage);
         };
-
 	}]);
-	
 })();

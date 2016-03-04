@@ -10,7 +10,7 @@ import com.techflow.propiedadesCR.ejb.Trole;
  * Clase comunicarse con la base de datos y guardar los datos en ella.
  *@author Valeria Ramírez
  *@version 1.0
- *@since 03/03/2016
+ *@since 02/26/2016
  */
 
 public interface RoleRepository extends CrudRepository<Trole, Integer>{
@@ -18,5 +18,4 @@ public interface RoleRepository extends CrudRepository<Trole, Integer>{
 	 * Método que se encarga de realizar la consulta a la base de datos
 	 */
 	List<Trole> findAll();
-	//List<Trole> findByNameContaining(String name);
 }

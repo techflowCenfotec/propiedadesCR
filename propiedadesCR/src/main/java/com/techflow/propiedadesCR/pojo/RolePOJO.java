@@ -5,7 +5,7 @@ import java.util.List;
  * Enfatiza el uso de la clase simple "role"
  *@author Valeria Ramírez
  *@version 1.0
- *@since 03/03/2016
+ *@since 02/26/2016
  */
 public class RolePOJO {
 	/*

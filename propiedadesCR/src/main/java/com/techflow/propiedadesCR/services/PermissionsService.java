@@ -18,7 +18,7 @@ import com.techflow.propiedadesCR.repositories.PermissionsRepository;
  * y administrar las transacciones al repositorio
  *@author Valeria Ramírez
  *@version 1.0
- *@since 03/03/2016
+ *@since 02/29/2016
  */
 @Service
 public class PermissionsService implements PermissionsServiceInterface {

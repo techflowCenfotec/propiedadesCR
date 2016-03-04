@@ -1,5 +1,4 @@
 package com.techflow.propiedadesCR.controllers;
-import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,7 +17,7 @@ import com.techflow.propiedadesCR.services.RolesServiceInterface;
  * 
  *@author Valeria Ramírez
  *@version 1.0
- *@since 03/03/2016
+ *@since 02/26/2016
  */
 
 @RestController
@@ -26,25 +25,23 @@ import com.techflow.propiedadesCR.services.RolesServiceInterface;
 
 public class RolesController {
 
-/**
-* Objeto que ofrece servicios de los roles
-*
-*/ 
-	
+	/**
+	 * Objeto que ofrece servicios de los roles
+	 *
+	 */ 	
 	@Autowired private RolesServiceInterface rolesService;
-	@Autowired private HttpServletRequest request;
 	
-/**
-* Este método permite obtener todos los roles que se encuetran
-* en el sistema
-* 
-* @param prolesRequest Este parámetro es la peticion del front-end
-* que se utiliza para acceder al método deseado
-* 
-* @return rolesResponse Resultado que contiene la lista de roles que se ecuntran
-* en el sistema
-*
-*/ 
+	/**
+	 * Este método permite obtener todos los roles que se encuetran
+	 * en el sistema
+	 * 
+	 * @param prolesRequest Este parámetro es la peticion del front-end
+	 * que se utiliza para acceder al método deseado
+	 * 
+	 * @return rolesResponse Resultado que contiene la lista de roles que se ecuntran
+	 * en el sistema
+	 *
+	 */ 
 	@RequestMapping(value ="/getAll", method = RequestMethod.POST)
 	
 	public RolesResponse getAll(@RequestBody RolesRequest prolesRequest){	
@@ -54,19 +51,18 @@ public class RolesController {
 		rolesResponse.setRole(rolesService.getAll(prolesRequest)); 
 		return rolesResponse;		
 	}
-/**
-* Este método permite obtener los datos de un rol en específico
-* 
-* @param prolesRequest Este parámetro es la peticion del front-end
-* que se utiliza para acceder al método deseado
-* 
-* @return rolesResponse Resultado que contiene el objeto solicitdado
-* junto con sus datos
-*
-*/ 
+	/**
+	 * Este método permite obtener los datos de un rol en específico
+	 * 
+	 * @param prolesRequest Este parámetro es la peticion del front-end
+	 * que se utiliza para acceder al método deseado
+	 * 
+	 * @return rolesResponse Resultado que contiene el objeto solicitdado
+	 * junto con sus datos
+	 *
+	 */ 
 	@RequestMapping(value ="/getRoleById", method = RequestMethod.POST)
-	public RolesResponse getPermissions(@RequestBody RolesRequest prolesRequest){	
-			
+	public RolesResponse getPermissions(@RequestBody RolesRequest prolesRequest){			
 		RolesResponse rolesResponse = new RolesResponse();
 		rolesResponse.setCode(200);
 		rolesResponse.setCodeMessage("roles fetch success");
@@ -86,15 +82,12 @@ public class RolesController {
 	
 	@RequestMapping(value ="/create", method = RequestMethod.POST)
 	public RolesResponse create(@RequestBody RolesRequest prolesRequest){	
-		
 		RolesResponse rolesResponse = new RolesResponse();
 		Boolean state = rolesService.saveRole(prolesRequest);
-	
 		if(state){
 			rolesResponse.setCode(200);
 			rolesResponse.setCodeMessage("role created succesfully");
 		}
-		return rolesResponse;
-		
+		return rolesResponse;	
 	}
 }

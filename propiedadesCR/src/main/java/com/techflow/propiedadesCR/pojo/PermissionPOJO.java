@@ -4,7 +4,7 @@ package com.techflow.propiedadesCR.pojo;
  * Enfatiza el uso de la clase simple "permission"
  *@author Valeria Ramírez
  *@version 1.0
- *@since 03/03/2016
+ *@since 02/29/2016
  */
 public class PermissionPOJO {
 	/*

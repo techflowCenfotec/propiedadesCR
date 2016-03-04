@@ -21,7 +21,7 @@ import com.techflow.propiedadesCR.repositories.RoleRepository;
  * y administrar las transacciones al repositorio
  *@author Valeria Ramírez
  *@version 1.0
- *@since 03/03/2016
+ *@since 02/26/2016
  */
 
 @Service
@@ -29,13 +29,15 @@ public class RolesService implements RolesServiceInterface {
 	/*
 	 * Objeto que se comunica con la base de datos
 	 */
-
 	@Autowired private RoleRepository rolesRepository;
+	/*
+	 * Objeto que se comunica con la base de datos
+	 */
 	@Autowired private PermissionsRepository permissionsRepository;
 	
 	/**
 	 * Método que levanta todos los roles del sistema
-	 * @return generateRoleData lista que contiene todos los roles del sistema
+	 * @return generateRoleData Lista que contiene todos los roles del sistema
 	 */
 	@Override
 	@Transactional
@@ -46,8 +48,8 @@ public class RolesService implements RolesServiceInterface {
 	
 	/**
 	 * Método que levanta todos los roles del sistema
-	 * @param proles lista de roles levantados por el repositorio
-	 * @return uiRoles lista de bancos del sistema
+	 * @param proles Lista de roles levantados por el repositorio
+	 * @return uiRoles Lista de bancos del sistema
 	 */
 	private List<RolePOJO> generateRoleData(List<Trole> proles){
 		List<RolePOJO> uiRoles = new ArrayList<RolePOJO>();
@@ -65,8 +67,8 @@ public class RolesService implements RolesServiceInterface {
 	@Transactional
 	/**
 	 * Método que se encarga de almacenar los roles en el sistema
-	 * @param proleRequest parametro que contiene información del objeto a almacenar
-	 * @return newRole objeto que será insertado en la base de datos
+	 * @param proleRequest Parámetro que contiene información del objeto a almacenar
+	 * @return newRole Devuelve el objeto Trole
 	 */
 	public Boolean saveRole(RolesRequest proleRequest) {
 		
@@ -86,9 +88,9 @@ public class RolesService implements RolesServiceInterface {
 
 	/**
 	 * Método que se encarga de levantar la consulta de  un role
-	 * @param proleRequest parametro que contiene información del role 
+	 * @param proleRequest Parámetro que contiene información del role 
 	 * que se desea consultar
-	 * @return roleDataList lista que contiene el objeto a ser consultado
+	 * @return roleDataList Lista que contiene el objeto a ser consultado
 	 */
 	@Override
 	@Transactional
