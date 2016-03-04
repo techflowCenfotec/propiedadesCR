@@ -12,21 +12,35 @@ import com.techflow.propiedadesCR.contracts.PermissionsRequest;
 import com.techflow.propiedadesCR.ejb.Tpermission;
 import com.techflow.propiedadesCR.pojo.PermissionPOJO;
 import com.techflow.propiedadesCR.repositories.PermissionsRepository;
-
+/**
+ * <h1>Servicio del permiso</h1>
+ * Clase encargada de ofrecer los servicios del permiso
+ * y administrar las transacciones al repositorio
+ *@author Valeria Ramírez
+ *@version 1.0
+ *@since 03/03/2016
+ */
 @Service
 public class PermissionsService implements PermissionsServiceInterface {
+	/*
+	 * Objeto que se comunica con la base de datos
+	 */
 	@Autowired private PermissionsRepository permissionsRepository;
 	
 	@Override
 	@Transactional
+	/**
+	 * Método que levanta todos los permisos del sistema
+	 * @return generateRoleData lista que contiene todos los roles del sistema
+	 */
 	public List<PermissionPOJO> getAll(PermissionsRequest ppermissionsRequest){
 		List<Tpermission> permissions = permissionsRepository.findAll();
-		List<PermissionPOJO> dtos = new ArrayList<PermissionPOJO>();
-		permissions.stream().forEach(ta ->{
-			PermissionPOJO dto = new PermissionPOJO();
-			BeanUtils.copyProperties(ta, dto);
-			dtos.add(dto);
+		List<PermissionPOJO> permissionsDataList = new ArrayList<PermissionPOJO>();
+		permissions.stream().forEach(permission ->{
+			PermissionPOJO permissionData = new PermissionPOJO();
+			BeanUtils.copyProperties(permission, permissionData);
+			permissionsDataList.add(permissionData);
 		});
-		return dtos;
+		return permissionsDataList;
 	}
 }

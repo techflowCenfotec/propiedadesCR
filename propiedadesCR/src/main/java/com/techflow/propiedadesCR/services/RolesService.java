@@ -15,28 +15,47 @@ import com.techflow.propiedadesCR.pojo.PermissionPOJO;
 import com.techflow.propiedadesCR.pojo.RolePOJO;
 import com.techflow.propiedadesCR.repositories.PermissionsRepository;
 import com.techflow.propiedadesCR.repositories.RoleRepository;
-
+/**
+ * <h1>Servicio del rol</h1>
+ * Clase encargada de ofrecer los servicios del rol
+ * y administrar las transacciones al repositorio
+ *@author Valeria Ramírez
+ *@version 1.0
+ *@since 03/03/2016
+ */
 
 @Service
 public class RolesService implements RolesServiceInterface {
+	/*
+	 * Objeto que se comunica con la base de datos
+	 */
 
 	@Autowired private RoleRepository rolesRepository;
 	@Autowired private PermissionsRepository permissionsRepository;
 	
+	/**
+	 * Método que levanta todos los roles del sistema
+	 * @return generateRoleData lista que contiene todos los roles del sistema
+	 */
 	@Override
 	@Transactional
-	public List<RolePOJO> getAll(RolesRequest rs) {
+	public List<RolePOJO> getAll(RolesRequest prolesRequest) {
 		List<Trole> roles = rolesRepository.findAll();
 		return generateRoleData(roles);
 	}
 	
-	private List<RolePOJO> generateRoleData(List<Trole> roles){
+	/**
+	 * Método que levanta todos los roles del sistema
+	 * @param proles lista de roles levantados por el repositorio
+	 * @return uiRoles lista de bancos del sistema
+	 */
+	private List<RolePOJO> generateRoleData(List<Trole> proles){
 		List<RolePOJO> uiRoles = new ArrayList<RolePOJO>();
-		roles.stream().forEach(r -> {
-			RolePOJO dto = new RolePOJO();
-			BeanUtils.copyProperties(r,dto);
-			dto.setTpermissions(null);
-			uiRoles.add(dto);
+		proles.stream().forEach(role -> {
+			RolePOJO roleDada = new RolePOJO();
+			BeanUtils.copyProperties(role,roleDada);
+			roleDada.setTpermissions(null);
+			uiRoles.add(roleDada);
 		});	
 		return uiRoles;
 	}
@@ -44,10 +63,15 @@ public class RolesService implements RolesServiceInterface {
 	
 	@Override
 	@Transactional
+	/**
+	 * Método que se encarga de almacenar los roles en el sistema
+	 * @param proleRequest parametro que contiene información del objeto a almacenar
+	 * @return newRole objeto que será insertado en la base de datos
+	 */
 	public Boolean saveRole(RolesRequest proleRequest) {
 		
 		Trole role = new Trole();
-		role.setNombreRol(proleRequest.getRole().getNombreRol());
+		role.setRolName(proleRequest.getRole().getRolName());
 		
 		List<Tpermission> permissions = new ArrayList<Tpermission>();
 		proleRequest.getRole().getTpermissions().stream().forEach(perm -> {
@@ -57,39 +81,24 @@ public class RolesService implements RolesServiceInterface {
 		role.setTpermissions(permissions);
 		Trole newRole = rolesRepository.save(role);
 		
-		
-//	
-//		RolePOJO role = new RolePOJO();
-//		Trole trole= new Trole();
-//		PermissionsRequest ppermissionsRequest= new PermissionsRequest();
-//		BeanUtils.copyProperties(proleRequest.getRole(), role);	
-//		
-////		ArrayList<Tpermission> permissionsList= new ArrayList<Tpermission>();
-////		proleRequest.getRole().getTpermissions().stream().forEach(perm -> {
-////			Tpermission permData = new Tpermission();
-////		
-////				//permData= permissionsListObj.get(perm);
-////			BeanUtils.copyProperties(perm,permData);
-////			permissionsList.add(permData);
-////		});
-//		trole.setNombreRol(role.getNombreRol());
-//		Trole newRole = rolesRepository.save(trole);
-////		Trole role = new Trole();
-////		BeanUtils.copyProperties(proleRequest.getRole(), role);	
-////		Trole newRole = rolesRepository.save(role);
 		return (newRole == null) ? false : true;
 	}
 
-	
+	/**
+	 * Método que se encarga de levantar la consulta de  un role
+	 * @param proleRequest parametro que contiene información del role 
+	 * que se desea consultar
+	 * @return roleDataList lista que contiene el objeto a ser consultado
+	 */
 	@Override
 	@Transactional
 	public List<RolePOJO> getRoleAndPermissions(RolesRequest proleRequest) {
-		Trole role = rolesRepository.findOne(proleRequest.getRole().getId_Rol());
-		List<RolePOJO> dtos = new ArrayList<RolePOJO>();
-		RolePOJO dto = new RolePOJO();
+		Trole role = rolesRepository.findOne(proleRequest.getRole().getIdRole());
+		List<RolePOJO> roleDataList = new ArrayList<RolePOJO>();
+		RolePOJO roleData = new RolePOJO();
 		
 		//initial permissions
-		BeanUtils.copyProperties(role, dto);
+		BeanUtils.copyProperties(role, roleData);
 		List<PermissionPOJO> permissions = new ArrayList<PermissionPOJO>();
 		
 		role.getTpermissions().stream().forEach(perm -> {
@@ -97,8 +106,8 @@ public class RolesService implements RolesServiceInterface {
 			BeanUtils.copyProperties(perm,permData);
 			permissions.add(permData);
 		});
-		dto.setTpermissions(permissions); ;
-		dtos.add(dto);
-		return dtos;
+		roleData.setTpermissions(permissions); ;
+		roleDataList.add(roleData);
+		return roleDataList;
 	}
 }

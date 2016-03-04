@@ -1,29 +1,37 @@
 package com.techflow.propiedadesCR.pojo;
 import java.util.List;
-
+/**
+ * <h1>POJO del rol</h1>
+ * Enfatiza el uso de la clase simple "role"
+ *@author Valeria Ramírez
+ *@version 1.0
+ *@since 03/03/2016
+ */
 public class RolePOJO {
-	private int id_Rol;
-	private String nombreRol;
+	/*
+	 * Id del rol
+	 */
+	private int idRole;
+	/*
+	 * nombre del rol
+	 */
+	private String rolName;
+	/*
+	 * Lista de permisos
+	 */
 	private List<PermissionPOJO> tpermissions;
 	
 	public RolePOJO(){
 		super();
 	}
 
-	public int getId_Rol() {
-		return id_Rol;
+
+	public int getIdRole() {
+		return idRole;
 	}
 
-	public void setId_Rol(int id_Rol) {
-		this.id_Rol = id_Rol;
-	}
-
-	public String getNombreRol() {
-		return nombreRol;
-	}
-
-	public void setNombreRol(String nombreRol) {
-		this.nombreRol = nombreRol;
+	public void setIdRole(int idRole) {
+		this.idRole = idRole;
 	}
 
 	public List<PermissionPOJO> getTpermissions() {
@@ -33,5 +41,14 @@ public class RolePOJO {
 	public void setTpermissions(List<PermissionPOJO> tpermissions) {
 		this.tpermissions = tpermissions;
 	}
+
+	public String getRolName() {
+		return rolName;
+	}
+
+	public void setRolName(String rolName) {
+		this.rolName = rolName;
+	}
+	
 
 }

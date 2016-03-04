@@ -26,7 +26,7 @@
         <table class="table table-bordered table-striped table-responsive">
             <thead>
             <tr>
-<!--                 <th><div class="th">
+   <!--              <th><div class="th">
                 Id
                 <span class="fa fa-angle-up"
                     data-ng-click=" order('id_Rol') "
@@ -34,17 +34,17 @@
                 <span class="fa fa-angle-down"
                     data-ng-click=" order('-idTrole') "
                     data-ng-class="{active: row == '-id_Rol'}"></span>
-                </div></th> 
-                <th><div class="th">
+                </div></th> -->
+                <th><div class="th"> 
                 Nombre
                 <span class="fa fa-angle-up"
-                    data-ng-click=" order('nombreRol') "
-                    data-ng-class="{active: row == 'nombreRol'}"></span>
+                    data-ng-click=" order('roleName') "
+                    data-ng-class="{active: row == 'rolName'}"></span>
                 <span class="fa fa-angle-down"
-                    data-ng-click=" order('-name') "
-                    data-ng-class="{active: row == '-nombreRol'}"></span>
+                    data-ng-click=" order('-rolName') "
+                    data-ng-class="{active: row == '-rolName'}"></span>
                 </div></th>
-               <th><div class="th">
+               <!-- <th><div class="th">
                  Permisos Asociados
                 <span class="fa fa-angle-up"
                     data-ng-click=" order('tpermissions') "
@@ -52,14 +52,14 @@
                 <span class="fa fa-angle-down"
                     data-ng-click=" order('-permissions') "
                     data-ng-class="{active: row == '-tpermissions'}"></span>
-                </div></th>   
+                </div></th>    -->
             </tr>
             </thead>
             <tbody>
             <tr data-ng-repeat="rolesInSys in currentPageList">
 
                 <!-- <td>{{rolesInSys.id_Rol}}</td> -->
-                <td>{{rolesInSys.nombreRol}}</td>
+                <td>{{rolesInSys.rolName}}</td>
                <!-- <td>{{rolesInSys.tpermissions}}</td> -->
             </tr>
             </tbody>

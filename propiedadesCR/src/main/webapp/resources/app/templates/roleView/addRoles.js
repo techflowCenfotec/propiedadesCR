@@ -24,7 +24,7 @@
 			var name= $scope.newRoleName;
 			var permList= newPermissions;
 			console.log(name);
-			var roleObject={"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","role": {"nombreRol":name,"tpermissions":permList}};
+			var roleObject={"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","role": {"rolName":name,"tpermissions":permList}};
 			console.log(roleObject);
 			$http.post(linkRole,roleObject).success(function(response) {
 				console.log("success")
