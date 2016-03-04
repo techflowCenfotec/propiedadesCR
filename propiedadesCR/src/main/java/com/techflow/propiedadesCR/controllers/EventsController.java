@@ -46,7 +46,7 @@ public class EventsController {
 	@Autowired private EventsServiceInterface eventsService;
 	
 	/**
-	 * Método getAll Trae todos los eventos registrados.
+	 * Este método trae todos los eventos registrados.
 	 * @param peventRequest Encapsula la información solicitada por el usuario.
 	 * @return response Se retorna la respuesta del BackEnd al FrondEnd.
 	 */
@@ -66,12 +66,12 @@ public class EventsController {
 	}
 	/**
 	 * 
-	 * Método create Envía los datos a la base de datos para registrar el evento.
-	 * @param file Se recibe el archivo subido por el usuario.
-	 * @param name Se recibe el nombre del evento a registrar.
-	 * @param description Se recibe la descripción del evento a registrar.
-	 * @param startDate Se recibe la fecha del evento a registrar.
-	 * @param idUser Se recibe el identificador del usuario que registra el evento.
+	 * Este método envía los datos a la base de datos para registrar el evento.
+	 * @param pfile Se recibe el archivo subido por el usuario.
+	 * @param pname Se recibe el nombre del evento a registrar.
+	 * @param pdescription Se recibe la descripción del evento a registrar.
+	 * @param pstartDate Se recibe la fecha del evento a registrar.
+	 * @param pidUser Se recibe el identificador del usuario que registra el evento.
 	 * @return response Retorna la respuesta del BackEnd al FrondEnd
 	 * @exception ParseException(esta exepción se lanza cuando la fecha no lleva el formato correcto)
 	 */

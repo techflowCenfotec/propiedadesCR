@@ -1,6 +1,6 @@
 /**
 * <h1>Servicio del usuario</h1> 
-* El servicio es el encargado de comunicarse con el repositorio.
+* Esta clase  se encarga de comunicarse con el repositorio.
 *
 * @author  Jorge Arguedas Arrieta
 *
@@ -47,7 +47,7 @@ public class UsersService implements UsersServiceInterface{
 	}
 	
 	/**
-	  * Genera los objetos POJOS que se retornaran a la UI.
+	  * Este método genera los objetos POJOS que se retornaran a la UI.
 	  *
 	  * @param pusers Lista de usuarios.
 	  *
@@ -76,8 +76,8 @@ public class UsersService implements UsersServiceInterface{
 		Tuser user = new Tuser();
 		BeanUtils.copyProperties(puserRequest.getUser(), user);
 		try {
-			MessageDigest md = MessageDigest.getInstance("MD5");
-			user.setPassword(md.digest(user.getPassword().getBytes()).toString());
+			MessageDigest messageDigest = MessageDigest.getInstance("MD5");
+			user.setPassword(messageDigest.digest(user.getPassword().getBytes()).toString());
 		} catch (NoSuchAlgorithmException e) {
 			e.printStackTrace();
 		}

@@ -28,7 +28,7 @@
 							phone2 : '',
 							password : '',
 							confirmPassword : '',
-							dt: new Date(),
+							birthday: new Date(),
 							gender:'',
 						};
 
@@ -69,10 +69,11 @@
 								},
 								file : file,
 							}).success(function(data, status, headers, config) {
-
 								$files[0].cancel()
 								$scope.showInfoOnSubmit = true;
 								return revert();
+							}).error(function(data){
+						
 							});
 
 						};
@@ -81,14 +82,14 @@
 						};
 						
 						$scope.getDateWithFormat = function() {
-					         var date = $scope.form.dt;
-					         $scope.dateWithFormat = date.getFullYear()
-					           + '/' + date.getMonth() + '/'
-					           + date.getDate() + ' '
-					           + date.getHours() + ':'
-					           + date.getMinutes() + ':'
-					           + date.getSeconds();
-
+					         
+					         $scope.dateWithFormat = $scope.form.birthday.getFullYear()
+					           + '-' + $scope.form.birthday.getMonth() + '-'
+					           + $scope.form.birthday.getDate() + ' '
+					           + $scope.form.birthday.getHours() + ':'
+					           + $scope.form.birthday.getMinutes() + ':'
+					           + $scope.form.birthday.getSeconds();
+					       
 					        }
 
 					} ]);

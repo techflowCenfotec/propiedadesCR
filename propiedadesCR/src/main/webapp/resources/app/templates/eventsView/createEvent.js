@@ -22,7 +22,7 @@
 								$scope.form = {
 									name : '',
 									description : '',
-									dt : new Date(),
+									eventDate : new Date(),
 								};
 								var request = {
 									"pageNumber" : 0,
@@ -107,13 +107,12 @@
 								};
 
 								$scope.getDateWithFormat = function() {
-									var date = $scope.form.dt;
-									$scope.dateWithFormat = date.getFullYear()
-											+ '/' + date.getMonth() + '/'
-											+ date.getDate() + ' '
-											+ date.getHours() + ':'
-											+ date.getMinutes() + ':'
-											+ date.getSeconds();
+									$scope.dateWithFormat = $scope.form.eventDate.getFullYear()
+											+ '-' + $scope.form.eventDate.getMonth() + '-'
+											+ $scope.form.eventDate.getDate() + ' '
+											+ $scope.form.eventDate.getHours() + ':'
+											+ $scope.form.eventDate.getMinutes() + ':'
+											+ $scope.form.eventDate.getSeconds();
 
 								}
 

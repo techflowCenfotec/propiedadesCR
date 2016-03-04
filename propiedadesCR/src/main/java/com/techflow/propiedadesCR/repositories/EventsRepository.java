@@ -1,7 +1,7 @@
 /*
- * <h1>EventsRepository</h1>
+ * <h1>Repositorio de eventos</h1>
  * 
- * Clase encargada de la comunicación con la base de datos.
+ * Esta clase se encarga de la comunicación con la base de datos.
  * 
  * @author María Jesús Gutiérrez Calvo.
  * @version 1.0

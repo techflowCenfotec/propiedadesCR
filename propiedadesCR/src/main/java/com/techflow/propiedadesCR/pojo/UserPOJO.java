@@ -1,5 +1,5 @@
 /**
-* <h1>Usuario POJO</h1>
+* <h1>POJO de Usuario</h1>
 * Esta clase se encarga de wrappear los objetos 
 * que se utilizan para el request y response.
 *

@@ -28,7 +28,7 @@
 							<div class="col-lg-4 col-lg-offset-2">
 								<div class="input-group ui-datepicker">
 									<input type="text" class="form-control"
-										uib-datepicker-popup="{{format}}" ng-model="form.dt"
+										uib-datepicker-popup="{{format}}" data-ng-model="form.eventDate"
 										is-open="popup1.opened" min-date="minDate" max-date="maxDate"
 										datepicker-options="dateOptions"
 										date-disabled="disabled(date, mode)" ng-required="true"
@@ -37,7 +37,7 @@
 										class="fa fa-calendar"></i></span>
 								</div>
 								<div class="callout callout-info">
-									<p>Fecha del evento: {{form.dt | date:'fullDate'}}</p>
+									<p>Fecha del evento: {{form.eventDate | date:'fullDate'}}</p>
 								</div>
 							</div>
 

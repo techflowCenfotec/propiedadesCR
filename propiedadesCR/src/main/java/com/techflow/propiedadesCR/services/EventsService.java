@@ -33,7 +33,7 @@ public class EventsService implements EventsServiceInterface {
 	@Transactional
 	/**
 	 * 
-	 * getAll Trae una lista de todos los eventos registrados en la base de datos.
+	 * Este método trae una lista de todos los eventos registrados en la base de datos.
 	 * @param peventRequest Encapsula la información solicitada por el usuario.
 	 * @return uiEvents Genera los objetos POJO que se retornan a la IU. 
 	 */
@@ -43,7 +43,7 @@ public class EventsService implements EventsServiceInterface {
 	}
 	/**
 	 * 
-	 * generateEventDtos Genera los objetos POJO que se retornan a la IU.
+	 * Este método genera los objetos POJO que se retornan a la IU.
 	 * @param pevents Trae la lista de la tabla eventos del ejb.
 	 * @return uiEvents Lista de los eventos del sistema.
 	 */
@@ -61,7 +61,7 @@ public class EventsService implements EventsServiceInterface {
 	@Transactional
 	/**
 	 * 
-	 * saveEvent Registra el evento en el sistema
+	 * Este método registra el evento en el sistema
 	 * @param peventRequest Encapsula la información solicitada por el usuario.
 	 * @return nEvent Retorna el evento creado.
 	 */
@@ -71,7 +71,6 @@ public class EventsService implements EventsServiceInterface {
 	BeanUtils.copyProperties(peventRequest.getEvent(), event);
 	Tevent nEvent=  eventsRepository.save(event);
 	
-		//return (nEvent == null) ? false : true;
 		return nEvent;
 	}
 

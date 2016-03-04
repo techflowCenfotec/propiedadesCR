@@ -1,6 +1,6 @@
 /**
  * <h1>POJO del evento</h1>
- * Enfatiza el uso de la clase simple "evento".
+ * Esta clase enfatiza el uso de la clase simple "evento".
  * 
  * @author María Jesús Gutiérrez Calvo.
  * @version 1.0

@@ -1,12 +1,3 @@
-/*
- * User Request
- * Esta clase se encarga de tomar datos que envia el cliente y genera el objeto con los respectivos datos. 
- * 
- * @author Jorge Arguedas Arrieta
- * @version 1.0
- * @since 25/02/2016.
- */
-
 package com.techflow.propiedadesCR.contracts;
 
 import com.techflow.propiedadesCR.pojo.UserPOJO;

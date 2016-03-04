@@ -2,7 +2,7 @@
 /**
 * <h1>Controlador del usuario</h1>
 * 
-* El controlador es el encargado de realizar la 
+* Esta clase  encarga de realizar la 
 * comunicación entre el backend y el frontend.
 *
 * @author  Jorge Arguedas Arrieta
@@ -37,22 +37,23 @@ import com.techflow.propiedadesCR.utils.Utils;
 @RequestMapping(value="rest/protected/users")
 public class UsersController {
 	
-	/**	 
-     * El objeto servletContext se utiliza para el manejo de archivos.     
+	/**
+     * El objeto servletContext se utiliza para el manejo de archivos. 
      */
 	@Autowired private ServletContext servletContext;
-	/**
+	
+	/** 
      * El objeto usersService proporsiona los diferentes servicios para los usuarios
      */
 	@Autowired private UsersServiceInterface usersService;
 	
 	/**
-	  * Este método retorna todos los usuarios registrados en el sistema
-	  *
-	  * @param puserResponse Este parámetro encapsula la información solicitada en el metodo.
-	
-	  * @return response Retorna la respuesta del sevicio hacia el frontend.
-	  */
+    * Este método retorna todos los usuarios registrados en el sistema
+    *
+    * @param puserResponse Este parámetro encapsula la información solicitada en el metodo.
+	*
+    * @return response Retorna la respuesta del sevicio hacia el frontend.
+    */
 	@RequestMapping(value="/getAll", method = RequestMethod.POST)
 	public UsersResponse getAll(@RequestBody UsersRequest puserRequest) {
 		
@@ -64,7 +65,7 @@ public class UsersController {
 		return response;
 	}
 	
-	/**
+	  /**
 	  * Este método registra un usuario en el sistema.
 	  *
 	  * @param pfile Imagen de perfil del usuario.
@@ -78,7 +79,7 @@ public class UsersController {
       * @param ppassword Contraseña del usaurio.
       * 
 	  * @return response Retorna la respuesta del servicio hacia el frontend.
-	  
+	  *
 	  * @throws java.text.ParseException */
 	@RequestMapping(value ="/create", method = RequestMethod.POST)
 	public UsersResponse create(
