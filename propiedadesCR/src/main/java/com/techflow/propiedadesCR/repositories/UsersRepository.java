@@ -6,7 +6,6 @@ import com.techflow.propiedadesCR.ejb.Tuser;
 /**
 * <h1>UsersRepository</h1>
 * 
-* Descripción de la clase.
 * Se encarga de la comunicación con la BD
 *
 * @author  Jorge Arguedas Arrieta
@@ -17,7 +16,6 @@ import com.techflow.propiedadesCR.ejb.Tuser;
 */
 public interface UsersRepository extends CrudRepository<Tuser, Integer> {
 	/**
-	  * Descripción de lo que hace la función.
 	  * Este método retorna todos los usuarios registrados en el sistema
 	  *
 	  * @return List<Tuser> Retorna la respuesta de la BD hacia el servicio. 

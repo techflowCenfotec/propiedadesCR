@@ -13,7 +13,12 @@
 					function($scope, $http, $location, $upload) {
 
 						var original;
+						$scope.dateWithFormat = '';
 
+				        $scope.popup1 = {
+				            opened: false
+				        };
+						
 						$scope.form = {
 							name : '',
 							email : '',
@@ -23,6 +28,8 @@
 							phone2 : '',
 							password : '',
 							confirmPassword : '',
+							dt: new Date(),
+							gender:'',
 						};
 
 						original = angular.copy($scope.form);
@@ -43,7 +50,8 @@
 							$scope.saveUser(event, $files);
 						};
 						$scope.saveUser = function(event, $files) {
-											
+							$scope.getDateWithFormat();
+							console.log($scope.form.gender);
 							var file = $files[0].file;
 							$scope.upload = $upload.upload({
 								url : 'rest/protected/users/create',
@@ -56,16 +64,32 @@
 									phone2 : $scope.form.phone2,
 									email : $scope.form.email,
 									password : $scope.form.password,
+									birthday : $scope.dateWithFormat,
+									gender : $scope.form.gender,
 								},
 								file : file,
 							}).success(function(data, status, headers, config) {
-										    					
+
 								$files[0].cancel()
 								$scope.showInfoOnSubmit = true;
 								return revert();
 							});
 
 						};
+						$scope.open1 = function() {
+							$scope.popup1.opened = true;
+						};
+						
+						$scope.getDateWithFormat = function() {
+					         var date = $scope.form.dt;
+					         $scope.dateWithFormat = date.getFullYear()
+					           + '/' + date.getMonth() + '/'
+					           + date.getDate() + ' '
+					           + date.getHours() + ':'
+					           + date.getMinutes() + ':'
+					           + date.getSeconds();
+
+					        }
 
 					} ]);
 })();

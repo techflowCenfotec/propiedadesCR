@@ -1,10 +1,11 @@
 package com.techflow.propiedadesCR.pojo;
 
+import java.util.Date;
+
 import com.techflow.propiedadesCR.ejb.Trole;
 
 /**
-* <h1>UserPOJO</h1>
-* Descripción de la clase
+* <h1>Usuario POJO</h1>
 * Esta clase se encarga de wrappear los objetos 
 * que se utilizan para el request y response.
 *
@@ -37,19 +38,19 @@ public class UserPOJO {
      */
 	private String email;
 	/**
-     * Contraseña del usuario
+     * Contraseña del usuario.
      */
 	private String password;
 	/**
-     * Teléfono del usuario
+     * Teléfono del usuario.
      */
 	private String phone1;
 	/**
-     * Teléfono del usuario
+     * Teléfono del usuario.
      */
 	private String phone2;
 	/**
-     * Imagen de perfil del usuario.
+     * Ruta de la imagen.
      */
 	private String userImage;
 	/**
@@ -60,6 +61,14 @@ public class UserPOJO {
      * Indica si es la primer vez que el usuario entra a la aplicación.
      */
 	private byte firstTime;
+	/**
+     * Indica el cumpleaños del usuario.
+     */
+	private Date birthday;
+	/**
+     * Género del usuario.
+     */
+	private String gender;
 	/**
      * Rol asignado al usuario.
      */
@@ -135,6 +144,18 @@ public class UserPOJO {
 	}
 	public void setFirstTime(byte pfirstTime) {
 		this.firstTime = pfirstTime;
+	}
+	public Date getBirthday() {
+		return birthday;
+	}
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	public Trole getRole() {
 		return role;
