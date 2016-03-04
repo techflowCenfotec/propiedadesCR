@@ -16,8 +16,8 @@ public class EventsResponse extends BaseResponse {
 		return events;
 	}
 
-	public void setEvents(List<EventPOJO> events) {
-		this.events = events;
+	public void setEvents(List<EventPOJO> pevents) {
+		this.events = pevents;
 	}
 	
 }

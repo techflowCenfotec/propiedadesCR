@@ -14,8 +14,8 @@ public class EventsRequest extends BaseRequest {
 		return event;
 	}
 
-	public void setEvent(EventPOJO event) {
-		this.event = event;
+	public void setEvent(EventPOJO pevent) {
+		this.event = pevent;
 	}
 	
 	@Override
