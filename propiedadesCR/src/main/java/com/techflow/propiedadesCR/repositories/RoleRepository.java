@@ -15,7 +15,8 @@ import com.techflow.propiedadesCR.ejb.Trole;
 
 public interface RoleRepository extends CrudRepository<Trole, Integer>{
 	/**
-	 * Método que se encarga de realizar la consulta a la base de datos
+	 * Método que se encarga de realizar la consulta de todos
+	 * los roles que existen en la base de datos
 	 */
 	List<Trole> findAll();
 }

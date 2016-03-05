@@ -70,7 +70,7 @@ public class RolesService implements RolesServiceInterface {
 	 * @param proleRequest Parámetro que contiene información del objeto a almacenar
 	 * @return newRole Devuelve el objeto Trole
 	 */
-	public Boolean saveRole(RolesRequest proleRequest) {
+	public Trole saveRole(RolesRequest proleRequest) {
 		
 		Trole role = new Trole();
 		role.setRolName(proleRequest.getRole().getRolName());
@@ -83,7 +83,7 @@ public class RolesService implements RolesServiceInterface {
 		role.setTpermissions(permissions);
 		Trole newRole = rolesRepository.save(role);
 		
-		return (newRole == null) ? false : true;
+		return newRole;
 	}
 
 	/**

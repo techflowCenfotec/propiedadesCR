@@ -31,7 +31,7 @@ public class PermissionsService implements PermissionsServiceInterface {
 	@Transactional
 	/**
 	 * Método que levanta todos los permisos del sistema
-	 * @return generateRoleData lista que contiene todos los roles del sistema
+	 * @return generateRoleData Lista que contiene todos los roles del sistema
 	 */
 	public List<PermissionPOJO> getAll(PermissionsRequest ppermissionsRequest){
 		List<Tpermission> permissions = permissionsRepository.findAll();

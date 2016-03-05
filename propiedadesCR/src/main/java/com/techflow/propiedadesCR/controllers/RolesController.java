@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.techflow.propiedadesCR.contracts.RolesRequest;
 import com.techflow.propiedadesCR.contracts.RolesResponse;
+import com.techflow.propiedadesCR.ejb.Trole;
 import com.techflow.propiedadesCR.services.RolesServiceInterface;
 
 /**
@@ -83,8 +84,8 @@ public class RolesController {
 	@RequestMapping(value ="/create", method = RequestMethod.POST)
 	public RolesResponse create(@RequestBody RolesRequest prolesRequest){	
 		RolesResponse rolesResponse = new RolesResponse();
-		Boolean state = rolesService.saveRole(prolesRequest);
-		if(state){
+		Trole  newRole = rolesService.saveRole(prolesRequest);
+		if(newRole!= null){
 			rolesResponse.setCode(200);
 			rolesResponse.setCodeMessage("role created succesfully");
 		}
