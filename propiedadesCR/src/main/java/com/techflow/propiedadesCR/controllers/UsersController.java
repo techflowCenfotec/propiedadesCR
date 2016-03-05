@@ -38,12 +38,12 @@ import com.techflow.propiedadesCR.utils.Utils;
 public class UsersController {
 	
 	/**
-     * El objeto servletContext se utiliza para el manejo de archivos. 
+     * Este objeto se utiliza para el manejo de archivos. 
      */
 	@Autowired private ServletContext servletContext;
 	
 	/** 
-     * El objeto usersService proporsiona los diferentes servicios para los usuarios
+     * Este objeto proporsiona los diferentes servicios para los usuarios
      */
 	@Autowired private UsersServiceInterface usersService;
 	
