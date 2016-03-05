@@ -39,7 +39,7 @@ public class BankToDoListService implements BankToDoListServiceInterface{
 	@Autowired private BankToDoListItemRespository bankToDoListItemRepository;
 	
 	/**
-	  * Este metodo sirve para levantar todos los to-d0 list de los bancos del sistema
+	  * Este metodo sirve para levantar todos los to-do list de los bancos del sistema
 	  * @return uiBankToDoList Lista de to-do list de los bancos del sistema
 	  */
 	@Override
@@ -51,8 +51,8 @@ public class BankToDoListService implements BankToDoListServiceInterface{
 	
 	/**
 	  * Este metodo sirve para guardar un objeto en el sistema
-	  * @param pbankToDoListRequest Este parametro es la peticion del front-end que contiene
-	  * que se usa para acceder al metodo deseado
+	  * @param pbankToDoListRequest Este parametro es la peticion del front-end 
+	  * que contiene el objeto a guardar
 	  * @return response Resultado con la lista de bancos del sistema
 	  */
 	@Override
