@@ -19,7 +19,6 @@
 	    		 
 	    $http.post(linkBanks,request).success(function(response){
 	    	$scope.banks = response.banks;
-	    	console.log($scope.banks);
 	    });
 
 
@@ -48,14 +47,10 @@
 	    	
 	    	if(this.form_banktodolistCreate.$valid){
 	    		$scope.onError = false;
-	    		console.log('valid',$scope.selectedId);
 	    		request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","bankToDoList": {"name":$scope.form.name ,"tbank": {"idBank": $scope.form.bank } ,"description": $scope.form.description}};
-	    		console.log(request);
 	    		$http.post(link,request).success(function(){
-	    			console.log(request);
 	    		});
 	    	}else{
-	    		console.log('invalid')
 	    		$scope.onError = true;
 	    	}
 	    };

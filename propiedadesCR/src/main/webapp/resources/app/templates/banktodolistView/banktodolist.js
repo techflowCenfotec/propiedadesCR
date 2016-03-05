@@ -25,25 +25,12 @@
 		var link = 'rest/protected/banktodolist/getAll';
 		var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","bankToDoList": {}};
 		var init;
-		//$http.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
-		
-		 // var req = {
-		 //  	method: 'POST',
-		 // 	url: link,
-		 //  	headers: {
-		 //    	'Content-Type': 'aplication/json',
-		 //  	},
-		 //  	data: { test: 'test' }
-		 // }
 
 		$http.post(link,request).success(function(response) {
 			$scope.todolistList= response.bankToDoList;
 			init();
-			console.log($scope.todolistList)
 		});
 
-		console.log(request);
-		console.log(link);
 
 
         function select(page) {
