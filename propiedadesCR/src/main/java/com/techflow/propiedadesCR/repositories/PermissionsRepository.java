@@ -6,8 +6,8 @@ import org.springframework.data.repository.CrudRepository;
 import com.techflow.propiedadesCR.ejb.Tpermission;
 
 /**
- * <h1>Repositorio del permiso</h1>
- * Clase comunicarse con la base de datos y guardar los datos en ella.
+ * <h1>Repositorio de permisos</h1>
+ * Clase que se comunica con la base de datos y guarda los datos en ella.
  *@author Valeria Ramírez
  *@version 1.0
  *@since 02/29/2016
