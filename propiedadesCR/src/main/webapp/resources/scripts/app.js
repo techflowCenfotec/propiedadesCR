@@ -30,6 +30,12 @@ function() {
 		,"app.i18n"
 		,"app.home"
 		,"app.properties"
+		,"app.roles"
+		,"app.addRoles"
+		,"app.createUsers"
+		,"app.usersList"
+		,"app.events"
+		,"app.eventsList"
 		,"app.banktodolist"
 		,"app.banktodolistCreate"
 		
@@ -37,6 +43,8 @@ function() {
 		,"ngMaterial"
 		,"ui.bootstrap"
 		,"duScroll"
+		,"angularFileUpload"
+		,"flow"
 		])
 }(),
 

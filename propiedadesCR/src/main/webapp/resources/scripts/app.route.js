@@ -9,6 +9,12 @@
 		n = [
 			"templates/propertiesView/propertiesList"
 			,"templates/reportsView/reports"
+			,"templates/usersView/usersList"
+			,"templates/usersView/createUser"			
+			,"templates/eventsView/createEvent"
+			,"templates/eventsView/eventsList"
+			,"templates/roleView/roles"
+			,"templates/roleView/addRoles"
 			, "templates/banktodolistView/banktodolistList"
 			,"templates/banktodolistView/banktodolistCreate"
 		], 
