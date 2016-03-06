@@ -30,6 +30,8 @@ function() {
 		,"app.i18n"
 		,"app.home"
 		,"app.properties"
+		,"app.roles"
+		,"app.addRoles"
 
 		,"app.createUsers"
 		,"app.usersList"

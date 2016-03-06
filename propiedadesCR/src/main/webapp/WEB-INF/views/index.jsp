@@ -86,4 +86,6 @@
         <script src= "resources/app/templates/eventsView/eventsList.js"></script>
 
         <script src="resources/app/templates/homeView/home.js"></script>
+        <script src="resources/app/templates/roleView/roles.js"></script>
+        <script src="resources/app/templates/roleView/addRoles.js"></script>
         
