@@ -15,6 +15,8 @@
 			,"templates/eventsView/eventsList"
 			,"templates/roleView/roles"
 			,"templates/roleView/addRoles"
+			, "templates/banktodolistView/banktodolistList"
+			,"templates/banktodolistView/banktodolistCreate"
 		], 
 
 		t = function(a) {
