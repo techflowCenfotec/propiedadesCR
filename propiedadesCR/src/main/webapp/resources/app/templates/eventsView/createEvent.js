@@ -38,8 +38,9 @@
 
 								function revert() {
 									$scope.form = angular.copy(original);
-									return $scope.form_createEvent
-											.$setPristine();
+									$scope.form_createEvent.$setPristine()
+									$scope.form_createEvent.$setUntouched();
+									return;
 								}
 								;
 								$scope.canRevert = function() {
@@ -81,7 +82,7 @@
 
 								};
 								$scope.saveEvent = function($files) {
-									
+
 									$scope.getDateWithFormat();
 
 									var file = $files[0].file;
@@ -107,12 +108,20 @@
 								};
 
 								$scope.getDateWithFormat = function() {
-									$scope.dateWithFormat = $scope.form.eventDate.getFullYear()
-											+ '-' + $scope.form.eventDate.getMonth() + '-'
-											+ $scope.form.eventDate.getDate() + ' '
-											+ $scope.form.eventDate.getHours() + ':'
-											+ $scope.form.eventDate.getMinutes() + ':'
-											+ $scope.form.eventDate.getSeconds();
+									$scope.dateWithFormat = $scope.form.eventDate
+											.getFullYear()
+											+ '-'
+											+ $scope.form.eventDate.getMonth()
+											+ '-'
+											+ $scope.form.eventDate.getDate()
+											+ ' '
+											+ $scope.form.eventDate.getHours()
+											+ ':'
+											+ $scope.form.eventDate
+													.getMinutes()
+											+ ':'
+											+ $scope.form.eventDate
+													.getSeconds();
 
 								}
 

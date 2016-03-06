@@ -43,7 +43,7 @@ public class UsersController {
 	@Autowired private ServletContext servletContext;
 	
 	/** 
-     * Este objeto proporsiona los diferentes servicios para los usuarios
+     * Este objeto proporciona los diferentes servicios para los usuarios
      */
 	@Autowired private UsersServiceInterface usersService;
 	

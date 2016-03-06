@@ -1,7 +1,7 @@
 (function() {
 	"use strict";
 
-	angular.module("app.createUsers", [])
+	angular.module("app.createUsers", ['validation.match'])
 
 	.controller(
 			'CreateUserController',
@@ -33,9 +33,12 @@
 						};
 
 						original = angular.copy($scope.form);
+						
 						function revert() {
-							$scope.form = angular.copy(original);
-							return $scope.form_createUser.$setPristine();
+							    $scope.form = angular.copy(original);	
+							    $scope.form_createUser.$setPristine()
+					            $scope.form_createUser.$setUntouched();
+							    return;
 						}
 						;
 						$scope.canRevert = function() {
@@ -69,8 +72,8 @@
 								},
 								file : file,
 							}).success(function(data, status, headers, config) {
-								$files[0].cancel()
-								$scope.showInfoOnSubmit = true;
+								$files[0].cancel();
+								$scope.showInfoOnSubmit= true;
 								return revert();
 							}).error(function(data){
 						
@@ -90,7 +93,9 @@
 					           + $scope.form.birthday.getMinutes() + ':'
 					           + $scope.form.birthday.getSeconds();
 					       
-					        }
+					        };
+
+
 
 					} ]);
 })();
