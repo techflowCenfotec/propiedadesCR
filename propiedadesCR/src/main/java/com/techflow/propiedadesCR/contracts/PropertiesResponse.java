@@ -16,8 +16,8 @@ public class PropertiesResponse extends BaseResponse {
 		return properties;
 	}
 
-	public void setProperties(List<PropertyPOJO> properties) {
-		this.properties = properties;
+	public void setProperties(List<PropertyPOJO> pproperties) {
+		this.properties = pproperties;
 	}
 	
 }
