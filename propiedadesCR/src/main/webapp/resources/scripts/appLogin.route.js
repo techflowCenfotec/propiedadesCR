@@ -7,14 +7,9 @@
 		
 		var n,t;
 		n = [
-			"templates/propertiesView/propertiesList"
-			,"templates/reportsView/reports"
-
-			,"templates/usersView/usersList"
-			,"templates/usersView/createUser",			
-
-			,"templates/eventsView/createEvent"
-			,"templates/eventsView/eventsList"
+			,"templates/reportsView/reports"		
+			,"template/loginView/login"
+		
 		], 
 
 		t = function(a) {
@@ -35,12 +30,12 @@
 			return t(e)
 		}),
 			
-		a.when("/","/home")
-		.otherwise("home"),
+		a.when("/","/login")
+		.otherwise("login"),
 
-		e.state( "home", {
-			url:"/home",
-			templateUrl:"resources/app/templates/homeView/home.html"
+		e.state( "login", {
+			url:"/login",
+			templateUrl:"resources/app/templates/loginView/login.html"
 		})
 	}])
 })();

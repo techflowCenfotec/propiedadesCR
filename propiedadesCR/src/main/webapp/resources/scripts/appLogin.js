@@ -28,15 +28,7 @@ function() {
 		// Custom modules
 		,"app.layout"
 		,"app.i18n"
-		,"app.home"
-		,"app.properties"
-
-		,"app.createUsers"
-		,"app.usersList"
-
-		,"app.events"
-		,"app.eventsList"
-	
+		,"app.login"
 
 
 		//3rd Party Modules
