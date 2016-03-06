@@ -108,7 +108,12 @@ public class UsersController {
 		}
 
 		UsersResponse userResponse = new UsersResponse();
-		String resultFileName = Utils.writeToFile(pfile,servletContext);
+		String resultFileName;
+		if(pfile.getOriginalFilename().equals("default_user_image_PropiedadesCR.png"))
+		 resultFileName = "http://localhost:8080/propiedadesCR/resources/images/default_user_image.png";
+		else			
+		 resultFileName = Utils.writeToFile(pfile,servletContext);
+		
 		if(!resultFileName.equals("")){
 			
 			UserPOJO user = new UserPOJO();

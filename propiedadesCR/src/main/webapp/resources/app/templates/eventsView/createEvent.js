@@ -85,7 +85,13 @@
 
 									$scope.getDateWithFormat();
 
-									var file = $files[0].file;
+									var file;
+									if ($files[0] == undefined)
+										file = new File([],
+												'default_events_image_PropiedadesCR.png');
+									else
+										file = $files[0].file;
+
 									$scope.upload = $upload
 											.upload(
 													{
@@ -101,7 +107,9 @@
 											.success(
 													function(data, status,
 															headers, config) {
-														$files[0].cancel()
+														if($files[0] != undefined)
+															$files[0].cancel();
+														
 														$scope.showInfoOnSubmit = true;
 														return revert();
 													});
