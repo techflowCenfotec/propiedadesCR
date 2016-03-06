@@ -23,6 +23,7 @@ public class TuserPattern implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_pattern")
 	public int getIdPattern() {
 		return this.idPattern;

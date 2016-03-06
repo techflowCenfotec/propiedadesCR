@@ -25,6 +25,7 @@ public class TToDoList implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_to_do_list")
 	public int getIdToDoList() {
 		return this.idToDoList;

@@ -23,6 +23,7 @@ public class Titem implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getIdItem() {
 		return this.idItem;
 	}

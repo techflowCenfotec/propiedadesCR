@@ -13,7 +13,7 @@ import javax.persistence.*;
 @NamedQuery(name="TbankItem.findAll", query="SELECT t FROM TbankItem t")
 public class TbankItem implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int idtBank_iitem;
+	private int idtBank_item;
 	private String name;
 	private TbankToDoList tbankToDoList;
 
@@ -22,12 +22,13 @@ public class TbankItem implements Serializable {
 
 
 	@Id
-	public int getIdtBank_iitem() {
-		return this.idtBank_iitem;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	public int getIdtBank_item() {
+		return this.idtBank_item;
 	}
 
-	public void setIdtBank_iitem(int idtBank_iitem) {
-		this.idtBank_iitem = idtBank_iitem;
+	public void setIdtBank_item(int idtBank_item) {
+		this.idtBank_item = idtBank_item;
 	}
 
 

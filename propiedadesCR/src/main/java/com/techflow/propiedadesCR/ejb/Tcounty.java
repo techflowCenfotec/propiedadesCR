@@ -25,6 +25,7 @@ public class Tcounty implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_county")
 	public int getIdCounty() {
 		return this.idCounty;

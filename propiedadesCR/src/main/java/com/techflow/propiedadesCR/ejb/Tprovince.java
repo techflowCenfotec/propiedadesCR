@@ -18,13 +18,13 @@ public class Tprovince implements Serializable {
 	private String code;
 	private String name;
 	private List<Tcounty> tcounties;
-	private List<Tproperty> tproperties;
 
 	public Tprovince() {
 	}
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_province")
 	public int getIdProvince() {
 		return this.idProvince;
@@ -75,31 +75,6 @@ public class Tprovince implements Serializable {
 		tcounty.setTprovince(null);
 
 		return tcounty;
-	}
-
-
-	//bi-directional many-to-one association to Tproperty
-	@OneToMany(mappedBy="tprovince")
-	public List<Tproperty> getTproperties() {
-		return this.tproperties;
-	}
-
-	public void setTproperties(List<Tproperty> tproperties) {
-		this.tproperties = tproperties;
-	}
-
-	public Tproperty addTproperty(Tproperty tproperty) {
-		getTproperties().add(tproperty);
-		tproperty.setTprovince(this);
-
-		return tproperty;
-	}
-
-	public Tproperty removeTproperty(Tproperty tproperty) {
-		getTproperties().remove(tproperty);
-		tproperty.setTprovince(null);
-
-		return tproperty;
 	}
 
 }

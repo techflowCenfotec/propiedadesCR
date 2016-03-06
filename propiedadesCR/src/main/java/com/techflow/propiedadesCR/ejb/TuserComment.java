@@ -23,6 +23,7 @@ public class TuserComment implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_comment")
 	public int getIdComment() {
 		return this.idComment;
