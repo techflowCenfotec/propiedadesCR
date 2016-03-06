@@ -26,15 +26,7 @@
         <table class="table table-bordered table-striped table-responsive">
             <thead>
             <tr>
-                <th><div class="th">
-                Id
-                <span class="fa fa-angle-up"
-                    data-ng-click=" order('idtBank_to_do_list') "
-                    data-ng-class="{active: row == 'idtBank_to_do_list'}"></span>
-                <span class="fa fa-angle-down"
-                    data-ng-click=" order('-idtBank_to_do_list') "
-                    data-ng-class="{active: row == '-idtBank_to_do_list'}"></span>
-                </div></th>
+                
                 <th><div class="th">
                 Nombre
                 <span class="fa fa-angle-up"
@@ -68,7 +60,6 @@
             <tbody>
             <tr data-ng-repeat="todolist in currentPageList">
 
-                <td>{{todolist.idtBank_to_do_list}}</td>
                 <td>{{todolist.name}}</td>
                 <td>{{todolist.description}}</td>
                 <td>{{todolist.tbank.name}}</td>
