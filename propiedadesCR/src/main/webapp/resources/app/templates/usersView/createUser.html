@@ -8,7 +8,7 @@
 }
 </style>
 
-<div data-ng-controller="CreateUserController" flow-init>
+<div class="page page-table" data-ng-controller="CreateUserController" flow-init>
 	<div class="row ui-section">
 		<div class="col-lg-8 clearfix">
 			<h2 class="section-header">Crear usuario</h2>
@@ -25,7 +25,7 @@
 
 									<div>
 										<div data-ng-hide="$flow.files.length">
-											<img class="thumbnail"
+											<img class="thumbnail" 
 												src="/propiedadesCR/resources/images/default_user_image.png"
 												width="200" height="200" />
 										</div>
@@ -132,7 +132,7 @@
 						</div>
 						<p>
 							<strong style="display: inline-block; width: 100px;">G&eacute;nero</strong>
-							<md-radio-group class="ui-md-radio-group-inline"
+							<md-radio-group required class="ui-md-radio-group-inline"
 								ng-model="form.gender"> <md-radio-button
 								value="Hombre">Hombre</md-radio-button> <md-radio-button
 								value="Mujer">Mujer</md-radio-button> <md-radio-button
@@ -146,13 +146,11 @@
 								<button type="submit" ui-wave class="btn btn-primary btn-w-md"
 									data-ng-disabled="!canSubmit()">Guardar</button>
 							</div>
-							<div class="col-md-6">
-								<a href="#" class="btn btn-danger">Cancelar</a>
-							</div>
+							
 						</div>
 
 						<div class="alert alert-info" data-ng-show="showInfoOnSubmit">Se
-							ha creado el usuario :)</div>
+							ha creado el usuario</div>
 					</form>
 				</div>
 			</div>

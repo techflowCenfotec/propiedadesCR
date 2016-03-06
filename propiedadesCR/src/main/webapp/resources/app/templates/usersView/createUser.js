@@ -14,7 +14,7 @@
 
 						var original;
 						$scope.dateWithFormat = '';
-
+						
 				        $scope.popup1 = {
 				            opened: false
 				        };
@@ -54,8 +54,14 @@
 						};
 						$scope.saveUser = function(event, $files) {
 							$scope.getDateWithFormat();
+							var file
 							
-							var file = $files[0].file;
+							if($files[0] == undefined)
+								file = new File([],'default_user_image_PropiedadesCR.png');
+							
+							else
+							 file = $files[0].file;
+							
 							$scope.upload = $upload.upload({
 								url : 'rest/protected/users/create',
 								data : {
@@ -72,7 +78,9 @@
 								},
 								file : file,
 							}).success(function(data, status, headers, config) {
+								if($files[0] != undefined)
 								$files[0].cancel();
+								
 								$scope.showInfoOnSubmit= true;
 								return revert();
 							}).error(function(data){
