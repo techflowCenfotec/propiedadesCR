@@ -33,6 +33,8 @@ public class ToDoListService implements ToDoListServiceInterface{
 	
 	/**
 	  * Este metodo sirve para levantar todos los to-do list de los usuarios del sistema
+	  * @param ptoDoListRequest Este parametro es la peticion del front-end que contiene
+	  * que se usa para acceder al metodo deseado
 	  * @return uiToDoList Lista de to-do list de los usuarios del sistema
 	  */
 	@Override

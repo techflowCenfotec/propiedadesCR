@@ -94,7 +94,7 @@ public class BankToDoListController {
 	/**
 	  * Este metodo sirve para levantar un to-do list especifico con sus items
 	  * @param pbankToDoListItemRequest Este parametro es la peticion del front-end
-	  * que se usa para obtener el id dedl to-do list a consultar
+	  * que se usa para obtener el id del to-do list a consultar
 	  * @return response Resultado de la peticion
 	  */
 	@RequestMapping(value="/getById", method=RequestMethod.POST)

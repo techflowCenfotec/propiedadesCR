@@ -53,7 +53,7 @@ public class BankToDoListService implements BankToDoListServiceInterface{
 	  * Este metodo sirve para guardar un objeto en el sistema
 	  * @param pbankToDoListRequest Este parametro es la peticion del front-end 
 	  * que contiene el objeto a guardar
-	  * @return response Resultado con la lista de bancos del sistema
+	  * @return newBankToDoList To-do list creado o modificado
 	  */
 	@Override
 	@Transactional
@@ -63,8 +63,8 @@ public class BankToDoListService implements BankToDoListServiceInterface{
 		bankToDoList.setTbank(new Tbank());
 		BeanUtils.copyProperties(pbankToDoListRequest.getBankToDoList().getTbank(), bankToDoList.getTbank());
 
-		TbankToDoList newbankToDoList = bankToDoListRepository.save(bankToDoList);
-		return newbankToDoList;
+		TbankToDoList newBankToDoList = bankToDoListRepository.save(bankToDoList);
+		return newBankToDoList;
 	}
 	
 	/**
@@ -101,10 +101,10 @@ public class BankToDoListService implements BankToDoListServiceInterface{
 	}
 
 	/**
-	  * Este metodo sirve para guardar un objeto en el sistema
+	  * Este metodo sirve para cargar un objeto del sistema
 	  * @param pbankToDoListRequest Este parametro es la peticion del front-end que contiene
 	  * que se usa para acceder al metodo deseado
-	  * @return response Resultado con la lista de bancos del sistema
+	  * @return bankToDoList Objeto to-do list del banco y sus items
 	  */
 	@Override
 	@Transactional
@@ -112,11 +112,11 @@ public class BankToDoListService implements BankToDoListServiceInterface{
 		TbankToDoList bankToDoList = new TbankToDoList();
 		bankToDoList = bankToDoListRepository.findOne(Integer.parseInt(pbankToDoListRequest.getSearchTerm()));
 
-		BankToDoListPOJO dto = new BankToDoListPOJO();
-		BeanUtils.copyProperties(bankToDoList, dto);
+		BankToDoListPOJO bankTodoList = new BankToDoListPOJO();
+		BeanUtils.copyProperties(bankToDoList, bankTodoList);
 		
-		dto.setTbank(new BankPOJO());
-		BeanUtils.copyProperties(bankToDoList.getTbank(), dto.getTbank());
+		bankTodoList.setTbank(new BankPOJO());
+		BeanUtils.copyProperties(bankToDoList.getTbank(), bankTodoList.getTbank());
 		
 		ArrayList<BankToDoListItemPOJO> temp = new ArrayList<>();
 		bankToDoList.getTbankItems().stream().forEach(u -> {
@@ -126,9 +126,9 @@ public class BankToDoListService implements BankToDoListServiceInterface{
 			temp.add(item);
 		});
 		
-		dto.setTbankItems(temp);
+		bankTodoList.setTbankItems(temp);
 		
-		return dto;
+		return bankTodoList;
 	}
 
 

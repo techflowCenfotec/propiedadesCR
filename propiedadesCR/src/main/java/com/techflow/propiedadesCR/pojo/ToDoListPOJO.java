@@ -1,7 +1,15 @@
 package com.techflow.propiedadesCR.pojo;
 
 import java.util.List;
-
+/**
+* <h1>POJO del to-do list del usuario</h1>
+* 
+* Enfatiza el uso de la clase simple "to-do list"
+* 
+* @author  Jimmi Vila
+* @version 1.0
+* @since 22/02/2016
+*/
 public class ToDoListPOJO {
 	
 	/**

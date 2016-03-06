@@ -1,7 +1,15 @@
 package com.techflow.propiedadesCR.pojo;
 
 import java.util.List;
-
+/**
+* <h1>POJO del to-do list del banco</h1>
+* 
+* Enfatiza el uso de la clase simple "to-do list banco"
+* 
+* @author  Jimmi Vila
+* @version 1.0
+* @since 22/02/2016
+*/
 public class BankToDoListPOJO {
     
 	/**
