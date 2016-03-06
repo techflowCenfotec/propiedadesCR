@@ -7,9 +7,9 @@ import org.springframework.data.repository.CrudRepository;
 import com.techflow.propiedadesCR.ejb.Tcounty;
 
 /**
-* <h1>CountiesRepository</h1>
-* Repository that extends from CrudRepository
-* and provides one implementation
+* <h1>Repositorio de los Cantones</h1>
+* Repositorio que extiende de CrudRepository
+* y provee una implementación
 *
 * @author  Walter Gómez
 * @version 1.0
@@ -18,9 +18,9 @@ import com.techflow.propiedadesCR.ejb.Tcounty;
 public interface CountiesRepository extends CrudRepository<Tcounty, Integer> {
 
 	/**
-	  * Returns all instances of the Tcounty ejb
+	  * Retorna una lista de entidades.
 	  * 
-	  * @return All entities of the Tcounty ejbs
+	  * @return las entidades del tipo
 	  */
 	List<Tcounty> findAll();
 }

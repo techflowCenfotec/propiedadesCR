@@ -2,9 +2,6 @@ package com.techflow.propiedadesCR.pojo;
 
 import java.util.List;
 
-import com.techflow.propiedadesCR.ejb.Tproperty;
-import com.techflow.propiedadesCR.ejb.Tresidence;
-
 /**
 * <h1>propertyTypePOJO</h1>
 * Plain old Java object clas that provides the attributes and methods
@@ -18,8 +15,7 @@ public class PropertyTypePOJO {
 
 	private int idPropertyType;
 	private String name;
-	private List<Tproperty> tproperties;
-	private List<Tresidence> tresidences;
+	private List<PropertyPOJO> tproperties;
 	
 	public PropertyTypePOJO() {
 		super();
@@ -36,16 +32,10 @@ public class PropertyTypePOJO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public List<Tproperty> getTproperties() {
+	public List<PropertyPOJO> getTproperties() {
 		return tproperties;
 	}
-	public void setTproperties(List<Tproperty> tproperties) {
+	public void setTproperties(List<PropertyPOJO> tproperties) {
 		this.tproperties = tproperties;
-	}
-	public List<Tresidence> getTresidences() {
-		return tresidences;
-	}
-	public void setTresidences(List<Tresidence> tresidences) {
-		this.tresidences = tresidences;
 	}
 }

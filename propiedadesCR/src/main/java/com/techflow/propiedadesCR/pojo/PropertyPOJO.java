@@ -2,30 +2,27 @@ package com.techflow.propiedadesCR.pojo;
 
 import java.util.List;
 
-import com.techflow.propiedadesCR.ejb.Tbenefit;
 import com.techflow.propiedadesCR.ejb.TpropertyComment;
 import com.techflow.propiedadesCR.ejb.TpropertyRating;
 import com.techflow.propiedadesCR.ejb.TpropertyType;
-import com.techflow.propiedadesCR.ejb.Tprovince;
-import com.techflow.propiedadesCR.ejb.Tresidence;
 import com.techflow.propiedadesCR.ejb.Tuser;
 
 public class PropertyPOJO {
 	
 	private int idProperty;
 	private byte active;
-	private String location;
-	private String nearbyAreas;
+	private String address;
+	private String coordinates;
 	private double price;
-	private String propertyImage;
 	private double squareMeters;
-	private List<Tbenefit> tbenefits;
+	private List<BenefitsPOJO> tbenefits;
+	private DistrictPOJO tdistrict;
 	private TpropertyType tpropertyType;
-	private Tprovince tprovince;
-	private List<TpropertyComment> tpropertyComments;
-	private List<TpropertyRating> tpropertyRatings;
-	private List<Tresidence> tresidences;
-	private List<Tuser> tusers;
+	private Tuser tuser;
+	private List<TpropertyComment> tpropertyComments; //Change to POJO
+	private List<TpropertyRating> tpropertyRatings; //Change to POJO
+	private List<UserPOJO> tusers;
+	private List<PropertyImagePOJO> tpropertyImages;
 	
 	public PropertyPOJO() {
 		super();
@@ -47,20 +44,20 @@ public class PropertyPOJO {
 		this.active = active;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public String getNearbyAreas() {
-		return nearbyAreas;
+	public String getCoordinates() {
+		return coordinates;
 	}
 
-	public void setNearbyAreas(String nearbyAreas) {
-		this.nearbyAreas = nearbyAreas;
+	public void setCoordinates(String coordinates) {
+		this.coordinates = coordinates;
 	}
 
 	public double getPrice() {
@@ -70,58 +67,77 @@ public class PropertyPOJO {
 	public void setPrice(double price) {
 		this.price = price;
 	}
-	public String getPropertyImage() {
-		return propertyImage;
-	}
-	public void setPropertyImage(String propertyImage) {
-		this.propertyImage = propertyImage;
-	}
+
 	public double getSquareMeters() {
 		return squareMeters;
 	}
+
 	public void setSquareMeters(double squareMeters) {
 		this.squareMeters = squareMeters;
 	}
-	public List<Tbenefit> getTbenefits() {
+
+	public List<BenefitsPOJO> getTbenefits() {
 		return tbenefits;
 	}
-	public void setTbenefits(List<Tbenefit> tbenefits) {
+
+	public void setTbenefits(List<BenefitsPOJO> tbenefits) {
 		this.tbenefits = tbenefits;
 	}
+
+	public DistrictPOJO getTdistrict() {
+		return tdistrict;
+	}
+
+	public void setTdistrict(DistrictPOJO tdistrict) {
+		this.tdistrict = tdistrict;
+	}
+
 	public TpropertyType getTpropertyType() {
 		return tpropertyType;
 	}
+
 	public void setTpropertyType(TpropertyType tpropertyType) {
 		this.tpropertyType = tpropertyType;
 	}
-	public Tprovince getTprovince() {
-		return tprovince;
+
+	public Tuser getTuser() {
+		return tuser;
 	}
-	public void setTprovince(Tprovince tprovince) {
-		this.tprovince = tprovince;
+
+	public void setTuser(Tuser tuser) {
+		this.tuser = tuser;
 	}
+
 	public List<TpropertyComment> getTpropertyComments() {
 		return tpropertyComments;
 	}
+
 	public void setTpropertyComments(List<TpropertyComment> tpropertyComments) {
 		this.tpropertyComments = tpropertyComments;
 	}
+
 	public List<TpropertyRating> getTpropertyRatings() {
 		return tpropertyRatings;
 	}
+
 	public void setTpropertyRatings(List<TpropertyRating> tpropertyRatings) {
 		this.tpropertyRatings = tpropertyRatings;
 	}
-	public List<Tresidence> getTresidences() {
-		return tresidences;
-	}
-	public void setTresidences(List<Tresidence> tresidences) {
-		this.tresidences = tresidences;
-	}
-	public List<Tuser> getTusers() {
+
+	public List<UserPOJO> getTusers() {
 		return tusers;
 	}
-	public void setTusers(List<Tuser> tusers) {
+
+	public void setTusers(List<UserPOJO> tusers) {
 		this.tusers = tusers;
 	}
+
+	public List<PropertyImagePOJO> getTpropertyImages() {
+		return tpropertyImages;
+	}
+
+	public void setTpropertyImages(List<PropertyImagePOJO> tpropertyImages) {
+		this.tpropertyImages = tpropertyImages;
+	}
+	
 }

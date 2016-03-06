@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.techflow.propiedadesCR.ejb.Tdistrict;
+import com.techflow.propiedadesCR.ejb.TpropertyImage;
 
 /**
-* <h1>Repositorio de los Distritos</h1>
+* <h1>Repositorio de las imagenes de la propiedad</h1>
 * Repositorio que extiende de CrudRepository
 * y provee una implementación
 *
@@ -15,12 +15,13 @@ import com.techflow.propiedadesCR.ejb.Tdistrict;
 * @version 1.0
 * @since 26/2/2016
 */
-public interface DistrictRepository extends CrudRepository<Tdistrict, Integer> {
+public interface PropertyImageRepository extends CrudRepository<TpropertyImage, Integer> {
 
 	/**
 	  * Retorna una lista de entidades.
 	  * 
 	  * @return las entidades del tipo
 	  */
-	List<Tdistrict> findAll();
+	List<TpropertyImage> findAll();
+	
 }

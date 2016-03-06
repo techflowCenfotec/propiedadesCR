@@ -6,9 +6,9 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.techflow.propiedadesCR.ejb.Tbenefit;
 /**
-* <h1>BenefitsRepository</h1>
-* Repository that extends from CrudRepository
-* and provides one implementation
+* <h1>Repositorio de los Beneficios</h1>
+* Repositorio que extiende de CrudRepository
+* y provee una implementación
 *
 * @author  Walter Gómez
 * @version 1.0
@@ -17,11 +17,18 @@ import com.techflow.propiedadesCR.ejb.Tbenefit;
 public interface BenefitsRepository extends CrudRepository<Tbenefit, Integer> {
 
 	/**
-	  * Returns all instances of the Tbenefit ejb
+	  * Retorna una lista de entidades.
 	  * 
-	  * @return All entities of the Tbenefit ejbs
+	  * @return las entidades del tipo
 	  */
 	List<Tbenefit> findAll();
 	
-	List<Tbenefit> findByIdBenefitIn(int[] benefits);
+	/**
+	  * Retorna una lista de entidades. El arreglo que recibe contiene los ids de
+	  * los beneficios a buscar especificamente.
+	  * 
+	  * @param pBenefits - no debe ser nula.
+	  * @return las entidades del tipo
+	  */
+	List<Tbenefit> findByIdBenefitIn(int[] pBenefits);
 }

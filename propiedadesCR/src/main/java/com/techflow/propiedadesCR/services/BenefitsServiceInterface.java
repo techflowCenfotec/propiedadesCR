@@ -7,8 +7,8 @@ import com.techflow.propiedadesCR.ejb.Tbenefit;
 import com.techflow.propiedadesCR.pojo.BenefitsPOJO;
 
 /**
-* <h1>BenefitsServiceInterface</h1>
-* Interface for all benefits operations.
+* <h1>Interfaz a implementar por el BenefitsService</h1>
+* Interfaz para las operaciones de los beneficios.
 *
 * @author  Walter Gómez
 * @version 1.0
@@ -17,28 +17,26 @@ import com.techflow.propiedadesCR.pojo.BenefitsPOJO;
 public interface BenefitsServiceInterface {
 
 	/**
-	  * Returns all benefits of the type BenefitsPOJO
+	  * Retorna todas las entidades del tipo.
 	  *  
-	  * @param br - must not be null.
-	  * @return all entities of the type.
+	  * @return todas las entidades del tipo.
 	  */
 	List<BenefitsPOJO> getAll();
 	
 	/**
-	  * Returns one benefit entity by it's id.
+	  * Retorna una sola entidad por su id.
 	  *  
-	  * @param idBenefit - must not be null.
-	  * @return one entity of the type benefit.
+	  * @param pIdBenefit - no debe ser nulo.
+	  * @return una entidad del tipo.
 	  */
-	Tbenefit getBenefitById(int idBenefit);
+	Tbenefit getBenefitById(int pIdBenefit);
 	
 	/**
-	  * Returns a list of all benefits entities by it's id.
-	  *  
-	  * @param idBenefit - must not be null.
-	  * @return a list of entities of the type benefit.
+	  * Retorna una lista de todas las entidades por su id.
+	  * 
+	  * @param pBenefits - no debe ser nula.
+	  * @return todas las entidades del tipo.
 	  */
-	List<Tbenefit> getBenefitsById(int idBenefit);
 
-	List<Tbenefit> getBenefits(int[] benefits);
+	List<Tbenefit> getBenefits(int[] pBenefits);
 }

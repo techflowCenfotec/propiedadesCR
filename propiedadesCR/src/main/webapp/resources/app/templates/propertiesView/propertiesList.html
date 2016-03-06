@@ -1,64 +1,24 @@
 <div class="page">
-	<section class="row ui-section" ng-controller="PropertiesController">
+	<section class="row ui-section" ng-controller="PropertiesListController">
         <div class="col-lg-8 clearfix">
-            <h2 class="section-header">Image Card</h2>
+            <h2 class="section-header">Propiedades</h2>
         </div>
-        <div class="col-md-12">
+        <div class="col-md-12" ng-repeat="property in propertiesList">
             <div class="row">
                 <div class="col-md-4">
                     <div class="card bg-white">
                         <div class="card-image">
-                            <img src="resources/images/assets/600_400-5.jpg">
-                            <span class="card-title">San José - Escazú</span>
+                            <img src="{{property.tpropertyImages[0].propertyImage}}">
+                            <span class="card-title">{{property.tcounty.name}} - {{property.tdistrict.name}}</span>
                         </div>
                         <div class="card-content">
                             <a class="card-button pull-right" href="javascript:;">
                                 <button class="btn btn-icon btn-icon-round btn-floating btn-danger"><i class="fa fa-heart"></i></button>
                             </a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            	In id ligula quis metus lacinia gravida. Vestibulum vestibulum ante quis nibh placerat aliquam</p>
+                            <p>{{property.address}}</p>
                         </div>
                         <div class="card-action">
-                            <a href="javascript:;">A link</a>
-                            <a href="javascript:;">A link</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card bg-white">
-                        <div class="card-image">
-                            <img src="resources/images/assets/600_400-1.jpg">
-                            <span class="card-title">Heredia - Santa Bárbara</span>
-                        </div>
-                        <div class="card-content">
-                            <a class="card-button pull-right" href="javascript:;">
-                                <button class="btn btn-icon btn-icon-round btn-floating btn-danger"><i class="fa fa-heart"></i></button>
-                            </a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            	In id ligula quis metus lacinia gravida. Vestibulum vestibulum ante quis nibh placerat aliquam</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="javascript:;">A link</a>
-                            <a href="javascript:;">A link</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card bg-white">
-                        <div class="card-image">
-                            <img src="resources/images/assets/600_400-4.jpg">
-                            <span class="card-title">Cartago - Caballo Blanco</span>
-                        </div>
-                        <div class="card-content">
-                            <a class="card-button pull-right" href="javascript:;">
-                                <button class="btn btn-icon btn-icon-round btn-floating btn-danger"><i class="fa fa-heart"></i></button>
-                            </a>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                            	In id ligula quis metus lacinia gravida. Vestibulum vestibulum ante quis nibh placerat aliquam</p>
-                        </div>
-                        <div class="card-action">
-                            <a href="javascript:;">A link</a>
-                            <a href="javascript:;">A link</a>
+                            <a href="javascript:;" class="btn btn-default">Ver</a>
                         </div>
                     </div>
                 </div>

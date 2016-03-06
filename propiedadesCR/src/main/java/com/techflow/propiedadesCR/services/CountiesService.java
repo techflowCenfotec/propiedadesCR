@@ -8,15 +8,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.techflow.propiedadesCR.contracts.CountiesRequest;
 import com.techflow.propiedadesCR.ejb.Tcounty;
+import com.techflow.propiedadesCR.ejb.Tprovince;
 import com.techflow.propiedadesCR.pojo.CountyPOJO;
+import com.techflow.propiedadesCR.pojo.ProvincePOJO;
 import com.techflow.propiedadesCR.repositories.CountiesRepository;
 
 @Service
 public class CountiesService implements CountiesServiceInterface {
 
 	@Autowired private CountiesRepository countiesRepository;
+	@Autowired private ProvinceServiceInterface provinceService;
 	
 	@Override
 	@Transactional

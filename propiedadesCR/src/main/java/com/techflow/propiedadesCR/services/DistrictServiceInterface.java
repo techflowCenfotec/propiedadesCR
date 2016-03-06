@@ -2,13 +2,12 @@ package com.techflow.propiedadesCR.services;
 
 import java.util.List;
 
-import com.techflow.propiedadesCR.contracts.DistrictRequest;
 import com.techflow.propiedadesCR.ejb.Tdistrict;
 import com.techflow.propiedadesCR.pojo.DistrictPOJO;
 
 /**
-* <h1>CountiesServiceInterface</h1>
-* Interface for all districts operations.
+<h1>Interfaz a implementar por el DistrictService</h1>
+* Interfaz para todas las operaciones del distrito
 *
 * @author  Walter Gómez
 * @version 1.0
@@ -16,18 +15,17 @@ import com.techflow.propiedadesCR.pojo.DistrictPOJO;
 */
 public interface DistrictServiceInterface {
 	/**
-	  * Returns all districts of the type DistrictsPOJO
+	  * Retorna todas las entidades de tipo DistrictsPOJO
 	  *  
-	  * @param dr - must not be null.
-	  * @return all entities of the type.
+	  * @return las entidades del tipo.
 	  */
-	List<DistrictPOJO> getAll(DistrictRequest dr);
+	List<DistrictPOJO> getAll();
 	
 	/**
-	  * Returns one county entity by it's id.
+	  * Retorna una sola entidad por su id.
 	  *  
-	  * @param idDistrict - must not be null.
-	  * @return one entity of the type county.
+	  * @param pIdDistrict - no debe ser nulo.
+	  * @return una entidad del tipo.
 	  */
-	Tdistrict getDistrictById(int idDistrict);
+	Tdistrict getDistrictById(int pIdDistrict);
 }

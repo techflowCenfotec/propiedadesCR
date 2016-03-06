@@ -6,9 +6,8 @@ import com.techflow.propiedadesCR.ejb.Tprovince;
 import com.techflow.propiedadesCR.pojo.ProvincePOJO;
 
 /**
-* <h1>ProvinceServiceInterface</h1>
-* Interface that provides the getAll() method and the getProvinceById()
-* it provides a simple implementation of it's own service.
+* <h1>Interfaz a implementar por el distrito</h1>
+* Interfaz para todas las operaciones de las propiedades
 *
 * @author  Walter Gómez
 * @version 1.0
@@ -16,15 +15,16 @@ import com.techflow.propiedadesCR.pojo.ProvincePOJO;
 */
 public interface ProvinceServiceInterface {
 	/**
-	  * Returns all instances of ProvincePOJO
-	  * 
-	  * @return All ProvincePOJO entities
+	  * Retorna todas las entidades de tipo ProvincePOJO
+	  *  
+	  * @return las entidades del tipo.
 	  */
 	List<ProvincePOJO> getAll();
 	/**
-	  * Returns an instances of the given type
-	  * 
-	  * @return A ProvincePOJO entity
+	  * Retorna una sola entidad por su id.
+	  *  
+	  * @param pIdProvince - no debe ser nulo.
+	  * @return una entidad del tipo.
 	  */
-	Tprovince getProvinceById(int idProvince);
+	Tprovince getProvinceById(int pIdProvince);
 }

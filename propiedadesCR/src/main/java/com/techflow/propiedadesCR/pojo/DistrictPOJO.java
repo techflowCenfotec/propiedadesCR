@@ -1,13 +1,11 @@
 package com.techflow.propiedadesCR.pojo;
 
-import com.techflow.propiedadesCR.ejb.Tcounty;
-
 public class DistrictPOJO {
 
 	private int idDisctrict;
 	private int code;
 	private String name;
-	private Tcounty tcounty;
+	private CountyPOJO tcounty;
 	
 	public DistrictPOJO() {
 		super();
@@ -30,10 +28,10 @@ public class DistrictPOJO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Tcounty getTcounty() {
+	public CountyPOJO getTcounty() {
 		return tcounty;
 	}
-	public void setTcounty(Tcounty tcounty) {
+	public void setTcounty(CountyPOJO tcounty) {
 		this.tcounty = tcounty;
 	}
 }

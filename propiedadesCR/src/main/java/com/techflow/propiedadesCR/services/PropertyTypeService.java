@@ -13,8 +13,9 @@ import com.techflow.propiedadesCR.pojo.PropertyTypePOJO;
 import com.techflow.propiedadesCR.repositories.PropertyTypeRepository;
 
 /**
-* <h1>PropertyTypeService</h1>
-* Service for the property type.
+* <h1>Servicio para los tipos de propiedad</h1>
+* Servicio que provee la implementación de los métodos
+* getAll() y getPropertyTypeById().
 *
 * @author  Walter Gómez
 * @version 1.0
@@ -25,28 +26,45 @@ public class PropertyTypeService implements PropertyTypeServiceInterface {
 
 	@Autowired private PropertyTypeRepository pTypeRepository;
 	
+	/**
+	  * Retorna una lista de objetos PropertyTypePOJO
+	  * 
+	  * @return todas las entidades del tipo.
+	  */
 	@Override
 	@Transactional
 	public List<PropertyTypePOJO> getAll() {
 		List<TpropertyType> pTypes =  pTypeRepository.findAll();
 		return generatePTypeDtos(pTypes);
 	}
-	
+
+	/**
+	  * Toma las propiedades de los ejbs y los convierte en POJOs.
+	  * 
+	  * @param pTypes - no debe ser nula.
+	  * @return todas las entidades de tipo POJO.
+	  */
 	private List<PropertyTypePOJO> generatePTypeDtos(List<TpropertyType> pTypes) {
 		List<PropertyTypePOJO> uiPTypes = new ArrayList<PropertyTypePOJO>();
 		pTypes.stream().forEach(u -> {
 			PropertyTypePOJO dto = new PropertyTypePOJO();
 			BeanUtils.copyProperties(u, dto);
 			dto.setTproperties(null);
-			dto.setTresidences(null);
 			uiPTypes.add(dto);
 		});
 		
 		return uiPTypes;
 	}
 	
+	/**
+	  * Retorna a través del repositorio el ejb del tipo
+	  * de propiedad.
+	  * 
+	  * @param pIdPropertyType - no debe ser nulo.
+	  * @return una entidad del tipo.
+	  */
 	@Override
-	public TpropertyType getPropertyTypeById(int idPropertyType) {
-		return pTypeRepository.findOne(idPropertyType);
+	public TpropertyType getPropertyTypeById(int pIdPropertyType) {
+		return pTypeRepository.findOne(pIdPropertyType);
 	}
 }

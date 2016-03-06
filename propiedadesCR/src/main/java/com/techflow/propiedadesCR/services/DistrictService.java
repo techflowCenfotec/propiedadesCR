@@ -8,15 +8,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.techflow.propiedadesCR.contracts.DistrictRequest;
+import com.techflow.propiedadesCR.ejb.Tcounty;
 import com.techflow.propiedadesCR.ejb.Tdistrict;
+import com.techflow.propiedadesCR.ejb.Tprovince;
+import com.techflow.propiedadesCR.pojo.CountyPOJO;
 import com.techflow.propiedadesCR.pojo.DistrictPOJO;
+import com.techflow.propiedadesCR.pojo.ProvincePOJO;
 import com.techflow.propiedadesCR.repositories.DistrictRepository;
 
 /**
-* <h1>DistrictService</h1>
-* Service that provides the implementation of the interface
-* contains getAll() method and getDistrictById().
+* <h1>Servicio del Distrito</h1>
+* Servicio que provee una implementación a la interface
+* de los métodos getAll() y getDistrictById().
 *
 * @author  Walter Gómez
 * @version 1.0
@@ -26,23 +29,42 @@ import com.techflow.propiedadesCR.repositories.DistrictRepository;
 public class DistrictService implements DistrictServiceInterface {
 
 	@Autowired private DistrictRepository districtRepository;
+	@Autowired private CountiesServiceInterface countyService;
+	@Autowired private ProvinceServiceInterface provinceService;
 	
 	/**
-	  * Method that returns a list of data transfer objects (DTOs)
-	  * @param N/A
-	  * @return dtos This returns a list of DistrictPOJO as dtos
+	  * Retorna una lista de objetos DistrictPOJO
+	  * 
+	  * @return todas las entidades del tipo.
 	  */
 	@Override
 	@Transactional
-	public List<DistrictPOJO> getAll(DistrictRequest dr) {
+	public List<DistrictPOJO> getAll() {
 		List<Tdistrict> districts = districtRepository.findAll();
 		return generateDistrictDtos(districts);
 	}
 	
-	private List<DistrictPOJO> generateDistrictDtos(List<Tdistrict> districts) {
+	/**
+	  * Toma las propiedades de los ejbs y los convierte en POJOs.
+	  * 
+	  * @param pDistricts - no debe ser nula.
+	  * @return todas las entidades de tipo POJO.
+	  */
+	private List<DistrictPOJO> generateDistrictDtos(List<Tdistrict> pDistricts) {
 		List<DistrictPOJO> uiDistricts = new ArrayList<DistrictPOJO>();
-		districts.stream().forEach(u -> {
+		pDistricts.stream().forEach(u -> {
 			DistrictPOJO dto = new DistrictPOJO();
+			CountyPOJO nCounty = new CountyPOJO();
+			ProvincePOJO nProvince = new ProvincePOJO();
+			
+			Tcounty county = countyService.getCountyById(u.getTcounty().getIdCounty());
+			BeanUtils.copyProperties(county, nCounty);
+			
+			Tprovince province = provinceService.getProvinceById(county.getTprovince().getIdProvince());
+			BeanUtils.copyProperties(province, nProvince);
+			nProvince.setTproperties(null);
+			nCounty.setTprovince(nProvince);
+			
 			BeanUtils.copyProperties(u, dto);
 			dto.setTcounty(null);
 			uiDistricts.add(dto);
@@ -51,13 +73,15 @@ public class DistrictService implements DistrictServiceInterface {
 	}
 
 	/**
-	  * Method that retrieves a repository based on Id sent
-	  * @param idDistrict must not be null
-	  * @return the repository entity or null if none is found
+	  * Retorna a través del repositorio el ejb del distrito.
+	  * 
+	  * @param pIdDistrict - no debe ser nulo.
+	  * @return una entidad del tipo.
 	  */
 	@Override
-	public Tdistrict getDistrictById(int idDistrict) {
-		return districtRepository.findOne(idDistrict);
+	@Transactional
+	public Tdistrict getDistrictById(int pIdDistrict) {
+		return districtRepository.findOne(pIdDistrict);
 	}
 
 }
