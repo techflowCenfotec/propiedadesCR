@@ -24,6 +24,7 @@ public class Toption implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_option")
 	public int getIdOption() {
 		return this.idOption;

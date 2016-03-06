@@ -16,8 +16,8 @@ public class Tmessage implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idMessage;
 	private byte active;
-	private Date fecha;
 	private String message;
+	private Date registrationDate;
 	private String subject;
 	private Tuser tuser1;
 	private Tuser tuser2;
@@ -27,6 +27,7 @@ public class Tmessage implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_message")
 	public int getIdMessage() {
 		return this.idMessage;
@@ -46,16 +47,6 @@ public class Tmessage implements Serializable {
 	}
 
 
-	@Temporal(TemporalType.TIMESTAMP)
-	public Date getFecha() {
-		return this.fecha;
-	}
-
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
-
-
 	@Lob
 	public String getMessage() {
 		return this.message;
@@ -63,6 +54,17 @@ public class Tmessage implements Serializable {
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+
+
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name="registration_date")
+	public Date getRegistrationDate() {
+		return this.registrationDate;
+	}
+
+	public void setRegistrationDate(Date registrationDate) {
+		this.registrationDate = registrationDate;
 	}
 
 

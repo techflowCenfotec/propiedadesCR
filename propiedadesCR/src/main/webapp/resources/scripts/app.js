@@ -31,10 +31,19 @@ function() {
 		,"app.home"
 		,"app.properties"
 
+		,"app.createUsers"
+		,"app.usersList"
+
+		,"app.events"
+		,"app.eventsList"
+
+
 		//3rd Party Modules
 		,"ngMaterial"
 		,"ui.bootstrap"
 		,"duScroll"
+		,"angularFileUpload"
+		,"flow"
 		])
 }(),
 

@@ -24,6 +24,7 @@ public class Tloan implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_loan")
 	public int getIdLoan() {
 		return this.idLoan;

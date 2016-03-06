@@ -15,7 +15,7 @@ import java.util.List;
 public class Tpermission implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idPermissions;
-	private String descripcion;
+	private String description;
 	private List<Trole> troles;
 
 	public Tpermission() {
@@ -23,6 +23,7 @@ public class Tpermission implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_permissions")
 	public int getIdPermissions() {
 		return this.idPermissions;
@@ -33,12 +34,12 @@ public class Tpermission implements Serializable {
 	}
 
 
-	public String getDescripcion() {
-		return this.descripcion;
+	public String getDescription() {
+		return this.description;
 	}
 
-	public void setDescripcion(String descripcion) {
-		this.descripcion = descripcion;
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 

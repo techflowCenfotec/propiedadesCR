@@ -2,6 +2,7 @@ package com.techflow.propiedadesCR.ejb;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Date;
 
 
 /**
@@ -15,6 +16,7 @@ public class TpropertyComment implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idComment;
 	private String comment;
+	private Date registrationDate;
 	private Tproperty tproperty;
 	private Tuser tuser;
 
@@ -23,6 +25,7 @@ public class TpropertyComment implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_comment")
 	public int getIdComment() {
 		return this.idComment;
@@ -40,6 +43,17 @@ public class TpropertyComment implements Serializable {
 
 	public void setComment(String comment) {
 		this.comment = comment;
+	}
+
+
+	@Temporal(TemporalType.DATE)
+	@Column(name="registration_date")
+	public Date getRegistrationDate() {
+		return this.registrationDate;
+	}
+
+	public void setRegistrationDate(Date registrationDate) {
+		this.registrationDate = registrationDate;
 	}
 
 
