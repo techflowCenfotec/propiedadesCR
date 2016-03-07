@@ -24,7 +24,7 @@ public interface PropertiesServiceInterface {
 	/**
 	  * Retorna una sola entidad por su id.
 	  *  
-	  * @param pIdProperty - Id de la propiedad. No debe ser nulo.
+	  * @param pIdProperty Id de la propiedad. No debe ser nulo.
 	  * @return Tproperty Una entidad del tipo.
 	  */
 	Tproperty getPropertyById(int pIdProperty);
@@ -32,7 +32,7 @@ public interface PropertiesServiceInterface {
 	/**
 	 * Guarda la información a almacenar de la propiedad.
 	 *  
-	 * @param pProperty - ejb con la información a almacenar. No debe ser nulo.
+	 * @param pProperty Ejb con la información a almacenar. No debe ser nulo.
 	 * @return Tproperty Un objeto respuesta de la propiedad.
 	 */
 	Tproperty saveProperty(Tproperty pProperty);

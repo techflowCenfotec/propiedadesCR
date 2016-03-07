@@ -24,7 +24,7 @@ public interface DistrictServiceInterface {
 	/**
 	  * Retorna una sola entidad por su id.
 	  *  
-	  * @param pIdDistrict - Id del distrito. No debe ser nulo.
+	  * @param pIdDistrict Id del distrito. No debe ser nulo.
 	  * @return Tdistrict Una entidad del tipo.
 	  */
 	Tdistrict getDistrictById(int pIdDistrict);

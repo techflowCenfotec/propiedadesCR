@@ -44,7 +44,7 @@ public class PropertyTypeService implements PropertyTypeServiceInterface {
 	/**
 	  * Toma las propiedades de los ejbs y los convierte en POJOs.
 	  * 
-	  * @param pTypes - Lista de ejb de tipos de propiedad. No debe ser nula.
+	  * @param pTypes Lista de ejb de tipos de propiedad. No debe ser nula.
 	  * @return uiPTypes Todas las entidades de tipo POJO.
 	  */
 	private List<PropertyTypePOJO> generatePTypeDtos(List<TpropertyType> pTypes) {
@@ -63,7 +63,7 @@ public class PropertyTypeService implements PropertyTypeServiceInterface {
 	  * Retorna a través del repositorio el ejb del tipo
 	  * de propiedad.
 	  * 
-	  * @param pIdPropertyType - Id de la propiedad a buscar. No debe ser nulo.
+	  * @param pIdPropertyType Id de la propiedad a buscar. No debe ser nulo.
 	  * @return TpropertyType Una entidad del tipo.
 	  */
 	@Override

@@ -50,7 +50,7 @@ public class ProvinceService implements ProvinceServiceInterface {
 	/**
 	  * Toma las propiedades de los ejbs y los convierte en POJOs.
 	  * 
-	  * @param pProvinces - Lista de ejb de provincias. No debe ser nula.
+	  * @param pProvinces Lista de ejb de provincias. No debe ser nula.
 	  * @return uiProvinces Todas las entidades de tipo POJO.
 	  */
 	private List<ProvincePOJO> generateProvinceDtos(List<Tprovince> pProvinces) {
@@ -69,7 +69,7 @@ public class ProvinceService implements ProvinceServiceInterface {
 	/**
 	  * Retorna a través del repositorio el ejb de la provincia.
 	  * 
-	  * @param pIdProvince - Id de la provincia a buscar. No debe ser nulo.
+	  * @param pIdProvince Id de la provincia a buscar. No debe ser nulo.
 	  * @return Tprovince Una entidad del tipo.
 	  */
 	@Override

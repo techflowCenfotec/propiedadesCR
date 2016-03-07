@@ -27,7 +27,7 @@ public interface BenefitsRepository extends CrudRepository<Tbenefit, Integer> {
 	  * Retorna una lista de entidades. El arreglo que recibe contiene los ids de
 	  * los beneficios a buscar especificamente.
 	  * 
-	  * @param pBenefits - Arreglo de ids de los beneficios. No debe ser nula.
+	  * @param pBenefits Arreglo de ids de los beneficios. No debe ser nula.
 	  * @return List<Tbenefit> Las entidades del tipo
 	  */
 	List<Tbenefit> findByIdBenefitIn(int[] pBenefits);

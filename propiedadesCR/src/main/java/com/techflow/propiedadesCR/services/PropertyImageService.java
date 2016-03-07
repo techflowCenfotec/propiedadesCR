@@ -44,7 +44,7 @@ public class PropertyImageService implements PropertyImagesServiceInterface {
 	/**
 	  * Toma las imagenes de las propiedades de los ejbs y los convierte en POJOs.
 	  * 
-	  * @param pPropertyImages - Lista de ejb de imágenes. No debe ser nula.
+	  * @param pPropertyImages Lista de ejb de imágenes. No debe ser nula.
 	  * @return uiProperties Todas las entidades de tipo POJO.
 	  */
 	private List<PropertyImagePOJO> generateImageDtos(List<TpropertyImage> pPropertyImages) {
@@ -60,7 +60,7 @@ public class PropertyImageService implements PropertyImagesServiceInterface {
 	/**
 	  * Retorna a través del repositorio el ejb de la imagen de la propiedad.
 	  * 
-	  * @param pIdPropiedad - Id de la propiedad a buscar. No debe ser nulo.
+	  * @param pIdPropiedad Id de la propiedad a buscar. No debe ser nulo.
 	  * @return TpropertyImage Una entidad del tipo.
 	  */
 	@Override

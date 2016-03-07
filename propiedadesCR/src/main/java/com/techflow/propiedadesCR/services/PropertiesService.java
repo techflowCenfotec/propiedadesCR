@@ -57,7 +57,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 	/**
 	  * Toma las propiedades de los ejbs y los convierte en POJOs.
 	  * 
-	  * @param pProperties - Lista de ejb de propiedades. No debe ser nula.
+	  * @param pProperties Lista de ejb de propiedades. No debe ser nula.
 	  * @return uiProperties Todas las entidades de tipo POJO.
 	  */
 	private List<PropertyPOJO> generatePropDtos(List<Tproperty> pProperties) {
@@ -95,7 +95,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 	  * Alamacena la entidad. Retorna la entidad almacenada por si hay que realizar operaciones adicionales
 	  * ya que la entidad puede cambiar al ser almacenda.
 	  * 
-	  * @param pProperty - Contiene la infomarción a almacenar a la base de 
+	  * @param pProperty Contiene la infomarción a almacenar a la base de 
 	  * datos por medio del repositorio. No debe ser nulo.
 	  * @return nProperty Una entidad del tipo.
 	  */
@@ -109,7 +109,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 	/**
 	  * Retorna a través del repositorio el ejb de la propiedad.
 	  * 
-	  * @param pIdProperty - Id de la propiedad a buscar. No debe ser nulo.
+	  * @param pIdProperty Id de la propiedad a buscar. No debe ser nulo.
 	  * @return Tproperty Una entidad del tipo.
 	  */
 	@Override

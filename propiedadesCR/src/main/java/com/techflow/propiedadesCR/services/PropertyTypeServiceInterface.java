@@ -26,7 +26,7 @@ public interface PropertyTypeServiceInterface {
 	/**
 	  * Retorna una sola entidad por su id.
 	  *  
-	  * @param pIdPropertyType - Id de la propiedad. No debe ser nulo.
+	  * @param pIdPropertyType Id de la propiedad. No debe ser nulo.
 	  * @return TpropertyType Una entidad del tipo.
 	  */
 	TpropertyType getPropertyTypeById(int pIdPropertyType);

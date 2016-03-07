@@ -44,7 +44,7 @@ public class CountiesService implements CountiesServiceInterface {
 	/**
 	  * Toma las propiedades de los ejbs y los convierte en POJOs.
 	  * 
-	  * @param pCounties - Lista de ejb de cantones. No debe ser nula.
+	  * @param pCounties Lista de ejb de cantones. No debe ser nula.
 	  * @return uiCounties Todas las entidades de tipo POJO.
 	  */
 	private List<CountyPOJO> generateCountyDtos(List<Tcounty> pCounties) {
@@ -62,7 +62,7 @@ public class CountiesService implements CountiesServiceInterface {
 	/**
 	  * Retorna a través del repositorio el ejb del cantón.
 	  * 
-	  * @param pIdCounty - Id del cantón a buscar. No debe ser nulo.
+	  * @param pIdCounty Id del cantón a buscar. No debe ser nulo.
 	  * @return Tcounty Una entidad del tipo.
 	  */
 	@Override

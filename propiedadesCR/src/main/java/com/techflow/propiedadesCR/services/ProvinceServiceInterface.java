@@ -23,7 +23,7 @@ public interface ProvinceServiceInterface {
 	/**
 	  * Retorna una sola entidad por su id.
 	  *  
-	  * @param pIdProvince - Id de la provincia. No debe ser nulo.
+	  * @param pIdProvince Id de la provincia. No debe ser nulo.
 	  * @return Tprovince Una entidad del tipo.
 	  */
 	Tprovince getProvinceById(int pIdProvince);

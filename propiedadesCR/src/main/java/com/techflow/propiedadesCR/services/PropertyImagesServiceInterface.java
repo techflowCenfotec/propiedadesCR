@@ -26,7 +26,7 @@ public interface PropertyImagesServiceInterface {
 	  * Retorna una entidad del tipo por el id de
 	  * la propiedad.
 	  * 
-	  * @param pIdPropiedad - Ide de la propiedad. No debe ser nulo.
+	  * @param pIdPropiedad Ids de la propiedad. No debe ser nulo.
 	  * @return TpropertyImage Una entidad del tipo.
 	  */
 	TpropertyImage getImageById(int pIdPropiedad);

@@ -78,13 +78,13 @@ public class PropertiesController {
 	/**
 	  * Envía los datos a almacenar a la base de datos por medio de su servicio. 
 	  * 
-	  * @param pSquareMeters - tamaño de la propiedad.
-	  * @param pPrice - precio de la propiedad en dólares.
-	  * @param pIdDistrict - id del distrito al que pertenece.
-	  * @param pBenefits - lista de beneficios de la propiedad.
-	  * @param pIdPropertyType - tipo de la propiedad.
-	  * @param pAddress - dirección exacta de la propiedad.
-	  * @param pPropertyImages - imágenes de la propiedad.
+	  * @param pSquareMeters Tamaño de la propiedad.
+	  * @param pPrice Precio de la propiedad en dólares.
+	  * @param pIdDistrict Id del distrito al que pertenece.
+	  * @param pBenefits Lista de beneficios de la propiedad.
+	  * @param pIdPropertyType Tipo de la propiedad.
+	  * @param pAddress Dirección exacta de la propiedad.
+	  * @param pPropertyImages Imágenes de la propiedad.
 	  * @return response La entidad del objeto creado.
 	  */
 	@RequestMapping(value="/create", method = RequestMethod.POST)

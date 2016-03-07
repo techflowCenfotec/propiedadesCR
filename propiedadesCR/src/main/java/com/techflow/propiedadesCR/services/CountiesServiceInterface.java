@@ -26,7 +26,7 @@ public interface CountiesServiceInterface {
 	/**
 	  * Retorna una sola entidad por su id.
 	  *  
-	  * @param pIdCounty - Id del cantón. No debe ser nulo.
+	  * @param pIdCounty Id del cantón. No debe ser nulo.
 	  * @return Tcounty Una entidad del tipo.
 	  */
 	Tcounty getCountyById(int pIdCounty);
