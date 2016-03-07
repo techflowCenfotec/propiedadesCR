@@ -16,7 +16,7 @@ public class UsersResponse extends BaseResponse {
 		return users;
 	}
 	
-	public void setUsuarios(List<UserPOJO> users) {
+	public void setUsers(List<UserPOJO> users) {
 		this.users = users;
 	}
 }

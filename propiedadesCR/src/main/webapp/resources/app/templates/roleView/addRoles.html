@@ -1,0 +1,57 @@
+<div class="page page-table" data-ng-controller="obteinPermissions" >
+<div class="col-log-8 clearfix">
+	<h2 class="section-header">Agregar Rol</h2>
+</div>
+<div class="col-md-12">
+	<section class="panel panle-default">
+		<div class="panel-body padding-x1">
+			<div class="row">
+				<div class= "col-md-8 col md-offset-2">
+					<form role="form" class="ng-pristine ng-valid">
+						<div class="form-group">
+							<label for class="col-sm-2">Nombre</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control" ng-model="newRoleName">
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+       	<div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h4>Permisos </h4>
+                <div class="divider divider-xl"></div>
+                	<div data-ng-repeat="permissions in permissionsList">
+                   	<p>
+                        <md-checkbox ng-init="checkbox.cb1=false" ng-model="checkbox.cb1" aria-label="Checkbox 1" role="checkbox" class="ng-valid ng-dirty ng-valid-parse ng-touched md-checked" tabindex="0" aria-checked="true" aria-invalid="false"
+                        ng-click="addPermissions(permissions.idPermissions,checkbox.cb1)" class="checkbox-inline">
+
+                        <strong style="display: inline-block; width: 100px;">{{permissions.description}}</strong>
+                            <div class="md-container md-ink-ripple" md-ink-ripple="" md-ink-ripple-checkbox="">
+                                <div class="md-icon">
+                                </div>
+                                <div class="md-ripple-container">
+                                </div>
+                            </div>
+                            <div class="md-label">
+                            </div>
+                        	</md-checkbox>
+                    </p>
+                    </div>
+                </div>
+        </div>
+	</section>
+</div>
+	<button class="md-raised btn-w-md md-primary md-button md-ink-ripple" type="button" >
+		<span class="ng-scope" ng-click="addRoles()">Agregar</span>
+		<div class="md-ripple-container">
+		</div>
+	</button>
+	<button class="md-raised btn-w-md md-primary md-button md-ink-ripple" type="button">
+		<span class="ng-scope">Cancelar</span>
+		<div class="md-ripple-container">
+		</div>
+	</button>
+</div>
+
