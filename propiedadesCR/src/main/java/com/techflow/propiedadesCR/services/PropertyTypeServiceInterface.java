@@ -2,7 +2,6 @@ package com.techflow.propiedadesCR.services;
 
 import java.util.List;
 
-import com.techflow.propiedadesCR.contracts.PropertyTypeRequest;
 import com.techflow.propiedadesCR.ejb.TpropertyType;
 import com.techflow.propiedadesCR.pojo.PropertyTypePOJO;
 
@@ -22,7 +21,7 @@ public interface PropertyTypeServiceInterface {
 	  * @param ptr - must not be null.
 	  * @return all entities of the type.
 	  */
-	List<PropertyTypePOJO> getAll(PropertyTypeRequest ptr);
+	List<PropertyTypePOJO> getAll();
 	
 	/**
 	  * Returns one property entity by it's id.
@@ -30,5 +29,5 @@ public interface PropertyTypeServiceInterface {
 	  * @param idProperty - must not be null.
 	  * @return one entity of the type property.
 	  */
-	TpropertyType getPropertyById(int idProperty);
+	TpropertyType getPropertyTypeById(int idPropertyType);
 }

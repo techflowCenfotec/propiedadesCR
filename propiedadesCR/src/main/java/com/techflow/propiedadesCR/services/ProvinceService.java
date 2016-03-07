@@ -34,7 +34,7 @@ public class ProvinceService implements ProvinceServiceInterface {
 	  */
 	@Override
 	@Transactional
-	public List<ProvincePOJO> getAll(ProvinceRequest pr) {
+	public List<ProvincePOJO> getAll() {
 		List<Tprovince> provinces = provinceRepository.findAll();
 		return generateProvinceDtos(provinces);
 	}
@@ -45,6 +45,8 @@ public class ProvinceService implements ProvinceServiceInterface {
 		provinces.stream().forEach(u ->{
 			ProvincePOJO dto = new ProvincePOJO();
 			BeanUtils.copyProperties(u, dto);
+			dto.setTcounties(null);
+			dto.setTproperties(null);
 			uiProvinces.add(dto);
 		});
 		return uiProvinces;
@@ -53,7 +55,7 @@ public class ProvinceService implements ProvinceServiceInterface {
 	/**
 	  * Method that retrieves a repository based on Id sent
 	  * @param idProvince must not be null
-	  * @return te repository entity or null if none is found
+	  * @return the repository entity or null if none is found
 	  */
 	@Override
 	public Tprovince getProvinceById(int idProvince) {

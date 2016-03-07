@@ -16,7 +16,6 @@ public class ProvincePOJO {
 	public ProvincePOJO() {
 		super();
 	}
-	
 	public int getIdProvince() {
 		return idProvince;
 	}

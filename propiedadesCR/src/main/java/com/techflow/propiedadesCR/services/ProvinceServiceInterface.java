@@ -2,7 +2,6 @@ package com.techflow.propiedadesCR.services;
 
 import java.util.List;
 
-import com.techflow.propiedadesCR.contracts.ProvinceRequest;
 import com.techflow.propiedadesCR.ejb.Tprovince;
 import com.techflow.propiedadesCR.pojo.ProvincePOJO;
 
@@ -18,10 +17,11 @@ import com.techflow.propiedadesCR.pojo.ProvincePOJO;
 public interface ProvinceServiceInterface {
 	/**
 	  * Returns all instances of ProvincePOJO
+	  * 
 	  * @param pr - request entity.
 	  * @return All ProvincePOJO entities
 	  */
-	List<ProvincePOJO> getAll(ProvinceRequest pr);
+	List<ProvincePOJO> getAll();
 	/**
 	  * Returns an instances of the given type
 	  * 

@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.techflow.propiedadesCR.contracts.PropertiesRequest;
 import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.pojo.PropertyPOJO;
 import com.techflow.propiedadesCR.repositories.PropertiesRepository;
@@ -20,16 +19,22 @@ public class PropertiesService implements PropertiesServiceInterface {
 	
 	@Override
 	@Transactional
-	public List<PropertyPOJO> getAll(PropertiesRequest pr) {
+	public List<PropertyPOJO> getAll() {
 		List<Tproperty> properties = propertiesRepository.findAll();
 		return generatePropDtos(properties);
 	}
 	
-	private List<PropertyPOJO> generatePropDtos(List<Tproperty> properties) {
+	private List<PropertyPOJO> generatePropDtos(List<Tproperty> pProperties) {
 		List<PropertyPOJO> uiProperties = new ArrayList<PropertyPOJO>();
-		properties.stream().forEach(u -> {
+		pProperties.stream().forEach(u -> {
 			PropertyPOJO dto = new PropertyPOJO();
 			BeanUtils.copyProperties(u, dto);
+			dto.setTpropertyComments(null);
+			dto.setTpropertyRatings(null);
+			dto.setTusers(null);
+			dto.setTbenefits(null);
+			dto.setTprovince(null);
+			dto.setTpropertyType(null);
 			uiProperties.add(dto);
 		});
 		return uiProperties;
@@ -37,13 +42,9 @@ public class PropertiesService implements PropertiesServiceInterface {
 
 	@Override
 	@Transactional
-	public Boolean saveProperty(PropertiesRequest pr) {
-		
-		Tproperty property = new Tproperty();
-		BeanUtils.copyProperties(pr.getProperty(), property);
-		Tproperty nProperty =  propertiesRepository.save(property);
-		
-		return (nProperty == null) ? false : true;
+	public Tproperty saveProperty(Tproperty pProperty) {
+		Tproperty nProperty =  propertiesRepository.save(pProperty);
+		return nProperty;
 	}
 
 	@Override

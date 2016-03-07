@@ -3,7 +3,6 @@ package com.techflow.propiedadesCR.pojo;
 import java.util.List;
 
 import com.techflow.propiedadesCR.ejb.Tproperty;
-import com.techflow.propiedadesCR.ejb.Tresidence;
 
 /**
 * <h1>propertyTypePOJO</h1>
@@ -19,7 +18,6 @@ public class PropertyTypePOJO {
 	private int idPropertyType;
 	private String name;
 	private List<Tproperty> tproperties;
-	private List<Tresidence> tresidences;
 	
 	public PropertyTypePOJO() {
 		super();
@@ -41,11 +39,5 @@ public class PropertyTypePOJO {
 	}
 	public void setTproperties(List<Tproperty> tproperties) {
 		this.tproperties = tproperties;
-	}
-	public List<Tresidence> getTresidences() {
-		return tresidences;
-	}
-	public void setTresidences(List<Tresidence> tresidences) {
-		this.tresidences = tresidences;
 	}
 }

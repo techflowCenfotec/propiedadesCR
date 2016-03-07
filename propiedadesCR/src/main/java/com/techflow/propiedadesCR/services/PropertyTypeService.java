@@ -5,11 +5,11 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.techflow.propiedadesCR.contracts.PropertyTypeRequest;
 import com.techflow.propiedadesCR.ejb.TpropertyType;
 import com.techflow.propiedadesCR.pojo.PropertyTypePOJO;
-import com.techflow.propiedadesCR.pojo.ProvincePOJO;
 import com.techflow.propiedadesCR.repositories.PropertyTypeRepository;
 
 /**
@@ -20,12 +20,14 @@ import com.techflow.propiedadesCR.repositories.PropertyTypeRepository;
 * @version 1.0
 * @since 26/2/2016
 */
+@Service
 public class PropertyTypeService implements PropertyTypeServiceInterface {
 
 	@Autowired private PropertyTypeRepository pTypeRepository;
 	
 	@Override
-	public List<PropertyTypePOJO> getAll(PropertyTypeRequest ptr) {
+	@Transactional
+	public List<PropertyTypePOJO> getAll() {
 		List<TpropertyType> pTypes =  pTypeRepository.findAll();
 		return generatePTypeDtos(pTypes);
 	}
@@ -35,6 +37,7 @@ public class PropertyTypeService implements PropertyTypeServiceInterface {
 		pTypes.stream().forEach(u -> {
 			PropertyTypePOJO dto = new PropertyTypePOJO();
 			BeanUtils.copyProperties(u, dto);
+			dto.setTproperties(null);
 			uiPTypes.add(dto);
 		});
 		
@@ -42,10 +45,8 @@ public class PropertyTypeService implements PropertyTypeServiceInterface {
 	}
 	
 	@Override
-	public TpropertyType getPropertyById(int idPropertyType) {
+	public TpropertyType getPropertyTypeById(int idPropertyType) {
 		return pTypeRepository.findOne(idPropertyType);
 	}
-
-	
 
 }

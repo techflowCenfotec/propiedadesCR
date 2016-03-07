@@ -2,7 +2,6 @@ package com.techflow.propiedadesCR.services;
 
 import java.util.List;
 
-import com.techflow.propiedadesCR.contracts.PropertiesRequest;
 import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.pojo.PropertyPOJO;
 
@@ -22,7 +21,7 @@ public interface PropertiesServiceInterface {
 	  * @param pr - must not be null.
 	  * @return all entities of the type.
 	  */
-	List<PropertyPOJO> getAll(PropertiesRequest pr);
+	List<PropertyPOJO> getAll();
 	
 	/**
 	  * Returns one property entity by it's id.
@@ -38,5 +37,5 @@ public interface PropertiesServiceInterface {
 	  * @param pr Parameter for the getAll method of the service
 	  * @return a property response object.
 	  */
-	Boolean saveProperty(PropertiesRequest pr);
+	Tproperty saveProperty(Tproperty pr);
 }

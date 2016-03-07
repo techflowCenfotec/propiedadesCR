@@ -7,6 +7,10 @@ import com.techflow.propiedadesCR.pojo.ProvincePOJO;
 public class ProvinceResponse extends BaseResponse {
 
 	List<ProvincePOJO> provinces;
+	
+	public ProvinceResponse() {
+		super();
+	}
 
 	public List<ProvincePOJO> getProvinces() {
 		return provinces;
