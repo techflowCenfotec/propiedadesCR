@@ -35,17 +35,35 @@ import com.techflow.propiedadesCR.utils.Utils;
 @RequestMapping(value="rest/protected/properties")
 public class PropertiesController {
 
+	/**
+	 * Atributo que brinda un ServletContext
+	 */
 	@Autowired private ServletContext servletContext;
+	/**
+	 * Atributo de la interfaz de los distritos.
+	 */
 	@Autowired private DistrictServiceInterface districtService;
+	/**
+	 * Atributo de la interfaz de los tipos de propiedades.
+	 */
 	@Autowired private PropertyTypeServiceInterface propertyTypeService;
+	/**
+	 * Atributo de la interfaz de las propiedades.
+	 */
 	@Autowired private PropertiesServiceInterface propertiesService;
+	/**
+	 * Atributo de la interfaz de los beneficios.
+	 */
 	@Autowired private BenefitsServiceInterface benefitsService;
+	/**
+	 * Atributo de la interfaz de las imágenes de las propiedades.
+	 */
 	@Autowired private PropertyImagesServiceInterface imagesService;
 	
 	/**
 	 * Solicita la información de las propiedades a través del servicio.
 	 *  
-	 * @return un objeto response de la propiedad.
+	 * @return response - un objeto response de la propiedad.
 	 */
 	@RequestMapping(value="/getAll", method = RequestMethod.GET)
 	public PropertiesResponse getAll() {
@@ -67,7 +85,7 @@ public class PropertiesController {
 	  * @param pIdPropertyType - tipo de la propiedad.
 	  * @param pAddress - dirección exacta de la propiedad.
 	  * @param pPropertyImages - imágenes de la propiedad.
-	  * @return la entidad del objeto creado.
+	  * @return response - la entidad del objeto creado.
 	  */
 	@RequestMapping(value="/create", method = RequestMethod.POST)
 	public PropertiesResponse create(

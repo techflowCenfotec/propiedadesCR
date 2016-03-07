@@ -23,12 +23,15 @@ import com.techflow.propiedadesCR.services.BenefitsServiceInterface;
 @RequestMapping(value= "rest/protected/benefits")
 public class BenefitsController {
 
+	/**
+	 * Atributo de la interfaz de los beneficios.
+	 */
 	@Autowired private BenefitsServiceInterface benefitsService;
 	
 	/**
 	 * Solicita la información de los beneficios a través del servicio.
 	 *  
-	 * @return un objeto response de los beneficios.
+	 * @return response - un objeto response de los beneficios.
 	 */
 	@RequestMapping(value= "/getAll", method = RequestMethod.GET)
 	public BenefitsResponse getAll() {

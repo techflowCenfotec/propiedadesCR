@@ -26,13 +26,19 @@ import com.techflow.propiedadesCR.repositories.ProvinceRepository;
 @Service
 public class ProvinceService implements ProvinceServiceInterface {
 
+	/**
+	 * Atributo de acceso al repositorio de las provincias.
+	 */
 	@Autowired private ProvinceRepository provinceRepository;
+	/**
+	 * Atributo de la interfaz de los cantones.
+	 */
 	@Autowired private CountiesServiceInterface countyService;
 	
 	/**
 	  * Retorna una lista de objetos ProvincePOJO
 	  * 
-	  * @return todas las entidades del tipo.
+	  * @return uiProvinces - todas las entidades del tipo.
 	  */
 	@Override
 	@Transactional
@@ -45,7 +51,7 @@ public class ProvinceService implements ProvinceServiceInterface {
 	  * Toma las propiedades de los ejbs y los convierte en POJOs.
 	  * 
 	  * @param pProvinces - no debe ser nula.
-	  * @return todas las entidades de tipo POJO.
+	  * @return uiProvinces - todas las entidades de tipo POJO.
 	  */
 	private List<ProvincePOJO> generateProvinceDtos(List<Tprovince> pProvinces) {
 		List<ProvincePOJO> uiProvinces = new ArrayList<ProvincePOJO>();
@@ -64,7 +70,7 @@ public class ProvinceService implements ProvinceServiceInterface {
 	  * Retorna a través del repositorio el ejb de la provincia.
 	  * 
 	  * @param pIdProvince - no debe ser nulo.
-	  * @return una entidad del tipo.
+	  * @return Tprovince - una entidad del tipo.
 	  */
 	@Override
 	@Transactional

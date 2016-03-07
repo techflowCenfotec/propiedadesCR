@@ -24,12 +24,15 @@ import com.techflow.propiedadesCR.repositories.CountiesRepository;
 @Service
 public class CountiesService implements CountiesServiceInterface {
 
+	/**
+	 * Atributo de acceso al repositorio de los cantones.
+	 */
 	@Autowired private CountiesRepository countiesRepository;
 	
 	/**
 	  * Retorna una lista de objetos CountyPOJO
 	  * 
-	  * @return todas las entidades del tipo.
+	  * @return uiCounties - todas las entidades del tipo.
 	  */
 	@Override
 	@Transactional
@@ -42,7 +45,7 @@ public class CountiesService implements CountiesServiceInterface {
 	  * Toma las propiedades de los ejbs y los convierte en POJOs.
 	  * 
 	  * @param pCounties - no debe ser nula.
-	  * @return todas las entidades de tipo POJO.
+	  * @return uiCounties - todas las entidades de tipo POJO.
 	  */
 	private List<CountyPOJO> generateCountyDtos(List<Tcounty> pCounties) {
 		List<CountyPOJO> uiCounties = new ArrayList<CountyPOJO>();
@@ -60,7 +63,7 @@ public class CountiesService implements CountiesServiceInterface {
 	  * Retorna a través del repositorio el ejb del cantón.
 	  * 
 	  * @param pIdCounty - no debe ser nulo.
-	  * @return una entidad del tipo.
+	  * @return Tcounty - una entidad del tipo.
 	  */
 	@Override
 	@Transactional

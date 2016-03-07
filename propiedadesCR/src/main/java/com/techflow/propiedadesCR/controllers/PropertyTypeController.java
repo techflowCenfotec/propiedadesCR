@@ -19,12 +19,15 @@ import com.techflow.propiedadesCR.services.PropertyTypeServiceInterface;
 @RequestMapping(value = "rest/protected/propertyTypes")
 public class PropertyTypeController {
 
+	/**
+	 * Atributo de la interfaz de los tipos de propiedades.
+	 */
 	@Autowired PropertyTypeServiceInterface pTypeService;
 	
 	/**
 	 * Solicita la información de los tipos de propiedades a través del servicio.
 	 *  
-	 * @return un objeto response de los tipos de propiedad.
+	 * @return response - un objeto response de los tipos de propiedad.
 	 */
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
 	public PropertyTypeResponse getAll() {

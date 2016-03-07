@@ -18,7 +18,7 @@ public interface PropertyImagesServiceInterface {
 	/**
 	  * Retorna todas las entidades del tipo.
 	  *  
-	  * @return todas las entidades del tipo.
+	  * @return List<PropertyImagePOJO> - todas las entidades del tipo.
 	  */
 	List<PropertyImagePOJO> getAll();
 	
@@ -27,7 +27,7 @@ public interface PropertyImagesServiceInterface {
 	  * la propiedad.
 	  * 
 	  * @param pIdPropiedad - no debe ser nulo.
-	  * @return una entidad del tipo.
+	  * @return TpropertyImage - una entidad del tipo.
 	  */
 	TpropertyImage getImageById(int pIdPropiedad);
 	

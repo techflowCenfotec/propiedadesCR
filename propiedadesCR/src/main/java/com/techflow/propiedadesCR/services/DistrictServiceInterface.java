@@ -17,7 +17,7 @@ public interface DistrictServiceInterface {
 	/**
 	  * Retorna todas las entidades de tipo DistrictsPOJO
 	  *  
-	  * @return las entidades del tipo.
+	  * @return List<DistrictPOJO> - las entidades del tipo.
 	  */
 	List<DistrictPOJO> getAll();
 	
@@ -25,7 +25,7 @@ public interface DistrictServiceInterface {
 	  * Retorna una sola entidad por su id.
 	  *  
 	  * @param pIdDistrict - no debe ser nulo.
-	  * @return una entidad del tipo.
+	  * @return Tdistrict - una entidad del tipo.
 	  */
 	Tdistrict getDistrictById(int pIdDistrict);
 }

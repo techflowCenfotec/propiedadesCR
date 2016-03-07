@@ -28,15 +28,24 @@ import com.techflow.propiedadesCR.repositories.PropertiesRepository;
 @Service
 public class PropertiesService implements PropertiesServiceInterface {
 
+	/**
+	 * Atributo de acceso al repositorio de las propiedades.
+	 */
 	@Autowired private PropertiesRepository propertiesRepository;
+	/**
+	 * Atributo de la interfaz de los distritos.
+	 */
 	@Autowired private DistrictServiceInterface districtService;
+	/**
+	 * Atributo de la interfaz de las imagenes.
+	 */
 	@Autowired private PropertyImagesServiceInterface imageService;
 	
 	
 	/**
 	  * Retorna una lista de objetos PropertyPOJO
 	  * 
-	  * @return todas las entidades del tipo.
+	  * @return uiProperties - todas las entidades del tipo.
 	  */
 	@Override
 	@Transactional
@@ -49,7 +58,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 	  * Toma las propiedades de los ejbs y los convierte en POJOs.
 	  * 
 	  * @param pProperties - no debe ser nula.
-	  * @return todas las entidades de tipo POJO.
+	  * @return uiProperties - todas las entidades de tipo POJO.
 	  */
 	private List<PropertyPOJO> generatePropDtos(List<Tproperty> pProperties) {
 		List<PropertyPOJO> uiProperties = new ArrayList<PropertyPOJO>();
@@ -87,7 +96,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 	  * ya que la entidad puede cambiar al ser almacenda.
 	  * 
 	  * @param pProperty - no debe ser nulo.
-	  * @return una entidad del tipo.
+	  * @return nProperty - una entidad del tipo.
 	  */
 	@Override
 	@Transactional
@@ -100,7 +109,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 	  * Retorna a través del repositorio el ejb de la propiedad.
 	  * 
 	  * @param pIdProperty - no debe ser nulo.
-	  * @return una entidad del tipo.
+	  * @return Tproperty - una entidad del tipo.
 	  */
 	@Override
 	public Tproperty getPropertyById(int pIdProperty) {

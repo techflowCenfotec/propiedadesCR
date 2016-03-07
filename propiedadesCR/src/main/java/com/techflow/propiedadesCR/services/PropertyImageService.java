@@ -24,12 +24,15 @@ import com.techflow.propiedadesCR.repositories.PropertyImageRepository;
 @Service
 public class PropertyImageService implements PropertyImagesServiceInterface {
 
+	/**
+	 * Atributo de acceso al repositorio de las imagenes de las propiedades.
+	 */
 	@Autowired private PropertyImageRepository imageRepository;
 	
 	/**
 	  * Retorna una lista de objetos PropertyImagePOJO
 	  * 
-	  * @return todas las entidades del tipo.
+	  * @return uiProperties - todas las entidades del tipo.
 	  */
 	@Override
 	@Transactional
@@ -42,7 +45,7 @@ public class PropertyImageService implements PropertyImagesServiceInterface {
 	  * Toma las imagenes de las propiedades de los ejbs y los convierte en POJOs.
 	  * 
 	  * @param pPropertyImages - no debe ser nula.
-	  * @return todas las entidades de tipo POJO.
+	  * @return uiProperties - todas las entidades de tipo POJO.
 	  */
 	private List<PropertyImagePOJO> generateImageDtos(List<TpropertyImage> pPropertyImages) {
 		List<PropertyImagePOJO> uiProperties = new ArrayList<PropertyImagePOJO>();
@@ -58,7 +61,7 @@ public class PropertyImageService implements PropertyImagesServiceInterface {
 	  * Retorna a través del repositorio el ejb de la imagen de la propiedad.
 	  * 
 	  * @param pIdPropiedad - no debe ser nulo.
-	  * @return una entidad del tipo.
+	  * @return TpropertyImage - una entidad del tipo.
 	  */
 	@Override
 	@Transactional

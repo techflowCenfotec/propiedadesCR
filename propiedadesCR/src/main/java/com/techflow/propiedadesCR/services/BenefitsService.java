@@ -25,12 +25,15 @@ import com.techflow.propiedadesCR.repositories.BenefitsRepository;
 @Service
 public class BenefitsService implements BenefitsServiceInterface {
 
+	/**
+	 * Atributo de acceso al repositorio de los beneficios.
+	 */
 	@Autowired private BenefitsRepository benefitsRepository;
 	
 	/**
 	  * Retorna una lista de objetos BenefitsPOJO
 	  * 
-	  * @return todas las entidades del tipo.
+	  * @return uiBenefits - todas las entidades del tipo.
 	  */
 	@Override
 	@Transactional
@@ -43,7 +46,7 @@ public class BenefitsService implements BenefitsServiceInterface {
 	  * Toma las propiedades de los ejbs y los convierte en POJOs.
 	  * 
 	  * @param pBenefits - no debe ser nula.
-	  * @return todas las entidades de tipo POJO.
+	  * @return uiBenefits - todas las entidades de tipo POJO.
 	  */
 	private List<BenefitsPOJO> generateBenefitsDtos(List<Tbenefit> pBenefits) {
 		List<BenefitsPOJO> uiBenefits = new ArrayList<BenefitsPOJO>();
@@ -60,7 +63,7 @@ public class BenefitsService implements BenefitsServiceInterface {
 	  * Retorna a través del repositorio el ejb del beneficio.
 	  * 
 	  * @param pIdBenefit - no debe ser nulo.
-	  * @return una entidad del tipo.
+	  * @return Tbenefit - una entidad del tipo.
 	  */
 	@Override
 	@Transactional
@@ -73,7 +76,7 @@ public class BenefitsService implements BenefitsServiceInterface {
 	  * ejbs de beneficios.
 	  * 
 	  * @param pBenefits - no debe ser nula.
-	  * @return todas las entidades del tipo.
+	  * @return List<Tbenefit> - todas las entidades del tipo.
 	  */
 	@Override
 	@Transactional

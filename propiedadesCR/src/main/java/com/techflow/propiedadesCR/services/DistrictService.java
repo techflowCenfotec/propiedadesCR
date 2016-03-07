@@ -28,14 +28,23 @@ import com.techflow.propiedadesCR.repositories.DistrictRepository;
 @Service
 public class DistrictService implements DistrictServiceInterface {
 
+	/**
+	 * Atributo de acceso al repositorio de los distritos.
+	 */
 	@Autowired private DistrictRepository districtRepository;
+	/**
+	 * Atributo de la interfaz de los cantones.
+	 */
 	@Autowired private CountiesServiceInterface countyService;
+	/**
+	 * Atributo de la interfaz de las provincias.
+	 */
 	@Autowired private ProvinceServiceInterface provinceService;
 	
 	/**
 	  * Retorna una lista de objetos DistrictPOJO
 	  * 
-	  * @return todas las entidades del tipo.
+	  * @return uiDistricts - todas las entidades del tipo.
 	  */
 	@Override
 	@Transactional
@@ -48,7 +57,7 @@ public class DistrictService implements DistrictServiceInterface {
 	  * Toma las propiedades de los ejbs y los convierte en POJOs.
 	  * 
 	  * @param pDistricts - no debe ser nula.
-	  * @return todas las entidades de tipo POJO.
+	  * @return uiDistricts - todas las entidades de tipo POJO.
 	  */
 	private List<DistrictPOJO> generateDistrictDtos(List<Tdistrict> pDistricts) {
 		List<DistrictPOJO> uiDistricts = new ArrayList<DistrictPOJO>();
@@ -76,7 +85,7 @@ public class DistrictService implements DistrictServiceInterface {
 	  * Retorna a través del repositorio el ejb del distrito.
 	  * 
 	  * @param pIdDistrict - no debe ser nulo.
-	  * @return una entidad del tipo.
+	  * @return Tdistrict - una entidad del tipo.
 	  */
 	@Override
 	@Transactional

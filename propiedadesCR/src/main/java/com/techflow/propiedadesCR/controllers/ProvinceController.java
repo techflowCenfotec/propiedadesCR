@@ -20,12 +20,15 @@ import com.techflow.propiedadesCR.services.ProvinceServiceInterface;
 @RequestMapping(value = "rest/protected/province")
 public class ProvinceController {
 
+	/**
+	 * Atributo de la interfaz de las provincias.
+	 */
 	@Autowired private ProvinceServiceInterface provinceService;
 	
 	/**
 	 * Solicita la información de las provincias a través del servicio.
 	 *  
-	 * @return un objeto response de los tipos de provincia.
+	 * @return response - un objeto response de los tipos de provincia.
 	 */
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
 	public ProvinceResponse getAll() {

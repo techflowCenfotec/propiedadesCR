@@ -19,7 +19,7 @@ public interface BenefitsServiceInterface {
 	/**
 	  * Retorna todas las entidades del tipo.
 	  *  
-	  * @return todas las entidades del tipo.
+	  * @return List<BenefitsPOJO> - todas las entidades del tipo.
 	  */
 	List<BenefitsPOJO> getAll();
 	
@@ -27,7 +27,7 @@ public interface BenefitsServiceInterface {
 	  * Retorna una sola entidad por su id.
 	  *  
 	  * @param pIdBenefit - no debe ser nulo.
-	  * @return una entidad del tipo.
+	  * @return Tbenefit - una entidad del tipo.
 	  */
 	Tbenefit getBenefitById(int pIdBenefit);
 	
@@ -35,7 +35,7 @@ public interface BenefitsServiceInterface {
 	  * Retorna una lista de todas las entidades por su id.
 	  * 
 	  * @param pBenefits - no debe ser nula.
-	  * @return todas las entidades del tipo.
+	  * @return List<BenefitsPOJO> - todas las entidades del tipo.
 	  */
 
 	List<Tbenefit> getBenefits(int[] pBenefits);

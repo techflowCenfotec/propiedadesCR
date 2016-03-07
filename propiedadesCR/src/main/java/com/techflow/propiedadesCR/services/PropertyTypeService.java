@@ -24,12 +24,15 @@ import com.techflow.propiedadesCR.repositories.PropertyTypeRepository;
 @Service
 public class PropertyTypeService implements PropertyTypeServiceInterface {
 
+	/**
+	 * Atributo de acceso al repositorio de los tipos de propiedad.
+	 */
 	@Autowired private PropertyTypeRepository pTypeRepository;
 	
 	/**
 	  * Retorna una lista de objetos PropertyTypePOJO
 	  * 
-	  * @return todas las entidades del tipo.
+	  * @return uiPTypes - todas las entidades del tipo.
 	  */
 	@Override
 	@Transactional
@@ -42,7 +45,7 @@ public class PropertyTypeService implements PropertyTypeServiceInterface {
 	  * Toma las propiedades de los ejbs y los convierte en POJOs.
 	  * 
 	  * @param pTypes - no debe ser nula.
-	  * @return todas las entidades de tipo POJO.
+	  * @return uiPTypes - todas las entidades de tipo POJO.
 	  */
 	private List<PropertyTypePOJO> generatePTypeDtos(List<TpropertyType> pTypes) {
 		List<PropertyTypePOJO> uiPTypes = new ArrayList<PropertyTypePOJO>();
@@ -61,7 +64,7 @@ public class PropertyTypeService implements PropertyTypeServiceInterface {
 	  * de propiedad.
 	  * 
 	  * @param pIdPropertyType - no debe ser nulo.
-	  * @return una entidad del tipo.
+	  * @return TpropertyType - una entidad del tipo.
 	  */
 	@Override
 	public TpropertyType getPropertyTypeById(int pIdPropertyType) {

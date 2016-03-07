@@ -22,12 +22,15 @@ import com.techflow.propiedadesCR.services.CountiesServiceInterface;
 @RequestMapping(value="rest/protected/counties")
 public class CountiesController {
 
+	/**
+	 * Atributo de la interfaz de los cantones.
+	 */
 	@Autowired private CountiesServiceInterface countiesService;
 	
 	/**
 	 * Solicita la información de los cantones a través del servicio.
 	 *  
-	 * @return un objeto response de los cantones.
+	 * @return response - un objeto response de los cantones.
 	 */
 	@RequestMapping(value="/getAll", method = RequestMethod.GET)
 	public CountiesResponse getAll() {

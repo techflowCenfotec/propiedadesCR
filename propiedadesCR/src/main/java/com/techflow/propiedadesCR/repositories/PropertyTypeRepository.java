@@ -20,7 +20,7 @@ public interface PropertyTypeRepository extends CrudRepository<TpropertyType, In
 	/**
 	  * Retorna una lista de entidades.
 	  * 
-	  * @return las entidades del tipo
+	  * @return List<TpropertyType> - las entidades del tipo
 	  */
 	List<TpropertyType> findAll();
 }

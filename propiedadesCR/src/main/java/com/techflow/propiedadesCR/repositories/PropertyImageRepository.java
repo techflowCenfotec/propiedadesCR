@@ -20,7 +20,7 @@ public interface PropertyImageRepository extends CrudRepository<TpropertyImage, 
 	/**
 	  * Retorna una lista de entidades.
 	  * 
-	  * @return las entidades del tipo
+	  * @return List<TpropertyImage> - las entidades del tipo
 	  */
 	List<TpropertyImage> findAll();
 	

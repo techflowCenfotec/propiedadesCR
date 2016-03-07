@@ -19,7 +19,7 @@ public interface CountiesServiceInterface {
 	/**
 	  * Retorna todas las entidades del tipo.
 	  *  
-	  * @return todas las entidades del tipo.
+	  * @return List<CountyPOJO> - todas las entidades del tipo.
 	  */
 	List<CountyPOJO> getAll();
 	
@@ -27,7 +27,7 @@ public interface CountiesServiceInterface {
 	  * Retorna una sola entidad por su id.
 	  *  
 	  * @param pIdCounty - no debe ser nulo.
-	  * @return una entidad del tipo.
+	  * @return Tcounty - una entidad del tipo.
 	  */
 	Tcounty getCountyById(int pIdCounty);
 }
