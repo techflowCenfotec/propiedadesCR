@@ -20,7 +20,7 @@ public interface ProvinceRepository extends CrudRepository<Tprovince, Integer> {
 	/**
 	  * Retorna una lista de entidades.
 	  * 
-	  * @return List<Tprovince> - las entidades del tipo
+	  * @return List<Tprovince> Las entidades del tipo
 	  */
 	List<Tprovince> findAll();
 }

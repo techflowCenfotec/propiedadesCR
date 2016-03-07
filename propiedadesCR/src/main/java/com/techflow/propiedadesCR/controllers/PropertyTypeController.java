@@ -27,7 +27,7 @@ public class PropertyTypeController {
 	/**
 	 * Solicita la información de los tipos de propiedades a través del servicio.
 	 *  
-	 * @return response - un objeto response de los tipos de propiedad.
+	 * @return response Un objeto response de los tipos de propiedad.
 	 */
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
 	public PropertyTypeResponse getAll() {

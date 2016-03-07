@@ -17,14 +17,14 @@ public interface ProvinceServiceInterface {
 	/**
 	  * Retorna todas las entidades de tipo ProvincePOJO
 	  *  
-	  * @return List<ProvincePOJO> - las entidades del tipo.
+	  * @return List<ProvincePOJO> Las entidades del tipo.
 	  */
 	List<ProvincePOJO> getAll();
 	/**
 	  * Retorna una sola entidad por su id.
 	  *  
-	  * @param pIdProvince - no debe ser nulo.
-	  * @return Tprovince - una entidad del tipo.
+	  * @param pIdProvince - Id de la provincia. No debe ser nulo.
+	  * @return Tprovince Una entidad del tipo.
 	  */
 	Tprovince getProvinceById(int pIdProvince);
 }

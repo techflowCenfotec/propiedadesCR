@@ -29,7 +29,7 @@ public class DistrictController {
 	/**
 	 * Solicita la información de los distritos a través del servicio.
 	 *  
-	 * @return response - un objeto response del distrito.
+	 * @return response Un objeto response del distrito.
 	 */
 	@RequestMapping(value="/getAll", method = RequestMethod.GET)
 	public DistrictResponse getAll() {

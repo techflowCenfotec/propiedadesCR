@@ -28,7 +28,7 @@ public class ProvinceController {
 	/**
 	 * Solicita la información de las provincias a través del servicio.
 	 *  
-	 * @return response - un objeto response de los tipos de provincia.
+	 * @return response Un objeto response de los tipos de provincia.
 	 */
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
 	public ProvinceResponse getAll() {

@@ -20,7 +20,7 @@ public interface DistrictRepository extends CrudRepository<Tdistrict, Integer> {
 	/**
 	  * Retorna una lista de entidades.
 	  * 
-	  * @return List<Tdistrict> - las entidades del tipo
+	  * @return List<Tdistrict> Las entidades del tipo
 	  */
 	List<Tdistrict> findAll();
 }

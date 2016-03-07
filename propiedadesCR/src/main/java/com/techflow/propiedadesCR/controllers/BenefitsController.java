@@ -31,7 +31,7 @@ public class BenefitsController {
 	/**
 	 * Solicita la información de los beneficios a través del servicio.
 	 *  
-	 * @return response - un objeto response de los beneficios.
+	 * @return response Un objeto response de los beneficios.
 	 */
 	@RequestMapping(value= "/getAll", method = RequestMethod.GET)
 	public BenefitsResponse getAll() {

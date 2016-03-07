@@ -17,15 +17,15 @@ public interface PropertiesServiceInterface {
 	/**
 	  * Retorna todas las entidades del tipo.
 	  *  
-	  * @return List<PropertyPOJO> - todas las entidades del tipo.
+	  * @return List<PropertyPOJO> Todas las entidades del tipo.
 	  */
 	List<PropertyPOJO> getAll();
 
 	/**
 	  * Retorna una sola entidad por su id.
 	  *  
-	  * @param pIdProperty - no debe ser nulo.
-	  * @return Tproperty - una entidad del tipo.
+	  * @param pIdProperty - Id de la propiedad. No debe ser nulo.
+	  * @return Tproperty Una entidad del tipo.
 	  */
 	Tproperty getPropertyById(int pIdProperty);
 
@@ -33,7 +33,7 @@ public interface PropertiesServiceInterface {
 	 * Guarda la información a almacenar de la propiedad.
 	 *  
 	 * @param pProperty - ejb con la información a almacenar. No debe ser nulo.
-	 * @return Tproperty - un objeto respuesta de la propiedad.
+	 * @return Tproperty Un objeto respuesta de la propiedad.
 	 */
 	Tproperty saveProperty(Tproperty pProperty);
 }

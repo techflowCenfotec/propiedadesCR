@@ -19,15 +19,15 @@ public interface PropertyTypeServiceInterface {
 	/**
 	  * Retorna todas las entidades del tipo.
 	  *  
-	  * @return List<PropertyTypePOJO> - todas las entidades del tipo.
+	  * @return List<PropertyTypePOJO> Todas las entidades del tipo.
 	  */
 	List<PropertyTypePOJO> getAll();
 	
 	/**
 	  * Retorna una sola entidad por su id.
 	  *  
-	  * @param pIdPropertyType - no debe ser nulo.
-	  * @return TpropertyType - una entidad del tipo.
+	  * @param pIdPropertyType - Id de la propiedad. No debe ser nulo.
+	  * @return TpropertyType Una entidad del tipo.
 	  */
 	TpropertyType getPropertyTypeById(int pIdPropertyType);
 }

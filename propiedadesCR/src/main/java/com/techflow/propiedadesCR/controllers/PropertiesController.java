@@ -63,7 +63,7 @@ public class PropertiesController {
 	/**
 	 * Solicita la información de las propiedades a través del servicio.
 	 *  
-	 * @return response - un objeto response de la propiedad.
+	 * @return response Un objeto response de la propiedad.
 	 */
 	@RequestMapping(value="/getAll", method = RequestMethod.GET)
 	public PropertiesResponse getAll() {
@@ -85,7 +85,7 @@ public class PropertiesController {
 	  * @param pIdPropertyType - tipo de la propiedad.
 	  * @param pAddress - dirección exacta de la propiedad.
 	  * @param pPropertyImages - imágenes de la propiedad.
-	  * @return response - la entidad del objeto creado.
+	  * @return response La entidad del objeto creado.
 	  */
 	@RequestMapping(value="/create", method = RequestMethod.POST)
 	public PropertiesResponse create(

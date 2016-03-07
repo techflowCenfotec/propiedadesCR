@@ -20,7 +20,7 @@ public interface CountiesRepository extends CrudRepository<Tcounty, Integer> {
 	/**
 	  * Retorna una lista de entidades.
 	  * 
-	  * @return List<Tcounty> - las entidades del tipo
+	  * @return List<Tcounty> Las entidades del tipo
 	  */
 	List<Tcounty> findAll();
 }

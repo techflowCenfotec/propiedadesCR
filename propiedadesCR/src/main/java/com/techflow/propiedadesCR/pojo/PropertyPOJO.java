@@ -7,21 +7,71 @@ import com.techflow.propiedadesCR.ejb.TpropertyRating;
 import com.techflow.propiedadesCR.ejb.TpropertyType;
 import com.techflow.propiedadesCR.ejb.Tuser;
 
+/**
+* <h1>POJO de la propiedad</h1>
+* Clase que contiene los atributos de las imágenes.
+*
+* @author  Walter Gómez
+* @version 1.0
+* @since 26/2/2016
+*/
 public class PropertyPOJO {
 	
+	/**
+     * Id de la propiedad.
+     */
 	private int idProperty;
+	/**
+     * Estado de la propiedad. Utilizado para el borrado lógico de la propiedad.
+     */
 	private byte active;
+	/**
+     * Dirección exacta de la propiedad.
+     */
 	private String address;
+	/**
+     * Coordenadas de la propiedad.
+     */
 	private String coordinates;
+	/**
+     * Precio de la propiedad.
+     */
 	private double price;
+	/**
+     * Mteros de construcción de la propiedad.
+     */
 	private double squareMeters;
+	/**
+     * Lista de beneficios de la propiedad.
+     */
 	private List<BenefitsPOJO> tbenefits;
+	/**
+     * Distrito al que pertenece la propiedad.
+     */
 	private DistrictPOJO tdistrict;
+	/**
+     * Tipo de la propiedad.
+     */
 	private TpropertyType tpropertyType;
+	/**
+     * Usuario que registra la propiedad para la venta. Sólo usuarios de tipo vendedor.
+     */
 	private Tuser tuser;
+	/**
+     * Comentarios acerca la propiedad.
+     */
 	private List<TpropertyComment> tpropertyComments; //Change to POJO
+	/**
+     * Calificación de la propiedad.
+     */
 	private List<TpropertyRating> tpropertyRatings; //Change to POJO
+	/**
+     * Lista de usuarios de la propiedad.
+     */
 	private List<UserPOJO> tusers;
+	/**
+     * Imágenes de la propiedad.
+     */
 	private List<PropertyImagePOJO> tpropertyImages;
 	
 	public PropertyPOJO() {

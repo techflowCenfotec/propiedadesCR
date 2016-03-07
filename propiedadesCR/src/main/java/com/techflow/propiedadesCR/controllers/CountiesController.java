@@ -30,7 +30,7 @@ public class CountiesController {
 	/**
 	 * Solicita la información de los cantones a través del servicio.
 	 *  
-	 * @return response - un objeto response de los cantones.
+	 * @return response Un objeto response de los cantones.
 	 */
 	@RequestMapping(value="/getAll", method = RequestMethod.GET)
 	public CountiesResponse getAll() {

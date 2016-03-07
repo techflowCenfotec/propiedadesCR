@@ -33,7 +33,7 @@ public class BenefitsService implements BenefitsServiceInterface {
 	/**
 	  * Retorna una lista de objetos BenefitsPOJO
 	  * 
-	  * @return uiBenefits - todas las entidades del tipo.
+	  * @return uiBenefits Todas las entidades del tipo.
 	  */
 	@Override
 	@Transactional
@@ -45,8 +45,8 @@ public class BenefitsService implements BenefitsServiceInterface {
 	/**
 	  * Toma las propiedades de los ejbs y los convierte en POJOs.
 	  * 
-	  * @param pBenefits - no debe ser nula.
-	  * @return uiBenefits - todas las entidades de tipo POJO.
+	  * @param pBenefits - Lista de ejb de los beneficios. No debe ser nula.
+	  * @return uiBenefits Todas las entidades de tipo POJO.
 	  */
 	private List<BenefitsPOJO> generateBenefitsDtos(List<Tbenefit> pBenefits) {
 		List<BenefitsPOJO> uiBenefits = new ArrayList<BenefitsPOJO>();
@@ -62,8 +62,8 @@ public class BenefitsService implements BenefitsServiceInterface {
 	/**
 	  * Retorna a través del repositorio el ejb del beneficio.
 	  * 
-	  * @param pIdBenefit - no debe ser nulo.
-	  * @return Tbenefit - una entidad del tipo.
+	  * @param pIdBenefit - Id del beneficio a buscar. No debe ser nulo.
+	  * @return Tbenefit Una entidad del tipo.
 	  */
 	@Override
 	@Transactional
@@ -75,8 +75,8 @@ public class BenefitsService implements BenefitsServiceInterface {
 	  * Retorna a través del repositorio una lista de 
 	  * ejbs de beneficios.
 	  * 
-	  * @param pBenefits - no debe ser nula.
-	  * @return List<Tbenefit> - todas las entidades del tipo.
+	  * @param pBenefits - Arreglo de ids de beneficios. No debe ser nula.
+	  * @return List<Tbenefit> Todas las entidades del tipo.
 	  */
 	@Override
 	@Transactional

@@ -4,10 +4,27 @@ import java.util.List;
 
 import com.techflow.propiedadesCR.ejb.Tproperty;
 
+/**
+* <h1>POJO de los beneficios de la propiedad</h1>
+* Clase que contiene los atributos de los beneficios.
+*
+* @author  Walter Gómez
+* @version 1.0
+* @since 26/2/2016
+*/
 public class BenefitsPOJO {
 
+	/**
+     * Id del beneficio.
+     */	
 	private int idBenefit;
+	/**
+     * Nombre del beneficio.
+     */	
 	private String benefit;
+	/**
+     * Lista de propiedades a las que pertenece.
+     */	
 	private List<Tproperty> tproperties;
 	
 	public BenefitsPOJO() {

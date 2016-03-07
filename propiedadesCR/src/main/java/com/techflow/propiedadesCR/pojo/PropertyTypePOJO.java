@@ -3,9 +3,8 @@ package com.techflow.propiedadesCR.pojo;
 import java.util.List;
 
 /**
-* <h1>propertyTypePOJO</h1>
-* Plain old Java object clas that provides the attributes and methods
-* necessary to implement it.
+* <h1>POJO de los tipos de la propiedad</h1>
+* Clase que contiene los atributos de los tipos de propiedades.
 *
 * @author  Walter Gómez
 * @version 1.0
@@ -13,8 +12,17 @@ import java.util.List;
 */
 public class PropertyTypePOJO {
 
+	/**
+     * Id del tipo de propiedad.
+     */	
 	private int idPropertyType;
+	/**
+     * Nombre del tipo de propiedad.
+     */	
 	private String name;
+	/**
+     * Lista de propiedades que poseen un tipo de propiedad específico.
+     */	
 	private List<PropertyPOJO> tproperties;
 	
 	public PropertyTypePOJO() {

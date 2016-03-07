@@ -44,7 +44,7 @@ public class DistrictService implements DistrictServiceInterface {
 	/**
 	  * Retorna una lista de objetos DistrictPOJO
 	  * 
-	  * @return uiDistricts - todas las entidades del tipo.
+	  * @return uiDistricts Todas las entidades del tipo.
 	  */
 	@Override
 	@Transactional
@@ -56,8 +56,8 @@ public class DistrictService implements DistrictServiceInterface {
 	/**
 	  * Toma las propiedades de los ejbs y los convierte en POJOs.
 	  * 
-	  * @param pDistricts - no debe ser nula.
-	  * @return uiDistricts - todas las entidades de tipo POJO.
+	  * @param pDistricts - Lista de ejb de distritos. No debe ser nula.
+	  * @return uiDistricts Todas las entidades de tipo POJO.
 	  */
 	private List<DistrictPOJO> generateDistrictDtos(List<Tdistrict> pDistricts) {
 		List<DistrictPOJO> uiDistricts = new ArrayList<DistrictPOJO>();
@@ -84,8 +84,8 @@ public class DistrictService implements DistrictServiceInterface {
 	/**
 	  * Retorna a través del repositorio el ejb del distrito.
 	  * 
-	  * @param pIdDistrict - no debe ser nulo.
-	  * @return Tdistrict - una entidad del tipo.
+	  * @param pIdDistrict - Id del distrito a buscar. No debe ser nulo.
+	  * @return Tdistrict Una entidad del tipo.
 	  */
 	@Override
 	@Transactional
