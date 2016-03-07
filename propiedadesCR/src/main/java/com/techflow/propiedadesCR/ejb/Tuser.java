@@ -2,6 +2,7 @@ package com.techflow.propiedadesCR.ejb;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
 
 
@@ -16,9 +17,11 @@ public class Tuser implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idUser;
 	private byte active;
+	private Date birthday;
 	private String email;
 	private String firstName;
 	private byte firstTime;
+	private String gender;
 	private String lastName;
 	private String password;
 	private String phone1;
@@ -29,6 +32,7 @@ public class Tuser implements Serializable {
 	private List<Tevent> tevents;
 	private List<Tmessage> tmessages1;
 	private List<Tmessage> tmessages2;
+	private List<Tproperty> tproperties1;
 	private List<TpropertyComment> tpropertyComments;
 	private List<TpropertyRating> tpropertyRatings;
 	private List<TuserComment> tuserComments1;
@@ -37,7 +41,7 @@ public class Tuser implements Serializable {
 	private List<TuserRating> tuserRatings1;
 	private List<TuserRating> tuserRatings2;
 	private List<TuserSurvey> tuserSurveys;
-	private List<Tproperty> tproperties;
+	private List<Tproperty> tproperties2;
 	private Trole trole;
 
 	public Tuser() {
@@ -45,6 +49,7 @@ public class Tuser implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_user")
 	public int getIdUser() {
 		return this.idUser;
@@ -61,6 +66,16 @@ public class Tuser implements Serializable {
 
 	public void setActive(byte active) {
 		this.active = active;
+	}
+
+
+	@Temporal(TemporalType.DATE)
+	public Date getBirthday() {
+		return this.birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
 	}
 
 
@@ -90,6 +105,15 @@ public class Tuser implements Serializable {
 
 	public void setFirstTime(byte firstTime) {
 		this.firstTime = firstTime;
+	}
+
+
+	public String getGender() {
+		return this.gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 
 
@@ -249,6 +273,31 @@ public class Tuser implements Serializable {
 		tmessages2.setTuser2(null);
 
 		return tmessages2;
+	}
+
+
+	//bi-directional many-to-one association to Tproperty
+	@OneToMany(mappedBy="tuser")
+	public List<Tproperty> getTproperties1() {
+		return this.tproperties1;
+	}
+
+	public void setTproperties1(List<Tproperty> tproperties1) {
+		this.tproperties1 = tproperties1;
+	}
+
+	public Tproperty addTproperties1(Tproperty tproperties1) {
+		getTproperties1().add(tproperties1);
+		tproperties1.setTuser(this);
+
+		return tproperties1;
+	}
+
+	public Tproperty removeTproperties1(Tproperty tproperties1) {
+		getTproperties1().remove(tproperties1);
+		tproperties1.setTuser(null);
+
+		return tproperties1;
 	}
 
 
@@ -463,12 +512,12 @@ public class Tuser implements Serializable {
 			@JoinColumn(name="id_property")
 			}
 		)
-	public List<Tproperty> getTproperties() {
-		return this.tproperties;
+	public List<Tproperty> getTproperties2() {
+		return this.tproperties2;
 	}
 
-	public void setTproperties(List<Tproperty> tproperties) {
-		this.tproperties = tproperties;
+	public void setTproperties2(List<Tproperty> tproperties2) {
+		this.tproperties2 = tproperties2;
 	}
 
 

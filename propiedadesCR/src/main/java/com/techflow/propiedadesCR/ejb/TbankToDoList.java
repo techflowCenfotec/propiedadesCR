@@ -25,6 +25,7 @@ public class TbankToDoList implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getIdtBank_to_do_list() {
 		return this.idtBank_to_do_list;
 	}
