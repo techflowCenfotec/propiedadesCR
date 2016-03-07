@@ -11,9 +11,8 @@ import com.techflow.propiedadesCR.contracts.BenefitsResponse;
 import com.techflow.propiedadesCR.services.BenefitsServiceInterface;
 
 /**
-* <h1>BenefitsController</h1>
-* Controller that sends or request information
-* about the benefits through the service
+* <h1>Controlador de los beneficios</h1>
+* Controlador que solicita información a través del servicio.
 *
 * @author  Walter Gómez
 * @version 1.0
@@ -27,11 +26,10 @@ public class BenefitsController {
 	@Autowired private BenefitsServiceInterface benefitsService;
 	
 	/**
-	  * Request all benefits entities through the service.
-	  *  
-	  * @param pr Parameter for the getAll method of the service
-	  * @return a property response object.
-	  */
+	 * Solicita la información de los beneficios a través del servicio.
+	 *  
+	 * @return un objeto response de los beneficios.
+	 */
 	@RequestMapping(value= "/getAll", method = RequestMethod.GET)
 	public BenefitsResponse getAll() {
 		

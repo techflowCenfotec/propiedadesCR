@@ -6,8 +6,8 @@ import com.techflow.propiedadesCR.ejb.Tprovince;
 import com.techflow.propiedadesCR.pojo.ProvincePOJO;
 
 /**
-* <h1>Interfaz a implementar por el distrito</h1>
-* Interfaz para todas las operaciones de las propiedades
+* <h1>Interfaz a implementar por la provincia</h1>
+* Interfaz para todas las operaciones de las provincias
 *
 * @author  Walter Gómez
 * @version 1.0

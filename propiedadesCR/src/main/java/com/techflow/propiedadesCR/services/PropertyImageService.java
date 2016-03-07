@@ -15,7 +15,7 @@ import com.techflow.propiedadesCR.repositories.PropertyImageRepository;
 /**
 * <h1>Servicio para obtener las imagenes de la propiedad</h1>
 * Servicio que provee la implementación de los métodos 
-* getAll(), getBenefitById() y getBenefits().
+* getAll() y getImageById().
 *
 * @author  Walter Gómez
 * @version 1.0

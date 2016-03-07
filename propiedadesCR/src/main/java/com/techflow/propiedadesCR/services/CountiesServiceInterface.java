@@ -7,8 +7,8 @@ import com.techflow.propiedadesCR.ejb.Tcounty;
 import com.techflow.propiedadesCR.pojo.CountyPOJO;
 
 /**
-* <h1>CountiesServiceInterface</h1>
-* Interface for all counties operations.
+* <h1>Interfaz a implementar por el CountiesService</h1>
+* Interfaz para las operaciones de los cantones.
 *
 * @author  Walter Gómez
 * @version 1.0
@@ -17,18 +17,17 @@ import com.techflow.propiedadesCR.pojo.CountyPOJO;
 public interface CountiesServiceInterface {
 
 	/**
-	  * Returns all properties of the type CountyPOJO
+	  * Retorna todas las entidades del tipo.
 	  *  
-	  * @param cr - must not be null.
-	  * @return all entities of the type.
+	  * @return todas las entidades del tipo.
 	  */
 	List<CountyPOJO> getAll();
 	
 	/**
-	  * Returns one county entity by it's id.
+	  * Retorna una sola entidad por su id.
 	  *  
-	  * @param idCounty - must not be null.
-	  * @return one entity of the type county.
+	  * @param pIdCounty - no debe ser nulo.
+	  * @return una entidad del tipo.
 	  */
-	Tcounty getCountyById(int idCounty);
+	Tcounty getCountyById(int pIdCounty);
 }

@@ -11,9 +11,8 @@ import com.techflow.propiedadesCR.contracts.CountiesResponse;
 import com.techflow.propiedadesCR.services.CountiesServiceInterface;
 
 /**
-* <h1>CountiesController</h1>
-* Controller that request information
-* about the counties through the service
+* <h1>Controlador de los cantones</h1>
+* Controlador que envía o solicita información a través del servicio.
 *
 * @author  Walter Gómez
 * @version 1.0
@@ -25,6 +24,11 @@ public class CountiesController {
 
 	@Autowired private CountiesServiceInterface countiesService;
 	
+	/**
+	 * Solicita la información de los cantones a través del servicio.
+	 *  
+	 * @return un objeto response de los cantones.
+	 */
 	@RequestMapping(value="/getAll", method = RequestMethod.GET)
 	public CountiesResponse getAll() {
 		CountiesResponse response = new CountiesResponse();

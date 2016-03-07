@@ -7,9 +7,9 @@ import org.springframework.data.repository.CrudRepository;
 import com.techflow.propiedadesCR.ejb.TpropertyType;
 
 /**
-* <h1>PropertyTypeRepository</h1>
-* Repository that extends from CrudRepository
-* and provides one implementation
+* <h1>Repositorio de los tipos de propiedad</h1>
+* Repositorio que extiende de CrudRepository
+* y provee una implementación
 *
 * @author  Walter Gómez
 * @version 1.0
@@ -18,9 +18,9 @@ import com.techflow.propiedadesCR.ejb.TpropertyType;
 public interface PropertyTypeRepository extends CrudRepository<TpropertyType, Integer> {
 
 	/**
-	  * Returns all instances of the TpropertyType ejb
+	  * Retorna una lista de entidades.
 	  * 
-	  * @return All entities of the TpropertyType ejbs
+	  * @return las entidades del tipo
 	  */
 	List<TpropertyType> findAll();
 }

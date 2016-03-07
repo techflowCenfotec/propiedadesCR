@@ -6,8 +6,8 @@ import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.pojo.PropertyPOJO;
 
 /**
-* <h1>PropertiesServiceInterface</h1>
-* Interface for all properties operations.
+* <h1>Interfaz a implementar por el PropertiesService</h1>
+* Interfaz para las operaciones de las propiedades.
 *
 * @author  Walter Gómez
 * @version 1.0
@@ -15,26 +15,25 @@ import com.techflow.propiedadesCR.pojo.PropertyPOJO;
 */
 public interface PropertiesServiceInterface {
 	/**
-	 * Returns all properties of the type PropertyPOJO
-	 *  
-	 * @param pr - must not be null.
-	 * @return all entities of the type.
-	 */
+	  * Retorna todas las entidades del tipo.
+	  *  
+	  * @return todas las entidades del tipo.
+	  */
 	List<PropertyPOJO> getAll();
 
 	/**
-	 * Returns one property entity by it's id.
-	 *  
-	 * @param idProperty - must not be null.
-	 * @return one entity of the type property.
-	 */
-	Tproperty getPropertyById(int idProperty);
+	  * Retorna una sola entidad por su id.
+	  *  
+	  * @param pIdProperty - no debe ser nulo.
+	  * @return una entidad del tipo.
+	  */
+	Tproperty getPropertyById(int pIdProperty);
 
 	/**
-	 * Request all properties information through the service.
+	 * Guarda la información a almacenar de la propiedad.
 	 *  
-	 * @param pr Parameter for the getAll method of the service
-	 * @return a property response object.
+	 * @param pProperty - ejb con la información a almacenar. No debe ser nulo.
+	 * @return un objeto respuesta de la propiedad.
 	 */
-	Tproperty saveProperty(Tproperty pr);
+	Tproperty saveProperty(Tproperty pProperty);
 }

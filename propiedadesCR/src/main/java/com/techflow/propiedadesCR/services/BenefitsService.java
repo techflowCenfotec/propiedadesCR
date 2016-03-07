@@ -63,6 +63,7 @@ public class BenefitsService implements BenefitsServiceInterface {
 	  * @return una entidad del tipo.
 	  */
 	@Override
+	@Transactional
 	public Tbenefit getBenefitById(int pIdBenefit) {
 		return benefitsRepository.findOne(pIdBenefit);
 	}
@@ -75,6 +76,7 @@ public class BenefitsService implements BenefitsServiceInterface {
 	  * @return todas las entidades del tipo.
 	  */
 	@Override
+	@Transactional
 	public List<Tbenefit> getBenefits(int[] pBenefits) {
 		return benefitsRepository.findByIdBenefitIn(pBenefits);
 	}

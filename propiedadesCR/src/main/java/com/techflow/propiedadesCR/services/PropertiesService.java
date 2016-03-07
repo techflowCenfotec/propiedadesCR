@@ -17,7 +17,7 @@ import com.techflow.propiedadesCR.pojo.PropertyPOJO;
 import com.techflow.propiedadesCR.repositories.PropertiesRepository;
 
 /**
-* <h1>Servicio para obtener las proopiedades</h1>
+* <h1>Servicio para obtener las propiedades</h1>
 * Servicio que provee la implementación de los métodos 
 * getAll(), getPropertyById() y saveProperty().
 *
@@ -86,7 +86,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 	  * Alamacena la entidad. Retorna la entidad almacenada por si hay que realizar operaciones adicionales
 	  * ya que la entidad puede cambiar al ser almacenda.
 	  * 
-	  * @param pIdProperty - no debe ser nulo.
+	  * @param pProperty - no debe ser nulo.
 	  * @return una entidad del tipo.
 	  */
 	@Override

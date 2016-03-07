@@ -3,12 +3,12 @@
         <div class="col-lg-8 clearfix">
             <h2 class="section-header">Propiedades</h2>
         </div>
-        <div class="col-md-12" ng-repeat="property in propertiesList">
-            <div class="row">
+        <div class="col-md-12">
+            <div class=column ng-repeat="property in propertiesList">
                 <div class="col-md-4">
                     <div class="card bg-white">
                         <div class="card-image">
-                            <img src="{{property.tpropertyImages[0].propertyImage}}">
+                            <img src="{{property.tpropertyImages[0].propertyImage}}" width="365" height="200">
                             <span class="card-title">{{property.tcounty.name}} - {{property.tdistrict.name}}</span>
                         </div>
                         <div class="card-content">

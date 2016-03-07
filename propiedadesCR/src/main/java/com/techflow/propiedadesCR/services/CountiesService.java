@@ -9,17 +9,28 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.techflow.propiedadesCR.ejb.Tcounty;
-import com.techflow.propiedadesCR.ejb.Tprovince;
 import com.techflow.propiedadesCR.pojo.CountyPOJO;
-import com.techflow.propiedadesCR.pojo.ProvincePOJO;
 import com.techflow.propiedadesCR.repositories.CountiesRepository;
 
+/**
+* <h1>Servicio para obtener los cantones</h1>
+* Servicio que provee la implementación de los métodos 
+* getAll() y getCountyById().
+*
+* @author  Walter Gómez
+* @version 1.0
+* @since 26/2/2016
+*/
 @Service
 public class CountiesService implements CountiesServiceInterface {
 
 	@Autowired private CountiesRepository countiesRepository;
-	@Autowired private ProvinceServiceInterface provinceService;
 	
+	/**
+	  * Retorna una lista de objetos CountyPOJO
+	  * 
+	  * @return todas las entidades del tipo.
+	  */
 	@Override
 	@Transactional
 	public List<CountyPOJO> getAll() {
@@ -27,9 +38,15 @@ public class CountiesService implements CountiesServiceInterface {
 		return generateCountyDtos(counties);
 	}
 	
-	private List<CountyPOJO> generateCountyDtos(List<Tcounty> counties) {
+	/**
+	  * Toma las propiedades de los ejbs y los convierte en POJOs.
+	  * 
+	  * @param pCounties - no debe ser nula.
+	  * @return todas las entidades de tipo POJO.
+	  */
+	private List<CountyPOJO> generateCountyDtos(List<Tcounty> pCounties) {
 		List<CountyPOJO> uiCounties = new ArrayList<CountyPOJO>();
-		counties.stream().forEach(u -> {
+		pCounties.stream().forEach(u -> {
 			CountyPOJO dto = new CountyPOJO();
 			BeanUtils.copyProperties(u, dto);
 			dto.setTdistricts(null);
@@ -39,9 +56,16 @@ public class CountiesService implements CountiesServiceInterface {
 		return uiCounties;
 	}
 
+	/**
+	  * Retorna a través del repositorio el ejb del cantón.
+	  * 
+	  * @param pIdCounty - no debe ser nulo.
+	  * @return una entidad del tipo.
+	  */
 	@Override
-	public Tcounty getCountyById(int idCounty) {
-		return countiesRepository.findOne(idCounty);
+	@Transactional
+	public Tcounty getCountyById(int pIdCounty) {
+		return countiesRepository.findOne(pIdCounty);
 	}
 
 }

@@ -8,9 +8,8 @@ import com.techflow.propiedadesCR.contracts.PropertyTypeResponse;
 import com.techflow.propiedadesCR.services.PropertyTypeServiceInterface;
 
 /**
-* <h1>PropertiesController</h1>
-* Controller that sends or request information
-* about the property types through the service
+* <h1>Controlador de los tipos de propiedades</h1>
+* Controlador que envía o solicita información a través del servicio.
 *
 * @author  Walter Gómez
 * @version 1.0
@@ -23,11 +22,10 @@ public class PropertyTypeController {
 	@Autowired PropertyTypeServiceInterface pTypeService;
 	
 	/**
-	  * Request all property type information through the service.
-	  *  
-	  * @param pr - Parameter for the getAll method of the service
-	  * @return a property response object.
-	  */
+	 * Solicita la información de los tipos de propiedades a través del servicio.
+	 *  
+	 * @return un objeto response de los tipos de propiedad.
+	 */
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
 	public PropertyTypeResponse getAll() {
 		PropertyTypeResponse response = new PropertyTypeResponse();

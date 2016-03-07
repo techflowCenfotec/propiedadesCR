@@ -24,7 +24,7 @@ import com.techflow.propiedadesCR.services.PropertyTypeServiceInterface;
 import com.techflow.propiedadesCR.utils.Utils;
 
 /**
-* <h1>PropertiesController</h1>
+* <h1>Controlador de las propiedades</h1>
 * Controlador que envía o solicita información a través del servicio.
 *
 * @author  Walter Gómez
@@ -60,8 +60,14 @@ public class PropertiesController {
 	/**
 	  * Envía los datos a almacenar a la base de datos por medio de su servicio. 
 	  * 
-	  * @param 
-	  * @return la entidad del objeto crreado.
+	  * @param pSquareMeters - tamaño de la propiedad.
+	  * @param pPrice - precio de la propiedad en dólares.
+	  * @param pIdDistrict - id del distrito al que pertenece.
+	  * @param pBenefits - lista de beneficios de la propiedad.
+	  * @param pIdPropertyType - tipo de la propiedad.
+	  * @param pAddress - dirección exacta de la propiedad.
+	  * @param pPropertyImages - imágenes de la propiedad.
+	  * @return la entidad del objeto creado.
 	  */
 	@RequestMapping(value="/create", method = RequestMethod.POST)
 	public PropertiesResponse create(
