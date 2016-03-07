@@ -1,60 +1,97 @@
-!function(){
-	"use strict";
+"use strict";
 
-	angular.module ("app", [
-		// Core modules
-		"app.core"
+var app =	angular.module ("app", [
+	"mgo-angular-wizard"
+	,"ui.tree"
+	,"ngMap"
+	,"textAngular"
+	]).run(['$rootScope', function($rootScope){
+		$rootScope.userLogged = null;
+}]);
 
-		// Custom Feature modules
-		,"app.route"
+app.route = angular.module("app.route", ["ui.router"])
 
-		// 3rd party feature modules
-		,"mgo-angular-wizard"
-		,"ui.tree"
-		,"ngMap"
-		,"textAngular"
-		])
-}(),
-
-function() {
-	"use strict";
-
-	angular.module("app.core", [
-		// Angular modules
-		"ngAnimate"
-		,"ngAria"
-		,"ngMessages"
-		
-		// Custom modules
-		,"app.layout"
-		,"app.i18n"
-		,"app.home"
-		,"app.properties"
-
-		,"app.createUsers"
-		,"app.usersList"
-
-		,"app.events"
-		,"app.eventsList"
+.config(["$stateProvider","$urlRouterProvider", function($stateProvider,$urlRouterProvide){ 
 	
+	var n,t;
+	n = [
+		"templates/propertiesView/propertiesList"
+		,"templates/reportsView/reports"
+
+		,"templates/usersView/usersList"
+		,"templates/usersView/createUser",			
+
+		,"templates/eventsView/createEvent"
+		,"templates/eventsView/eventsList"
+		,"templates/loginView/login"
+	], 
+
+	t = function(a) {
+
+		var n, t;
+
+		return t = "/" + a,
+
+		n = { 
+			url: t,
+			templateUrl: "resources/app/" + a + ".html"
+		},
+		
+		$stateProvider.state($urlRouterProvide,n),$stateProvider
+	},
+		
+	n.forEach(function(e) {
+	 	return t(e)
+	}),
+		
+	$stateProvider.state( "login", {
+		url:"/login",
+		templateUrl:"resources/app/templates/loginView/index.html"
+	})
+	.state("app", {
+		url: "/app",
+		templateUrl: "resources/app/layout/mainLayout.jsp"
+	})
+	.state( "app.home", {
+		url:"/home",
+		templateUrl:"resources/app/templates/homeView/home.html"
+	})
+	/**
+	Ejemplo
+	.state("app.nuevaRuta", {
+		url:"/nuevaRuta",
+		templateUrl:"resources/app/templates/url/nueva/ruta.jsp"
+	})
+	*/
+
+	.otherwise("app.home");
+}]);
+
+app.layout = angular.module("app.layout",[]);
+
+app.core = angular.module("app.core", [
+   	// Angular modules
+   	"ngAnimate"
+   	,"ngAria"
+   	,"ngMessages"
+   	
+   	// Custom modules
+   	,"app.layout"
+   	,"app.i18n"
+   	,"app.route"
+
+   	//3rd Party Modules
+   	,"ngMaterial"
+   	,"ui.bootstrap"
+   	,"duScroll"
+   	,"angularFileUpload"
+   	,"flow"
+]);
 
 
-		//3rd Party Modules
-		,"ngMaterial"
-		,"ui.bootstrap"
-		,"duScroll"
-		,"angularFileUpload"
-		,"flow"
-		])
-}(),
 
-function() {
-	"use strict";
 
-	angular.module("app.layout",[])
-}(),
-
-function(){
+(function(){
 	"use strict";
 
 	function e(){
@@ -114,86 +151,50 @@ function(){
 			"default":"500"
 		}).backgroundPalette("grey")
 	}
-	angular.module("app.core")
+	app.core
 
 	.factory("appConfig",[e])
 
 	.config(["$mdThemingProvider",a])
-	}(),
+	}());
+	
+function a(e) {
+    var a = e.extendPalette("cyan", {
+            contrastLightColors: "500 600 700 800 900",
+            contrastStrongLightColors: "500 600 700 800 900"
+        }),
+        n = e.extendPalette("light-green", {
+            contrastLightColors: "500 600 700 800 900",
+            contrastStrongLightColors: "500 600 700 800 900"
+        });
+    e.definePalette("cyanAlt", a).definePalette("lightGreenAlt", n),
+        e.theme("default").primaryPalette("teal", {
+            "default": "500"
+        }).accentPalette("cyanAlt", {
+            "default": "500"
+        }).warnPalette("red", {
+            "default": "500"
+        }).backgroundPalette("grey")
+}
+app.core.factory("appConfig", [e]).config(["$mdThemingProvider", a]);
 
-	function() {
-		"use strict";
+function e(e,a,n,t,r) {
+	e.pageTransitionOpts=r.pageTransitionOpts,
+	e.main=r.main,e.color=r.color,e.$watch("main", function(n,t) {
+		"horizontal"===n.menu&&"vertical"===t.menu&&a.$broadcast("nav:reset"),
+		n.fixedHeader===!1&&n.fixedSidebar===!0&&(t.fixedHeader===!1&&t.fixedSidebar===!1&&(e.main.fixedHeader=!0,
+			e.main.fixedSidebar=!0),
+		t.fixedHeader===!0&&t.fixedSidebar===!0&&(e.main.fixedHeader=!1,e.main.fixedSidebar=!1)),
+		n.fixedSidebar===!0&&(e.main.fixedHeader=!0),
+		n.fixedHeader===!1&&(e.main.fixedSidebar=!1)},!0),
+	a.$on("$stateChangeSuccess", function(e,a,n) {
+		t.scrollTo(0,0)
+	})
+}
 
-		function e(e,a,n,t,r) {
-			e.pageTransitionOpts=r.pageTransitionOpts,
-			e.main=r.main,e.color=r.color,e.$watch("main", function(n,t) {
-				"horizontal"===n.menu&&"vertical"===t.menu&&a.$broadcast("nav:reset"),
-				n.fixedHeader===!1&&n.fixedSidebar===!0&&(t.fixedHeader===!1&&t.fixedSidebar===!1&&(e.main.fixedHeader=!0,
-					e.main.fixedSidebar=!0),
-				t.fixedHeader===!0&&t.fixedSidebar===!0&&(e.main.fixedHeader=!1,e.main.fixedSidebar=!1)),
-				n.fixedSidebar===!0&&(e.main.fixedHeader=!0),
-				n.fixedHeader===!1&&(e.main.fixedSidebar=!1)},!0),
-			a.$on("$stateChangeSuccess", function(e,a,n) {
-				t.scrollTo(0,0)
-			})
-		}
+app.core.controller("AppCtrl",["$scope","$rootScope","$state","$document","appConfig",e]);
 
-		angular.module("app")
-
-		.controller("AppCtrl",["$scope","$rootScope","$state","$document","appConfig",e])
-	}(),
-
-	function() {
-		function e(e) {
-			e.useStaticFilesLoader({
-				prefix:"i18n/",
-				suffix:".json"
-			}),
-			e.preferredLanguage("en"),
-			e.useSanitizeValueStrategy(null)
-		}function a(e,a) {
-			function n(n) {
-				switch(n) {
-					case"English":a.use("en");
-					break;
-					case"Español":a.use("es");
-					break;
-					case"中文":a.use("zh");
-					break;
-					case"日本語":a.use("ja");
-					break;
-					case"Portugal":a.use("pt");
-					break;
-					case"Русский язык":a.use("ru")
-				}
-
-				return e.lang=n
-			}
-
-			function t() {
-				var a;
-
-				switch (a=e.lang) {
-					case"English":return"flags-american";
-					case"Español":return"flags-spain";
-					case"中文":return"flags-china";
-					case"Portugal":return"flags-portugal";
-					case"日本語":return"flags-japan";
-					case"Русский язык":return"flags-russia"
-				}
-			}
-
-			e.lang="English",e.setLang=n,e.getFlag=t
-		}
-
-		angular.module("app.i18n",["pascalprecht.translate"])
-
-		.config(["$translateProvider",e])
-
-		.controller("LangCtrl",["$scope","$translate",a])
-	}(),
-
-	function(){
+	(function(){
 		"use strict";
 		function e(e) {
 			return {
@@ -217,17 +218,19 @@ function(){
 				}
 			}
 		}
-		angular.module("app.layout")
+		app.layout
 
-		.directive("uiPreloader",["$rootScope",e])}(),function() {
-			function e() {
-				$("#loader-container").fadeOut("slow")
-			}$(window).load(function() {
-				setTimeout(e,1e3)
-			})
-		}(),
+		.directive("uiPreloader",["$rootScope",e])});
 
-function(){
+(function() {
+		function e() {
+			$("#loader-container").fadeOut("slow")
+		}$(window).load(function() {
+			setTimeout(e,1e3)
+		})
+});
+
+(function(){
 	"use strict";
 
 	function e(e) {
@@ -345,7 +348,7 @@ function(){
 			return a
 		}
 
-		angular.module("app.layout")
+		app.layout
 
 		.directive("toggleNavCollapsedMin",["$rootScope",e])
 
@@ -354,4 +357,4 @@ function(){
 		.directive("highlightActive",n)
 
 		.directive("toggleOffCanvas",t)
-}();
+});

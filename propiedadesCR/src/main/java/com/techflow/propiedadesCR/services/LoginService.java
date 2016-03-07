@@ -18,11 +18,11 @@ public class LoginService implements LoginServiceInterface {
 	@Override
 	public UserPOJO checkUser(LoginRequest ploginRequest) {
 		UserPOJO userPOJO = null;
-		Tuser user = repositoryLogin.findByEmailAndPassword(ploginRequest.getUserName(), ploginRequest.getPassword());
+		Tuser nuser = repositoryLogin.findByEmailAndPassword(ploginRequest.getUserName(), ploginRequest.getPassword());
 
-		if (null != user){
+		if (null != nuser){
 			userPOJO = new UserPOJO();
-			BeanUtils.copyProperties(user, userPOJO);
+			BeanUtils.copyProperties(nuser, userPOJO);
 		}	
 		return userPOJO;
 	}

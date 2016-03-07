@@ -1,9 +1,8 @@
-(function() {
+
 	"use strict";
 
-	angular.module("app.login",[])
-
-	.controller('LoginController', ['$scope','$http', function($scope,$htpp) {
+	app.core
+	.controller('LoginController', ['$scope','$http','$rootScope', function($scope,$htpp,$rootScope) {
 			
 		$scope.user ={
 			userName:'',
@@ -14,14 +13,16 @@
 			
 			
 			$htpp.post('rest/login/checkUser/',$scope.user).success(function (loginResponse){
-				console.log(loginResponse);
+				//console.log(loginResponse);
 				if(loginResponse.user!=null){
 					var path = "/propiedadesCR/app#/home";
+					$rootScope.userLogged = loginResponse.user;
+					
 	    			window.location.href = path;
+					//$route.go('/home');
 				}
 			});
 	
 		}
 		
 	}]);
-})();

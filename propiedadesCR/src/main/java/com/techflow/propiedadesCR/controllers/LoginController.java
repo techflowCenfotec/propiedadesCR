@@ -1,3 +1,16 @@
+
+/**
+* <h1>Controlador de login</h1>
+* 
+* Esta clase se encarga de realizar la 
+* comunicación entre el backend y el frontend.
+*
+* @author  Jorge Arguedas Arrieta
+*
+* @version 1.0
+*
+* @since 3/6/2016
+*/
 package com.techflow.propiedadesCR.controllers;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,9 +30,22 @@ import com.techflow.propiedadesCR.services.LoginServiceInterface;
 @RequestMapping(value="rest/login")
 public class LoginController {
 
+	/** 
+     * Este objeto proporciona los diferentes servicios para el login.
+     */
 	@Autowired private LoginServiceInterface loginService;
+	/** 
+     * Este objeto mantiene la sesión en el backend
+     */
 	@Autowired private HttpServletRequest httpRequest;
 	
+	/**
+	    * Este método retorna el usuario que esta iniciando sesión
+	    *
+	    * @param ploginRequest Este parámetro encapsula la información solicitada en el metodo.
+		*
+	    * @return response Retorna la respuesta del sevicio hacia el frontend.
+	    */
 	
 	@RequestMapping(value="/checkUser", method = RequestMethod.POST)
 	public LoginResponse getAll(@RequestBody LoginRequest ploginRequest) {
