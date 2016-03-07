@@ -1,7 +1,7 @@
 
 	"use strict";
 
-	app.core
+	angular.module("app.login",[])
 	.controller('LoginController', ['$scope','$http','$rootScope', function($scope,$htpp,$rootScope) {
 			
 		$scope.user ={
@@ -13,13 +13,13 @@
 			
 			
 			$htpp.post('rest/login/checkUser/',$scope.user).success(function (loginResponse){
-				//console.log(loginResponse);
+			
 				if(loginResponse.user!=null){
 					var path = "/propiedadesCR/app#/home";
 					$rootScope.userLogged = loginResponse.user;
-					
+					console.log($rootScope.userLogged);
 	    			window.location.href = path;
-					//$route.go('/home');
+				
 				}
 			});
 	

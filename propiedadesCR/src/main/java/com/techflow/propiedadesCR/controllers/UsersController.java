@@ -17,6 +17,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,6 +47,11 @@ public class UsersController {
      * Este objeto proporciona los diferentes servicios para los usuarios
      */
 	@Autowired private UsersServiceInterface usersService;
+	
+	/** 
+     * Este objeto mantiene la sesión en el backend
+     */
+	@Autowired private HttpServletRequest httpServletRequest;
 	
 	/**
     * Este método retorna todos los usuarios registrados en el sistema
@@ -143,4 +149,21 @@ public class UsersController {
 		return userResponse;		
 	}
 	
+	
+
+	/**
+    * Este método retorna el usuario loggeado en la aplicación
+    *
+    * @return response Retorna la respuesta del sevicio hacia el frontend.
+    */
+		@RequestMapping(value ="/getUserLogged", method = RequestMethod.GET)
+		public UsersResponse getUserLogged(){
+			UsersResponse response = new UsersResponse();			
+			response.setUser((UserPOJO)httpServletRequest.getSession().getAttribute("userLogged"));
+			return response;
+		}
+				
+		
+			
+		
 }

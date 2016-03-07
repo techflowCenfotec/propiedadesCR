@@ -1,3 +1,16 @@
+
+/**
+* <h1>Servicio del login</h1>
+* 
+* Esta clase se encarga de realizar la 
+* comunicación entre el backend y el frontend.
+*
+* @author  Jorge Arguedas Arrieta
+*
+* @version 1.0
+*
+* @since 3/5/2016
+*/
 package com.techflow.propiedadesCR.services;
 
 import org.springframework.beans.BeanUtils;
@@ -15,6 +28,13 @@ public class LoginService implements LoginServiceInterface {
 	@Autowired
 	LoginRepository repositoryLogin;
 
+	/**
+	    * Este método retorna el usuario que esta iniciando sesión
+	    *
+	    * @param ploginRequest Este parámetro encapsula la información solicitada en el metodo.
+		*
+	    * @return response Retorna la respuesta del repositorio al controlador.
+	    */	
 	@Override
 	public UserPOJO checkUser(LoginRequest ploginRequest) {
 		UserPOJO userPOJO = null;

@@ -1,7 +1,5 @@
 package com.techflow.propiedadesCR.contracts;
 
-import com.techflow.propiedadesCR.pojo.UserPOJO;
-
 public class LoginRequest extends BaseRequest{
 	
 	private String userName;

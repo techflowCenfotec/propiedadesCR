@@ -1,6 +1,6 @@
 
 /**
-* <h1>Controlador de login</h1>
+* <h1>Controlador del login</h1>
 * 
 * Esta clase se encarga de realizar la 
 * comunicación entre el backend y el frontend.
@@ -45,8 +45,7 @@ public class LoginController {
 	    * @param ploginRequest Este parámetro encapsula la información solicitada en el metodo.
 		*
 	    * @return response Retorna la respuesta del sevicio hacia el frontend.
-	    */
-	
+	    */	
 	@RequestMapping(value="/checkUser", method = RequestMethod.POST)
 	public LoginResponse getAll(@RequestBody LoginRequest ploginRequest) {
 		
@@ -56,6 +55,7 @@ public class LoginController {
 		
 		response.setUser(userLogged);
 		httpRequest.getSession().setAttribute("userLogged", userLogged);
+		
 		return response;
 	}
 	
