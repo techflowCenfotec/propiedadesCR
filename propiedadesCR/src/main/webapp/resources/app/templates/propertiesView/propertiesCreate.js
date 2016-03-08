@@ -103,11 +103,11 @@
 						},
 						file: file
 					}).progress(function(evt) {
-						console.log('percent: '+ parseInt(100.0 * evt.loaded / evt.total));
+						
 					}).success(function(data, status, header, config) {
-						console.log(data, status, header, config);
+						
 					}).error(function(data, status) {
-						console.log("the error is: ",  data)
+						
 					});
 				}
 			}

@@ -14,7 +14,6 @@ import com.techflow.propiedadesCR.pojo.ProvincePOJO;
 import com.techflow.propiedadesCR.repositories.ProvinceRepository;
 
 /**
-/**
 * <h1>Servicio de Provincias</h1>
 * Servicio que provee una implementación a la interface
 * de los métodos getAll() y getProvinceById().
