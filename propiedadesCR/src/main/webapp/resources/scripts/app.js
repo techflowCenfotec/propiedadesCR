@@ -32,14 +32,24 @@ function() {
 		,"app.i18n"
 		,"app.home"
 		,"app.properties"
-
+		,"app.roles"
+		,"app.addRoles"
 		,"app.createUsers"
+<<<<<<< HEAD
 		,'app.usersList'
 		
 
 		,"app.events"
 		,"app.eventsList"
 	
+=======
+		,"app.usersList"
+		,"app.events"
+		,"app.eventsList"
+		,"app.banktodolist"
+		,"app.banktodolistCreate"
+		
+>>>>>>> 113418141c1ea53d65f5dfda56a38a902b5992a5
 		//3rd Party Modules
 		,"ngMaterial"
 		,"ui.bootstrap"
@@ -73,10 +83,10 @@ function(){
 		t= {
 			brand:"Propiedades CR",
 			name:"User",
-			year:n,
+			year:2016,
 			layout:"wide",
 			menu:"vertical",
-			isMenuCollapsed:!1,
+			isMenuCollapsed:!0,
 			fixedHeader:!0,
 			fixedSidebar:!0,
 			pageTransition:e[0],
@@ -157,7 +167,7 @@ function(){
 	function() {
 		function e(e) {
 			e.useStaticFilesLoader({
-				prefix:"i18n/",
+				prefix:"resources/i18n/",
 				suffix:".json"
 			}),
 			e.preferredLanguage("en"),
