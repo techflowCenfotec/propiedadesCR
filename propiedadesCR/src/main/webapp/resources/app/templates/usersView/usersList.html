@@ -62,7 +62,14 @@
                     data-ng-click=" order('-phone2') "
                     data-ng-class="{active: row == '-phone2'}"></span>
                 </div></th>
-                
+                  <th><div class="th">
+               	Modificar
+               
+                </div></th>
+                   <th><div class="th">
+               	Eliminar
+               
+                </div></th>
                 
             </tr>
             </thead>
@@ -72,6 +79,8 @@
                 <td>{{users.email}}</td>
                 <td>{{users.phone1}}</td>
                 <td>{{users.phone2}}</td>
+                <td><button class="btn btn-info" data-ng-click="modifyUser(users.idUser)">Modicar</button></td>
+                <td><button class="btn btn-danger">Eliminar</button></td>
             </tr>
             </tbody>
         </table>

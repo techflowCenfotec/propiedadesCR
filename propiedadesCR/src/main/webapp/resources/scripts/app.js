@@ -34,6 +34,7 @@ function() {
 		,"app.properties"
 
 		,"app.createUsers"
+		,'app.usersList'
 		
 
 		,"app.events"
