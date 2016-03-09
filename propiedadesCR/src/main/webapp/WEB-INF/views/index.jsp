@@ -88,4 +88,5 @@
         <script src="resources/app/templates/roleView/addRoles.js"></script>
         <script src="resources/app/templates/banktodolistView/banktodolist.js"></script>
         <script src="resources/app/templates/banktodolistView/banktodolistCreate.js"></script>
+        <script src="resources/app/templates/testView/testFlow.js"></script>
         

@@ -38,6 +38,7 @@ function() {
 		,"app.eventsList"
 		,"app.banktodolist"
 		,"app.banktodolistCreate"
+		,"app.testFlow"
 		
 		//3rd Party Modules
 		,"ngMaterial"
