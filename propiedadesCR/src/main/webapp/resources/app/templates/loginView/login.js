@@ -17,7 +17,6 @@
 				if(loginResponse.user!=null){
 					var path = "/propiedadesCR/app#/home";
 					$rootScope.userLogged = loginResponse.user;
-					console.log($rootScope.userLogged);
 	    			window.location.href = path;
 				
 				}

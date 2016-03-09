@@ -9,22 +9,20 @@
 		n = [
 			"templates/propertiesView/propertiesList"
 			,"templates/reportsView/reports"
+						
 			,"templates/usersView/usersList"
 			,"templates/usersView/createUser"			
-<<<<<<< HEAD
+
 
 			,"templates/eventsView/createEvent"
 			,"templates/eventsView/eventsList"
 			
-
-=======
-			,"templates/eventsView/createEvent"
-			,"templates/eventsView/eventsList"
 			,"templates/roleView/roles"
 			,"templates/roleView/addRoles"
+			
 			, "templates/banktodolistView/banktodolistList"
 			,"templates/banktodolistView/banktodolistCreate"
->>>>>>> 113418141c1ea53d65f5dfda56a38a902b5992a5
+
 		], 
 
 		t = function($urlRouterProvider) {

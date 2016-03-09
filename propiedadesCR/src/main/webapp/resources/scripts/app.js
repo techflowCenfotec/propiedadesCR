@@ -32,24 +32,20 @@ function() {
 		,"app.i18n"
 		,"app.home"
 		,"app.properties"
+		
 		,"app.roles"
 		,"app.addRoles"
-		,"app.createUsers"
-<<<<<<< HEAD
-		,'app.usersList'
 		
-
 		,"app.events"
 		,"app.eventsList"
-	
-=======
+		
+		,"app.createUsers"
 		,"app.usersList"
-		,"app.events"
-		,"app.eventsList"
+	
 		,"app.banktodolist"
 		,"app.banktodolistCreate"
 		
->>>>>>> 113418141c1ea53d65f5dfda56a38a902b5992a5
+
 		//3rd Party Modules
 		,"ngMaterial"
 		,"ui.bootstrap"

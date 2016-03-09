@@ -19,6 +19,9 @@
 				            opened: false
 				        };
 						
+				        console.log(localStorage.getItem("idUser"));
+				        localStorage.removeItem('idUser');
+				        console.log('Se borro el item',localStorage.getItem("idUser"));
 						$scope.form = {
 							name : '',
 							email : '',
