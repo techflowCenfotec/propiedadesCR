@@ -47,7 +47,7 @@ public class LoginController {
 	    * @return response Retorna la respuesta del sevicio hacia el frontend.
 	    */	
 	@RequestMapping(value="/checkUser", method = RequestMethod.POST)
-	public LoginResponse getAll(@RequestBody LoginRequest ploginRequest) {
+	public LoginResponse getCheckedUser(@RequestBody LoginRequest ploginRequest) {
 		
 		LoginResponse response = new LoginResponse();
 		

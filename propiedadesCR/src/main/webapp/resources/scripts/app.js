@@ -41,6 +41,7 @@ function() {
 		
 		,"app.createUsers"
 		,"app.usersList"
+		,"app.consultUser"
 	
 		,"app.banktodolist"
 		,"app.banktodolistCreate"
@@ -143,13 +144,19 @@ function(){
 				$rootScope.$on("$stateChangeSuccess", function(e,$rootScope,n) {
 				t.scrollTo(0,0)
 			})
+			e.user ={};
 			
 			var link = 'rest/protected/users/getUserLogged';
 			
 			$http.get(link).success(function(response){
-				
-				$rootScope.userLogged = response.user;
+				e.user = response.user;
+				$rootScope.userLogged = e.user;
+				return e.user;
 			});
+			e.consultMyProfile = function(myId){
+				localStorage.setItem('idUser',myId);
+			};
+			
 		}
 
 		angular.module("app")

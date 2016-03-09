@@ -20,6 +20,7 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -167,7 +168,22 @@ public class UsersController {
 			response.setUser((UserPOJO)httpServletRequest.getSession().getAttribute("userLogged"));
 			return response;
 		}
-				
+
+		/**
+	    * Este método retorna el usuario que se desea consultar
+	    *
+	    * @return response Retorna la respuesta del sevicio hacia el frontend.
+	    */	
+		@RequestMapping(value="/getAttendUser/{pidUser}", method = RequestMethod.GET)
+		public UsersResponse getAttendUser(
+				@PathVariable int  pidUser){
+			UsersResponse response = new UsersResponse();
+			
+			UserPOJO user = usersService.attendUser(pidUser);
+			
+			response.setUser(user);
+			return response;
+		}
 		
 			
 		

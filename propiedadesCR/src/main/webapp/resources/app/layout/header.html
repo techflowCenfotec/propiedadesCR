@@ -307,9 +307,9 @@
 
             <li class="dropdown text-normal nav-profile"    uib-dropdown is-open="status.isopenProfile">
                 <a href="javascript:;" class="dropdown-toggle" uib-dropdown-toggle ng-disabled="disabled" md-button aria-label="profile">
-                    <img src="resources/images/g1.jpg" alt="" class="img-circle img30_30">
+                    <img src={{user.userImage}} alt="" class="img-circle img30_30">
                     <span class="hidden-xs">
-                        <span data-translate="USER"></span>
+                        <span>{{user.userName}}</span>
                     </span>
                 </a>
                 <ul class="with-arrow pull-right dropdown-menu-scaleIn" uib-dropdown-menu>
@@ -320,15 +320,16 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#/page/profile">
+                        <a data-ng-click="consultMyProfile({{user.idUser}})"
+                        href="#/templates/usersView/consultUser">
                             <i class="zmdi zmdi-account"></i>
-                            <span data-translate="MY_PROFILE"></span>
+                            <span>Mi perfil</span>
                         </a>
                     </li>
                     <li>
-                        <a href="#/page/signin">
+                        <a href="/propiedadesCR">
                             <i class="zmdi zmdi-forward"></i>
-                            <span data-translate="LOG_OUT"></span>
+                            <span>Cerrar sesi&oacute;n</span>
                         </a>
                     </li>
                 </ul>

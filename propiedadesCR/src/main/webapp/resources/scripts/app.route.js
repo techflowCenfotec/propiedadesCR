@@ -12,7 +12,7 @@
 						
 			,"templates/usersView/usersList"
 			,"templates/usersView/createUser"			
-
+			,"templates/usersView/consultUser"
 
 			,"templates/eventsView/createEvent"
 			,"templates/eventsView/eventsList"

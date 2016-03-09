@@ -10,4 +10,5 @@ public interface UsersServiceInterface {
 
 	List<UserPOJO> getAll(UsersRequest puserRequest);
 	Tuser saveUser(UsersRequest puserRequest);
+	UserPOJO attendUser(int pidUser);
 }

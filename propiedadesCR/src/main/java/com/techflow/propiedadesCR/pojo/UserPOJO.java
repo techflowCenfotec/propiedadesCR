@@ -19,7 +19,7 @@ public class UserPOJO {
 	/**
      * Identificador del usuario.
      */
-	private int idUsuario;
+	private int idUser;
 	/**
      * Nombre de usuario.
      */
@@ -77,11 +77,11 @@ public class UserPOJO {
 	public UserPOJO() {
 		super();
 	}
-	public int getIdUsuario() {
-		return idUsuario;
+	public int getIdUser() {
+		return idUser;
 	}
-	public void setIdUsuario(int pidUsuario) {
-		this.idUsuario = pidUsuario;
+	public void setIdUser(int pidUser) {
+		this.idUser = pidUser;
 	}
 	public String getUserName() {
 		return userName;

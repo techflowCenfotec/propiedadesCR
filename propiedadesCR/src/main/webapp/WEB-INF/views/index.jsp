@@ -12,6 +12,15 @@
         <link rel="stylesheet" href="resources/bower_components/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="resources/bower_components/material-design-iconic-font/css/material-design-iconic-font.min.css">
         <!-- end Needs images -->
+        
+         <!--Core JS-->
+        <script src="resources/scripts/vendor.js"></script>
+        <script src="resources/scripts/ui.js"></script>
+        <script src="resources/scripts/app.js"></script>
+        <script src="resources/scripts/app.route.js"></script>
+        <script src="resources/non_bower_components/angular-file-upload-shim.min.js"></script>
+  		<script src="resources/non_bower_components/angular-file-upload.min.js"></script>
+  		<script src="resources/non_bower_components/ng-flow-standalone.min.js "></script>
 
         <link rel="stylesheet" href="resources/styles/main.css">
 
@@ -69,14 +78,7 @@
 
         <script src="http://maps.google.com/maps/api/js"></script>
 
-        <!--Core JS-->
-        <script src="resources/scripts/vendor.js"></script>
-        <script src="resources/scripts/ui.js"></script>
-        <script src="resources/scripts/app.js"></script>
-        <script src="resources/scripts/app.route.js"></script>
-        <script src="resources/non_bower_components/angular-file-upload-shim.min.js"></script>
-  		<script src="resources/non_bower_components/angular-file-upload.min.js"></script>
-  		<script src="resources/non_bower_components/ng-flow-standalone.min.js "></script>
+       
 
         <!--Custom JS files-->
         
@@ -86,6 +88,8 @@
 
         <script src="resources/app/templates/usersView/usersList.js"></script>
         <script src="resources/app/templates/usersView/createUser.js"></script>
+         <script src="resources/app/templates/usersView/consultUser.js"></script>
+        
         
         <script src="resources/app/templates/eventsView/createEvent.js"></script>
         <script src= "resources/app/templates/eventsView/eventsList.js"></script>

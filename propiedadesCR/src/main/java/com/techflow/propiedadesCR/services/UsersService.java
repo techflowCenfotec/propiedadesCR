@@ -87,5 +87,26 @@ public class UsersService implements UsersServiceInterface{
 		return nuser;
 	
 	}
+	
+	/**
+	  * Este retorna el usaurio que se consulto.
+	  *
+	  * @param pidUser Identificador del usuario.
+      * 
+	  * @return userPOJO Retorna el usuario consultado.
+	  */
+	@Override
+	public UserPOJO attendUser(int pidUser){
+		
+		Tuser nuser = usersRepository.findByIdUser(pidUser);
+		UserPOJO userPOJO =null;
+		
+		if (null != nuser){
+			userPOJO = new UserPOJO();
+			BeanUtils.copyProperties(nuser, userPOJO);
+		}	
+		return userPOJO;
+		
+	}
 
 }

@@ -33,7 +33,7 @@ public class LoginService implements LoginServiceInterface {
 	    *
 	    * @param ploginRequest Este parámetro encapsula la información solicitada en el metodo.
 		*
-	    * @return response Retorna la respuesta del repositorio al controlador.
+	    * @return userPOJO Retorna la respuesta del repositorio al controlador.
 	    */	
 	@Override
 	public UserPOJO checkUser(LoginRequest ploginRequest) {
