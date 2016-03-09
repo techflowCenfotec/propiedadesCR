@@ -7,6 +7,7 @@
 
 		// Custom Feature modules
 		,"app.route"
+		,"flow"
 
 		// 3rd party feature modules
 		,"mgo-angular-wizard"
@@ -38,13 +39,12 @@ function() {
 		,"app.eventsList"
 		,"app.banktodolist"
 		,"app.banktodolistCreate"
-		
+		,"app.properties.create"
 		//3rd Party Modules
 		,"ngMaterial"
 		,"ui.bootstrap"
 		,"duScroll"
-		,"angularFileUpload"
-		,"flow"
+		,'angularFileUpload'
 		])
 }(),
 

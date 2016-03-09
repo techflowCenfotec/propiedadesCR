@@ -4,10 +4,10 @@ import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
-import com.techflow.propiedadesCR.ejb.Tproperty;
+import com.techflow.propiedadesCR.ejb.Tcounty;
 
 /**
-* <h1>Repositorio de las propiedades</h1>
+* <h1>Repositorio de los Cantones</h1>
 * Repositorio que extiende de CrudRepository
 * y provee una implementación
 *
@@ -15,12 +15,12 @@ import com.techflow.propiedadesCR.ejb.Tproperty;
 * @version 1.0
 * @since 26/2/2016
 */
-public interface PropertiesRepository extends CrudRepository<Tproperty, Integer>{
-	
+public interface CountiesRepository extends CrudRepository<Tcounty, Integer> {
+
 	/**
 	  * Retorna una lista de entidades.
 	  * 
-	  * @return List<Tproperty> Las entidades del tipo
+	  * @return List<Tcounty> Las entidades del tipo
 	  */
-	List<Tproperty> findAll();
+	List<Tcounty> findAll();
 }

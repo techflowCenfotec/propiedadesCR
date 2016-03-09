@@ -17,6 +17,7 @@
 			,"templates/roleView/addRoles"
 			, "templates/banktodolistView/banktodolistList"
 			,"templates/banktodolistView/banktodolistCreate"
+			,"templates/propertiesView/propertiesCreate"
 		], 
 
 		t = function(a) {
