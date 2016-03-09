@@ -25,6 +25,7 @@ public class TbankToDoList implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	public int getIdtBank_to_do_list() {
 		return this.idtBank_to_do_list;
 	}
@@ -54,7 +55,7 @@ public class TbankToDoList implements Serializable {
 
 
 	//bi-directional many-to-one association to TbankItem
-	@OneToMany(mappedBy="tbankToDoList")
+	@OneToMany(mappedBy="tbankToDoList",fetch=FetchType.LAZY)
 	public List<TbankItem> getTbankItems() {
 		return this.tbankItems;
 	}

@@ -23,6 +23,7 @@ public class Tanswer implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_answer")
 	public int getIdAnswer() {
 		return this.idAnswer;

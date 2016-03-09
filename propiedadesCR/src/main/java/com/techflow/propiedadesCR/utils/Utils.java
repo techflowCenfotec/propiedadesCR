@@ -12,7 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 public class Utils {
 	
-	private static String RESOURCES_PATH = "resources/rent-images/";
+	private static String RESOURCES_PATH = "resources/images/";
 	private static String HOST_PATH = "http://localhost:8080";
 	
 	// save uploaded file to new location
@@ -24,7 +24,7 @@ public class Utils {
 			String databaseFileName = HOST_PATH + servletContext.getContextPath() + "/" + RESOURCES_PATH + consecutiveName + extension;
 			
 			byte[] bytes;
-			try {
+			try { 	
 				bytes = file.getBytes();
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(uploadedFileLocation)));
 				stream.write(bytes);

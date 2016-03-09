@@ -3,36 +3,50 @@
 
 	angular.module("app.route", ["ui.router"])
 
-	.config(["$stateProvider","$urlRouterProvider", function(e,a){ 
+	.config(["$stateProvider","$urlRouterProvider", function($stateProvider,$urlRouterProvider){ 
 		
 		var n,t;
 		n = [
 			"templates/propertiesView/propertiesList"
 			,"templates/reportsView/reports"
+						
+			,"templates/usersView/usersList"
+			,"templates/usersView/createUser"			
+
+
+			,"templates/eventsView/createEvent"
+			,"templates/eventsView/eventsList"
+			
+			,"templates/roleView/roles"
+			,"templates/roleView/addRoles"
+			
+			, "templates/banktodolistView/banktodolistList"
+			,"templates/banktodolistView/banktodolistCreate"
+
 		], 
 
-		t = function(a) {
+		t = function($urlRouterProvider) {
 
 			var n, t;
 
-			return t = "/" + a,
+			return t = "/" + $urlRouterProvider,
 
 			n = { 
 				url: t,
-				templateUrl: "resources/app/" + a + ".html"
+				templateUrl: "resources/app/" + $urlRouterProvider + ".html"
 			},
 			
-			e.state(a,n),e
+			$stateProvider.state($urlRouterProvider,n),$stateProvider
 		},
 			
-		n.forEach(function(e) {
-			return t(e)
+		n.forEach(function($stateProvider) {
+			return t($stateProvider)
 		}),
 			
-		a.when("/","/home")
+		$urlRouterProvider.when("/","/home")
 		.otherwise("/home"),
 
-		e.state( "home", {
+		$stateProvider.state( "home", {
 			url:"/home",
 			templateUrl:"resources/app/templates/homeView/home.html"
 		})

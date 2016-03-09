@@ -7,13 +7,15 @@
 
 		// Custom Feature modules
 		,"app.route"
-
+		
 		// 3rd party feature modules
 		,"mgo-angular-wizard"
 		,"ui.tree"
 		,"ngMap"
 		,"textAngular"
-		])
+		]).run(['$rootScope', function($rootScope){
+			$rootScope.userLogged = null;
+		}]);
 }(),
 
 function() {
@@ -30,11 +32,26 @@ function() {
 		,"app.i18n"
 		,"app.home"
 		,"app.properties"
+		
+		,"app.roles"
+		,"app.addRoles"
+		
+		,"app.events"
+		,"app.eventsList"
+		
+		,"app.createUsers"
+		,"app.usersList"
+	
+		,"app.banktodolist"
+		,"app.banktodolistCreate"
+		
 
 		//3rd Party Modules
 		,"ngMaterial"
 		,"ui.bootstrap"
 		,"duScroll"
+		,"angularFileUpload"
+		,"flow"
 		])
 }(),
 
@@ -62,10 +79,10 @@ function(){
 		t= {
 			brand:"Propiedades CR",
 			name:"User",
-			year:n,
+			year:2016,
 			layout:"wide",
 			menu:"vertical",
-			isMenuCollapsed:!1,
+			isMenuCollapsed:!0,
 			fixedHeader:!0,
 			fixedSidebar:!0,
 			pageTransition:e[0],
@@ -114,7 +131,7 @@ function(){
 	function() {
 		"use strict";
 
-		function e(e,a,n,t,r) {
+		function e(e,$rootScope,n,t,r,$http) {
 			e.pageTransitionOpts=r.pageTransitionOpts,
 			e.main=r.main,e.color=r.color,e.$watch("main", function(n,t) {
 				"horizontal"===n.menu&&"vertical"===t.menu&&a.$broadcast("nav:reset"),
@@ -123,20 +140,30 @@ function(){
 				t.fixedHeader===!0&&t.fixedSidebar===!0&&(e.main.fixedHeader=!1,e.main.fixedSidebar=!1)),
 				n.fixedSidebar===!0&&(e.main.fixedHeader=!0),
 				n.fixedHeader===!1&&(e.main.fixedSidebar=!1)},!0),
-			a.$on("$stateChangeSuccess", function(e,a,n) {
+				$rootScope.$on("$stateChangeSuccess", function(e,$rootScope,n) {
 				t.scrollTo(0,0)
 			})
+			
+			var link = 'rest/protected/users/getUserLogged';
+			
+			$http.get(link).success(function(response){
+				
+				$rootScope.userLogged = response.user;
+			});
 		}
 
 		angular.module("app")
 
-		.controller("AppCtrl",["$scope","$rootScope","$state","$document","appConfig",e])
+		.controller("AppCtrl",["$scope","$rootScope","$state","$document","appConfig","$http",e])
+		
+	
+		
 	}(),
 
 	function() {
 		function e(e) {
 			e.useStaticFilesLoader({
-				prefix:"i18n/",
+				prefix:"resources/i18n/",
 				suffix:".json"
 			}),
 			e.preferredLanguage("en"),

@@ -16,6 +16,8 @@ public class Tevent implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idEvent;
 	private byte active;
+	private String address;
+	private String coordinates;
 	private String description;
 	private String eventImage;
 	private String name;
@@ -27,6 +29,7 @@ public class Tevent implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_event")
 	public int getIdEvent() {
 		return this.idEvent;
@@ -43,6 +46,24 @@ public class Tevent implements Serializable {
 
 	public void setActive(byte active) {
 		this.active = active;
+	}
+
+
+	public String getAddress() {
+		return this.address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+	public String getCoordinates() {
+		return this.coordinates;
+	}
+
+	public void setCoordinates(String coordinates) {
+		this.coordinates = coordinates;
 	}
 
 
