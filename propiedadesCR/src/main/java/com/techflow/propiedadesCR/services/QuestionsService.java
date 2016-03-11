@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.techflow.propiedadesCR.ejb.Tquestion;
-import com.techflow.propiedadesCR.ejb.Toption;
 
 import com.techflow.propiedadesCR.pojo.OptionPOJO;
 import com.techflow.propiedadesCR.pojo.QuestionPOJO;
@@ -38,15 +37,17 @@ public class QuestionsService implements QuestionsServiceInterface{
 			u.getToptions2().stream().forEach(opt->{
 				OptionPOJO dtoOption = new OptionPOJO();
 				BeanUtils.copyProperties(opt, dtoOption);
-				dtoOption.setTquestion1(null);
-				dtoOption.setTquestion2(null);
+				if(opt.getTquestion1() != null){
+					dtoOption.setIdNextQuestion(opt.getTquestion1().getIdQuestion());
+				}
 				uioptions.add(dtoOption);
+				
 			});
 			dto.setToptions2(uioptions);
 			
 			
-			dto.setToptions1(null);
-			dto.setTanswers(null);
+//			dto.setToptions1(null);
+//			dto.setTanswers(null);
 			
 			uiquestions.add(dto);
 		});

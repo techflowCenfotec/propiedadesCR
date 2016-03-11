@@ -19,7 +19,7 @@
                                 
                                 <wizard on-finish="finished()" >
                                     
-                                    <wz-step wz-title="{{question.id}}" canexit="" ng-repeat="question in questions">
+                                    <wz-step wz-title="{{question.idQuestion}}" canexit="" ng-repeat="question in questions">
                                         <h2>{{question.question}}</h2>
                                         <div class="ui-wizard-content">
                                             
@@ -29,7 +29,7 @@
 
                                             <md-radio-group class="ui-md-radio-group-inline" ng-model="radio.selectedOption">
 
-                                                <md-radio-button ng-repeat="option in question.options" ng-value="{{option}}">{{option.option}}</md-radio-button>
+                                                <md-radio-button ng-repeat="option in question.toptions2" ng-value="{{option}}">{{option.option}}</md-radio-button>
 
                                             
                                             </md-radio-group> 
@@ -58,7 +58,7 @@
 <!-- 
                                             <md-button ng-hide="firstQuestion()" wz-previous="logStep()"  class="md-raised btn-w-md">Atrás</md-button> -->
 
-                                            <md-button ng-click="catchAnswer(radio.selectedOption,question.id)" ng-disabled="radio.selectedOption==undefined" class="md-raised btn-w-md md-primary">Siguiente</md-button>
+                                            <md-button ng-click="catchAnswer(radio.selectedOption,question.idQuestion)" ng-disabled="radio.selectedOption==undefined" class="md-raised btn-w-md md-primary">Siguiente</md-button>
                                             
                                         </div>
                                     </wz-step>

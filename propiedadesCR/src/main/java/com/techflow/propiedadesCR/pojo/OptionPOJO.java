@@ -5,8 +5,7 @@ public class OptionPOJO {
 	private int idOption;
 	private String option;
 	private String result;
-	private QuestionPOJO tquestion1;
-	private QuestionPOJO tquestion2;
+	private int idNextQuestion;
 	
 	public OptionPOJO(){
 		super();
@@ -36,21 +35,12 @@ public class OptionPOJO {
 		this.result = result;
 	}
 
-	public QuestionPOJO getTquestion1() {
-		return tquestion1;
+	public int getIdNextQuestion() {
+		return idNextQuestion;
 	}
 
-	public void setTquestion1(QuestionPOJO tquestion1) {
-		this.tquestion1 = tquestion1;
+	public void setIdNextQuestion(int idNextQuestion) {
+		this.idNextQuestion = idNextQuestion;
 	}
-
-	public QuestionPOJO getTquestion2() {
-		return tquestion2;
-	}
-
-	public void setTquestion2(QuestionPOJO tquestion2) {
-		this.tquestion2 = tquestion2;
-	}
-	
 	
 }
