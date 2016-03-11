@@ -78,11 +78,12 @@
 
         <!--Custom JS files-->
         <script src="resources/app/templates/propertiesView/propertiesList.js"></script>
- 	<script src="resources/app/templates/propertiesView/propertiesCreate.js"></script>
+ 		<script src="resources/app/templates/propertiesView/propertiesCreate.js"></script>
+ 		<script src="resources/app/templates/propertiesView/propertyView.js"></script>
         <script src="resources/app/templates/usersView/usersList.js"></script>
         <script src="resources/app/templates/usersView/createUser.js"></script>
         <script src="resources/app/templates/eventsView/createEvent.js"></script>
-        <script src= "resources/app/templates/eventsView/eventsList.js"></script>
+        <script src="resources/app/templates/eventsView/eventsList.js"></script>
         <script src="resources/app/templates/homeView/home.js"></script>
         <script src="resources/app/templates/roleView/roles.js"></script>
         <script src="resources/app/templates/roleView/addRoles.js"></script>

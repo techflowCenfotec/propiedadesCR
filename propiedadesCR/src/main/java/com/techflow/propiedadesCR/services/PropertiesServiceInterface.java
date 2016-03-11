@@ -8,6 +8,6 @@ import com.techflow.propiedadesCR.pojo.PropertyPOJO;
 public interface PropertiesServiceInterface {
 	
 	List<PropertyPOJO> getAll();
-	Tproperty getPropertyById(int pIdProperty);
+	PropertyPOJO getPropertyById(int pIdProperty);
 	Tproperty saveProperty(Tproperty pProperty);
 }

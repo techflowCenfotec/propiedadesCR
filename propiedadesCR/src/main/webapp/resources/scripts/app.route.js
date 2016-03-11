@@ -18,6 +18,7 @@
 			, "templates/banktodolistView/banktodolistList"
 			,"templates/banktodolistView/banktodolistCreate"
 			,"templates/propertiesView/propertiesCreate"
+			,"templates/propertiesView/propertyView"
 		], 
 
 		t = function(a) {

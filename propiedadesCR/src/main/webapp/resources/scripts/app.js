@@ -40,6 +40,7 @@ function() {
 		,"app.banktodolist"
 		,"app.banktodolistCreate"
 		,"app.properties.create"
+		,"app.properties.view"
 		//3rd Party Modules
 		,"ngMaterial"
 		,"ui.bootstrap"

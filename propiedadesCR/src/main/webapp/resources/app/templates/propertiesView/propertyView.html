@@ -1,0 +1,86 @@
+<section class="page-form-ele page" ng-controller="PropViewController">
+    <div class="row ui-section">
+        <div class="col-lg-8 clearfix"> <h2 class="section-header">Propiedad en ...</h2> </div>
+        <div class="col-md-12">
+            <section class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+
+                            <div layout="column" ng-cloak class="md-inline-form inputdemoBasicUsage">
+                                <div layout-padding>
+                                    <form name="userForm">
+                                    	<div layout layout-sm="column">
+                                    		<md-input-container flex>
+	                                        	<label>Provincia</label>
+	                                            <md-select ng-model="requestObject.province" aria-label="select">
+		                                             <md-option ng-repeat="province in provinceList" value="{{province.idProvince}}">
+		                                             	{{province.name}}
+		                                             </md-option>
+	                                             </md-select>
+	                                        </md-input-container>
+	                                        <md-input-container flex>
+	                                            <label>Cantón</label>
+	                                            <md-select ng-model="requestObject.county" aria-label="select">
+	                                                <md-option ng-repeat="county in countyList" value="{{county.name}}">
+	                                                    {{county.name}}
+	                                                </md-option>
+	                                            </md-select>
+	                                        </md-input-container>
+	                                        <md-input-container flex>
+	                                            <label>Distrito</label>
+	                                            <md-select ng-model="requestObject.district" aria-label="select">
+	                                                <md-option ng-repeat="district in districtList" value="{{district.idDisctrict}}">
+	                                                   {{district.name}}
+	                                                </md-option>
+	                                            </md-select>
+	                                        </md-input-container>
+	                                    </div>
+                                        <md-input-container class="md-block">
+                                            <label>Address</label>
+                                            <input ng-model="requestObject.address">
+                                        </md-input-container>
+                                        <div layout layout-sm="column">
+                                        	<md-input-container flex>
+                                                <label>Beneficios</label>
+                                                <input ng-model="requestObject.Benefits">
+                                            </md-input-container>
+                                        </div>
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex>
+                                                <label>Precio</label>
+                                                <input ng-model="user.firstName">
+                                            </md-input-container>
+                                            <md-input-container flex>
+                                                <label>Tipo de propiedad</label>
+                                                <input ng-model="theMax">
+                                            </md-input-container>
+                                        </div>
+                                        <div layout layout-sm="column">
+                                        	<md-input-container flex>
+                                                <label>Metros de construcción</label>
+                                                <input ng-model="requestObject.meters">
+                                            </md-input-container>
+                                        </div>
+                                        <div class="row">
+                                          	<div class="col-md-12">
+                                          		<section class="panel panel-default">
+                                          			<div class="panel-body">
+                                          				<map class="ui-map" zoom="11" center="[9.935697,-84.1483646]" scrollwheel="false">
+								                            <marker position="[9.935697,-84.1483646]" title="drag me" draggable="true"></marker>
+								                        </map>
+								                    </div>
+								                </section>
+								            </div>
+								        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>    
+        </div>
+    </div>
+</section>

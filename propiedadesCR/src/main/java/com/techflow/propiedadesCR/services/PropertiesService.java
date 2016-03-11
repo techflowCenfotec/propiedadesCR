@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.techflow.propiedadesCR.ejb.Tdistrict;
 import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.TpropertyImage;
+import com.techflow.propiedadesCR.pojo.BenefitsPOJO;
 import com.techflow.propiedadesCR.pojo.DistrictPOJO;
 import com.techflow.propiedadesCR.pojo.PropertyImagePOJO;
 import com.techflow.propiedadesCR.pojo.PropertyPOJO;
@@ -113,8 +114,15 @@ public class PropertiesService implements PropertiesServiceInterface {
 	  * @return Tproperty Una entidad del tipo.
 	  */
 	@Override
-	public Tproperty getPropertyById(int pIdProperty) {
-		return propertiesRepository.findOne(pIdProperty);
+	public PropertyPOJO getPropertyById(int pIdProperty) {
+		Tproperty property = propertiesRepository.findOne(pIdProperty);
+		PropertyPOJO nProperty = new PropertyPOJO();
+		DistrictPOJO district = new DistrictPOJO();
+		BenefitsPOJO benefits = new BenefitsPOJO();
+		
+		BeanUtils.copyProperties(property, nProperty);
+
+		return nProperty;
 	}
 
 }

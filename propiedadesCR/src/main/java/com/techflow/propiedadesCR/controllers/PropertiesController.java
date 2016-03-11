@@ -7,6 +7,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.techflow.propiedadesCR.contracts.PropertiesResponse;
 import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.TpropertyImage;
+import com.techflow.propiedadesCR.pojo.PropertyPOJO;
 import com.techflow.propiedadesCR.services.BenefitsServiceInterface;
 import com.techflow.propiedadesCR.services.DistrictServiceInterface;
 import com.techflow.propiedadesCR.services.PropertiesServiceInterface;
@@ -131,6 +133,25 @@ public class PropertiesController {
 			response.setCode(400);
 			response.setCodeMessage("Could not register property");
 		}
+		return response;
+	}
+	
+	/**
+	 * Solicita la información de la propiedad a través del servicio.
+	 *  
+	 *  @param pIdProprty Id de la propiedad. No debe ser nulo.
+	 * @return response Un objeto response de la propiedad.
+	 */
+	@RequestMapping(value="getByPropertyId/{pIdProperty}", method=RequestMethod.GET)
+	public PropertiesResponse getRequestedProperty(@PathVariable int pIdProperty) {
+		PropertiesResponse response = new PropertiesResponse();
+		
+		PropertyPOJO property = propertiesService.getPropertyById(pIdProperty);
+		
+		response.setCode(200);
+		response.setCodeMessage("Property fetch succesful");
+		response.setProperty(property);
+		
 		return response;
 	}
 }
