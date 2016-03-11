@@ -19,11 +19,11 @@
                                 
                                 <wizard on-finish="finished()" >
                                     
-                                    <wz-step wz-title="" canexit="" ng-repeat="question in questions">
-                                        <h2>Cuestionario</h2>
+                                    <wz-step wz-title="{{question.id}}" canexit="" ng-repeat="question in questions">
+                                        <h2>{{question.question}}</h2>
                                         <div class="ui-wizard-content">
                                             
-                                            <p><strong>{{question.question}}</strong></p>
+                                            <!-- <p><strong>{{question.question}}</strong></p> -->
 
                                             <div>
 
@@ -58,7 +58,7 @@
 <!-- 
                                             <md-button ng-hide="firstQuestion()" wz-previous="logStep()"  class="md-raised btn-w-md">Atrás</md-button> -->
 
-                                            <md-button ng-click="catchAnswer(radio.selectedOption,question.id)" ng-disabled="radio.selectedOption==undefined" class="md-raised btn-w-md md-primary" wz-next>Siguiente</md-button>
+                                            <md-button ng-click="catchAnswer(radio.selectedOption,question.id)" ng-disabled="radio.selectedOption==undefined" class="md-raised btn-w-md md-primary">Siguiente</md-button>
                                             
                                         </div>
                                     </wz-step>

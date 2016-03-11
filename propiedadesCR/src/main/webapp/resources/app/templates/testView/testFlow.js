@@ -7,6 +7,9 @@
 		//necesario para guardar las respuestas
 		var userId;
 
+		//historial de preguntas respondidas
+		var questionsAnswered = [];
+
 		//respuestas
 		$scope.answers = [];
 		
@@ -18,7 +21,8 @@
 			"result":"yep",
 			"id_next_question":2},
 
-			{"id":2,"option":"no",
+			{"id":2,
+			"option":"no",
 			"result":"nope",
 			"id_next_question":4
 		}]},
@@ -31,7 +35,11 @@
 			{"id":4,
 			"option":"puede ser",
 			"result":"could be",
-			"id_next_question":4
+			"id_next_question":4},
+			{"id":9,
+			"option":"damn",
+			"result":"",
+			"id_next_question":3
 		}]},
 		
 		{"id":3,"question":"Por que?","options":[{
@@ -48,7 +56,7 @@
 		{"id":4,"question":"is that fair?","options":[{
 			"id":7,
 			"option":"thats it",
-			"result":"it it it",
+			"result":"",
 			"id_next_question":0},
 			{"id":8,
 			"option":"trouble?",
@@ -57,27 +65,64 @@
 		}]}
 
 		];//["como?","que?","cuando?","donde?"];
-		
 
 		$scope.catchAnswer = function(option, idQuestion){
-			$scope.answers.push({id_question:idQuestion, "result":option.result});
-			//console.log(option);
-			console.log($scope.answers);
+		////SEGUIR AQUI!!!!
+		//var steps = WizardHandler.wizard().getEnabledSteps();	
+		//console.log(steps);
+		//console.log(steps[0]);
+		//console.log(steps[0].$id);
+		//console.log(steps[3].completed = true);
+
+			if(option.result != ""){
+				if(!answerAlreadyExist(option, idQuestion)){
+					$scope.answers.push({"id_question":idQuestion, "result":option.result});
+				}
+			}else{
+				answerAlreadyExist("delete", idQuestion)
+
+			}
 			getNextQuestion(option.id_next_question);
+
+			console.log($scope.answers);
 		};	
 
 		function getNextQuestion(pidNextQuestion){
 			//console.log(pidNextQuestion);
-
-			for (var i = WizardHandler.wizard().currentStepNumber() - 1 ; i < $scope.questions.length; i++) {
-
+			var steps = WizardHandler.wizard().getEnabledSteps();
+			for (var i = WizardHandler.wizard().currentStepNumber() ; i < $scope.questions.length; i++) {
+				console.log(WizardHandler.wizard().currentStepNumber());
 				if($scope.questions[i].id==pidNextQuestion){
 					//console.log($scope.questions[i]);
+					WizardHandler.wizard().currentStep().completed = true;
 					WizardHandler.wizard().goTo(i);
 					//WizardHandler.wizard().next();
 					break;
 				}
+
+				steps[i].completed = false;
+				answerAlreadyExist("delete",steps[i].title);
 			}
+		}
+
+		//comprobar si el usuario va cambiar alguna respuesta
+		function answerAlreadyExist(option, idQuestion){
+			if(option != "delete"){
+				for (var i = 0; i < $scope.answers.length; i++) {
+					if($scope.answers[i].id_question == idQuestion){
+						$scope.answers[i] = {"id_question":idQuestion, "result":option.result};
+						return true;
+					}
+				}
+			}else{
+				for (var i = 0; i < $scope.answers.length; i++) {
+					if($scope.answers[i].id_question == idQuestion){
+						$scope.answers.splice(i,1);
+						return true;
+					}
+				}
+			}
+			return false;
 		}
 
 		$scope.resetAnswers = function(){
