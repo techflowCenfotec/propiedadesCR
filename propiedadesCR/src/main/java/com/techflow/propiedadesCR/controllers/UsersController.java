@@ -139,7 +139,7 @@ public class UsersController {
 			user.setFirstTime((byte)0);
 			UsersRequest userRequest = new UsersRequest();
 			userRequest.setUser(user);
-			Tuser recentlyCreatedUser = usersService.saveUser(userRequest);
+			Tuser recentlyCreatedUser = usersService.saveUser(userRequest, pidRol);
 
 			
 			if(recentlyCreatedUser != null){
@@ -164,22 +164,24 @@ public class UsersController {
     */
 		@RequestMapping(value ="/getUserLogged", method = RequestMethod.GET)
 		public UsersResponse getUserLogged(){
-			UsersResponse response = new UsersResponse();			
+			UsersResponse response = new UsersResponse();
 			response.setUser((UserPOJO)httpServletRequest.getSession().getAttribute("userLogged"));
 			return response;
 		}
 
 		/**
 	    * Este método retorna el usuario que se desea consultar
-	    *
+		*
+	    * @param pidUser Identificador del usaurio que se consulta
+	    * 
 	    * @return response Retorna la respuesta del sevicio hacia el frontend.
 	    */	
-		@RequestMapping(value="/getAttendUser/{pidUser}", method = RequestMethod.GET)
-		public UsersResponse getAttendUser(
+		@RequestMapping(value="/getUserById/{pidUser}", method = RequestMethod.GET)
+		public UsersResponse getConsultedUser(
 				@PathVariable int  pidUser){
 			UsersResponse response = new UsersResponse();
 			
-			UserPOJO user = usersService.attendUser(pidUser);
+			UserPOJO user = usersService.consultUser(pidUser);
 			
 			response.setUser(user);
 			return response;

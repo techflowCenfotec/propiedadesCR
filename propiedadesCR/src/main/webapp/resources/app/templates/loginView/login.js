@@ -4,6 +4,7 @@
 	angular.module("app.login",[])
 	.controller('LoginController', ['$scope','$http','$rootScope', function($scope,$htpp,$rootScope) {
 			
+		$scope.incorrect = true;
 		$scope.user ={
 			userName:'',
 			password:'',
@@ -13,14 +14,18 @@
 			
 			
 			$htpp.post('rest/login/checkUser/',$scope.user).success(function (loginResponse){
-			
-				if(loginResponse.user!=null){
-					var path = "/propiedadesCR/app#/home";
-					$rootScope.userLogged = loginResponse.user;
-	    			window.location.href = path;
 				
+				if(loginResponse.code ==200){
+					var path = "/propiedadesCR/app#/home";
+					
+	    			window.location.href = path;
+				}else{
+					$scope.incorrect = false;
 				}
-			});
+				
+					
+			});			
+					
 	
 		}
 		

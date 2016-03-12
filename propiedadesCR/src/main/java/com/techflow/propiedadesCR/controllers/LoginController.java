@@ -14,6 +14,7 @@
 package com.techflow.propiedadesCR.controllers;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -48,13 +49,20 @@ public class LoginController {
 	    */	
 	@RequestMapping(value="/checkUser", method = RequestMethod.POST)
 	public LoginResponse getCheckedUser(@RequestBody LoginRequest ploginRequest) {
-		
+		//HttpSession currentSession = httpRequest.getSession();
 		LoginResponse response = new LoginResponse();
 		
 		UserPOJO userLogged = loginService.checkUser(ploginRequest);
-		
-		response.setUser(userLogged);
-		httpRequest.getSession().setAttribute("userLogged", userLogged);
+	
+		if(userLogged==null){
+			response.setCode(401);
+			response.setErrorMessage("Unauthorized User");
+		}else{
+			response.setCode(200);
+			response.setUser(userLogged);
+			httpRequest.getSession().setAttribute("userLogged", userLogged);
+			//currentSession.setAttribute("idUser", userLogged.getIdUser());
+		}
 		
 		return response;
 	}

@@ -2,7 +2,7 @@ package com.techflow.propiedadesCR.contracts;
 
 import com.techflow.propiedadesCR.pojo.UserPOJO;
 
-public class LoginResponse {
+public class LoginResponse extends BaseResponse{
 
 	UserPOJO user;
 

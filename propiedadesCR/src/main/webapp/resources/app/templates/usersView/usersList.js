@@ -25,6 +25,7 @@
 		var init;
 		$http.post(link,request).success(function(response) {
 			$scope.users= response.users;
+			console.log($scope.users);
 			init();
 		
 			

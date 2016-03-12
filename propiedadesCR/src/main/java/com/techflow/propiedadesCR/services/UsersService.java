@@ -18,7 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.techflow.propiedadesCR.contracts.UsersRequest;
+import com.techflow.propiedadesCR.ejb.Trole;
 import com.techflow.propiedadesCR.ejb.Tuser;
+import com.techflow.propiedadesCR.pojo.RolePOJO;
 import com.techflow.propiedadesCR.pojo.UserPOJO;
 import com.techflow.propiedadesCR.repositories.UsersRepository;
 
@@ -56,8 +58,12 @@ public class UsersService implements UsersServiceInterface{
 	private List<UserPOJO> generateUserDtos(List<Tuser> pusers) {
 		List<UserPOJO> uiUsers = new ArrayList<UserPOJO>();
 		pusers.stream().forEach(u -> {
+			Trole role =u.getTrole();			
+			RolePOJO rolePOJO = new RolePOJO();
 			UserPOJO dto = new UserPOJO();
+			BeanUtils.copyProperties(role, rolePOJO);
 			BeanUtils.copyProperties(u, dto);
+			dto.setRole(rolePOJO);
 			uiUsers.add(dto);
 		});
 		return uiUsers;
@@ -67,21 +73,36 @@ public class UsersService implements UsersServiceInterface{
 	  * Este método registra un usuario en el sistema.
 	  *
 	  * @param puserRequest Encapsula los datos requeridos por el usuario.
+	  * @param pidRole Identificador del rol asignado al usuario
       * 
 	  * @return nuser Retorna el usuario creado.
 	  */
 	@Override
-	public Tuser saveUser(UsersRequest puserRequest) {
+	public Tuser saveUser(UsersRequest puserRequest, int pidRole) {
 		
 		Tuser user = new Tuser();
+		Trole role = new Trole();
+		role.setIdRole(pidRole);
 		BeanUtils.copyProperties(puserRequest.getUser(), user);
+		user.setTrole(role);
+		StringBuffer md5password = new StringBuffer();
+    	
+        MessageDigest md;
 		try {
-			MessageDigest messageDigest = MessageDigest.getInstance("MD5");
-			user.setPassword(messageDigest.digest(user.getPassword().getBytes()).toString());
+			md = MessageDigest.getInstance("MD5");
+			md.update(puserRequest.getUser().getPassword().getBytes());
+		        
+		        byte byteData[] = md.digest();
+		        //convert the byte to hex format method 1
+		       
+		        for (int i = 0; i < byteData.length; i++) {
+		         md5password.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+		         user.setPassword(md5password.toString());
+		        }
 		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 		Tuser nuser = usersRepository.save(user);
 		
 		return nuser;
@@ -96,7 +117,7 @@ public class UsersService implements UsersServiceInterface{
 	  * @return userPOJO Retorna el usuario consultado.
 	  */
 	@Override
-	public UserPOJO attendUser(int pidUser){
+	public UserPOJO consultUser(int pidUser){
 		
 		Tuser nuser = usersRepository.findByIdUser(pidUser);
 		UserPOJO userPOJO =null;

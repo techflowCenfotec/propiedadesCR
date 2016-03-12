@@ -3,38 +3,36 @@
 
 	angular.module("app.route", ["ui.router"])
 
-	.config(["$stateProvider","$urlRouterProvider", function(e,a){ 
+	.config(["$stateProvider","$urlRouterProvider", function($stateProvider,$urlRouterProvider){ 
 		
 		var n,t;
 		n = [
 			"templates/loginView/login"
-			,"templates/reportsView/reports"
-
 
 		], 
 
-		t = function(a) {
+		t = function($urlRouterProvider) {
 
 			var n, t;
 
-			return t = "/" + a,
+			return t = "/" + $urlRouterProvider,
 
 			n = { 
 				url: t,
-				templateUrl: "resources/app/" + a + ".html"
+				templateUrl: "resources/app/" + $urlRouterProvider + ".html"
 			},
 			
-			e.state(a,n),e
+			$stateProvider.state($urlRouterProvider,n),$stateProvider
 		},
 			
-		n.forEach(function(e) {
-			return t(e)
+		n.forEach(function($stateProvider) {
+			return t($stateProvider)
 		}),
 			
-		a.when("/","/login")
-		.otherwise("/login"),
+		$urlRouterProvider.when("/","/login")
+		.otherwise('/login');
 
-		e.state( "login", {
+		$stateProvider.state( "login", {
 			url:"/login",
 			templateUrl:"resources/app/templates/loginView/login.html"
 		})

@@ -12,7 +12,7 @@ package com.techflow.propiedadesCR.pojo;
 
 import java.util.Date;
 
-import com.techflow.propiedadesCR.ejb.Trole;
+
 
 public class UserPOJO {
 	
@@ -71,7 +71,7 @@ public class UserPOJO {
 	/**
      * Rol asignado al usuario.
      */
-	private Trole role;
+	private RolePOJO role;
 	
 
 	public UserPOJO() {
@@ -156,10 +156,11 @@ public class UserPOJO {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public Trole getRole() {
+	public RolePOJO getRole() {
 		return role;
 	}
-	public void setRole(Trole prole) {
-		this.role = prole;
-	}                        
+	public void setRole(RolePOJO trole) {
+		this.role = trole;
+	}
+	                        
 }

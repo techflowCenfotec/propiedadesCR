@@ -7,12 +7,9 @@
 		
 		$scope.user={};
 		
-		
-		
-		
-		var link = 'rest/protected/users/getAttendUser/3';
+		var link = 'rest/protected/users/getUserById/'+localStorage.getItem('idUser');
 		$http.get(link).success(function(response) {
-			 
+		
 			  $scope.user = response.user;
 			   
 			  return $scope.user;

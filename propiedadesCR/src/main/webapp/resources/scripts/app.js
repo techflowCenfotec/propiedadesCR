@@ -145,12 +145,16 @@ function(){
 				t.scrollTo(0,0)
 			})
 			e.user ={};
-			
+			e.userLogged = {};
 			var link = 'rest/protected/users/getUserLogged';
 			
 			$http.get(link).success(function(response){
+				localStorage.setItem('userLogged',response.user);
 				e.user = response.user;
-				$rootScope.userLogged = e.user;
+				$rootScope.userLogged = response.user;
+				e.userLogged = localStorage.getItem('userLogged');
+				console.log('LocalStorage', e.userLogged);
+				console.log('Respuesta',response.user);
 				return e.user;
 			});
 			e.consultMyProfile = function(myId){
