@@ -23,4 +23,5 @@ public interface PropertiesRepository extends CrudRepository<Tproperty, Integer>
 	  * @return List<Tproperty> Las entidades del tipo
 	  */
 	List<Tproperty> findAll();
+//	Tproperty findFirstByidProperty(int pidProperty);
 }

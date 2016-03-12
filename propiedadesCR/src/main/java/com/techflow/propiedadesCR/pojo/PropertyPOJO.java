@@ -76,6 +76,7 @@ public class PropertyPOJO {
 	
 	public PropertyPOJO() {
 		super();
+		this.tdistrict = new DistrictPOJO();
 	}
 
 	public int getIdProperty() {

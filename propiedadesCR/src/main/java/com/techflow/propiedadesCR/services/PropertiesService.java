@@ -69,24 +69,24 @@ public class PropertiesService implements PropertiesServiceInterface {
 			PropertyImagePOJO image = new PropertyImagePOJO();
 			List<PropertyImagePOJO> imgList = new ArrayList<PropertyImagePOJO>();
 			
-			Tdistrict tdist = districtService.getDistrictById(u.getTdistrict().getIdDisctrict());
-			BeanUtils.copyProperties(tdist, district);
+			//Tdistrict tdist = districtService.getDistrictById(u.getTdistrict().getIdDisctrict());
+			//BeanUtils.copyProperties(tdist, district);
 			
 			//Debería traer una lista desde el servivio
 			//Implementar método en el repositorio [PENDIENTE]
-			TpropertyImage img = imageService.getImageById(u.getIdProperty());
-			BeanUtils.copyProperties(img, image);
-			imgList.add(image);
-			
+			//TpropertyImage img = imageService.getImageById(u.getIdProperty());
+			//BeanUtils.copyProperties(img, image);
+			//imgList.add(image);
 			BeanUtils.copyProperties(u, dto);
-			dto.setTbenefits(null);
-			dto.setTdistrict(district);
-			dto.setTpropertyType(null);
-			dto.setTuser(null);
-			dto.setTpropertyComments(null);
-			dto.setTpropertyRatings(null);
-			dto.setTusers(null);
-			dto.setTpropertyImages(imgList);
+			BeanUtils.copyProperties(u.getTdistrict(), dto.getTdistrict());
+//			dto.setTbenefits(null);
+//			dto.setTdistrict(district);
+//			dto.setTpropertyType(null);
+//			dto.setTuser(null);
+//			dto.setTpropertyComments(null);
+//			dto.setTpropertyRatings(null);
+//			dto.setTusers(null);
+//			dto.setTpropertyImages(imgList);
 			uiProperties.add(dto);
 		});
 		return uiProperties;
