@@ -84,6 +84,7 @@
 
         <script src="resources/app/templates/eventsView/createEvent.js"></script>
         <script src= "resources/app/templates/eventsView/eventsList.js"></script>
+        <script src= "resources/app/templates/eventsView/eventConsult.js"></script>
 
         <script src="resources/app/templates/homeView/home.js"></script>
         

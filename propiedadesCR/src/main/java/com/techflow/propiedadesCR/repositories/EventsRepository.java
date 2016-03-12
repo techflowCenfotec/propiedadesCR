@@ -16,6 +16,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.techflow.propiedadesCR.contracts.EventsRequest;
 import com.techflow.propiedadesCR.ejb.Tevent;
+import com.techflow.propiedadesCR.pojo.EventPOJO;
 
 public interface EventsRepository extends CrudRepository<Tevent, Integer>{
 	/**
@@ -24,6 +25,14 @@ public interface EventsRepository extends CrudRepository<Tevent, Integer>{
 	  * @return List<event> Retorna la respuesta de la BD hacia el servicio. 
 	  */
 	List<Tevent> findAll();
+	
+	/**
+	 * Este método retorna el evento encontrado por el id del mismo.
+	 * @param pid
+	 * @return Tevent Retorna la respuesta de la BD hacia el servicio. 
+	 */
+	
+	Tevent findByIdEvent(int pid);
 	
 }
 

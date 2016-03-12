@@ -13,8 +13,9 @@
 			,"templates/usersView/usersList"
 			,"templates/usersView/createUser",			
 
-			,"templates/eventsView/createEvent",
-			 "templates/eventsView/eventsList"
+			,"templates/eventsView/createEvent"
+			,"templates/eventsView/eventsList"
+			,"templates/eventsView/eventConsult"
 
 		], 
 

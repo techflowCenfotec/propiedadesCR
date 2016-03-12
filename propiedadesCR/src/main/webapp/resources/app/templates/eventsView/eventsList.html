@@ -17,8 +17,9 @@
                             <p>{{events.description}}</p>
                         </div>
                         <div class="card-action">
-                            <a href="javascript:;">Asistir a evento</a>
-                            <a href="javascript:;" class="color-primary">Consultar evento</a>
+                            <a href="#">Asistir a evento</a>
+                            <a class="color-primary"
+                             data-ng-click="consultEvent(events.idEvent)" href="#/templates/eventsView/eventConsult">Consultar evento</a>
                         </div>
                     </div>            
                 </div>  

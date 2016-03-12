@@ -95,7 +95,7 @@ public class Tevent implements Serializable {
 	}
 
 
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@Column(name="start_date")
 	public Date getStartDate() {
 		return this.startDate;

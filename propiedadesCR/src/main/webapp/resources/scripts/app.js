@@ -7,13 +7,16 @@
 
 		// Custom Feature modules
 		,"app.route"
+		
 
 		// 3rd party feature modules
 		,"mgo-angular-wizard"
 		,"ui.tree"
 		,"ngMap"
 		,"textAngular"
-		])
+		]).run(['$rootScope',function($rootScope){
+			$rootScope.event ={};
+		}]);
 }(),
 
 function() {
@@ -36,6 +39,7 @@ function() {
 
 		,"app.events"
 		,"app.eventsList"
+		,"app.eventConsult"
 
 
 		//3rd Party Modules

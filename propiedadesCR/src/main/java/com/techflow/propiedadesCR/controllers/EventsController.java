@@ -11,6 +11,7 @@ package com.techflow.propiedadesCR.controllers;
 
 import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -64,6 +65,7 @@ public class EventsController {
 		
 		return response;
 	}
+	
 	/**
 	 * 
 	 * Este método envía los datos a la base de datos para registrar el evento.
@@ -123,6 +125,20 @@ public class EventsController {
 		return response;
 		
     }
+	/**
+	 * Este método trae el evento por el id recibido.
+	 * @param peventRequest Encapsula la información solicitada por el usuario.
+	 * @return response Se retorna la respuesta del Backend al Frondend.
+	 */
+	
+	@RequestMapping(value="/getById/{pidEvent}",method = RequestMethod.GET)
+	 public EventsResponse getById(@PathVariable int pidEvent){
+		EventsResponse response = new EventsResponse();
+		response.setCode(200);
+		response.setCodeMessage("events fetch success");
+		response.setEvent(eventsService.getById(pidEvent));
+		return response;
+	}
   }
  
 
