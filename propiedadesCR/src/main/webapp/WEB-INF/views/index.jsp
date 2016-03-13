@@ -83,10 +83,12 @@
         <script src="resources/app/templates/homeView/home.js"></script>
         
         <script src="resources/app/templates/propertiesView/propertiesList.js"></script>
- 	<script src="resources/app/templates/propertiesView/propertiesCreate.js"></script>
+ 		<script src="resources/app/templates/propertiesView/propertiesCreate.js"></script>
+ 		
         <script src="resources/app/templates/usersView/usersList.js"></script>
         <script src="resources/app/templates/usersView/createUser.js"></script>
-         <script src="resources/app/templates/usersView/consultUser.js"></script>
+        <script src="resources/app/templates/usersView/consultUser.js"></script>
+        <script src="resources/app/templates/usersView/modifyUser.js"></script>
         
         
         <script src="resources/app/templates/eventsView/createEvent.js"></script>

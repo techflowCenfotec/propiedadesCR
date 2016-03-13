@@ -123,11 +123,40 @@ public class UsersService implements UsersServiceInterface{
 		UserPOJO userPOJO =null;
 		
 		if (null != nuser){
+			Trole role =nuser.getTrole();			
+			RolePOJO rolePOJO = new RolePOJO();
+			BeanUtils.copyProperties(role, rolePOJO);
 			userPOJO = new UserPOJO();
+			userPOJO.setRole(rolePOJO);
 			BeanUtils.copyProperties(nuser, userPOJO);
 		}	
 		return userPOJO;
 		
 	}
+	
+	/**
+	  * Este método modifica un usuario en el sistema.
+	  *
+	  * @param puserRequest Encapsula los datos requeridos por el usuario.
+	  * @param pidRole Identificador del rol asignado al usuario
+      * 
+	  * @return nuser Retorna el usuario creado.
+	  */
+	@Override
+	public Tuser modifyUser(UsersRequest puserRequest, int pidRole) {
+		
+		Tuser user = new Tuser();
+		Trole role = new Trole();
+		role.setIdRole(pidRole);
+		BeanUtils.copyProperties(puserRequest.getUser(), user);
+		user.setTrole(role);
+		Tuser nuser = usersRepository.save(user);
+		
+		return nuser;
+	
+	}
+
+
+	
 
 }
