@@ -32,7 +32,6 @@ public class QuestionsService implements QuestionsServiceInterface{
 			QuestionPOJO dto = new QuestionPOJO();
 			BeanUtils.copyProperties(u, dto);
 			
-			//dto.getToptions1();
 			List<OptionPOJO> uioptions = new ArrayList<OptionPOJO>();
 			u.getToptions2().stream().forEach(opt->{
 				OptionPOJO dtoOption = new OptionPOJO();
@@ -45,9 +44,6 @@ public class QuestionsService implements QuestionsServiceInterface{
 			});
 			dto.setToptions2(uioptions);
 			
-			
-//			dto.setToptions1(null);
-//			dto.setTanswers(null);
 			
 			uiquestions.add(dto);
 		});

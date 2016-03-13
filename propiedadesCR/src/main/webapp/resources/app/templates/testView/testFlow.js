@@ -5,14 +5,17 @@
 	.controller('testFlowController',['$scope','$http', '$timeout', 'WizardHandler',function($scope,$http, $timeout, WizardHandler){
 
 		//necesario para guardar las respuestas
-		var userId;
+		var userId = 1;
 
 		//historial de preguntas respondidas
 		var questionsAnswered = [];
 
+		//comprobar si se acabo
+		//var finished = false;
+
 		//respuestas
 		$scope.answers = [];
-		
+		var userAnswers = [];
 		//preguntas
 		var restLink = "rest/protected/questions/getQuestionsWithOptions";
 		var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "","searchTerm": "","question": {}};
@@ -21,6 +24,22 @@
 			console.log(response);
 		});
 		
+		function saveSurvey(){
+			var userSurvey =  {"tanswers": $scope.answers,"tuser": {"idUsuario":userId}};
+
+			var saveLink = "rest/protected/usersurveys/create";
+			var userSurveyRequest = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "","searchTerm": "","userSurvey": userSurvey};
+			
+			$http.post(saveLink, userSurveyRequest).success(function(response) {
+				//$scope.questions = response.questions;
+				console.log(response);
+			});
+		};
+
+		$scope.generateMatchResult = function(){
+
+		};
+
 		// [{"id":1,"question":"Que?","options":[{
 		// 	"id":1,
 		// 	"option":"si",
@@ -83,54 +102,70 @@
 
 			if(option.result != ""){
 				if(!answerAlreadyExist(option, idQuestion)){
-					$scope.answers.push({"idQuestion":idQuestion, "result":option.result});
+					$scope.answers.push({ "result":option.result, "tquestion": {"idQuestion":idQuestion} });
+					//userAnswers.push({"result":option.result, "tquestion": {"idQuestion":idQuestion,}});
 				}
 			}else{
 				answerAlreadyExist("delete", idQuestion)
 
 			}
+			console.log($scope.answers);
+			
 			getNextQuestion(option.idNextQuestion);
 
-			console.log($scope.answers);
+			//$scope.questions.push([]);
 		};	
+
+		function isFinished(pidNextQuestion){
+				if(pidNextQuestion == 0)
+					//redireccionar al listado de propiedades con match
+				console.log("finish him!!!")
+		};
 
 		function getNextQuestion(pidNextQuestion){
 			console.log(pidNextQuestion);
-			var steps = WizardHandler.wizard().getEnabledSteps();
-			for (var i = WizardHandler.wizard().currentStepNumber() ; i < $scope.questions.length; i++) {
-				console.log(WizardHandler.wizard().currentStepNumber());
-				if($scope.questions[i].idQuestion==pidNextQuestion){
-					//console.log($scope.questions[i]);
-					WizardHandler.wizard().currentStep().completed = true;
-					WizardHandler.wizard().goTo(i);
-					//WizardHandler.wizard().next();
-					break;
-				}
+			if(pidNextQuestion == 0){
+					console.log("finish him!!!");
+					saveSurvey();
+			}else{
+				var steps = WizardHandler.wizard().getEnabledSteps();
+				for (var i = WizardHandler.wizard().currentStepNumber() ; i < $scope.questions.length; i++) {
+					//console.log(WizardHandler.wizard().currentStepNumber());
+					//console.log(question[i].tquestion);
 
-				steps[i].completed = false;
-				answerAlreadyExist("delete",steps[i].title);
+					if($scope.questions[i].idQuestion ==pidNextQuestion){
+						//console.log($scope.questions[i]);
+						WizardHandler.wizard().currentStep().completed = true;
+						WizardHandler.wizard().goTo(i);
+						//WizardHandler.wizard().next();
+						break;
+					}
+					steps[i].completed = false;
+					answerAlreadyExist("delete",steps[i].title);
+				}
 			}
+
 		}
 
 		//comprobar si el usuario va cambiar alguna respuesta
 		function answerAlreadyExist(option, idQuestion){
 			if(option != "delete"){
 				for (var i = 0; i < $scope.answers.length; i++) {
-					if($scope.answers[i].idQuestion == idQuestion){
-						$scope.answers[i] = {"idQuestion":idQuestion, "result":option.result};
+					if($scope.answers[i].tquestion.idQuestion == idQuestion){
+						$scope.answers[i] = { "result":option.result, "tquestion": {"idQuestion":idQuestion} };
 						return true;
 					}
 				}
 			}else{
 				for (var i = 0; i < $scope.answers.length; i++) {
-					if($scope.answers[i].idQuestion == idQuestion){
+					if($scope.answers[i].tquestion.idQuestion == idQuestion){
 						$scope.answers.splice(i,1);
 						return true;
 					}
 				}
 			}
 			return false;
-		}
+		};
 
 		$scope.resetAnswers = function(){
 			$scope.answers = [];
