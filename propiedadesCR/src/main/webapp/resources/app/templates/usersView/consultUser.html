@@ -1,0 +1,38 @@
+<div class="page page-profile"
+	data-ng-controller="ConsultUserController">
+
+	<header class="profile-header">
+		<div class="profile-img">
+			<img alt="" src={{user.userImage}} class="img-circle" width=100
+				height=100>
+		</div>
+
+
+
+		<div class="profile-info">
+			<p>{{user.userName}} {{user.firstName}} {{user.lastName}}</p>
+
+		</div>
+	</header>
+
+	<div class="divider divider-lg"></div>
+
+
+
+	<div class="col-sm-8">
+		<div class="panel mini-box">
+			<h3>Fecha de nacimiento:</h3>
+			<p>{{user.birthday}}</p>
+
+
+
+			<h3>Correo</h3>
+			<p>{{user.email}}</p>
+
+
+
+		</div>
+	</div>
+
+	<div class="divider divider-lg"></div>
+	</div>

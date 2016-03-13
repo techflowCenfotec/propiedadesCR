@@ -1,18 +1,21 @@
 (function() {
 	"use strict";
 
-	angular.module("app.properties",[])
+	angular.module('app.properties',[])
 
-	.controller("PropertiesController",["$scope","$http",function(e,a) {
-
-		var conn="/rest/protected/properties/getAll";
-		e.properties=[],
-		e.requestObject={pageNumber:0,pageSize:0,direction:"",sortBy:[""],searchColumn:"string",searchTerm:"",user:{}},
-		a.post(conn,e.requestObject)
-		.success(function(e){
-			console.log(e)
-		}).error(function(e) {
-			console.log(e)
-		})
-	}])
+	.controller('PropertiesListController', ['$scope', '$http', PropertiesListController]);
+	
+	function PropertiesListController($scope, $http) {
+		 $scope.propertiesList = [];
+		
+		$scope.init = function() {
+			$http.get('rest/protected/properties/getAll')
+			.success(function(response) {
+				$scope.propertiesList = response.properties;
+			});
+		};
+		
+		$scope.init();
+	}
+	
 })();
