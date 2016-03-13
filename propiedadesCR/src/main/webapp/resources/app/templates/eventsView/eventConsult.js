@@ -20,13 +20,16 @@
 			   
 			  return $scope.event;
 		});
-		$scope.attendEvent = function(ev){
-			$scope.showAlert(ev);
+		$scope.attendEvent = function(event){
+			$scope.showAlert(event);
 		}
-	      $scope.showAlert = function(ev) {
-	            // Appending dialog to document.body to cover sidenav in docs app
-	            // Modal dialogs should fully cover application
-	            // to prevent interaction outside of dialog
+		
+	      $scope.showAlert = function(event) {
+	    	  var req = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","eventP": $scope.event,"userEmail":"jorge.argds@gmail.com"};
+	    	  
+		           $http.post('rest/protected/email/sendEmail',req).success(function(){
+	        	   
+	           });
 	            $mdDialog.show(
 	                $mdDialog.alert()
 	                    .parent(angular.element(document.querySelector('#popupContainer')))
@@ -36,8 +39,9 @@
 	                    		'con la información del evento.')
 	                    .ariaLabel('Confirmación de evento')
 	                    .ok('Aceptar')
-	                    .targetEvent(ev)
+	                    .targetEvent(event)
 	            );
 	        };
+	   
 	}]);
 })();

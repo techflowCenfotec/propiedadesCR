@@ -78,7 +78,7 @@ public class EventsController {
 	 * @return response Retorna la respuesta del BackEnd al FrondEnd
 	 * 
 	 * @throws ParseException Esta exepción se lanza cuando el sistema es incapaz de transformar
-	 * el String pstartDate a startDate ques es de tipo Date.
+	 * el String pstartDate a startDate que es de tipo Date.
 	 */
 	
 	@RequestMapping(value="/create", method = RequestMethod.POST)
@@ -127,7 +127,7 @@ public class EventsController {
     }
 	/**
 	 * Este método trae el evento por el id recibido.
-	 * @param peventRequest Encapsula la información solicitada por el usuario.
+	 * @param pidEvent Identificador del evento.
 	 * @return response Se retorna la respuesta del Backend al Frondend.
 	 */
 	

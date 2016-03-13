@@ -1,3 +1,11 @@
+/**
+ * <h1>Controlador de correo</h1>
+ * Esta clase es  encargada de recibir la información entre el BackEnd y el FrondEnd
+ * 
+ * @author María Jesús Gutiérrez Calvo.
+ * @version 1.0
+ * @since 12/03/2016
+ */
 package com.techflow.propiedadesCR.controllers;
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -8,28 +16,36 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techflow.propiedadesCR.contracts.EventsRequest;
+import com.techflow.propiedadesCR.contracts.MailRequest;
+import com.techflow.propiedadesCR.pojo.EventPOJO;
 
 import java.util.Properties;
 
 import javax.activation.*;
 
+
 @RestController
 @RequestMapping(value="rest/protected/email")
 public class MailController {
 	
+	/**
+	 * Este método envía el correo.
+	 * @param pmailInformation Encapsula la información del correo.
+	 * @exception IOException Esta excepción se lanza cuando ocurre un error al enviar el correo.
+	 */
 	
-	@RequestMapping(value="/sendEmail", method = RequestMethod.GET)
-	public void sendEmail(){
-	
-		// Recipient's email ID needs to be mentioned.
-	      String to = "m.gutierrez2030@gmail.com";//change accordingly
+	@RequestMapping(value="/sendEmail", method = RequestMethod.POST)
+	public void sendEmail(@RequestBody MailRequest pmailInformation){
+		  System.out.println(pmailInformation);
+		  EventPOJO event = pmailInformation.getEventP();
+		  
+	      String to = pmailInformation.getUserEmail();
+	      
+	      String from = "propiedadescr.tech@gmail.com";
+	      final String username = "propiedadescr.tech@gmail.com";
+	      final String password = "mjjvwTechflow";
 
-	      // Sender's email ID needs to be mentioned
-	      String from = "propiedadescr.tech@gmail.com";//change accordingly
-	      final String username = "propiedadescr.tech@gmail.com";//change accordingly
-	      final String password = "mjjvwTechflow";//change accordingly
-
-	      // Assuming you are sending email through relay.jangosmtp.net
+	      
 	      String host = "smtp.gmail.com";
 
 	      Properties props = new Properties();
@@ -38,7 +54,7 @@ public class MailController {
 	      props.put("mail.smtp.host", host);
 	      props.put("mail.smtp.port", "587");
 
-	      // Get the Session object.
+	      
 	      Session session = Session.getInstance(props,
 	      new javax.mail.Authenticator() {
 	         protected PasswordAuthentication getPasswordAuthentication() {
@@ -47,49 +63,36 @@ public class MailController {
 	      });
 
 	      try {
-	         // Create a default MimeMessage object.
+	         
 	         Message message = new MimeMessage(session);
 
-	         // Set From: header field of the header.
+	         
 	         message.setFrom(new InternetAddress(from));
 
-	         // Set To: header field of the header.
+	        
 	         message.setRecipients(Message.RecipientType.TO,
 	         InternetAddress.parse(to));
 
-	         // Set Subject: header field
+	         
 	         message.setSubject("Información de evento");
 
-	         // Now set the actual message
-	         message.setText("Buenas, "
-	         		+ "En el presente correo encontrará la información del evento"
-	         		+ "Lugar: "
-	         		+ "Fecha:"
-	         		+ "Hora:"
-	         		+ "Descripción del evento:"
-	         		+ "Gracias por utilizar la aplicación PropiedadesCR");
+	         
+	         message.setText("Buenas, \n"
+	         		+ "\n En el presente correo encontrará la información del evento"
+	         		+ "\n Lugar: "+"por definir"
+	         		+ "\n Fecha:"+ event.getStartDate().toString()
+	         		+ "\n Hora: "+ "por definir"
+	         		+ "\n Descripción del evento:"+ event.getDescription()
+	         		+ "\n Gracias por utilizar la aplicación PropiedadesCR");
 
-	         // Send message
+	         
 	         Transport.send(message);
 
-	         System.out.println("Sent message successfully....");
+	        
 
 	      } catch (MessagingException e) {
 	            throw new RuntimeException(e);
 	      }
 	}
 }
-class GMailAuthenticator extends Authenticator {
-    String user;
-    String pw;
-    public GMailAuthenticator (String username, String password)
-    {
-       super();
-       this.user = username;
-       this.pw = password;
-    }
-   public PasswordAuthentication getPasswordAuthentication()
-   {
-      return new PasswordAuthentication(user, pw);
-   }
-}
+
