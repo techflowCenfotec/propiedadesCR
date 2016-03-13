@@ -14,7 +14,7 @@
   <script src='resources/swagger/lib/jquery.wiggle.min.js' type='text/javascript'></script>
   <script src='resources/swagger/lib/jquery.ba-bbq.min.js' type='text/javascript'></script>
   <script src='resources/swagger/lib/handlebars-2.0.0.js' type='text/javascript'></script>
-  <script src='resources/swagger/lib/underscore-min.js' type='text/javascript'></script>
+  <script src='resources/bower_components/underscore/underscore-min.js' type='text/javascript'></script>
   <script src='resources/swagger/lib/backbone-min.js' type='text/javascript'></script>
   <script src='resources/swagger/swagger-ui.js' type='text/javascript'></script>
   <script src='resources/swagger/lib/highlight.7.3.pack.js' type='text/javascript'></script>

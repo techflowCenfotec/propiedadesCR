@@ -99,8 +99,13 @@ public class EventsController {
 		}
 		
 		EventsResponse response = new EventsResponse();
-		String resultFileName = Utils.writeToFile(pfile, servletContext);
 		
+		String resultFileName;
+		
+		if(pfile.getOriginalFilename().equals("default_events_image_PropiedadesCR.png"))
+			 resultFileName = "http://localhost:8080/propiedadesCR/resources/images/default_events_image.png";
+			else			
+			 resultFileName = Utils.writeToFile(pfile,servletContext);
 		
 		if(!resultFileName.equals("")){
 			EventPOJO  event = new EventPOJO();
