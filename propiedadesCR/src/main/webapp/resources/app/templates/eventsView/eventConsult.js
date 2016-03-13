@@ -25,7 +25,7 @@
 		}
 		
 	      $scope.showAlert = function(event) {
-	    	  var req = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","eventP": $scope.event,"userEmail":"jorge.argds@gmail.com"};
+	    	  var req = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","eventP": $scope.event,"userEmail":$rootScope.userLogged.email};
 	    	  
 		           $http.post('rest/protected/email/sendEmail',req).success(function(){
 	        	   

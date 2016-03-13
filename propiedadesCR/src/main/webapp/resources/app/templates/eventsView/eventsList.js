@@ -3,7 +3,7 @@
 
 	angular.module("app.eventsList",[])
 
-	.controller("EventsListController",["$scope","$http",'$mdDialog',function($scope,$http,$mdDialog) {
+	.controller("EventsListController",["$scope","$http",'$mdDialog','$rootScope',function($scope,$http,$mdDialog,$rootScope) {
 		$scope.events = [];
 		
 		
@@ -26,7 +26,8 @@
 		}
 		
 	      $scope.showAlert = function(event) {
-	    	  var req = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","eventP": event,"userEmail":"jorge.argds@gmail.com"};
+	    	  console.log($rootScope.userLogged.email);
+	    	  var req = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","eventP": event,"userEmail":$rootScope.userLogged.email};
 	    	  
 		           $http.post('rest/protected/email/sendEmail',req).success(function(){
 	        	   

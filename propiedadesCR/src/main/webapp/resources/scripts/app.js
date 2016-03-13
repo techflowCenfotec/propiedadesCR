@@ -7,24 +7,17 @@
 
 		// Custom Feature modules
 		,"app.route"
-<<<<<<< HEAD
-		
-=======
 		,"flow"
->>>>>>> 16902d5c5e93c0f8b187ab5ff6478890f578c144
+
 
 		// 3rd party feature modules
 		,"mgo-angular-wizard"
 		,"ui.tree"
 		,"ngMap"
 		,"textAngular"
-<<<<<<< HEAD
-		]).run(['$rootScope',function($rootScope){
-			$rootScope.event ={};
-=======
 		]).run(['$rootScope', function($rootScope){
 			$rootScope.userLogged = null;
->>>>>>> 16902d5c5e93c0f8b187ab5ff6478890f578c144
+			$rootScope.event ={};
 		}]);
 }(),
 
@@ -48,9 +41,8 @@ function() {
 		
 		,"app.events"
 		,"app.eventsList"
-<<<<<<< HEAD
 		,"app.eventConsult"
-=======
+
 		
 		,"app.createUsers"
 		,"app.usersList"
@@ -58,7 +50,7 @@ function() {
 	
 		,"app.banktodolist"
 		,"app.banktodolistCreate"
->>>>>>> 16902d5c5e93c0f8b187ab5ff6478890f578c144
+
 
 		,"app.properties.create"
 

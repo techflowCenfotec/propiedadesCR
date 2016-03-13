@@ -16,16 +16,16 @@
 
 			,"templates/eventsView/createEvent"
 			,"templates/eventsView/eventsList"
-<<<<<<< HEAD
+
 			,"templates/eventsView/eventConsult"
-=======
+
 			
 			,"templates/roleView/roles"
 			,"templates/roleView/addRoles"
 			
 			, "templates/banktodolistView/banktodolistList"
 			,"templates/banktodolistView/banktodolistCreate"
->>>>>>> 16902d5c5e93c0f8b187ab5ff6478890f578c144
+
 
 			,"templates/propertiesView/propertiesCreate"
 		], 

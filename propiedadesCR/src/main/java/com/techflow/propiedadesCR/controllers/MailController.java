@@ -15,13 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.techflow.propiedadesCR.contracts.EventsRequest;
 import com.techflow.propiedadesCR.contracts.MailRequest;
 import com.techflow.propiedadesCR.pojo.EventPOJO;
 
 import java.util.Properties;
 
-import javax.activation.*;
+
 
 
 @RestController
