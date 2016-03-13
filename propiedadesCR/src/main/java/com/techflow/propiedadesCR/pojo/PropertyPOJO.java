@@ -72,6 +72,9 @@ public class PropertyPOJO {
 	
 	public PropertyPOJO() {
 		super();
+		this.tdistrict = new DistrictPOJO();
+		this.tpropertyType = new PropertyTypePOJO();
+		this.tuser = new UserPOJO();
 	}
 
 	public int getIdProperty() {

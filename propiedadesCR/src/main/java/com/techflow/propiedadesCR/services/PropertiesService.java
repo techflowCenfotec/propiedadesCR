@@ -12,10 +12,17 @@ import com.techflow.propiedadesCR.contracts.PropertiesRequest;
 import com.techflow.propiedadesCR.ejb.Tbenefit;
 import com.techflow.propiedadesCR.ejb.Tdistrict;
 import com.techflow.propiedadesCR.ejb.Tproperty;
+import com.techflow.propiedadesCR.ejb.TpropertyComment;
+import com.techflow.propiedadesCR.ejb.TpropertyImage;
+import com.techflow.propiedadesCR.ejb.TpropertyRating;
 import com.techflow.propiedadesCR.ejb.TpropertyType;
+import com.techflow.propiedadesCR.pojo.BenefitsPOJO;
+import com.techflow.propiedadesCR.pojo.CommentsPOJO;
 import com.techflow.propiedadesCR.pojo.DistrictPOJO;
+import com.techflow.propiedadesCR.pojo.PropertyImagePOJO;
 import com.techflow.propiedadesCR.pojo.PropertyPOJO;
 import com.techflow.propiedadesCR.pojo.PropertyTypePOJO;
+import com.techflow.propiedadesCR.pojo.RatingPOJO;
 import com.techflow.propiedadesCR.repositories.PropertiesRepository;
 
 /**
@@ -66,33 +73,78 @@ public class PropertiesService implements PropertiesServiceInterface {
 		List<PropertyPOJO> uiProperties = new ArrayList<PropertyPOJO>();
 		pProperties.stream().forEach(u -> {
 			PropertyPOJO dto = new PropertyPOJO();
-//			PropertyImagePOJO image = new PropertyImagePOJO();
-//			List<PropertyImagePOJO> imgList = new ArrayList<PropertyImagePOJO>();
-//			
-//			Tdistrict tdist = districtService.getDistrictById(u.getTdistrict().getIdDisctrict());
-//			BeanUtils.copyProperties(tdist, district);
-//			
-//			//Debería traer una lista desde el servivio
-//			//Implementar método en el repositorio [PENDIENTE]
-//			TpropertyImage img = imageService.getImageById(u.getIdProperty());
-//			BeanUtils.copyProperties(img, image);
-//			imgList.add(image);
-			
 			BeanUtils.copyProperties(u, dto);
-			BeanUtils.copyProperties(u.getTbenefits(), dto.getTbenefits());
 			BeanUtils.copyProperties(u.getTdistrict(), dto.getTdistrict());
 			BeanUtils.copyProperties(u.getTpropertyType(), dto.getTpropertyType());
-//			dto.setTbenefits(null);
-//			dto.setTdistrict(district);
-//			dto.setTpropertyType(null);
+			dto.setTbenefits(null);
 			dto.setTuser(null);
+			dto.setTpropertyImages(imagesDtos(u.getTpropertyImages()));
 			dto.setTpropertyComments(null);
 			dto.setTpropertyRatings(null);
 			dto.setTusers(null);
-			dto.setTpropertyImages(null);
 			uiProperties.add(dto);
 		});
 		return uiProperties;
+	}
+	
+	/**
+	  * Toma los beneficios de los ejbs y los convierte en POJOs.
+	  * 
+	  * @param pBenefits Lista de ejb de beneficios. No debe ser nula.
+	  * @return benList Todas las entidades de tipo POJO.
+	  */
+	private List<BenefitsPOJO> benefitsDtos(List<Tbenefit> pBenefits) {
+		List<BenefitsPOJO> benefitsList = new ArrayList<BenefitsPOJO>();
+		pBenefits.stream().forEach(u -> {
+			BenefitsPOJO dto =  new BenefitsPOJO();
+			BeanUtils.copyProperties(u, dto);
+			benefitsList.add(dto);
+		});
+		return benefitsList;
+	}
+	
+	/**
+	  * Toma las imágenes de los ejbs y los convierte en POJOs.
+	  * 
+	  * @param pImages Lista de ejb de imágenes. No debe ser nula.
+	  * @return imgList Todas las entidades de tipo POJO.
+	  */
+	private List<PropertyImagePOJO> imagesDtos(List<TpropertyImage> pImages) {
+		List<PropertyImagePOJO> imageList = new ArrayList<PropertyImagePOJO>();
+		pImages.stream().forEach(u -> {
+			PropertyImagePOJO dtoImg = new PropertyImagePOJO();
+			BeanUtils.copyProperties(u, dtoImg);
+			imageList.add(dtoImg);
+		});
+		return imageList;
+	}
+	
+	/**
+	  * Toma los comentarios de los ejbs y los convierte en POJOs.
+	  * 
+	  * @param pComments Lista de ejb de comentarios. No debe ser nula.
+	  * @return commentsList Todas las entidades de tipo POJO.
+	  */
+	private List<CommentsPOJO> commentsDtos(List<TpropertyComment> pComments) {
+		List<CommentsPOJO> commentsList = new ArrayList<CommentsPOJO>();
+		pComments.stream().forEach(u -> {
+			
+		});
+		return commentsList;
+	}
+	
+	/**
+	  * Toma las calificaciones de los ejbs y los convierte en POJOs.
+	  * 
+	  * @param pRatings Lista de ejb de calificaciones. No debe ser nula.
+	  * @return ratingsList Todas las entidades de tipo POJO.
+	  */
+	private List<RatingPOJO> ratingDtos(List<TpropertyRating> pRatings) {
+		List<RatingPOJO> ratingsList = new ArrayList<RatingPOJO>();
+		pRatings.stream().forEach(u -> {
+			
+		});
+		return ratingsList;
 	}
 
 	/**
