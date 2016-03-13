@@ -8,6 +8,10 @@ public class UsersResponse extends BaseResponse {
 
 	private List<UserPOJO> users;
 	
+	private UserPOJO user;
+	
+
+
 	public UsersResponse() {
 		super();
 	}
@@ -16,7 +20,14 @@ public class UsersResponse extends BaseResponse {
 		return users;
 	}
 	
-	public void setUsers(List<UserPOJO> users) {
-		this.users = users;
+	public void setUsers(List<UserPOJO> pusers) {
+		this.users = pusers;
+	}
+	public UserPOJO getUser() {
+		return user;
+	}
+
+	public void setUser(UserPOJO puser) {
+		this.user = puser;
 	}
 }
