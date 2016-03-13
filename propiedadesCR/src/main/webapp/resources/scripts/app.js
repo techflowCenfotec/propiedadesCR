@@ -159,7 +159,7 @@ function(){
 				return e.user;
 			});
 			e.consultMyProfile = function(myId){
-				localStorage.setItem('idUserLogged',myId);
+				localStorage.setItem('idUserM',myId);
 			};
 			
 		}
