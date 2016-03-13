@@ -24,10 +24,12 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+
 import com.techflow.propiedadesCR.contracts.EventsRequest;
 import com.techflow.propiedadesCR.contracts.EventsResponse;
 import com.techflow.propiedadesCR.ejb.Tevent;
 import com.techflow.propiedadesCR.pojo.EventPOJO;
+import com.techflow.propiedadesCR.services.EventsService;
 import com.techflow.propiedadesCR.services.EventsServiceInterface;
 import com.techflow.propiedadesCR.utils.Utils;
 
@@ -144,6 +146,27 @@ public class EventsController {
 		response.setEvent(eventsService.getById(pidEvent));
 		return response;
 	}
+	/*
+	 * Este método elimina el evento por medio del ide del evento recibido.
+	 * @param pid Id del evento.
+	 * @return response Se retorna la respuesta del BackEnd al FrondEnd.
+	 */
+	
+	@RequestMapping(value ="/delete", method = RequestMethod.DELETE)
+	public EventsResponse delete(@RequestParam("id")  int pid){
+		
+		EventsResponse response = new EventsResponse();
+		Boolean state = eventsService.deleteEvent(pid);
+		
+		if(state){
+			response.setCode(200);
+			response.setCodeMessage("events delete success");
+			
+		}
+		return response;
+	}
+	
+	
   }
  
 

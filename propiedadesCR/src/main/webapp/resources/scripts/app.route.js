@@ -18,6 +18,7 @@
 			,"templates/eventsView/eventsList"
 
 			,"templates/eventsView/eventConsult"
+			,"templates/eventsView/eventListAdmin"
 
 			
 			,"templates/roleView/roles"

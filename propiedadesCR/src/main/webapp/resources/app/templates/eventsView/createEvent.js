@@ -12,7 +12,7 @@
 							'$location',
 							'$upload',
 							function($scope, $http, $location, $upload) {
-
+									
 								var original;
 								$scope.onError = false;
 								$scope.requestObject = {};
@@ -116,10 +116,11 @@
 								};
 
 								$scope.getDateWithFormat = function() {
+									var month= $scope.form.eventDate.getMonth()+1;
 									$scope.dateWithFormat = $scope.form.eventDate
 											.getFullYear()
 											+ '-'
-											+ $scope.form.eventDate.getMonth()
+											+ month
 											+ '-'
 											+ $scope.form.eventDate.getDate()
 											+ ' '

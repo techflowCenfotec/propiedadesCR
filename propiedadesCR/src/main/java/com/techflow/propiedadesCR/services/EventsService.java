@@ -90,5 +90,20 @@ public class EventsService implements EventsServiceInterface {
 	    }
 		return eventPOJO;
 	}
+	
+	@Override
+	/*
+	 * Este método elimina el evento por medio del id recibido.
+	 * @param pid Id del evento
+	 * @return true Si la acción se ejecutó se retorna true.
+	 * @return false Si la acción no se pudo ejecutar retorna un false.
+	 */
+	public Boolean deleteEvent(int pid) {
+		if(	eventsRepository.exists(pid)){	
+			eventsRepository.delete(pid);
+			return true;
+		}		
+		return false;
+	}
 
 }
