@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.techflow.propiedadesCR.contracts.PropertiesResponse;
 import com.techflow.propiedadesCR.contracts.UserSurveysRequest;
 import com.techflow.propiedadesCR.contracts.UserSurveysResponse;
 import com.techflow.propiedadesCR.ejb.TuserSurvey;
@@ -24,6 +25,14 @@ public class UserSurveysController {
 		if(userSurvey!=null)
 			response.setCodeMessage("nice nice");
 		return response;
+	}
+	
+	@RequestMapping(value="/generatematchbysurvey")
+	public PropertiesResponse GenerateMatchBySurvey(@RequestBody UserSurveysRequest puserSurveyRequest){
+		// lista de propiedades con beneficios
+		// lista con las respuestas del usuario
+		//calcular el porcentage del match
+		return null;
 	}
 
 }

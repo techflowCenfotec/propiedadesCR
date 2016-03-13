@@ -17,7 +17,7 @@
 		$scope.answers = [];
 		var userAnswers = [];
 		//preguntas
-		var restLink = "rest/protected/questions/getQuestionsWithOptions";
+		var restLink = "rest/protected/questions/getquestionswithoptions";
 		var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "","searchTerm": "","question": {}};
 		$http.post(restLink, request).success(function(response) {
 			$scope.questions = response.questions;

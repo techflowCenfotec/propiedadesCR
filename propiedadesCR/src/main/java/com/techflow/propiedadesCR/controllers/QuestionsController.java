@@ -16,7 +16,7 @@ public class QuestionsController {
 	
 	@Autowired private QuestionsServiceInterface questionsService;
 	
-	@RequestMapping(value="/getQuestionsWithOptions", method= RequestMethod.POST)
+	@RequestMapping(value="/getquestionswithoptions", method= RequestMethod.POST)
 	public QuestionsResponse getQuestionsWithOptions(@RequestBody QuestionsRequest pquestionRequest){
 		QuestionsResponse response = new QuestionsResponse();
 		response.setQuestions(questionsService.getQuestionsWithOptions());
