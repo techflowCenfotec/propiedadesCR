@@ -1,3 +1,19 @@
+<style>
+.gallery-box .thumbnail {
+    height: 188px;
+    width: 188px;
+}
+.gallery-box {
+	width: 200px;
+	padding: 5px;
+	margin: 7px;
+	float: left;
+	min-height: 200px;
+	border: 1px solid #ddd;
+	overflow: hidden;
+}
+</style>
+
 <section class="page-form-ele page" ng-controller="CreatePropController as ctrl">
 <div class="row ui-section">
         <div class="col-lg-8 clearfix"> <h2 class="section-header">Registrar Propiedad</h2> </div>
@@ -9,26 +25,27 @@
 
                             <div layout="column" ng-cloak class="md-inline-form">
                                 <div layout-padding>
-                                    <form id="propertiesForm" name="propertiesForm" flow-init>
-                                    	<div class="gallery-box" ng-repeat="file in $flow.files">
-                                    		<div ng-show="$flow.files.length">
-                                    			<img class="img-thumbnail" flow-img="file" width="200" height="200"/>
-                                    		</div>
-                                    		<div class="btn-group">
-                                    			<a class="btn btn-xs btn-danger" ng-click="file.cancel()">Eliminar</a>
-                                    		</div>
+                                    <form id="propertiesForm" class="form-validation" name="propertiesForm" flow-init data-ng-submit="saveProperty($event, $flow.files)">
+                                    	<div class="row">
+	                                    	<div class="gallery-box" ng-repeat="file in $flow.files">
+	                                    		<div class="thumbnail" ng-show="$flow.files.length">
+	                                    			<img flow-img="file"/>
+	                                    		</div>
+	                                    		<div class="btn-group">
+	                                    			<a class="btn btn-xs btn-danger" ng-click="file.cancel()">Remover</a>
+	                                    		</div>
+	                                    	</div>
                                     	</div>
-                                    	<span class="btn btn-default" flow-btn>
+                                    	<span class="btn btn-default" flow-btn ng-hide="canAddImg($flow.files.length)">
                                     		Subir imágenes
                                     		<input type="file" 
                                     			style="visibility:hidden; position:absolute" 
-                                    			multiple="multiple">
-                                    		</input>
+                                    			multiple="multiple"/>
                                     	</span>
                                         <div layout layout-sm="column">
                                             <md-input-container flex>
                                                 <label>Provincia</label>
-                                                <md-select ng-model="requestObject.province" aria-label="select">
+                                                <md-select ng-model="requestObject.province" aria-label="select" required>
                                                     <md-option ng-repeat="province in provinceList" value="{{province.idProvince}}">
                                                         {{province.name}}
                                                     </md-option>
@@ -36,7 +53,7 @@
                                             </md-input-container>
                                             <md-input-container flex>
                                                 <label>Cantón</label>
-                                                <md-select ng-model="requestObject.county" aria-label="select">
+                                                <md-select ng-model="requestObject.county" aria-label="select" required>
                                                     <md-option ng-repeat="county in countyList" value="{{county.name}}">
                                                         {{county.name}}
                                                     </md-option>
@@ -44,7 +61,7 @@
                                             </md-input-container>
                                             <md-input-container flex>
                                                 <label>Distrito</label>
-                                                <md-select ng-model="requestObject.district" aria-label="select">
+                                                <md-select ng-model="requestObject.district" aria-label="select" required>
                                                     <md-option ng-repeat="district in districtList" value="{{district.idDisctrict}}">
                                                        {{district.name}}
                                                     </md-option>
@@ -54,14 +71,14 @@
                                         <div layout layout-sm="column">
                                           <md-input-container flex>
                                               <label>Dirección exacta</label>
-                                              <input ng-model="requestObject.address"/>
+                                              <input ng-model="requestObject.address" required/>
                                           </md-input-container>
                                           </div>
                                             <md-chips ng-model="ctrl.tags" readonly="ctrl.readonly"
 				                                    delete-button-label="Eliminar etiqueta"
 				                                    md-transform-chip="ctrl.transformChip($chip)"
 				                                    secondary-placeholder="+Beneficios"
-				                                    md-require-match="true">
+				                                    md-require-match="true" required>
 				                                    <md-autocomplete md-selected-item="ctrl.selectedItem" md-search-text="requestObject.searchText" 
 				                                    md-items="item in querySearch(requestObject.searchText)" md-item-text="item.benefit" 
 				                                    placeholder="Ingrese un beneficio">
@@ -79,11 +96,11 @@
                                         <div layout layout-sm="column">
                                             <md-input-container flex>
                                                 <label>Precio</label>
-                                                <input ng-model="requestObject.price">
+                                                <input ng-model="requestObject.price" required>
                                             </md-input-container>
                                             <md-input-container flex>
                                                 <label>Tipo propiedad</label>
-                                                <md-select ng-model="requestObject.type">
+                                                <md-select ng-model="requestObject.type" required>
                                                     <md-option ng-repeat="type in propertyTypeList" value="{{type.idPropertyType}}">
                                                         {{type.name}}
                                                     </md-option>
@@ -92,8 +109,8 @@
                                           </div>
                                           <div layout layout-sm="column">
 	                                          <md-input-container flex>
-	                                              <label>Metros de construcción</label>
-	                                              <input ng-model="requestObject.meters"/>
+	                                              <label>Metros cuadrados</label>
+	                                              <input ng-model="requestObject.meters" required/>
 	                                          </md-input-container>
                                           </div>
                                           
@@ -102,15 +119,18 @@
                                           		<section class="panel panel-default">
                                           			<div class="panel-body">
                                           				<map class="ui-map" zoom="11" center="[9.935697,-84.1483646]" scrollwheel="false">
-                                          					<marker position="[9.935697,-84.1483646]" title="marker" animation="Animation.DROP"></marker>
-								                            <marker position="[40.73, -74.19]" title="drag me" draggable="true"></marker>
+								                            <marker position="[9.935697,-84.1483646]" title="drag me" draggable="true" on-dragend="ctrl.markerPos()"></marker>
 								                        </map>
 								                    </div>
 								                </section>
 								             </div>
 								            </div>
-	                                      <md-button type="submit" class="md-raised btn-w-md md-primary" ng-click="saveProperty($event, $flow.files)">Guardar</md-button>
+	                                      <md-button type="submit" class="md-raised btn-w-md md-primary" data-ng-disabled="!canSubmit($flow.files.length)">Guardar</md-button>
 		                                  <md-button class="btn-w-md">Cancelar</md-button>
+		                                  <div class="divider"></div>
+                                    	  <div class="alert alert-info" data-ng-show="showInfoOnSubmit">
+                                    	  	Propiedad ingresada satisfactoriamente!
+                                    	  </div>
                                     </form>
                                 </div>
                             </div>

@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.techflow.propiedadesCR.contracts.PropertiesRequest;
+import com.techflow.propiedadesCR.ejb.Tbenefit;
 import com.techflow.propiedadesCR.ejb.Tdistrict;
 import com.techflow.propiedadesCR.ejb.Tproperty;
-import com.techflow.propiedadesCR.ejb.TpropertyImage;
+import com.techflow.propiedadesCR.ejb.TpropertyType;
 import com.techflow.propiedadesCR.pojo.DistrictPOJO;
-import com.techflow.propiedadesCR.pojo.PropertyImagePOJO;
 import com.techflow.propiedadesCR.pojo.PropertyPOJO;
+import com.techflow.propiedadesCR.pojo.PropertyTypePOJO;
 import com.techflow.propiedadesCR.repositories.PropertiesRepository;
 
 /**
@@ -64,28 +66,30 @@ public class PropertiesService implements PropertiesServiceInterface {
 		List<PropertyPOJO> uiProperties = new ArrayList<PropertyPOJO>();
 		pProperties.stream().forEach(u -> {
 			PropertyPOJO dto = new PropertyPOJO();
-			DistrictPOJO district = new DistrictPOJO();
-			PropertyImagePOJO image = new PropertyImagePOJO();
-			List<PropertyImagePOJO> imgList = new ArrayList<PropertyImagePOJO>();
-			
-			Tdistrict tdist = districtService.getDistrictById(u.getTdistrict().getIdDisctrict());
-			BeanUtils.copyProperties(tdist, district);
-			
-			//Debería traer una lista desde el servivio
-			//Implementar método en el repositorio [PENDIENTE]
-			TpropertyImage img = imageService.getImageById(u.getIdProperty());
-			BeanUtils.copyProperties(img, image);
-			imgList.add(image);
+//			PropertyImagePOJO image = new PropertyImagePOJO();
+//			List<PropertyImagePOJO> imgList = new ArrayList<PropertyImagePOJO>();
+//			
+//			Tdistrict tdist = districtService.getDistrictById(u.getTdistrict().getIdDisctrict());
+//			BeanUtils.copyProperties(tdist, district);
+//			
+//			//Debería traer una lista desde el servivio
+//			//Implementar método en el repositorio [PENDIENTE]
+//			TpropertyImage img = imageService.getImageById(u.getIdProperty());
+//			BeanUtils.copyProperties(img, image);
+//			imgList.add(image);
 			
 			BeanUtils.copyProperties(u, dto);
-			dto.setTbenefits(null);
-			dto.setTdistrict(district);
-			dto.setTpropertyType(null);
+			BeanUtils.copyProperties(u.getTbenefits(), dto.getTbenefits());
+			BeanUtils.copyProperties(u.getTdistrict(), dto.getTdistrict());
+			BeanUtils.copyProperties(u.getTpropertyType(), dto.getTpropertyType());
+//			dto.setTbenefits(null);
+//			dto.setTdistrict(district);
+//			dto.setTpropertyType(null);
 			dto.setTuser(null);
 			dto.setTpropertyComments(null);
 			dto.setTpropertyRatings(null);
 			dto.setTusers(null);
-			dto.setTpropertyImages(imgList);
+			dto.setTpropertyImages(null);
 			uiProperties.add(dto);
 		});
 		return uiProperties;
@@ -101,9 +105,32 @@ public class PropertiesService implements PropertiesServiceInterface {
 	  */
 	@Override
 	@Transactional
-	public Tproperty saveProperty(Tproperty pProperty) {
-		Tproperty nProperty =  propertiesRepository.save(pProperty);
-		return nProperty;
+	public Tproperty saveProperty(PropertiesRequest pProperty) {
+		
+		List<Tbenefit> lBenefits = new ArrayList<Tbenefit>();
+		Tdistrict district = new Tdistrict();
+		TpropertyType pType = new TpropertyType();
+		Tproperty nProperty = new Tproperty();
+		
+		for (int i = 0; i < pProperty.getIdBenefits().size(); i++) {
+			Tbenefit benefit = new Tbenefit();
+			benefit.setIdBenefit(pProperty.getIdBenefits().get(i).intValue());
+			lBenefits.add(benefit);
+		}
+		
+		DistrictPOJO dist = pProperty.getProperty().getTdistrict();
+		BeanUtils.copyProperties(dist, district);
+		PropertyTypePOJO type = pProperty.getProperty().getTpropertyType();
+		BeanUtils.copyProperties(type, pType);
+		PropertyPOJO prop = pProperty.getProperty();
+		BeanUtils.copyProperties(prop, nProperty);
+		nProperty.setTdistrict(district);
+		nProperty.setTpropertyType(pType);
+		nProperty.setTbenefits(lBenefits);
+		nProperty.setActive((byte)1);
+		
+		Tproperty resProperty =  propertiesRepository.save(nProperty);
+		return resProperty;
 	}
 
 	/**
