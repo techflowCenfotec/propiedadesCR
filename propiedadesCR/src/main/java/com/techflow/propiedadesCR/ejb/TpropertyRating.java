@@ -23,6 +23,7 @@ public class TpropertyRating implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_rating")
 	public int getIdRating() {
 		return this.idRating;

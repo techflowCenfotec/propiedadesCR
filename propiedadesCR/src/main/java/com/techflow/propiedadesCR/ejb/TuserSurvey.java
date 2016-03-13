@@ -23,6 +23,7 @@ public class TuserSurvey implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_survey")
 	public int getIdSurvey() {
 		return this.idSurvey;

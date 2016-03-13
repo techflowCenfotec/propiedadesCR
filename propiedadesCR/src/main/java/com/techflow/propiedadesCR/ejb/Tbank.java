@@ -16,12 +16,14 @@ public class Tbank implements Serializable {
 	private int idBank;
 	private String name;
 	private List<TbankToDoList> tbankToDoLists;
+	private List<Tguide> tguides;
 
 	public Tbank() {
 	}
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_bank")
 	public int getIdBank() {
 		return this.idBank;
@@ -63,6 +65,31 @@ public class Tbank implements Serializable {
 		tbankToDoList.setTbank(null);
 
 		return tbankToDoList;
+	}
+
+
+	//bi-directional many-to-one association to Tguide
+	@OneToMany(mappedBy="tbank")
+	public List<Tguide> getTguides() {
+		return this.tguides;
+	}
+
+	public void setTguides(List<Tguide> tguides) {
+		this.tguides = tguides;
+	}
+
+	public Tguide addTguide(Tguide tguide) {
+		getTguides().add(tguide);
+		tguide.setTbank(this);
+
+		return tguide;
+	}
+
+	public Tguide removeTguide(Tguide tguide) {
+		getTguides().remove(tguide);
+		tguide.setTbank(null);
+
+		return tguide;
 	}
 
 }
