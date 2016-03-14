@@ -2,6 +2,9 @@ package com.techflow.propiedadesCR.ejb;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -102,6 +105,7 @@ public class Tproperty implements Serializable {
 			@JoinColumn(name="id_benefit")
 			}
 		)
+	@JsonIgnore
 	public List<Tbenefit> getTbenefits() {
 		return this.tbenefits;
 	}
