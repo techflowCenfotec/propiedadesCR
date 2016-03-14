@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.techflow.propiedadesCR.contracts.PropertiesResponse;
 import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.TpropertyImage;
+import com.techflow.propiedadesCR.pojo.PropertyPOJO;
 import com.techflow.propiedadesCR.services.BenefitsServiceInterface;
 import com.techflow.propiedadesCR.services.DistrictServiceInterface;
 import com.techflow.propiedadesCR.services.PropertiesServiceInterface;
@@ -132,5 +133,10 @@ public class PropertiesController {
 			response.setCodeMessage("Could not register property");
 		}
 		return response;
+	}
+
+	public List<PropertyPOJO> getPropertiesWithBenefits() {
+		ArrayList<PropertyPOJO> propertiesWithBenefits = propertiesService.getPropertiesWithBenefits();
+		return propertiesWithBenefits;
 	}
 }

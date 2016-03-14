@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.techflow.propiedadesCR.ejb.Tbenefit;
 import com.techflow.propiedadesCR.ejb.Tdistrict;
 import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.TpropertyImage;
+import com.techflow.propiedadesCR.pojo.BenefitsPOJO;
 import com.techflow.propiedadesCR.pojo.DistrictPOJO;
 import com.techflow.propiedadesCR.pojo.PropertyImagePOJO;
 import com.techflow.propiedadesCR.pojo.PropertyPOJO;
@@ -115,6 +117,33 @@ public class PropertiesService implements PropertiesServiceInterface {
 	@Override
 	public Tproperty getPropertyById(int pIdProperty) {
 		return propertiesRepository.findOne(pIdProperty);
+	}
+
+	@Override
+	@Transactional
+	public ArrayList<PropertyPOJO> getPropertiesWithBenefits() {
+		List<Tproperty> propertiesEjb = propertiesRepository.findAll();
+		
+		ArrayList<PropertyPOJO> uiProperties = new ArrayList<PropertyPOJO>();
+		
+		propertiesEjb.stream().forEach(property->{
+			PropertyPOJO dto = new PropertyPOJO();
+			dto.setIdProperty(property.getIdProperty());
+			
+			ArrayList<BenefitsPOJO> propertyBenefits = new ArrayList<BenefitsPOJO>();
+			
+			property.getTbenefits().stream().forEach(benefit->{
+				BenefitsPOJO nbenefit = new BenefitsPOJO();
+				BeanUtils.copyProperties(benefit, nbenefit);
+				nbenefit.setTproperties(null);
+				propertyBenefits.add(nbenefit);
+			});
+			dto.setTbenefits(propertyBenefits);
+			
+			uiProperties.add(dto);
+		});
+		
+		return uiProperties;
 	}
 
 }

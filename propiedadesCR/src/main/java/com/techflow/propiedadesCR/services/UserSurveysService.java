@@ -12,6 +12,7 @@ import com.techflow.propiedadesCR.ejb.Tanswer;
 import com.techflow.propiedadesCR.ejb.Tquestion;
 import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.ejb.TuserSurvey;
+import com.techflow.propiedadesCR.pojo.AnswerPOJO;
 import com.techflow.propiedadesCR.pojo.UserSurveyPOJO;
 import com.techflow.propiedadesCR.repositories.AnswersRepository;
 import com.techflow.propiedadesCR.repositories.UserSurveysRepository;
@@ -32,7 +33,7 @@ public class UserSurveysService implements UserSurveysServiceInterface{
 		BeanUtils.copyProperties(userSurveyPOJO, userSurvey);
 		userSurvey.setTuser(new Tuser());
 		//BeanUtils.copyProperties(userSurveyPOJO.getTuser(), userSurvey.getTuser());
-		userSurvey.getTuser().setIdUser(userSurveyPOJO.getTuser().getIdUsuario());
+		userSurvey.getTuser().setIdUser(userSurveyPOJO.getTuser().getIdUser());
 		
 		TuserSurvey nuserSurvey = userSurveysRepository.save(userSurvey);
 		
@@ -50,6 +51,23 @@ public class UserSurveysService implements UserSurveysServiceInterface{
 		//userSurvey.setTanswers(answersList);
 		
 		return nuserSurvey;
+	}
+
+	@Override
+	public UserSurveyPOJO getUserSurveyById(int idUserSurvey) {
+		TuserSurvey userSurvey = userSurveysRepository.findOne(idUserSurvey);
+		UserSurveyPOJO surveyWithAnswers = new UserSurveyPOJO();
+		
+		BeanUtils.copyProperties(userSurvey, surveyWithAnswers);
+		
+		ArrayList<AnswerPOJO> surveyAnswers = new ArrayList<AnswerPOJO>();
+		userSurvey.getTanswers().stream().forEach(answer->{
+			AnswerPOJO nanswer = new AnswerPOJO();
+			BeanUtils.copyProperties(answer, nanswer);
+			surveyAnswers.add(nanswer);
+		});
+		surveyWithAnswers.setTanswers(surveyAnswers);
+		return surveyWithAnswers;
 	}
 
 }

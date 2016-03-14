@@ -25,15 +25,14 @@
 		});
 		
 		function saveSurvey(){
-			var userSurvey =  {"tanswers": $scope.answers,"tuser": {"idUsuario":userId}};
+			var userSurvey =  {"tanswers": $scope.answers,"tuser": {"idUser":userId}};
 
 			var saveLink = "rest/protected/usersurveys/create";
 			var userSurveyRequest = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "","searchTerm": "","userSurvey": userSurvey};
 			
-			$http.post(saveLink, userSurveyRequest).success(function(response) {
-				//$scope.questions = response.questions;
-				console.log(response);
-			});
+			// $http.post(saveLink, userSurveyRequest).success(function(response) {
+			// 	console.log(response);
+			// });
 		};
 
 		$scope.generateMatchResult = function(){
