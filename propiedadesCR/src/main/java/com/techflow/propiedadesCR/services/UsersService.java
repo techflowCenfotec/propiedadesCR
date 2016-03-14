@@ -48,6 +48,21 @@ public class UsersService implements UsersServiceInterface{
 		return generateUserDtos(users);
 	}
 	
+
+	/**
+	  * Este método retorna todos los usuarios vendedores registrados en el sistema
+	  *
+	  * @param pusersRequest Este parámetro encapsula la información solicitada por el usuario.
+	  *
+	  * @return uiUsers Retorna la respuesta del repositorio hacia el controlador.
+	  */
+	public List<UserPOJO> getAllVendors(UsersRequest pusersRequest) {
+		Trole role = new Trole();
+		role.setIdRole(3);
+		List<Tuser> users = usersRepository.findAllByTrole(role);
+		return generateUserDtos(users);
+	}
+	
 	/**
 	  * Este método genera los objetos POJOS que se retornaran a la UI.
 	  *
@@ -155,6 +170,7 @@ public class UsersService implements UsersServiceInterface{
 		return nuser;
 	
 	}
+	
 
 
 	

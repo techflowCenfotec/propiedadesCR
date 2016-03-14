@@ -72,6 +72,24 @@ public class UsersController {
 		return response;
 	}
 	
+	/**
+	    * Este método retorna todos los usuarios vendedores registrados en el sistema
+	    *
+	    * @param puserResponse Este parámetro encapsula la información solicitada en el metodo.
+		*
+	    * @return response Retorna la respuesta del sevicio hacia el frontend.
+	    */
+		@RequestMapping(value="/getAllVendorss", method = RequestMethod.POST)
+		public UsersResponse getAllVendors(@RequestBody UsersRequest puserRequest) {
+			
+			UsersResponse response = new UsersResponse();
+			response.setCode(200);
+			response.setCodeMessage("Users fetch successful");
+			response.setUsers(usersService.getAllVendors(puserRequest));
+			
+			return response;
+		}
+	
 	  /**
 	  * Este método registra un usuario en el sistema.
 	  *

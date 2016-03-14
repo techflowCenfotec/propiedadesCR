@@ -9,6 +9,7 @@ import com.techflow.propiedadesCR.pojo.UserPOJO;
 public interface UsersServiceInterface {
 
 	List<UserPOJO> getAll(UsersRequest puserRequest);
+	List<UserPOJO> getAllVendors(UsersRequest puserRequest);
 	Tuser saveUser(UsersRequest puserRequest,int pidRole);
 	UserPOJO consultUser(int pidUser);
 	Tuser modifyUser(UsersRequest userRequest, int pidRole);
