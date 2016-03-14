@@ -90,6 +90,8 @@ public class EventsController {
 			@RequestParam("name") String pname,
 			@RequestParam("description")String pdescription,
 			@RequestParam("start_date")String pstartDate,
+			@RequestParam("address")String paddress,
+			@RequestParam("coordinates") String pcoordinates,
 			@RequestParam("id_user")int pidUser){
 		 
 		Date startDate = new Date();
@@ -115,11 +117,13 @@ public class EventsController {
 			event.setDescription(pdescription);
 			event.setStartDate(startDate);
 			event.setEventImage(resultFileName);
-			event.setActive((byte)1);
+			event.setAddress(paddress);
+			event.setCoordinates(pcoordinates);
+		    event.setActive((byte)1);
 			EventsRequest eventRequest= new EventsRequest();
 			eventRequest.setEvent(event);
 			Tevent recentlyCreatedEvent = new Tevent();
-			recentlyCreatedEvent = eventsService.saveEvent(eventRequest);
+			recentlyCreatedEvent = eventsService.saveEvent(eventRequest,pidUser);
 		if(recentlyCreatedEvent!=null){
 			response.setCode(200);
 			response.setCodeMessage("Events created successful");

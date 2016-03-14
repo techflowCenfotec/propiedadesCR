@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.techflow.propiedadesCR.contracts.EventsRequest;
 import com.techflow.propiedadesCR.ejb.Tevent;
+import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.pojo.EventPOJO;
 import com.techflow.propiedadesCR.repositories.EventsRepository;
 
@@ -65,10 +66,13 @@ public class EventsService implements EventsServiceInterface {
 	 * @param peventRequest Encapsula la información solicitada por el usuario.
 	 * @return nEvent Retorna el evento creado.
 	 */
-	public Tevent saveEvent(EventsRequest peventRequest) {
+	public Tevent saveEvent(EventsRequest peventRequest, int pidUser) {
 		
 	Tevent event = new Tevent();
+	Tuser user = new Tuser();
+	user.setIdUser(pidUser);
 	BeanUtils.copyProperties(peventRequest.getEvent(), event);
+	event.setTuser(user);
 	Tevent nEvent=  eventsRepository.save(event);
 	
 		return nEvent;

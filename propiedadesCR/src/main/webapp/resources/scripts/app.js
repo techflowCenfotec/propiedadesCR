@@ -163,7 +163,7 @@ function(){
 				return e.user;
 			});
 			e.consultMyProfile = function(myId){
-				localStorage.setItem('idUser',myId);
+				localStorage.setItem('idUserLogged',myId);
 			};
 			
 		}
