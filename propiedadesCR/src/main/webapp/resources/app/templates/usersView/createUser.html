@@ -8,7 +8,8 @@
 }
 </style>
 
-<div class="page page-table" data-ng-controller="CreateUserController" flow-init>
+<div class="page page-table" data-ng-controller="CreateUserController"
+	flow-init>
 	<div class="row ui-section">
 		<div class="col-lg-8 clearfix">
 			<h2 class="section-header">Crear usuario</h2>
@@ -17,7 +18,7 @@
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<form name="form_createUser" class="form-validation"
-						data-ng-submit="submitForm($event,$flow.files)">
+						novalidate data-ng-submit="submitForm($event,$flow.files)">
 
 						<div class="row">
 							<div>
@@ -25,7 +26,7 @@
 
 									<div>
 										<div data-ng-hide="$flow.files.length">
-											<img class="thumbnail" 
+											<img class="thumbnail"
 												src="/propiedadesCR/resources/images/default_user_image.png"
 												width="200" height="200" />
 										</div>
@@ -112,16 +113,20 @@
 							<input type="email" class="form-control" required
 								data-ng-model="form.email" ng-pattern="/^.+@.+\..+$/"> <span></span>
 							</md-input-container>
+							
 						</div>
-
+						<div layout layout-sm="column">
+						<md-input-container flex=35><label>Rol</label>
+						<md-select ng-model="form.role" aria-label="select" required>
+						<md-option ng-repeat="role in roles" value="{{role.idRole}}" required>
+						{{role.rolName}} </md-option> </md-select> </md-input-container>
+						</div>
 
 						<div layout layout-sm="column">
 							<md-input-container flex=35> <label for="">Contrase&ntilde;a</label>
 							<input type="password" class="form-control" required
 								name="password" data-ng-trim='false'
-								data-ng-model="form.password"
-								>
-							<span></span> </md-input-container>
+								data-ng-model="form.password"> <span></span> </md-input-container>
 
 							<md-input-container flex=35> <label for="">Confirme
 								contrase&ntilde;a</label> <input type="password" class="form-control"
@@ -146,7 +151,7 @@
 								<button type="submit" ui-wave class="btn btn-primary btn-w-md"
 									data-ng-disabled="!canSubmit()">Guardar</button>
 							</div>
-							
+
 						</div>
 
 						<div class="alert alert-info" data-ng-show="showInfoOnSubmit">Se

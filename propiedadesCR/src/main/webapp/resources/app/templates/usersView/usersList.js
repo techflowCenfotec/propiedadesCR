@@ -2,7 +2,6 @@
 	"use strict";
 
 	angular.module("app.usersList",[])
-
 		.controller('listUsersController',['$scope','$filter','$http',function($scope,$filter,$http){
 		
 		
@@ -26,6 +25,7 @@
 		var init;
 		$http.post(link,request).success(function(response) {
 			$scope.users= response.users;
+			console.log($scope.users);
 			init();
 		
 			
