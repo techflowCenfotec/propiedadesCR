@@ -73,5 +73,22 @@ public class EventsService implements EventsServiceInterface {
 	
 		return nEvent;
 	}
+	
+	@Override
+	@Transactional
+	/**
+	 * Este método trae el evento por medio del id recibido.
+	 * @param pid Id del evento.
+	 * @return eventPOJO Retorna un evento POJO.
+	 */
+	public EventPOJO getById(int pid){
+		EventPOJO eventPOJO = null;
+	    Tevent nevent = eventsRepository.findByIdEvent(pid);
+	    if(null!=nevent){
+	    	eventPOJO = new EventPOJO();
+	    	BeanUtils.copyProperties(nevent, eventPOJO);
+	    }
+		return eventPOJO;
+	}
 
 }
