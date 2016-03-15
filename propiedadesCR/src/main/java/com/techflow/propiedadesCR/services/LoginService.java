@@ -67,12 +67,10 @@ public class LoginService implements LoginServiceInterface {
 
 		if (null != nuser){
 			userPOJO = new UserPOJO();
-			Trole role =nuser.getTrole();	
-			RolePOJO rolePOJO = new RolePOJO();
-			BeanUtils.copyProperties(role, rolePOJO);
-			userPOJO = new UserPOJO();
-			userPOJO.setRole(rolePOJO);
+			userPOJO.setRole(new RolePOJO());
 			BeanUtils.copyProperties(nuser, userPOJO);
+			BeanUtils.copyProperties(nuser.getTrole(), userPOJO.getRole());
+			
 		}
 		return userPOJO;
 	}
