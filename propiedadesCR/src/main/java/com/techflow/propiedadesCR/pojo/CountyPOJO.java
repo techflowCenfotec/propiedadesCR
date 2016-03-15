@@ -2,48 +2,78 @@ package com.techflow.propiedadesCR.pojo;
 
 import java.util.List;
 
-import com.techflow.propiedadesCR.ejb.Tdistrict;
-import com.techflow.propiedadesCR.ejb.Tprovince;
-
+/**
+* <h1>POJO de los cantones de la propiedad</h1>
+* Clase que contiene los atributos de los cantones.
+*
+* @author  Walter G—mez
+* @version 1.0
+* @since 26/2/2016
+*/
 public class CountyPOJO {
 
+	/**
+     * Id del cant—n.
+     */	
 	private int idCounty;
+	/**
+     * C—digo de rea del cant—n.
+     */	
 	private int code;
+	/**
+     * Nombre del cant—n.
+     */	
 	private String name;
-	private Tprovince tprovince;
-	private List<Tdistrict> tdistricts;
+	/**
+     * Provincia a la que pertenece.
+     */	
+	private ProvincePOJO tprovince;
+	/**
+     * Distritos que posee.
+     */	
+	private List<DistrictPOJO> tdistricts;
 	
 	public CountyPOJO() {
 		super();
 	}
+
 	public int getIdCounty() {
 		return idCounty;
 	}
+
 	public void setIdCounty(int idCounty) {
 		this.idCounty = idCounty;
 	}
+
 	public int getCode() {
 		return code;
 	}
+
 	public void setCode(int code) {
 		this.code = code;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Tprovince getTprovince() {
+
+	public ProvincePOJO getTprovince() {
 		return tprovince;
 	}
-	public void setTprovince(Tprovince tprovince) {
+
+	public void setTprovince(ProvincePOJO tprovince) {
 		this.tprovince = tprovince;
 	}
-	public List<Tdistrict> getTdistricts() {
+
+	public List<DistrictPOJO> getTdistricts() {
 		return tdistricts;
 	}
-	public void setTdistricts(List<Tdistrict> tdistricts) {
+
+	public void setTdistricts(List<DistrictPOJO> tdistricts) {
 		this.tdistricts = tdistricts;
 	}
 }

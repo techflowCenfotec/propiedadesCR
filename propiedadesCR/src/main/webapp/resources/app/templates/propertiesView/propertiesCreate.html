@@ -19,13 +19,12 @@
                                     		</div>
                                     	</div>
                                     	<span class="btn btn-default" flow-btn>
-                                    		Subir im√°genes
+                                    		Subir imágenes
                                     		<input type="file" 
                                     			style="visibility:hidden; position:absolute" 
                                     			multiple="multiple">
                                     		</input>
                                     	</span>
-                                    	<div class="divider divider-xl"></div>
                                         <div layout layout-sm="column">
                                             <md-input-container flex>
                                                 <label>Provincia</label>
@@ -36,31 +35,47 @@
                                                 </md-select>
                                             </md-input-container>
                                             <md-input-container flex>
-                                                <label>Cant√≥n</label>
+                                                <label>Cantón</label>
                                                 <md-select ng-model="requestObject.county" aria-label="select">
                                                     <md-option ng-repeat="county in countyList" value="{{county.name}}">
                                                         {{county.name}}
                                                     </md-option>
                                                 </md-select>
                                             </md-input-container>
+                                            <md-input-container flex>
+                                                <label>Distrito</label>
+                                                <md-select ng-model="requestObject.district" aria-label="select">
+                                                    <md-option ng-repeat="district in districtList" value="{{district.idDisctrict}}">
+                                                       {{district.name}}
+                                                    </md-option>
+                                                </md-select>
+                                            </md-input-container>
                                         </div>
-                                            <md-chips
-				                                    ng-model="ctrl.tags"
-				                                    readonly="ctrl.readonly"
-				                                    placeholder="Ingrese zonas cercanas"
+                                        <div layout layout-sm="column">
+                                          <md-input-container flex>
+                                              <label>Dirección exacta</label>
+                                              <input ng-model="requestObject.address"/>
+                                          </md-input-container>
+                                          </div>
+                                            <md-chips ng-model="ctrl.tags" readonly="ctrl.readonly"
 				                                    delete-button-label="Eliminar etiqueta"
-				                                    delete-hint="Eliminar"
-				                                    secondary-placeholder="+Zonas cercanas"></md-chips>  
-                                        <md-input-container md-no-float class="md-block">
-                                            <div class="col-md-12">
-			                                    <div layout="row" layout-wrap flex>
-			                                        <div flex="30" ng-repeat="benefit in benefitsList">
-			                                            <md-checkbox ng-model="benefit.selected" ng-click="toggle(benefit.idBenefit, selected)" aria-label="checkbox"></md-checkbox>
-			                                            <p>{{ benefit.benefit }}</p>
-			                                        </div>
-			                                    </div>                                    
-			                                </div>
-                                        </md-input-container>
+				                                    md-transform-chip="ctrl.transformChip($chip)"
+				                                    secondary-placeholder="+Beneficios"
+				                                    md-require-match="true">
+				                                    <md-autocomplete md-selected-item="ctrl.selectedItem" md-search-text="requestObject.searchText" 
+				                                    md-items="item in querySearch(requestObject.searchText)" md-item-text="item.benefit" 
+				                                    placeholder="Ingrese un beneficio">
+					                                    <span md-highlight-text="requestObject.searchText">
+					                                    	{{item.benefit}}
+					                                    </span>
+				                                    </md-autocomplete>
+				                                    <md-chip-template>
+				                                    	<span>
+				                                    		{{$chip.benefit}}
+				                                    	</span>
+				                                    </md-chip-template>
+				                                    </md-chips>  
+				                        <div class="divider divider-md"></div>
                                         <div layout layout-sm="column">
                                             <md-input-container flex>
                                                 <label>Precio</label>
@@ -76,13 +91,26 @@
                                             </md-input-container>
                                           </div>
                                           <div layout layout-sm="column">
-                                          <md-input-container flex>
-                                              <label>Metros de construcci√≥n</label>
-                                              <input ng-model="requestObject.meters"/>
-                                          </md-input-container>
+	                                          <md-input-container flex>
+	                                              <label>Metros de construcción</label>
+	                                              <input ng-model="requestObject.meters"/>
+	                                          </md-input-container>
                                           </div>
-	                                      <md-button type="submit" class="md-raised btn-w-md md-primary" ng-click="saveProperty($event, $flow.files)">Submit</md-button>
-		                                  <md-button class="btn-w-md">Revert</md-button>
+                                          
+                                          <div class="row">
+                                          	<div class="col-md-12">
+                                          		<section class="panel panel-default">
+                                          			<div class="panel-body">
+                                          				<map class="ui-map" zoom="11" center="[9.935697,-84.1483646]" scrollwheel="false">
+                                          					<marker position="[9.935697,-84.1483646]" title="marker" animation="Animation.DROP"></marker>
+								                            <marker position="[40.73, -74.19]" title="drag me" draggable="true"></marker>
+								                        </map>
+								                    </div>
+								                </section>
+								             </div>
+								            </div>
+	                                      <md-button type="submit" class="md-raised btn-w-md md-primary" ng-click="saveProperty($event, $flow.files)">Guardar</md-button>
+		                                  <md-button class="btn-w-md">Cancelar</md-button>
                                     </form>
                                 </div>
                             </div>

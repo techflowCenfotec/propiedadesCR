@@ -2,24 +2,77 @@ package com.techflow.propiedadesCR.pojo;
 
 import java.util.List;
 
+import com.techflow.propiedadesCR.ejb.TpropertyComment;
+import com.techflow.propiedadesCR.ejb.TpropertyRating;
 import com.techflow.propiedadesCR.ejb.TpropertyType;
-import com.techflow.propiedadesCR.ejb.Tprovince;
+import com.techflow.propiedadesCR.ejb.Tuser;
 
+/**
+* <h1>POJO de la propiedad</h1>
+* Clase que contiene los atributos de las imágenes.
+*
+* @author  Walter Gómez
+* @version 1.0
+* @since 26/2/2016
+*/
 public class PropertyPOJO {
 	
+	/**
+     * Id de la propiedad.
+     */
 	private int idProperty;
+	/**
+     * Estado de la propiedad. Utilizado para el borrado lógico de la propiedad.
+     */
 	private byte active;
-	private String location;
-	private String nearbyAreas;
+	/**
+     * Dirección exacta de la propiedad.
+     */
+	private String address;
+	/**
+     * Coordenadas de la propiedad.
+     */
+	private String coordinates;
+	/**
+     * Precio de la propiedad.
+     */
 	private double price;
-	private String propertyImage;
+	/**
+     * Mteros de construcción de la propiedad.
+     */
 	private double squareMeters;
+	/**
+     * Lista de beneficios de la propiedad.
+     */
 	private List<BenefitsPOJO> tbenefits;
+	/**
+     * Distrito al que pertenece la propiedad.
+     */
+	private DistrictPOJO tdistrict;
+	/**
+     * Tipo de la propiedad.
+     */
 	private TpropertyType tpropertyType;
-	private Tprovince tprovince;
-	private List<CommentsPOJO> tpropertyComments;
-	private List<RatingPOJO> tpropertyRatings;
+	/**
+     * Usuario que registra la propiedad para la venta. Sólo usuarios de tipo vendedor.
+     */
+	private Tuser tuser;
+	/**
+     * Comentarios acerca la propiedad.
+     */
+	private List<TpropertyComment> tpropertyComments; //Change to POJO
+	/**
+     * Calificación de la propiedad.
+     */
+	private List<TpropertyRating> tpropertyRatings; //Change to POJO
+	/**
+     * Lista de usuarios de la propiedad.
+     */
 	private List<UserPOJO> tusers;
+	/**
+     * Imágenes de la propiedad.
+     */
+	private List<PropertyImagePOJO> tpropertyImages;
 	
 	public PropertyPOJO() {
 		super();
@@ -41,20 +94,20 @@ public class PropertyPOJO {
 		this.active = active;
 	}
 
-	public String getLocation() {
-		return location;
+	public String getAddress() {
+		return address;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
-	public String getNearbyAreas() {
-		return nearbyAreas;
+	public String getCoordinates() {
+		return coordinates;
 	}
 
-	public void setNearbyAreas(String nearbyAreas) {
-		this.nearbyAreas = nearbyAreas;
+	public void setCoordinates(String coordinates) {
+		this.coordinates = coordinates;
 	}
 
 	public double getPrice() {
@@ -63,14 +116,6 @@ public class PropertyPOJO {
 
 	public void setPrice(double price) {
 		this.price = price;
-	}
-
-	public String getPropertyImage() {
-		return propertyImage;
-	}
-
-	public void setPropertyImage(String propertyImage) {
-		this.propertyImage = propertyImage;
 	}
 
 	public double getSquareMeters() {
@@ -89,6 +134,14 @@ public class PropertyPOJO {
 		this.tbenefits = tbenefits;
 	}
 
+	public DistrictPOJO getTdistrict() {
+		return tdistrict;
+	}
+
+	public void setTdistrict(DistrictPOJO tdistrict) {
+		this.tdistrict = tdistrict;
+	}
+
 	public TpropertyType getTpropertyType() {
 		return tpropertyType;
 	}
@@ -97,27 +150,27 @@ public class PropertyPOJO {
 		this.tpropertyType = tpropertyType;
 	}
 
-	public Tprovince getTprovince() {
-		return tprovince;
+	public Tuser getTuser() {
+		return tuser;
 	}
 
-	public void setTprovince(Tprovince tprovince) {
-		this.tprovince = tprovince;
+	public void setTuser(Tuser tuser) {
+		this.tuser = tuser;
 	}
 
-	public List<CommentsPOJO> getTpropertyComments() {
+	public List<TpropertyComment> getTpropertyComments() {
 		return tpropertyComments;
 	}
 
-	public void setTpropertyComments(List<CommentsPOJO> tpropertyComments) {
+	public void setTpropertyComments(List<TpropertyComment> tpropertyComments) {
 		this.tpropertyComments = tpropertyComments;
 	}
 
-	public List<RatingPOJO> getTpropertyRatings() {
+	public List<TpropertyRating> getTpropertyRatings() {
 		return tpropertyRatings;
 	}
 
-	public void setTpropertyRatings(List<RatingPOJO> tpropertyRatings) {
+	public void setTpropertyRatings(List<TpropertyRating> tpropertyRatings) {
 		this.tpropertyRatings = tpropertyRatings;
 	}
 
@@ -128,4 +181,13 @@ public class PropertyPOJO {
 	public void setTusers(List<UserPOJO> tusers) {
 		this.tusers = tusers;
 	}
+
+	public List<PropertyImagePOJO> getTpropertyImages() {
+		return tpropertyImages;
+	}
+
+	public void setTpropertyImages(List<PropertyImagePOJO> tpropertyImages) {
+		this.tpropertyImages = tpropertyImages;
+	}
+	
 }

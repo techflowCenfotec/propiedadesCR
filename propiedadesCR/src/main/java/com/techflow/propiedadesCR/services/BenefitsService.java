@@ -14,19 +14,27 @@ import com.techflow.propiedadesCR.pojo.BenefitsPOJO;
 import com.techflow.propiedadesCR.repositories.BenefitsRepository;
 
 /**
-* <h1>BenefitsService</h1>
-* Service that provides the implementation of the interface
-* contains getAll() method and getBenefitById().
+* <h1>Servicio para obtener los beneficios</h1>
+* Servicio que provee la implementaci�n de los m̩todos 
+* getAll(), getBenefitById() y getBenefits().
 *
-* @author  Walter Gómez
+* @author  Walter G�mez
 * @version 1.0
 * @since 26/2/2016
 */
 @Service
 public class BenefitsService implements BenefitsServiceInterface {
 
+	/**
+	 * Atributo de acceso al repositorio de los beneficios.
+	 */
 	@Autowired private BenefitsRepository benefitsRepository;
 	
+	/**
+	  * Retorna una lista de objetos BenefitsPOJO
+	  * 
+	  * @return uiBenefits Todas las entidades del tipo.
+	  */
 	@Override
 	@Transactional
 	public List<BenefitsPOJO> getAll() {
@@ -34,29 +42,45 @@ public class BenefitsService implements BenefitsServiceInterface {
 		return generateBenefitsDtos(benefits);
 	}
 
-	private List<BenefitsPOJO> generateBenefitsDtos(List<Tbenefit> benefits) {
+	/**
+	  * Toma las propiedades de los ejbs y los convierte en POJOs.
+	  * 
+	  * @param pBenefits Lista de ejb de los beneficios. No debe ser nula.
+	  * @return uiBenefits Todas las entidades de tipo POJO.
+	  */
+	private List<BenefitsPOJO> generateBenefitsDtos(List<Tbenefit> pBenefits) {
 		List<BenefitsPOJO> uiBenefits = new ArrayList<BenefitsPOJO>();
-		benefits.stream().forEach(u -> {
+		pBenefits.stream().forEach(u -> {
 			BenefitsPOJO dto = new BenefitsPOJO();
 			BeanUtils.copyProperties(u, dto);
+			dto.setTproperties(null);
 			uiBenefits.add(dto);
 		});
 		return uiBenefits;
 	}
 
-	@Override
-	public Tbenefit getBenefitById(int idBenefit) {
-		return benefitsRepository.findOne(idBenefit);
-	}
-	
+	/**
+	  * Retorna a trav̩s del repositorio el ejb del beneficio.
+	  * 
+	  * @param pIdBenefit Id del beneficio a buscar. No debe ser nulo.
+	  * @return Tbenefit Una entidad del tipo.
+	  */
 	@Override
 	@Transactional
-	public List<Tbenefit> getBenefitsById(int idBenefit) {
-		return null;
+	public Tbenefit getBenefitById(int pIdBenefit) {
+		return benefitsRepository.findOne(pIdBenefit);
 	}
 
+	/**
+	  * Retorna a trav̩s del repositorio una lista de 
+	  * ejbs de beneficios.
+	  * 
+	  * @param pBenefits Arreglo de ids de beneficios. No debe ser nula.
+	  * @return List<Tbenefit> Todas las entidades del tipo.
+	  */
 	@Override
-	public List<Tbenefit> getBenefits(int[] benefits) {
-		return benefitsRepository.findByIdBenefitIn(benefits);
+	@Transactional
+	public List<Tbenefit> getBenefits(int[] pBenefits) {
+		return benefitsRepository.findByIdBenefitIn(pBenefits);
 	}
 }

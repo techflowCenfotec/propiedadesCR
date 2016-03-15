@@ -1,0 +1,75 @@
+package com.techflow.propiedadesCR.pojo;
+
+<<<<<<< HEAD
+import com.techflow.propiedadesCR.ejb.Tcounty;
+
+public class DistrictPOJO {
+
+	private int idDisctrict;
+	private int code;
+	private String name;
+	private Tcounty tcounty;
+=======
+/**
+* <h1>POJO de los distritos de la propiedad</h1>
+* Clase que contiene los atributos de los distritos.
+*
+* @author  Walter Gómez
+* @version 1.0
+* @since 26/2/2016
+*/
+public class DistrictPOJO {
+
+	/**
+     * Id del distrito.
+     */	
+	private int idDisctrict;
+	/**
+     * Código de área del distrito.
+     */	
+	private int code;
+	/**
+     * Nombre del distrito.
+     */	
+	private String name;
+	/**
+     * Cantón al que pertenece distrito.
+     */	
+	private CountyPOJO tcounty;
+>>>>>>> 7bd9e93b0bffb34e71217537b908e179b103e447
+	
+	public DistrictPOJO() {
+		super();
+	}
+	public int getIdDisctrict() {
+		return idDisctrict;
+	}
+	public void setIdDisctrict(int idDisctrict) {
+		this.idDisctrict = idDisctrict;
+	}
+	public int getCode() {
+		return code;
+	}
+	public void setCode(int code) {
+		this.code = code;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+<<<<<<< HEAD
+	public Tcounty getTcounty() {
+		return tcounty;
+	}
+	public void setTcounty(Tcounty tcounty) {
+=======
+	public CountyPOJO getTcounty() {
+		return tcounty;
+	}
+	public void setTcounty(CountyPOJO tcounty) {
+>>>>>>> 7bd9e93b0bffb34e71217537b908e179b103e447
+		this.tcounty = tcounty;
+	}
+}

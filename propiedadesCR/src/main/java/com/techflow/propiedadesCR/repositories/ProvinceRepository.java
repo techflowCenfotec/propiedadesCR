@@ -7,20 +7,20 @@ import org.springframework.data.repository.CrudRepository;
 import com.techflow.propiedadesCR.ejb.Tprovince;
 
 /**
-* <h1>ProvinceRepository</h1>
-* Java repository that extends from CrudRepository
-* and provides one implementation
+* <h1>Repositorio de las provincias</h1>
+* Repositorio que extiende de CrudRepository
+* y provee una implementaci—n
 *
-* @author  Walter GÃ³mez
+* @author  Walter G—mez
 * @version 1.0
 * @since 26/2/2016
 */
 public interface ProvinceRepository extends CrudRepository<Tprovince, Integer> {
 	
 	/**
-	  * Returns all instances of the Tprovince ejb
+	  * Retorna una lista de entidades.
 	  * 
-	  * @return All entities of the Tprovince ejbs
+	  * @return List<Tprovince> Las entidades del tipo
 	  */
 	List<Tprovince> findAll();
 }

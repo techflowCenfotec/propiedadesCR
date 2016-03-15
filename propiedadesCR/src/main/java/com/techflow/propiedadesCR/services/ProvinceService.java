@@ -8,29 +8,36 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.techflow.propiedadesCR.contracts.ProvinceRequest;
 import com.techflow.propiedadesCR.ejb.Tprovince;
+import com.techflow.propiedadesCR.pojo.CountyPOJO;
 import com.techflow.propiedadesCR.pojo.ProvincePOJO;
 import com.techflow.propiedadesCR.repositories.ProvinceRepository;
 
 /**
-* <h1>ProvinceService</h1>
-* Service that provides the implementation of the interface
-* contains getAll() method and getProvinceById().
+* <h1>Servicio de Provincias</h1>
+* Servicio que provee una implementacion a la interface
+* de los metodos getAll() y getProvinceById().
 *
-* @author  Walter Gómez
+* @author  Walter Gomez
 * @version 1.0
 * @since 26/2/2016
 */
 @Service
 public class ProvinceService implements ProvinceServiceInterface {
 
+	/**
+	 * Atributo de acceso al repositorio de las provincias.
+	 */
 	@Autowired private ProvinceRepository provinceRepository;
+	/**
+	 * Atributo de la interfaz de los cantones.
+	 */
+	@Autowired private CountiesServiceInterface countyService;
 	
 	/**
-	  * Method that returns a list of data transfer objects (DTOs)
-	  * @param N/A
-	  * @return dtos This returns a list of ProvincePOJO as dtos
+	  * Retorna una lista de objetos ProvincePOJO
+	  * 
+	  * @return uiProvinces Todas las entidades del tipo.
 	  */
 	@Override
 	@Transactional
@@ -39,10 +46,16 @@ public class ProvinceService implements ProvinceServiceInterface {
 		return generateProvinceDtos(provinces);
 	}
 	
-	private List<ProvincePOJO> generateProvinceDtos(List<Tprovince> provinces) {
+	/**
+	  * Toma las propiedades de los ejbs y los convierte en POJOs.
+	  * 
+	  * @param pProvinces Lista de ejb de provincias. No debe ser nula.
+	  * @return uiProvinces Todas las entidades de tipo POJO.
+	  */
+	private List<ProvincePOJO> generateProvinceDtos(List<Tprovince> pProvinces) {
 		List<ProvincePOJO> uiProvinces = new ArrayList<ProvincePOJO>();
 		
-		provinces.stream().forEach(u ->{
+		pProvinces.stream().forEach(u ->{
 			ProvincePOJO dto = new ProvincePOJO();
 			BeanUtils.copyProperties(u, dto);
 			dto.setTcounties(null);
@@ -53,13 +66,15 @@ public class ProvinceService implements ProvinceServiceInterface {
 	}
 
 	/**
-	  * Method that retrieves a repository based on Id sent
-	  * @param idProvince must not be null
-	  * @return the repository entity or null if none is found
+	  * Retorna a trav̩s del repositorio el ejb de la provincia.
+	  * 
+	  * @param pIdProvince Id de la provincia a buscar. No debe ser nulo.
+	  * @return Tprovince Una entidad del tipo.
 	  */
 	@Override
-	public Tprovince getProvinceById(int idProvince) {
-		return provinceRepository.findOne(idProvince);
+	@Transactional
+	public Tprovince getProvinceById(int pIdProvince) {
+		return provinceRepository.findOne(pIdProvince);
 	}
 
 }

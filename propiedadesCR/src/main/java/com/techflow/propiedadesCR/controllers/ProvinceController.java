@@ -9,11 +9,10 @@ import com.techflow.propiedadesCR.contracts.ProvinceResponse;
 import com.techflow.propiedadesCR.services.ProvinceServiceInterface;
 
 /**
-* <h1>ProvinceController</h1>
-* Controller that request information
-* about the provinces through the service
+* <h1>Controlador de las provincias</h1>
+* Controlador que envía o solicita información a través del servicio.
 *
-* @author  Walter G√≥mez
+* @author  Walter Gómez
 * @version 1.0
 * @since 26/2/2016
 */
@@ -21,8 +20,16 @@ import com.techflow.propiedadesCR.services.ProvinceServiceInterface;
 @RequestMapping(value = "rest/protected/province")
 public class ProvinceController {
 
+	/**
+	 * Atributo de la interfaz de las provincias.
+	 */
 	@Autowired private ProvinceServiceInterface provinceService;
 	
+	/**
+	 * Solicita la información de las provincias a través del servicio.
+	 *  
+	 * @return response Un objeto response de los tipos de provincia.
+	 */
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
 	public ProvinceResponse getAll() {
 		ProvinceResponse response = new ProvinceResponse();

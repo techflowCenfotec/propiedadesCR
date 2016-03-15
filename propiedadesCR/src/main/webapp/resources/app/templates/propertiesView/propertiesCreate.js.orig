@@ -1,0 +1,168 @@
+(function() {
+	'use strict';
+	
+	angular.module('app.properties.create', [])
+	
+	.controller('CreatePropController', ['$scope', '$http', '$upload', CreatePropController]);
+
+	function CreatePropController($scope, $http, $upload) {
+		
+		var self = this;
+		self.readonly = false;
+		self.tags = [];
+		self.provinceList = [];
+		self.countyList = [];
+<<<<<<< HEAD
+		self.benefitsList = [];
+		self.propertyTypeList = [];
+		
+=======
+		self.districtList = [];
+		self.benefitsList = [];
+		self.propertyTypeList = [];
+		//Benefits tags info
+		self.selectedItem = null;
+		self.searchText = null;
+>>>>>>> 7bd9e93b0bffb34e71217537b908e179b103e447
+		//scope variables
+		$scope.requestObject = {};
+		$scope.onError = false;
+		$scope.selected = [];
+
+		$scope.init = function() {
+			$http.get('rest/protected/province/getAll', $scope.requestObject)
+			.success(function(provincesResponse) {
+				$scope.provinceList = provincesResponse.provinces;
+			});
+			
+			$http.get('rest/protected/counties/getAll', $scope.requestObject)
+			.success(function(countyResponse) {
+				$scope.countyList = countyResponse.counties;
+			});
+			
+<<<<<<< HEAD
+			$http.get('rest/protected/benefits/getAll', $scope.requestObject)
+			.success(function(benefitsResponse) {
+				$scope.benefitsList = benefitsResponse.benefits;
+=======
+			$http.get('rest/protected/districts/getAll', $scope.requestObject)
+			.success(function(districtResponse) {
+				$scope.districtList = districtResponse.districts;
+			});
+			
+			$http.get('rest/protected/benefits/getAll', $scope.requestObject)
+			.success(function(benefitsResponse) {
+				self.benefitsList = benefitsResponse.benefits;
+>>>>>>> 7bd9e93b0bffb34e71217537b908e179b103e447
+			});
+			
+			$http.get('rest/protected/propertyTypes/getAll', $scope.requestObject)
+			.success(function(typeResponse) {
+				$scope.propertyTypeList = typeResponse.pTypes;
+			});
+		};
+		
+		$scope.init();
+		
+<<<<<<< HEAD
+		
+	    //Push items into selected array
+		$scope.toggle = function (item, list) {
+            var idx = list.indexOf(item);
+            if (idx > -1) list.splice(idx, 1);
+            else list.push(item);
+        };
+=======
+		$scope.transformChip = function(chip) {
+			// If it is an object, it's already a known chip
+		      if (angular.isObject(chip)) {
+		        return chip
+		      }
+		};
+		
+		$scope.querySearch = function(query) {
+			var results = query ? self.benefitsList
+					.filter($scope.createFilterFor(query)) : [];
+		    return results;
+		};
+		
+		$scope.createFilterFor = function(query) {
+			var lowercaseQuery = angular.lowercase(query);
+			
+			self.benefitsList.map(function(ben) {
+				ben._lowername = ben.benefit.toLowerCase();
+			})
+			
+			return function filterFn(benefit) {
+		        return (benefit._lowername.indexOf(lowercaseQuery) === 0);
+		        };
+		};
+>>>>>>> 7bd9e93b0bffb34e71217537b908e179b103e447
+		
+        //Submits new property data
+		$scope.saveProperty = function(event, $files) {
+			if(this.propertiesForm.$valid) {
+				$scope.onError = false;
+<<<<<<< HEAD
+				
+				for(var i = 0; i < $files.length; i++) {
+					
+					var file = $files[i].file;
+					
+					$scope.upload = $upload.upload({
+						url: 'rest/protected/properties/create',
+						data: {
+							idProvince: $scope.requestObject.province,
+							location: $scope.requestObject.county,
+							nearby_areas: self.tags,
+							benefits: $scope.selected,
+							price: $scope.requestObject.price,
+							id_property_type: $scope.requestObject.type,
+							square_meters: $scope.requestObject.meters
+						},
+						file : file
+					}).progress(function(evt) {
+						console.log('percent: '+ parseInt(100.0 * evt.loaded / evt.total));
+					}).success(function(data, status, header, config) {
+						console.log(data, status, header, config);
+					}).error(function(data, status) {
+						console.log("the error is: ",  data)
+					});
+				}
+			} else {
+				$scope.onError = true;
+=======
+				var idBenefits = [];
+
+				for(var i = 0; i < self.tags.length; i++){
+					idBenefits.push(self.tags[i].idBenefit);
+				}
+
+				for(var i = 0; i < $files.length; i++) {
+
+					var file = $files[i].file;
+
+					$scope.upload = $upload.upload({
+						url: 'rest/protected/properties/create',
+						data: {
+							square_meters: $scope.requestObject.meters,
+							price: $scope.requestObject.price,
+							idDistrict: $scope.requestObject.district,
+							id_property_type: $scope.requestObject.type,
+							address: $scope.requestObject.address,
+							benefits: idBenefits
+						},
+						file: file
+					}).progress(function(evt) {
+						
+					}).success(function(data, status, header, config) {
+						
+					}).error(function(data, status) {
+						
+					});
+				}
+>>>>>>> 7bd9e93b0bffb34e71217537b908e179b103e447
+			}
+		}
+	}
+})();

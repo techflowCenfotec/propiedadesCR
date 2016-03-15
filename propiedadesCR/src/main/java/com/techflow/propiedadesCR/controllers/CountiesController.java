@@ -11,11 +11,10 @@ import com.techflow.propiedadesCR.contracts.CountiesResponse;
 import com.techflow.propiedadesCR.services.CountiesServiceInterface;
 
 /**
-* <h1>CountiesController</h1>
-* Controller that request information
-* about the counties through the service
+* <h1>Controlador de los cantones</h1>
+* Controlador que envia o solicita informacion a traves del servicio.
 *
-* @author  Walter GÃ³mez
+* @author  Walter G—mez
 * @version 1.0
 * @since 26/2/2016
 */
@@ -23,8 +22,16 @@ import com.techflow.propiedadesCR.services.CountiesServiceInterface;
 @RequestMapping(value="rest/protected/counties")
 public class CountiesController {
 
+	/**
+	 * Atributo de la interfaz de los cantones.
+	 */
 	@Autowired private CountiesServiceInterface countiesService;
 	
+	/**
+	 * Solicita la informacion de los cantones a traves del servicio.
+	 *  
+	 * @return response Un objeto response de los cantones.
+	 */
 	@RequestMapping(value="/getAll", method = RequestMethod.GET)
 	public CountiesResponse getAll() {
 		CountiesResponse response = new CountiesResponse();

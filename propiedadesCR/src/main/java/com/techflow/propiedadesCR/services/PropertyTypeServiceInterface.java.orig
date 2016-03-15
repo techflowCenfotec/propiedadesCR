@@ -1,0 +1,44 @@
+package com.techflow.propiedadesCR.services;
+
+import java.util.List;
+
+<<<<<<< HEAD
+import com.techflow.propiedadesCR.ejb.TpropertyType;
+import com.techflow.propiedadesCR.pojo.PropertyTypePOJO;
+
+/**
+* <h1>PropertyTypeServiceInterface</h1>
+* Interface for all property types operations.
+*
+* @author  Walter Gómez
+* @version 1.0
+* @since 26/2/2016
+*/
+public interface PropertyTypeServiceInterface {
+	
+	/**
+	  * Returns all properties of the type PropertyPOJO
+	  *  
+	  * @param ptr - must not be null.
+	  * @return all entities of the type.
+	  */
+	List<PropertyTypePOJO> getAll();
+	
+	/**
+	  * Returns one property entity by it's id.
+	  *  
+	  * @param idProperty - must not be null.
+	  * @return one entity of the type property.
+	  */
+	TpropertyType getPropertyTypeById(int idPropertyType);
+=======
+import com.techflow.propiedadesCR.contracts.PropertyTypeRequest;
+import com.techflow.propiedadesCR.ejb.TpropertyType;
+import com.techflow.propiedadesCR.pojo.PropertyTypePOJO;
+
+public interface PropertyTypeServiceInterface {
+	
+	List<PropertyTypePOJO> getAll();
+	TpropertyType getPropertyTypeById(int pIdPropertyType);
+>>>>>>> 7bd9e93b0bffb34e71217537b908e179b103e447
+}

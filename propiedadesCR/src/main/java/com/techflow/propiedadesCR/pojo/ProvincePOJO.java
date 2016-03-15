@@ -2,52 +2,78 @@ package com.techflow.propiedadesCR.pojo;
 
 import java.util.List;
 
-import com.techflow.propiedadesCR.ejb.Tcounty;
-import com.techflow.propiedadesCR.ejb.Tproperty;
-
+/**
+* <h1>POJO de la provincia de la propiedad</h1>
+* Clase que contiene los atributos de los beneficios.
+*
+* @author  Walter Gómez
+* @version 1.0
+* @since 26/2/2016
+*/
 public class ProvincePOJO {
 
+	/**
+     * Id de la provincia.
+     */	
 	private int idProvince;
+	/**
+     * Código de área de la provincia.
+     */	
 	private String code;
+	/**
+     * Nombre de la provincia.
+     */	
 	private String name;
-	private List<Tcounty> tcounties;
-	private List<Tproperty> tproperties;
+	/**
+     * Cantones que posee.
+     */	
+	private List<CountyPOJO> tcounties;
+	/**
+     * Propiedades dentro de la propvincia.
+     */	
+	private List<PropertyPOJO> tproperties;
 	
 	public ProvincePOJO() {
 		super();
 	}
+
 	public int getIdProvince() {
 		return idProvince;
 	}
+
 	public void setIdProvince(int idProvince) {
 		this.idProvince = idProvince;
 	}
+
 	public String getCode() {
 		return code;
 	}
+
 	public void setCode(String code) {
 		this.code = code;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
 
-	public List<Tcounty> getTcounties() {
+	public List<CountyPOJO> getTcounties() {
 		return tcounties;
 	}
 
-	public void setTcounties(List<Tcounty> tcounties) {
+	public void setTcounties(List<CountyPOJO> tcounties) {
 		this.tcounties = tcounties;
 	}
 
-	public List<Tproperty> getTproperties() {
+	public List<PropertyPOJO> getTproperties() {
 		return tproperties;
 	}
 
-	public void setTproperties(List<Tproperty> tproperties) {
+	public void setTproperties(List<PropertyPOJO> tproperties) {
 		this.tproperties = tproperties;
 	}
 }

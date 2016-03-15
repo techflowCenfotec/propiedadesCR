@@ -4,16 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.techflow.propiedadesCR.contracts.PropertyTypeResponse;
 import com.techflow.propiedadesCR.services.PropertyTypeServiceInterface;
 
 /**
-* <h1>PropertiesController</h1>
-* Controller that sends or request information
-* about the property types through the service
+* <h1>Controlador de los tipos de propiedades</h1>
+* Controlador que envia o solicita informacion a traves del servicio.
 *
-* @author  Walter Gómez
+* @author  Walter Gomez
 * @version 1.0
 * @since 26/2/2016
 */
@@ -21,22 +19,24 @@ import com.techflow.propiedadesCR.services.PropertyTypeServiceInterface;
 @RequestMapping(value = "rest/protected/propertyTypes")
 public class PropertyTypeController {
 
+	/**
+	 * Atributo de la interfaz de los tipos de propiedades.
+	 */
 	@Autowired PropertyTypeServiceInterface pTypeService;
 	
 	/**
-	  * Request all property type information through the service.
-	  *  
-	  * @param pr - Parameter for the getAll method of the service
-	  * @return a property response object.
-	  */
+	 * Solicita la informacion de los tipos de propiedades a traves del servicio.
+	 *  
+	 * @return response Un objeto response de los tipos de propiedad.
+	 */
 	@RequestMapping(value = "/getAll", method = RequestMethod.GET)
 	public PropertyTypeResponse getAll() {
-		
 		PropertyTypeResponse response = new PropertyTypeResponse();
+		
 		response.setCode(200);
 		response.setCodeMessage("Property Type fetch succesful");
 		response.setpTypes(pTypeService.getAll());
-		
+
 		return response;
 	}
 }

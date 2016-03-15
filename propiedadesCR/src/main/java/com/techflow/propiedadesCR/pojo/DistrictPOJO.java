@@ -1,13 +1,31 @@
 package com.techflow.propiedadesCR.pojo;
 
-import com.techflow.propiedadesCR.ejb.Tcounty;
-
+/**
+* <h1>POJO de los distritos de la propiedad</h1>
+* Clase que contiene los atributos de los distritos.
+*
+* @author  Walter G—mez
+* @version 1.0
+* @since 26/2/2016
+*/
 public class DistrictPOJO {
 
+	/**
+     * Id del distrito.
+     */	
 	private int idDisctrict;
+	/**
+     * C—digo de ‡rea del distrito.
+     */	
 	private int code;
+	/**
+     * Nombre del distrito.
+     */	
 	private String name;
-	private Tcounty tcounty;
+	/**
+     * Cant—n al que pertenece distrito.
+     */	
+	private CountyPOJO tcounty;
 	
 	public DistrictPOJO() {
 		super();
@@ -30,10 +48,10 @@ public class DistrictPOJO {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Tcounty getTcounty() {
+	public CountyPOJO getTcounty() {
 		return tcounty;
 	}
-	public void setTcounty(Tcounty tcounty) {
+	public void setTcounty(CountyPOJO tcounty) {
 		this.tcounty = tcounty;
 	}
 }

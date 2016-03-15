@@ -1,0 +1,29 @@
+<div class="page">
+	
+		<section class="row ui-section" ng-controller="EventsListController">
+
+        	<div class="col-lg-8 clearfix">
+            <h2 class="section-header">Listar Eventos</h2>
+        	</div>
+        	<div class="col-md-12">
+            <div class="row">
+				 <div data-ng-repeat="events in eventsList" class="col-md-4">
+                    <div class="card bg-white">
+                        <div class="card-image">
+                            <img width="250" height="250" src={{events.eventImage}}>
+                            <span class="card-title">{{events.name}}</span>
+                        </div>
+                        <div class="card-content">
+                            <p>{{events.description}}</p>
+                        </div>
+                        <div class="card-action">
+                            <a data-ng-click="attendEvent(events)">Asistir a evento</a>
+                            <a class="color-primary"
+                             data-ng-click="consultEvent(events.idEvent)" href="#/templates/eventsView/eventConsult">Consultar evento</a>
+                        </div>
+                    </div>            
+                </div>  
+              </div>
+           </div>    
+         </section>
+</div>
