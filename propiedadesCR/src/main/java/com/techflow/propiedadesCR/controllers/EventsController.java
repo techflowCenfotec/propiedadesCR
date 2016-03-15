@@ -76,6 +76,8 @@ public class EventsController {
 	 * @param pname Se recibe el nombre del evento a registrar.
 	 * @param pdescription Se recibe la descripción del evento a registrar.
 	 * @param pstartDate Se recibe la fecha del evento a registrar.
+	 * @param paddress Se recibe la dirección del evento al registrar.
+	 * @param pcoordinates Se recibe las coordenadas del mapa al registrar evento.
 	 * @param pidUser Se recibe el identificador del usuario que registra el evento.
 	 * @return response Retorna la respuesta del BackEnd al FrondEnd
 	 * 

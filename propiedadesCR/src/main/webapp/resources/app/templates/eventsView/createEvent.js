@@ -168,7 +168,7 @@
 								}
 								
 								NgMap.getMap().then(function(map) {
-									self.markerPos =  function() {
+									$scope.markerPos =  function() {
 										$scope.markerLoc = '['+ map.markers[0].position.lat() + ',' + map.markers[0].position.lng() +']';
 									};
 									
