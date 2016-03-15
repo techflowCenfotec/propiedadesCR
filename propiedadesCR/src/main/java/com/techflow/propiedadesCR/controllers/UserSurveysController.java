@@ -106,6 +106,10 @@ public class UserSurveysController {
 		List<PropertyPOJO> allProperties = propertiesService.getAll();
 		
 		allProperties.stream().forEach(property->{
+			property.setTbenefits(null);
+			property.setTpropertyType(null);
+			property.setTdistrict(null);
+			property.setTuser(null);
 			for (int i = 0; i < idsProperties.size(); i++) {
 				if(property.getIdProperty()==idsProperties.get(i)){
 					propertiesResult.add(property);

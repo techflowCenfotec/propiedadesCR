@@ -5,7 +5,7 @@
 	.controller('testFlowController',['$scope','$http', '$timeout', 'WizardHandler','$location','$rootScope',function($scope,$http, $timeout, WizardHandler,$location,$rootScope){
 
 		//necesario para guardar las respuestas
-		var userId = 1;
+		var userId = $rootScope.userLogged.idUser;
 
 		//historial de preguntas respondidas
 		var questionsAnswered = [];
@@ -58,22 +58,13 @@
 			}else{
 				answerAlreadyExist("delete", idQuestion)
 
-			}
-			console.log($scope.answers);
-			
+			}			
 			getNextQuestion(option.idNextQuestion);
 
 		};	
 
-		function isFinished(pidNextQuestion){
-				if(pidNextQuestion == 0)
-				console.log("finish him!!!")
-		};
-
 		function getNextQuestion(pidNextQuestion){
-			console.log(pidNextQuestion);
 			if(pidNextQuestion == 0){
-					console.log("finish him!!!");
 					saveSurvey();
 			}else{
 				var steps = WizardHandler.wizard().getEnabledSteps();
@@ -119,14 +110,6 @@
 
         $scope.canExit = false;
         $scope.stepActive = true;
-
-        $scope.finished = function() {
-            console.log("Wizard finished :)");
-        };
-
-        $scope.logStep = function() {
-            console.log("Step continued");
-        };
 
 	}]);
 	
