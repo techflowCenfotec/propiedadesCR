@@ -14,7 +14,7 @@ import com.techflow.propiedadesCR.services.CountiesServiceInterface;
 * <h1>Controlador de los cantones</h1>
 * Controlador que envia o solicita informacion a traves del servicio.
 *
-* @author  Walter G—mez
+* @author  Walter GÃ³mez
 * @version 1.0
 * @since 26/2/2016
 */
