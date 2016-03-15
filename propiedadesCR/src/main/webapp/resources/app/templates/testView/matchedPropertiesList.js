@@ -9,8 +9,6 @@
 		for (var i = 0 ; i < $scope.properties.length; i++) {
 			$scope.properties[i].porcentage = porcentages[i];
 		}
-		//console.log(properties);
-		//console.log(porcentages);
 	}]);
 	
 })();
