@@ -18,10 +18,10 @@ import com.techflow.propiedadesCR.repositories.DistrictRepository;
 
 /**
 * <h1>Servicio del Distrito</h1>
-* Servicio que provee una implementacion a la interface
-* de los metodos getAll() y getDistrictById().
+* Servicio que provee una implementación a la interface
+* de los métodos getAll() y getDistrictById().
 *
-* @author  Walter Gomez
+* @author  Walter Gómez
 * @version 1.0
 * @since 26/2/2016
 */

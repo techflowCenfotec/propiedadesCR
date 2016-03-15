@@ -6,22 +6,22 @@ import java.util.List;
 * <h1>POJO de los cantones de la propiedad</h1>
 * Clase que contiene los atributos de los cantones.
 *
-* @author  Walter G梞ez
+* @author  Walter G贸mez
 * @version 1.0
 * @since 26/2/2016
 */
 public class CountyPOJO {
 
 	/**
-     * Id del cant梟.
+     * Id del cant贸n.
      */	
 	private int idCounty;
 	/**
-     * C梔igo de rea del cant梟.
+     * C贸digo de rea del cant贸n.
      */	
 	private int code;
 	/**
-     * Nombre del cant梟.
+     * Nombre del cant贸n.
      */	
 	private String name;
 	/**

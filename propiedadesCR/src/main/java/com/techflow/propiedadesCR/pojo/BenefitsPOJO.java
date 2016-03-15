@@ -8,7 +8,7 @@ import com.techflow.propiedadesCR.ejb.Tproperty;
 * <h1>POJO de los beneficios de la propiedad</h1>
 * Clase que contiene los atributos de los beneficios.
 *
-* @author  Walter G—mez
+* @author  Walter GÃ³mez
 * @version 1.0
 * @since 26/2/2016
 */

@@ -15,10 +15,10 @@ import com.techflow.propiedadesCR.repositories.BenefitsRepository;
 
 /**
 * <h1>Servicio para obtener los beneficios</h1>
-* Servicio que provee la implementaci�n de los m̩todos 
+* Servicio que provee la implementación de los m̩todos 
 * getAll(), getBenefitById() y getBenefits().
 *
-* @author  Walter G�mez
+* @author  Walter Gómez
 * @version 1.0
 * @since 26/2/2016
 */

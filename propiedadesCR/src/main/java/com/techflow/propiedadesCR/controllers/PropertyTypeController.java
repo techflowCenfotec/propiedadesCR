@@ -9,9 +9,9 @@ import com.techflow.propiedadesCR.services.PropertyTypeServiceInterface;
 
 /**
 * <h1>Controlador de los tipos de propiedades</h1>
-* Controlador que envia o solicita informacion a traves del servicio.
+* Controlador que envía o solicita información a traves del servicio.
 *
-* @author  Walter Gomez
+* @author  Walter Gómez
 * @version 1.0
 * @since 26/2/2016
 */
@@ -25,7 +25,7 @@ public class PropertyTypeController {
 	@Autowired PropertyTypeServiceInterface pTypeService;
 	
 	/**
-	 * Solicita la informacion de los tipos de propiedades a traves del servicio.
+	 * Solicita la información de los tipos de propiedades a traves del servicio.
 	 *  
 	 * @return response Un objeto response de los tipos de propiedad.
 	 */

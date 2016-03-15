@@ -98,14 +98,14 @@ public class PropertiesService implements PropertiesServiceInterface {
 	  * Toma las imágenes de los ejbs y los convierte en POJOs.
 	  * 
 	  * @param pImages Lista de ejb de imágenes. No debe ser nula.
-	  * @return imgList Todas las entidades de tipo POJO.
+	  * @return imageList Todas las entidades de tipo POJO.
 	  */
 	private List<PropertyImagePOJO> imagesDtos(List<TpropertyImage> pImages) {
 		List<PropertyImagePOJO> imageList = new ArrayList<PropertyImagePOJO>();
 		pImages.stream().forEach(u -> {
-			PropertyImagePOJO dtoImg = new PropertyImagePOJO();
-			BeanUtils.copyProperties(u, dtoImg);
-			imageList.add(dtoImg);
+			PropertyImagePOJO dtoImage = new PropertyImagePOJO();
+			BeanUtils.copyProperties(u, dtoImage);
+			imageList.add(dtoImage);
 		});
 		return imageList;
 	}

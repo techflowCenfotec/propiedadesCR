@@ -10,9 +10,9 @@ import com.techflow.propiedadesCR.services.ProvinceServiceInterface;
 
 /**
 * <h1>Controlador de las provincias</h1>
-* Controlador que envía o solicita información a través del servicio.
+* Controlador que env√≠a o solicita informaci√≥n a trav√©s del servicio.
 *
-* @author  Walter Gómez
+* @author  Walter G√≥mez
 * @version 1.0
 * @since 26/2/2016
 */
@@ -26,7 +26,7 @@ public class ProvinceController {
 	@Autowired private ProvinceServiceInterface provinceService;
 	
 	/**
-	 * Solicita la información de las provincias a través del servicio.
+	 * Solicita la informaci√≥n de las provincias a trav√©s del servicio.
 	 *  
 	 * @return response Un objeto response de los tipos de provincia.
 	 */

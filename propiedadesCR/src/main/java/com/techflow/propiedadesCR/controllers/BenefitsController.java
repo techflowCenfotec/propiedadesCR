@@ -12,9 +12,9 @@ import com.techflow.propiedadesCR.services.BenefitsServiceInterface;
 
 /**
 * <h1>Controlador de los beneficios</h1>
-* Controlador que solicita información a través del servicio.
+* Controlador que solicita informaci√≥n a trav√©s del servicio.
 *
-* @author  Walter Gomez
+* @author  Walter G√≥mez
 * @version 1.0
 * @since 26/2/2016
 */
@@ -29,7 +29,7 @@ public class BenefitsController {
 	@Autowired private BenefitsServiceInterface benefitsService;
 	
 	/**
-	 * Solicita la información de los beneficios a través del servicio.
+	 * Solicita la informaci√≥n de los beneficios a trav√©s del servicio.
 	 *  
 	 * @return response Un objeto response de los beneficios.
 	 */
