@@ -47,6 +47,7 @@ function() {
 		,"app.createUsers"
 		,"app.usersList"
 		,"app.consultUser"
+		,"app.modifyUser"
 	
 		,"app.banktodolist"
 		,"app.banktodolistCreate"
@@ -159,12 +160,11 @@ function(){
 				e.user = response.user;
 				$rootScope.userLogged = response.user;
 				e.userLogged = localStorage.getItem('userLogged');
-				console.log('LocalStorage', e.userLogged);
-				console.log('Respuesta',response.user);
+				
 				return e.user;
 			});
 			e.consultMyProfile = function(myId){
-				localStorage.setItem('idUser',myId);
+				localStorage.setItem('idUserM',myId);
 			};
 			
 		}

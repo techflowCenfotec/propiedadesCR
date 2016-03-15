@@ -25,7 +25,6 @@
 		var init;
 		$http.post(link,request).success(function(response) {
 			$scope.users= response.users;
-			console.log($scope.users);
 			init();
 		
 			
@@ -71,7 +70,10 @@
             $scope.search();
             return $scope.select($scope.currentPage);
         };
-    
+        
+        $scope.modifyUser = function(id){
+        	localStorage.setItem('idUserModify',id);
+        }
 		
 	}]);
 })();
