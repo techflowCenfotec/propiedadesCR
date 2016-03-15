@@ -21,7 +21,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.techflow.propiedadesCR.contracts.LoginRequest;
+import com.techflow.propiedadesCR.ejb.Trole;
 import com.techflow.propiedadesCR.ejb.Tuser;
+import com.techflow.propiedadesCR.pojo.RolePOJO;
 import com.techflow.propiedadesCR.pojo.UserPOJO;
 import com.techflow.propiedadesCR.repositories.LoginRepository;
 
@@ -65,6 +67,11 @@ public class LoginService implements LoginServiceInterface {
 
 		if (null != nuser){
 			userPOJO = new UserPOJO();
+			Trole role =nuser.getTrole();	
+			RolePOJO rolePOJO = new RolePOJO();
+			BeanUtils.copyProperties(role, rolePOJO);
+			userPOJO = new UserPOJO();
+			userPOJO.setRole(rolePOJO);
 			BeanUtils.copyProperties(nuser, userPOJO);
 		}
 		return userPOJO;

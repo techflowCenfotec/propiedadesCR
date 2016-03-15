@@ -2,6 +2,9 @@ package com.techflow.propiedadesCR.ejb;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -56,6 +59,7 @@ public class Trole implements Serializable {
 			@JoinColumn(name="id_permission")
 			}
 		)
+	@JsonIgnore
 	public List<Tpermission> getTpermissions() {
 		return this.tpermissions;
 	}
