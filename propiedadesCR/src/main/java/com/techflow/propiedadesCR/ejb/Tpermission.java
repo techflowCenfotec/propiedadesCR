@@ -2,6 +2,9 @@ package com.techflow.propiedadesCR.ejb;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -45,6 +48,7 @@ public class Tpermission implements Serializable {
 
 	//bi-directional many-to-many association to Trole
 	@ManyToMany(mappedBy="tpermissions")
+	@JsonIgnore
 	public List<Trole> getTroles() {
 		return this.troles;
 	}

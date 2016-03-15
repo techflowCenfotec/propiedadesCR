@@ -106,7 +106,7 @@ public class UsersController {
 	  * @return userResponse Retorna la respuesta del servicio hacia el frontend.
 	  *
 	  * @throws ParseException Esta exepción se lanza cuando el sistema es incapaz de transformar
-	  * el String pbirthday a birthday ques es de tipo Date.
+	  * el String pbirthday a birthday que es de tipo Date.
 	   */
 	@RequestMapping(value ="/create", method = RequestMethod.POST)
 	public UsersResponse create(
