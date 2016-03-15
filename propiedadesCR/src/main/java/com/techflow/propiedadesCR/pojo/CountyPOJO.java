@@ -17,7 +17,7 @@ public class CountyPOJO {
      */	
 	private int idCounty;
 	/**
-     * Código de área del cantón.
+     * Código de rea del cantón.
      */	
 	private int code;
 	/**
@@ -35,6 +35,7 @@ public class CountyPOJO {
 	
 	public CountyPOJO() {
 		super();
+		this.tprovince =  new ProvincePOJO();
 	}
 
 	public int getIdCounty() {

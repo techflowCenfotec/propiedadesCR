@@ -28,10 +28,6 @@ public class ProvincePOJO {
      * Cantones que posee.
      */	
 	private List<CountyPOJO> tcounties;
-	/**
-     * Propiedades dentro de la propvincia.
-     */	
-	private List<PropertyPOJO> tproperties;
 	
 	public ProvincePOJO() {
 		super();
@@ -69,11 +65,4 @@ public class ProvincePOJO {
 		this.tcounties = tcounties;
 	}
 
-	public List<PropertyPOJO> getTproperties() {
-		return tproperties;
-	}
-
-	public void setTproperties(List<PropertyPOJO> tproperties) {
-		this.tproperties = tproperties;
-	}
 }

@@ -4,12 +4,12 @@
             <h2 class="section-header">Propiedades</h2>
         </div>
         <div class="col-md-12">
-            <div class=column ng-repeat="property in propertiesList">
+            <div class=column ng-repeat="property in propertiesList | limitTo:quantity">
                 <div class="col-md-4">
                     <div class="card bg-white">
                         <div class="card-image">
-                            <img src="{{property.tpropertyImages[0].propertyImage}}" width="365" height="200">
-                            <span class="card-title">{{property.tcounty.name}} - {{property.tdistrict.name}}</span>
+                            <img src="{{property.tpropertyImages[0].propertyImage}}" height="200">
+                            <span class="card-title">{{property.price | currency}} - {{property.tdistrict.name}}</span>
                         </div>
                         <div class="card-content">
                             <a class="card-button pull-right" href="javascript:;">

@@ -3,6 +3,8 @@ package com.techflow.propiedadesCR.ejb;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * The persistent class for the tproperty_image database table.
@@ -46,6 +48,7 @@ public class TpropertyImage implements Serializable {
 	//bi-directional many-to-one association to Tproperty
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_property")
+	@JsonIgnore
 	public Tproperty getTproperty() {
 		return this.tproperty;
 	}
