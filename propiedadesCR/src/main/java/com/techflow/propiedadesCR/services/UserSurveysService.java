@@ -16,13 +16,33 @@ import com.techflow.propiedadesCR.pojo.AnswerPOJO;
 import com.techflow.propiedadesCR.pojo.UserSurveyPOJO;
 import com.techflow.propiedadesCR.repositories.AnswersRepository;
 import com.techflow.propiedadesCR.repositories.UserSurveysRepository;
+/**
+* <h1>Servicio de los cuestionarios de los usuarios</h1>
+* Esta clase es la encargada de ofrecer los servicios
+* y administrar las transacciones al repositorio
+*
+* @author  Jimmi Vila
+* @version 1.0
+* @since 10/03/2016
+*/
 
 @Service
 public class UserSurveysService implements UserSurveysServiceInterface{
-	
+	/**
+     * Objeto que se comunica con la base de datos
+     */
 	@Autowired private UserSurveysRepository userSurveysRepository;
+	/**
+     * Objeto que se comunica con la base de datos
+     */
 	@Autowired private AnswersRepository answersRepository;
 
+	/**
+	  * Este metodo sirve para almacenar un cuestionario y sus respuestas para un usuario del sistema
+	  * @param puserSurveysRequest Este parametro es la peticion del front-end que contiene el objeto
+	  * que se usa para acceder al metodo deseado y completar la funcion
+	  * @return nuserSurvey Cuestionario creado
+	  */
 	@Override
 	@Transactional
 	public TuserSurvey createUserSurvey(UserSurveysRequest puserSurveysRequest) {
@@ -52,10 +72,16 @@ public class UserSurveysService implements UserSurveysServiceInterface{
 		
 		return nuserSurvey;
 	}
-
+	
+	/**
+	  * Este metodo sirve para obtener un cuestionario y sus respuestas para un usuario del sistema
+	  * @param pidUserSurvey Este parametro es la peticion del front-end que contiene el objeto
+	  * que se usa para acceder al metodo deseado y completar la funcion
+	  * @return surveyWithAnswers Cuestionario con sus respuestas
+	  */
 	@Override
-	public UserSurveyPOJO getUserSurveyById(int idUserSurvey) {
-		TuserSurvey userSurvey = userSurveysRepository.findOne(idUserSurvey);
+	public UserSurveyPOJO getUserSurveyById(int pidUserSurvey) {
+		TuserSurvey userSurvey = userSurveysRepository.findOne(pidUserSurvey);
 		UserSurveyPOJO surveyWithAnswers = new UserSurveyPOJO();
 		
 		BeanUtils.copyProperties(userSurvey, surveyWithAnswers);

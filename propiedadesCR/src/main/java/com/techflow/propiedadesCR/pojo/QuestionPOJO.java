@@ -1,14 +1,27 @@
 package com.techflow.propiedadesCR.pojo;
 
 import java.util.List;
-
+/**
+* <h1>POJO de la pregunta</h1>
+* 
+* Enfatiza el uso de la clase simple "question"
+* 
+* @author  Jimmi Vila
+* @version 1.0
+* @since 10/03/2016
+*/
 public class QuestionPOJO {
-
+	/**
+     * Id de la pregunta
+     */
 	private int idQuestion;
-	//private byte active;
+	/**
+     * Pregunta
+     */
 	private String question;
-	//private List<AnswerPOJO> tanswers;
-	//private List<OptionPOJO> toptions1;
+	/**
+     * Lista de opciones de la pregunta
+     */
 	private List<OptionPOJO> toptions2;
 	
 	public QuestionPOJO() {
@@ -23,14 +36,6 @@ public class QuestionPOJO {
 		this.idQuestion = idQuestion;
 	}
 
-//	public byte getActive() {
-//		return active;
-//	}
-//
-//	public void setActive(byte active) {
-//		this.active = active;
-//	}
-
 	public String getQuestion() {
 		return question;
 	}
@@ -38,22 +43,6 @@ public class QuestionPOJO {
 	public void setQuestion(String question) {
 		this.question = question;
 	}
-
-//	public List<AnswerPOJO> getTanswers() {
-//		return tanswers;
-//	}
-//
-//	public void setTanswers(List<AnswerPOJO> tanswers) {
-//		this.tanswers = tanswers;
-//	}
-
-//	public List<OptionPOJO> getToptions1() {
-//		return toptions1;
-//	}
-//
-//	public void setToptions1(List<OptionPOJO> toptions1) {
-//		this.toptions1 = toptions1;
-//	}
 
 	public List<OptionPOJO> getToptions2() {
 		return toptions2;

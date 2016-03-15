@@ -18,15 +18,35 @@ import com.techflow.propiedadesCR.pojo.PropertyPOJO;
 import com.techflow.propiedadesCR.pojo.UserSurveyPOJO;
 import com.techflow.propiedadesCR.services.PropertiesServiceInterface;
 import com.techflow.propiedadesCR.services.UserSurveysServiceInterface;
+/**
+* <h1>Controlador de los cuestionarios de los usuarios</h1>
+* Esta clase es la encargada de recibir los pedidos del front-end
+* y manejar todo lo relacionado a los cuestionarios de los usuarios
+* @author  Jimmi Vila
+* @version 1.0
+* @since 10/03/2016
+*/
 
 @RestController
 @RequestMapping(value="rest/protected/usersurveys")
 public class UserSurveysController {
 
+	/**
+     * Objeto que ofrece los servicios de los cuestionarios de los usuarios
+     */
 	@Autowired private UserSurveysServiceInterface userSurveysService;
 	
+	/**
+     * Objeto que ofrece los servicios de las propiedades
+     */
 	@Autowired private PropertiesServiceInterface propertiesService;
 
+	/**
+	  * Este metodo sirve para almacenar un cuestionario y sus respuestas para un usuario del sistema
+	  * @param puserSurveysRequest Este parametro es la peticion del front-end que contiene el objeto
+	  * que se usa para acceder al metodo deseado y completar la funcion
+	  * @return nuserSurvey Cuestionario creado
+	  */
 	@RequestMapping(value="/create",method=RequestMethod.POST)
 	public UserSurveysResponse createUserSurvey(@RequestBody UserSurveysRequest puserSurveysRequest){
 		UserSurveysResponse response = new UserSurveysResponse();
@@ -41,6 +61,13 @@ public class UserSurveysController {
 		return response;
 	}
 	
+	/**
+	  * Este metodo sirve para generar la lista de propiedades recomendadas y la lista de porcentajes para un usuario
+	  * apartir de un cuestionario
+	  * @param puserSurveyRequest Este parametro es la peticion del front-end que contiene el objeto
+	  * que se usa para acceder al metodo deseado y completar la funcion
+	  * @return response Lista con las propiedades y porcentajes de match
+	  */
 	@RequestMapping(value="/generatematchbysurvey",method=RequestMethod.POST)
 	public UserSurveyMatchResultResponse GenerateMatchBySurvey(@RequestBody UserSurveysRequest puserSurveyRequest){
 		//response
@@ -70,7 +97,6 @@ public class UserSurveysController {
 			
 			if(matchedTags>0){
 				double matchPorcentage = getMatchPorcentage(userTags,matchedTags);
-				//propertiesResult.add(property);
 				idsProperties.add(property.getIdProperty());
 				porcentages.add(matchPorcentage);
 			}
@@ -93,10 +119,22 @@ public class UserSurveysController {
 		return response;
 	}
 	
-	private double getMatchPorcentage(int userTags, int matchedTags) {
-		return matchedTags*100/userTags;
+	/**
+	  * Este metodo sirve para generar el porcentaje de match por cada propiedad
+	  * @param puserTags Cantidad de tags por usuario
+	  * @param pmatchedTags Cantidad de tags que hicieron match con la propiedad
+	  * @return result Porcentage de match
+	  */
+	private double getMatchPorcentage(int puserTags, int pmatchedTags) {
+		double result = pmatchedTags*100/puserTags;
+		return result;
 	}
-
+	
+	/**
+	  * Este metodo sirve para obtener un cuestionario y sus respuestas para un usuario del sistema
+	  * @param idUserSurvey Este parametro es el id del cuestionario a consultar
+	  * @return surveyWithAnswers Cuestionario consultado
+	  */
 	public UserSurveyPOJO getUserSurveyById(int idUserSurvey){
 		return userSurveysService.getUserSurveyById(idUserSurvey);
 	}

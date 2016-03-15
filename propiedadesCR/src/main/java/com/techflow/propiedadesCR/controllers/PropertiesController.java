@@ -134,7 +134,12 @@ public class PropertiesController {
 		}
 		return response;
 	}
-
+	
+	/**
+	 * Solicita la información de las propiedades a través del servicio.
+	 *  
+	 * @return propertiesWithBenefits Una lista con las propiedades y sus beneficios.
+	 */
 	public List<PropertyPOJO> getPropertiesWithBenefits() {
 		ArrayList<PropertyPOJO> propertiesWithBenefits = propertiesService.getPropertiesWithBenefits();
 		return propertiesWithBenefits;
