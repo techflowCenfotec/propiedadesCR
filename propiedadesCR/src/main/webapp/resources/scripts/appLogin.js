@@ -32,6 +32,8 @@ function() {
 		,"app.i18n"
 		
 		,"app.login"
+		,"app.forgotPassword"
+		,"app.resetPassword"
 
 
 		//3rd Party Modules

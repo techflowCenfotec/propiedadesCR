@@ -15,7 +15,7 @@
 			,"templates/usersView/consultUser"
 			,"templates/usersView/modifyUser"
 			,"templates/usersView/vendorsList"
-
+			
 			,"templates/eventsView/createEvent"
 			,"templates/eventsView/eventsList"
 

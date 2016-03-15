@@ -8,6 +8,9 @@
 		var n,t;
 		n = [
 			"templates/loginView/login"
+			
+			,"templates/resetPasswordView/forgotPassword"
+			,"templates/resetPasswordView/resetPassword"
 
 		], 
 

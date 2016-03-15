@@ -50,6 +50,7 @@ function() {
 		,"app.modifyUser"
 		,"app.vendorsList"
 	
+		
 		,"app.banktodolist"
 		,"app.banktodolistCreate"
 
