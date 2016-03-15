@@ -1,0 +1,274 @@
+package com.techflow.propiedadesCR.pojo;
+
+import java.util.List;
+
+<<<<<<< HEAD
+import com.techflow.propiedadesCR.ejb.TpropertyType;
+import com.techflow.propiedadesCR.ejb.Tprovince;
+
+public class PropertyPOJO {
+	
+=======
+import com.techflow.propiedadesCR.ejb.TpropertyComment;
+import com.techflow.propiedadesCR.ejb.TpropertyRating;
+import com.techflow.propiedadesCR.ejb.TpropertyType;
+import com.techflow.propiedadesCR.ejb.Tuser;
+
+/**
+* <h1>POJO de la propiedad</h1>
+* Clase que contiene los atributos de las imágenes.
+*
+* @author  Walter Gómez
+* @version 1.0
+* @since 26/2/2016
+*/
+public class PropertyPOJO {
+	
+	/**
+     * Id de la propiedad.
+     */
+>>>>>>> 7bd9e93b0bffb34e71217537b908e179b103e447
+	private int idProperty;
+	/**
+     * Estado de la propiedad. Utilizado para el borrado lógico de la propiedad.
+     */
+	private byte active;
+<<<<<<< HEAD
+	private String location;
+	private String nearbyAreas;
+	private double price;
+	private String propertyImage;
+	private double squareMeters;
+	private List<BenefitsPOJO> tbenefits;
+	private TpropertyType tpropertyType;
+	private Tprovince tprovince;
+	private List<CommentsPOJO> tpropertyComments;
+	private List<RatingPOJO> tpropertyRatings;
+	private List<UserPOJO> tusers;
+=======
+	/**
+     * Dirección exacta de la propiedad.
+     */
+	private String address;
+	/**
+     * Coordenadas de la propiedad.
+     */
+	private String coordinates;
+	/**
+     * Precio de la propiedad.
+     */
+	private double price;
+	/**
+     * Mteros de construcción de la propiedad.
+     */
+	private double squareMeters;
+	/**
+     * Lista de beneficios de la propiedad.
+     */
+	private List<BenefitsPOJO> tbenefits;
+	/**
+     * Distrito al que pertenece la propiedad.
+     */
+	private DistrictPOJO tdistrict;
+	/**
+     * Tipo de la propiedad.
+     */
+	private TpropertyType tpropertyType;
+	/**
+     * Usuario que registra la propiedad para la venta. Sólo usuarios de tipo vendedor.
+     */
+	private Tuser tuser;
+	/**
+     * Comentarios acerca la propiedad.
+     */
+	private List<TpropertyComment> tpropertyComments; //Change to POJO
+	/**
+     * Calificación de la propiedad.
+     */
+	private List<TpropertyRating> tpropertyRatings; //Change to POJO
+	/**
+     * Lista de usuarios de la propiedad.
+     */
+	private List<UserPOJO> tusers;
+	/**
+     * Imágenes de la propiedad.
+     */
+	private List<PropertyImagePOJO> tpropertyImages;
+>>>>>>> 7bd9e93b0bffb34e71217537b908e179b103e447
+	
+	public PropertyPOJO() {
+		super();
+	}
+
+	public int getIdProperty() {
+		return idProperty;
+	}
+
+	public void setIdProperty(int idProperty) {
+		this.idProperty = idProperty;
+	}
+
+	public byte getActive() {
+		return active;
+	}
+
+	public void setActive(byte active) {
+		this.active = active;
+	}
+
+<<<<<<< HEAD
+	public String getLocation() {
+		return location;
+	}
+
+	public void setLocation(String location) {
+		this.location = location;
+	}
+
+	public String getNearbyAreas() {
+		return nearbyAreas;
+	}
+
+	public void setNearbyAreas(String nearbyAreas) {
+		this.nearbyAreas = nearbyAreas;
+=======
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getCoordinates() {
+		return coordinates;
+	}
+
+	public void setCoordinates(String coordinates) {
+		this.coordinates = coordinates;
+>>>>>>> 7bd9e93b0bffb34e71217537b908e179b103e447
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+<<<<<<< HEAD
+	public String getPropertyImage() {
+		return propertyImage;
+	}
+
+	public void setPropertyImage(String propertyImage) {
+		this.propertyImage = propertyImage;
+	}
+
+=======
+>>>>>>> 7bd9e93b0bffb34e71217537b908e179b103e447
+	public double getSquareMeters() {
+		return squareMeters;
+	}
+
+	public void setSquareMeters(double squareMeters) {
+		this.squareMeters = squareMeters;
+	}
+
+	public List<BenefitsPOJO> getTbenefits() {
+		return tbenefits;
+	}
+
+	public void setTbenefits(List<BenefitsPOJO> tbenefits) {
+		this.tbenefits = tbenefits;
+	}
+
+<<<<<<< HEAD
+=======
+	public DistrictPOJO getTdistrict() {
+		return tdistrict;
+	}
+
+	public void setTdistrict(DistrictPOJO tdistrict) {
+		this.tdistrict = tdistrict;
+	}
+
+>>>>>>> 7bd9e93b0bffb34e71217537b908e179b103e447
+	public TpropertyType getTpropertyType() {
+		return tpropertyType;
+	}
+
+	public void setTpropertyType(TpropertyType tpropertyType) {
+		this.tpropertyType = tpropertyType;
+	}
+
+<<<<<<< HEAD
+	public Tprovince getTprovince() {
+		return tprovince;
+	}
+
+	public void setTprovince(Tprovince tprovince) {
+		this.tprovince = tprovince;
+	}
+
+	public List<CommentsPOJO> getTpropertyComments() {
+		return tpropertyComments;
+	}
+
+	public void setTpropertyComments(List<CommentsPOJO> tpropertyComments) {
+		this.tpropertyComments = tpropertyComments;
+	}
+
+	public List<RatingPOJO> getTpropertyRatings() {
+		return tpropertyRatings;
+	}
+
+	public void setTpropertyRatings(List<RatingPOJO> tpropertyRatings) {
+=======
+	public Tuser getTuser() {
+		return tuser;
+	}
+
+	public void setTuser(Tuser tuser) {
+		this.tuser = tuser;
+	}
+
+	public List<TpropertyComment> getTpropertyComments() {
+		return tpropertyComments;
+	}
+
+	public void setTpropertyComments(List<TpropertyComment> tpropertyComments) {
+		this.tpropertyComments = tpropertyComments;
+	}
+
+	public List<TpropertyRating> getTpropertyRatings() {
+		return tpropertyRatings;
+	}
+
+	public void setTpropertyRatings(List<TpropertyRating> tpropertyRatings) {
+>>>>>>> 7bd9e93b0bffb34e71217537b908e179b103e447
+		this.tpropertyRatings = tpropertyRatings;
+	}
+
+	public List<UserPOJO> getTusers() {
+		return tusers;
+	}
+
+	public void setTusers(List<UserPOJO> tusers) {
+		this.tusers = tusers;
+<<<<<<< HEAD
+	}
+=======
+	}
+
+	public List<PropertyImagePOJO> getTpropertyImages() {
+		return tpropertyImages;
+	}
+
+	public void setTpropertyImages(List<PropertyImagePOJO> tpropertyImages) {
+		this.tpropertyImages = tpropertyImages;
+	}
+	
+>>>>>>> 7bd9e93b0bffb34e71217537b908e179b103e447
+}

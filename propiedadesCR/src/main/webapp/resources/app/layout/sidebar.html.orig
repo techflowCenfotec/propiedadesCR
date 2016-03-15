@@ -1,0 +1,65 @@
+
+<div class="nav-wrapper">
+    <ul id="nav"
+    class="nav"
+    data-slim-scroll
+    data-collapse-nav
+    data-highlight-active>
+        <li class="nav-title"> <span data-translate="MENU"></span> </li>
+<<<<<<< HEAD
+        <li>
+        	<a md-button aria-label="meanu" href="#"><i class="zmdi zmdi-home"></i><span>Propiedades</span></a>
+        	<ul>
+                <li><a md-button aria-label="meanu" href="#/templates/propertiesView/propertiesCreate"><i class="fa fa-circle"></i><span>Agregar Propiedad</span></a></li>
+                <li><a md-button aria-label="meanu" href="#/templates/propertiesView/propertiesList"><i class="fa fa-circle"></i><span>Lista de Propiedades</span> <span class="badge badge-info">3</span></a></li>
+            </ul>
+        </li>
+        <li>
+=======
+        <li><a md-button aria-label="meanu" href="#"><i class="zmdi zmdi-home"></i><span>Propiedades</span></a>
+        	<ul>
+                <li><a md-button aria-label="meanu" href="#/templates/propertiesView/propertiesCreate"><i class="fa fa-circle"></i><span>Registrar Propiedad</span></a></li>
+                <li><a md-button aria-label="meanu" href="#/templates/propertiesView/propertiesList"><i class="fa fa-circle"></i><span>Lista de Propiedades</span> <span class="badge badge-info">3</span></a></li>
+            </ul>
+        </li>
+
+         <li><a md-button aria-label="meanu" href="#/templates/usersView/usersList"><i class="zmdi zmdi-account"></i><span>Usuarios</span></a>
+       		 <ul>
+                <li><a md-button aria-label="meanu" href="#/templates/usersView/usersList"><i class="fa fa-circle"></i><span>Listar usuarios</span></a></li>
+                <li><a md-button aria-label="meanu" href="#/templates/usersView/createUser"><i class="fa fa-circle"></i><span>Crear usuario</span> <span class="badge badge-info">3</span></a></li>
+        	</ul>
+         </li>
+        <li><a md-button aria-label="meanu" href="#"><i class="zmdi zmdi-assignment"></i><span>Eventos</span></a>
+          <ul>
+                <li><a md-button aria-label="meanu" href="#/templates/eventsView/eventsList"><i class="fa fa-circle"></i><span>Listar eventos</span></a></li>
+                <li><a md-button aria-label="meanu" href="#/templates/eventsView/createEvent"><i class="fa fa-circle"></i><span>Crear eventos</span></a></li>
+				
+            </ul>
+         </li>
+         
+        <li>
+>>>>>>> 7bd9e93b0bffb34e71217537b908e179b103e447
+            <a md-button aria-label="meanu" href="#/"><i class="zmdi zmdi-card-giftcard"></i><span>Mi Perfil</span></a>
+            <ul>
+                <li><a md-button aria-label="meanu" href="#/ui/buttons"><i class="fa fa-circle"></i><span>Lorem Ipsum</span></a></li>
+                <li><a md-button aria-label="meanu" href="#/ui/icons"><i class="fa fa-circle"></i><span>Lorem Ipsum</span> <span class="badge badge-info">3</span></a></li>
+            </ul>
+        </li>
+        <li>
+            <a md-button aria-label="meanu" href="#/form"><i class="zmdi zmdi-edit"></i><span>Lorem Ipsum</span></a>
+            <ul>
+                <li><a md-button aria-label="meanu" href="#/form/elements"><i class="fa fa-circle"></i><span>Lorem Ipsum</span> <span class="badge badge-info">15</span></a></li>
+                <li><a md-button aria-label="meanu" href="#/form/validation"><i class="fa fa-circle"></i><span>Lorem Ipsum</span></a></li>
+                <li><a md-button aria-label="meanu" href="#/form/wizard"><i class="fa fa-circle"></i><span>Lorem Ipsum</span></a></li>
+            </ul>
+        </li>
+        <li class="nav-divider"></li>
+        <li class="nav-title"> <span data-translate="FEATURES"></span> </li>
+        <li class="li-small"><a href="#"><i class="fa fa-circle color-info"></i> <span>Información Bancaria</span></a></li>
+        <li class="li-small"><a href="#/templates/reportsView/reports"><i class="fa fa-circle color-success"></i> <span>Reportes</span></a></li>
+        <li class="li-small"><a href="#/templates/roleView/roles"><i class="fa fa-circle color-success"></i> <span>Ver Roles</span></a></li>
+        <li class="li-small"><a href="#/templates/roleView/addRoles"><i class="fa fa-circle color-success"></i> <span>Agregar Roles</span></a></li>
+        <li class="li-small"><a href="#/templates/banktodolistView/banktodolistList"><i class="fa fa-circle color-success"></i> <span>Listar to-do list</span></a></li>
+        <li class="li-small"><a href="#/templates/banktodolistView/banktodolistCreate"><i class="fa fa-circle color-success"></i> <span>Crear to-do list</span></a></li>
+    </ul>
+</div>

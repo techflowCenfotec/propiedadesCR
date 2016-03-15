@@ -16,10 +16,10 @@ import com.techflow.propiedadesCR.repositories.ProvinceRepository;
 
 /**
 * <h1>Servicio de Provincias</h1>
-* Servicio que provee una implementación a la interface
-* de los métodos getAll() y getProvinceById().
+* Servicio que provee una implementacion a la interface
+* de los metodos getAll() y getProvinceById().
 *
-* @author  Walter Gómez
+* @author  Walter Gomez
 * @version 1.0
 * @since 26/2/2016
 */
@@ -79,7 +79,7 @@ public class ProvinceService implements ProvinceServiceInterface {
 	}
 
 	/**
-	  * Retorna a través del repositorio el ejb de la provincia.
+	  * Retorna a trav̩s del repositorio el ejb de la provincia.
 	  * 
 	  * @param pIdProvince Id de la provincia a buscar. No debe ser nulo.
 	  * @return Tprovince Una entidad del tipo.

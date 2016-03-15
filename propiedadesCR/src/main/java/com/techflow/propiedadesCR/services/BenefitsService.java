@@ -15,10 +15,10 @@ import com.techflow.propiedadesCR.repositories.BenefitsRepository;
 
 /**
 * <h1>Servicio para obtener los beneficios</h1>
-* Servicio que provee la implementación de los métodos 
+* Servicio que provee la implementaci�n de los m̩todos 
 * getAll(), getBenefitById() y getBenefits().
 *
-* @author  Walter Gómez
+* @author  Walter G�mez
 * @version 1.0
 * @since 26/2/2016
 */
@@ -60,7 +60,7 @@ public class BenefitsService implements BenefitsServiceInterface {
 	}
 
 	/**
-	  * Retorna a través del repositorio el ejb del beneficio.
+	  * Retorna a trav̩s del repositorio el ejb del beneficio.
 	  * 
 	  * @param pIdBenefit Id del beneficio a buscar. No debe ser nulo.
 	  * @return Tbenefit Una entidad del tipo.
@@ -72,7 +72,7 @@ public class BenefitsService implements BenefitsServiceInterface {
 	}
 
 	/**
-	  * Retorna a través del repositorio una lista de 
+	  * Retorna a trav̩s del repositorio una lista de 
 	  * ejbs de beneficios.
 	  * 
 	  * @param pBenefits Arreglo de ids de beneficios. No debe ser nula.

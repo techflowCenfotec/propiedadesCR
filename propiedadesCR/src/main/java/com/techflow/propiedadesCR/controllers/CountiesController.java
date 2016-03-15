@@ -12,9 +12,9 @@ import com.techflow.propiedadesCR.services.CountiesServiceInterface;
 
 /**
 * <h1>Controlador de los cantones</h1>
-* Controlador que envía o solicita información a través del servicio.
+* Controlador que envia o solicita informacion a traves del servicio.
 *
-* @author  Walter Gómez
+* @author  Walter G�mez
 * @version 1.0
 * @since 26/2/2016
 */
@@ -28,7 +28,7 @@ public class CountiesController {
 	@Autowired private CountiesServiceInterface countiesService;
 	
 	/**
-	 * Solicita la información de los cantones a través del servicio.
+	 * Solicita la informacion de los cantones a traves del servicio.
 	 *  
 	 * @return response Un objeto response de los cantones.
 	 */

@@ -14,10 +14,10 @@ import com.techflow.propiedadesCR.repositories.PropertyTypeRepository;
 
 /**
 * <h1>Servicio para los tipos de propiedad</h1>
-* Servicio que provee la implementación de los métodos
+* Servicio que provee la implementacion de los m̩todos
 * getAll() y getPropertyTypeById().
 *
-* @author  Walter Gómez
+* @author  Walter Gomez
 * @version 1.0
 * @since 26/2/2016
 */
@@ -60,7 +60,7 @@ public class PropertyTypeService implements PropertyTypeServiceInterface {
 	}
 	
 	/**
-	  * Retorna a través del repositorio el ejb del tipo
+	  * Retorna a trav̩s del repositorio el ejb del tipo
 	  * de propiedad.
 	  * 
 	  * @param pIdPropertyType Id de la propiedad a buscar. No debe ser nulo.

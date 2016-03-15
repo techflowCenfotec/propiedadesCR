@@ -4,7 +4,7 @@ package com.techflow.propiedadesCR.pojo;
 * <h1>POJO de los distritos de la propiedad</h1>
 * Clase que contiene los atributos de los distritos.
 *
-* @author  Walter GÃ³mez
+* @author  Walter G—mez
 * @version 1.0
 * @since 26/2/2016
 */
@@ -15,7 +15,7 @@ public class DistrictPOJO {
      */	
 	private int idDisctrict;
 	/**
-     * CÃ³digo de Ã¡rea del distrito.
+     * C—digo de ‡rea del distrito.
      */	
 	private int code;
 	/**
@@ -23,7 +23,7 @@ public class DistrictPOJO {
      */	
 	private String name;
 	/**
-     * CantÃ³n al que pertenece distrito.
+     * Cant—n al que pertenece distrito.
      */	
 	private CountyPOJO tcounty;
 	

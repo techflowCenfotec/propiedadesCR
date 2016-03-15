@@ -18,10 +18,10 @@ import com.techflow.propiedadesCR.repositories.DistrictRepository;
 
 /**
 * <h1>Servicio del Distrito</h1>
-* Servicio que provee una implementación a la interface
-* de los métodos getAll() y getDistrictById().
+* Servicio que provee una implementacion a la interface
+* de los metodos getAll() y getDistrictById().
 *
-* @author  Walter Gómez
+* @author  Walter Gomez
 * @version 1.0
 * @since 26/2/2016
 */
@@ -71,7 +71,7 @@ public class DistrictService implements DistrictServiceInterface {
 	}
 
 	/**
-	  * Retorna a través del repositorio el ejb del distrito.
+	  * Retorna a trav̩s del repositorio el ejb del distrito.
 	  * 
 	  * @param pIdDistrict Id del distrito a buscar. No debe ser nulo.
 	  * @return Tdistrict Una entidad del tipo.

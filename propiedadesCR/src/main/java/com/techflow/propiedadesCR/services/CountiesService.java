@@ -17,10 +17,10 @@ import com.techflow.propiedadesCR.repositories.CountiesRepository;
 
 /**
 * <h1>Servicio para obtener los cantones</h1>
-* Servicio que provee la implementaci贸n de los m茅todos 
+* Servicio que provee la implementacion de los metodos 
 * getAll() y getCountyById().
 *
-* @author  Walter G贸mez
+* @author  Walter G梞ez
 * @version 1.0
 * @since 26/2/2016
 */
@@ -79,9 +79,9 @@ public class CountiesService implements CountiesServiceInterface {
 	}
 
 	/**
-	  * Retorna a trav茅s del repositorio el ejb del cant贸n.
+	  * Retorna a traves del repositorio el ejb del canton.
 	  * 
-	  * @param pIdCounty Id del cant贸n a buscar. No debe ser nulo.
+	  * @param pIdCounty Id del canton a buscar. No debe ser nulo.
 	  * @return Tcounty Una entidad del tipo.
 	  */
 	@Override

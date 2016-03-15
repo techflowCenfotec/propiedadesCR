@@ -1,0 +1,64 @@
+package com.techflow.propiedadesCR.controllers;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.techflow.propiedadesCR.contracts.BenefitsRequest;
+import com.techflow.propiedadesCR.contracts.BenefitsResponse;
+import com.techflow.propiedadesCR.services.BenefitsServiceInterface;
+
+/**
+<<<<<<< HEAD
+* <h1>BenefitsController</h1>
+* Controller that sends or request information
+* about the benefits through the service
+=======
+* <h1>Controlador de los beneficios</h1>
+* Controlador que solicita información a través del servicio.
+>>>>>>> 7bd9e93b0bffb34e71217537b908e179b103e447
+*
+* @author  Walter Gómez
+* @version 1.0
+* @since 26/2/2016
+*/
+
+@RestController
+@RequestMapping(value= "rest/protected/benefits")
+public class BenefitsController {
+
+<<<<<<< HEAD
+	@Autowired private BenefitsServiceInterface benefitsService;
+	
+	/**
+	  * Request all benefits entities through the service.
+	  *  
+	  * @param pr Parameter for the getAll method of the service
+	  * @return a property response object.
+	  */
+=======
+	/**
+	 * Atributo de la interfaz de los beneficios.
+	 */
+	@Autowired private BenefitsServiceInterface benefitsService;
+	
+	/**
+	 * Solicita la información de los beneficios a través del servicio.
+	 *  
+	 * @return response Un objeto response de los beneficios.
+	 */
+>>>>>>> 7bd9e93b0bffb34e71217537b908e179b103e447
+	@RequestMapping(value= "/getAll", method = RequestMethod.GET)
+	public BenefitsResponse getAll() {
+		
+		BenefitsResponse response = new BenefitsResponse();
+		
+		response.setCode(200);
+		response.setCodeMessage("Benefits fetch succesfull");
+		response.setBenefits(benefitsService.getAll());
+		
+		return response;
+	}
+}

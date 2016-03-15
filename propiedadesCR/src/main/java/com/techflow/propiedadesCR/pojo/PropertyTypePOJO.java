@@ -6,7 +6,7 @@ import java.util.List;
 * <h1>POJO de los tipos de la propiedad</h1>
 * Clase que contiene los atributos de los tipos de propiedades.
 *
-* @author  Walter G√≥mez
+* @author  Walter Gómez
 * @version 1.0
 * @since 26/2/2016
 */
@@ -21,7 +21,7 @@ public class PropertyTypePOJO {
      */	
 	private String name;
 	/**
-     * Lista de propiedades que poseen un tipo de propiedad espec√≠fico.
+     * Lista de propiedades que poseen un tipo de propiedad específico.
      */	
 	private List<PropertyPOJO> tproperties;
 	
