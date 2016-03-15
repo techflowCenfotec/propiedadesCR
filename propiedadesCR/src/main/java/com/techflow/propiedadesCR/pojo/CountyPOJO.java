@@ -35,6 +35,7 @@ public class CountyPOJO {
 	
 	public CountyPOJO() {
 		super();
+		this.tprovince =  new ProvincePOJO();
 	}
 
 	public int getIdCounty() {

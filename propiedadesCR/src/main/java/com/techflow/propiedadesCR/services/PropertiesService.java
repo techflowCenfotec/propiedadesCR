@@ -76,7 +76,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 			BeanUtils.copyProperties(u, dto);
 			BeanUtils.copyProperties(u.getTdistrict(), dto.getTdistrict());
 			BeanUtils.copyProperties(u.getTpropertyType(), dto.getTpropertyType());
-			dto.setTbenefits(null);
+			dto.setTbenefits(benefitsDtos(u.getTbenefits()));
 			dto.setTuser(null);
 			dto.setTpropertyImages(imagesDtos(u.getTpropertyImages()));
 			dto.setTpropertyComments(null);

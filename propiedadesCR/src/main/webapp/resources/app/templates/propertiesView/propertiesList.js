@@ -7,12 +7,14 @@
 	
 	function PropertiesListController($scope, $http) {
 		 $scope.propertiesList = [];
+		 $scope.districtList = [];
 		
 		$scope.init = function() {
 			$http.get('rest/protected/properties/getAll')
 			.success(function(response) {
 				$scope.propertiesList = response.properties;
 			});
+			
 		};
 		
 		$scope.init();

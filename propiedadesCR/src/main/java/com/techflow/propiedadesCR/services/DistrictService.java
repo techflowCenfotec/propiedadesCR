@@ -63,19 +63,8 @@ public class DistrictService implements DistrictServiceInterface {
 		List<DistrictPOJO> uiDistricts = new ArrayList<DistrictPOJO>();
 		pDistricts.stream().forEach(u -> {
 			DistrictPOJO dto = new DistrictPOJO();
-			CountyPOJO nCounty = new CountyPOJO();
-			ProvincePOJO nProvince = new ProvincePOJO();
-			
-			Tcounty county = countyService.getCountyById(u.getTcounty().getIdCounty());
-			BeanUtils.copyProperties(county, nCounty);
-			
-			Tprovince province = provinceService.getProvinceById(county.getTprovince().getIdProvince());
-			BeanUtils.copyProperties(province, nProvince);
-			nProvince.setTproperties(null);
-			nCounty.setTprovince(nProvince);
-			
 			BeanUtils.copyProperties(u, dto);
-			dto.setTcounty(null);
+			BeanUtils.copyProperties(u.getTcounty(), dto.getTcounty());
 			uiDistricts.add(dto);
 		});
 		return uiDistricts;
