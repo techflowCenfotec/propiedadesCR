@@ -79,7 +79,7 @@ public class UsersController {
 		*
 	    * @return response Retorna la respuesta del sevicio hacia el frontend.
 	    */
-		@RequestMapping(value="/getAllVendorss", method = RequestMethod.POST)
+		@RequestMapping(value="/getAllVendors", method = RequestMethod.POST)
 		public UsersResponse getAllVendors(@RequestBody UsersRequest puserRequest) {
 			
 			UsersResponse response = new UsersResponse();

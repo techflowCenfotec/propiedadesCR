@@ -44,6 +44,7 @@ function() {
 		,"app.usersList"
 		,"app.consultUser"
 		,"app.modifyUser"
+		,"app.vendorsList"
 	
 		,"app.banktodolist"
 		,"app.banktodolistCreate"
