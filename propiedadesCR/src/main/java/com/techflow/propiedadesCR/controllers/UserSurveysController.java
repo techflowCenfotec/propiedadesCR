@@ -31,8 +31,13 @@ public class UserSurveysController {
 	public UserSurveysResponse createUserSurvey(@RequestBody UserSurveysRequest puserSurveysRequest){
 		UserSurveysResponse response = new UserSurveysResponse();
 		TuserSurvey userSurvey = userSurveysService.createUserSurvey(puserSurveysRequest);
-		if(userSurvey!=null)
+		if(userSurvey!=null){
+			response.setUserSurveys(new ArrayList<UserSurveyPOJO>());
+			response.getUserSurveys().add(new UserSurveyPOJO());
+			response.getUserSurveys().get(0).setIdSurvey(userSurvey.getIdSurvey());
 			response.setCodeMessage("nice nice");
+			response.setCode(200);
+		}
 		return response;
 	}
 	
@@ -48,13 +53,12 @@ public class UserSurveysController {
 		// lista de propiedades con beneficios
 		List<PropertyPOJO> properties = propertiesService.getPropertiesWithBenefits();
 		// lista con las respuestas del usuario
-		UserSurveyPOJO userSurvey = getUserSurveyById(1);
+		UserSurveyPOJO userSurvey = getUserSurveyById(puserSurveyRequest.getUserSurvey().getIdSurvey());
 		//calcular el porcentage del match
 		int userTags = userSurvey.getTanswers().size();
 		
 		for (PropertyPOJO property : properties) {
 			int matchedTags = 0;
-			
 			for (BenefitsPOJO benefit : property.getTbenefits()) {
 				
 				for(int i=0;i<userTags;i++){

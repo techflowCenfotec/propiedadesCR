@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular.module('app.testFlow', [])
-	.controller('testFlowController',['$scope','$http', '$timeout', 'WizardHandler',function($scope,$http, $timeout, WizardHandler){
+	.controller('testFlowController',['$scope','$http', '$timeout', 'WizardHandler','$location','$rootScope',function($scope,$http, $timeout, WizardHandler,$location,$rootScope){
 
 		//necesario para guardar las respuestas
 		var userId = 1;
@@ -25,18 +25,31 @@
 		});
 		
 		function saveSurvey(){
+
+			var newUserSurvey;
 			var userSurvey =  {"tanswers": $scope.answers,"tuser": {"idUser":userId}};
 
 			var saveLink = "rest/protected/usersurveys/create";
 			var userSurveyRequest = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "","searchTerm": "","userSurvey": userSurvey};
 			
-			// $http.post(saveLink, userSurveyRequest).success(function(response) {
-			// 	console.log(response);
-			// });
+			$http.post(saveLink, userSurveyRequest).success(function(response) {
+			 	console.log(response);
+			 	newUserSurvey = response.userSurveys[0];
+			 	console.log(newUserSurvey);
+			 	generateMatchResult(newUserSurvey);
+			});
 		};
 
-		$scope.generateMatchResult = function(){
+		function generateMatchResult(newUserSurvey){
 
+			var matchLink = "rest/protected/usersurveys/generatematchbysurvey";
+			var userSurveyMatchResultRequest = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "","searchTerm": "","userSurvey": newUserSurvey};
+			
+			$http.post(matchLink, userSurveyMatchResultRequest).success(function(response) {
+			 	console.log(response);
+			 	$rootScope.matchedPropertiesList = response;
+			 	$location.url("templates/testView/matchedPropertiesList");
+			});
 		};
 
 		// [{"id":1,"question":"Que?","options":[{

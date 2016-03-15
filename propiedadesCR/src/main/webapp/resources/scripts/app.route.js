@@ -22,7 +22,7 @@
 			,"templates/banktodolistView/banktodolistList"
 			,"templates/banktodolistView/banktodolistCreate"
 			,"templates/testView/testFlow"
-
+			,"templates/testView/matchedPropertiesList"
 			,"templates/propertiesView/propertiesCreate"
 		], 
 

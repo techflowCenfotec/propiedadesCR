@@ -119,6 +119,11 @@ public class PropertiesService implements PropertiesServiceInterface {
 		return propertiesRepository.findOne(pIdProperty);
 	}
 
+	/**
+	  * Retorna una lista de objetos PropertyPOJO con su lista de BenefitsPOJO
+	  * 
+	  * @return uiProperties Todas las entidades del tipo.
+	  */
 	@Override
 	@Transactional
 	public ArrayList<PropertyPOJO> getPropertiesWithBenefits() {
