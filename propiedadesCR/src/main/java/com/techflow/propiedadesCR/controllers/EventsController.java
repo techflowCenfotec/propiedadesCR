@@ -11,6 +11,7 @@ package com.techflow.propiedadesCR.controllers;
 
 import javax.servlet.ServletContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -64,6 +65,7 @@ public class EventsController {
 		
 		return response;
 	}
+	
 	/**
 	 * 
 	 * Este método envía los datos a la base de datos para registrar el evento.
@@ -76,7 +78,7 @@ public class EventsController {
 	 * @return response Retorna la respuesta del BackEnd al FrondEnd
 	 * 
 	 * @throws ParseException Esta exepción se lanza cuando el sistema es incapaz de transformar
-	 * el String pstartDate a startDate ques es de tipo Date.
+	 * el String pstartDate a startDate que es de tipo Date.
 	 */
 	
 	@RequestMapping(value="/create", method = RequestMethod.POST)
@@ -128,6 +130,20 @@ public class EventsController {
 		return response;
 		
     }
+	/**
+	 * Este método trae el evento por el id recibido.
+	 * @param pidEvent Identificador del evento.
+	 * @return response Se retorna la respuesta del Backend al Frondend.
+	 */
+	
+	@RequestMapping(value="/getById/{pidEvent}",method = RequestMethod.GET)
+	 public EventsResponse getById(@PathVariable int pidEvent){
+		EventsResponse response = new EventsResponse();
+		response.setCode(200);
+		response.setCodeMessage("events fetch success");
+		response.setEvent(eventsService.getById(pidEvent));
+		return response;
+	}
   }
  
 
