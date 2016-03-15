@@ -41,15 +41,6 @@ public class PropertiesService implements PropertiesServiceInterface {
 	 * Atributo de acceso al repositorio de las propiedades.
 	 */
 	@Autowired private PropertiesRepository propertiesRepository;
-	/**
-	 * Atributo de la interfaz de los distritos.
-	 */
-	@Autowired private DistrictServiceInterface districtService;
-	/**
-	 * Atributo de la interfaz de las imagenes.
-	 */
-	@Autowired private PropertyImagesServiceInterface imageService;
-	
 	
 	/**
 	  * Retorna una lista de objetos PropertyPOJO
