@@ -9,6 +9,7 @@
 		,"app.route"
 		,"flow"
 
+
 		// 3rd party feature modules
 		,"mgo-angular-wizard"
 		,"ui.tree"
@@ -16,6 +17,7 @@
 		,"textAngular"
 		]).run(['$rootScope', function($rootScope){
 			$rootScope.userLogged = null;
+			$rootScope.event ={};
 		}]);
 }(),
 
@@ -39,6 +41,8 @@ function() {
 		
 		,"app.events"
 		,"app.eventsList"
+		,"app.eventConsult"
+
 		
 		,"app.createUsers"
 		,"app.usersList"
@@ -48,6 +52,7 @@ function() {
 	
 		,"app.banktodolist"
 		,"app.banktodolistCreate"
+
 
 		,"app.properties.create"
 
