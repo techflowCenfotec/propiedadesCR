@@ -25,7 +25,7 @@ public class BenefitsPOJO {
 	/**
      * Lista de propiedades a las que pertenece.
      */	
-	private List<Tproperty> tproperties;
+	private List<PropertyPOJO> tproperties;
 	
 	public BenefitsPOJO() {
 		super();
@@ -42,10 +42,10 @@ public class BenefitsPOJO {
 	public void setBenefit(String benefit) {
 		this.benefit = benefit;
 	}
-	public List<Tproperty> getTproperties() {
+	public List<PropertyPOJO> getTproperties() {
 		return tproperties;
 	}
-	public void setTproperties(List<Tproperty> tproperties) {
+	public void setTproperties(List<PropertyPOJO> tproperties) {
 		this.tproperties = tproperties;
 	}
 	

@@ -63,26 +63,15 @@ public class DistrictService implements DistrictServiceInterface {
 		List<DistrictPOJO> uiDistricts = new ArrayList<DistrictPOJO>();
 		pDistricts.stream().forEach(u -> {
 			DistrictPOJO dto = new DistrictPOJO();
-			CountyPOJO nCounty = new CountyPOJO();
-			ProvincePOJO nProvince = new ProvincePOJO();
-			
-			Tcounty county = countyService.getCountyById(u.getTcounty().getIdCounty());
-			BeanUtils.copyProperties(county, nCounty);
-			
-			Tprovince province = provinceService.getProvinceById(county.getTprovince().getIdProvince());
-			BeanUtils.copyProperties(province, nProvince);
-			nProvince.setTproperties(null);
-			nCounty.setTprovince(nProvince);
-			
 			BeanUtils.copyProperties(u, dto);
-			dto.setTcounty(null);
+			BeanUtils.copyProperties(u.getTcounty(), dto.getTcounty());
 			uiDistricts.add(dto);
 		});
 		return uiDistricts;
 	}
 
 	/**
-	  * Retorna a través del repositorio el ejb del distrito.
+	  * Retorna a trav̩s del repositorio el ejb del distrito.
 	  * 
 	  * @param pIdDistrict Id del distrito a buscar. No debe ser nulo.
 	  * @return Tdistrict Una entidad del tipo.

@@ -9,7 +9,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.techflow.propiedadesCR.ejb.Tcounty;
+import com.techflow.propiedadesCR.ejb.Tdistrict;
 import com.techflow.propiedadesCR.pojo.CountyPOJO;
+import com.techflow.propiedadesCR.pojo.DistrictPOJO;
+import com.techflow.propiedadesCR.pojo.RatingPOJO;
 import com.techflow.propiedadesCR.repositories.CountiesRepository;
 
 /**
@@ -52,17 +55,33 @@ public class CountiesService implements CountiesServiceInterface {
 		pCounties.stream().forEach(u -> {
 			CountyPOJO dto = new CountyPOJO();
 			BeanUtils.copyProperties(u, dto);
-			dto.setTdistricts(null);
-			dto.setTprovince(null);
+			BeanUtils.copyProperties(u.getTprovince(), dto.getTprovince());
+			dto.setTdistricts(districtDtos(u.getTdistricts()));
 			uiCounties.add(dto);
 		});
 		return uiCounties;
 	}
+	
+	/**
+	  * Toma los distritos de los ejbs y los convierte en POJOs.
+	  * 
+	  * @param pDistricts Lista de ejb de distritos. No debe ser nula.
+	  * @return districtList Todas las entidades de tipo POJO.
+	  */
+	private List<DistrictPOJO> districtDtos(List<Tdistrict> pDistricts) {
+		List<DistrictPOJO> districtList = new ArrayList<DistrictPOJO>();
+		pDistricts.stream().forEach(u -> {
+			DistrictPOJO dto = new DistrictPOJO();
+			BeanUtils.copyProperties(u, dto);
+			districtList.add(dto);
+		});
+		return districtList;
+	}
 
 	/**
-	  * Retorna a través del repositorio el ejb del cantón.
+	  * Retorna a través del repositorio el ejb del canton.
 	  * 
-	  * @param pIdCounty Id del cantón a buscar. No debe ser nulo.
+	  * @param pIdCounty Id del canton a buscar. No debe ser nulo.
 	  * @return Tcounty Una entidad del tipo.
 	  */
 	@Override

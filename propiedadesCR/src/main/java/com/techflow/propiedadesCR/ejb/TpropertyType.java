@@ -2,6 +2,9 @@ package com.techflow.propiedadesCR.ejb;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -45,6 +48,7 @@ public class TpropertyType implements Serializable {
 
 	//bi-directional many-to-one association to Tproperty
 	@OneToMany(mappedBy="tpropertyType")
+	@JsonIgnore
 	public List<Tproperty> getTproperties() {
 		return this.tproperties;
 	}
