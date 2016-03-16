@@ -1,5 +1,8 @@
 package com.techflow.propiedadesCR.controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,7 +125,7 @@ public class PropertiesController {
 	/**
 	 * Solicita la información de la propiedad a través del servicio.
 	 *  
-	 *  @param pIdProprty Id de la propiedad. No debe ser nulo.
+	 *  @param pIdProperty Id de la propiedad. No debe ser nulo.
 	 * @return response Un objeto response de la propiedad.
 	 */
 	@RequestMapping(value="getByPropertyId/{pIdProperty}", method=RequestMethod.GET)
@@ -134,5 +137,15 @@ public class PropertiesController {
 		response.setProperty(property);
 		
 		return response;
+	}
+	
+	/**
+	 * Solicita la información de las propiedades a través del servicio.
+	 *  
+	 * @return propertiesWithBenefits Una lista con las propiedades y sus beneficios.
+	 */
+	public List<PropertyPOJO> getPropertiesWithBenefits() {
+		ArrayList<PropertyPOJO> propertiesWithBenefits = propertiesService.getPropertiesWithBenefits();
+		return propertiesWithBenefits;
 	}
 }

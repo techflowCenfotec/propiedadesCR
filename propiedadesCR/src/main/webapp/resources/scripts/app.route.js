@@ -22,10 +22,10 @@
 			
 			,"templates/roleView/roles"
 			,"templates/roleView/addRoles"
-			
-			, "templates/banktodolistView/banktodolistList"
+			,"templates/banktodolistView/banktodolistList"
 			,"templates/banktodolistView/banktodolistCreate"
-
+			,"templates/testView/testFlow"
+			,"templates/testView/matchedPropertiesList"
 			,"templates/propertiesView/propertiesCreate"
 			,"templates/propertiesView/propertyView"
 		], 

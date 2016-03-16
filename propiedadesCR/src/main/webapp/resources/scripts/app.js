@@ -50,6 +50,8 @@ function() {
 	
 		,"app.banktodolist"
 		,"app.banktodolistCreate"
+		,"app.testFlow"
+		,"app.matchedPropertiesList"
 
 
 		,"app.properties.create"
@@ -159,8 +161,7 @@ function(){
 				e.user = response.user;
 				$rootScope.userLogged = response.user;
 				e.userLogged = localStorage.getItem('userLogged');
-				console.log('LocalStorage', e.userLogged);
-				console.log('Respuesta',response.user);
+
 				return e.user;
 			});
 			e.consultMyProfile = function(myId){
