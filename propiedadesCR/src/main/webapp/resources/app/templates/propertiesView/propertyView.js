@@ -8,6 +8,7 @@
 	function PropViewController($scope, $http) {
 		var self = this;
 		self.district = {};
+		$scope.imageList = [];
 		$scope.propertyTypeList = [];
 		$scope.provinceList = [];
 		$scope.property = {};
@@ -26,6 +27,7 @@
 			$http.get(bd)
 			.success(function(response) {
 				$scope.property = response.property;
+				$scope.imageList = response.property.tpropertyImages;
 				$scope.selectedType = $scope.property.tpropertyType;
 				$scope.selectedDistrict = $scope.property.tdistrict;
 				
