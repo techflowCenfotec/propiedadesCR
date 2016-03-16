@@ -23,6 +23,12 @@ public class GuidePOJO {
      * Id del banco al que pertenece
      */
 	private BankPOJO tbank;
+	
+	/**
+     * Nombre del archivo
+     */
+	private String name;
+	
 
 	public GuidePOJO() {
 		super();
@@ -50,6 +56,14 @@ public class GuidePOJO {
 
 	public void setTbank(BankPOJO tbank) {
 		this.tbank = tbank;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 }

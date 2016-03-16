@@ -9,7 +9,7 @@
 
                             <div layout="column" ng-cloak class="md-inline-form">
                                 <div layout-padding>
-                                    <form name="form_guideCreate" class="form-validation" novalidate data-ng-submit="submitForm($flow.files)">
+                                    <form name="form_banktodolistCreate" class="form-validation" novalidate data-ng-submit="submitForm($flow.files)">
                                        
                                         </md-input-container>
                                         <div layout layout-sm="column">
@@ -31,27 +31,20 @@
                                                     </md-select>
                                             </md-input-container>
                                           </div>
-                                          <!-- <div layout layout-sm="column">
-                                          <md-input-container flex>
-                                                <label>Archivo</label>
-                                                <input type="text"
-                                            class="form-control"
-                                            required
-                                            name="type_something"
-                                            data-ng-trim='false'
-                                            data-ng-model="form.description">  
-                                            </md-input-container>
-
-                                          </div> -->
                                           
                                           <div layout layout-sm="column">
+<md-input-container flex>
+                                            
                                             <span class="btn btn-info" flow-btn
-                                                data-ng-hide="$flow.files.length"> Subir guía <input type="file"
+                                                data-ng-hide="$flow.files.length"> Seleccionar PDF de la guía nueva <input type="file"
+                                                aria-label = "file"
                                                 style="visibility: hidden; position: absolute;"
                                                 multiple="multiple" />
 
                                             </span> <a class="btn btn-danger" data-ng-show="$flow.files.length"
                                                 data-ng-click="$flow.files[0].cancel()"> Remover </a>
+</md-input-container>
+                                          
                                         </div>
 
                                           <md-button type="submit"

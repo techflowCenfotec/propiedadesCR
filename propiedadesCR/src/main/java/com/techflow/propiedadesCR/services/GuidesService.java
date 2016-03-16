@@ -29,6 +29,7 @@ public class GuidesService implements GuidesServiceInterface{
 	public Tguide saveGuide(GuidePOJO pguide) {
 		Tguide newGuide = new Tguide();
 		newGuide.setUrl(pguide.getUrl());
+		newGuide.setName(pguide.getName());
 		newGuide.setTbank(new Tbank());
 		newGuide.getTbank().setIdBank(pguide.getTbank().getIdBank());
 		Tguide createdGuide = guidesRepository.save(newGuide);

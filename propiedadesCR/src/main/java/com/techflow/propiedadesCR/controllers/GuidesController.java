@@ -45,7 +45,8 @@ public class GuidesController {
 	@RequestMapping(value="/saveguide",method=RequestMethod.POST)
 	public GuidesResponse saveGuide(
 			@RequestParam ("file") MultipartFile pfile,
-			@RequestParam ("idBank") int pidBank ){
+			@RequestParam ("idBank") int pidBank, 
+			@RequestParam ("name") String pname){
 		
 		GuidesResponse response = new GuidesResponse();
 		
@@ -59,6 +60,7 @@ public class GuidesController {
 		
 		GuidePOJO newGuide = new GuidePOJO();
 		newGuide.setUrl(resultFileName);
+		newGuide.setName(pname);
 		newGuide.setTbank(new BankPOJO());
 		newGuide.getTbank().setIdBank(pidBank);
 		

@@ -10,7 +10,6 @@
 
 	    $scope.form = { 	
 	        name: '',
-	        description: '',
 	        bank: ''
 	    };
 
@@ -29,19 +28,18 @@
 	    original = angular.copy($scope.form);
 	    function revert(){
 	        $scope.form = angular.copy(original);
-	        return $scope.guideCreate.$setPristine();
+	        return $scope.form_banktodolistCreate.$setPristine();
 	    };
 	   	$scope.canRevert =  function () {
-	        return !angular.equals($scope.form, original) || !$scope.guideCreate.$pristine;
+	        return !angular.equals($scope.form, original) || !$scope.form_banktodolistCreate.$pristine;
 	    };
 	  	$scope.canSubmit = function() {
-	        return $scope.guideCreate.$valid && !angular.equals($scope.form, original);
+	        return $scope.form_banktodolistCreate.$valid && !angular.equals($scope.form, original) && $scope.$flow.files.length;
 	    };    
 	   	$scope.submitForm = function(event,$files) {
 		  
 		    $scope.saveGuide(event, $files);
-	        //$scope.showInfoOnSubmit = true;
-	        //return revert();
+	       
 	    };
 	    
 	    $scope.saveGuide = function($files){
@@ -51,13 +49,17 @@
 			file = $files[0].file;
 
 			console.log($upload);
-			console.log($files)
+			console.log($files);
+
+			console.log(file);
+
 			$scope.upload = $upload
 					.upload(
 							{
 								url : link,
 								data : {
 									idBank : $scope.form.bank,
+									name : $scope.form.name
 								},
 								file : file,
 							})
