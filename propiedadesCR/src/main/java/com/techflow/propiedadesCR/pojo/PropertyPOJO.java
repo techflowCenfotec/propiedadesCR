@@ -1,11 +1,7 @@
 package com.techflow.propiedadesCR.pojo;
 
+import java.util.ArrayList;
 import java.util.List;
-
-import com.techflow.propiedadesCR.ejb.TpropertyComment;
-import com.techflow.propiedadesCR.ejb.TpropertyRating;
-import com.techflow.propiedadesCR.ejb.TpropertyType;
-import com.techflow.propiedadesCR.ejb.Tuser;
 
 /**
 * <h1>POJO de la propiedad</h1>
@@ -77,6 +73,8 @@ public class PropertyPOJO {
 	public PropertyPOJO() {
 		super();
 		this.tdistrict = new DistrictPOJO();
+		this.tpropertyType = new PropertyTypePOJO();
+		this.tuser = new UserPOJO();
 	}
 
 	public int getIdProperty() {

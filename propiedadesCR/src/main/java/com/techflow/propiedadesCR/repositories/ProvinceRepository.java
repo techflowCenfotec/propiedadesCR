@@ -9,9 +9,9 @@ import com.techflow.propiedadesCR.ejb.Tprovince;
 /**
 * <h1>Repositorio de las provincias</h1>
 * Repositorio que extiende de CrudRepository
-* y provee una implementaci√≥n
+* y provee una implementación
 *
-* @author  Walter G√≥mez
+* @author  Walter Gómez
 * @version 1.0
 * @since 26/2/2016
 */

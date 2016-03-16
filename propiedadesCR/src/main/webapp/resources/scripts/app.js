@@ -9,12 +9,16 @@
 		,"app.route"
 		,"flow"
 
+
 		// 3rd party feature modules
 		,"mgo-angular-wizard"
 		,"ui.tree"
 		,"ngMap"
 		,"textAngular"
-		])
+		]).run(['$rootScope', function($rootScope){
+			$rootScope.userLogged = null;
+			$rootScope.event ={};
+		}]);
 }(),
 
 function() {
@@ -31,14 +35,23 @@ function() {
 		,"app.i18n"
 		,"app.home"
 		,"app.properties"
+		
 		,"app.roles"
 		,"app.addRoles"
-		,"app.createUsers"
-		,"app.usersList"
+		
 		,"app.events"
 		,"app.eventsList"
+		,"app.eventConsult"
+
+		
+		,"app.createUsers"
+		,"app.usersList"
+		,"app.consultUser"
+	
 		,"app.banktodolist"
 		,"app.banktodolistCreate"
+
+
 		,"app.properties.create"
 		,"app.properties.view"
 		//3rd Party Modules
@@ -125,7 +138,7 @@ function(){
 	function() {
 		"use strict";
 
-		function e(e,a,n,t,r) {
+		function e(e,$rootScope,n,t,r,$http) {
 			e.pageTransitionOpts=r.pageTransitionOpts,
 			e.main=r.main,e.color=r.color,e.$watch("main", function(n,t) {
 				"horizontal"===n.menu&&"vertical"===t.menu&&a.$broadcast("nav:reset"),
@@ -134,14 +147,34 @@ function(){
 				t.fixedHeader===!0&&t.fixedSidebar===!0&&(e.main.fixedHeader=!1,e.main.fixedSidebar=!1)),
 				n.fixedSidebar===!0&&(e.main.fixedHeader=!0),
 				n.fixedHeader===!1&&(e.main.fixedSidebar=!1)},!0),
-			a.$on("$stateChangeSuccess", function(e,a,n) {
+				$rootScope.$on("$stateChangeSuccess", function(e,$rootScope,n) {
 				t.scrollTo(0,0)
 			})
+			e.user ={};
+			e.userLogged = {};
+			var link = 'rest/protected/users/getUserLogged';
+			
+			$http.get(link).success(function(response){
+				localStorage.setItem('userLogged',response.user);
+				e.user = response.user;
+				$rootScope.userLogged = response.user;
+				e.userLogged = localStorage.getItem('userLogged');
+				console.log('LocalStorage', e.userLogged);
+				console.log('Respuesta',response.user);
+				return e.user;
+			});
+			e.consultMyProfile = function(myId){
+				localStorage.setItem('idUser',myId);
+			};
+			
 		}
 
 		angular.module("app")
 
-		.controller("AppCtrl",["$scope","$rootScope","$state","$document","appConfig",e])
+		.controller("AppCtrl",["$scope","$rootScope","$state","$document","appConfig","$http",e])
+		
+	
+		
 	}(),
 
 	function() {

@@ -58,6 +58,21 @@ public class PropertyImageService implements PropertyImagesServiceInterface {
 	}
 	
 	/**
+	  * Alamacena la entidad. Retorna la entidad almacenada por si hay que realizar operaciones adicionales
+	  * ya que la entidad puede cambiar al ser almacenda.
+	  * 
+	  * @param pPropertyImg Contiene la infomarción a almacenar a la base de 
+	  * datos por medio del repositorio. No debe ser nulo.
+	  * @return propImg Una entidad del tipo.
+	  */
+	@Override
+	@Transactional
+	public TpropertyImage savePropertyImg(TpropertyImage pPropertyImg) {
+		TpropertyImage propImg = imageRepository.save(pPropertyImg);
+		return propImg;
+	}
+	
+	/**
 	  * Retorna a través del repositorio el ejb de la imagen de la propiedad.
 	  * 
 	  * @param pIdPropiedad Id de la propiedad a buscar. No debe ser nulo.

@@ -24,7 +24,7 @@ public class Utils {
 			String databaseFileName = HOST_PATH + servletContext.getContextPath() + "/" + RESOURCES_PATH + consecutiveName + extension;
 			
 			byte[] bytes;
-			try {
+			try { 	
 				bytes = file.getBytes();
 				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(uploadedFileLocation)));
 				stream.write(bytes);
