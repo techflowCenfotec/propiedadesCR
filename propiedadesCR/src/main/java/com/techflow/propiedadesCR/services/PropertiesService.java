@@ -187,4 +187,36 @@ public class PropertiesService implements PropertiesServiceInterface {
 		return propertiesRepository.findOne(pIdProperty);
 	}
 
+	/**
+	  * Retorna una lista de objetos PropertyPOJO con su lista de BenefitsPOJO
+	  * 
+	  * @return uiProperties Todas las entidades del tipo.
+	  */
+	@Override
+	@Transactional
+	public ArrayList<PropertyPOJO> getPropertiesWithBenefits() {
+		List<Tproperty> propertiesEjb = propertiesRepository.findAll();
+		
+		ArrayList<PropertyPOJO> uiProperties = new ArrayList<PropertyPOJO>();
+		
+		propertiesEjb.stream().forEach(property->{
+			PropertyPOJO dto = new PropertyPOJO();
+			dto.setIdProperty(property.getIdProperty());
+			
+			ArrayList<BenefitsPOJO> propertyBenefits = new ArrayList<BenefitsPOJO>();
+			
+			property.getTbenefits().stream().forEach(benefit->{
+				BenefitsPOJO nbenefit = new BenefitsPOJO();
+				BeanUtils.copyProperties(benefit, nbenefit);
+				nbenefit.setTproperties(null);
+				propertyBenefits.add(nbenefit);
+			});
+			dto.setTbenefits(propertyBenefits);
+			
+			uiProperties.add(dto);
+		});
+		
+		return uiProperties;
+	}
+
 }
