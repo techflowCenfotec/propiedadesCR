@@ -40,7 +40,7 @@
                                     		<md-input-container flex>
 	                                        	<label>Provincia</label>
 	                                            <md-select ng-model="selectedProvince" aria-label="select" 
-	                                            ng-change="onChangeProvince()" ng-model-options="{trackBy: '$value.idProvince'}">
+	                                            ng-change="onChangeProvince()" ng-model-options="{trackBy: '$value.idProvince'}" disabled>
 		                                             <md-option ng-repeat="province in provinceList" ng-value="province">
 		                                             	{{province.name}}
 		                                             </md-option>
@@ -49,7 +49,7 @@
 	                                        <md-input-container flex>
 	                                            <label>Cantón</label>
 	                                            <md-select ng-model="selectedCounty" aria-label="select" 
-	                                            ng-change="onChangeCounty()" ng-model-options="{trackBy: '$value.idCounty'}">
+	                                            ng-change="onChangeCounty()" ng-model-options="{trackBy: '$value.idCounty'}" disabled>
 	                                                <md-option ng-repeat="county in countyList" ng-value="county">
 	                                                    {{county.name}}
 	                                                </md-option>
@@ -57,7 +57,7 @@
 	                                        </md-input-container>
 	                                        <md-input-container flex>
 	                                            <label>Distrito</label>
-	                                            <md-select ng-model="selectedDistrict" ng-model-options="{trackBy: '$value.idDisctrict'}">
+	                                            <md-select ng-model="selectedDistrict" ng-model-options="{trackBy: '$value.idDisctrict'}" disabled>
 	                                                <md-option ng-repeat="district in districtList" ng-value="district">
 	                                                   {{district.name}}
 	                                                </md-option>
@@ -66,36 +66,35 @@
 	                                    </div>
                                         <md-input-container class="md-block">
                                             <label>Dirrección</label>
-                                            <input ng-model="property.address">
+                                            <input ng-model="property.address" disabled>
                                         </md-input-container>
-                                        <div layout layout-sm="column">
-                                        	<md-chips ng-model="property.tbenefits" readonly="ctrl.readonly"
-				                                    delete-button-label="Eliminar etiqueta"
-				                                    md-transform-chip="ctrl.transformChip($chip)"
-				                                    secondary-placeholder="+Beneficios"
-				                                    md-require-match="true" required>
-				                                    <md-autocomplete md-selected-item="ctrl.selectedItem" md-search-text="requestObject.searchText" 
+                                        <md-chips ng-model="property.tbenefits" readonly="true" 
+                                        	delete-button-label="Eliminar etiqueta"
+				                            md-transform-chip="ctrl.transformChip($chip)"
+				                            secondary-placeholder="+Beneficios"
+				                            md-require-match="true">
+				                            	<md-autocomplete md-selected-item="ctrl.selectedItem" md-search-text="requestObject.searchText" 
 				                                    md-items="item in querySearch(requestObject.searchText)" md-item-text="item.benefit" 
 				                                    placeholder="Beneficios">
-					                                    <span md-highlight-text="requestObject.searchText">
+					                                   	<span md-highlight-text="requestObject.searchText">
 					                                    	{{item.benefit}}
 					                                    </span>
-				                                    </md-autocomplete>
-				                                    <md-chip-template>
-				                                    	<span>
-				                                    		{{$chip.benefit}}
-				                                    	</span>
-				                                    </md-chip-template>
-				                                    </md-chips>
-                                        </div>
+				                                </md-autocomplete>
+				                               	<md-chip-template>
+				                                   <span>
+				                                   		{{$chip.benefit}}
+				                                    </span>
+				                                </md-chip-template>
+				                        </md-chips>
+				                        <div class="divider divider-md"></div>
                                         <div layout layout-sm="column">
                                             <md-input-container flex>
                                                 <label>Precio</label>
-                                                <input ng-model="property.price">
+                                                <input ng-model="property.price" disabled>
                                             </md-input-container>
                                             <md-input-container flex>
                                                 <label>Tipo de propiedad</label>
-                                                <md-select ng-model="selectedType" ng-model-options="{trackBy: '$value.idPropertyType'}">
+                                                <md-select ng-model="selectedType" ng-model-options="{trackBy: '$value.idPropertyType'}" disabled>
                                                     <md-option ng-repeat="type in propertyTypeList" ng-value="type">
                                                         {{type.name}}
                                                     </md-option>
@@ -105,7 +104,7 @@
                                         <div layout layout-sm="column">
                                         	<md-input-container flex>
                                                 <label>Metros de construcción</label>
-                                                <input ng-model="property.squareMeters">
+                                                <input ng-model="property.squareMeters" disabled>
                                             </md-input-container>
                                         </div>
                                         <div class="row">

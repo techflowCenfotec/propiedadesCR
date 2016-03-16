@@ -23,7 +23,7 @@
 		};
 		
 		$scope.init = function() {
-			var bd = 'rest/protected/properties/getByPropertyId/1';
+			var bd = 'rest/protected/properties/getByPropertyId/' + +localStorage.getItem('idProperty');
 			$http.get(bd)
 			.success(function(response) {
 				$scope.property = response.property;
@@ -50,6 +50,16 @@
 				$scope.provinceList = provincesResponse.provinces;
 			});
 			
+			$http.get('rest/protected/counties/getAll', $scope.requestObject)
+			.success(function(countyResponse) {
+				$scope.countyList = countyResponse.counties;
+			});
+			
+			$http.get('rest/protected/districts/getAll', $scope.requestObject)
+			.success(function(districtResponse) {
+				$scope.districtList = districtResponse.districts;
+			});
+			
 			$http.get('rest/protected/propertyTypes/getAll', $scope.requestObject)
 			.success(function(typeResponse) {
 				$scope.propertyTypeList = typeResponse.pTypes;
@@ -60,11 +70,11 @@
 		
 		$scope.onChangeProvince = function() {
 			$scope.countyList = [];
-			
+			console.log($scope.selectedProvince);
 			$http.get('rest/protected/counties/getAll')
 			.success(function(countyResponse) {
 				for(var i = 0; i < countyResponse.counties.length; i++) {
-					if(countyResponse.counties[i].tprovince.idProvince === $scope.requestObject.province){
+					if(countyResponse.counties[i].tprovince.idProvince === $scope.selectedProvince.idProvince){
 						$scope.countyList.push(countyResponse.counties[i]);
 					}
 				}
@@ -77,7 +87,7 @@
 			$http.get('rest/protected/districts/getAll')
 			.success(function(districtResponse) {
 				for(var i = 0; i < districtResponse.districts.length; i++) {
-					if(districtResponse.districts[i].tcounty.idCounty === $scope.requestObject.county){
+					if(districtResponse.districts[i].tcounty.idCounty === $scope.selectedCounty.idCounty){
 						$scope.districtList.push(districtResponse.districts[i]);
 					}
 				}
