@@ -50,6 +50,8 @@ function() {
 	
 		,"app.banktodolist"
 		,"app.banktodolistCreate"
+		,"app.testFlow"
+		,"app.matchedPropertiesList"
 
 
 		,"app.properties.create"
