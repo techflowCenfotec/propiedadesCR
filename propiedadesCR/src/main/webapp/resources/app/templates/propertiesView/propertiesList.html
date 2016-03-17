@@ -12,8 +12,9 @@
                             <span class="card-title">{{property.price | currency}} - {{property.tdistrict.name}}</span>
                         </div>
                         <div class="card-content">
-                            <a class="card-button pull-right" href="javascript:;">
-                                <button class="btn btn-icon btn-icon-round btn-floating btn-danger"><i class="fa fa-heart"></i></button>
+                            <a class="card-button pull-right" href="javascript:;" data-ng-click="">
+                                <button class="btn btn-icon btn-icon-round btn-floating btn-danger" 
+                                data-ng-click="addToFavorites(property.idProperty)"><i class="fa fa-heart"></i></button>
                             </a>
                             <p>{{property.address}}</p>
                         </div>

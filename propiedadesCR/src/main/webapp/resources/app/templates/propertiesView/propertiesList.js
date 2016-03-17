@@ -22,6 +22,19 @@
 		$scope.viewProperty = function(pIdProperty) {
 			localStorage.setItem('idProperty', pIdProperty);
 		}
+		
+		$scope.addToFavorites = function(pIdProperty) {
+			
+			// Cambiar a UserLogged
+			var bd = 'rest/protected/users/addToFavorite/' + 1;
+			var data = {
+				"idProperty": pIdProperty	
+			};
+			
+			$http.put(bd, data)
+			.success(function(response) {
+			});
+		}
 	}
 	
 })();

@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.techflow.propiedadesCR.contracts.UsersRequest;
+import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.Trole;
 import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.pojo.RolePOJO;
@@ -135,13 +136,27 @@ public class UsersService implements UsersServiceInterface{
 	}
 	
 	/**
-	  * Este método modifica un usuario en el sistema.
+	  * Actualiza el usuario con la lista de propiedades. Retorna la entidad almacenada por si hay que realizar operaciones adicionales
+	  * ya que la entidad puede cambiar al ser almacenda.
+	  * 
+	  * @param pUser Contiene la infomarción a almacenar a la base de 
+	  * datos por medio del repositorio. No debe ser nulo.
+	  * @return user Una entidad del tipo.
+	  */
+	@Override
+	@Transactional
+	public Tuser addToFavorite(Tuser pUser) {
+		Tuser user =  usersRepository.save(pUser);
+		return user;
+	}
+	
+	/**
+	�* Este retorna el usaurio que se consulto.
 	  *
-	  * @param puserRequest Encapsula los datos requeridos por el usuario.
-	  * @param pidRole Identificador del rol asignado al usuario
+	�* @param pIdUser Identificador del usuario.
       * 
-	  * @return nuser Retorna el usuario creado.
-	  */
+	�* @return Tuser Retorna el usuario consultado.
+	�*/
 	@Override
 	public Tuser modifyUser(UsersRequest puserRequest, int pidRole) {
 		
