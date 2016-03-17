@@ -47,7 +47,7 @@
 
         <div class="main-container"
              data-ng-class="{ 'app-nav-horizontal': main.menu === 'horizontal' }">
-            <aside data-ng-include=" 'resources/app/templates/permissionsViews/adminView.html' "
+            <aside data-ng-include=" 'resources/app/layout/sidebar.html' "
                    id="nav-container"
                    class="nav-container"  
                    data-ng-class="{ 'nav-fixed': main.fixedSidebar,
