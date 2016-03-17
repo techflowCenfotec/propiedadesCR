@@ -74,6 +74,27 @@
             $scope.search();
             return $scope.select($scope.currentPage);
         };
+
+        $scope.generateUserToDoList = function(pidToDoList){
+            var idUser = localStorage.getItem("idUser");
+
+            var generateLink = 'rest/protected/todolist/generateUserToDoList';
+            var toDoRequest ={
+                  "pageNumber": 0,
+                  "pageSize": 0,
+                  "direction": "string",
+                  "sortBy": [
+                    "string"
+                  ],
+                  "searchColumn": "string",
+                  "searchTerm": "string",
+                  "toDoList": {"idToDoList":pidToDoList, "tuser":{"idUser":idUser}} };
+
+            $http.post(generateLink,toDoRequest).success(function(response) {
+                $scope.todolistList= response.bankToDoList;
+            });
+
+        }
     
 	}]);
 
