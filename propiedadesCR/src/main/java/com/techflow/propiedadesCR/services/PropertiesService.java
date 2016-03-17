@@ -187,4 +187,56 @@ public class PropertiesService implements PropertiesServiceInterface {
 		return propertiesRepository.findOne(pIdProperty);
 	}
 
+	/**
+	  * Retorna a trav�s del repositorio el ejb de la propiedad.
+	  * 
+	  * @param pIdProperty Id de la propiedad a buscar. No debe ser nulo.
+	  * @return PropertyPOJO Una entidad del tipo.
+	  */
+	@Override
+	public PropertyPOJO getByPropertyId(int pIdProperty) {
+		Tproperty  property = propertiesRepository.findByIdProperty(pIdProperty);
+		PropertyPOJO nProperty = null;
+		
+		if(property != null) {
+			nProperty = new PropertyPOJO();
+			BeanUtils.copyProperties(property, nProperty);
+			BeanUtils.copyProperties(property.getTdistrict(), nProperty.getTdistrict());
+			BeanUtils.copyProperties(property.getTpropertyType(), nProperty.getTpropertyType());
+		}
+		
+		return nProperty;
+	}
+	
+	/**
+	  * Retorna una lista de objetos PropertyPOJO con su lista de BenefitsPOJO
+	  * 
+	  * @return uiProperties Todas las entidades del tipo.
+	  */
+	@Override
+	@Transactional
+	public ArrayList<PropertyPOJO> getPropertiesWithBenefits() {
+		List<Tproperty> propertiesEjb = propertiesRepository.findAll();
+		
+		ArrayList<PropertyPOJO> uiProperties = new ArrayList<PropertyPOJO>();
+		
+		propertiesEjb.stream().forEach(property->{
+			PropertyPOJO dto = new PropertyPOJO();
+			dto.setIdProperty(property.getIdProperty());
+			
+			ArrayList<BenefitsPOJO> propertyBenefits = new ArrayList<BenefitsPOJO>();
+			
+			property.getTbenefits().stream().forEach(benefit->{
+				BenefitsPOJO nbenefit = new BenefitsPOJO();
+				BeanUtils.copyProperties(benefit, nbenefit);
+				nbenefit.setTproperties(null);
+				propertyBenefits.add(nbenefit);
+			});
+			dto.setTbenefits(propertyBenefits);
+			
+			uiProperties.add(dto);
+		});
+		
+		return uiProperties;
+	}
 }

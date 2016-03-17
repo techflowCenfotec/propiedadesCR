@@ -8,9 +8,9 @@ import com.techflow.propiedadesCR.ejb.Tbenefit;
 /**
 * <h1>Repositorio de los Beneficios</h1>
 * Repositorio que extiende de CrudRepository
-* y provee una implementación
+* y provee una implementaci√≥n
 *
-* @author  Walter Gómez
+* @author  Walter G√≥mez
 * @version 1.0
 * @since 26/2/2016
 */

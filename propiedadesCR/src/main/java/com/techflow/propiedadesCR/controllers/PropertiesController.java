@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,13 +19,9 @@ import com.techflow.propiedadesCR.contracts.PropertiesResponse;
 import com.techflow.propiedadesCR.contracts.PropertyImageResponse;
 import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.TpropertyImage;
-import com.techflow.propiedadesCR.pojo.BenefitsPOJO;
 import com.techflow.propiedadesCR.pojo.PropertyPOJO;
-import com.techflow.propiedadesCR.services.BenefitsServiceInterface;
-import com.techflow.propiedadesCR.services.DistrictServiceInterface;
 import com.techflow.propiedadesCR.services.PropertiesServiceInterface;
 import com.techflow.propiedadesCR.services.PropertyImagesServiceInterface;
-import com.techflow.propiedadesCR.services.PropertyTypeServiceInterface;
 import com.techflow.propiedadesCR.utils.Utils;
 
 /**
@@ -44,21 +41,9 @@ public class PropertiesController {
 	 */
 	@Autowired private ServletContext servletContext;
 	/**
-	 * Atributo de la interfaz de los distritos.
-	 */
-	@Autowired private DistrictServiceInterface districtService;
-	/**
-	 * Atributo de la interfaz de los tipos de propiedades.
-	 */
-	@Autowired private PropertyTypeServiceInterface propertyTypeService;
-	/**
 	 * Atributo de la interfaz de las propiedades.
 	 */
 	@Autowired private PropertiesServiceInterface propertiesService;
-	/**
-	 * Atributo de la interfaz de los beneficios.
-	 */
-	@Autowired private BenefitsServiceInterface benefitsService;
 	/**
 	 * Atributo de la interfaz de las imágenes de las propiedades.
 	 */
@@ -135,5 +120,32 @@ public class PropertiesController {
 			}
 		}
 		return response;
+	}
+	
+	/**
+	 * Solicita la información de la propiedad a través del servicio.
+	 *  
+	 *  @param pIdProperty Id de la propiedad. No debe ser nulo.
+	 * @return response Un objeto response de la propiedad.
+	 */
+	@RequestMapping(value="getByPropertyId/{pIdProperty}", method=RequestMethod.GET)
+	public PropertiesResponse getRequestedProperty(@PathVariable int pIdProperty) {
+		PropertiesResponse response = new PropertiesResponse();
+		
+		PropertyPOJO property = propertiesService.getByPropertyId(pIdProperty);
+		
+		response.setProperty(property);
+		
+		return response;
+	}
+	
+	/**
+	 * Solicita la información de las propiedades a través del servicio.
+	 *  
+	 * @return propertiesWithBenefits Una lista con las propiedades y sus beneficios.
+	 */
+	public List<PropertyPOJO> getPropertiesWithBenefits() {
+		ArrayList<PropertyPOJO> propertiesWithBenefits = propertiesService.getPropertiesWithBenefits();
+		return propertiesWithBenefits;
 	}
 }

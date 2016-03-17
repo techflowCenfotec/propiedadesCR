@@ -9,5 +9,5 @@ import com.techflow.propiedadesCR.pojo.CountyPOJO;
 public interface CountiesServiceInterface {
 
 	List<CountyPOJO> getAll();
-	Tcounty getCountyById(int pIdCounty);
+	CountyPOJO getCountyById(int pIdCounty);
 }
