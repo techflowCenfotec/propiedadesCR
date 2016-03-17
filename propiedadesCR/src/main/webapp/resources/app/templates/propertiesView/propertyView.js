@@ -116,9 +116,9 @@
         			  "searchColumn": "string",
         			  "searchTerm": "string",
         			  "rating": {
-        				  "id_user": 1,
-        				  "id_property": localStorage.getItem('idProperty'),
-        				  "average_rating": $scope.rate
+        				  "tuser": { "idUser": 1},
+        				  "tproperty": { "idProperty": localStorage.getItem('idProperty')},
+        				  "averageRating": $scope.rate
         			  }
         			};
         	

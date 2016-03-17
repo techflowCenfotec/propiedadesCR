@@ -6,7 +6,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.techflow.propiedadesCR.contracts.RatingRequest;
+import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.TpropertyRating;
+import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.repositories.RatingRepository;
 
 /**
@@ -39,9 +41,15 @@ public class RatingService implements RatingServiceInterface {
 	@Transactional
 	public TpropertyRating addRating(RatingRequest pRating) {
 		TpropertyRating rating = new TpropertyRating();
+		Tuser user = new Tuser();
+		Tproperty property =  new Tproperty();
 		
-		BeanUtils.copyProperties(pRating, rating);
-				
+		BeanUtils.copyProperties(pRating.getRating(), rating);
+		user.setIdUser(pRating.getRating().getTuser().getIdUser());
+		property.setIdProperty(pRating.getRating().getTproperty().getIdProperty());
+		rating.setTuser(user);
+		rating.setTproperty(property);
+		
 		TpropertyRating nRating = ratingRepository.save(rating);
 		
 		return nRating;
