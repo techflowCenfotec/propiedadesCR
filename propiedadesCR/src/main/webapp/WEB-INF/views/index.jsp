@@ -47,7 +47,7 @@
 
         <div class="main-container"
              data-ng-class="{ 'app-nav-horizontal': main.menu === 'horizontal' }">
-            <aside data-ng-include=" 'resources/app/layout/sidebar.html' "
+            <aside data-ng-include=" 'resources/app/templates/permissionsViews/adminView.html' "
                    id="nav-container"
                    class="nav-container"  
                    data-ng-class="{ 'nav-fixed': main.fixedSidebar,
@@ -99,5 +99,6 @@
         <script src="resources/app/templates/banktodolistView/banktodolistCreate.js"></script>
         <script src="resources/app/templates/testView/testFlow.js"></script>
         <script src="resources/app/templates/testView/matchedPropertiesList.js"></script>
+        <script src="resources/app/templates/permissionsViews/permissions.js"></script>
         
         

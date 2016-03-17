@@ -42,7 +42,7 @@ function() {
 		,"app.events"
 		,"app.eventsList"
 		,"app.eventConsult"
-
+ 
 		
 		,"app.createUsers"
 		,"app.usersList"
@@ -56,6 +56,8 @@ function() {
 
 		,"app.properties.create"
 		,"app.properties.view"
+		,"app.permissionsManagment"
+		
 		//3rd Party Modules
 		,"ngMaterial"
 		,"ui.bootstrap"
