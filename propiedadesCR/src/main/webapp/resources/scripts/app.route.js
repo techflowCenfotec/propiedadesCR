@@ -27,6 +27,7 @@
 			,"templates/testView/testFlow"
 			,"templates/testView/matchedPropertiesList"
 			,"templates/propertiesView/propertiesCreate"
+			,"templates/propertiesView/propertyView"
 		], 
 
 		t = function($urlRouterProvider) {
