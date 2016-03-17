@@ -19,7 +19,7 @@
 
 			,"templates/eventsView/eventConsult"
 
-			
+			 
 			,"templates/roleView/roles"
 			,"templates/roleView/addRoles"
 			,"templates/banktodolistView/banktodolistList"
@@ -28,6 +28,7 @@
 			,"templates/testView/matchedPropertiesList"
 			,"templates/propertiesView/propertiesCreate"
 			,"templates/propertiesView/propertyView"
+			,"templates/permissionsViews/adminView"
 		], 
 
 		t = function($urlRouterProvider) {
