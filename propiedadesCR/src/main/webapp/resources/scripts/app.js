@@ -42,7 +42,8 @@ function() {
 		,"app.events"
 		,"app.eventsList"
 		,"app.eventConsult"
- 
+		,"app.eventListAdmin"
+
 		
 		,"app.createUsers"
 		,"app.usersList"
@@ -164,8 +165,6 @@ function(){
 				e.user = response.user;
 				$rootScope.userLogged = response.user;
 				e.userLogged = localStorage.getItem('userLogged');
-				console.log('LocalStorage', e.userLogged);
-				console.log('Respuesta',response.user);
 				return e.user;
 			});
 			e.consultMyProfile = function(myId){
