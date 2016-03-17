@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.techflow.propiedadesCR.contracts.RolesRequest;
 import com.techflow.propiedadesCR.contracts.RolesResponse;
 import com.techflow.propiedadesCR.ejb.Trole;
@@ -93,7 +92,7 @@ public class RolesController {
 	}
 	
 	/**
-	* Este método permite modificar un nuevo rol en el sistema
+	* Este método permite modificar un rol en el sistema
 	* 
 	* @param prolesRequest Este parámetro es la peticion del front-end
 	* que se utiliza para acceder al método deseado
@@ -112,5 +111,30 @@ public class RolesController {
 			rolesResponse.setCodeMessage("role edited succesfully");
 		}
 		return rolesResponse;	
+	}
+	
+	/**
+	* Este método permite eliminar un rol del sistema
+	* 
+	* @param prolesRequest Este parámetro es la peticion del front-end
+	* que se utiliza para acceder al método deseado
+	* 
+	* @return rolesResponse Resultado que contiene la respuesta
+	* de que el rol haya sido modificado exitosamente o no
+	*
+	*/ 
+	
+	@RequestMapping(value ="/delete", method = RequestMethod.POST)
+	public RolesResponse delete(@RequestBody RolesRequest prolesRequest){
+		
+		RolesResponse roleResponse = new RolesResponse();
+		Trole deleteRole = rolesService.deleteRole(prolesRequest);
+		
+		if(deleteRole!= null){
+			roleResponse.setCode(200);
+			roleResponse.setCodeMessage("role delete success");
+			
+		}
+		return roleResponse;
 	}
 }

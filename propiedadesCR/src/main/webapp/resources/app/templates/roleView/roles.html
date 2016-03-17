@@ -51,7 +51,9 @@
                 <td>{{rolesInSys.rolName}}</td>
                 <td><a class="btn btn-info" data-ng-click="modifyRole(rolesInSys.idRole)"
                 href="#/templates/roleView/editRoles">Modicar</a></td>
-                <td><button class="btn btn-danger">Eliminar</button></td>
+                <td>
+                    <button class="btn btn-danger" 
+                    data-ng-click="deleteRole(rolesInSys.idRole, rolesInSys.rolName)">Eliminar</button></td>
             </tr>
             </tbody>
         </table> 

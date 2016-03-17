@@ -43,7 +43,14 @@ public class RolesService implements RolesServiceInterface {
 	@Transactional
 	public List<RolePOJO> getAll(RolesRequest prolesRequest) {
 		List<Trole> roles = rolesRepository.findAll();
-		return generateRoleData(roles);
+		List<Trole> correctRoles= new ArrayList<Trole>();
+		roles.stream().forEach(role -> {
+			Trole trole = rolesRepository.findOne(role.getIdRole());
+			if(role.getActive()==1){
+				correctRoles.add(trole);
+			}
+		});
+		return generateRoleData(correctRoles);
 	}
 	
 	/**
@@ -118,7 +125,7 @@ public class RolesService implements RolesServiceInterface {
 	  *
 	  * @param proleRequest Contiene información del objeto a modificar.
       * 
-	  * @return newRole Devuelve el rol creado con sus nuevos datos.
+	  * @return newRole Devuelve el rol modificado con sus nuevos datos.
 	  */
 	@Override
 	@Transactional
@@ -138,5 +145,22 @@ public class RolesService implements RolesServiceInterface {
 		
 		return newRole;
 	
+	}
+	
+	/**
+	  * Este método elimina lógicamente un rol en el sistema.
+	  *
+	  * @param proleRequest Contiene información del objeto a eliminar.
+      * 
+	  * @return newRole Devuelve el rol eliminado con sus nuevos datos.
+	  */
+	
+	public Trole deleteRole(RolesRequest proleRequest) {
+		Trole role = new Trole();
+		role.setActive((byte) 0);
+		role.setRolName(proleRequest.getRole().getRolName());
+		role.setIdRole(proleRequest.getRole().getIdRole());
+		Trole newRole = rolesRepository.save(role);
+		return newRole;
 	}
 }

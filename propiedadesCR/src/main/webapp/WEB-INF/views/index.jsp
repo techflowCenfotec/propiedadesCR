@@ -17,7 +17,7 @@
 
     </head>
     <body data-ng-app="app"
-          id="app"
+          id="app" 
           class="app"
           data-custom-page 
           data-ng-controller="AppCtrl"
