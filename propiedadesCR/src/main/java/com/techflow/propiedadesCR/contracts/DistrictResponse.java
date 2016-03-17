@@ -7,6 +7,7 @@ import com.techflow.propiedadesCR.pojo.DistrictPOJO;
 public class DistrictResponse extends BaseResponse {
 
 	List<DistrictPOJO> districts;
+	DistrictPOJO district;
 	
 	public DistrictResponse() {
 		super();
@@ -18,5 +19,13 @@ public class DistrictResponse extends BaseResponse {
 
 	public void setDistricts(List<DistrictPOJO> districts) {
 		this.districts = districts;
+	}
+
+	public DistrictPOJO getDistrict() {
+		return district;
+	}
+
+	public void setDistrict(DistrictPOJO district) {
+		this.district = district;
 	}
 }

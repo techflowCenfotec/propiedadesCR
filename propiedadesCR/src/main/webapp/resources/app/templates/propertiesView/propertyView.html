@@ -1,0 +1,135 @@
+<section class="page-form-ele page" ng-controller="PropViewController">
+    <div class="row ui-section">
+        <div class="col-lg-8 clearfix"> <h2 class="section-header">Propiedad en {{property.tdistrict.name}}</h2> </div>
+        <div class="col-md-12">
+            <section class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+
+                            <div layout="column" ng-cloak class="md-inline-form inputdemoBasicUsage">
+                                <div layout-padding>
+                                    <form name="userForm">
+                                    	<div class="col-xl-12">
+          					  				<div class="panel panel-default">
+                								<div class="panel-body padding-lg-h">
+			                                    	<div class="row">
+								                        <div class="col-md-4">
+								                            <div class="ih-item ih-material" ng-repeat="image in imageList">
+								                                <a href="javascript:;">
+								                                    <div class="img">
+								                                        <img ng-src="{{image.propertyImage}}" alt="">
+								                                    </div>
+								                                    <div class="info">
+								                                        <div class="info-mask bg-primary"></div>
+								                                        <div class="info-content">
+								                                            <div class="info-inner">
+								                                                <h3>Heading Here</h3>
+								                                                <p>Description goes here</p>
+								                                            </div>
+								                                        </div>
+								                                    </div>
+								                                </a>
+								                            </div>                            
+								                        </div>
+					                   	 			</div>
+					                    		</div>
+					                    	</div>
+					                    </div>
+					                
+
+                                    	<div layout layout-sm="column">
+                                    		<md-input-container flex>
+	                                        	<label>Provincia</label>
+	                                            <md-select ng-model="selectedProvince" aria-label="select" 
+	                                            ng-change="onChangeProvince()" ng-model-options="{trackBy: '$value.idProvince'}" disabled>
+		                                             <md-option ng-repeat="province in provinceList" ng-value="province">
+		                                             	{{province.name}}
+		                                             </md-option>
+	                                             </md-select>
+	                                        </md-input-container>
+	                                        <md-input-container flex>
+	                                            <label>Cantón</label>
+	                                            <md-select ng-model="selectedCounty" aria-label="select" 
+	                                            ng-change="onChangeCounty()" ng-model-options="{trackBy: '$value.idCounty'}" disabled>
+	                                                <md-option ng-repeat="county in countyList" ng-value="county">
+	                                                    {{county.name}}
+	                                                </md-option>
+	                                            </md-select>
+	                                        </md-input-container>
+	                                        <md-input-container flex>
+	                                            <label>Distrito</label>
+	                                            <md-select ng-model="selectedDistrict" ng-model-options="{trackBy: '$value.idDisctrict'}" disabled>
+	                                                <md-option ng-repeat="district in districtList" ng-value="district">
+	                                                   {{district.name}}
+	                                                </md-option>
+	                                            </md-select>
+	                                        </md-input-container>
+	                                    </div>
+                                        <md-input-container class="md-block">
+                                            <label>Dirrección</label>
+                                            <input ng-model="property.address" disabled>
+                                        </md-input-container>
+                                        <md-chips ng-model="property.tbenefits" readonly="true" 
+                                        	delete-button-label="Eliminar etiqueta"
+				                            md-transform-chip="ctrl.transformChip($chip)"
+				                            secondary-placeholder="+Beneficios"
+				                            md-require-match="true">
+				                            	<md-autocomplete md-selected-item="ctrl.selectedItem" md-search-text="requestObject.searchText" 
+				                                    md-items="item in querySearch(requestObject.searchText)" md-item-text="item.benefit" 
+				                                    placeholder="Beneficios">
+					                                   	<span md-highlight-text="requestObject.searchText">
+					                                    	{{item.benefit}}
+					                                    </span>
+				                                </md-autocomplete>
+				                               	<md-chip-template>
+				                                   <span>
+				                                   		{{$chip.benefit}}
+				                                    </span>
+				                                </md-chip-template>
+				                        </md-chips>
+				                        <div class="divider divider-md"></div>
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex>
+                                                <label>Precio</label>
+                                                <input ng-model="property.price" disabled>
+                                            </md-input-container>
+                                            <md-input-container flex>
+                                                <label>Tipo de propiedad</label>
+                                                <md-select ng-model="selectedType" ng-model-options="{trackBy: '$value.idPropertyType'}" disabled>
+                                                    <md-option ng-repeat="type in propertyTypeList" ng-value="type">
+                                                        {{type.name}}
+                                                    </md-option>
+                                                </md-select>
+                                            </md-input-container>
+                                        </div>
+                                        <div layout layout-sm="column">
+                                        	<md-input-container flex>
+                                                <label>Metros de construcción</label>
+                                                <input ng-model="property.squareMeters" disabled>
+                                            </md-input-container>
+                                        </div>
+
+                                        <div class="row">
+                                          	<div class="col-md-12">
+                                          		<section class="panel panel-default">
+                                          			<div class="panel-body">
+                                          				<map class="ui-map" zoom="16" center="{{property.coordinates}}" scrollwheel="false">
+								                            <marker position="{{property.coordinates}}" title="drag me" draggable="false"></marker>
+								                        </map>
+								                    </div>
+								                </section>
+								            </div>
+								        </div>
+                                    </form>
+									<div class="fb-share-button" data-href="https://www.propiedadesCR.com/app#/templates/propertiesView/propertyView" data-layout="button"></div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>    
+        </div>
+    </div>
+</section>

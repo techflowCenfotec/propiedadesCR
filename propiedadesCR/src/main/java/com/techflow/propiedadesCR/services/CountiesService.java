@@ -10,9 +10,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.techflow.propiedadesCR.ejb.Tcounty;
 import com.techflow.propiedadesCR.ejb.Tdistrict;
+import com.techflow.propiedadesCR.ejb.Tprovince;
 import com.techflow.propiedadesCR.pojo.CountyPOJO;
 import com.techflow.propiedadesCR.pojo.DistrictPOJO;
-import com.techflow.propiedadesCR.pojo.RatingPOJO;
+import com.techflow.propiedadesCR.pojo.ProvincePOJO;
 import com.techflow.propiedadesCR.repositories.CountiesRepository;
 
 /**
@@ -82,12 +83,35 @@ public class CountiesService implements CountiesServiceInterface {
 	  * Retorna a través del repositorio el ejb del canton.
 	  * 
 	  * @param pIdCounty Id del canton a buscar. No debe ser nulo.
-	  * @return Tcounty Una entidad del tipo.
+	  * @return nCounty Una entidad del tipo.
 	  */
 	@Override
 	@Transactional
-	public Tcounty getCountyById(int pIdCounty) {
-		return countiesRepository.findOne(pIdCounty);
+	public CountyPOJO getCountyById(int pIdCounty) {
+		Tcounty county = countiesRepository.findOne(pIdCounty);
+		CountyPOJO nCounty = null;
+		
+		if (county != null) {
+			nCounty = new CountyPOJO();
+			BeanUtils.copyProperties(county, nCounty);
+			nCounty.setTprovince(provinceDto(county.getTprovince()));
+		}
+		
+		return nCounty;
+	}
+	
+	/**
+	  * Toma el ejb de la provincia y los convierte en POJO.
+	  * 
+	  * @param pProvince Entidad de ejb de la provincia. No debe ser nula.
+	  * @return nProvince Una entidad de tipo POJO.
+	  */
+	private ProvincePOJO provinceDto(Tprovince pProvince) {
+		ProvincePOJO nProvince = new ProvincePOJO();
+		
+		BeanUtils.copyProperties(pProvince, nProvince);
+		
+		return nProvince;
 	}
 
 }

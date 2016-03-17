@@ -12,5 +12,6 @@ public interface PropertiesServiceInterface {
 	ArrayList<PropertyPOJO> getPropertiesWithBenefits();
 	List<PropertyPOJO> getAll();
 	Tproperty getPropertyById(int pIdProperty);
+	PropertyPOJO getByPropertyId(int pIdProperty);
 	Tproperty saveProperty(PropertiesRequest pProperty);
 }

@@ -33,6 +33,11 @@
 		
 		$scope.onError = false;
 		$scope.selected = [];
+		//Map variables and default values
+		$scope.map = {
+				center: '[9.935697,-84.1483646]',
+				zoom: 11
+		};
 
 		original = angular.copy($scope.requestObject);
 		
