@@ -69,5 +69,9 @@
             $scope.search();
             return $scope.select($scope.currentPage);
         };
+
+        $scope.modifyRole = function(id){
+            localStorage.setItem('idRoleModify',id);
+        }
 	}]);
 })();

@@ -25,27 +25,36 @@
 
         <table class="table table-bordered table-striped table-responsive">
             <thead>
-            <tr>
-                <th><div class="th"> 
-                Nombre
-                <span class="fa fa-angle-up"
+                <tr>
+                    <th><div class="th"> 
+                    Nombre
+                    <span class="fa fa-angle-up"
                     data-ng-click=" order('roleName') "
                     data-ng-class="{active: row == 'rolName'}"></span>
-                <span class="fa fa-angle-down"
+                    <span class="fa fa-angle-down"
                     data-ng-click=" order('-rolName') "
                     data-ng-class="{active: row == '-rolName'}"></span>
-                </div></th>
-            </tr>
+                    </div></th>
+
+                    <th><div class="th">
+                        Modificar
+                    </div></th>
+
+                    <th><div class="th">
+                        Eliminar
+                    </div></th>
+                </tr>
             </thead>
             <tbody>
             <tr data-ng-repeat="rolesInSys in currentPageList">
 
-                <!-- <td>{{rolesInSys.id_Rol}}</td> -->
                 <td>{{rolesInSys.rolName}}</td>
-               <!-- <td>{{rolesInSys.tpermissions}}</td> -->
+                <td><a class="btn btn-info" data-ng-click="modifyRole(rolesInSys.idRole)"
+                href="#/templates/roleView/editRoles">Modicar</a></td>
+                <td><button class="btn btn-danger">Eliminar</button></td>
             </tr>
             </tbody>
-        </table>
+        </table> 
 
         <footer class="table-footer">
             <div class="row">

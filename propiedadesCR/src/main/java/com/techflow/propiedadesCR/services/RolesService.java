@@ -112,4 +112,31 @@ public class RolesService implements RolesServiceInterface {
 		roleDataList.add(roleData);
 		return roleDataList;
 	}
+	
+	/**
+	  * Este método modifica un rol en el sistema.
+	  *
+	  * @param proleRequest Contiene información del objeto a modificar.
+      * 
+	  * @return newRole Devuelve el rol creado con sus nuevos datos.
+	  */
+	@Override
+	@Transactional
+	public Trole modifyRole(RolesRequest proleRequest) {
+		
+		Trole role = new Trole();
+		role.setRolName(proleRequest.getRole().getRolName());
+		role.setIdRole(proleRequest.getRole().getIdRole());
+		
+		List<Tpermission> permissions = new ArrayList<Tpermission>();
+		proleRequest.getRole().getTpermissions().stream().forEach(perm -> {
+			Tpermission p = permissionsRepository.findOne(perm.getIdPermissions());
+			permissions.add(p);
+		});
+		role.setTpermissions(permissions);
+		Trole newRole = rolesRepository. save(role);
+		
+		return newRole;
+	
+	}
 }

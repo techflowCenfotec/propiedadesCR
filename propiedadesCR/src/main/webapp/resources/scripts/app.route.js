@@ -29,6 +29,7 @@
 			,"templates/propertiesView/propertiesCreate"
 			,"templates/propertiesView/propertyView"
 			,"templates/permissionsViews/adminView"
+			,,"templates/roleView/editRoles"
 		], 
 
 		t = function($urlRouterProvider) {
