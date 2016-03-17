@@ -22,7 +22,7 @@
 }(),
 
 function() {
-	"use strict";
+	"use strict"; 
 
 	angular.module("app.core", [
 		// Angular modules
@@ -59,6 +59,7 @@ function() {
 		,"app.properties.create"
 		,"app.properties.view"
 		,"app.permissionsManagment"
+		,"app.editRoles"
 		
 		//3rd Party Modules
 		,"ngMaterial"

@@ -17,7 +17,7 @@
 
     </head>
     <body data-ng-app="app"
-          id="app"
+          id="app" 
           class="app"
           data-custom-page 
           data-ng-controller="AppCtrl"
@@ -103,5 +103,6 @@
         <script src="resources/app/templates/testView/testFlow.js"></script>
         <script src="resources/app/templates/testView/matchedPropertiesList.js"></script>
         <script src="resources/app/templates/permissionsViews/permissions.js"></script>
+        <script src="resources/app/templates/roleView/editRoles.js"></script>
         
         
