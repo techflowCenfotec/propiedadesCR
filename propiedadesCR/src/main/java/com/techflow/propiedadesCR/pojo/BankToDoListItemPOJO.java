@@ -7,7 +7,7 @@ public class BankToDoListItemPOJO {
 	/**
      * Id del item del to-do list del banco
      */
-	private int idtBank_iitem;
+	private int idtBank_item;
 	
 	/**
      * Nombre del item del to-do list del banco
@@ -23,12 +23,14 @@ public class BankToDoListItemPOJO {
 		super();
 	}
 	
-	public int getIdtBank_iitem() {
-		return idtBank_iitem;
+	public int getIdtBank_item() {
+		return idtBank_item;
 	}
-	public void setIdtBank_iitem(int idtBank_iitem) {
-		this.idtBank_iitem = idtBank_iitem;
+
+	public void setIdtBank_item(int idtBank_item) {
+		this.idtBank_item = idtBank_item;
 	}
+
 	public String getName() {
 		return name;
 	}
