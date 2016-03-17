@@ -132,12 +132,12 @@ public class UsersService implements UsersServiceInterface{
 	}
 	
 	/**
-	  * Actualiza la propiedad con la lista de usuarios. Retorna la entidad almacenada por si hay que realizar operaciones adicionales
+	  * Actualiza el usuario con la lista de propiedades. Retorna la entidad almacenada por si hay que realizar operaciones adicionales
 	  * ya que la entidad puede cambiar al ser almacenda.
 	  * 
-	  * @param pProperty Contiene la infomarción a almacenar a la base de 
+	  * @param pUser Contiene la infomarción a almacenar a la base de 
 	  * datos por medio del repositorio. No debe ser nulo.
-	  * @return property Una entidad del tipo.
+	  * @return user Una entidad del tipo.
 	  */
 	@Override
 	@Transactional

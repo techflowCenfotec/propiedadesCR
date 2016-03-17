@@ -118,6 +118,23 @@
 								                </section>
 								            </div>
 								        </div>
+								        <div class="divider divider-md"></div>
+								        <div class="panel-body padding-xl">
+				                            <uib-rating class="ui-rating size-h3 ui-rating-warning"
+				                            ng-model="rate"
+				                            max="max"
+				                            readonly="isReadonly"
+				                            on-hover="hoveringOver(value)"
+				                            on-leave="overStar = null"
+				                            state-on="'fa fa-star'"
+				                            state-off="'fa fa-star-o'"></uib-rating>
+				                            <!-- <span class="label" ng-class="{'label-warning': overStar<3, 
+				                            							   'label-info': overStar>=3 && overStar<=4, 
+				                            							   'label-success': overStar>=5}" 
+				                            ng-show="overStar && !isReadonly">{{overStar}}</span> -->
+				                            <div class="divider"></div>
+											<md-button class="md-raised btn-w-sm md-primary" ng-click="propertyRate(rate)">Calificar propiedad</md-button>
+				                        </div>
                                     </form>
                                 </div>
                             </div>

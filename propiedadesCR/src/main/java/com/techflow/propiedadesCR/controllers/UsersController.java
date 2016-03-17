@@ -194,7 +194,7 @@ public class UsersController {
 		/**
 		  * Envía la información a agregar a la base de datos por medio de su servicio. 
 		  * 
-		  * @param pPropRequest Petición que contiene la información de la entidad que
+		  * @param pProperty Ejb que contiene la información de la entidad que
 		  * se desea crear.
 		  * @param pIdProperty Id de la propiedad. No debe ser nulo.
 		  * @return response La entidad del objeto actualizado.
@@ -203,10 +203,12 @@ public class UsersController {
 		public UsersResponse addToFavorite(@RequestBody Tproperty pProperty,
 				@PathVariable int pIdUser) {
 			UsersResponse response = new UsersResponse();
-			List<Tproperty> properties = new ArrayList<Tproperty>();
-			properties.add(pProperty);
 			
 			Tuser user = usersService.getUserByID(pIdUser);
+			
+			List<Tproperty> properties = user.getTproperties2();
+			properties.add(pProperty);
+			
 			user.setTproperties2(properties);
 			
 			Tuser nUser = usersService.addToFavorite(user);

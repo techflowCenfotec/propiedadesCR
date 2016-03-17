@@ -21,7 +21,16 @@
 				county: '',
 				district: '',
 		};
-		
+		// Rating data
+		$scope.rate = 3;
+        $scope.max = 5;
+        $scope.isReadonly = false;
+
+        $scope.hoveringOver = function(value) {
+            $scope.overStar = value;
+            return $scope.overStar;
+        };
+        
 		$scope.init = function() {
 			var bd = 'rest/protected/properties/getByPropertyId/' + +localStorage.getItem('idProperty');
 			$http.get(bd)
@@ -93,6 +102,33 @@
 				}
 			});
 		};
+		
+		$scope.propertyRate = function(value) {
+			// Cambiar id user al userLogged
+        	var bd = 'rest/protected/rating/addRating';
+        	var data = {
+        			  "pageNumber": 0,
+        			  "pageSize": 0,
+        			  "direction": "string",
+        			  "sortBy": [
+        			    "string"
+        			  ],
+        			  "searchColumn": "string",
+        			  "searchTerm": "string",
+        			  "rating": {
+        				  "id_user": 1,
+        				  "id_property": localStorage.getItem('idProperty'),
+        				  "average_rating": $scope.rate
+        			  }
+        			};
+        	
+        	$http.post(bd, data)
+        	.success(function(response) {
+        		console.log(response);
+        	}).error(function(err) {
+        		console.log(err);
+        	});
+        };
 	};
 	
 })();

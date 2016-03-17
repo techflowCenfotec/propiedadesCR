@@ -22,7 +22,6 @@ import com.techflow.propiedadesCR.ejb.TpropertyImage;
 import com.techflow.propiedadesCR.pojo.PropertyPOJO;
 import com.techflow.propiedadesCR.services.PropertiesServiceInterface;
 import com.techflow.propiedadesCR.services.PropertyImagesServiceInterface;
-import com.techflow.propiedadesCR.services.UsersServiceInterface;
 import com.techflow.propiedadesCR.utils.Utils;
 
 /**
@@ -49,10 +48,6 @@ public class PropertiesController {
 	 * Atributo de la interfaz de las imágenes de las propiedades.
 	 */
 	@Autowired private PropertyImagesServiceInterface imagesService;
-	/**
-	 * Atributo de la interfaz de los usuarios.
-	 */
-	@Autowired private UsersServiceInterface usersService;
 	
 	/**
 	 * Solicita la información de las propiedades a través del servicio.
