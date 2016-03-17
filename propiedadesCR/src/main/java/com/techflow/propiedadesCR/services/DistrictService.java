@@ -10,10 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.techflow.propiedadesCR.ejb.Tcounty;
 import com.techflow.propiedadesCR.ejb.Tdistrict;
-import com.techflow.propiedadesCR.ejb.Tprovince;
 import com.techflow.propiedadesCR.pojo.CountyPOJO;
 import com.techflow.propiedadesCR.pojo.DistrictPOJO;
-import com.techflow.propiedadesCR.pojo.ProvincePOJO;
 import com.techflow.propiedadesCR.repositories.DistrictRepository;
 
 /**
@@ -32,14 +30,6 @@ public class DistrictService implements DistrictServiceInterface {
 	 * Atributo de acceso al repositorio de los distritos.
 	 */
 	@Autowired private DistrictRepository districtRepository;
-	/**
-	 * Atributo de la interfaz de los cantones.
-	 */
-	@Autowired private CountiesServiceInterface countyService;
-	/**
-	 * Atributo de la interfaz de las provincias.
-	 */
-	@Autowired private ProvinceServiceInterface provinceService;
 	
 	/**
 	  * Retorna una lista de objetos DistrictPOJO
@@ -71,15 +61,38 @@ public class DistrictService implements DistrictServiceInterface {
 	}
 
 	/**
-	  * Retorna a trav̩s del repositorio el ejb del distrito.
+	  * Retorna a través del repositorio el ejb del distrito.
 	  * 
 	  * @param pIdDistrict Id del distrito a buscar. No debe ser nulo.
-	  * @return Tdistrict Una entidad del tipo.
+	  * @return districtDto Una entidad del tipo.
 	  */
 	@Override
 	@Transactional
-	public Tdistrict getDistrictById(int pIdDistrict) {
-		return districtRepository.findOne(pIdDistrict);
+	public DistrictPOJO getDistrictById(int pIdDistrict) {
+		Tdistrict district = districtRepository.findOne(pIdDistrict);
+		DistrictPOJO  districtDto = null;
+		
+		if (district != null) {
+			districtDto = new DistrictPOJO();
+			BeanUtils.copyProperties(district, districtDto);
+			districtDto.setTcounty(countyDto(district.getTcounty()));
+		}
+		
+		return districtDto;
+	}
+	
+	/**
+	  * Toma el ejb del cantón y los convierte en POJO.
+	  * 
+	  * @param pCounty Entidad de ejb del cantón. No debe ser nula.
+	  * @return nCounty Una entidad de tipo POJO.
+	  */
+	private CountyPOJO countyDto(Tcounty pCounty) {
+		CountyPOJO nCounty = new CountyPOJO();
+		
+		BeanUtils.copyProperties(pCounty, nCounty);
+		
+		return nCounty;
 	}
 
 }

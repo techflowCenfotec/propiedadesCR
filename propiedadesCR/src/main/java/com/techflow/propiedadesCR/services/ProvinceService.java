@@ -79,7 +79,7 @@ public class ProvinceService implements ProvinceServiceInterface {
 	}
 
 	/**
-	  * Retorna a trav̩s del repositorio el ejb de la provincia.
+	  * Retorna a través del repositorio el ejb de la provincia.
 	  * 
 	  * @param pIdProvince Id de la provincia a buscar. No debe ser nulo.
 	  * @return Tprovince Una entidad del tipo.

@@ -7,6 +7,7 @@ import com.techflow.propiedadesCR.pojo.CountyPOJO;
 public class CountiesResponse extends BaseResponse {
 
 	List<CountyPOJO> counties;
+	CountyPOJO county;
 
 	public CountiesResponse() {
 		super();
@@ -17,5 +18,13 @@ public class CountiesResponse extends BaseResponse {
 
 	public void setCounties(List<CountyPOJO> counties) {
 		this.counties = counties;
+	}
+	
+	public CountyPOJO getCounty() {
+		return county;
+	}
+	
+	public void setCounty(CountyPOJO county) {
+		this.county = county;
 	}
 }
