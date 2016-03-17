@@ -33,7 +33,7 @@
                                           </div>
                                           
                                           <div layout layout-sm="column">
-<md-input-container flex>
+                                            <md-input-container flex>
                                             
                                             <span class="btn btn-info" flow-btn
                                                 data-ng-hide="$flow.files.length"> Seleccionar PDF de la guía nueva <input type="file"
@@ -43,13 +43,13 @@
 
                                             </span> <a class="btn btn-danger" data-ng-show="$flow.files.length"
                                                 data-ng-click="$flow.files[0].cancel()"> Remover </a>
-</md-input-container>
+                                            </md-input-container>
                                           
                                         </div>
 
                                           <md-button type="submit"
-                                class="btn btn-primary btn-w-md"
-                                data-ng-disabled="!canSubmit()">Crear</md-button>
+                                            class="btn btn-primary btn-w-md"
+                                            data-ng-disabled="!canSubmit()">Crear</md-button>
                                     </form>
 
                                     <div class="alert alert-info" data-ng-show="showInfoOnSubmit">Se ha agregado la guía</div>
