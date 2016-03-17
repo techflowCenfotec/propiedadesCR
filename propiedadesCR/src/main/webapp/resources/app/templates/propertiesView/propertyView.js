@@ -124,9 +124,7 @@
         	
         	$http.post(bd, data)
         	.success(function(response) {
-        		console.log(response);
-        	}).error(function(err) {
-        		console.log(err);
+        		$scope.isReadonly = true;
         	});
         };
 	};

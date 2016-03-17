@@ -156,7 +156,6 @@
 						}
 						$scope.showInfoOnSubmit= true;
 				}).error(function(err) {
-					console.log(err);
 				});
 			}
 		}
