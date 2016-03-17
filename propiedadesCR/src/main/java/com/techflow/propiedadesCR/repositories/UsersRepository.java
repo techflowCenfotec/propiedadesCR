@@ -22,6 +22,12 @@ public interface UsersRepository extends CrudRepository<Tuser, Integer> {
 	  * @return List<Tuser> Retorna la respuesta de la BD hacia el servicio. 
 	  */
 	List<Tuser> findAll();
+	/**
+	  * Este método el usuario con el identificador a buscar
+	  *
+	  * @return Tuser Retorna la respuesta de la BD hacia el servicio. 
+	  */
+	Tuser findByIdUser(int pidUser);
 	
 }
 

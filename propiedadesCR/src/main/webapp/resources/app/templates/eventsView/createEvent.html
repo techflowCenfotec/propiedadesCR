@@ -6,7 +6,7 @@
 	margin-bottom: 5px;
 }
 </style>
-<div data-ng-controller="CreateEventController" flow-init>
+<div class="page page-table"  data-ng-controller="CreateEventController" flow-init>
 
 	<div class="row ui-section">
 		<div class="col-lg-8 clearfix">
@@ -85,8 +85,7 @@
 
 						<button type="submit" ui-wave class="btn btn-primary btn-w-md"
 							data-ng-disabled="!canSubmit()">Guardar</button>
-						<button class="btn btn-default btn-w-md" ui-wave
-							data-ng-disabled="!canRevert()" data-ng-click="revert()">Cancelar</button>
+						
 
 						<div class="alert alert-info" data-ng-show="showInfoOnSubmit">Evento
 							registrado</div>

@@ -14,11 +14,13 @@
 
 						var original;
 						$scope.dateWithFormat = '';
-
+						$scope.roles ={};
+						
 				        $scope.popup1 = {
 				            opened: false
 				        };
-						
+				      						
+		
 						$scope.form = {
 							name : '',
 							email : '',
@@ -29,9 +31,19 @@
 							password : '',
 							confirmPassword : '',
 							birthday: new Date(),
+							role: '',
 							gender:'',
 						};
 
+						  var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","role": {}};
+						
+						$http.post('rest/protected/roles/getAll',request).success(function(response) {
+							$scope.roles= response.role;
+		
+							return $scope.roles;
+								
+						});
+						
 						original = angular.copy($scope.form);
 						
 						function revert() {
@@ -54,12 +66,18 @@
 						};
 						$scope.saveUser = function(event, $files) {
 							$scope.getDateWithFormat();
+							var file
 							
-							var file = $files[0].file;
+							if($files[0] == undefined)
+								file = new File([],'default_user_image_PropiedadesCR.png');
+							
+							else
+							 file = $files[0].file;
+							
 							$scope.upload = $upload.upload({
 								url : 'rest/protected/users/create',
 								data : {
-									idRol : 0,
+									idRol : $scope.form.role,
 									userName : $scope.form.name,
 									firstName : $scope.form.firstName,
 									lastName : $scope.form.lastName,
@@ -72,7 +90,9 @@
 								},
 								file : file,
 							}).success(function(data, status, headers, config) {
+								if($files[0] != undefined)
 								$files[0].cancel();
+								
 								$scope.showInfoOnSubmit= true;
 								return revert();
 							}).error(function(data){
@@ -98,4 +118,6 @@
 
 
 					} ]);
+	
+
 })();

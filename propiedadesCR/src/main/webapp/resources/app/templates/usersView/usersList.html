@@ -45,7 +45,7 @@
                     data-ng-class="{active: row == '-email'}"></span>
                 </div></th>
                 <th><div class="th">
-                Telefono 1
+                Tel&eacute;fono 1
                 <span class="fa fa-angle-up"
                     data-ng-click=" order('phone1') "
                     data-ng-class="{active: row == 'phone1'}"></span>
@@ -54,7 +54,7 @@
                     data-ng-class="{active: row == '-phone1'}"></span>
                 </div></th>
                 <th><div class="th">
-                Telefono 2
+                Tel&eacute;fono 2
                 <span class="fa fa-angle-up"
                     data-ng-click=" order('phone2') "
                     data-ng-class="{active: row == 'phone2'}"></span>
@@ -62,7 +62,14 @@
                     data-ng-click=" order('-phone2') "
                     data-ng-class="{active: row == '-phone2'}"></span>
                 </div></th>
-                
+                  <th><div class="th">
+               	Modificar
+               
+                </div></th>
+                   <th><div class="th">
+               	Eliminar
+               
+                </div></th>
                 
             </tr>
             </thead>
@@ -72,6 +79,8 @@
                 <td>{{users.email}}</td>
                 <td>{{users.phone1}}</td>
                 <td>{{users.phone2}}</td>
+                <td><button class="btn btn-info" data-ng-click="modifyUser(users.idUser)">Modicar</button></td>
+                <td><button class="btn btn-danger">Eliminar</button></td>
             </tr>
             </tbody>
         </table>

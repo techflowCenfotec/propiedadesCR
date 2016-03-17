@@ -17,8 +17,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -46,6 +48,11 @@ public class UsersController {
      * Este objeto proporciona los diferentes servicios para los usuarios
      */
 	@Autowired private UsersServiceInterface usersService;
+	
+	/** 
+     * Este objeto mantiene la sesión en el backend
+     */
+	@Autowired private HttpServletRequest httpServletRequest;
 	
 	/**
     * Este método retorna todos los usuarios registrados en el sistema
@@ -108,7 +115,12 @@ public class UsersController {
 		}
 
 		UsersResponse userResponse = new UsersResponse();
-		String resultFileName = Utils.writeToFile(pfile,servletContext);
+		String resultFileName;
+		if(pfile.getOriginalFilename().equals("default_user_image_PropiedadesCR.png"))
+		 resultFileName = "http://localhost:8080/propiedadesCR/resources/images/default_user_image.png";
+		else			
+		 resultFileName = Utils.writeToFile(pfile,servletContext);
+		
 		if(!resultFileName.equals("")){
 			
 			UserPOJO user = new UserPOJO();
@@ -127,7 +139,7 @@ public class UsersController {
 			user.setFirstTime((byte)0);
 			UsersRequest userRequest = new UsersRequest();
 			userRequest.setUser(user);
-			Tuser recentlyCreatedUser = usersService.saveUser(userRequest);
+			Tuser recentlyCreatedUser = usersService.saveUser(userRequest, pidRol);
 
 			
 			if(recentlyCreatedUser != null){
@@ -143,4 +155,38 @@ public class UsersController {
 		return userResponse;		
 	}
 	
+	
+
+	/**
+    * Este método retorna el usuario loggeado en la aplicación
+    *
+    * @return response Retorna la respuesta del sevicio hacia el frontend.
+    */
+		@RequestMapping(value ="/getUserLogged", method = RequestMethod.GET)
+		public UsersResponse getUserLogged(){
+			UsersResponse response = new UsersResponse();
+			response.setUser((UserPOJO)httpServletRequest.getSession().getAttribute("userLogged"));
+			return response;
+		}
+
+		/**
+	    * Este método retorna el usuario que se desea consultar
+		*
+	    * @param pidUser Identificador del usaurio que se consulta
+	    * 
+	    * @return response Retorna la respuesta del sevicio hacia el frontend.
+	    */	
+		@RequestMapping(value="/getUserById/{pidUser}", method = RequestMethod.GET)
+		public UsersResponse getConsultedUser(
+				@PathVariable int  pidUser){
+			UsersResponse response = new UsersResponse();
+			
+			UserPOJO user = usersService.consultUser(pidUser);
+			
+			response.setUser(user);
+			return response;
+		}
+		
+			
+		
 }
