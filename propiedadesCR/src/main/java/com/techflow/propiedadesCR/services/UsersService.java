@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.techflow.propiedadesCR.contracts.UsersRequest;
+import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.Trole;
 import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.pojo.RolePOJO;
@@ -129,5 +130,32 @@ public class UsersService implements UsersServiceInterface{
 		return userPOJO;
 		
 	}
-
+	
+	/**
+	  * Actualiza la propiedad con la lista de usuarios. Retorna la entidad almacenada por si hay que realizar operaciones adicionales
+	  * ya que la entidad puede cambiar al ser almacenda.
+	  * 
+	  * @param pProperty Contiene la infomarción a almacenar a la base de 
+	  * datos por medio del repositorio. No debe ser nulo.
+	  * @return property Una entidad del tipo.
+	  */
+	@Override
+	@Transactional
+	public Tuser addToFavorite(Tuser pUser) {
+		Tuser user =  usersRepository.save(pUser);
+		return user;
+	}
+	
+	/**
+	  * Este retorna el usaurio que se consulto.
+	  *
+	  * @param pIdUser Identificador del usuario.
+      * 
+	  * @return Tuser Retorna el usuario consultado.
+	  */
+	@Override
+	@Transactional
+	public Tuser getUserByID(int pIdUser) {
+		return usersRepository.findOne(pIdUser);
+	}
 }

@@ -14,7 +14,9 @@
 package com.techflow.propiedadesCR.controllers;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -28,8 +30,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.techflow.propiedadesCR.contracts.PropertiesResponse;
 import com.techflow.propiedadesCR.contracts.UsersRequest;
 import com.techflow.propiedadesCR.contracts.UsersResponse;
+import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.pojo.UserPOJO;
 import com.techflow.propiedadesCR.services.UsersServiceInterface;
@@ -187,6 +191,32 @@ public class UsersController {
 			return response;
 		}
 		
+		/**
+		  * Envía la información a agregar a la base de datos por medio de su servicio. 
+		  * 
+		  * @param pPropRequest Petición que contiene la información de la entidad que
+		  * se desea crear.
+		  * @param pIdProperty Id de la propiedad. No debe ser nulo.
+		  * @return response La entidad del objeto actualizado.
+		  */
+		@RequestMapping(value="addToFavorite/{pIdUser}", method = RequestMethod.PUT)
+		public UsersResponse addToFavorite(@RequestBody Tproperty pProperty,
+				@PathVariable int pIdUser) {
+			UsersResponse response = new UsersResponse();
+			List<Tproperty> properties = new ArrayList<Tproperty>();
+			properties.add(pProperty);
 			
+			Tuser user = usersService.getUserByID(pIdUser);
+			user.setTproperties2(properties);
+			
+			Tuser nUser = usersService.addToFavorite(user);
+			
+			if (nUser != null) {
+				response.setCode(200);
+				response.setCodeMessage("Property added to favorites");
+			}
+			
+			return response;
+		}
 		
 }
