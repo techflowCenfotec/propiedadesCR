@@ -29,6 +29,7 @@ public interface UsersRepository extends CrudRepository<Tuser, Integer> {
 	  */
 	Tuser findByIdUser(int pidUser);
 	
+
 }
 
 

@@ -13,6 +13,7 @@
 			,"templates/usersView/usersList"
 			,"templates/usersView/createUser"			
 			,"templates/usersView/consultUser"
+			,"templates/usersView/modifyUser"
 
 			,"templates/eventsView/createEvent"
 			,"templates/eventsView/eventsList"
