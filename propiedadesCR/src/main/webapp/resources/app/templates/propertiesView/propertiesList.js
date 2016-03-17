@@ -24,16 +24,23 @@
 		}
 		
 		$scope.addToFavorites = function(pIdProperty) {
+			var favorites = [];
+			
+			$http.get('rest/protected/users/getUserById/' + 1)
+			.success(function(response) {
+				favorites = response.user.tproperties2;
+				console.log(favorites);
+			});
 			
 			// Cambiar a UserLogged
-			var bd = 'rest/protected/users/addToFavorite/' + 1;
+//			var bd = 'rest/protected/users/addToFavorite/' + 1;
 			var data = {
 				"idProperty": pIdProperty	
 			};
 			
-			$http.put(bd, data)
-			.success(function(response) {
-			});
+//			$http.put(bd, data)
+//			.success(function(response) {
+//			});
 		}
 	}
 	
