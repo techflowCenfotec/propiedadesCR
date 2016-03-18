@@ -10,8 +10,6 @@
 			$scope.properties[i].porcentage = porcentages[i];
 		}
 
-		$scope.init();
-		
 		$scope.viewProperty = function(pIdProperty) {
 			localStorage.setItem('idProperty', pIdProperty);
 		}
