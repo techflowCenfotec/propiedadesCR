@@ -24,6 +24,15 @@
           data-ng-class=" { 'layout-boxed': main.layout === 'boxed', 
                             'nav-collapsed-min': main.isMenuCollapsed
           } ">
+
+          <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
         <!--[if lt IE 9]>
             <div class="lt-ie9-bg">
                 <p class="browsehappy">You are using an <strong>outdated</strong> browser.</p>
@@ -104,5 +113,6 @@
         <script src="resources/app/templates/testView/matchedPropertiesList.js"></script>
         <script src="resources/app/templates/permissionsViews/permissions.js"></script>
         <script src="resources/app/templates/roleView/editRoles.js"></script>
+        <script src="resources/app/templates/guidesView/createGuide.js"></script>
         
         

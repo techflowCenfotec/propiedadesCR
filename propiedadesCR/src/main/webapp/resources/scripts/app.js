@@ -54,7 +54,7 @@ function() {
 		,"app.banktodolistCreate"
 		,"app.testFlow"
 		,"app.matchedPropertiesList"
-
+		,"app.createGuide"
 
 		,"app.properties.create"
 		,"app.properties.view"
