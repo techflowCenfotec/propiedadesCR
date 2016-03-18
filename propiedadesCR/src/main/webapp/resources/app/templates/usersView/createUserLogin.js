@@ -1,10 +1,10 @@
 (function() {
 	"use strict";
 
-	angular.module("app.createUsers", ['validation.match'])
+	angular.module("app.createUserLogin", ['validation.match'])
 
 	.controller(
-			'CreateUserController',
+			'CreateUserLoginController',
 			[
 					'$scope',
 					'$http',

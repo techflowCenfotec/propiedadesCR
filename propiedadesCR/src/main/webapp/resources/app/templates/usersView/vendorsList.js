@@ -4,6 +4,20 @@
 	angular.module("app.vendorsList",[])
 
 	.controller("VendorsListController",["$scope","$http",function($scope,$http) {
+		
+		
+		validate();
+		
+		function validate(){
+		$http.get("rest/protected/database/checkDB").success(function(data){
+			if(data.code!==200){
+				var path = "#/templates/errorsView/500";
+				
+    			window.location.href = path;
+			}
+		});
+		}
+		
 		$scope.vendors = [];
 
 		var link = 'rest/protected/users/getAllVendors';
@@ -20,6 +34,7 @@
 				}
 		
 		$http.post(link,request).success(function(response) {
+			   validate();	
 			   $scope.vendors= response.users;
 			   $scope.vendorsList = $scope.vendors;
 			   

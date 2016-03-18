@@ -17,10 +17,22 @@
 						$scope.max = 5;
 						$scope.notVendor;
 
+						validate();
+						
+						function validate(){
+						$http.get("rest/protected/database/checkDB").success(function(data){
+							if(data.code!==200){
+								var path = "#/templates/errorsView/500";
+								
+				    			window.location.href = path;
+							}
+						});
+						}
+							
 						var link = 'rest/protected/users/getUserById/'
 								+ localStorage.getItem('idUser');
 						$http.get(link).success(function(response) {
-
+							validate();
 							$scope.user = response.user;
 							if ($scope.user.role.rolName === "Vendedor")
 								$scope.notVendor = false;

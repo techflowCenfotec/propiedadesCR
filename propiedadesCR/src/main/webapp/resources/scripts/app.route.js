@@ -30,6 +30,8 @@
 
 
 			,"templates/propertiesView/propertiesCreate"
+			
+			,"templates/errosView/500"
 		], 
 
 		t = function($urlRouterProvider) {

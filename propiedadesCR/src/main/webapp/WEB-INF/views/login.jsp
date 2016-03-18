@@ -61,4 +61,5 @@
 	<script src="resources/app/templates/loginView/login.js"></script>
 	<script src="resources/app/templates/resetPasswordView/forgotPassword.js"></script>
 	<script src="resources/app/templates/resetPasswordView/resetPassword.js"></script>
+	<script src="resources/app/templates/usersView/createUserLogin.js"></script>
 	

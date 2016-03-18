@@ -16,10 +16,24 @@
 						$scope.rate = 0;
 						$scope.max = 5;
 
+						
+						
+						validate();
+						
+						function validate(){
+						$http.get("rest/protected/database/checkDB").success(function(data){
+							if(data.code!==200){
+								var path = "#/templates/errorsView/500";
+								
+				    			window.location.href = path;
+							}
+						});
+						}
+						
 						var link = 'rest/protected/users/getUserById/'
 								+ localStorage.getItem('idVendor');
 						$http.get(link).success(function(response) {
-
+							validate();
 							$scope.user = response.user;
 
 							return $scope.user;
@@ -29,8 +43,7 @@
 						}
 						$scope.saveRating = function(value) {
 							
-							console.log(localStorage.getItem('idUser'));
-							console.log($scope.user.idUser);
+						
 							var request = {
 								"pageNumber" : 0,
 								"pageSize" : 0,
