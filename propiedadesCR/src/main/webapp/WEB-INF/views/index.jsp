@@ -14,7 +14,7 @@
         <!-- end Needs images -->
 
         <link rel="stylesheet" href="resources/styles/main.css">
-
+ 
     </head>
     <body data-ng-app="app"
           id="app" 

@@ -33,6 +33,13 @@
             right: false
         };
 
+        function select(page) {
+            var end, start;
+            start = (page - 1) * $scope.numPerPage;       
+            end = start + $scope.numPerPage;
+            return $scope.currentPageList = $scope.filteredEvents.slice(start, end);
+        };
+
 		
 		$http.post(link,request).success(function(response) {
 			$scope.rolesList= response.role;
@@ -102,6 +109,7 @@
                         .position($scope.getToastPosition())
                         .hideDelay(3000)
                 );
+                $scope.currentPageList = _.without($scope.currentPageList,_.findWhere($scope.currentPageList,{idRole:id}));
             });
         }
 

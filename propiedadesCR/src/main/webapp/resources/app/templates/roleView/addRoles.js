@@ -29,7 +29,8 @@
 			if(this.form_addRoles.$valid && newPermissions!== 'undefined'){
 				$scope.onError = false;
 				var roleObject={"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","role": {"rolName":name,"tpermissions":permList}};
-				$http.post(linkRole,roleObject).success(function(response) {
+					console.log(roleObject);
+					$http.post(linkRole,roleObject).success(function(response) {
 				});
 				$scope.showInfoOnSubmit=true;
 			}else{
@@ -38,7 +39,7 @@
 		};
 
 		$scope.addPermissions = function toggleSelection(idPermissions,checkbox){
-			var newPermissionObj={"idPerm":idPermissions};
+			var newPermissionObj={"idPermissions":idPermissions};
 
 			if(checkbox){
 				for( var i in newPermissions){

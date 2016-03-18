@@ -81,10 +81,13 @@ public class RolesService implements RolesServiceInterface {
 		
 		Trole role = new Trole();
 		role.setRolName(proleRequest.getRole().getRolName());
-		
+		role.setActive((byte) 1);
+	
 		List<Tpermission> permissions = new ArrayList<Tpermission>();
 		proleRequest.getRole().getTpermissions().stream().forEach(perm -> {
-			Tpermission p = permissionsRepository.findOne(perm.getIdPermissions());
+			
+			Tpermission p = new Tpermission();
+			p.setIdPermissions(perm.getIdPermissions());
 			permissions.add(p);
 		});
 		role.setTpermissions(permissions);
@@ -134,10 +137,13 @@ public class RolesService implements RolesServiceInterface {
 		Trole role = new Trole();
 		role.setRolName(proleRequest.getRole().getRolName());
 		role.setIdRole(proleRequest.getRole().getIdRole());
+		role.setActive((byte) 1);
 		
 		List<Tpermission> permissions = new ArrayList<Tpermission>();
 		proleRequest.getRole().getTpermissions().stream().forEach(perm -> {
-			Tpermission p = permissionsRepository.findOne(perm.getIdPermissions());
+			
+			Tpermission p = new Tpermission();
+			p.setIdPermissions(perm.getIdPermissions());
 			permissions.add(p);
 		});
 		role.setTpermissions(permissions);

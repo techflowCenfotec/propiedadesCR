@@ -42,8 +42,6 @@
 			right: false
 		};
 
-
-
 		$http.post(link,request).success(function(response) {
 			$scope.permissionsList = response.permission;
 		});
@@ -53,7 +51,6 @@
 			otherObject = roleRequest.role[0];
 			$scope.consultRoleName = otherObject.rolName;
 			$scope.consultPermissions = otherObject.tpermissions;
-			console.log($scope.consultPermissions);
 		});
 
 		$scope.editRoles = function editRoles(event){
@@ -90,7 +87,7 @@
 
 		$scope.addPermissions = function toggleSelection(idPermissions,checkbox){
 			
-			var newPermissionObj = {"idPerm":idPermissions};
+			var newPermissionObj = {"idPermissions":idPermissions};
 			if(checkbox){
 				for( var i in newPermissions){
 					if(idPermissions == newPermissions[i].idPerm){
