@@ -8,5 +8,5 @@ import com.techflow.propiedadesCR.pojo.DistrictPOJO;
 public interface DistrictServiceInterface {
 
 	List<DistrictPOJO> getAll();
-	Tdistrict getDistrictById(int pIdDistrict);
+	DistrictPOJO getDistrictById(int pIdDistrict);
 }

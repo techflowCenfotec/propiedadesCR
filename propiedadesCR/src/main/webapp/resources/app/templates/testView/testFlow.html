@@ -1,0 +1,53 @@
+<div class="page">
+
+
+    <div class="row ui-section">
+        <div class="col-lg-8 clearfix">
+            <h2 class="section-header">Buscando su mejor opción</h2>
+        </div>
+        <div class="col-md-12">
+            <section class="panel panel-default">
+                <div class="panel-body padding-xl">
+                    <div class="row">
+                        <div class="col-md-8 col-md-offset-2">
+                        
+                            <section class="ui-angular-wizard" ng-controller="testFlowController as testCtrl">
+
+                                <div class="divider divider-lg"></div>
+                                
+                                <wizard on-finish="finished()" >
+                                    
+                                    <wz-step wz-title="{{question.idQuestion}}" canexit="" ng-repeat="question in questions">
+                                        <h2>{{question.question}}</h2>
+                                        <div class="ui-wizard-content">
+                                            
+
+                                            <div>
+
+                                            <md-radio-group class="ui-md-radio-group-inline" ng-model="radio.selectedOption">
+
+                                                <md-radio-button ng-repeat="option in question.toptions2" ng-value="{{option}}">{{option.option}}</md-radio-button>
+
+                                            
+                                            </md-radio-group> 
+                                            </div>
+
+
+                                        </div>
+                                        <div class="ui-wizard-actions">
+                                            <md-button wz-reset ng-click="resetAnswers()" class="md-raised btn-w-md md-accent">Reiniciar</md-button>
+
+                                            <md-button ng-click="catchAnswer(radio.selectedOption,question.idQuestion)" ng-disabled="radio.selectedOption==undefined" class="md-raised btn-w-md md-primary">Siguiente</md-button>
+                                            
+                                        </div>
+                                    </wz-step>
+
+                                </wizard>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </section>     
+        </div>
+    </div>
+</div>

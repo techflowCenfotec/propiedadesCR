@@ -15,6 +15,7 @@ import java.util.List;
 public class TbankToDoList implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idtBank_to_do_list;
+	private byte active;
 	private String description;
 	private String name;
 	private List<TbankItem> tbankItems;
@@ -34,6 +35,13 @@ public class TbankToDoList implements Serializable {
 		this.idtBank_to_do_list = idtBank_to_do_list;
 	}
 
+	public byte getActive() {
+		return this.active;
+	}
+
+	public void setActive(byte active) {
+		this.active = active;
+	}
 
 	@Lob
 	public String getDescription() {

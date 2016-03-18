@@ -13,7 +13,13 @@ public interface UsersServiceInterface {
 	List<UserPOJO> getAllVendors(UsersRequest puserRequest);
 	Tuser saveUser(UsersRequest puserRequest,int pidRole);
 	UserPOJO consultUser(int pidUser);
+
 	Tuser modifyUser(UsersRequest puserRequest, int pidRole);
 	Tuser getUserByEmail(String pemail);
 	Tuser changePass(PasswordRequest ppasswordRequest);
+
+	Tuser addToFavorite(Tuser pUser);
+	Tuser getUserByID(int pIdUser);
+
+
 }

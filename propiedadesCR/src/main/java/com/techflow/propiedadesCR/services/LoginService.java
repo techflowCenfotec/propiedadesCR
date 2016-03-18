@@ -63,6 +63,7 @@ public class LoginService implements LoginServiceInterface {
 			e.printStackTrace();
 		}
      	
+		
 		Tuser nuser = repositoryLogin.findByEmailAndPassword(ploginRequest.getUserName(), md5password.toString());
 
 		if (null != nuser){

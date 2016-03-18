@@ -18,6 +18,7 @@ import java.util.List;
 public class Trole implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idRole;
+	private byte active;
 	private String rolName;
 	private List<Tpermission> tpermissions;
 	private List<Tuser> tusers;
@@ -37,7 +38,14 @@ public class Trole implements Serializable {
 		this.idRole = idRole;
 	}
 
+	public byte getActive() {
+		return this.active;
+	}
 
+	public void setActive(byte active) {
+		this.active = active;
+	}
+	
 	@Column(name="rol_name")
 	public String getRolName() {
 		return this.rolName;
@@ -71,6 +79,7 @@ public class Trole implements Serializable {
 
 	//bi-directional many-to-one association to Tuser
 	@OneToMany(mappedBy="trole")
+	@JsonIgnore
 	public List<Tuser> getTusers() {
 		return this.tusers;
 	}

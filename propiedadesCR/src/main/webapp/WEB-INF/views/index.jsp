@@ -12,18 +12,27 @@
         <link rel="stylesheet" href="resources/bower_components/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="resources/bower_components/material-design-iconic-font/css/material-design-iconic-font.min.css">
         <!-- end Needs images -->
-        
-             <link rel="stylesheet" href="resources/styles/main.css">
 
+        <link rel="stylesheet" href="resources/styles/main.css">
+ 
     </head>
     <body data-ng-app="app"
-          id="app"
+          id="app" 
           class="app"
           data-custom-page 
           data-ng-controller="AppCtrl"
           data-ng-class=" { 'layout-boxed': main.layout === 'boxed', 
                             'nav-collapsed-min': main.isMenuCollapsed
           } ">
+
+          <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/es_LA/sdk.js#xfbml=1&version=v2.5";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
         <!--[if lt IE 9]>
             <div class="lt-ie9-bg">
                 <p class="browsehappy">You are using an <strong>outdated</strong> browser.</p>
@@ -31,8 +40,6 @@
             </div>
         <![endif]-->
         <div id="loader-container"></div>
-        
-       
 
         <header data-ng-include=" 'resources/app/layout/header.html' "
                  id="header"
@@ -59,7 +66,7 @@
                                     'bg-dark': ['31','32','33','34','35','36'].indexOf(main.skin) < 0
                    }">
             </aside>
-       
+
             <div id="content" class="content-container">
                 <section data-ui-view
                          class="view-container {{main.pageTransition.class}}"></section>
@@ -69,24 +76,26 @@
 
         <script src="http://maps.google.com/maps/api/js"></script>
 
-          <!--Core JS-->
+        <!--Core JS-->
         <script src="resources/scripts/vendor.js"></script>
         <script src="resources/scripts/ui.js"></script>
         <script src="resources/scripts/app.js"></script>
         <script src="resources/scripts/app.route.js"></script>
+        <script src="resources/bower_components/underscore/underscore.js"></script>
         <script src="resources/non_bower_components/angular-file-upload-shim.min.js"></script>
   		<script src="resources/non_bower_components/angular-file-upload.min.js"></script>
   		<script src="resources/non_bower_components/ng-flow-standalone.min.js "></script>
   		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
   		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
+
         <!--Custom JS files-->
-        
+        <script src="resources/app/templates/propertiesView/propertiesList.js"></script>
         <script src="resources/app/templates/homeView/home.js"></script>
         
         <script src="resources/app/templates/propertiesView/propertiesList.js"></script>
- 		<script src="resources/app/templates/propertiesView/propertiesCreate.js"></script>
- 		
+ 	    <script src="resources/app/templates/propertiesView/propertiesCreate.js"></script>
+ 	    <script src="resources/app/templates/propertiesView/propertyView.js"></script>
         <script src="resources/app/templates/usersView/usersList.js"></script>
         <script src="resources/app/templates/usersView/vendorsList.js"></script>
         <script src="resources/app/templates/usersView/createUser.js"></script>
@@ -97,11 +106,18 @@
         <script src="resources/app/templates/eventsView/createEvent.js"></script>
         <script src= "resources/app/templates/eventsView/eventsList.js"></script>
 	    <script src= "resources/app/templates/eventsView/eventConsult.js"></script>
-
+        <script src= "resources/app/templates/eventsView/eventsListAdmin.js"></script>
+        
+        
         <script src="resources/app/templates/roleView/roles.js"></script>
         <script src="resources/app/templates/roleView/addRoles.js"></script>
         
         <script src="resources/app/templates/banktodolistView/banktodolist.js"></script>
         <script src="resources/app/templates/banktodolistView/banktodolistCreate.js"></script>
-
-
+        <script src="resources/app/templates/testView/testFlow.js"></script>
+        <script src="resources/app/templates/testView/matchedPropertiesList.js"></script>
+        <script src="resources/app/templates/permissionsViews/permissions.js"></script>
+        <script src="resources/app/templates/roleView/editRoles.js"></script>
+        <script src="resources/app/templates/guidesView/createGuide.js"></script>
+        
+        

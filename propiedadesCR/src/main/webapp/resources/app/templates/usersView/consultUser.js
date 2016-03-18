@@ -2,7 +2,6 @@
 	"use strict";
 
 	angular.module("app.consultUser", [])
-
 	.controller(
 			'ConsultUserController',
 			[
@@ -41,9 +40,18 @@
 
 							return $scope.user;
 						});
-						$scope.hoveringOver = function(value) {
-
-						}
-
-					} ]);
+					
+		$scope.hoveringOver = function(value) {
+           
+		}
+		$scope.saveRating = function(value){
+			
+			var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "",
+					"rating": {"averageRating":value},"idClient":$scope.user.idUser,"idVendor":$scope.user.idUser};
+			$http.post('rest/protected/userRating/saveRating',request).success(function(){
+				
+			})
+		}
+	}]);
 })();
+

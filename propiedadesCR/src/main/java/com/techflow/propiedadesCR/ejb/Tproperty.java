@@ -2,6 +2,23 @@ package com.techflow.propiedadesCR.ejb;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -102,6 +119,7 @@ public class Tproperty implements Serializable {
 			@JoinColumn(name="id_benefit")
 			}
 		)
+	@JsonIgnore
 	public List<Tbenefit> getTbenefits() {
 		return this.tbenefits;
 	}
@@ -174,6 +192,7 @@ public class Tproperty implements Serializable {
 
 	//bi-directional many-to-one association to TpropertyRating
 	@OneToMany(mappedBy="tproperty")
+	@JsonIgnore
 	public List<TpropertyRating> getTpropertyRatings() {
 		return this.tpropertyRatings;
 	}
@@ -199,6 +218,7 @@ public class Tproperty implements Serializable {
 
 	//bi-directional many-to-many association to Tuser
 	@ManyToMany(mappedBy="tproperties2")
+	@JsonIgnore
 	public List<Tuser> getTusers() {
 		return this.tusers;
 	}

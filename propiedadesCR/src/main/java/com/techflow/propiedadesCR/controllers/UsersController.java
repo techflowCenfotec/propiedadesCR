@@ -16,6 +16,7 @@ package com.techflow.propiedadesCR.controllers;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -30,8 +31,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 
+import com.techflow.propiedadesCR.contracts.PropertiesResponse;
 import com.techflow.propiedadesCR.contracts.UsersRequest;
 import com.techflow.propiedadesCR.contracts.UsersResponse;
+import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.pojo.UserPOJO;
 
@@ -58,12 +61,12 @@ public class UsersController {
 	@Autowired private HttpServletRequest httpServletRequest;
 	
 	/**
-    * Este método retorna todos los usuarios registrados en el sistema
+�  * Este método retorna todos los usuarios registrados en el sistema
     *
-    * @param puserResponse Este parámetro encapsula la información solicitada en el metodo.
+�  * @param puserResponse Este parámetro encapsula la información solicitada en el metodo.
 	*
-    * @return response Retorna la respuesta del sevicio hacia el frontend.
-    */
+ �* @return response Retorna la respuesta del sevicio hacia el frontend.
+�  */
 	@RequestMapping(value="/getAll", method = RequestMethod.POST)
 	public UsersResponse getAll(@RequestBody UsersRequest puserRequest) {
 		
@@ -94,12 +97,12 @@ public class UsersController {
 		}
 	
 	  /**
-	  * Este método registra un usuario en el sistema.
+	�* Este método registra un usuario en el sistema.
 	  *
-	  * @param pfile Imagen de perfil del usuario.
-	  * @param pidRol Rol del usuario en el sistema.
-	  * @param puserName Nombre de usuario.
-	  * @param pfirstName Primer apellido del usuario.
+	�* @param pfile Imagen de perfil del usuario.
+	� * @param pidRol Rol del usuario en el sistema.
+	�* @param puserName Nombre de usuario.
+	 �* @param pfirstName Primer apellido del usuario.
 	  * @param plastName Segundo apellido del usuario.
       * @param pphone1 Teléfono del usuario.
       * @param pphone2 Teléfono alternativo del usuario.
@@ -179,10 +182,10 @@ public class UsersController {
 	
 
 	/**
-    * Este método retorna el usuario loggeado en la aplicación
+�  * Este método retorna el usuario loggeado en la aplicación
     *
-    * @return response Retorna la respuesta del sevicio hacia el frontend.
-    */
+  ��* @return response Retorna la respuesta del sevicio hacia el frontend.
+�  */
 		@RequestMapping(value ="/getUserLogged", method = RequestMethod.GET)
 		public UsersResponse getUserLogged(){
 			UsersResponse response = new UsersResponse();
@@ -191,12 +194,12 @@ public class UsersController {
 		}
 
 		/**
-	    * Este método retorna el usuario que se desea consultar
+	�  * Este método retorna el usuario que se desea consultar
 		*
 	    * @param pidUser Identificador del usaurio que se consulta
 	    * 
-	    * @return response Retorna la respuesta del sevicio hacia el frontend.
-	    */			
+	 �* @return response Retorna la respuesta del sevicio hacia el frontend.
+	�  */			
 		@RequestMapping(value="/getUserById/{pidUser}", method = RequestMethod.GET)
 		public UsersResponse getConsultedUser(
 				@PathVariable int  pidUser){
@@ -210,21 +213,21 @@ public class UsersController {
 		
 		
 		 /**
-		  * Este método registra un usuario en el sistema.
+		�* Este método registra un usuario en el sistema.
 		  *
-		  * @param pfile Imagen de perfil del usuario.
-		  * @param pidUser Identificador del usuario a modificar.
-		  * @param pidRol Rol del usuario en el sistema.
-		  * @param puserName Nombre de usuario.
-		  * @param pfirstName Primer apellido del usuario.
+		�* @param pfile Imagen de perfil del usuario.
+		 * @param pidUser Identificador del usuario a modificar.
+		 * @param pidRol Rol del usuario en el sistema.
+		�* @param puserName Nombre de usuario.
+		�* @param pfirstName Primer apellido del usuario.
 		  * @param plastName Segundo apellido del usuario.
 	      * @param pphone1 Teléfono del usuario.
 	      * @param pphone2 Teléfono alternativo del usuario.
 	      * @param pemail Correo del usuario.
 	      * @param ppassword Contraseña del usaurio.
 	      * 
-		  * @return userResponse Retorna la respuesta del servicio hacia el frontend.
-		  *
+		�* @return userResponse Retorna la respuesta del servicio hacia el frontend.
+		�*
 		  * @throws ParseException Esta exepción se lanza cuando el sistema es incapaz de transformar
 		  * el String pbirthday a birthday ques es de tipo Date.
 		   */
@@ -296,6 +299,35 @@ public class UsersController {
 		}
 		
 
+		/**
+		  * Envía la información a agregar a la base de datos por medio de su servicio. 
+		  * 
+		  * @param pProperty Ejb que contiene la información de la entidad que
+		  * se desea crear.
+		  * @param pIdProperty Id de la propiedad. No debe ser nulo.
+		  * @return response La entidad del objeto actualizado.
+		  */
+		@RequestMapping(value="addToFavorite/{pIdUser}", method = RequestMethod.PUT)
+		public UsersResponse addToFavorite(@RequestBody Tproperty pProperty,
+				@PathVariable int pIdUser) {
+			UsersResponse response = new UsersResponse();
 			
+			Tuser user = usersService.getUserByID(pIdUser);
+			
+			List<Tproperty> properties = user.getTproperties2();
+			properties.add(pProperty);
+			
+			user.setTproperties2(properties);
+			
+			Tuser nUser = usersService.addToFavorite(user);
+			
+			if (nUser != null) {
+				response.setCode(200);
+				response.setCodeMessage("Property added to favorites");
+			}
+			
+			return response;
+		}
+		
 		
 }

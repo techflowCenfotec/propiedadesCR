@@ -152,13 +152,30 @@ public class UsersService implements UsersServiceInterface{
 	}
 	
 	/**
-	  * Este método modifica un usuario en el sistema.
+	  * Actualiza el usuario con la lista de propiedades. Retorna la entidad almacenada por si hay que realizar operaciones adicionales
+	  * ya que la entidad puede cambiar al ser almacenda.
+	  * 
+	  * @param pUser Contiene la infomarción a almacenar a la base de 
+	  * datos por medio del repositorio. No debe ser nulo.
+	  * 
+	  * @return user Una entidad del tipo.
+	  */
+	@Override
+	@Transactional
+	public Tuser addToFavorite(Tuser pUser) {
+		Tuser user =  usersRepository.save(pUser);
+		return user;
+	}
+	
+	/**
+	  * Este retorna el usaurio que se consulto.
 	  *
-	  * @param puserRequest Encapsula los datos requeridos por el usuario.
-	  * @param pidRole Identificador del rol asignado al usuario
+	  * @param pIdUser Identificador del usuario.
       * 
 	  * @return nuser Retorna el usuario modificado.
 	  */
+
+	
 	@Override
 	public Tuser modifyUser(UsersRequest puserRequest, int pidRole) {
 		
@@ -172,6 +189,7 @@ public class UsersService implements UsersServiceInterface{
 		return nuser;
 	
 	}
+
 	@Override
 	public Tuser getUserByEmail(String pemail){
 		
@@ -216,6 +234,19 @@ public class UsersService implements UsersServiceInterface{
 	
 		return modifiedUser;
 		
+	}
+	/**
+	  * Este retorna el usaurio que se consulto.
+	  *
+	  * @param pIdUser Identificador del usuario.
+     * 
+	  * @return Tuser Retorna el usuario consultado.
+	  */
+	@Override
+	@Transactional
+	public Tuser getUserByID(int pIdUser) {
+		return usersRepository.findOne(pIdUser);
+
 	}
 
 	
