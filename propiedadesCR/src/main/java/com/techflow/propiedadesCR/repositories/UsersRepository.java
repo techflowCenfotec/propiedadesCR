@@ -12,6 +12,9 @@
 package com.techflow.propiedadesCR.repositories;
 
 import java.util.List;
+
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import com.techflow.propiedadesCR.ejb.Trole;
@@ -25,21 +28,31 @@ public interface UsersRepository extends CrudRepository<Tuser, Integer> {
 	  */
 	List<Tuser> findAll();
 	/**
-	  * Este método el usuario con el identificador a buscar
+	  * Este método retorna el usuario con el identificador a buscar.
+	  *
+	  *@param pidUser Identificador del usuario a buscar.
 	  *
 	  * @return Tuser Retorna la respuesta de la BD hacia el servicio. 
 	  */
 	Tuser findByIdUser(int pidUser);
 	
 	/**
-	  * Este método retorna todos los usuarios registrados en el sistema
+	  * Este método retorna todos los usuarios registrados en el sistema.
 	  *
 	  * @return List<Tuser> Retorna la respuesta de la BD hacia el servicio. 
 	  */
 	List<Tuser> findAllByTrole(Trole role);
 	
+	/**
+	  * Este método retorna el usuario con el correo a buscar.
+	  *
+	  *@param pemail Correo del usuario a buscar.
+	  *
+	  * @return Tuser Retorna la respuesta de la BD hacia el servicio. 
+	  */
+	Tuser findUserByEmail(String pemail);
 	
-
+	
 }
 
 

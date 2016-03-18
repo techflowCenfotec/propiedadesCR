@@ -25,5 +25,9 @@
 			   
 		});
 		
+		$scope.consultVendor= function(myId){
+			localStorage.setItem('idVendor',myId);
+		};
+		
 	}])
 })();

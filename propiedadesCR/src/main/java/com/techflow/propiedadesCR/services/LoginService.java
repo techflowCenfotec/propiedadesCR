@@ -21,7 +21,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.techflow.propiedadesCR.contracts.LoginRequest;
-import com.techflow.propiedadesCR.ejb.Trole;
 import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.pojo.RolePOJO;
 import com.techflow.propiedadesCR.pojo.UserPOJO;
@@ -42,10 +41,11 @@ public class LoginService implements LoginServiceInterface {
 	    */	
 	@Override
 	public UserPOJO checkUser(LoginRequest ploginRequest) {
+		
 		UserPOJO userPOJO = null;
 		String password = ploginRequest.getPassword();
 		StringBuffer md5password = new StringBuffer();
-    	
+    
         MessageDigest md;
 		try {
 			md = MessageDigest.getInstance("MD5");
@@ -73,6 +73,9 @@ public class LoginService implements LoginServiceInterface {
 			
 		}
 		return userPOJO;
+	
 	}
+	
+	
 
 }

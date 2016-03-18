@@ -17,6 +17,8 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import com.techflow.propiedadesCR.contracts.PasswordRequest;
 import com.techflow.propiedadesCR.contracts.UsersRequest;
 import com.techflow.propiedadesCR.ejb.Trole;
 import com.techflow.propiedadesCR.ejb.Tuser;
@@ -102,12 +104,12 @@ public class UsersService implements UsersServiceInterface{
 		user.setTrole(role);
 		StringBuffer md5password = new StringBuffer();
     	
-        MessageDigest md;
+        MessageDigest messageDigest;
 		try {
-			md = MessageDigest.getInstance("MD5");
-			md.update(puserRequest.getUser().getPassword().getBytes());
+			messageDigest = MessageDigest.getInstance("MD5");
+			messageDigest.update(puserRequest.getUser().getPassword().getBytes());
 		        
-		        byte byteData[] = md.digest();
+		        byte byteData[] = messageDigest.digest();
 		        //convert the byte to hex format method 1
 		       
 		        for (int i = 0; i < byteData.length; i++) {
@@ -155,7 +157,7 @@ public class UsersService implements UsersServiceInterface{
 	  * @param puserRequest Encapsula los datos requeridos por el usuario.
 	  * @param pidRole Identificador del rol asignado al usuario
       * 
-	  * @return nuser Retorna el usuario creado.
+	  * @return nuser Retorna el usuario modificado.
 	  */
 	@Override
 	public Tuser modifyUser(UsersRequest puserRequest, int pidRole) {
@@ -170,8 +172,51 @@ public class UsersService implements UsersServiceInterface{
 		return nuser;
 	
 	}
+	@Override
+	public Tuser getUserByEmail(String pemail){
+		
+		Tuser nuser = usersRepository.findUserByEmail(pemail);
+		return nuser;
+		
+	}
 	
-
+	/**
+	  * Este método modifica la contraseña de un usuario
+	  *
+	  * @param ppasswordRequest Encapsula los datos requeridos 
+	  *	pora el cambio  de contraseña.
+      * 
+	  * @return nuser Retorna el usuario modificado.
+	  */
+	@Override
+	public Tuser changePass(PasswordRequest ppasswordRequest){
+		StringBuffer md5password = new StringBuffer();
+		MessageDigest messageDigest;
+			try {
+				messageDigest = MessageDigest.getInstance("MD5");
+				messageDigest.update( ppasswordRequest.getNewPass().getBytes());
+			        
+			        byte byteData[] = messageDigest.digest();
+			        //convert the byte to hex format method 1
+			       
+			        for (int i = 0; i < byteData.length; i++) {
+			         md5password.append(Integer.toString((byteData[i] & 0xff) + 0x100, 16).substring(1));
+	
+			        }
+			} catch (NoSuchAlgorithmException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		
+		
+		Tuser user = usersRepository.findByIdUser(ppasswordRequest.getId());
+		
+		user.setPassword(md5password.toString());
+		Tuser modifiedUser = usersRepository.save(user);
+	
+		return modifiedUser;
+		
+	}
 
 	
 

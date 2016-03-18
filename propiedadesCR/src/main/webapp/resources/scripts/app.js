@@ -49,6 +49,7 @@ function() {
 		,"app.consultUser"
 		,"app.modifyUser"
 		,"app.vendorsList"
+		,"app.consultVendor"
 	
 		
 		,"app.banktodolist"
@@ -162,11 +163,11 @@ function(){
 				e.user = response.user;
 				$rootScope.userLogged = response.user;
 				e.userLogged = localStorage.getItem('userLogged');
-				
+				localStorage.setItem('idUser',e.user.idUser);
 				return e.user;
 			});
 			e.consultMyProfile = function(myId){
-				localStorage.setItem('idUserProfile',myId);
+				localStorage.setItem('idUser',myId);
 			};
 			
 		}

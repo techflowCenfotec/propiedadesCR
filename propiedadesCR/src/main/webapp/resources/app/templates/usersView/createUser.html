@@ -8,17 +8,17 @@
 }
 </style>
 <section class="page-form-ele page">
-<div class="row ui-section" data-ng-controller="CreateUserController"
-	flow-init>
-	
+	<div class="row ui-section" data-ng-controller="CreateUserController"
+		flow-init>
+
 		<div class="col-lg-8 clearfix">
 			<h2 class="section-header">Crear usuario</h2>
 		</div>
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<form name="form_createUser" class="form-validation"
-						novalidate data-ng-submit="submitForm($event,$flow.files)">
+					<form name="form_createUser" class="form-validation" novalidate
+						data-ng-submit="submitForm($event,$flow.files)">
 
 						<div class="row">
 							<div>
@@ -111,22 +111,27 @@
 						<div layout layout-sm="column">
 							<md-input-container flex=35> <label for="">Email</label>
 							<input type="email" class="form-control" required
-								data-ng-model="form.email" ng-pattern="/^.+@.+\..+$/"> <span></span>
-							</md-input-container>
-							
+								data-ng-model="form.email" data-ng-pattern="/^.+@.+\..+$/">
+							<span></span> </md-input-container>
+
 						</div>
 						<div layout layout-sm="column">
-						<md-input-container flex=35><label>Rol</label>
-						<md-select ng-model="form.role" aria-label="select" required>
-						<md-option ng-repeat="role in roles" value="{{role.idRole}}" required>
-						{{role.rolName}} </md-option> </md-select> </md-input-container>
+							<md-input-container flex=35>
+							<label>Rol</label> <md-select ng-model="form.role"
+								aria-label="select" required> <md-option
+								ng-repeat="role in roles" value="{{role.idRole}}" required>
+							{{role.rolName}} </md-option> </md-select> </md-input-container>
 						</div>
 
 						<div layout layout-sm="column">
 							<md-input-container flex=35> <label for="">Contrase&ntilde;a</label>
-							<input type="password" class="form-control" required
-								name="password" data-ng-trim='false'
-								data-ng-model="form.password"> <span></span> </md-input-container>
+							<input type="password" class="form-control" name="password"
+								data-ng-trim='false' data-ng-model="form.password"
+								data-ng-minlength="8" data-ng-maxlength="20"
+								title="La contraseña debe contener al menos una mayuscúla, una minuscúla, un caracter especial(número o símbolo), mínimo 8 caracteres y máximo 20"
+								data-ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/"
+								required>
+							<span></span> </md-input-container>
 
 							<md-input-container flex=35> <label for="">Confirme
 								contrase&ntilde;a</label> <input type="password" class="form-control"
@@ -161,5 +166,5 @@
 			</div>
 		</div>
 	</div>
-</div>
+	</div>
 </section>

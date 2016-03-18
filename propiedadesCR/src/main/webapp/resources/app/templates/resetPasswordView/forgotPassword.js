@@ -4,6 +4,7 @@
 	angular.module("app.forgotPassword",[])
 	.controller('forgotPasswordController', ['$scope','$rootScope','$http', function($scope,$rootScope,$http) {
 		
+		$scope.isCorrect = true;
 		$scope.form={
 				email:''
 		}
@@ -21,8 +22,18 @@
 				  "userEmail": $scope.form.email,
 				};
 		
-			   $http.post('rest/protected/password/sendEmail',req).success(function(){
+			   $http.post('rest/protected/password/sendEmail',req).success(function(data){
+				   $rootScope.$broadcast('preloader:active');
+				   if(data.code==200){
+				   localStorage.setItem('changePass', data.idUser);
+				   var path = "/propiedadesCR/";
+	    			window.location.href = path;
+				   }else
+					   $scope.isCorrect = false;
 				   
+				  
+			   }).error(function(){
+				   $scope.isCorrect = false;
 			   });
 			   }
 	}]);

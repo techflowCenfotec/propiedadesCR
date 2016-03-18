@@ -1,3 +1,73 @@
-<div ng-controller="HomeController">
-	
+<style>
+.carousel-inner>.item>img {
+	width: 100%;
+	height: 250px;
+}
+</style>
+
+<div data-ng-controller="HomeController">
+	<h3 class="page page-table">Bienvenidos a PropiedadesCR</h3>
+	<div class="row">
+		<div id="myCarousel" class="carousel slide">
+
+			<ol class="carousel-indicators">
+				<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				<li data-target="#myCarousel" data-slide-to="1"></li>
+			</ol>
+			<section class="carousel-inner">
+				<div class="active item">
+					<img alt="" src="resources/images/1456870463851.jpg">
+
+				</div>
+				<div class="item">
+					<img alt="" src="resources/images/1456872140182.jpg">
+				</div>
+			</section>
+			<a href="#myCarousel" class="left carousel-control" data-slide="prev"><span
+				class="glyphicons glyphicons-chevron-left"></span></a> <a
+				href="#myCarousel" class="right carousel-control" data-slide="next"><span
+				class="glyphicons glyphicons-chevron-right"></span></a>
+
+
+
+
+		</div>
+	</div>
+	<div class="divider"></div>
+	<div class="row page page-table">
+		<div class="col-sm-6">
+			<div class="panel mini-box">
+				<h5>¿Qu&eacute; ofrecemos?</h5>
+				<p>At vero eos et accusamus et iusto odio dignissimos ducimus
+					qui blanditiis praesentium voluptatum deleniti atque corrupti quos
+					dolores et quas molestias excepturi sint occaecati cupiditate non
+					provident, similique sunt in culpa qui officia deserunt mollitia
+					animi, id est laborum et dolorum fuga. Et harum quidem rerum
+					facilis est et expedita distinctio. Nam libero tempore, cum soluta
+					nobis est eligendi optio cumque nihil impedit quo minus id quod
+					maxime placeat facere possimus, omnis voluptas assumenda est, omnis
+					dolor repellendus. Temporibus autem quibusdam et aut officiis
+					debitis aut rerum necessitatibus saepe eveniet ut et voluptates
+					repudiandae sint et molestiae non recusandae. Itaque earum rerum
+					hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus
+					maiores alias consequatur aut perferendis doloribus asperiores
+					repellat.</p>
+			</div>
+		</div>
+
+		<div class="col-sm-6">
+			<div class="panel mini-box">
+				<h5>¿Qui&eacute;nes somos?</h5>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+					do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+					enim ad minim veniam, quis nostrud exercitation ullamco laboris
+					nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+					reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+					pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
+					culpa qui officia deserunt mollit anim id est laborum.</p>
+			</div>
+
+
+		</div>
+	</div>
 </div>

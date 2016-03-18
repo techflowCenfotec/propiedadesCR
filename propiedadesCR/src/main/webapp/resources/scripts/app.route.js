@@ -15,13 +15,13 @@
 			,"templates/usersView/consultUser"
 			,"templates/usersView/modifyUser"
 			,"templates/usersView/vendorsList"
+			,"templates/usersView/consultVendor"
 			
 			,"templates/eventsView/createEvent"
 			,"templates/eventsView/eventsList"
 
 			,"templates/eventsView/eventConsult"
 
-			
 			,"templates/roleView/roles"
 			,"templates/roleView/addRoles"
 			
