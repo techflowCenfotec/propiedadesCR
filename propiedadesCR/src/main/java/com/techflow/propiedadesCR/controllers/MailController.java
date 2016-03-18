@@ -76,9 +76,10 @@ public class MailController {
 	         message.setSubject("Información de evento");
 
 	         
+
 	         message.setText("Gracias por utilizar PropiedadesCR, \n"
 	         		+ "\n A continuación encontrará la información del evento"
-	         		+ "\n Lugar: "+"por definir"
+	         		+ "\n Lugar: "+event.getAddress().toString()
 	         		+ "\n Fecha:"+ event.getStartDate().toString()
 	         		//+ "\n Hora: "+ "por definir"
 	         		+ "\n Descripción del evento:"+ event.getDescription()

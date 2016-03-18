@@ -25,7 +25,7 @@
 		$scope.checkUser = function(){
 			
 			validate();
-			$http.post('rest/login/checkUser/',$scope.user).success(function (loginResponse){
+			$http.post('rest/login/checkUser',$scope.user).success(function (loginResponse){
 				
 				if(loginResponse.code ==200){
 					var path = "/propiedadesCR/app#/home";
@@ -36,7 +36,9 @@
 				}
 				
 					
-			});			
+			}).error(function(){
+				$scope.incorrect = false;
+			})
 					
 	
 		}
