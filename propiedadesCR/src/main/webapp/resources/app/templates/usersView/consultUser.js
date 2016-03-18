@@ -10,7 +10,7 @@
 		$scope.max = 5;
 		$scope.notVendor;
 		
-		var link = 'rest/protected/users/getUserById/'+localStorage.getItem('idUserM');
+		var link = 'rest/protected/users/getUserById/'+localStorage.getItem('idUser');
 		$http.get(link).success(function(response) {
 		
 			  $scope.user = response.user;
