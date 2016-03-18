@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.techflow.propiedadesCR.contracts.UsersRequest;
+import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.Trole;
 import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.pojo.RolePOJO;
@@ -123,11 +124,65 @@ public class UsersService implements UsersServiceInterface{
 		UserPOJO userPOJO =null;
 		
 		if (null != nuser){
+			Trole role =nuser.getTrole();			
+			RolePOJO rolePOJO = new RolePOJO();
+			BeanUtils.copyProperties(role, rolePOJO);
 			userPOJO = new UserPOJO();
+			userPOJO.setRole(rolePOJO);
 			BeanUtils.copyProperties(nuser, userPOJO);
 		}	
 		return userPOJO;
 		
 	}
+	
+	/**
+	  * Actualiza el usuario con la lista de propiedades. Retorna la entidad almacenada por si hay que realizar operaciones adicionales
+	  * ya que la entidad puede cambiar al ser almacenda.
+	  * 
+	  * @param pUser Contiene la infomarción a almacenar a la base de 
+	  * datos por medio del repositorio. No debe ser nulo.
+	  * @return user Una entidad del tipo.
+	  */
+	@Override
+	@Transactional
+	public Tuser addToFavorite(Tuser pUser) {
+		Tuser user =  usersRepository.save(pUser);
+		return user;
+	}
+	
+	/**
+	�* Este retorna el usaurio que se consulto.
+	  *
+	�* @param pIdUser Identificador del usuario.
+      * 
+	�* @return Tuser Retorna el usuario consultado.
+	�*/
+	@Override
+	public Tuser modifyUser(UsersRequest puserRequest, int pidRole) {
+		
+		Tuser user = new Tuser();
+		Trole role = new Trole();
+		role.setIdRole(pidRole);
+		BeanUtils.copyProperties(puserRequest.getUser(), user);
+		user.setTrole(role);
+		Tuser nuser = usersRepository.save(user);
+		
+		return nuser;
+	
+	}
+	/**
+	  * Este retorna el usaurio que se consulto.
+	  *
+	  * @param pIdUser Identificador del usuario.
+     * 
+	  * @return Tuser Retorna el usuario consultado.
+	  */
+	@Override
+	@Transactional
+	public Tuser getUserByID(int pIdUser) {
+		return usersRepository.findOne(pIdUser);
+	}
+
+	
 
 }

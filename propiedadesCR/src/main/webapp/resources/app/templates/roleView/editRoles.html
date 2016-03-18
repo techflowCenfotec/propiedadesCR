@@ -1,0 +1,117 @@
+<style>
+    a.md-button.md-default-theme.md-primary.md-raised, 
+    a.md-button.md-primary.md-raised, 
+    a.md-button.md-default-theme.md-primary.md-fab, 
+    a.md-button.md-primary.md-fab, 
+    .md-button.md-default-theme.md-primary.md-raised, 
+    .md-button.md-primary.md-raised, 
+    .md-button.md-default-theme.md-primary.md-fab, 
+    .md-button.md-primary.md-fab {
+	   left: 28px;
+	}
+
+</style>
+
+<div class="page page-table" data-ng-controller="modifyingRoles" >
+    <div class="col-log-8 clearfix">
+	   <h2 class="section-header">Modificar Rol</h2>
+    </div>
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <section class="panel panle-default">
+                    <div class="panel-body padding-x1">
+                        <div class="row">
+                            <div class= "col-md-8 col md-offset-2">
+                                <form name="form_addRoles" 
+                                role="form" class="form-validation" 
+                                novalidate data-ng-submit="submitForm($event)">
+
+                                    <div class="form-group">
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex=70> 
+                                                <label for="">Nuevo nombre</label>
+                                                <input type="text" 
+                                                class="form-control" required data-ng-model="form.newRoleName"><span></span></md-input-container>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-lg-8 col-lg-offset-2">
+                                                <h4>Nuevos Permisos </h4>
+                                                <div data-ng-repeat="permissions in permissionsList">
+                                                    <p>
+                                                        <md-checkbox ng-init="checkbox.cb1=false" 
+                                                        ng-model="checkbox.cb1" 
+                                                        aria-label="Checkbox 1" 
+                                                        role="checkbox" 
+                                                        class="ng-valid ng-dirty ng-valid-parse ng-touched md-checked" tabindex="0" 
+                                                        aria-checked="true" 
+                                                        aria-invalid="false"
+                                                        ng-click="addPermissions(permissions.idPermissions,checkbox.cb1)" class="checkbox-inline">
+                                                            <strong style="width: 100px;">{{permissions.description}}</strong>
+                                                            <div class="md-container md-ink-ripple" 
+                                                            md-ink-ripple="" 
+                                                            md-ink-ripple-checkbox="">
+                                                                <div class="md-icon"></div>
+                                                                <div class="md-ripple-container"></div>
+                                                            </div>
+                                                            <div class="md-label"></div>
+                                                        </md-checkbox>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <button class="md-raised btn-w-md md-primary md-button md-ink-ripple" 
+                                type="button" data-ng-disabled="!canSubmit()">
+                                    <span class="ng-scope" ng-click="editRoles()">Modificar</span>
+                                    <div class="md-ripple-container"></div>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="col-md-6">
+            <div class="panel panel-default" >
+                <div class="panel-heading">
+                    <h3 class="panel-title">Rol a modificar</h3>
+                </div>
+                <div class="panel-body">
+                    <strong style="width: 100px;">Nombre: {{consultRoleName}}</strong>
+                    <div class="panel panel-default panel-labeled">
+                        <div class="panel-body">
+                            <md-list role="list">
+                                <div class="md-no-sticky md-subheader">
+                                    <div class="md-subheader-inner">
+                                        <span class="md-subheader-content">
+                                            <strong style="width: 100px;">Permisos Asociados</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div data-ng-repeat="permissions in consultPermissions">
+                                    <md-checkbox 
+                                    ng-disabled="true"
+                                    ng-init="checkbox.cb4=true" 
+                                    ng-model="checkbox.cb4" 
+                                    aria-label="Checkbox 1" 
+                                    role="checkbox" 
+                                    class="ng-valid ng-dirty ng-valid-parse ng-touched md-checked" 
+                                    tabindex="0" 
+                                    aria-checked="true" 
+                                    aria-invalid="false" 
+                                    class="checkbox-inline">
+                                    </md-checkbox>
+                                    <strong style="width: 100px"ng-disabled="false" >{{permissions.description}}
+                                    </strong>
+                                </div>
+                            </md-list>                           
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+       <div class="alert alert-info" data-ng-show="showInfoOnSubmit">Se ha modificado el rol</div>
+   </div>
+</div>
+

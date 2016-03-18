@@ -105,14 +105,14 @@
 						};
 						
 						$scope.getDateWithFormat = function() {
-					         
+							var month = $scope.form.birthday.getMonth()+1;
 					         $scope.dateWithFormat = $scope.form.birthday.getFullYear()
-					           + '-' + $scope.form.birthday.getMonth() + '-'
+					           + '-' + month + '-'
 					           + $scope.form.birthday.getDate() + ' '
 					           + $scope.form.birthday.getHours() + ':'
 					           + $scope.form.birthday.getMinutes() + ':'
 					           + $scope.form.birthday.getSeconds();
-					       
+					        
 					        };
 
 

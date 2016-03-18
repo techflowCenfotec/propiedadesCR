@@ -11,8 +11,20 @@
 
 		<div class="profile-info">
 			<p>{{user.userName}} {{user.firstName}} {{user.lastName}}</p>
-
+			<div data-ng-hide="notVendor">
+				<div class="col-md-3">
+					<p>Calificaci&oacute;n</p>
+				
+				
+					<uib-rating class="ui-rating size-h4 ui-rating-warning"
+						ng-model="rate" max="max" readonly="isReadonly"
+						on-hover="hoveringOver(value)" on-leave="overStar = null"
+						data-ng-click="saveRating(rate)" state-on="'fa fa-star'"
+						state-off="'fa fa-star-o'"></uib-rating>
+				
+		
 		</div>
+
 	</header>
 
 	<div class="divider divider-lg"></div>
@@ -35,4 +47,4 @@
 	</div>
 
 	<div class="divider divider-lg"></div>
-	</div>
+</div>

@@ -188,7 +188,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 	}
 
 	/**
-	  * Retorna a trav�s del repositorio el ejb de la propiedad.
+	  * Retorna a través del repositorio el ejb de la propiedad.
 	  * 
 	  * @param pIdProperty Id de la propiedad a buscar. No debe ser nulo.
 	  * @return PropertyPOJO Una entidad del tipo.

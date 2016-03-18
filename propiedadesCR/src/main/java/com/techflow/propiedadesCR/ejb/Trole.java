@@ -79,6 +79,7 @@ public class Trole implements Serializable {
 
 	//bi-directional many-to-one association to Tuser
 	@OneToMany(mappedBy="trole")
+	@JsonIgnore
 	public List<Tuser> getTusers() {
 		return this.tusers;
 	}
