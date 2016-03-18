@@ -3,7 +3,8 @@
 
 	angular.module("app.eventConsult",[])
 
-	.controller('EventConsultController', ['$scope','$http','$rootScope','$mdDialog', function($scope,$http,$rootScope,$mdDialog) {
+	.controller('EventConsultController', ['$scope','$http','$rootScope','$mdDialog',NgMap,
+	                                       function($scope,$http,$rootScope,$mdDialog,NgMap) {
 		
 		$scope.event={};
 		
@@ -15,8 +16,9 @@
 			 
 			  $scope.event = response.event;
 			  localStorage.getItem('idEvent');
-			  console.log(response.event);
+			  $scope.markLoc = $scope.events;
 			  
+			 
 			   
 			  return $scope.event;
 		});
@@ -42,6 +44,10 @@
 	                    .targetEvent(event)
 	            );
 	        };
-	   
+	        NgMap.getMap().then(function(map) {
+				$scope.markerPos =  function() {
+					$scope.markerLoc = '['+ map.markers[0].position.lat() + ',' + map.markers[0].position.lng() +']';
+				};
+	        });
 	}]);
 })();

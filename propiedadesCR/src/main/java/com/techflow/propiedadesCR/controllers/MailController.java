@@ -78,7 +78,7 @@ public class MailController {
 	         
 	         message.setText("Buenas, \n"
 	         		+ "\n En el presente correo encontrará la información del evento"
-	         		+ "\n Lugar: "+"por definir"
+	         		+ "\n Lugar: "+event.getAddress().toString()
 	         		+ "\n Fecha:"+ event.getStartDate().toString()
 	         		+ "\n Hora: "+ "por definir"
 	         		+ "\n Descripción del evento:"+ event.getDescription()
