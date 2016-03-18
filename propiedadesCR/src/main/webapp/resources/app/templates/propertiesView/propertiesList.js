@@ -32,6 +32,12 @@
 				console.log(favorites);
 			});
 			
+			for (var i = 0; i < favorites.length; i++) {
+				if (favorites[i].idProperty) {
+					
+				}
+			}
+			
 			// Cambiar a UserLogged
 //			var bd = 'rest/protected/users/addToFavorite/' + 1;
 			var data = {
