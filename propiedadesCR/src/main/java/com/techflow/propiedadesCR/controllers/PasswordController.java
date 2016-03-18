@@ -35,7 +35,7 @@ import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.services.UsersServiceInterface;
 
 @RestController
-@RequestMapping(value="rest/protected/password")
+@RequestMapping(value="rest/password")
 public class PasswordController {
 	
 	@Autowired UsersServiceInterface userService;

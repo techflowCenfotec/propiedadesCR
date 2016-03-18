@@ -10,7 +10,7 @@ import com.mysql.jdbc.Connection;
 import com.techflow.propiedadesCR.contracts.BaseResponse;
 
 @RestController
-@RequestMapping(value="rest/protected/database")
+@RequestMapping(value="rest/database")
 public class DataBaseController {
 
 	

@@ -11,6 +11,7 @@ public class GeneralService implements GeneralServiceInterface {
 	
 	@Override
 	public boolean isLocal() {
+		
 		return (env.getProperty("isLocal") != null && env.getProperty("isLocal").equals("true") ) ? true : false;
 	}
 

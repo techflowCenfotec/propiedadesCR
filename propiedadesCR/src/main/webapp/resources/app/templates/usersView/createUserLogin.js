@@ -37,7 +37,7 @@
 						validate();
 						
 						function validate(){
-						$http.get("rest/protected/database/checkDB").success(function(data){
+						$http.get("rest/database/checkDB").success(function(data){
 							if(data.code!==200){
 								var path = "#/templates/errorsView/500";
 								
@@ -49,7 +49,7 @@
 
 						  var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","role": {}};
 						
-						$http.post('rest/protected/roles/getAll',request).success(function(response) {
+						$http.post('rest/local/getAll',request).success(function(response) {
 							$scope.roles= response.role;
 							$scope.roles= _.without($scope.roles,_.findWhere($scope.roles,{idRole:1}));
 
@@ -89,7 +89,7 @@
 							 file = $files[0].file;
 							
 							$scope.upload = $upload.upload({
-								url : 'rest/protected/users/create',
+								url : 'rest/local/createUser',
 								data : {
 									idRol : $scope.form.role,
 									userName : $scope.form.name,
@@ -119,12 +119,15 @@
 										  "searchTerm": "string",
 										  "user": {"email":$scope.form.email}
 										}
-								$http.post('rest/protected/users/welcomeEmail',inf).success(function(){
+								$http.post('rest/local/welcomeEmail',inf).success(function(){
 									
 									
 								})
 								
+								var path = "/propiedadesCR/";
+								window.location.href = path;
 								return revert();
+				
 							}).error(function(data){
 								$scope.emailExist =true;
 							});
