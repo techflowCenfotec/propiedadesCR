@@ -1,7 +1,19 @@
 package com.techflow.propiedadesCR.ejb;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
 /**
@@ -23,6 +35,7 @@ public class TpropertyRating implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_rating")
 	public int getIdRating() {
 		return this.idRating;
@@ -46,6 +59,7 @@ public class TpropertyRating implements Serializable {
 	//bi-directional many-to-one association to Tproperty
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_property")
+	@JsonIgnore
 	public Tproperty getTproperty() {
 		return this.tproperty;
 	}

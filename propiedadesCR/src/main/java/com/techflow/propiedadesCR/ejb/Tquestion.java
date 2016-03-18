@@ -17,7 +17,6 @@ public class Tquestion implements Serializable {
 	private int idQuestion;
 	private byte active;
 	private String question;
-	private String tQuestionscol;
 	private List<Tanswer> tanswers;
 	private List<Toption> toptions1;
 	private List<Toption> toptions2;
@@ -27,6 +26,7 @@ public class Tquestion implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_question")
 	public int getIdQuestion() {
 		return this.idQuestion;
@@ -52,15 +52,6 @@ public class Tquestion implements Serializable {
 
 	public void setQuestion(String question) {
 		this.question = question;
-	}
-
-
-	public String getTQuestionscol() {
-		return this.tQuestionscol;
-	}
-
-	public void setTQuestionscol(String tQuestionscol) {
-		this.tQuestionscol = tQuestionscol;
 	}
 
 

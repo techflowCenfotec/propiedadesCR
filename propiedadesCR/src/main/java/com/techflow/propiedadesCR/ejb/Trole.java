@@ -2,6 +2,9 @@ package com.techflow.propiedadesCR.ejb;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -14,8 +17,9 @@ import java.util.List;
 @NamedQuery(name="Trole.findAll", query="SELECT t FROM Trole t")
 public class Trole implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int id_Rol;
-	private String nombreRol;
+	private int idRole;
+	private byte active;
+	private String rolName;
 	private List<Tpermission> tpermissions;
 	private List<Tuser> tusers;
 
@@ -24,22 +28,31 @@ public class Trole implements Serializable {
 
 
 	@Id
-	public int getId_Rol() {
-		return this.id_Rol;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	@Column(name="id_role")
+	public int getIdRole() {
+		return this.idRole;
 	}
 
-	public void setId_Rol(int id_Rol) {
-		this.id_Rol = id_Rol;
+	public void setIdRole(int idRole) {
+		this.idRole = idRole;
 	}
 
-
-	@Column(name="nombre_rol")
-	public String getNombreRol() {
-		return this.nombreRol;
+	public byte getActive() {
+		return this.active;
 	}
 
-	public void setNombreRol(String nombreRol) {
-		this.nombreRol = nombreRol;
+	public void setActive(byte active) {
+		this.active = active;
+	}
+	
+	@Column(name="rol_name")
+	public String getRolName() {
+		return this.rolName;
+	}
+
+	public void setRolName(String rolName) {
+		this.rolName = rolName;
 	}
 
 
@@ -54,6 +67,7 @@ public class Trole implements Serializable {
 			@JoinColumn(name="id_permission")
 			}
 		)
+	@JsonIgnore
 	public List<Tpermission> getTpermissions() {
 		return this.tpermissions;
 	}
@@ -65,6 +79,7 @@ public class Trole implements Serializable {
 
 	//bi-directional many-to-one association to Tuser
 	@OneToMany(mappedBy="trole")
+	@JsonIgnore
 	public List<Tuser> getTusers() {
 		return this.tusers;
 	}

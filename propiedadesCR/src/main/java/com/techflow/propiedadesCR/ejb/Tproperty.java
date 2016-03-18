@@ -2,6 +2,23 @@ package com.techflow.propiedadesCR.ejb;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.Lob;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -16,24 +33,25 @@ public class Tproperty implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idProperty;
 	private byte active;
-	private String location;
-	private String nearbyAreas;
+	private String address;
+	private String coordinates;
 	private double price;
-	private String propertyImage;
 	private double squareMeters;
 	private List<Tbenefit> tbenefits;
+	private Tdistrict tdistrict;
 	private TpropertyType tpropertyType;
-	private Tprovince tprovince;
+	private Tuser tuser;
 	private List<TpropertyComment> tpropertyComments;
 	private List<TpropertyRating> tpropertyRatings;
-	private List<Tresidence> tresidences;
 	private List<Tuser> tusers;
+	private List<TpropertyImage> tpropertyImages;
 
 	public Tproperty() {
 	}
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_property")
 	public int getIdProperty() {
 		return this.idProperty;
@@ -53,23 +71,21 @@ public class Tproperty implements Serializable {
 	}
 
 
-	@Lob
-	public String getLocation() {
-		return this.location;
+	public String getAddress() {
+		return this.address;
 	}
 
-	public void setLocation(String location) {
-		this.location = location;
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 
-	@Column(name="nearby_areas")
-	public String getNearbyAreas() {
-		return this.nearbyAreas;
+	public String getCoordinates() {
+		return this.coordinates;
 	}
 
-	public void setNearbyAreas(String nearbyAreas) {
-		this.nearbyAreas = nearbyAreas;
+	public void setCoordinates(String coordinates) {
+		this.coordinates = coordinates;
 	}
 
 
@@ -79,16 +95,6 @@ public class Tproperty implements Serializable {
 
 	public void setPrice(double price) {
 		this.price = price;
-	}
-
-
-	@Column(name="property_image")
-	public String getPropertyImage() {
-		return this.propertyImage;
-	}
-
-	public void setPropertyImage(String propertyImage) {
-		this.propertyImage = propertyImage;
 	}
 
 
@@ -113,12 +119,25 @@ public class Tproperty implements Serializable {
 			@JoinColumn(name="id_benefit")
 			}
 		)
+	@JsonIgnore
 	public List<Tbenefit> getTbenefits() {
 		return this.tbenefits;
 	}
 
 	public void setTbenefits(List<Tbenefit> tbenefits) {
 		this.tbenefits = tbenefits;
+	}
+
+
+	//bi-directional many-to-one association to Tdistrict
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="id_district")
+	public Tdistrict getTdistrict() {
+		return this.tdistrict;
+	}
+
+	public void setTdistrict(Tdistrict tdistrict) {
+		this.tdistrict = tdistrict;
 	}
 
 
@@ -134,15 +153,15 @@ public class Tproperty implements Serializable {
 	}
 
 
-	//bi-directional many-to-one association to Tprovince
+	//bi-directional many-to-one association to Tuser
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="id_province")
-	public Tprovince getTprovince() {
-		return this.tprovince;
+	@JoinColumn(name="id_vendor")
+	public Tuser getTuser() {
+		return this.tuser;
 	}
 
-	public void setTprovince(Tprovince tprovince) {
-		this.tprovince = tprovince;
+	public void setTuser(Tuser tuser) {
+		this.tuser = tuser;
 	}
 
 
@@ -173,6 +192,7 @@ public class Tproperty implements Serializable {
 
 	//bi-directional many-to-one association to TpropertyRating
 	@OneToMany(mappedBy="tproperty")
+	@JsonIgnore
 	public List<TpropertyRating> getTpropertyRatings() {
 		return this.tpropertyRatings;
 	}
@@ -196,39 +216,40 @@ public class Tproperty implements Serializable {
 	}
 
 
-	//bi-directional many-to-one association to Tresidence
-	@OneToMany(mappedBy="tproperty")
-	public List<Tresidence> getTresidences() {
-		return this.tresidences;
-	}
-
-	public void setTresidences(List<Tresidence> tresidences) {
-		this.tresidences = tresidences;
-	}
-
-	public Tresidence addTresidence(Tresidence tresidence) {
-		getTresidences().add(tresidence);
-		tresidence.setTproperty(this);
-
-		return tresidence;
-	}
-
-	public Tresidence removeTresidence(Tresidence tresidence) {
-		getTresidences().remove(tresidence);
-		tresidence.setTproperty(null);
-
-		return tresidence;
-	}
-
-
 	//bi-directional many-to-many association to Tuser
-	@ManyToMany(mappedBy="tproperties")
+	@ManyToMany(mappedBy="tproperties2")
+	@JsonIgnore
 	public List<Tuser> getTusers() {
 		return this.tusers;
 	}
 
 	public void setTusers(List<Tuser> tusers) {
 		this.tusers = tusers;
+	}
+
+
+	//bi-directional many-to-one association to TpropertyImage
+	@OneToMany(mappedBy="tproperty")
+	public List<TpropertyImage> getTpropertyImages() {
+		return this.tpropertyImages;
+	}
+
+	public void setTpropertyImages(List<TpropertyImage> tpropertyImages) {
+		this.tpropertyImages = tpropertyImages;
+	}
+
+	public TpropertyImage addTpropertyImage(TpropertyImage tpropertyImage) {
+		getTpropertyImages().add(tpropertyImage);
+		tpropertyImage.setTproperty(this);
+
+		return tpropertyImage;
+	}
+
+	public TpropertyImage removeTpropertyImage(TpropertyImage tpropertyImage) {
+		getTpropertyImages().remove(tpropertyImage);
+		tpropertyImage.setTproperty(null);
+
+		return tpropertyImage;
 	}
 
 }

@@ -2,6 +2,9 @@ package com.techflow.propiedadesCR.ejb;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -17,13 +20,13 @@ public class TpropertyType implements Serializable {
 	private int idPropertyType;
 	private String name;
 	private List<Tproperty> tproperties;
-	private List<Tresidence> tresidences;
 
 	public TpropertyType() {
 	}
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_property_type")
 	public int getIdPropertyType() {
 		return this.idPropertyType;
@@ -45,6 +48,7 @@ public class TpropertyType implements Serializable {
 
 	//bi-directional many-to-one association to Tproperty
 	@OneToMany(mappedBy="tpropertyType")
+	@JsonIgnore
 	public List<Tproperty> getTproperties() {
 		return this.tproperties;
 	}
@@ -65,31 +69,6 @@ public class TpropertyType implements Serializable {
 		tproperty.setTpropertyType(null);
 
 		return tproperty;
-	}
-
-
-	//bi-directional many-to-one association to Tresidence
-	@OneToMany(mappedBy="tpropertyType")
-	public List<Tresidence> getTresidences() {
-		return this.tresidences;
-	}
-
-	public void setTresidences(List<Tresidence> tresidences) {
-		this.tresidences = tresidences;
-	}
-
-	public Tresidence addTresidence(Tresidence tresidence) {
-		getTresidences().add(tresidence);
-		tresidence.setTpropertyType(this);
-
-		return tresidence;
-	}
-
-	public Tresidence removeTresidence(Tresidence tresidence) {
-		getTresidences().remove(tresidence);
-		tresidence.setTpropertyType(null);
-
-		return tresidence;
 	}
 
 }

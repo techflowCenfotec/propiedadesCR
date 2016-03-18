@@ -13,6 +13,7 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -55,11 +56,11 @@ public class WSFilter implements Filter, ApplicationContextAware{
 		HttpServletRequest servletRequest = (HttpServletRequest)request;
 	    HttpServletResponse servletResponse = (HttpServletResponse) response;
 		
-//	    HttpSession currentSession = servletRequest.getSession();
-	    
+	   
 //	    if(generalService.isLocal()){
-	    	chain.doFilter(servletRequest, servletResponse);
-//	    }else{
+   	chain.doFilter(servletRequest, servletResponse);
+//	    }
+	//else{
 //	    	
 //	    	 System.out.println("Session Object ------> " + currentSession.getAttribute("idUser"));
 //	 		if (currentSession.getAttribute("idUser") != null) {

@@ -15,6 +15,7 @@ import java.util.List;
 public class TToDoList implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idToDoList;
+	private byte active;
 	private String description;
 	private String name;
 	private Tuser tuser;
@@ -25,6 +26,7 @@ public class TToDoList implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_to_do_list")
 	public int getIdToDoList() {
 		return this.idToDoList;
@@ -32,6 +34,14 @@ public class TToDoList implements Serializable {
 
 	public void setIdToDoList(int idToDoList) {
 		this.idToDoList = idToDoList;
+	}
+	
+	public byte getActive() {
+		return this.active;
+	}
+
+	public void setActive(byte active) {
+		this.active = active;
 	}
 
 

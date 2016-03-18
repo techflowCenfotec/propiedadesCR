@@ -23,6 +23,7 @@ public class Tbenefit implements Serializable {
 
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_benefit")
 	public int getIdBenefit() {
 		return this.idBenefit;
