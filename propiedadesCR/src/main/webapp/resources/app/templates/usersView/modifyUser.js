@@ -7,7 +7,18 @@
 			'ModifyUserController',
 			[ '$scope', '$http', '$location', '$upload','$mdToast',
 					function($scope, $http, $location, $upload, $mdToast) {
-
+				
+						validate();
+						
+						function validate(){
+						$http.get("rest/protected/database/checkDB").success(function(data){
+							if(data.code!==200){
+								var path = "#/templates/errorsView/500";
+								
+				    			window.location.href = path;
+							}
+						});
+						}
 						var original;
 						$scope.dateWithFormat = '';
 						$scope.users = {};
@@ -36,12 +47,14 @@
 				                left: false,
 				                right: false
 				            };
+					    
+					    
 						$scope.toastPosition = angular.extend({},last);
 						
 						original = angular.copy($scope.form);
 						
 						$http.get(link).success(function(response) {
-			
+							validate();
 							$scope.user = response.user;
 							$scope.form.name = $scope.user.userName;
 							$scope.form.email = $scope.user.email;

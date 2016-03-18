@@ -83,8 +83,11 @@
         <script src="resources/scripts/app.route.js"></script>
         <script src="resources/bower_components/underscore/underscore.js"></script>
         <script src="resources/non_bower_components/angular-file-upload-shim.min.js"></script>
-  	<script src="resources/non_bower_components/angular-file-upload.min.js"></script>
-  	<script src="resources/non_bower_components/ng-flow-standalone.min.js"></script>
+  		<script src="resources/non_bower_components/angular-file-upload.min.js"></script>
+  		<script src="resources/non_bower_components/ng-flow-standalone.min.js "></script>
+  		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  		<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
 
         <!--Custom JS files-->
         <script src="resources/app/templates/propertiesView/propertiesList.js"></script>
@@ -94,10 +97,12 @@
  	    <script src="resources/app/templates/propertiesView/propertiesCreate.js"></script>
  	    <script src="resources/app/templates/propertiesView/propertyView.js"></script>
         <script src="resources/app/templates/usersView/usersList.js"></script>
+        <script src="resources/app/templates/usersView/vendorsList.js"></script>
         <script src="resources/app/templates/usersView/createUser.js"></script>
         <script src="resources/app/templates/usersView/consultUser.js"></script>
         <script src="resources/app/templates/usersView/modifyUser.js"></script>
-           
+        <script src="resources/app/templates/usersView/consultVendor.js"></script>
+
         <script src="resources/app/templates/eventsView/createEvent.js"></script>
         <script src= "resources/app/templates/eventsView/eventsList.js"></script>
 	    <script src= "resources/app/templates/eventsView/eventConsult.js"></script>
