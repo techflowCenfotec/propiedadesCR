@@ -1,8 +1,8 @@
-<div class="page page-table" data-ng-controller="listUsersController">
+<div class="page page-table" data-ng-controller="listAdminEventController">
 
     <div class="row ui-section">
     <div class="col-lg-8 clearfix">
-        <h2 class="section-header">Listado de usuarios</h2>
+        <h2 class="section-header">Listado de eventos</h2>
     </div>
     <div class="col-md-12">
         <section class="panel panel-default table-dynamic">
@@ -29,59 +29,47 @@
                 <th><div class="th">
                 Nombre
                 <span class="fa fa-angle-up"
-                    data-ng-click=" order('userName') "
-                    data-ng-class="{active: row == 'userName'}"></span>
+                    data-ng-click=" order('eventName') "
+                    data-ng-class="{active: row == 'eventName'}"></span>
                 <span class="fa fa-angle-down"
-                    data-ng-click=" order('-userName') "
-                    data-ng-class="{active: row == '-userName'}"></span>
+                    data-ng-click=" order('-eventName') "
+                    data-ng-class="{active: row == '-eventName'}"></span>
                 </div></th>
                 <th><div class="th">
-                Correo
+                 Descripci&oacute;n
                 <span class="fa fa-angle-up"
-                    data-ng-click=" order('email') "
-                    data-ng-class="{active: row == 'email'}"></span>
+                    data-ng-click=" order('eventDescription') "
+                    data-ng-class="{active: row == 'eventDescription'}"></span>
                 <span class="fa fa-angle-down"
-                    data-ng-click=" order('-email') "
-                    data-ng-class="{active: row == '-email'}"></span>
+                    data-ng-click=" order('-eventDate') "
+                    data-ng-class="{active: row == '-eventDEscription'}"></span>
                 </div></th>
                 <th><div class="th">
-                Tel&eacute;fono 1
+               Fecha de Evento 
                 <span class="fa fa-angle-up"
-                    data-ng-click=" order('phone1') "
-                    data-ng-class="{active: row == 'phone1'}"></span>
+                    data-ng-click=" order('eventDate') "
+                    data-ng-class="{active: row == 'eventDate'}"></span>
                 <span class="fa fa-angle-down"
-                    data-ng-click=" order('-phone1') "
-                    data-ng-class="{active: row == '-phone1'}"></span>
+                    data-ng-click=" order('-eventDate') "
+                    data-ng-class="{active: row == '-eventDate'}"></span>
                 </div></th>
-                <th><div class="th">
-                Tel&eacute;fono 2
-                <span class="fa fa-angle-up"
-                    data-ng-click=" order('phone2') "
-                    data-ng-class="{active: row == 'phone2'}"></span>
-                <span class="fa fa-angle-down"
-                    data-ng-click=" order('-phone2') "
-                    data-ng-class="{active: row == '-phone2'}"></span>
-                </div></th>
+                
                   <th><div class="th">
                	Modificar
-               
-                </div></th>
-                   <th><div class="th">
+               </div></th>
+                   <th><div class="th"> 
                	Eliminar
-               
-                </div></th>
+               </div></th>
                 
             </tr>
             </thead>
             <tbody>
-            <tr data-ng-repeat="users in currentPageList">
-                <td>{{users.userName}}</td>
-                <td>{{users.email}}</td>
-                <td>{{users.phone1}}</td>
-                <td>{{users.phone2}}</td>
-                <td><a class="btn btn-info" data-ng-click="modifyUser(users.idUser)"
-                href="#/templates/usersView/modifyUser">Modificar</a></td>
-                <td><button class="btn btn-danger">Eliminar</button></td>
+            <tr data-ng-repeat="event in currentPageList">
+                <td>{{event.name}}</td>
+                <td>{{event.description}}</td>
+                <td>{{event.startDate}}</td>
+                <td><button class="btn btn-info" data-ng-click="modifyEvent(event.idEvent)">Modicar</button></td>
+                <td><button class="btn btn-danger" data-ng-click="showConfirm(event.idEvent)">Eliminar</button></td>
             </tr>
             </tbody>
         </table>
@@ -101,7 +89,7 @@
             <div class="col-md-6 text-right pagination-container">
                 <uib-pagination class="pagination-sm"
                     ng-model="currentPage"
-                    total-items="filteredUsers.length"
+                    total-items="filteredEvents.length"
                     max-size="4"
                     ng-change="select(currentPage)"
                     items-per-page="numPerPage"

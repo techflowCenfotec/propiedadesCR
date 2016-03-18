@@ -124,7 +124,11 @@ public class UsersService implements UsersServiceInterface{
 		UserPOJO userPOJO =null;
 		
 		if (null != nuser){
+			Trole role =nuser.getTrole();			
+			RolePOJO rolePOJO = new RolePOJO();
+			BeanUtils.copyProperties(role, rolePOJO);
 			userPOJO = new UserPOJO();
+			userPOJO.setRole(rolePOJO);
 			BeanUtils.copyProperties(nuser, userPOJO);
 		}	
 		return userPOJO;
@@ -147,15 +151,38 @@ public class UsersService implements UsersServiceInterface{
 	}
 	
 	/**
-	  * Este retorna el usaurio que se consulto.
+	�* Este retorna el usaurio que se consulto.
 	  *
-	  * @param pIdUser Identificador del usuario.
+	�* @param pIdUser Identificador del usuario.
       * 
-	  * @return Tuser Retorna el usuario consultado.
-	  */
+	�* @return Tuser Retorna el usuario consultado.
+	�*/
+	@Override
+	public Tuser modifyUser(UsersRequest puserRequest, int pidRole) {
+		
+		Tuser user = new Tuser();
+		Trole role = new Trole();
+		role.setIdRole(pidRole);
+		BeanUtils.copyProperties(puserRequest.getUser(), user);
+		user.setTrole(role);
+		Tuser nuser = usersRepository.save(user);
+		
+		return nuser;
+	
+	}
+	/**
+	  * Este retorna el usaurio que se consulto.
+	  *
+	  * @param pIdUser Identificador del usuario.
+     * 
+	  * @return Tuser Retorna el usuario consultado.
+	  */
 	@Override
 	@Transactional
 	public Tuser getUserByID(int pIdUser) {
 		return usersRepository.findOne(pIdUser);
 	}
+
+	
+
 }

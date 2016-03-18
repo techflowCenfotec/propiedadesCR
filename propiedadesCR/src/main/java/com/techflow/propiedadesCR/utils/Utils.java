@@ -40,6 +40,30 @@ public class Utils {
 			return databaseFileName;
 		}
 		
+		public static String writeToFile(MultipartFile file, ServletContext servletContext, String pfolderName) {
+			String extension = getExtension(file.getOriginalFilename(),".").toLowerCase();
+			String consecutiveName = ""+new Date().getTime();
+			
+			String uploadedFileLocation = servletContext.getRealPath("") + "resources/" + pfolderName +"/" + consecutiveName + extension;
+			String databaseFileName = HOST_PATH + servletContext.getContextPath() + "/resources/" + pfolderName + "/" + consecutiveName + extension;
+			
+			byte[] bytes;
+			try { 	
+				bytes = file.getBytes();
+				BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(new File(uploadedFileLocation)));
+				stream.write(bytes);
+				stream.close();
+				
+				System.out.println("uploadedFileLocation "+uploadedFileLocation);
+				System.out.println("databaseFileName "+databaseFileName);
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+	      
+			return databaseFileName;
+		}
+		
 		private static String getExtension(String filename, String extensionSeparator) {
 		    int dot = filename.lastIndexOf(extensionSeparator);
 		    return "."+filename.substring(dot + 1);
