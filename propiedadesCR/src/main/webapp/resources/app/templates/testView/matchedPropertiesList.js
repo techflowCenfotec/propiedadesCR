@@ -19,7 +19,7 @@
 		$scope.addToFavorites = function(pIdProperty) {
 			
 			// Cambiar a UserLogged
-			var bd = 'rest/protected/users/addToFavorite/' + $rootScope.userLogged.idUser;;
+			var bd = 'rest/protected/users/addToFavorite/' + $rootScope.userLogged.idUser;
 			var data = {
 				"idProperty": pIdProperty	
 			};

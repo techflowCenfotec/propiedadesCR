@@ -116,7 +116,7 @@
         			  "searchColumn": "string",
         			  "searchTerm": "string",
         			  "rating": {
-        				  "tuser": { "idUser": $rootScope.userLogged.idUser;},
+        				  "tuser": { "idUser": $rootScope.userLogged.idUser},
         				  "tproperty": { "idProperty": localStorage.getItem('idProperty')},
         				  "averageRating": $scope.rate
         			  }
