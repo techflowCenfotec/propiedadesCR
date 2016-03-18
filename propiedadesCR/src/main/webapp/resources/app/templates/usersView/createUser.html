@@ -56,18 +56,21 @@
 
 						<div layout layout-sm="column">
 							<md-input-container flex=35> <label for="">Nombre</label>
-							<input type="text" class="form-control" required
-								data-ng-model="form.name"> <span></span> </md-input-container>
+							<input type="text" class="form-control" data-ng-minlength="2"
+								data-ng-maxlength="10" required data-ng-model="form.name">
+							<span></span> </md-input-container>
 
 						</div>
 
 						<div layout layout-sm="column">
 							<md-input-container flex=35> <label for="">Primer
-								apellido</label> <input type="text" class="form-control" required
+								apellido</label> <input type="text" class="form-control"
+								data-ng-minlength="2" data-ng-maxlength="20" required
 								data-ng-model="form.firstName"> <span></span> </md-input-container>
 
 							<md-input-container flex=35> <label for="">Segundo
-								apellido</label> <input type="text" class="form-control" required
+								apellido</label> <input type="text" class="form-control" 
+								data-ng-minlength="2" data-ng-maxlength="20" required
 								data-ng-model="form.lastName"> <span></span> </md-input-container>
 
 
@@ -98,11 +101,13 @@
 
 						<div layout layout-sm="column">
 							<md-input-container flex=35> <label for="">Tel&eacute;fono
-								1</label> <input type="text" class="form-control" required
+								1</label> <input type="text" class="form-control" 
+								data-ng-minlength="5" data-ng-maxlength="15" required
 								data-ng-model="form.phone1"> <span></span> </md-input-container>
 
 							<md-input-container flex=35> <label for="">Tel&eacute;fono
-								2</label> <input type="text" class="form-control" required
+								2</label> <input type="text" class="form-control" 
+								data-ng-minlength="5" data-ng-maxlength="15" required
 								data-ng-model="form.phone2"> <span></span> </md-input-container>
 
 						</div>
@@ -110,17 +115,17 @@
 
 						<div layout layout-sm="column">
 							<md-input-container flex=35> <label for="">Email</label>
-							<input type="email" class="form-control" required
+							<input type="email" class="form-control" 
+							data-ng-minlength="10" data-ng-maxlength="30" required
 								data-ng-model="form.email" data-ng-pattern="/^.+@.+\..+$/">
 							<span></span> </md-input-container>
 
 						</div>
 						<div layout layout-sm="column">
-							<md-input-container flex=35>
-							<label>Rol</label> <md-select ng-model="form.role"
-								aria-label="select" required> <md-option
-								ng-repeat="role in roles" value="{{role.idRole}}" required>
-							{{role.rolName}} </md-option> </md-select> </md-input-container>
+							<md-input-container flex=35> <label>Rol</label>
+							<md-select ng-model="form.role" aria-label="select" required>
+							<md-option ng-repeat="role in roles" value="{{role.idRole}}"
+								required> {{role.rolName}} </md-option> </md-select> </md-input-container>
 						</div>
 
 						<div layout layout-sm="column">
@@ -130,8 +135,7 @@
 								data-ng-minlength="8" data-ng-maxlength="20"
 								title="La contraseña debe contener al menos una mayuscúla, una minuscúla, un caracter especial(número o símbolo), mínimo 8 caracteres y máximo 20"
 								data-ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/"
-								required>
-							<span></span> </md-input-container>
+								required> <span></span> </md-input-container>
 
 							<md-input-container flex=35> <label for="">Confirme
 								contrase&ntilde;a</label> <input type="password" class="form-control"
@@ -166,5 +170,5 @@
 			</div>
 		</div>
 	</div>
-	
+
 </section>
