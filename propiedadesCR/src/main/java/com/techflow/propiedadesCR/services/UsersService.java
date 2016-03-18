@@ -151,12 +151,12 @@ public class UsersService implements UsersServiceInterface{
 	}
 	
 	/**
-	 * Este retorna el usaurio que se consulto.
+	ï¿½* Este retorna el usaurio que se consulto.
 	  *
-	 * @param pIdUser Identificador del usuario.
+	ï¿½* @param pIdUser Identificador del usuario.
       * 
-	 * @return Tuser Retorna el usuario consultado.
-	 */
+	ï¿½* @return Tuser Retorna el usuario consultado.
+	ï¿½*/
 	@Override
 	public Tuser modifyUser(UsersRequest puserRequest, int pidRole) {
 		
@@ -170,7 +170,18 @@ public class UsersService implements UsersServiceInterface{
 		return nuser;
 	
 	}
-
+	/**
+	  * Este retorna el usaurio que se consulto.
+	  *
+	  * @param pIdUser Identificador del usuario.
+     * 
+	  * @return Tuser Retorna el usuario consultado.
+	  */
+	@Override
+	@Transactional
+	public Tuser getUserByID(int pIdUser) {
+		return usersRepository.findOne(pIdUser);
+	}
 
 	
 
