@@ -46,7 +46,7 @@ public class PasswordController {
 	 * @exception IOException Esta excepción se lanza cuando ocurre un error al enviar el correo.
 	 */
 	
-	@RequestMapping(value="/sendEmail", method = RequestMethod.POST)
+	@RequestMapping(value="/welcomeEmail", method = RequestMethod.POST)
 	public PasswordResponse sendEmail(@RequestBody PasswordRequest pmailInformation){
 		
 		Tuser user = new Tuser();

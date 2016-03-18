@@ -77,10 +77,10 @@ public class LocalController {
 	 */
 	
 	@RequestMapping(value="/sendEmail", method = RequestMethod.POST)
-	public PasswordResponse sendEmail(@RequestBody UsersRequest puseRequest){
+	public UsersResponse sendEmail(@RequestBody UsersRequest puseRequest){
 		
 	
-		PasswordResponse response = new PasswordResponse();
+		UsersResponse response = new UsersResponse();
 		
 
 	      String to = puseRequest.getUser().getEmail();
