@@ -21,7 +21,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.techflow.propiedadesCR.contracts.LoginRequest;
+import com.techflow.propiedadesCR.ejb.Trole;
 import com.techflow.propiedadesCR.ejb.Tuser;
+import com.techflow.propiedadesCR.pojo.RolePOJO;
 import com.techflow.propiedadesCR.pojo.UserPOJO;
 import com.techflow.propiedadesCR.repositories.LoginRepository;
 
@@ -61,11 +63,15 @@ public class LoginService implements LoginServiceInterface {
 			e.printStackTrace();
 		}
      	
+		
 		Tuser nuser = repositoryLogin.findByEmailAndPassword(ploginRequest.getUserName(), md5password.toString());
 
 		if (null != nuser){
 			userPOJO = new UserPOJO();
+			userPOJO.setRole(new RolePOJO());
 			BeanUtils.copyProperties(nuser, userPOJO);
+			BeanUtils.copyProperties(nuser.getTrole(), userPOJO.getRole());
+			
 		}
 		return userPOJO;
 	}

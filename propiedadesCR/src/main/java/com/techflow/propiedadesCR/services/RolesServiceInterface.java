@@ -10,4 +10,6 @@ public interface RolesServiceInterface {
 	List<RolePOJO> getAll(RolesRequest rs);
 	List<RolePOJO> getRoleAndPermissions(RolesRequest rs);
 	Trole saveRole(RolesRequest rs);
+	Trole modifyRole(RolesRequest roleRequest);
+	Trole deleteRole(RolesRequest proleRequest);
 }

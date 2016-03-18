@@ -11,6 +11,8 @@ package com.techflow.propiedadesCR.pojo;
 
 import java.util.Date;
 
+
+
 public class EventPOJO {
 	/**
 	 * Identificador del evento
@@ -36,6 +38,16 @@ public class EventPOJO {
 	 * Ruta de la imagen del evento
 	 */
 	private String eventImage;
+	/**
+	 * Dirección del evento
+	 */
+	private String address;
+	
+	/**
+	 * Locación del evento.
+	 */
+	private String coordinates;
+	
 	
 	
 	public EventPOJO(){
@@ -77,6 +89,19 @@ public class EventPOJO {
 	public void setEventImage(String peventImage) {
 		this.eventImage = peventImage;
 	}
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String paddress) {
+		this.address = paddress;
+	}
+	public String getCoordinates() {
+		return coordinates;
+	}
+	public void setCoordinates(String coordinates) {
+		this.coordinates = coordinates;
+	}
+
 	
 	
 }

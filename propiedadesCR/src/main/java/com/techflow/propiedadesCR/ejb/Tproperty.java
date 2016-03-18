@@ -192,6 +192,7 @@ public class Tproperty implements Serializable {
 
 	//bi-directional many-to-one association to TpropertyRating
 	@OneToMany(mappedBy="tproperty")
+	@JsonIgnore
 	public List<TpropertyRating> getTpropertyRatings() {
 		return this.tpropertyRatings;
 	}
@@ -217,6 +218,7 @@ public class Tproperty implements Serializable {
 
 	//bi-directional many-to-many association to Tuser
 	@ManyToMany(mappedBy="tproperties2")
+	@JsonIgnore
 	public List<Tuser> getTusers() {
 		return this.tusers;
 	}
