@@ -116,6 +116,16 @@
 		};
 		
 		// Form validations
+		function revert() {
+		    $scope.requestObject = angular.copy(original);	
+		    $scope.propertiesForm.$setPristine()
+            $scope.propertiesForm.$setUntouched();
+		    return;
+		};
+		$scope.canRevert = function() {
+			return !angular.equals($scope.requestObject, original)
+					|| !$scope.propertiesForm.$pristine;
+		};
 		$scope.canSubmit = function(length) {
 			return this.propertiesForm.$valid && length > 0
 					&& !angular.equals($scope.requestObject, original);
@@ -167,6 +177,7 @@
 							});
 						}
 						$scope.showInfoOnSubmit= true;
+						return revert();
 				}).error(function(err) {
 				});
 			}

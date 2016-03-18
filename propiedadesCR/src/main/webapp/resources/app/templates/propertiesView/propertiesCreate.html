@@ -97,9 +97,9 @@
 				                        <div class="divider divider-md"></div>
                                         <div layout layout-sm="column">
                                             <md-input-container flex>
-                                                <label>Precio</label>
+                                                <label>Precio ($)</label>
                                                 <input type="number" class="form-control" 
-                                                ng-model="requestObject.price" required>
+                                                ng-model="requestObject.price" data-ng-maxlength=10 required>
                                             </md-input-container>
                                             <md-input-container flex>
                                                 <label>Tipo propiedad</label>
@@ -122,8 +122,8 @@
                                           	<div class="col-md-12">
                                           		<section class="panel panel-default">
                                           			<div class="panel-body">
-                                          				<map class="ui-map" zoom="11" center="[9.935697,-84.1483646]" scrollwheel="false">
-								                            <marker position="[9.935697,-84.1483646]" title="drag me" draggable="true" on-dragend="ctrl.markerPos()"></marker>
+                                          				<map class="ui-map" zoom="{{map.zoom}}" center="{{map.center}}" scrollwheel="false">
+								                            <marker position="{{map.center}}" title="drag me" draggable="true" on-dragend="ctrl.markerPos()"></marker>
 								                        </map>
 								                    </div>
 								                </section>
