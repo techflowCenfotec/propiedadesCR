@@ -12,8 +12,6 @@
 		self.readonly = false;
 		self.tags = [];
 		self.provinceList = [];
-		self.countyList = [];
-		self.districtList = [];
 		self.benefitsList = [];
 		self.propertyTypeList = [];
 		//Benefits tags info
@@ -30,7 +28,6 @@
 				meters: ''
 		};
 		
-		
 		$scope.onError = false;
 		$scope.selected = [];
 		//Map variables and default values
@@ -45,16 +42,6 @@
 			$http.get('rest/protected/province/getAll', $scope.requestObject)
 			.success(function(provincesResponse) {
 				$scope.provinceList = provincesResponse.provinces;
-			});
-			
-			$http.get('rest/protected/counties/getAll', $scope.requestObject)
-			.success(function(countyResponse) {
-				$scope.countyList = countyResponse.counties;
-			});
-			
-			$http.get('rest/protected/districts/getAll', $scope.requestObject)
-			.success(function(districtResponse) {
-				$scope.districtList = districtResponse.districts;
 			});
 			
 			$http.get('rest/protected/benefits/getAll', $scope.requestObject)
@@ -102,6 +89,31 @@
 			};
 		});
 		
+		$scope.onChangeProvince = function() {
+			$scope.countyList = [];
+			
+			$http.get('rest/protected/counties/getAll')
+			.success(function(countyResponse) {
+				for(var i = 0; i < countyResponse.counties.length; i++) {
+					if(countyResponse.counties[i].tprovince.idProvince === $scope.requestObject.province){
+						$scope.countyList.push(countyResponse.counties[i]);
+					}
+				}
+			});
+		};
+		
+		$scope.onChangeCounty = function() {
+			$scope.districtList = [];
+			
+			$http.get('rest/protected/districts/getAll')
+			.success(function(districtResponse) {
+				for(var i = 0; i < districtResponse.districts.length; i++) {
+					if(districtResponse.districts[i].tcounty.idCounty === $scope.requestObject.county){
+						$scope.districtList.push(districtResponse.districts[i]);
+					}
+				}
+			});
+		};
 		
 		// Form validations
 		$scope.canSubmit = function(length) {

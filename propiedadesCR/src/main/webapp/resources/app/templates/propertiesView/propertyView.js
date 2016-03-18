@@ -79,7 +79,7 @@
 		
 		$scope.onChangeProvince = function() {
 			$scope.countyList = [];
-			console.log($scope.selectedProvince);
+			
 			$http.get('rest/protected/counties/getAll')
 			.success(function(countyResponse) {
 				for(var i = 0; i < countyResponse.counties.length; i++) {
