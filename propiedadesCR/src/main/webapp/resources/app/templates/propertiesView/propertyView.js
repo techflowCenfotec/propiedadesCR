@@ -3,9 +3,9 @@
 	
 	angular.module('app.properties.view', [])
 	
-	.controller('PropViewController', ['$scope', '$http', PropViewController]);
+	.controller('PropViewController', ['$scope', '$http', '$rootScope', PropViewController]);
 	
-	function PropViewController($scope, $http) {
+	function PropViewController($scope, $http, $rootScope) {
 		var self = this;
 		self.district = {};
 		$scope.imageList = [];
@@ -116,7 +116,7 @@
         			  "searchColumn": "string",
         			  "searchTerm": "string",
         			  "rating": {
-        				  "tuser": { "idUser": 1},
+        				  "tuser": { "idUser": $rootScope.userLogged.idUser;},
         				  "tproperty": { "idProperty": localStorage.getItem('idProperty')},
         				  "averageRating": $scope.rate
         			  }
