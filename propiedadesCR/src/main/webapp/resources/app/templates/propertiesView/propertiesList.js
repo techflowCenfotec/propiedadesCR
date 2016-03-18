@@ -3,9 +3,9 @@
 
 	angular.module('app.properties',[])
 
-	.controller('PropertiesListController', ['$scope', '$http', PropertiesListController]);
+	.controller('PropertiesListController', ['$scope', '$http', '$rootScope', PropertiesListController]);
 	
-	function PropertiesListController($scope, $http) {
+	function PropertiesListController($scope, $http, $rootScope) {
 		 $scope.propertiesList = [];
 		 
 		
@@ -26,7 +26,7 @@
 		$scope.addToFavorites = function(pIdProperty) {
 			
 			// Cambiar a UserLogged
-			var bd = 'rest/protected/users/addToFavorite/' + 1;
+			var bd = 'rest/protected/users/addToFavorite/' + $rootScope.userLogged.idUser;
 			var data = {
 				"idProperty": pIdProperty	
 			};

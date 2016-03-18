@@ -1,28 +1,30 @@
 <div class="page">
-	
-		<section class="row ui-section" ng-controller="MatchedPropertiesListController">
-
-        	<div class="col-lg-8 clearfix">
+    <section class="row ui-section" ng-controller="MatchedPropertiesListController">
+        <div class="col-lg-8 clearfix">
             <h2 class="section-header">Propiedades Recomendadas</h2>
-        	</div>
-        	<div class="col-md-12">
-            <div class="row">
-				 <div data-ng-repeat="property in properties" class="col-md-4">
+        </div>
+        <div class="col-md-12">
+            <div class=column ng-repeat="property in properties | limitTo:quantity">
+                <div class="col-md-4">
                     <div class="card bg-white">
                         <div class="card-image">
-                            <img width="250" height="250" src={{property.tpropertyImage}}>
-                            <span class="card-title">{{property.price}}</span>
+                            <img src="{{property.tpropertyImages[0].propertyImage}}" height="200">
+                            <span class="card-title">{{property.price | currency}} - {{property.tdistrict.name}}</span>
                         </div>
                         <div class="card-content">
-                            <p>{{property.porcentage}}</p>
+                            <a class="card-button pull-right" href="javascript:;" data-ng-click="">
+                                <button class="btn btn-icon btn-icon-round btn-floating btn-danger" 
+                                data-ng-click="addToFavorites(property.idProperty)"><i class="fa fa-heart"></i></button>
+                            </a>
+                            <p>{{property.address}}</p>
+                            <p>Porcentage de match: {{property.porcentage}}%</p>
                         </div>
                         <div class="card-action">
-                            <a href="javascript:;">A link</a>
-                            <a href="javascript:;" class="color-primary">A link</a>
+                            <a data-ng-click="viewProperty(property.idProperty)" href="#/templates/propertiesView/propertyView" class="btn btn-default">Consultar propiedad</a>
                         </div>
-                    </div>            
-                </div>  
-              </div>
-           </div>    
-         </section>
+                    </div>
+                </div>
+            </div>
+        </div>                
+    </section>
 </div>
