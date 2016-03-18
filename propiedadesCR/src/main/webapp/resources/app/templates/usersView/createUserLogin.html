@@ -115,7 +115,7 @@
 							data-ng-minlength="10" data-ng-maxlength="30" required
 								data-ng-model="form.email" data-ng-pattern="/^.+@.+\..+$/">
 							<span></span> </md-input-container>
-
+							<p data-ng-show="emailExist">El correo ingresado ya existe en la aplicaci&oacute;n</p>
 						</div>
 						
 						<div layout layout-sm="column">

@@ -2,7 +2,6 @@
 	"use strict";
 
 	angular.module("app.createUserLogin", ['validation.match'])
-
 	.controller(
 			'CreateUserLoginController',
 			[
@@ -15,7 +14,7 @@
 						var original;
 						$scope.dateWithFormat = '';
 						$scope.roles ={};
-						
+						$scope.emailExist =false;
 				        $scope.popup1 = {
 				            opened: false
 				        };
@@ -52,7 +51,8 @@
 						
 						$http.post('rest/protected/roles/getAll',request).success(function(response) {
 							$scope.roles= response.role;
-		
+							$scope.roles= _.without($scope.roles,_.findWhere($scope.roles,{idRole:1}));
+
 							return $scope.roles;
 								
 						});
@@ -108,9 +108,25 @@
 								$files[0].cancel();
 								
 								$scope.showInfoOnSubmit= true;
+								var inf={
+										  "pageNumber": 0,
+										  "pageSize": 0,
+										  "direction": "string",
+										  "sortBy": [
+										    "string"
+										  ],
+										  "searchColumn": "string",
+										  "searchTerm": "string",
+										  "user": {"email":$scope.form.email}
+										}
+								$http.post('rest/protected/users/welcomeEmail',inf).success(function(){
+									
+									
+								})
+								
 								return revert();
 							}).error(function(data){
-						
+								$scope.emailExist =true;
 							});
 
 						};

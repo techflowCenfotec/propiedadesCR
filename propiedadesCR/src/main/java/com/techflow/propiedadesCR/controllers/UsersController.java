@@ -17,7 +17,15 @@ package com.techflow.propiedadesCR.controllers;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -30,12 +38,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-
+import com.techflow.propiedadesCR.contracts.MailRequest;
 import com.techflow.propiedadesCR.contracts.PropertiesResponse;
 import com.techflow.propiedadesCR.contracts.UsersRequest;
 import com.techflow.propiedadesCR.contracts.UsersResponse;
 import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.Tuser;
+import com.techflow.propiedadesCR.pojo.EventPOJO;
 import com.techflow.propiedadesCR.pojo.UserPOJO;
 
 import com.techflow.propiedadesCR.services.UsersServiceInterface;
@@ -213,21 +222,21 @@ public class UsersController {
 		
 		
 		 /**
-		�* Este método registra un usuario en el sistema.
+		  * Este método registra un usuario en el sistema.
 		  *
-		�* @param pfile Imagen de perfil del usuario.
-		 * @param pidUser Identificador del usuario a modificar.
-		 * @param pidRol Rol del usuario en el sistema.
-		�* @param puserName Nombre de usuario.
-		�* @param pfirstName Primer apellido del usuario.
+		  * @param pfile Imagen de perfil del usuario.
+		  * @param pidUser Identificador del usuario a modificar.
+		  * @param pidRol Rol del usuario en el sistema.
+	      * @param puserName Nombre de usuario.
+		  * @param pfirstName Primer apellido del usuario.
 		  * @param plastName Segundo apellido del usuario.
 	      * @param pphone1 Teléfono del usuario.
 	      * @param pphone2 Teléfono alternativo del usuario.
 	      * @param pemail Correo del usuario.
 	      * @param ppassword Contraseña del usaurio.
 	      * 
-		�* @return userResponse Retorna la respuesta del servicio hacia el frontend.
-		�*
+		  * @return userResponse Retorna la respuesta del servicio hacia el frontend.
+		  *
 		  * @throws ParseException Esta exepción se lanza cuando el sistema es incapaz de transformar
 		  * el String pbirthday a birthday ques es de tipo Date.
 		   */
@@ -327,6 +336,67 @@ public class UsersController {
 			}
 			
 			return response;
+		}
+		
+		@RequestMapping(value="/welcomeEmail", method = RequestMethod.POST)
+		public UsersResponse sendEmail(@RequestBody UsersRequest puserRequest){
+			 
+			 UsersResponse response = new UsersResponse();
+			  
+		      String to = puserRequest.getUser().getEmail();
+		      
+		      String from = "propiedadescr.tech@gmail.com";
+		      final String username = "propiedadescr.tech@gmail.com";
+		      final String password = "mjjvwTechflow";
+
+		      
+		      String host = "smtp.gmail.com";
+
+		      Properties props = new Properties();
+		      props.put("mail.smtp.auth", "true");
+		      props.put("mail.smtp.starttls.enable", "true");
+		      props.put("mail.smtp.host", host);
+		      props.put("mail.smtp.port", "587");
+
+		      
+		      Session session = Session.getInstance(props,
+		      new javax.mail.Authenticator() {
+		         protected PasswordAuthentication getPasswordAuthentication() {
+		            return new PasswordAuthentication(username, password);
+		         }
+		      });
+
+		      try {
+		         
+		         Message message = new MimeMessage(session);
+
+		         
+		         message.setFrom(new InternetAddress(from));
+
+		        
+		         message.setRecipients(Message.RecipientType.TO,
+		         InternetAddress.parse(to));
+
+		         
+		         message.setSubject("Información de evento");
+
+		         
+		         message.setSubject("Reiniciar contraseña");
+		         
+		         message.setContent("<h3>Bienvenido a PropiedadesCR</h3>"+
+		        		"<p>Reciba un cordial saludo de parte de la comunidad </p>"+
+		        		"<p>de PropiedadesCR, la comunidad m&aacute;s grande de bienes raices del país.</p>"+
+		        		"<p>Esperamos cumplir con sus expectativas.</p>","text/html");
+		         
+		         Transport.send(message);
+		         response.setCode(200);
+
+		        
+
+		      } catch (MessagingException e) {
+		            throw new RuntimeException(e);
+		      }
+		      return response;
 		}
 		
 		

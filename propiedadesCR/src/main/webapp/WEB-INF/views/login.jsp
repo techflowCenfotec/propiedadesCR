@@ -51,7 +51,7 @@
 	<script src="resources/scripts/ui.js"></script>
 	<script src="resources/scripts/appLogin.js"></script>
 	<script src="resources/scripts/appLogin.route.js"></script>
-	
+	<script src="resources/bower_components/underscore/underscore.js"></script>
 	
 	<script	src="resources/non_bower_components/angular-file-upload-shim.min.js"></script>
 	<script src="resources/non_bower_components/angular-file-upload.min.js"></script>

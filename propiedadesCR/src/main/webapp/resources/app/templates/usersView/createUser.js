@@ -15,7 +15,7 @@
 						var original;
 						$scope.dateWithFormat = '';
 						$scope.roles ={};
-						
+						$scope.emailExist =false;
 				        $scope.popup1 = {
 				            opened: false
 				        };
@@ -108,9 +108,25 @@
 								$files[0].cancel();
 								
 								$scope.showInfoOnSubmit= true;
+								
+								var inf={
+										  "pageNumber": 0,
+										  "pageSize": 0,
+										  "direction": "string",
+										  "sortBy": [
+										    "string"
+										  ],
+										  "searchColumn": "string",
+										  "searchTerm": "string",
+										  "user": {"email":$scope.form.email}
+										}
+								$http.post('rest/protected/users/welcomeEmail',inf).success(function(){
+									
+									
+								})
 								return revert();
 							}).error(function(data){
-						
+								$scope.emailExist =true;
 							});
 
 						};
