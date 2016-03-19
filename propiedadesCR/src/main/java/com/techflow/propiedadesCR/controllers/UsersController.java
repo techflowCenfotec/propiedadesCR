@@ -13,11 +13,19 @@
 */
 package com.techflow.propiedadesCR.controllers;
 
+
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Properties;
 
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -30,12 +38,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.techflow.propiedadesCR.contracts.MailRequest;
 import com.techflow.propiedadesCR.contracts.PropertiesResponse;
 import com.techflow.propiedadesCR.contracts.UsersRequest;
 import com.techflow.propiedadesCR.contracts.UsersResponse;
 import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.Tuser;
+import com.techflow.propiedadesCR.pojo.EventPOJO;
 import com.techflow.propiedadesCR.pojo.UserPOJO;
+
 import com.techflow.propiedadesCR.services.UsersServiceInterface;
 import com.techflow.propiedadesCR.utils.Utils;
 
@@ -59,12 +70,12 @@ public class UsersController {
 	@Autowired private HttpServletRequest httpServletRequest;
 	
 	/**
-   * Este mÃ©todo retorna todos los usuarios registrados en el sistema
+ï¿½  * Este mÃ©todo retorna todos los usuarios registrados en el sistema
     *
-   * @param puserResponse Este parÃ¡metro encapsula la informaciÃ³n solicitada en el metodo.
+ï¿½  * @param puserResponse Este parÃ¡metro encapsula la informaciÃ³n solicitada en el metodo.
 	*
-  * @return response Retorna la respuesta del sevicio hacia el frontend.
-   */
+ ï¿½* @return response Retorna la respuesta del sevicio hacia el frontend.
+ï¿½  */
 	@RequestMapping(value="/getAll", method = RequestMethod.POST)
 	public UsersResponse getAll(@RequestBody UsersRequest puserRequest) {
 		
@@ -76,13 +87,31 @@ public class UsersController {
 		return response;
 	}
 	
+	/**
+	Â Â   * Este mÃ©todo retorna todos los usuarios vendedores registrados en el sistema
+	    *
+	Â Â   * @param puserResponse Este parÃ¡metro encapsula la informaciÃ³n solicitada en el metodo.
+		*
+	  Â Â * @return response Retorna la respuesta del sevicio hacia el frontend.
+	Â Â   */
+		@RequestMapping(value="/getAllVendors", method = RequestMethod.POST)
+		public UsersResponse getAllVendors(@RequestBody UsersRequest puserRequest) {
+			
+			UsersResponse response = new UsersResponse();
+			response.setCode(200);
+			response.setCodeMessage("Users fetch successful");
+			response.setUsers(usersService.getAllVendors(puserRequest));
+			
+			return response;
+		}
+	
 	  /**
-	 * Este mÃ©todo registra un usuario en el sistema.
+	ï¿½* Este mÃ©todo registra un usuario en el sistema.
 	  *
-	 * @param pfile Imagen de perfil del usuario.
-	  * @param pidRol Rol del usuario en el sistema.
-	 * @param puserName Nombre de usuario.
-	  * @param pfirstName Primer apellido del usuario.
+	ï¿½* @param pfile Imagen de perfil del usuario.
+	ï¿½ * @param pidRol Rol del usuario en el sistema.
+	ï¿½* @param puserName Nombre de usuario.
+	 ï¿½* @param pfirstName Primer apellido del usuario.
 	  * @param plastName Segundo apellido del usuario.
       * @param pphone1 TelÃ©fono del usuario.
       * @param pphone2 TelÃ©fono alternativo del usuario.
@@ -162,10 +191,10 @@ public class UsersController {
 	
 
 	/**
-   * Este mÃ©todo retorna el usuario loggeado en la aplicaciÃ³n
+ï¿½  * Este mÃ©todo retorna el usuario loggeado en la aplicaciÃ³n
     *
-    * @return response Retorna la respuesta del sevicio hacia el frontend.
-   */
+  ï¿½ï¿½* @return response Retorna la respuesta del sevicio hacia el frontend.
+ï¿½  */
 		@RequestMapping(value ="/getUserLogged", method = RequestMethod.GET)
 		public UsersResponse getUserLogged(){
 			UsersResponse response = new UsersResponse();
@@ -174,12 +203,12 @@ public class UsersController {
 		}
 
 		/**
-	   * Este mÃ©todo retorna el usuario que se desea consultar
+	ï¿½  * Este mÃ©todo retorna el usuario que se desea consultar
 		*
 	    * @param pidUser Identificador del usaurio que se consulta
 	    * 
-	  * @return response Retorna la respuesta del sevicio hacia el frontend.
-	   */			
+	 ï¿½* @return response Retorna la respuesta del sevicio hacia el frontend.
+	ï¿½  */			
 		@RequestMapping(value="/getUserById/{pidUser}", method = RequestMethod.GET)
 		public UsersResponse getConsultedUser(
 				@PathVariable int  pidUser){
@@ -193,21 +222,21 @@ public class UsersController {
 		
 		
 		 /**
-		 * Este mÃ©todo registra un usuario en el sistema.
+		  * Este mÃ©todo registra un usuario en el sistema.
 		  *
-		 * @param pfile Imagen de perfil del usuario.
-		 * @param pidUser Identificador del usuario a modificar.
-		 * @param pidRol Rol del usuario en el sistema.
-		 * @param puserName Nombre de usuario.
-		 * @param pfirstName Primer apellido del usuario.
+		  * @param pfile Imagen de perfil del usuario.
+		  * @param pidUser Identificador del usuario a modificar.
+		  * @param pidRol Rol del usuario en el sistema.
+	      * @param puserName Nombre de usuario.
+		  * @param pfirstName Primer apellido del usuario.
 		  * @param plastName Segundo apellido del usuario.
 	      * @param pphone1 TelÃ©fono del usuario.
 	      * @param pphone2 TelÃ©fono alternativo del usuario.
 	      * @param pemail Correo del usuario.
 	      * @param ppassword ContraseÃ±a del usaurio.
 	      * 
-		 * @return userResponse Retorna la respuesta del servicio hacia el frontend.
-		 *
+		  * @return userResponse Retorna la respuesta del servicio hacia el frontend.
+		  *
 		  * @throws ParseException Esta exepciÃ³n se lanza cuando el sistema es incapaz de transformar
 		  * el String pbirthday a birthday ques es de tipo Date.
 		   */
@@ -278,7 +307,8 @@ public class UsersController {
 			
 		}
 		
-					/**
+
+		/**
 		  * EnvÃ­a la informaciÃ³n a agregar a la base de datos por medio de su servicio. 
 		  * 
 		  * @param pProperty Ejb que contiene la informaciÃ³n de la entidad que
@@ -306,6 +336,67 @@ public class UsersController {
 			}
 			
 			return response;
+		}
+		
+		@RequestMapping(value="/welcomeEmail", method = RequestMethod.POST)
+		public UsersResponse sendEmail(@RequestBody UsersRequest puserRequest){
+			 
+			 UsersResponse response = new UsersResponse();
+			  
+		      String to = puserRequest.getUser().getEmail();
+		      
+		      String from = "propiedadescr.tech@gmail.com";
+		      final String username = "propiedadescr.tech@gmail.com";
+		      final String password = "mjjvwTechflow";
+
+		      
+		      String host = "smtp.gmail.com";
+
+		      Properties props = new Properties();
+		      props.put("mail.smtp.auth", "true");
+		      props.put("mail.smtp.starttls.enable", "true");
+		      props.put("mail.smtp.host", host);
+		      props.put("mail.smtp.port", "587");
+
+		      
+		      Session session = Session.getInstance(props,
+		      new javax.mail.Authenticator() {
+		         protected PasswordAuthentication getPasswordAuthentication() {
+		            return new PasswordAuthentication(username, password);
+		         }
+		      });
+
+		      try {
+		         
+		         Message message = new MimeMessage(session);
+
+		         
+		         message.setFrom(new InternetAddress(from));
+
+		        
+		         message.setRecipients(Message.RecipientType.TO,
+		         InternetAddress.parse(to));
+
+		         
+		         message.setSubject("InformaciÃ³n de evento");
+
+		         
+		         message.setSubject("Reiniciar contraseÃ±a");
+		         
+		         message.setContent("<h3>Bienvenido a PropiedadesCR</h3>"+
+		        		"<p>Reciba un cordial saludo de parte de la comunidad </p>"+
+		        		"<p>de PropiedadesCR, la comunidad m&aacute;s grande de bienes raices del paÃ­s.</p>"+
+		        		"<p>Esperamos cumplir con sus expectativas.</p>","text/html");
+		         
+		         Transport.send(message);
+		         response.setCode(200);
+
+		        
+
+		      } catch (MessagingException e) {
+		            throw new RuntimeException(e);
+		      }
+		      return response;
 		}
 		
 		

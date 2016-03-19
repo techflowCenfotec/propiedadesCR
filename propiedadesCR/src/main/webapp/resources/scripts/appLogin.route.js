@@ -8,7 +8,13 @@
 		var n,t;
 		n = [
 			"templates/loginView/login"
-
+			
+			,"templates/resetPasswordView/forgotPassword"
+			,"templates/resetPasswordView/resetPassword"
+			
+			,"templates/errorsView/500"
+			
+			,"templates/usersView/createUserLogin"
 		], 
 
 		t = function($urlRouterProvider) {
