@@ -11,6 +11,11 @@
 		$scope.showUsers = false;
 		$scope.showSecurity = false;
 		$scope.showReports = false;
+
+		$scope.showPrincipalAdmin = false;
+		$scope.showRegisterProperty = false;
+		$scope.showEventsCreate = false;
+		$scope.showEventsAdmin =false;
 		var userResponse = {};
 		var userPermissionsList = [];
 		var link = 'rest/protected/users/getUserLogged';
@@ -26,15 +31,34 @@
 				permission = userPermissionsList[i];
 				idPermission = permission.idPermissions;
 				console.log(idPermission);
+				console.log(userResponse);
 
+				//1.admin
+				//2.comprador
+				//3.vendedor
 				if(idPermission == 1){
 					$scope.showPrincipal = true;
+					if(userResponse.user.role.idRole==1){
+						$scope.showPrincipalAdmin = true;
+					}
 				}else if(idPermission == 2){
 					$scope.showProperties = true;
+					if(userResponse.user.role.idRole==2){
+						$scope.showRegisterProperty = true;
+					}
 				}else if(idPermission == 3){
 					$scope.showEvents = true;
+					if(userResponse.user.role.idRole==2){
+						$scope.showEventsCreate = true;
+					}
+					if(userResponse.user.role.idRole==1){
+						$scope.showEventsAdmin = true;
+					}
+					
 				}else if(idPermission == 4){
-					$scope.showUsers = true;
+					if(userResponse.user.role.idRole==1){
+						$scope.showUsers = true;
+					}
 				}else if(idPermission == 5){
 					$scope.showSecurity = true;
 				}else{

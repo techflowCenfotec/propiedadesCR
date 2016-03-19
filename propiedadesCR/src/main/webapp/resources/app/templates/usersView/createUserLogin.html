@@ -8,7 +8,7 @@
 }
 </style>
 <section class="page-form-ele page">
-	<div class="row ui-section" data-ng-controller="CreateUserController"
+	<div class="row ui-section" data-ng-controller="CreateUserLoginController"
 		flow-init>
 
 		<div class="col-lg-8 clearfix">
@@ -95,10 +95,6 @@
 							</div>
 						</div>
 
-
-
-
-
 						<div layout layout-sm="column">
 							<md-input-container flex=35> <label for="">Tel&eacute;fono
 								1</label> <input type="text" class="form-control" 
@@ -121,11 +117,13 @@
 							<span></span> </md-input-container>
 							<p data-ng-show="emailExist">El correo ingresado ya existe en la aplicaci&oacute;n</p>
 						</div>
+						
 						<div layout layout-sm="column">
-							<md-input-container flex=35> <label>Rol</label>
-							<md-select ng-model="form.role" aria-label="select" required>
-							<md-option ng-repeat="role in roles" value="{{role.idRole}}"
-								required> {{role.rolName}} </md-option> </md-select> </md-input-container>
+							<md-input-container flex=35>
+							<label>Rol</label> <md-select ng-model="form.role"
+								aria-label="select" required> <md-option
+								ng-repeat="role in roles" value="{{role.idRole}}" required>
+							{{role.rolName}} </md-option> </md-select> </md-input-container>
 						</div>
 
 						<div layout layout-sm="column">
@@ -135,7 +133,8 @@
 								data-ng-minlength="8" data-ng-maxlength="20"
 								title="La contraseña debe contener al menos una mayuscúla, una minuscúla, un caracter especial(número o símbolo), mínimo 8 caracteres y máximo 20"
 								data-ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/"
-								required> <span></span> </md-input-container>
+								required>
+							<span></span> </md-input-container>
 
 							<md-input-container flex=35> <label for="">Confirme
 								contrase&ntilde;a</label> <input type="password" class="form-control"
@@ -170,5 +169,5 @@
 			</div>
 		</div>
 	</div>
-
+	
 </section>
