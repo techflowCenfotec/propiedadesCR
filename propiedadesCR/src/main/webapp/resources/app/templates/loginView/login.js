@@ -2,7 +2,7 @@
 	"use strict";
 
 	angular.module("app.login",[])
-	.controller('LoginController', ['$scope','$http','$rootScope', function($scope,$htpp,$rootScope) {
+	.controller('LoginController', ['$scope','$http','$rootScope', function($scope,$http,$rootScope) {
 			
 		$scope.incorrect = true;
 		$scope.user ={
@@ -10,10 +10,22 @@
 			password:'',
 		}
 		
+		validate();
+		
+		function validate(){
+		$http.get("rest/protected/database/checkDB").success(function(data){
+			if(data.code!==200){
+				var path = "#/templates/errorsView/500";
+				
+    			window.location.href = path;
+			}
+		});
+		}
+		
 		$scope.checkUser = function(){
 			
-			
-			$htpp.post('rest/login/checkUser/',$scope.user).success(function (loginResponse){
+			validate();
+			$http.post('rest/login/checkUser/',$scope.user).success(function (loginResponse){
 				
 				if(loginResponse.code ==200){
 					var path = "/propiedadesCR/app#/home";
