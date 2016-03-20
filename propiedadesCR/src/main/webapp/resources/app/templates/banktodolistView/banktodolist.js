@@ -4,7 +4,7 @@
 	angular.module('app.banktodolist', [])
 
 
-	.controller('banktodolistController',['$scope','$filter','$http',function($scope,$filter,$http){
+	.controller('banktodolistController',['$scope','$filter','$http','$location',function($scope,$filter,$http,$location){
 
 //datagrid
 		$scope.todolistList = [];
@@ -91,9 +91,14 @@
                   "toDoList": {"idToDoList":pidToDoList, "tuser":{"idUser":idUser}} };
 
             $http.post(generateLink,toDoRequest).success(function(response) {
-                $scope.todolistList= response.bankToDoList;
+                //$scope.todolistList= response.bankToDoList;
             });
 
+        };
+
+        $scope.consultToDoList = function(pidToDoList){
+            localStorage.setItem('idToDoList',pidToDoList);
+            $location.url("templates/banktodolistView/banktodolistAdminItems");
         }
     
 	}]);
