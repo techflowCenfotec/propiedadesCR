@@ -35,7 +35,7 @@ public class MailController {
 	
 	@RequestMapping(value="/sendEmail", method = RequestMethod.POST)
 	public void sendEmail(@RequestBody MailRequest pmailInformation){
-		  System.out.println(pmailInformation);
+		  
 		  EventPOJO event = pmailInformation.getEventP();
 		  
 	      String to = pmailInformation.getUserEmail();
@@ -76,11 +76,11 @@ public class MailController {
 	         message.setSubject("Información de evento");
 
 	         
-	         message.setText("Buenas, \n"
-	         		+ "\n En el presente correo encontrará la información del evento"
+	         message.setText("Gracias por utilizar PropiedadesCR, \n"
+	         		+ "\n A continuación encontrará la información del evento"
 	         		+ "\n Lugar: "+"por definir"
 	         		+ "\n Fecha:"+ event.getStartDate().toString()
-	         		+ "\n Hora: "+ "por definir"
+	         		//+ "\n Hora: "+ "por definir"
 	         		+ "\n Descripción del evento:"+ event.getDescription()
 	         		+ "\n Gracias por utilizar la aplicación PropiedadesCR");
 

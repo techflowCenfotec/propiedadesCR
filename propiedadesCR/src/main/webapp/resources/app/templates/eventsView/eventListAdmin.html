@@ -1,0 +1,105 @@
+<div class="page page-table" data-ng-controller="listAdminEventController">
+
+    <div class="row ui-section">
+    <div class="col-lg-8 clearfix">
+        <h2 class="section-header">Listado de eventos</h2>
+    </div>
+    <div class="col-md-12">
+        <section class="panel panel-default table-dynamic">
+        <div class="table-filters">
+            <div class="row">
+            <div class="col-sm-4 col-xs-6">
+                <form>
+                <input type="text"
+                     placeholder="Buscar..."
+                     class="form-control"
+                     data-ng-model="searchKeywords"
+                     data-ng-keyup="search()">
+                </form>
+            </div>
+            <div class="col-sm-3 col-xs-6 filter-result-info">
+                              
+            </div>
+            </div>
+        </div>
+
+        <table class="table table-bordered table-striped table-responsive">
+            <thead>
+            <tr>
+                <th><div class="th">
+                Nombre
+                <span class="fa fa-angle-up"
+                    data-ng-click=" order('eventName') "
+                    data-ng-class="{active: row == 'eventName'}"></span>
+                <span class="fa fa-angle-down"
+                    data-ng-click=" order('-eventName') "
+                    data-ng-class="{active: row == '-eventName'}"></span>
+                </div></th>
+                <th><div class="th">
+                 Descripci&oacute;n
+                <span class="fa fa-angle-up"
+                    data-ng-click=" order('eventDescription') "
+                    data-ng-class="{active: row == 'eventDescription'}"></span>
+                <span class="fa fa-angle-down"
+                    data-ng-click=" order('-eventDate') "
+                    data-ng-class="{active: row == '-eventDEscription'}"></span>
+                </div></th>
+                <th><div class="th">
+               Fecha de Evento 
+                <span class="fa fa-angle-up"
+                    data-ng-click=" order('eventDate') "
+                    data-ng-class="{active: row == 'eventDate'}"></span>
+                <span class="fa fa-angle-down"
+                    data-ng-click=" order('-eventDate') "
+                    data-ng-class="{active: row == '-eventDate'}"></span>
+                </div></th>
+                
+<!--                   <th><div class="th">
+               	Modificar
+               </div></th> -->
+                   <th><div class="th"> 
+               	Eliminar
+               </div></th>
+                
+            </tr>
+            </thead>
+            <tbody>
+            <tr data-ng-repeat="event in currentPageList">
+                <td>{{event.name}}</td>
+                <td>{{event.description}}</td>
+                <td>{{event.startDate}}</td>
+<!--                 <td><button class="btn btn-info" data-ng-click="modifyEvent(event.idEvent)">Modificar</button></td> -->
+                <td><button class="btn btn-danger" data-ng-click="showConfirm(event.idEvent)">Eliminar</button></td>
+            </tr>
+            </tbody>
+        </table>
+
+        <footer class="table-footer">
+            <div class="row">
+            <div class="col-md-6 page-num-info">
+                <span>
+                Show 
+                <select data-ng-model="numPerPage"
+                    data-ng-options="num for num in numPerPageOpt"
+                    data-ng-change="onNumPerPageChange()">
+                </select> 
+                entries per page
+                </span>
+            </div>
+            <div class="col-md-6 text-right pagination-container">
+                <uib-pagination class="pagination-sm"
+                    ng-model="currentPage"
+                    total-items="filteredEvents.length"
+                    max-size="4"
+                    ng-change="select(currentPage)"
+                    items-per-page="numPerPage"
+                    rotate="false"
+                    previous-text="&lsaquo;" next-text="&rsaquo;"
+                    boundary-links="true"></uib-pagination>
+            </div>
+            </div>
+        </footer>
+        </section>
+    </div>
+    </div>
+ </div>

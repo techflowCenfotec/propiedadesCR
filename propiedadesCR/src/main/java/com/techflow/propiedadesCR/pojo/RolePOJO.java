@@ -12,6 +12,7 @@ public class RolePOJO {
 	 * Id del rol
 	 */
 	private int idRole;
+
 	/*
 	 * nombre del rol
 	 */
@@ -20,6 +21,10 @@ public class RolePOJO {
 	 * Lista de permisos
 	 */
 	private List<PermissionPOJO> tpermissions;
+	/*
+	 * Estado activo o inactivo del rol
+	 */
+	private byte active;
 	
 	public RolePOJO(){
 		super();
@@ -48,6 +53,14 @@ public class RolePOJO {
 
 	public void setRolName(String rolName) {
 		this.rolName = rolName;
+	}
+	public byte getActive() {
+		return active;
+	}
+
+
+	public void setActive(byte active) {
+		this.active = active;
 	}
 	
 

@@ -1,6 +1,5 @@
 package com.techflow.propiedadesCR.pojo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**

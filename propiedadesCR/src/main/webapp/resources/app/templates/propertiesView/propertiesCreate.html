@@ -45,16 +45,18 @@
                                         <div layout layout-sm="column">
                                             <md-input-container flex>
                                                 <label>Provincia</label>
-                                                <md-select ng-model="requestObject.province" aria-label="select" required>
-                                                    <md-option ng-repeat="province in provinceList" value="{{province.idProvince}}">
+                                                <md-select ng-model="requestObject.province" aria-label="select"
+                                                ng-change="onChangeProvince()" required>
+                                                    <md-option ng-repeat="province in provinceList" ng-value="province.idProvince">
                                                         {{province.name}}
                                                     </md-option>
                                                 </md-select>
                                             </md-input-container>
                                             <md-input-container flex>
                                                 <label>Cantón</label>
-                                                <md-select ng-model="requestObject.county" aria-label="select" required>
-                                                    <md-option ng-repeat="county in countyList" value="{{county.name}}">
+                                                <md-select ng-model="requestObject.county" aria-label="select" 
+                                                ng-change="onChangeCounty()" required>
+                                                    <md-option ng-repeat="county in countyList" ng-value="county.idCounty">
                                                         {{county.name}}
                                                     </md-option>
                                                 </md-select>
@@ -62,7 +64,7 @@
                                             <md-input-container flex>
                                                 <label>Distrito</label>
                                                 <md-select ng-model="requestObject.district" aria-label="select" required>
-                                                    <md-option ng-repeat="district in districtList" value="{{district.idDisctrict}}">
+                                                    <md-option ng-repeat="district in districtList" ng-value="district.idDisctrict">
                                                        {{district.name}}
                                                     </md-option>
                                                 </md-select>
@@ -71,7 +73,7 @@
                                         <div layout layout-sm="column">
                                           <md-input-container flex>
                                               <label>Dirección exacta</label>
-                                              <input ng-model="requestObject.address" required/>
+                                              <input ng-model="requestObject.address" md-maxlength="150" required/>
                                           </md-input-container>
                                           </div>
                                             <md-chips ng-model="ctrl.tags" readonly="ctrl.readonly"
@@ -95,8 +97,9 @@
 				                        <div class="divider divider-md"></div>
                                         <div layout layout-sm="column">
                                             <md-input-container flex>
-                                                <label>Precio</label>
-                                                <input ng-model="requestObject.price" required>
+                                                <label>Precio ($)</label>
+                                                <input type="number" class="form-control" 
+                                                ng-model="requestObject.price" data-ng-maxlength=10 required>
                                             </md-input-container>
                                             <md-input-container flex>
                                                 <label>Tipo propiedad</label>
@@ -110,7 +113,8 @@
                                           <div layout layout-sm="column">
 	                                          <md-input-container flex>
 	                                              <label>Metros cuadrados</label>
-	                                              <input ng-model="requestObject.meters" required/>
+	                                              <input type="number" class="form-control" 
+	                                              ng-model="requestObject.meters" data-ng-maxlength=10 required/>
 	                                          </md-input-container>
                                           </div>
                                           
@@ -118,14 +122,15 @@
                                           	<div class="col-md-12">
                                           		<section class="panel panel-default">
                                           			<div class="panel-body">
-                                          				<map class="ui-map" zoom="11" center="[9.935697,-84.1483646]" scrollwheel="false">
-								                            <marker position="[9.935697,-84.1483646]" title="drag me" draggable="true" on-dragend="ctrl.markerPos()"></marker>
+                                          				<map class="ui-map" zoom="{{map.zoom}}" center="{{map.center}}" scrollwheel="false">
+								                            <marker position="{{map.center}}" title="drag me" draggable="true" on-dragend="ctrl.markerPos()"></marker>
 								                        </map>
 								                    </div>
 								                </section>
 								             </div>
 								            </div>
-	                                      <md-button type="submit" class="md-raised btn-w-md md-primary" data-ng-disabled="!canSubmit($flow.files.length)">Guardar</md-button>
+	                                      <md-button type="submit" class="md-raised btn-w-md md-primary" 
+	                                      	data-ng-disabled="!canSubmit($flow.files.length)">Guardar</md-button>
 		                                  <md-button class="btn-w-md">Cancelar</md-button>
 		                                  <div class="divider"></div>
                                     	  <div class="alert alert-info" data-ng-show="showInfoOnSubmit">

@@ -3,9 +3,9 @@
 	
 	angular.module('app.properties.view', [])
 	
-	.controller('PropViewController', ['$scope', '$http', PropViewController]);
+	.controller('PropViewController', ['$scope', '$http', '$rootScope', PropViewController]);
 	
-	function PropViewController($scope, $http) {
+	function PropViewController($scope, $http, $rootScope) {
 		var self = this;
 		self.district = {};
 		$scope.imageList = [];
@@ -21,7 +21,16 @@
 				county: '',
 				district: '',
 		};
-		
+		// Rating data
+		$scope.rate = 3;
+        $scope.max = 5;
+        $scope.isReadonly = false;
+
+        $scope.hoveringOver = function(value) {
+            $scope.overStar = value;
+            return $scope.overStar;
+        };
+        
 		$scope.init = function() {
 			var bd = 'rest/protected/properties/getByPropertyId/' + +localStorage.getItem('idProperty');
 			$http.get(bd)
@@ -70,7 +79,7 @@
 		
 		$scope.onChangeProvince = function() {
 			$scope.countyList = [];
-			console.log($scope.selectedProvince);
+			
 			$http.get('rest/protected/counties/getAll')
 			.success(function(countyResponse) {
 				for(var i = 0; i < countyResponse.counties.length; i++) {
@@ -93,6 +102,31 @@
 				}
 			});
 		};
+		
+		$scope.propertyRate = function(value) {
+			// Cambiar id user al userLogged
+        	var bd = 'rest/protected/rating/addRating';
+        	var data = {
+        			  "pageNumber": 0,
+        			  "pageSize": 0,
+        			  "direction": "string",
+        			  "sortBy": [
+        			    "string"
+        			  ],
+        			  "searchColumn": "string",
+        			  "searchTerm": "string",
+        			  "rating": {
+        				  "tuser": { "idUser": $rootScope.userLogged.idUser},
+        				  "tproperty": { "idProperty": localStorage.getItem('idProperty')},
+        				  "averageRating": $scope.rate
+        			  }
+        			};
+        	
+        	$http.post(bd, data)
+        	.success(function(response) {
+        		$scope.isReadonly = true;
+        	});
+        };
 	};
 	
 })();

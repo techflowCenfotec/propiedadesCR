@@ -24,8 +24,8 @@
 								                                        <div class="info-mask bg-primary"></div>
 								                                        <div class="info-content">
 								                                            <div class="info-inner">
-								                                                <h3>Heading Here</h3>
-								                                                <p>Description goes here</p>
+								                                                <h3>Lorem Ipsum</h3>
+								                                                <p>Dolor sit amet, consectetur adipiscing elit.</p>
 								                                            </div>
 								                                        </div>
 								                                    </div>
@@ -36,8 +36,6 @@
 					                    		</div>
 					                    	</div>
 					                    </div>
-					                
-
                                     	<div layout layout-sm="column">
                                     		<md-input-container flex>
 	                                        	<label>Provincia</label>
@@ -67,7 +65,7 @@
 	                                        </md-input-container>
 	                                    </div>
                                         <md-input-container class="md-block">
-                                            <label>Dirrección</label>
+                                            <label>Dirección</label>
                                             <input ng-model="property.address" disabled>
                                         </md-input-container>
                                         <md-chips ng-model="property.tbenefits" readonly="true" 
@@ -109,7 +107,6 @@
                                                 <input ng-model="property.squareMeters" disabled>
                                             </md-input-container>
                                         </div>
-
                                         <div class="row">
                                           	<div class="col-md-12">
                                           		<section class="panel panel-default">
@@ -121,8 +118,21 @@
 								                </section>
 								            </div>
 								        </div>
+								        <div class="divider divider-dashed divider-md pull-in"></div>
+								        <h3>Calificar propiedad</h3>
+								        <div class="panel-body padding-md">
+				                            <uib-rating class="ui-rating size-h3 ui-rating-warning"
+				                            ng-model="rate"
+				                            max="max"
+				                            readonly="isReadonly"
+				                            on-hover="hoveringOver(value)"
+				                            on-leave="overStar = null"
+				                            state-on="'fa fa-star'"
+				                            state-off="'fa fa-star-o'"></uib-rating>
+				                            <div class="divider"></div>
+											<md-button class="md-raised btn-w-sm md-primary" ng-click="propertyRate(rate)">Calificar propiedad</md-button>
+				                        </div>
                                     </form>
-									<div class="fb-share-button" data-href="https://www.propiedadesCR.com/app#/templates/propertiesView/propertyView" data-layout="button"></div>
                                 </div>
                             </div>
 

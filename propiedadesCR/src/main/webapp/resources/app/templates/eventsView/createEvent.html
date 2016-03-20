@@ -6,7 +6,7 @@
 	margin-bottom: 5px;
 }
 </style>
-<div class="page page-table"  data-ng-controller="CreateEventController" flow-init>
+<div class="page-form-ele page" data-ng-controller="CreateEventController"flow-init>
 
 	<div class="row ui-section">
 		<div class="col-lg-8 clearfix">
@@ -15,9 +15,9 @@
 		<div class="col-md-12">
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<form name="form_createEvent" class="form-validation" 
+					<form name="form_createEvent" class="form-validation"
 						data-ng-submit="submitForm($flow.files)">
-								<div class="row">
+						<div class="row">
 							<div>
 								<div class="col-lg-8 collg-offset-2">
 
@@ -49,16 +49,20 @@
 
 							</div>
 						</div>
-						
+
 						<div layout layout-sm="column">
-						<md-input-container flex=50>
-							<label for="">Nombre</label> <input type="text"
-								class="form-control" required data-ng-model="form.name">
-								</md-input-container>
-								</div>
-						
+							<md-input-container flex=50> <label for="">Nombre</label>
+							<input type="text" class="form-control" required
+								data-ng-model="form.name"> </md-input-container>
+						</div>
+							<div class="form-group">
+
+							<br> <label for="">Direcci&oacute;n Exacta</label>
+							<textarea class="form-control" rows="4" required
+								data-ng-model="form.direction"></textarea>
+						</div>
 						<div class="form-group">
-							
+
 							<br> <label for="">Descripci&oacute;n</label>
 							<textarea class="form-control" rows="10" required
 								data-ng-model="form.description"></textarea>
@@ -67,8 +71,9 @@
 							<div class="col-lg-4 col-lg-offset-2">
 								<div class="input-group ui-datepicker">
 									<input type="text" class="form-control"
-										uib-datepicker-popup="{{format}}" data-ng-model="form.eventDate"
-										is-open="popup1.opened" min-date="minDate" max-date="maxDate"
+										uib-datepicker-popup="{{format}}"
+										data-ng-model="form.eventDate" is-open="popup1.opened"
+										min-date="minDate" max-date="maxDate"
 										datepicker-options="dateOptions"
 										date-disabled="disabled(date, mode)" ng-required="true"
 										close-text="Close" alt-input-formats="altInputFormats" /> <span
@@ -79,45 +84,45 @@
 									<p>Fecha del evento: {{form.eventDate | date:'fullDate'}}</p>
 								</div>
 							</div>
-
 						</div>
-				
+<!-- 						<div class="row">
+							<div class="col-lg-4 col-lg-offset-2">
+								<div ng-model="form.eventDate" ng-change="changed()"
+									style="display: inline-block;">
+									<uib-timepicker class="ui-timepicker" hour-step="hstep"
+										minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+									<p>Hora del evento: {{form.eventDate | date:'shortTime'}}</p>
+								</div>
+							</div>
+						</div> -->
+						<div class="row">
+							<div class="col-md-12">
+								<section class="panel panel-default">
+									<div class="panel-body">
+										<map class="ui-map" zoom="11" center="[9.935697,-84.1483646]"
+											scrollwheel="false">
+											<marker position="[9.935697,-84.1483646]" title="drag me"
+												draggable="true" on-dragend="markerPos()"></marker>
+										</map>
+									</div>
+								</section>
+							</div>
+						</div>
+
+
+
 
 						<button type="submit" ui-wave class="btn btn-primary btn-w-md"
 							data-ng-disabled="!canSubmit()">Guardar</button>
-						
+
 
 						<div class="alert alert-info" data-ng-show="showInfoOnSubmit">Evento
 							registrado</div>
+
 					</form>
 				</div>
 			</div>
 		</div>
 	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 </div>
