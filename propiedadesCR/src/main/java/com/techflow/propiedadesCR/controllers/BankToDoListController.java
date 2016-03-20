@@ -2,6 +2,7 @@ package com.techflow.propiedadesCR.controllers;
 
 import java.util.ArrayList;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,7 @@ import com.techflow.propiedadesCR.contracts.BankToDoListRequest;
 import com.techflow.propiedadesCR.contracts.BankToDoListResponse;
 import com.techflow.propiedadesCR.ejb.TbankItem;
 import com.techflow.propiedadesCR.ejb.TbankToDoList;
+import com.techflow.propiedadesCR.pojo.BankToDoListItemPOJO;
 import com.techflow.propiedadesCR.pojo.BankToDoListPOJO;
 import com.techflow.propiedadesCR.services.BankToDoListServiceInterface;
 import com.techflow.propiedadesCR.services.ToDoListServiceInterface;
@@ -86,6 +88,10 @@ public class BankToDoListController {
 		if(pbankToDoListItemRequest.getBankToDoListItem().getTbankToDoList()!=null){
 			TbankItem bankToDoListItem = bankToDoListService.saveBankToDoListItem(pbankToDoListItemRequest);
 			if(bankToDoListItem!=null){
+				BankToDoListItemPOJO createdItem = new BankToDoListItemPOJO();
+				BeanUtils.copyProperties(bankToDoListItem, createdItem);
+				createdItem.setTbankToDoList(null);
+				response.setBankToDoListItems(new ArrayList<BankToDoListItemPOJO>() {{add(createdItem);}});
 				response.setCode(200);
 				response.setCodeMessage("created successfully");
 			}

@@ -3,15 +3,13 @@
 
 	angular.module("app.banktodolistAdminItems",[])
 
-	.controller('banktodolistAdminItemsController',['$scope','$http',function($scope,$http){
+	.controller('banktodolistAdminItemsController',['$scope','$http','$timeout',function($scope,$http,$timeout){
 		var original;
 		var idToDoList = localStorage.getItem('idToDoList');
 	    $scope.onError = false;
 	    $scope.requestObject = {};
 	    $scope.form = { 	
 	        name: ''
-	        // description: '',
-	        // bank: ''
 	    };
 	    $scope.items = [];
 
@@ -20,7 +18,7 @@
 	    var toDoListrequest = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","bankToDoList": {"idtBank_to_do_list": idToDoList }};
 	    		 
 	     $http.post(toDoListLink,toDoListrequest).success(function(response){
-	     	console.log(response);
+	     	//console.log(response);
 	     	$scope.items = response.bankToDoList[0].tbankItems;
 	     });
 
@@ -45,6 +43,9 @@
 		  
 		    $scope.saveItem(event);
 	        $scope.showInfoOnSubmit = true;
+	        $timeout(function() {
+		                $scope.showInfoOnSubmit = false;
+		    }, 5000);
 	        return revert();
 	    };
 	    
@@ -55,9 +56,11 @@
 				var addItemRequest = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","bankToDoListItem": {"name": $scope.form.name,"tbankToDoList": {"idtBank_to_do_list":idToDoList}}};
 
 
-	    		$scope.onError = false;
 	    		$http.post(addItemLink,addItemRequest).success(function(response){
-	    			console.log(response);
+	    			//console.log(response);
+	    			$scope.items.push(response.bankToDoListItems[0]);
+	    			 $scope.onError = false;
+	    		
 	    		});
 	    	}else{
 	    		$scope.onError = true;
