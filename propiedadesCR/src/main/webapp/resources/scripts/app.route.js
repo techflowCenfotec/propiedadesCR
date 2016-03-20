@@ -13,22 +13,32 @@
 			,"templates/usersView/usersList"
 			,"templates/usersView/createUser"			
 			,"templates/usersView/consultUser"
-
+			,"templates/usersView/modifyUser"
+			,"templates/usersView/vendorsList"
+			,"templates/usersView/consultVendor"
+			
 			,"templates/eventsView/createEvent"
 			,"templates/eventsView/eventsList"
 
 			,"templates/eventsView/eventConsult"
 			,"templates/eventsView/eventListAdmin"
 
-			
 			,"templates/roleView/roles"
 			,"templates/roleView/addRoles"
-			
-			, "templates/banktodolistView/banktodolistList"
+			,"templates/banktodolistView/banktodolistList"
 			,"templates/banktodolistView/banktodolistCreate"
-
-
+			,"templates/testView/testFlow"
+			,"templates/testView/matchedPropertiesList"
 			,"templates/propertiesView/propertiesCreate"
+
+			
+			,"templates/errosView/500"
+
+			,"templates/guidesView/createGuide"
+			,"templates/propertiesView/propertyView"
+			,"templates/permissionsViews/adminView"
+			,"templates/roleView/editRoles"
+
 		], 
 
 		t = function($urlRouterProvider) {

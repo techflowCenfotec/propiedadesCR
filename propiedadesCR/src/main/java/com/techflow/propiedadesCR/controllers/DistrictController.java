@@ -1,11 +1,13 @@
 package com.techflow.propiedadesCR.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techflow.propiedadesCR.contracts.DistrictResponse;
+import com.techflow.propiedadesCR.pojo.DistrictPOJO;
 import com.techflow.propiedadesCR.services.DistrictServiceInterface;
 
 /**
@@ -38,6 +40,23 @@ public class DistrictController {
 		response.setCode(200);
 		response.setCodeMessage("District fetch succesful");
 		response.setDistricts(districtService.getAll());
+		
+		return response;
+	}
+	
+	/**
+	 * Solicita la información del distrito a través del servicio.
+	 *  
+	 *  @param pIdDistrict Id del distrito. No debe ser nulo.
+	 * @return response Un objeto response del distrito.
+	 */
+	@RequestMapping(value="getDistrcitById/{pIdDistrict}", method=RequestMethod.GET)
+	public DistrictResponse getRequestedDistrict(@PathVariable int pIdDistrict) {
+		DistrictResponse response = new DistrictResponse();
+		
+		DistrictPOJO district = districtService.getDistrictById(pIdDistrict);
+		
+		response.setDistrict(district);
 		
 		return response;
 	}

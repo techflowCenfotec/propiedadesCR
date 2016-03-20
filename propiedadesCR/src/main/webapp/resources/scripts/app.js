@@ -22,7 +22,7 @@
 }(),
 
 function() {
-	"use strict";
+	"use strict"; 
 
 	angular.module("app.core", [
 		// Angular modules
@@ -48,13 +48,22 @@ function() {
 		,"app.createUsers"
 		,"app.usersList"
 		,"app.consultUser"
+		,"app.modifyUser"
+		,"app.vendorsList"
+		,"app.consultVendor"
 	
+		
 		,"app.banktodolist"
 		,"app.banktodolistCreate"
-
+		,"app.testFlow"
+		,"app.matchedPropertiesList"
+		,"app.createGuide"
 
 		,"app.properties.create"
-
+		,"app.properties.view"
+		,"app.permissionsManagment"
+		,"app.editRoles"
+		
 		//3rd Party Modules
 		,"ngMaterial"
 		,"ui.bootstrap"
@@ -160,10 +169,12 @@ function(){
 				e.user = response.user;
 				$rootScope.userLogged = response.user;
 				e.userLogged = localStorage.getItem('userLogged');
+				localStorage.setItem('idUser',e.user.idUser);
+
 				return e.user;
 			});
 			e.consultMyProfile = function(myId){
-				localStorage.setItem('idUserLogged',myId);
+				localStorage.setItem('idUser',myId);
 			};
 			
 		}

@@ -29,6 +29,7 @@ public class DistrictPOJO {
 	
 	public DistrictPOJO() {
 		super();
+		this.tcounty = new CountyPOJO();
 	}
 	public int getIdDisctrict() {
 		return idDisctrict;

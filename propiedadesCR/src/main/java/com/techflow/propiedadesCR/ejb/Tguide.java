@@ -16,6 +16,7 @@ public class Tguide implements Serializable {
 	private int idGuides;
 	private String url;
 	private Tbank tbank;
+	private String name;
 
 	public Tguide() {
 	}
@@ -52,5 +53,16 @@ public class Tguide implements Serializable {
 	public void setTbank(Tbank tbank) {
 		this.tbank = tbank;
 	}
+
+
+	public String getName() {
+		return name;
+	}
+
+
+	public void setName(String name) {
+		this.name = name;
+	}
+	
 
 }

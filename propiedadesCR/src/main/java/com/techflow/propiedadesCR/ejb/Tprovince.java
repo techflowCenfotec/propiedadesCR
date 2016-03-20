@@ -2,6 +2,9 @@ package com.techflow.propiedadesCR.ejb;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -55,6 +58,7 @@ public class Tprovince implements Serializable {
 
 	//bi-directional many-to-one association to Tcounty
 	@OneToMany(mappedBy="tprovince")
+	@JsonIgnore
 	public List<Tcounty> getTcounties() {
 		return this.tcounties;
 	}

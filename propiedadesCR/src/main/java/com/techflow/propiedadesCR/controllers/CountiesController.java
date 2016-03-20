@@ -1,18 +1,18 @@
 package com.techflow.propiedadesCR.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.techflow.propiedadesCR.contracts.CountiesRequest;
 import com.techflow.propiedadesCR.contracts.CountiesResponse;
+import com.techflow.propiedadesCR.pojo.CountyPOJO;
 import com.techflow.propiedadesCR.services.CountiesServiceInterface;
 
 /**
 * <h1>Controlador de los cantones</h1>
-* Controlador que envía o solicita información a través del servicio.
+* Controlador que envía o solicita informacion a través del servicio.
 *
 * @author  Walter Gómez
 * @version 1.0
@@ -39,6 +39,23 @@ public class CountiesController {
 		response.setCode(200);
 		response.setCodeMessage("Counties fetch succesful");
 		response.setCounties(countiesService.getAll());
+		
+		return response;
+	}
+	
+	/**
+	 * Solicita la información del cantón a través del servicio.
+	 *  
+	 *  @param pIdCounty Id del cantón. No debe ser nulo.
+	 * @return response Un objeto response del cantón.
+	 */
+	@RequestMapping(value="getCountyById/{pIdCounty}", method = RequestMethod.GET)
+	public CountiesResponse getRequestedCounty(@PathVariable int pIdCounty) {
+		CountiesResponse response = new CountiesResponse();
+		
+		CountyPOJO county = countiesService.getCountyById(pIdCounty);
+		
+		response.setCounty(county);
 		
 		return response;
 	}

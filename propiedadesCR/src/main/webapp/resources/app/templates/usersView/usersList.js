@@ -4,6 +4,18 @@
 	angular.module("app.usersList",[])
 		.controller('listUsersController',['$scope','$filter','$http',function($scope,$filter,$http){
 		
+	
+		validate();
+		
+		function validate(){
+		$http.get("rest/protected/database/checkDB").success(function(data){
+			if(data.code!==200){
+				var path = "#/templates/errorsView/500";
+				
+    			window.location.href = path;
+			}
+		});
+		}	
 		
 		$scope.users=[];
         $scope.searchKeywords = '';
@@ -20,12 +32,15 @@
         $scope.currentPage = 1;
         $scope.currentPage = [];
 		
+        
+        
+        
         var link = 'rest/protected/users/getAll';
 		var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","user": {}};
 		var init;
 		$http.post(link,request).success(function(response) {
+			validate();
 			$scope.users= response.users;
-			console.log($scope.users);
 			init();
 		
 			
@@ -71,7 +86,10 @@
             $scope.search();
             return $scope.select($scope.currentPage);
         };
-    
+        
+        $scope.modifyUser = function(id){
+        	localStorage.setItem('idUserModify',id);
+        }
 		
 	}]);
 })();

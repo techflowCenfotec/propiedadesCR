@@ -21,7 +21,7 @@ public class PropertyTypePOJO {
      */	
 	private String name;
 	/**
-     * Lista de propiedades que poseen un tipo de propiedad específico.
+     * Lista de propiedades.
      */	
 	private List<PropertyPOJO> tproperties;
 	

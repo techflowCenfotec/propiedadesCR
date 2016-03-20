@@ -15,7 +15,7 @@
 						var original;
 						$scope.dateWithFormat = '';
 						$scope.roles ={};
-						
+						$scope.emailExist =false;
 				        $scope.popup1 = {
 				            opened: false
 				        };
@@ -34,6 +34,19 @@
 							role: '',
 							gender:'',
 						};
+						
+						validate();
+						
+						function validate(){
+						$http.get("rest/protected/database/checkDB").success(function(data){
+							if(data.code!==200){
+								var path = "#/templates/errorsView/500";
+								
+				    			window.location.href = path;
+							}
+						});
+						}
+						
 
 						  var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","role": {}};
 						
@@ -65,6 +78,7 @@
 							$scope.saveUser(event, $files);
 						};
 						$scope.saveUser = function(event, $files) {
+							validate();
 							$scope.getDateWithFormat();
 							var file
 							
@@ -94,9 +108,25 @@
 								$files[0].cancel();
 								
 								$scope.showInfoOnSubmit= true;
+								
+								var inf={
+										  "pageNumber": 0,
+										  "pageSize": 0,
+										  "direction": "string",
+										  "sortBy": [
+										    "string"
+										  ],
+										  "searchColumn": "string",
+										  "searchTerm": "string",
+										  "user": {"email":$scope.form.email}
+										}
+								$http.post('rest/protected/users/welcomeEmail',inf).success(function(){
+									
+									
+								})
 								return revert();
 							}).error(function(data){
-						
+								$scope.emailExist =true;
 							});
 
 						};
@@ -105,14 +135,14 @@
 						};
 						
 						$scope.getDateWithFormat = function() {
-					         
+							var month = $scope.form.birthday.getMonth()+1;
 					         $scope.dateWithFormat = $scope.form.birthday.getFullYear()
-					           + '-' + $scope.form.birthday.getMonth() + '-'
+					           + '-' + month + '-'
 					           + $scope.form.birthday.getDate() + ' '
 					           + $scope.form.birthday.getHours() + ':'
 					           + $scope.form.birthday.getMinutes() + ':'
 					           + $scope.form.birthday.getSeconds();
-					       
+					        
 					        };
 
 

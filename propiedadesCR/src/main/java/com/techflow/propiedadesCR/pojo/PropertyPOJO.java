@@ -2,11 +2,6 @@ package com.techflow.propiedadesCR.pojo;
 
 import java.util.List;
 
-import com.techflow.propiedadesCR.ejb.TpropertyComment;
-import com.techflow.propiedadesCR.ejb.TpropertyRating;
-import com.techflow.propiedadesCR.ejb.TpropertyType;
-import com.techflow.propiedadesCR.ejb.Tuser;
-
 /**
 * <h1>POJO de la propiedad</h1>
 * Clase que contiene los atributos de las imágenes.
@@ -52,19 +47,19 @@ public class PropertyPOJO {
 	/**
      * Tipo de la propiedad.
      */
-	private TpropertyType tpropertyType;
+	private PropertyTypePOJO tpropertyType;
 	/**
      * Usuario que registra la propiedad para la venta. Sólo usuarios de tipo vendedor.
      */
-	private Tuser tuser;
+	private UserPOJO tuser;
 	/**
      * Comentarios acerca la propiedad.
      */
-	private List<TpropertyComment> tpropertyComments; //Change to POJO
+	private List<CommentsPOJO> tpropertyComments; //Change to POJO
 	/**
      * Calificación de la propiedad.
      */
-	private List<TpropertyRating> tpropertyRatings; //Change to POJO
+	private List<RatingPOJO> tpropertyRatings; //Change to POJO
 	/**
      * Lista de usuarios de la propiedad.
      */
@@ -76,6 +71,9 @@ public class PropertyPOJO {
 	
 	public PropertyPOJO() {
 		super();
+		this.tdistrict = new DistrictPOJO();
+		this.tpropertyType = new PropertyTypePOJO();
+		this.tuser = new UserPOJO();
 	}
 
 	public int getIdProperty() {
@@ -142,35 +140,35 @@ public class PropertyPOJO {
 		this.tdistrict = tdistrict;
 	}
 
-	public TpropertyType getTpropertyType() {
+	public PropertyTypePOJO getTpropertyType() {
 		return tpropertyType;
 	}
 
-	public void setTpropertyType(TpropertyType tpropertyType) {
+	public void setTpropertyType(PropertyTypePOJO tpropertyType) {
 		this.tpropertyType = tpropertyType;
 	}
 
-	public Tuser getTuser() {
+	public UserPOJO getTuser() {
 		return tuser;
 	}
 
-	public void setTuser(Tuser tuser) {
+	public void setTuser(UserPOJO tuser) {
 		this.tuser = tuser;
 	}
 
-	public List<TpropertyComment> getTpropertyComments() {
+	public List<CommentsPOJO> getTpropertyComments() {
 		return tpropertyComments;
 	}
 
-	public void setTpropertyComments(List<TpropertyComment> tpropertyComments) {
+	public void setTpropertyComments(List<CommentsPOJO> tpropertyComments) {
 		this.tpropertyComments = tpropertyComments;
 	}
 
-	public List<TpropertyRating> getTpropertyRatings() {
+	public List<RatingPOJO> getTpropertyRatings() {
 		return tpropertyRatings;
 	}
 
-	public void setTpropertyRatings(List<TpropertyRating> tpropertyRatings) {
+	public void setTpropertyRatings(List<RatingPOJO> tpropertyRatings) {
 		this.tpropertyRatings = tpropertyRatings;
 	}
 

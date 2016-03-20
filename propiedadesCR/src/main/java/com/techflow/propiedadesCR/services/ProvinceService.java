@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.techflow.propiedadesCR.ejb.Tcounty;
 import com.techflow.propiedadesCR.ejb.Tprovince;
 import com.techflow.propiedadesCR.pojo.CountyPOJO;
 import com.techflow.propiedadesCR.pojo.ProvincePOJO;
@@ -29,10 +30,6 @@ public class ProvinceService implements ProvinceServiceInterface {
 	 * Atributo de acceso al repositorio de las provincias.
 	 */
 	@Autowired private ProvinceRepository provinceRepository;
-	/**
-	 * Atributo de la interfaz de los cantones.
-	 */
-	@Autowired private CountiesServiceInterface countyService;
 	
 	/**
 	  * Retorna una lista de objetos ProvincePOJO
@@ -58,11 +55,27 @@ public class ProvinceService implements ProvinceServiceInterface {
 		pProvinces.stream().forEach(u ->{
 			ProvincePOJO dto = new ProvincePOJO();
 			BeanUtils.copyProperties(u, dto);
-			dto.setTcounties(null);
-			dto.setTproperties(null);
+			dto.setTcounties(countiesDtos(u.getTcounties()));
 			uiProvinces.add(dto);
 		});
 		return uiProvinces;
+	}
+	
+	/**
+	  * Toma los cantones de los ejbs y los convierte en POJOs.
+	  * 
+	  * @param pCounties Lista de ejb de cantones. No debe ser nula.
+	  * @return countyList Todas las entidades de tipo POJO.
+	  */
+	private List<CountyPOJO> countiesDtos(List<Tcounty> pCounties) {
+		List<CountyPOJO> countyList = new ArrayList<CountyPOJO>();
+		
+		pCounties.stream().forEach(u ->{
+			CountyPOJO dto = new CountyPOJO();
+			BeanUtils.copyProperties(u, dto);
+			countyList.add(dto);
+		});
+		return countyList;
 	}
 
 	/**
