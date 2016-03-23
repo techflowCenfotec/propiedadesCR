@@ -29,7 +29,8 @@
 			,"templates/banktodolistView/banktodolistAdminList"
 			,"templates/banktodolistView/banktodolistCreate"
 			,"templates/banktodolistView/banktodolistAdminItems"
-			
+			,"templates/banktodolistView/banktodolistModify"
+
 			,"templates/testView/testFlow"
 			,"templates/testView/matchedPropertiesList"
 			,"templates/propertiesView/propertiesCreate"

@@ -1,0 +1,62 @@
+<section class="page-form-ele page" ng-controller="banktodolistCreateController">
+<div class="row ui-section">
+        <div class="col-lg-8 clearfix"> <h2 class="section-header">Modificar to-do list</h2> </div>
+        <div class="col-md-12">
+            <section class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+
+                            <div layout="column" ng-cloak class="md-inline-form">
+                                <div layout-padding>
+                                    <form name="form_banktodolistCreate" class="form-validation" novalidate data-ng-submit="submitForm($event)">
+                                       
+                                        
+                                    
+                                        </md-input-container>
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex>
+                                                <label>Nombre</label>
+                                                <input type="text"
+                                            class="form-control"
+                                            required
+                                            name="type_something"
+                                            data-ng-trim='false'
+                                            data-ng-model="form.name">
+                                            </md-input-container>
+
+                                            
+                                            <md-input-container flex>
+                                                <label>Banco</label>
+                                                    <md-select ng-model="form.bank" aria-label="select" required>
+                                                    <md-option ng-repeat="bank in banks" value="{{bank.idBank}}"> {{bank.name}} </md-option>
+                                                    </md-select>
+                                            </md-input-container>
+                                          </div>
+                                          <div layout layout-sm="column">
+                                          <md-input-container flex>
+                                                <label>Descripción</label>
+                                                <input type="text"
+                                            class="form-control"
+                                            required
+                                            name="type_something"
+                                            data-ng-trim='false'
+                                            data-ng-model="form.description">
+                                            </md-input-container>
+                                          </div>
+                                          <md-button type="submit"
+                                class="btn btn-primary btn-w-md"
+                                data-ng-disabled="!canSubmit()">Modificar</md-button>
+                                    </form>
+
+                                    <div class="alert alert-info" data-ng-show="showInfoOnSubmit">Se ha modificado el to-do list</div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>    
+        </div>
+    </div>
+</section>

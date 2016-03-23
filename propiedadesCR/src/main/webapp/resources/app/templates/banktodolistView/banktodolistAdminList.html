@@ -57,8 +57,13 @@
                 <th><div class="th">
                 Generar To-Do List
                 </div></th>
+
                 <th><div class="th">
-                Consultar
+                Modificar
+                </div></th>
+                
+                <th><div class="th">
+                Administrar
                 </div></th>
                 
             </tr>
@@ -70,6 +75,7 @@
                 <td>{{todolist.description}}</td>
                 <td>{{todolist.tbank.name}}</td>
                 <td><button class="btn btn-info" data-ng-click="generateUserToDoList(todolist.idtBank_to_do_list)">Generar</button></td>
+                <td><button class="btn btn-info" data-ng-click="modifyToDoList(todolist.idtBank_to_do_list)">Modificar</button></td>
                 <td><button class="btn btn-info" data-ng-click="consultToDoList(todolist.idtBank_to_do_list)">Seleccionar</button></td>
             </tr>
             </tbody>

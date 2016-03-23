@@ -62,6 +62,7 @@ public class BankToDoListService implements BankToDoListServiceInterface{
 		BeanUtils.copyProperties(pbankToDoListRequest.getBankToDoList(), bankToDoList);
 		bankToDoList.setTbank(new Tbank());
 		BeanUtils.copyProperties(pbankToDoListRequest.getBankToDoList().getTbank(), bankToDoList.getTbank());
+		bankToDoList.setActive((byte) 1);
 
 		TbankToDoList newBankToDoList = bankToDoListRepository.save(bankToDoList);
 		return newBankToDoList;

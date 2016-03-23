@@ -20,6 +20,8 @@
 	     $http.post(toDoListLink,toDoListrequest).success(function(response){
 	     	//console.log(response);
 	     	$scope.items = response.bankToDoList[0].tbankItems;
+	     	localStorage.setItem('idToDoList',undefined);
+	     	//console.log(localStorage.getItem('idToDoList'));
 	     });
 
 
@@ -45,7 +47,7 @@
 	        $scope.showInfoOnSubmit = true;
 	        $timeout(function() {
 		                $scope.showInfoOnSubmit = false;
-		    }, 5000);
+		    }, 3000);
 	        return revert();
 	    };
 	    
