@@ -14,6 +14,7 @@
 package com.techflow.propiedadesCR.controllers;
 
 import java.io.IOException;
+import java.sql.DriverManager;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Properties;
@@ -35,8 +36,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.techflow.propiedadesCR.contracts.PasswordRequest;
-import com.techflow.propiedadesCR.contracts.PasswordResponse;
+import com.mysql.jdbc.Connection;
+import com.techflow.propiedadesCR.contracts.BaseResponse;
 import com.techflow.propiedadesCR.contracts.RolesRequest;
 import com.techflow.propiedadesCR.contracts.RolesResponse;
 import com.techflow.propiedadesCR.contracts.UsersRequest;
@@ -242,6 +243,25 @@ public class LocalController {
 			rolesResponse.setCodeMessage("roles fetch success");
 			rolesResponse.setRole(rolesService.getAll(prolesRequest)); 
 			return rolesResponse;		
+		}
+		
+		
+		@RequestMapping(value="/checkDB", method= RequestMethod.GET)
+		public BaseResponse checkDB(){
+			BaseResponse response = new BaseResponse();
+		Connection connection = null;
+		try {
+		    connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/propiedades_sch", "root", "mjjv");
+		    response.setCode(200);
+		    return response;
+		} catch (Exception e) {
+			response.setCode(500);
+		   return response;
+		} finally {
+		    if (connection != null) try { connection.close(); } catch (Exception ignore) {}
+		}
+				
+		
 		}
 
 }

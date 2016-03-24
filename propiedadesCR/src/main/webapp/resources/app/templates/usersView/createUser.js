@@ -38,7 +38,7 @@
 						validate();
 						
 						function validate(){
-						$http.get("rest/database/checkDB").success(function(data){
+						$http.get("rest/protected/database/checkDB").success(function(data){
 							if(data.code!==200){
 								var path = "#/templates/errorsView/500";
 								

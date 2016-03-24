@@ -5,17 +5,8 @@
 		.controller('listUsersController',['$scope','$filter','$http',function($scope,$filter,$http){
 		
 	
-		validate();
 		
-		function validate(){
-		$http.get("rest/database/checkDB").success(function(data){
-			if(data.code!==200){
-				var path = "#/templates/errorsView/500";
-				
-    			window.location.href = path;
-			}
-		});
-		}	
+	
 		
 		$scope.users=[];
         $scope.searchKeywords = '';
@@ -31,9 +22,21 @@
         $scope.numPerPage = $scope.numPerPageOpt[2];
         $scope.currentPage = 1;
         $scope.currentPage = [];
-		
+
+		validate();
         
         
+        
+    	function validate(){
+    		$http.get("rest/protected/database/checkDB").success(function(data){
+    			if(data.code!==200){
+    				console.log("error en bd");
+    				var path = "#/templates/errorsView/500";
+    				
+        			window.location.href = path;
+    			}
+    		});
+    		}	
         
         var link = 'rest/protected/users/getAll';
 		var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","user": {}};
