@@ -35,6 +35,7 @@
 			,"templates/errosView/500"
 
 			,"templates/guidesView/createGuide"
+			,"templates/guidesView/consultGuide"
 			,"templates/propertiesView/propertyView"
 			,"templates/permissionsViews/adminView"
 			,"templates/roleView/editRoles"

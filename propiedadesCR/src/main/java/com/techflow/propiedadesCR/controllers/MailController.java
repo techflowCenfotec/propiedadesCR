@@ -10,6 +10,9 @@ package com.techflow.propiedadesCR.controllers;
 import javax.mail.*;
 import javax.mail.internet.*;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,9 +36,14 @@ public class MailController {
 	 * @exception IOException Esta excepción se lanza cuando ocurre un error al enviar el correo.
 	 */
 	
+	//@Autowired  private Environment env;
+	@Value("${mail.username}")
+	private String propiedadesCR;
+	
 	@RequestMapping(value="/sendEmail", method = RequestMethod.POST)
 	public void sendEmail(@RequestBody MailRequest pmailInformation){
-		  
+			
+			System.out.println(propiedadesCR);
 		  EventPOJO event = pmailInformation.getEventP();
 		  
 	      String to = pmailInformation.getUserEmail();
@@ -76,16 +84,10 @@ public class MailController {
 	         message.setSubject("Información de evento");
 
 	         
-<<<<<<< HEAD
-	         message.setText("Buenas, \n"
-	         		+ "\n En el presente correo encontrará la información del evento"
-	         		+ "\n Lugar: "+event.getAddress().toString()
-=======
 	         message.setText("Gracias por utilizar PropiedadesCR, \n"
 	         		+ "\n A continuación encontrará la información del evento"
-	         		+ "\n Lugar: "+"por definir"
->>>>>>> f0756ae63dc4aa453378c0b2ce6bb17ebdfdb277
-	         		+ "\n Fecha:"+ event.getStartDate().toString()
+	         		+ "\n Lugar: "+event.getAddress().toString()
+                    + "\n Fecha:"+ event.getStartDate().toString()
 	         		//+ "\n Hora: "+ "por definir"
 	         		+ "\n Descripción del evento:"+ event.getDescription()
 	         		+ "\n Gracias por utilizar la aplicación PropiedadesCR");

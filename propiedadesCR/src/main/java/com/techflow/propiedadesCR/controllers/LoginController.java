@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -30,7 +31,9 @@ import com.techflow.propiedadesCR.services.LoginServiceInterface;
 @RestController
 @RequestMapping(value="rest/login")
 public class LoginController {
-
+	
+	@Value("${mail.username}")
+	private String gerardo;
 	/** 
      * Este objeto proporciona los diferentes servicios para el login.
      */
@@ -49,6 +52,9 @@ public class LoginController {
 	    */	
 	@RequestMapping(value="/checkUser", method = RequestMethod.POST)
 	public LoginResponse getCheckedUser(@RequestBody LoginRequest ploginRequest) {
+		
+		System.out.println(gerardo);
+		
 		//HttpSession currentSession = httpRequest.getSession();
 		LoginResponse response = new LoginResponse();
 		

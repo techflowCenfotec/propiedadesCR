@@ -3,7 +3,7 @@
 
 	angular.module("app.eventConsult",[])
 
-	.controller('EventConsultController', ['$scope','$http','$rootScope','$mdDialog',NgMap,
+	.controller('EventConsultController', ['$scope','$http','$rootScope','$mdDialog','NgMap',
 	                                       function($scope,$http,$rootScope,$mdDialog,NgMap) {
 		
 		$scope.event={};
