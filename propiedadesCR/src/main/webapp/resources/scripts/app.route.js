@@ -65,10 +65,10 @@
 		$urlRouterProvider.when("/","/home")
 		.otherwise("/home"); 
 
-//		$stateProvider.state( "home", {
-//			url:"/home",
-//			templateUrl:"resources/app/templates/homeView/home.html"
-//		});
+		$stateProvider.state( "home", {
+			url:"/home",
+			templateUrl:"resources/app/templates/homeView/home.html"
+		});
 		$provide.factory('responseHttpInterceptor', function($q) {
 			  return {
 			    response: function(response) {
