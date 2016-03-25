@@ -14,10 +14,11 @@
 	        bank: ''
 	    };
 
+ 		var idToDoList = localStorage.getItem('idToDoList');
 
-	    if(localStorage.getItem('idToDoList')!=undefined){
+
+	    if(idToDoList!='undefined'){
 	    	////todo list
-   			var idToDoList = localStorage.getItem('idToDoList');
 		    var toDoListLink = 'rest/protected/banktodolist/getById';
 		    var toDoListrequest = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","bankToDoList": {"idtBank_to_do_list": idToDoList }};
 		    		 
@@ -31,9 +32,7 @@
 		     	$scope.form.bank = bankToDoList.tbank.idBank;
 		     	modify = true;
 		     });
-	    }
-
-
+	    };
 
 
 	    ////lista de bancos

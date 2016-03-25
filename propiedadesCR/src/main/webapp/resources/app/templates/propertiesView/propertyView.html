@@ -1,4 +1,114 @@
 <section class="page-form-ele page" ng-controller="PropViewController">
+
+<div class="row ui-section">
+        <div class="col-lg-8 clearfix">
+            <h2 class="section-header">Financiamiento</h2>
+        </div>
+        <div class="col-md-12">
+            <section class="panel panel-default">
+                <div class="panel-body padding-xl" data-ng-controller="ModalDemoCtrl">
+                    <div class="col-lg-8 col-lg-offset-2">
+
+
+
+                        <script type="text/ng-template" id="myModalContent.html">
+                            <div class="modal-header">
+                                <h3>Calculo del préstamo</h3>
+                            </div>
+                            <div class="modal-body">
+
+                                <div layout="column" ng-cloak class="md-inline-form">
+                                <div layout-padding>
+                                    <form name="form_banktodolistCreate" class="form-validation" novalidate data-ng-submit="submitForm($event)">
+                                       
+                                        
+                                        </md-input-container>
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex>
+                                                <label>Precio de la casa</label>
+                                                <input type="text"
+                                            class="form-control"
+                                            required
+                                            name="type_something"
+                                            data-ng-trim='false'
+                                            data-ng-model="form.amount">
+                                            </md-input-container>
+
+                                          </div>
+                                          <div layout layout-sm="column">
+                                          <md-input-container flex>
+                                                <label>Monto mínimo de la prima</label>
+                                                <input type="text"
+                                            class="form-control"
+                                            disabled
+                                            name="type_something"
+                                            data-ng-trim='false'
+                                            data-ng-model="form.minAmount">
+                                            </md-input-container>
+                                          </div>
+                                          <div layout layout-sm="column">
+                                          <md-input-container flex>
+                                                <label>Cuota aproximada</label>
+                                                <input type="text"
+                                            class="form-control"
+                                            disabled
+                                            name="type_something"
+                                            data-ng-trim='false'
+                                            data-ng-model="form.quota">
+                                            </md-input-container>
+                                          </div>
+                                          <div layout layout-sm="column">
+                                          <md-input-container flex>
+                                                <label>Monto a financiar</label>
+                                                <input type="text"
+                                            class="form-control"
+                                            disabled
+                                            name="type_something"
+                                            data-ng-trim='false'
+                                            data-ng-model="form.financingAmount">
+                                            </md-input-container>
+                                          </div>
+                                          <div layout layout-sm="column">
+                                          <md-input-container flex>
+                                                <label>Ingreso neto familiar</label>
+                                                <input type="text"
+                                            class="form-control"
+                                            disabled
+                                            name="type_something"
+                                            data-ng-trim='false'
+                                            data-ng-model="form.netFamilyIncome">
+                                            </md-input-container>
+                                          </div>
+                                          <button type="submit" ui-wave class="btn btn-primary btn-w-md"
+									data-ng-disabled="!canSubmit()" ng-click="calculate()">Calcular</button>
+
+
+                                    </form>
+                                    <div class="alert alert-warning">Recuerde que el cálculo es solo un estimado</div>
+                                </div>
+                            </div>
+
+
+                            </div>
+                            <div class="modal-footer">
+                                <button ui-wave class="btn btn-flat btn-primary" ng-click="cancel()">OK</button>
+                            </div>
+                        </script>
+
+
+
+                        <md-button class="md-raised btn-w-md md-primary" ng-click="open()">Calcular Financiamiento de la propiedad</md-button>
+                        <span class="space"></span>
+                        
+
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</section>
+
+<section class="page-form-ele page" ng-controller="PropViewController">
     <div class="row ui-section">
         <div class="col-lg-8 clearfix"> <h2 class="section-header">Propiedad en {{property.tdistrict.name}}</h2> </div>
         <div class="col-md-12">
