@@ -26,7 +26,10 @@
 			,"templates/roleView/roles"
 			,"templates/roleView/addRoles"
 			,"templates/banktodolistView/banktodolistList"
+			,"templates/banktodolistView/banktodolistAdminList"
 			,"templates/banktodolistView/banktodolistCreate"
+			,"templates/banktodolistView/banktodolistAdminItems"
+			
 			,"templates/testView/testFlow"
 			,"templates/testView/matchedPropertiesList"
 			,"templates/propertiesView/propertiesCreate"

@@ -1,5 +1,5 @@
-<div class="page page-table" data-ng-controller="permissionsController" > 
-    <div class="nav-wrapper">
+ 
+    <div class="nav-wrapper" data-ng-controller="permissionsController">
         <ul id="nav" 
         class="nav"
         data-slim-scroll
@@ -9,44 +9,63 @@
             <li ng-show="showPrincipal"><a md-button aria-label="meanu" href="#"><i class="zmdi zmdi-menu"></i>
                 <span>Principal</span></a>
                 <ul>
-                    <li><a md-button aria-label="meanu" href="#/form/elements"><i class="fa fa-circle color-success"></i><span>Lorem Ipsum</span></a></li>
+                    <li  ng-show="showPrincipalAdmin"><a md-button aria-label="meanu" href="#/templates/banktodolistView/banktodolistCreate"><i class="fa fa-circle color-success"></i><span>Agregar To-do List</span></a></li>
                 </ul>
                 <ul>
-                    <li><a md-button aria-label="meanu" href="#/form/elements"><i class="fa fa-circle color-success"></i><span>Lorem Ipsum</span></a></li>
+                    <li><a md-button aria-label="meanu" href="#/templates/banktodolistView/banktodolistList"><i class="fa fa-circle color-success"></i><span>Ver To-do List</span></a></li>
+                </ul>
+                <ul>
+                    <li><a md-button aria-label="meanu" href="#/templates/banktodolistView/banktodolistAdminList"><i class="fa fa-circle color-success"></i><span>Ver To-do List Admin</span></a></li>
+                </ul>
+                <ul>
+                    <li  ng-show="showPrincipal"><a md-button aria-label="meanu" href="#/templates/testView/testFlow"><i class="fa fa-circle color-success"></i><span>Propiedades Personalizadas</span></a></li>
+                </ul>
+                <ul>
+                    <li  ng-show="showPrincipalAdmin"><a md-button aria-label="meanu" href="#/templates/guidesView/createGuide"><i class="fa fa-circle color-success"></i><span>Agregrar Guía de Banco</span></a></li>
                 </ul>
             </li>
   
             <li ng-show="showProperties"><a md-button aria-label="meanu" href="#"><i class="zmdi zmdi-home"></i>
                 <span>Propiedades</span></a>
+
                 <ul>
-                    <li><a md-button aria-label="meanu" href="#/form/elements"><i class="fa fa-circle color-success"></i><span>Lorem Ipsum</span></a></li>
+                    <li ng-hide="showRegisterProperty"><a md-button aria-label="meanu" href="#/templates/propertiesView/propertiesCreate"><i class="fa fa-circle color-success"></i><span>Registrar Propiedad</span></a></li>
                 </ul>
+
                 <ul>
-                    <li><a md-button aria-label="meanu" href="#/form/elements"><i class="fa fa-circle color-success"></i><span>Lorem Ipsum</span></a></li>
+                    <li><a md-button aria-label="meanu" href="#/templates/propertiesView/propertiesList"><i class="fa fa-circle color-success"></i><span>Ver Propiedades</span></a></li>
                 </ul>
             </li>
 
             <li ng-show="showEvents"><a md-button aria-label="meanu" href="#"><i class="zmdi zmdi-local-bar"></i>
                 <span>Eventos</span> </a>
                 <ul>
-                    <li><a md-button aria-label="meanu" href="#/form/elements"><i class="fa fa-circle color-success"></i><span>Lorem Ipsum</span></a></li>
-                </ul>
+
                 <ul>
-                    <li><a md-button aria-label="meanu" href="#/form/elements"><i class="fa fa-circle color-success"></i><span>Lorem Ipsum</span></a></li>
+                    <li ng-hide="showEventsCreate"><a md-button aria-label="meanu" href="#/templates/eventsView/createEvent"><i class="fa fa-circle color-success"></i><span>Agregar Evento</span></a></li>
+                </ul>
+                    <li ng-show="showEventsAdmin"><a md-button aria-label="meanu" href="#/templates/eventsView/eventListAdmin"><i class="fa fa-circle color-success"></i><span>Ver Eventos</span></a></li>
+                </ul>
+
+                <ul>
+                    <li><a md-button aria-label="meanu" href="#/templates/eventsView/eventsList"><i class="fa fa-circle color-success"></i><span>Lista de Eventos</span></a></li>
                 </ul>
             </li>
 
             <li ng-show="showUsers"><a md-button aria-label="meanu" href="#"><i class="zmdi zmdi-account"></i>
                 <span>Usuarios</span></a>
                 <ul>
+                    <li class="li-small"><a href="#/templates/usersView/createUser"><i class="fa fa-circle color-success"></i> <span>Agregar Usuarios</span></a></li>
+                <ul>
+                    <li><a md-button aria-label="meanu" href="#/templates/usersView/usersList"><i class="fa fa-circle color-success"></i><span>Ver Usuarios</span></a></li>
+                </ul>
+
                     <li class="li-small"><a href="#/templates/roleView/roles"><i class="fa fa-circle color-success"></i> <span>Ver Roles</span></a></li>
                 </ul>
                 <ul>
                     <li><a md-button aria-label="meanu" href="#/templates/roleView/addRoles"><i class="fa fa-circle color-success"></i><span>Agregar Roles</span></a></li>
                 </ul>
-                <ul>
-                    <li><a md-button aria-label="meanu" href="#/templates/roleView/editRoles"><i class="fa fa-circle color-success"></i><span>Modificar Roles</span></a></li>
-                </ul>
+
             </li>
 
             <li ng-show="showSecurity"><a md-button aria-label="meanu" href="#"><i class="zmdi zmdi-lock"></i>
@@ -70,4 +89,3 @@
             </li>
         </ul>
 </div>
-</div> 
