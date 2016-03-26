@@ -132,5 +132,14 @@ public class BankToDoListService implements BankToDoListServiceInterface{
 		return bankTodoList;
 	}
 
+	@Override
+	public Boolean deleteItem(int pid) {
+		if(	bankToDoListItemRepository.exists(pid)){	
+			bankToDoListItemRepository.delete(pid);
+			return true;
+		}		
+		return false;
+	}
+
 
 }

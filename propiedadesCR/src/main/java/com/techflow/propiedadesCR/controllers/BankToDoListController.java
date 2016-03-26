@@ -14,6 +14,7 @@ import com.techflow.propiedadesCR.contracts.BankToDoListItemRequest;
 import com.techflow.propiedadesCR.contracts.BankToDoListItemResponse;
 import com.techflow.propiedadesCR.contracts.BankToDoListRequest;
 import com.techflow.propiedadesCR.contracts.BankToDoListResponse;
+import com.techflow.propiedadesCR.contracts.EventsResponse;
 import com.techflow.propiedadesCR.ejb.TbankItem;
 import com.techflow.propiedadesCR.ejb.TbankToDoList;
 import com.techflow.propiedadesCR.pojo.BankToDoListItemPOJO;
@@ -116,5 +117,26 @@ public class BankToDoListController {
 		
 		return response;
 	}
+	
+	/**
+	  * Este metodo sirve para levantar un to-do list especifico con sus items
+	  * @param pbankToDoListItemRequest Este parametro es la peticion del front-end
+	  * que se usa para obtener el id del to-do list a consultar
+	  * @return response Resultado de la peticion
+	  */
+	@RequestMapping(value ="/deleteItem", method = RequestMethod.DELETE)
+	public BankToDoListItemResponse delete(@RequestParam("id")  int pid){
+		
+		BankToDoListItemResponse response = new BankToDoListItemResponse();
+		Boolean state = bankToDoListService.deleteItem(pid);
+		
+		if(state){
+			response.setCode(200);
+			response.setCodeMessage("item delete success");
+			
+		}
+		return response;
+	}
+	
 	
 }
