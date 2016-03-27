@@ -56,6 +56,7 @@ function() {
 
 		,"app.properties.create"
 		,"app.properties.view"
+		,'app.properties.compare'
 		//3rd Party Modules
 		,"ngMaterial"
 		,"ui.bootstrap"

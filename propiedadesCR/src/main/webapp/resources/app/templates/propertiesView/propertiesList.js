@@ -7,46 +7,86 @@
 	
 	function PropertiesListController($scope, $http) {
 		 $scope.propertiesList = [];
-		 
+		 $scope.compareList = [];
 		
 		$scope.init = function() {
+			var user = 1;
+			
 			$http.get('rest/protected/properties/getAll')
 			.success(function(response) {
 				$scope.propertiesList = response.properties;
+				
+				$http.get('rest/protected/users/getUserById/' + user)
+				.success(function(response) {
+					for (var i = 0; i < response.user.tproperties2.length; i++) {
+						if(response.user.tproperties2[i].idProperty == $scope.propertiesList[i].idProperty) {
+							$scope.heart = !$scope.heart;
+						}
+					}
+				});
 			});
-			
 		};
 		
 		$scope.init();
 		
+		// Stores property id for comparison inside array
+		$scope.compareProperty = function(pIdProperty) {
+			var idx = $scope.compareList.indexOf(pIdProperty);
+			if (idx > -1) $scope.compareList.splice(idx, 1);
+			else if ($scope.compareList.length < 2) $scope.compareList.push(pIdProperty);
+		}
+		
+		// Change button color if selected
+		$scope.selected = function(pIdProperty) {
+			var idx = $scope.compareList.indexOf(pIdProperty);
+			if (idx > -1) return "btn btn-success";
+			else if ($scope.compareList.length < 2) return "btn btn-info";
+		}
+		
+		// Sends data to compare screen
+		$scope.compare = function() {
+			localStorage.setItem("properties", JSON.stringify($scope.compareList));
+			if ($scope.compareList.length < 2) return "btn btn-primary disabled"
+			else return "btn btn-primary"
+		}
+		
+		// Stores single id value
 		$scope.viewProperty = function(pIdProperty) {
 			localStorage.setItem('idProperty', pIdProperty);
 		}
 		
 		$scope.addToFavorites = function(pIdProperty) {
 			var favorites = [];
-			
-			$http.get('rest/protected/users/getUserById/' + 1)
-			.success(function(response) {
-				favorites = response.user.tproperties2;
-				console.log(favorites);
-			});
-			
-			for (var i = 0; i < favorites.length; i++) {
-				if (favorites[i].idProperty) {
-					
-				}
-			}
-			
-			// Cambiar a UserLogged
-//			var bd = 'rest/protected/users/addToFavorite/' + 1;
+			var user = 1;
+			// $rootScope.userLogged.idUser
+			var db = 'rest/protected/users/addToFavorite/' + user;
+			var dbRemove = 'rest/protected/users/removeFavorite/' + user;
 			var data = {
 				"idProperty": pIdProperty	
 			};
 			
-//			$http.put(bd, data)
-//			.success(function(response) {
-//			});
+			$http.get('rest/protected/users/getUserById/' + user)
+			.success(function(response) {
+				favorites = response.user.tproperties2;
+				$scope.heart = !$scope.heart;
+				
+				if (favorites.length == 0) {
+					$http.put(db, data)
+					.success(function(response) {});
+				} else {
+					for (var i = 0; i < favorites.length; i++) {
+						if (favorites[i].idProperty == pIdProperty) {
+							$http.put(dbRemove, data)
+							.success(function(response) {
+								$scope.heart = false;
+							});
+						} else {
+							$http.put(db, data)
+							.success(function(response) {});
+						}
+					}
+				}
+			});
 		}
 	}
 	

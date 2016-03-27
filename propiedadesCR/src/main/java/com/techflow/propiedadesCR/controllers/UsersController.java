@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.persistence.EntityManager;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
@@ -195,8 +196,8 @@ public class UsersController {
 		  * Envía la información a agregar a la base de datos por medio de su servicio. 
 		  * 
 		  * @param pProperty Ejb que contiene la información de la entidad que
-		  * se desea crear.
-		  * @param pIdProperty Id de la propiedad. No debe ser nulo.
+		  * se desea agregar a favoritos.
+		  * @param pIdUser Id del usuario. No debe ser nulo.
 		  * @return response La entidad del objeto actualizado.
 		  */
 		@RequestMapping(value="addToFavorite/{pIdUser}", method = RequestMethod.PUT)
@@ -211,11 +212,43 @@ public class UsersController {
 			
 			user.setTproperties2(properties);
 			
-			Tuser nUser = usersService.addToFavorite(user);
+			Tuser nUser = usersService.updateFavorites(user);
 			
 			if (nUser != null) {
 				response.setCode(200);
 				response.setCodeMessage("Property added to favorites");
+			}
+			
+			return response;
+		}
+		
+		/**
+		  * Envía la información a agregar a la base de datos por medio de su servicio. 
+		  * 
+		  * @param pProperty Ejb que contiene la información de la entidad que
+		  * se desea remover de favoritos.
+		  * @param pIdUser Id del usuario. No debe ser nulo.
+		  * @return response La entidad del objeto actualizado.
+		  */
+		@RequestMapping(value="removeFavorite/{pIdUser}", method = RequestMethod.PUT)
+		public UsersResponse removeFavorite(@RequestBody Tproperty pProperty,
+				@PathVariable int pIdUser) {
+			UsersResponse response = new UsersResponse();
+			
+			Tuser user = usersService.getUserByID(pIdUser);
+			List<Tproperty> properties = user.getTproperties2();
+			
+			for (int i = 0; i < properties.size(); i++) {
+				if (properties.get(i).getIdProperty() == pProperty.getIdProperty()) {
+					user.getTproperties2().remove(i);
+				}
+			}
+			
+			Tuser nUser = usersService.updateFavorites(user);
+			
+			if (nUser != null) {
+				response.setCode(200);
+				response.setCodeMessage("Property removed form favorites");
 			}
 			
 			return response;

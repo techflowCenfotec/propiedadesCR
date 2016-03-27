@@ -28,6 +28,7 @@
 			,"templates/testView/matchedPropertiesList"
 			,"templates/propertiesView/propertiesCreate"
 			,"templates/propertiesView/propertyView"
+			,"templates/propertiesView/propertiesCompare"
 		], 
 
 		t = function($urlRouterProvider) {
