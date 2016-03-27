@@ -3,9 +3,9 @@
 	
 	angular.module('app.properties.compare', [])
 	
-	.controller('CompareController', ['$scope', '$http', CompareController]);
+	.controller('CompareController', ['$scope', '$http', '$state', CompareController]);
 	
-	function CompareController($scope, $http) {
+	function CompareController($scope, $http, $state) {
 		$scope.properties = localStorage.getItem("properties");
 		$scope.property1 = {};
 		$scope.property2 = {};
@@ -20,7 +20,6 @@
 			$http.get(bdProp2)
 			.success(function(response) {
 				$scope.property2 = response.property;
-				console.log($scope.property2);
 			});
 		}
 		
@@ -29,6 +28,10 @@
 		// Stores single id value
 		$scope.viewProperty = function(pIdProperty) {
 			localStorage.setItem('idProperty', pIdProperty);
+		}
+		
+		$scope.cancel = function() {
+			$state.go('templates/propertiesView/propertiesList');
 		}
 	}
 })();

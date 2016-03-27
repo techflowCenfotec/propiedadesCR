@@ -8,6 +8,7 @@
 	function PropertiesListController($scope, $http) {
 		 $scope.propertiesList = [];
 		 $scope.compareList = [];
+		 $scope.favorites = [];
 		
 		$scope.init = function() {
 			var user = 1;
@@ -19,9 +20,7 @@
 				$http.get('rest/protected/users/getUserById/' + user)
 				.success(function(response) {
 					for (var i = 0; i < response.user.tproperties2.length; i++) {
-						if(response.user.tproperties2[i].idProperty == $scope.propertiesList[i].idProperty) {
-							$scope.heart = !$scope.heart;
-						}
+						$scope.favorites.push(response.user.tproperties2[i].idProperty);
 					}
 				});
 			});
@@ -55,8 +54,13 @@
 			localStorage.setItem('idProperty', pIdProperty);
 		}
 		
+		$scope.checkFavorites = function(pIdProperty) {
+			var idx = $scope.favorites.indexOf(pIdProperty);
+			if (idx > -1) return "btn btn-danger";
+			else return "btn btn-default"
+		}
+		
 		$scope.addToFavorites = function(pIdProperty) {
-			var favorites = [];
 			var user = 1;
 			// $rootScope.userLogged.idUser
 			var db = 'rest/protected/users/addToFavorite/' + user;
@@ -67,22 +71,19 @@
 			
 			$http.get('rest/protected/users/getUserById/' + user)
 			.success(function(response) {
-				favorites = response.user.tproperties2;
-				$scope.heart = !$scope.heart;
-				
-				if (favorites.length == 0) {
+				if ($scope.favorites.length == 0) {
 					$http.put(db, data)
 					.success(function(response) {});
 				} else {
-					for (var i = 0; i < favorites.length; i++) {
-						if (favorites[i].idProperty == pIdProperty) {
+					for (var i = 0; i < $scope.favorites.length; i++) {
+						if ($scope.favorites[i] == pIdProperty) {
 							$http.put(dbRemove, data)
 							.success(function(response) {
-								$scope.heart = false;
 							});
 						} else {
 							$http.put(db, data)
-							.success(function(response) {});
+							.success(function(response) {
+							});
 						}
 					}
 				}
