@@ -3,9 +3,9 @@
 	
 	angular.module('app.properties.create', [])
 	
-	.controller('CreatePropController', ['$scope', '$http', '$upload', 'NgMap', CreatePropController]);
+	.controller('CreatePropController', ['$scope', '$http', '$upload', 'NgMap', '$state', CreatePropController]);
 
-	function CreatePropController($scope, $http, $upload, NgMap) {
+	function CreatePropController($scope, $http, $upload, NgMap, $state) {
 		
 		var original;
 		var self = this;
@@ -136,6 +136,12 @@
 		$scope.canAddImg = function(length) {
 			return length >= 5;
 		};
+		
+		// Routes to list view on cancel
+		$scope.cancel = function() {
+			$state.go('templates/testView/matchedPropertiesList');
+		}
+		
         //Submits new property information
 		$scope.saveProperty = function(event, $files) {
 			if(this.propertiesForm.$valid) {
