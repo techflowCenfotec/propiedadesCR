@@ -38,10 +38,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.techflow.propiedadesCR.contracts.MailRequest;
+import com.techflow.propiedadesCR.contracts.PropertiesResponse;
 import com.techflow.propiedadesCR.contracts.UsersRequest;
 import com.techflow.propiedadesCR.contracts.UsersResponse;
 import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.Tuser;
+import com.techflow.propiedadesCR.pojo.EventPOJO;
 import com.techflow.propiedadesCR.pojo.UserPOJO;
 
 import com.techflow.propiedadesCR.services.UsersServiceInterface;
@@ -114,6 +117,8 @@ public class UsersController {
       * @param pphone2 Teléfono alternativo del usuario.
       * @param pemail Correo del usuario.
       * @param ppassword Contraseña del usaurio.
+      * @param pbirthday Fecha de nacimiento del usuario.
+	  * @param pgender Género del usuario.
       * 
 	  * @return userResponse Retorna la respuesta del servicio hacia el frontend.
 	  *
@@ -231,7 +236,9 @@ public class UsersController {
 	      * @param pphone2 Teléfono alternativo del usuario.
 	      * @param pemail Correo del usuario.
 	      * @param ppassword Contraseña del usaurio.
-	      * 
+	      * @param pbirthday Fecha de nacimiento del usuario.
+	      * @param pgender Género del usuario.
+	      *
 		  * @return userResponse Retorna la respuesta del servicio hacia el frontend.
 		  *
 		  * @throws ParseException Esta exepción se lanza cuando el sistema es incapaz de transformar
