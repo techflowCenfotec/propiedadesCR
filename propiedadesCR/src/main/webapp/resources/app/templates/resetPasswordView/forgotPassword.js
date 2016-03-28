@@ -22,7 +22,7 @@
 				  "userEmail": $scope.form.email,
 				};
 		
-			   $http.post('rest/protected/password/sendEmail',req).success(function(data){
+			   $http.post('rest/password/sendEmail',req).success(function(data){
 				   $rootScope.$broadcast('preloader:active');
 				   if(data.code==200){
 				   localStorage.setItem('changePass', data.idUser);

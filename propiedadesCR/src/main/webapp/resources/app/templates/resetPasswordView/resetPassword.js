@@ -10,7 +10,7 @@
 				password:'',
 				confirmPassword:''
 		}
-		var link = 'rest/protected/password/changePassword';
+		var link = 'rest/password/changePassword';
 		
 	
 		
