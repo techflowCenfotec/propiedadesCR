@@ -79,11 +79,11 @@
                                             <md-chips ng-model="ctrl.tags" readonly="ctrl.readonly"
 				                                    delete-button-label="Eliminar etiqueta"
 				                                    md-transform-chip="ctrl.transformChip($chip)"
-				                                    secondary-placeholder="+Beneficios"
+				                                    secondary-placeholder="Características de la propiedad"
 				                                    md-require-match="true" required>
 				                                    <md-autocomplete md-selected-item="ctrl.selectedItem" md-search-text="requestObject.searchText" 
 				                                    md-items="item in querySearch(requestObject.searchText)" md-item-text="item.benefit" 
-				                                    placeholder="Ingrese un beneficio">
+				                                    placeholder="Características">
 					                                    <span md-highlight-text="requestObject.searchText">
 					                                    	{{item.benefit}}
 					                                    </span>

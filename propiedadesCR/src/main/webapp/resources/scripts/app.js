@@ -63,6 +63,7 @@ function() {
 		,"app.properties.create"
 		,"app.properties.view"
 		,'app.properties.compare'
+		,"app.properties.myProperties"
 		,"app.permissionsManagment"
 		,"app.editRoles"
 		

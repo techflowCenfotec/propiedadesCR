@@ -14,4 +14,5 @@ public interface PropertiesServiceInterface {
 	Tproperty getPropertyById(int pIdProperty);
 	PropertyPOJO getByPropertyId(int pIdProperty);
 	Tproperty saveProperty(PropertiesRequest pProperty);
+	void deleteProperty(Tproperty pProperty);
 }

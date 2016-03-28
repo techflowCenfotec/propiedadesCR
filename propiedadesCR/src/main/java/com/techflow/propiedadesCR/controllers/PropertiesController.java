@@ -148,4 +148,19 @@ public class PropertiesController {
 		ArrayList<PropertyPOJO> propertiesWithBenefits = propertiesService.getPropertiesWithBenefits();
 		return propertiesWithBenefits;
 	}
+	
+	/**
+	 * Actualiza el estado de la propiedad de activo a inactivo. Realiza un borrado
+	 * lógico de la propiedad para propósitos de reportes sobre las propiedades
+	 * vendidas.
+	 * 
+	 * @param pIdProperty Id de la propiedad. No debe ser nulo.
+	 */
+	@RequestMapping(value="delete/{pIdProperty}", method=RequestMethod.PUT)
+	public void deleteProperty(@PathVariable int pIdProperty) {
+		Tproperty property = propertiesService.getPropertyById(pIdProperty);
+		property.setActive((byte)0);
+		
+		propertiesService.deleteProperty(property);
+	}
 }

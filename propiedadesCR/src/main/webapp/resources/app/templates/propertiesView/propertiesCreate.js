@@ -139,7 +139,7 @@
 		
 		// Routes to list view on cancel
 		$scope.cancel = function() {
-			$state.go('templates/testView/matchedPropertiesList');
+			$state.go('templates/propertiesView/propertiesList');
 		}
 		
         //Submits new property information
@@ -184,7 +184,6 @@
 						}
 						$scope.showInfoOnSubmit= true;
 						return revert();
-				}).error(function(err) {
 				});
 			}
 		}

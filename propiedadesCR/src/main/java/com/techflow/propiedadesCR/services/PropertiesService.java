@@ -239,4 +239,15 @@ public class PropertiesService implements PropertiesServiceInterface {
 		
 		return uiProperties;
 	}
+	
+	/**
+	 * Actualiza el estado de la propiedad de activo a inactivo para
+	 * propósitos de reportes de las propiedades.
+	 * 
+	 */
+	@Override
+	@Transactional
+	public void deleteProperty(Tproperty pProperty) {
+		propertiesRepository.save(pProperty);
+	}
 }
