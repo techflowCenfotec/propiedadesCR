@@ -54,6 +54,9 @@
                     data-ng-click=" order('-tbank.name') "
                     data-ng-class="{active: row == '-tbank.name'}"></span>
                 </div></th>
+                <th><div class="th">
+                Generar To-Do List
+                </div></th>
                 
             </tr>
             </thead>
@@ -63,6 +66,7 @@
                 <td>{{todolist.name}}</td>
                 <td>{{todolist.description}}</td>
                 <td>{{todolist.tbank.name}}</td>
+                <td><button class="btn btn-info" data-ng-click="generateUserToDoList(todolist.idtBank_to_do_list)">Generar</button></td>
             </tr>
             </tbody>
         </table>

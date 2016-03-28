@@ -21,7 +21,7 @@ import com.techflow.propiedadesCR.repositories.RatingRepository;
 * @since 16/3/2016
 */
 @Service
-public class RatingService implements RatingServiceInterface {
+ class RatingService implements RatingServiceInterface {
 
 	/**
 	 * Atributo de acceso al repositorio de las calificaciones de

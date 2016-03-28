@@ -9,7 +9,12 @@
 
 package com.techflow.propiedadesCR.controllers;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,11 +23,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import com.techflow.propiedadesCR.contracts.EventsRequest;
 import com.techflow.propiedadesCR.contracts.EventsResponse;
@@ -74,6 +74,8 @@ public class EventsController {
 	 * @param pname Se recibe el nombre del evento a registrar.
 	 * @param pdescription Se recibe la descripción del evento a registrar.
 	 * @param pstartDate Se recibe la fecha del evento a registrar.
+	 * @param paddress Se recibe la dirección del evento al registrar.
+	 * @param pcoordinates Se recibe las coordenadas del mapa al registrar evento.
 	 * @param pidUser Se recibe el identificador del usuario que registra el evento.
 	 * @return response Retorna la respuesta del BackEnd al FrondEnd
 	 * 
@@ -88,6 +90,8 @@ public class EventsController {
 			@RequestParam("name") String pname,
 			@RequestParam("description")String pdescription,
 			@RequestParam("start_date")String pstartDate,
+			@RequestParam("address")String paddress,
+			@RequestParam("coordinates") String pcoordinates,
 			@RequestParam("id_user")int pidUser){
 		 
 		Date startDate = new Date();
@@ -113,11 +117,13 @@ public class EventsController {
 			event.setDescription(pdescription);
 			event.setStartDate(startDate);
 			event.setEventImage(resultFileName);
-			event.setActive((byte)1);
+			event.setAddress(paddress);
+			event.setCoordinates(pcoordinates);
+		    event.setActive((byte)1);
 			EventsRequest eventRequest= new EventsRequest();
 			eventRequest.setEvent(event);
 			Tevent recentlyCreatedEvent = new Tevent();
-			recentlyCreatedEvent = eventsService.saveEvent(eventRequest);
+			recentlyCreatedEvent = eventsService.saveEvent(eventRequest,pidUser);
 		if(recentlyCreatedEvent!=null){
 			response.setCode(200);
 			response.setCodeMessage("Events created successful");
@@ -144,6 +150,27 @@ public class EventsController {
 		response.setEvent(eventsService.getById(pidEvent));
 		return response;
 	}
+	/*
+	 * Este método elimina el evento por medio del ide del evento recibido.
+	 * @param pid Id del evento.
+	 * @return response Se retorna la respuesta del BackEnd al FrondEnd.
+	 */
+	
+	@RequestMapping(value ="/delete", method = RequestMethod.DELETE)
+	public EventsResponse delete(@RequestParam("id")  int pid){
+		
+		EventsResponse response = new EventsResponse();
+		Boolean state = eventsService.deleteEvent(pid);
+		
+		if(state){
+			response.setCode(200);
+			response.setCodeMessage("events delete success");
+			
+		}
+		return response;
+	}
+	
+	
   }
  
 

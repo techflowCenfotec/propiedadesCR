@@ -4,7 +4,7 @@
 	angular.module('app.banktodolist', [])
 
 
-	.controller('banktodolistController',['$scope','$filter','$http',function($scope,$filter,$http){
+	.controller('banktodolistController',['$scope','$filter','$http','$location',function($scope,$filter,$http,$location){
 
 //datagrid
 		$scope.todolistList = [];
@@ -74,6 +74,32 @@
             $scope.search();
             return $scope.select($scope.currentPage);
         };
+
+        $scope.generateUserToDoList = function(pidToDoList){
+            var idUser = localStorage.getItem("idUser");
+
+            var generateLink = 'rest/protected/todolist/generateUserToDoList';
+            var toDoRequest ={
+                  "pageNumber": 0,
+                  "pageSize": 0,
+                  "direction": "string",
+                  "sortBy": [
+                    "string"
+                  ],
+                  "searchColumn": "string",
+                  "searchTerm": "string",
+                  "toDoList": {"idToDoList":pidToDoList, "tuser":{"idUser":idUser}} };
+
+            $http.post(generateLink,toDoRequest).success(function(response) {
+                //$scope.todolistList= response.bankToDoList;
+            });
+
+        };
+
+        $scope.consultToDoList = function(pidToDoList){
+            localStorage.setItem('idToDoList',pidToDoList);
+            $location.url("templates/banktodolistView/banktodolistAdminItems");
+        }
     
 	}]);
 

@@ -3,9 +3,9 @@
 
 	angular.module('app.properties',[])
 
-	.controller('PropertiesListController', ['$scope', '$http', PropertiesListController]);
+	.controller('PropertiesListController', ['$scope', '$http', '$rootScope', PropertiesListController]);
 	
-	function PropertiesListController($scope, $http) {
+	function PropertiesListController($scope, $http, $rootScope) {
 		 $scope.propertiesList = [];
 		 $scope.compareList = [];
 		 $scope.favorites = [];

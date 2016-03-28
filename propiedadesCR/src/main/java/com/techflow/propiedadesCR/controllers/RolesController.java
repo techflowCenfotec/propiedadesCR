@@ -91,4 +91,51 @@ public class RolesController {
 		}
 		return rolesResponse;	
 	}
+	
+	/**
+	* Este método permite modificar un rol en el sistema
+	* 
+	* @param prolesRequest Este parámetro es la peticion del front-end
+	* que se utiliza para acceder al método deseado
+	* 
+	* @return rolesResponse Resultado que contiene la respuesta
+	* de que el rol haya sido modificado exitosamente o no
+	*
+	*/ 
+	
+	@RequestMapping(value ="/edit", method = RequestMethod.POST)
+	public RolesResponse edit(@RequestBody RolesRequest prolesRequest){	
+		RolesResponse rolesResponse = new RolesResponse();
+		Trole  newRole = rolesService.modifyRole(prolesRequest);
+		if(newRole!= null){
+			rolesResponse.setCode(200);
+			rolesResponse.setCodeMessage("role edited succesfully");
+		}
+		return rolesResponse;	
+	}
+	
+	/**
+	* Este método permite eliminar un rol del sistema
+	* 
+	* @param prolesRequest Este parámetro es la peticion del front-end
+	* que se utiliza para acceder al método deseado
+	* 
+	* @return rolesResponse Resultado que contiene la respuesta
+	* de que el rol haya sido modificado exitosamente o no
+	*
+	*/ 
+	
+	@RequestMapping(value ="/delete", method = RequestMethod.POST)
+	public RolesResponse delete(@RequestBody RolesRequest prolesRequest){
+		
+		RolesResponse roleResponse = new RolesResponse();
+		Trole deleteRole = rolesService.deleteRole(prolesRequest);
+		
+		if(deleteRole!= null){
+			roleResponse.setCode(200);
+			roleResponse.setCodeMessage("role delete success");
+			
+		}
+		return roleResponse;
+	}
 }
