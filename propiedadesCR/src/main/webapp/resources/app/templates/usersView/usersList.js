@@ -30,7 +30,7 @@
     	function validate(){
     		$http.get("rest/protected/database/checkDB").success(function(data){
     			if(data.code!==200){
-    				console.log("error en bd");
+    		
     				var path = "#/templates/errorsView/500";
     				
         			window.location.href = path;
@@ -52,9 +52,14 @@
             var end, start;
             start = (page - 1) * $scope.numPerPage;       
             end = start + $scope.numPerPage;
-            return $scope.currentPageList = $scope.filteredUsers.slice(start, end);
+            $scope.currentPageList = $scope.filteredUsers.slice(start, end);
+            
+            $scope.currentPageList = _.without($scope.currentPageList,_.findWhere($scope.currentPageList,{idUser: parseInt(localStorage.getItem('idUser'))}));
+            $scope.currentPageList = _.difference($scope.currentPageList,_.where($scope.currentPageList,{active:0}));
+            
+            return $scope.currentPageList;
         };
-
+        
         function onFilterChange() {
             $scope.select(1);
             $scope.currentPage = 1;
@@ -92,6 +97,22 @@
         
         $scope.modifyUser = function(id){
         	localStorage.setItem('idUserModify',id);
+        }
+        
+        $scope.deleteUser = function(user){
+        	
+        	var deleteRequest = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","user": 
+        	{"idUser": user.idUser, "userName":user.userName , "firstName": user.firstName, "lastName": user.lastName, "email": user.email,
+        	"active":0, "birthday": user.birthday, "firstTime": 0, "gender": user.gender, "password": user.password,
+        	"phone1":user.phone1, "phone2": user.phone2,
+        	"role":{"idRole":user.role.idRole},
+        	"userImage": user.userImage}}
+            	
+        	$http.post('rest/protected/users/deleteUser',deleteRequest).success(function(){
+        		console.log("Se borro ak7");
+        		$scope.currentPageList = _.without($scope.currentPageList,_.findWhere($scope.currentPageList,{idUser:parseInt(user.idUser)}));
+        	});
+        	
         }
 		
 	}]);

@@ -10,9 +10,11 @@
 */
 package com.techflow.propiedadesCR.services;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.security.*;
 import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,8 +24,10 @@ import com.techflow.propiedadesCR.contracts.PasswordRequest;
 import com.techflow.propiedadesCR.contracts.UsersRequest;
 import com.techflow.propiedadesCR.ejb.Trole;
 import com.techflow.propiedadesCR.ejb.Tuser;
+import com.techflow.propiedadesCR.ejb.TuserRating;
 import com.techflow.propiedadesCR.pojo.RolePOJO;
 import com.techflow.propiedadesCR.pojo.UserPOJO;
+import com.techflow.propiedadesCR.pojo.UserRatingPOJO;
 import com.techflow.propiedadesCR.repositories.UsersRepository;
 
 
@@ -248,6 +252,68 @@ public class UsersService implements UsersServiceInterface{
 		return usersRepository.findOne(pIdUser);
 
 	}
+
+	/**
+	 * Este método realiza un borrado logico al usuario
+	 * 
+	 * @param puserRequest Encapsula la información del correo.
+	 *
+	 *@return response Retorna el objeto al que se le aplicó el borrado.
+	 */
+	@Override
+	public Tuser deleteUser(UsersRequest puserRequest) {
+		
+		Tuser user = new Tuser();
+		user.setTrole(new Trole());
+		BeanUtils.copyProperties(puserRequest.getUser(), user);
+		BeanUtils.copyProperties(puserRequest.getUser().getRole(),user.getTrole());
+		return usersRepository.save(user);
+		
+
+	}
+	/**
+	  * Este retorna el vendedor que se consulto.
+	  *
+	  * @param pidUser Identificador del usuario.
+      * 
+	  * @return userPOJO Retorna el usuario consultado.
+	  */
+	@Override
+	public UserPOJO consultVendor(int pidUser){
+		
+		Tuser nuser = usersRepository.findByIdUser(pidUser);
+		UserPOJO userPOJO =null;
+		
+		if (null != nuser){
+			Trole role =nuser.getTrole();			
+			RolePOJO rolePOJO = new RolePOJO();
+			BeanUtils.copyProperties(role, rolePOJO);
+			userPOJO = new UserPOJO();
+			userPOJO.setRole(rolePOJO);
+			BeanUtils.copyProperties(nuser, userPOJO);
+		}
+		generateRateDtos(nuser.getTuserRatings2(), userPOJO);
+		return userPOJO;
+		
+	}
+	/**
+	  * Este método genera los objetos POJOS que se retornaran a la UI.
+	  *
+	  * @param pusers Lista de usuarios.
+	  *
+	  */
+	private void generateRateDtos(List<TuserRating> pRatings,UserPOJO user) {
+		List<UserRatingPOJO> uiRatings = new ArrayList<UserRatingPOJO>();
+		pRatings.stream().forEach(u -> {
+			UserRatingPOJO userRatingPOJO = new UserRatingPOJO();
+			BeanUtils.copyProperties(u, userRatingPOJO);
+			
+			uiRatings.add(userRatingPOJO);
+		});
+		user.setVendorRatings(uiRatings);
+	}
+	
+	
 
 	
 

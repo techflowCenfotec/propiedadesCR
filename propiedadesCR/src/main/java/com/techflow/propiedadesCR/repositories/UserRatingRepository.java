@@ -14,8 +14,10 @@ package com.techflow.propiedadesCR.repositories;
 
 import org.springframework.data.repository.CrudRepository;
 
+import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.ejb.TuserRating;;
 
 public interface UserRatingRepository extends CrudRepository<TuserRating, Integer> {
-
+	
+	TuserRating findByTuser1AndTuser2(Tuser client, Tuser seller);
 }

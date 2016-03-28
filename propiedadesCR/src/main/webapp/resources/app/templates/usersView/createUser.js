@@ -120,7 +120,7 @@
 										  "searchTerm": "string",
 										  "user": {"email":$scope.form.email}
 										}
-								$http.post('rest/local/welcomeEmail',inf).success(function(){
+								$http.post('rest/protected/users/welcomeEmail',inf).success(function(){
 									
 									
 								})

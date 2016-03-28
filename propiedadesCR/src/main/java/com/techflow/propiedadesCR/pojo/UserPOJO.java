@@ -11,6 +11,8 @@
 package com.techflow.propiedadesCR.pojo;
 
 import java.util.Date;
+import java.util.List;
+
 
 
 
@@ -72,7 +74,10 @@ public class UserPOJO {
      * Rol asignado al usuario.
      */
 	private RolePOJO role;
-	
+	/**
+     * Calificaciones del vendedor.
+     */
+	private List<UserRatingPOJO> vendorRatings;
 
 	public UserPOJO() {
 		super();
@@ -162,5 +167,11 @@ public class UserPOJO {
 	public void setRole(RolePOJO trole) {
 		this.role = trole;
 	}
-	                        
+	public List<UserRatingPOJO> getVendorRatings() {
+		return vendorRatings;
+	}
+	public void setVendorRatings(List<UserRatingPOJO> vendorRatings) {
+		this.vendorRatings = vendorRatings;
+	}
+	                       
 }
