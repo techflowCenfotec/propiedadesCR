@@ -117,6 +117,8 @@ public class UsersController {
       * @param pphone2 Teléfono alternativo del usuario.
       * @param pemail Correo del usuario.
       * @param ppassword Contraseña del usaurio.
+      * @param pbirthday Fecha de nacimiento del usuario.
+	  * @param pgender Género del usuario.
       * 
 	  * @return userResponse Retorna la respuesta del servicio hacia el frontend.
 	  *
@@ -234,7 +236,9 @@ public class UsersController {
 	      * @param pphone2 Teléfono alternativo del usuario.
 	      * @param pemail Correo del usuario.
 	      * @param ppassword Contraseña del usaurio.
-	      * 
+	      * @param pbirthday Fecha de nacimiento del usuario.
+	      * @param pgender Género del usuario.
+	      *
 		  * @return userResponse Retorna la respuesta del servicio hacia el frontend.
 		  *
 		  * @throws ParseException Esta exepción se lanza cuando el sistema es incapaz de transformar
