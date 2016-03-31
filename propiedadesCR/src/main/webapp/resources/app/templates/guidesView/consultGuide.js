@@ -55,7 +55,7 @@
 							}
 							$http.post('rest/protected/guides/getGuidesByBank',req)
 								.success(function(response){
-									console.log(response.guides);
+									
 									$scope.guides = response.guides;
 								});
 							
