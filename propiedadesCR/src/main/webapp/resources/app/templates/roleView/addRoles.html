@@ -24,7 +24,7 @@
                                 <div layout layout-sm="column">
                                     <md-input-container flex=70> 
                                         <label for="">Nombre</label>
-                                        <input type="text" 
+                                            <input type="text" md-maxlength="40" 
                                         class="form-control" required data-ng-model="form.newRoleName"><span></span></md-input-container>
                                         </div>
                             <div class="row">
@@ -58,16 +58,14 @@
                             </div>
                           </div>
                         </form>
-                        <button class="md-raised btn-w-md md-primary md-button md-ink-ripple" 
-                        type="button" data-ng-disabled="!canSubmit()">
-                        <span class="ng-scope" ng-click="addRoles()">Agregar</span>
-                         <div class="md-ripple-container"></div>
-                    </div>
+                <div class=row>
+                <div class="col-md-6">
+                    <button ng-click="addRoles()" type="submit" ui-wave class="btn btn-primary btn-w-md"
+                        data-ng-disabled="canSubmit()">Agregar</button>
                 </div>
+                <div class="alert alert-info" data-ng-show="showInfoOnSubmit">Se ha creado el rol</div>
             </div>
-            </button>
        </section>
-       <div class="alert alert-info" data-ng-show="showInfoOnSubmit">Se ha creado el rol</div>
     </div>
 </div>
 

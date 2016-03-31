@@ -42,4 +42,33 @@ public class RatingController {
 		
 		return response;
 	}
+	
+	@RequestMapping(value="/editRating", method = RequestMethod.POST)
+	public RatingResponse editRating(@RequestBody RatingRequest pRating) {
+		RatingResponse response =  new RatingResponse();
+		RatingPOJO rating = new RatingPOJO();
+		
+		TpropertyRating nRating = ratingService.editRating(pRating);
+		
+		rating.setIdRating(nRating.getIdRating());
+		
+		if (nRating != null) {
+			response.setCode(200);
+			response.setCodeMessage("Propertie's rating edited succesfully");
+			response.setRating(rating);
+		}
+		
+		return response;
+	}
+	
+	@RequestMapping(value="/getRatingById", method = RequestMethod.POST)
+	public RatingResponse getRatingById(@RequestBody RatingRequest pRating) {
+		RatingResponse ratingResponse = new RatingResponse();
+		
+		
+		ratingResponse.setCode(200);
+		ratingResponse.setCodeMessage("rating fetch success");
+		ratingResponse.setRating(ratingService.getRatingById(pRating));
+		return ratingResponse;
+	}
 }

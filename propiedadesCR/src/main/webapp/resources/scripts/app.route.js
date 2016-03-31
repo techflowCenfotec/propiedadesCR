@@ -38,6 +38,7 @@
 			,"templates/propertiesView/propertyView"
 			,"templates/permissionsViews/adminView"
 			,"templates/roleView/editRoles"
+			,"templates/toDoListView/listToDoList"
 
 		], 
 

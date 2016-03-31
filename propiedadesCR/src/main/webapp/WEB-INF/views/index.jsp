@@ -119,5 +119,6 @@
         <script src="resources/app/templates/permissionsViews/permissions.js"></script>
         <script src="resources/app/templates/roleView/editRoles.js"></script>
         <script src="resources/app/templates/guidesView/createGuide.js"></script>
+        <script src="resources/app/templates/toDoListView/listToDoList.js"></script>
         
         

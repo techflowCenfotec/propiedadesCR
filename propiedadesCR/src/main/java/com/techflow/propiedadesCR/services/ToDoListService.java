@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.techflow.propiedadesCR.contracts.ToDoListRequest;
 import com.techflow.propiedadesCR.ejb.TToDoList;
+import com.techflow.propiedadesCR.ejb.Trole;
 import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.pojo.ToDoListPOJO;
 import com.techflow.propiedadesCR.repositories.ToDoListRepository;
@@ -41,7 +42,14 @@ public class ToDoListService implements ToDoListServiceInterface{
 	@Transactional
 	public List<ToDoListPOJO> getAll(ToDoListRequest ptoDoListRequest) {
 		List<TToDoList> toDoList = toDoListRepository.findAll();
-		return generateToDoListDtos(toDoList);
+		List<TToDoList> correctToDos= new ArrayList<TToDoList>();
+		toDoList.stream().forEach(toDo -> {
+			TToDoList tToDoList = toDoListRepository.findOne(toDo.getIdToDoList());
+			if(toDo.getActive()==1){
+				correctToDos.add(tToDoList);
+			}
+		});
+		return generateToDoListDtos(correctToDos);
 	}
 	
 	/**
@@ -75,6 +83,27 @@ public class ToDoListService implements ToDoListServiceInterface{
 		TToDoList newToDoList = toDoListRepository.save(toDoList);
 		
 		return newToDoList;
+	}
+	
+	/**
+	  * Este método elimina lógicamente un toDoList en el sistema.
+	  *
+	  * @param ptoDoListRequest Contiene información del objeto a eliminar.
+      * 
+	  * @return newToDo Devuelve el toDoList eliminado con sus nuevos datos.
+	  *
+	  *@author  Valeria Ramírez 
+	  */
+	@Override
+	@Transactional
+	public TToDoList deleteToDoList(ToDoListRequest ptoDoListRequest){
+		TToDoList tTodoList = new TToDoList();
+		tTodoList.setIdToDoList(ptoDoListRequest.getToDoList().getIdToDoList());
+		tTodoList.setActive((byte) 0);
+		tTodoList.setName(ptoDoListRequest.getToDoList().getName());
+		tTodoList.setDescription(ptoDoListRequest.getToDoList().getDescription());
+		TToDoList newToDo = toDoListRepository.save(tTodoList);
+		return newToDo;
 	}
 
 }

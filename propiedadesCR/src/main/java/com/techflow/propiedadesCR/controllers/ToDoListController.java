@@ -68,5 +68,26 @@ public class ToDoListController {
 		}
 		return response;
 	}
+	
+	/**
+	* Este método permite eliminar un toDoList del sistema
+	* 
+	* @param prolesRequest Este parámetro es la peticion del front-end
+	* que se utiliza para acceder al método deseado
+	* 
+	* @return toDoListResponse Resultado que contiene la respuesta
+	* de que el toDoList haya sido modificado exitosamente o no
+	*
+	*/ 
+	@RequestMapping(value ="/delete", method = RequestMethod.POST)
+	public ToDoListResponse deleteToDoList(@RequestBody ToDoListRequest ptoDoListRequest){
+		ToDoListResponse toDoListResponse = new ToDoListResponse();
+		TToDoList deleteToDo = toDoListService.deleteToDoList(ptoDoListRequest);
+		if(deleteToDo!= null){
+			toDoListResponse.setCode(200);
+			toDoListResponse.setCodeMessage("ToDoList deleted successfuly");
+		}
+		return toDoListResponse;
+	}
 
 }
