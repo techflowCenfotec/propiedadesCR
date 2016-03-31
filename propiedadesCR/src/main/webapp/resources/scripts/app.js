@@ -178,7 +178,12 @@ function(){
 			e.consultMyProfile = function(myId){
 				localStorage.setItem('idUser',myId);
 			};
-			
+			e.signOut = function(){
+				$rootScope.userLogged = null;
+				$http.get('rest/protected/signOut/signOut').success(function(){
+					
+				});
+			}
 		}
 
 		angular.module("app")
