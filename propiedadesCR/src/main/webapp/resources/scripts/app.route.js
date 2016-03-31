@@ -39,6 +39,7 @@
 
 			,"templates/guidesView/createGuide"
 			,"templates/propertiesView/propertyView"
+			,"templates/propertiesView/propertiesCompare"
 			,"templates/permissionsViews/adminView"
 			,"templates/roleView/editRoles"
 

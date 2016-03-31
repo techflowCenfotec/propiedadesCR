@@ -7,8 +7,16 @@
  * @since 12/03/2016
  */
 package com.techflow.propiedadesCR.controllers;
-import javax.mail.*;
-import javax.mail.internet.*;
+import java.io.IOException;
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,8 +25,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.techflow.propiedadesCR.contracts.MailRequest;
 import com.techflow.propiedadesCR.pojo.EventPOJO;
-
-import java.util.Properties;
 
 
 

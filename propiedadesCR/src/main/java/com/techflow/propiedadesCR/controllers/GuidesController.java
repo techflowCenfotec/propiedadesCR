@@ -1,7 +1,5 @@
 package com.techflow.propiedadesCR.controllers;
 
-import java.text.ParseException;
-
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;

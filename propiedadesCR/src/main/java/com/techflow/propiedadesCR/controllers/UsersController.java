@@ -70,12 +70,12 @@ public class UsersController {
 	@Autowired private HttpServletRequest httpServletRequest;
 	
 	/**
-�  * Este método retorna todos los usuarios registrados en el sistema
+	* Este método retorna todos los usuarios registrados en el sistema
     *
-�  * @param puserResponse Este parámetro encapsula la información solicitada en el metodo.
+    * @param puserResponse Este parámetro encapsula la información solicitada en el metodo.
 	*
- �* @return response Retorna la respuesta del sevicio hacia el frontend.
-�  */
+	* @return response Retorna la respuesta del sevicio hacia el frontend.
+	*/
 	@RequestMapping(value="/getAll", method = RequestMethod.POST)
 	public UsersResponse getAll(@RequestBody UsersRequest puserRequest) {
 		
@@ -124,7 +124,7 @@ public class UsersController {
 	  *
 	  * @throws ParseException Esta exepción se lanza cuando el sistema es incapaz de transformar
 	  * el String pbirthday a birthday que es de tipo Date.
-	   */
+	  */
 	@RequestMapping(value ="/create", method = RequestMethod.POST)
 	public UsersResponse create(
 			@RequestParam("file") MultipartFile pfile,
@@ -192,11 +192,11 @@ public class UsersController {
 	
 	
 
-	/**
-�  * Este método retorna el usuario loggeado en la aplicación
-    *
-  ��* @return response Retorna la respuesta del sevicio hacia el frontend.
-�  */
+		/**
+		* Este método retorna el usuario loggeado en la aplicación
+	    *
+	    * @return response Retorna la respuesta del sevicio hacia el frontend.
+	    */
 		@RequestMapping(value ="/getUserLogged", method = RequestMethod.GET)
 		public UsersResponse getUserLogged(){
 			UsersResponse response = new UsersResponse();
@@ -205,12 +205,12 @@ public class UsersController {
 		}
 
 		/**
-	�  * Este método retorna el usuario que se desea consultar
+		* Este método retorna el usuario que se desea consultar
 		*
 	    * @param pidUser Identificador del usaurio que se consulta
 	    * 
-	 �* @return response Retorna la respuesta del sevicio hacia el frontend.
-	�  */			
+	    * @return response Retorna la respuesta del sevicio hacia el frontend.
+	    */			
 		@RequestMapping(value="/getUserById/{pidUser}", method = RequestMethod.GET)
 		public UsersResponse getConsultedUser(
 				@PathVariable int  pidUser){
@@ -243,7 +243,7 @@ public class UsersController {
 		  *
 		  * @throws ParseException Esta exepción se lanza cuando el sistema es incapaz de transformar
 		  * el String pbirthday a birthday ques es de tipo Date.
-		   */
+		  */
 		@RequestMapping(value="/modifyUser", method = RequestMethod.POST)
 		public UsersResponse modifyUser(@RequestParam("file") MultipartFile pfile,
 				@RequestParam("idUser") int pidUser,
@@ -316,8 +316,8 @@ public class UsersController {
 		  * Envía la información a agregar a la base de datos por medio de su servicio. 
 		  * 
 		  * @param pProperty Ejb que contiene la información de la entidad que
-		  * se desea crear.
-		  * @param pIdProperty Id de la propiedad. No debe ser nulo.
+		  * se desea agregar a favoritos.
+		  * @param pIdUser Id del usuario. No debe ser nulo.
 		  * @return response La entidad del objeto actualizado.
 		  */
 		@RequestMapping(value="addToFavorite/{pIdUser}", method = RequestMethod.PUT)
@@ -332,7 +332,7 @@ public class UsersController {
 			
 			user.setTproperties2(properties);
 			
-			Tuser nUser = usersService.addToFavorite(user);
+			Tuser nUser = usersService.updateFavorites(user);
 			
 			if (nUser != null) {
 				response.setCode(200);
@@ -342,6 +342,96 @@ public class UsersController {
 			return response;
 		}
 		
-	
+		/**
+		  * Envía la información a agregar a la base de datos por medio de su servicio. 
+		  * 
+		  * @param pProperty Ejb que contiene la información de la entidad que
+		  * se desea remover de favoritos.
+		  * @param pIdUser Id del usuario. No debe ser nulo.
+		  * @return response La entidad del objeto actualizado.
+		  */
+		@RequestMapping(value="removeFavorite/{pIdUser}", method = RequestMethod.PUT)
+		public UsersResponse removeFavorite(@RequestBody Tproperty pProperty,
+				@PathVariable int pIdUser) {
+			UsersResponse response = new UsersResponse();
+			
+			Tuser user = usersService.getUserByID(pIdUser);
+			List<Tproperty> properties = user.getTproperties2();
+			
+			for (int i = 0; i < properties.size(); i++) {
+				if (properties.get(i).getIdProperty() == pProperty.getIdProperty()) {
+					user.getTproperties2().remove(i);
+				}
+			}
+			
+			Tuser nUser = usersService.updateFavorites(user);
+			
+			if (nUser != null) {
+				response.setCode(200);
+				response.setCodeMessage("Property removed form favorites");
+			}
+			
+			return response;
+		}
 		
+		@RequestMapping(value="/welcomeEmail", method = RequestMethod.POST)
+		public UsersResponse sendEmail(@RequestBody UsersRequest puserRequest){
+			 
+			 UsersResponse response = new UsersResponse();
+			  
+		      String to = puserRequest.getUser().getEmail();
+		      
+		      String from = "propiedadescr.tech@gmail.com";
+		      final String username = "propiedadescr.tech@gmail.com";
+		      final String password = "mjjvwTechflow";
+
+		      
+		      String host = "smtp.gmail.com";
+
+		      Properties props = new Properties();
+		      props.put("mail.smtp.auth", "true");
+		      props.put("mail.smtp.starttls.enable", "true");
+		      props.put("mail.smtp.host", host);
+		      props.put("mail.smtp.port", "587");
+
+		      
+		      Session session = Session.getInstance(props,
+		      new javax.mail.Authenticator() {
+		         protected PasswordAuthentication getPasswordAuthentication() {
+		            return new PasswordAuthentication(username, password);
+		         }
+		      });
+
+		      try {
+		         
+		         Message message = new MimeMessage(session);
+
+		         
+		         message.setFrom(new InternetAddress(from));
+
+		        
+		         message.setRecipients(Message.RecipientType.TO,
+		         InternetAddress.parse(to));
+
+		         
+		         message.setSubject("Información de evento");
+
+		         
+		         message.setSubject("Reiniciar contraseña");
+		         
+		         message.setContent("<h3>Bienvenido a PropiedadesCR</h3>"+
+		        		"<p>Reciba un cordial saludo de parte de la comunidad </p>"+
+		        		"<p>de PropiedadesCR, la comunidad m&aacute;s grande de bienes raices del país.</p>"+
+		        		"<p>Esperamos cumplir con sus expectativas.</p>","text/html");
+		         
+		         Transport.send(message);
+		         response.setCode(200);
+
+		        
+
+		      } catch (MessagingException e) {
+		            throw new RuntimeException(e);
+		      }
+		      return response;
+		}
 }
