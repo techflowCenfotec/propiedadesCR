@@ -117,7 +117,7 @@ angular
 									function() {
 										$scope.showInfo = true;
 									       $timeout(function(){
-									          $scope.showGreeting = false;
+									          $scope.showInfo = false;
 									       }, 3000);
 									});
 						}else{

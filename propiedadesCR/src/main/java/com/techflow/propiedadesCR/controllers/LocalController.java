@@ -77,7 +77,7 @@ public class LocalController {
 	 * @exception IOException Esta excepción se lanza cuando ocurre un error al enviar el correo.
 	 */
 	
-	@RequestMapping(value="/sendEmail", method = RequestMethod.POST)
+	@RequestMapping(value="/welcomeEmail", method = RequestMethod.POST)
 	public UsersResponse sendEmail(@RequestBody UsersRequest puseRequest){
 		
 	
