@@ -1,5 +1,6 @@
 package com.techflow.propiedadesCR.pojo;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -68,6 +69,23 @@ public class PropertyPOJO {
      * Imágenes de la propiedad.
      */
 	private List<PropertyImagePOJO> tpropertyImages;
+	/**
+     * Oferta de la propiedad.
+     */
+	private double offerPecentage;
+	/**
+     * Estado de la propiedad.
+     */
+	private byte isSold;
+	/**
+     * Fecha en la que se vende la propiedad.
+     */
+	private Date soldDate;
+	/**
+     * Tipo de venta de la propiedad.
+     */
+	private String saleType;
+	
 	
 	public PropertyPOJO() {
 		super();
@@ -187,5 +205,40 @@ public class PropertyPOJO {
 	public void setTpropertyImages(List<PropertyImagePOJO> tpropertyImages) {
 		this.tpropertyImages = tpropertyImages;
 	}
+
+	public double getOfferPecentage() {
+		return offerPecentage;
+	}
+
+	public void setOfferPecentage(double offerPecentage) {
+		this.offerPecentage = offerPecentage;
+	}
+
+	public byte getIsSold() {
+		return isSold;
+	}
+
+	public void setIsSold(byte isSold) {
+		this.isSold = isSold;
+	}
+
+	public Date getSoldDate() {
+		return soldDate;
+	}
+
+	public void setSoldDate(Date soldDate) {
+		this.soldDate = soldDate;
+	}
+
+	public String getSaleType() {
+		return saleType;
+	}
+
+	public void setSaleType(String saleType) {
+		this.saleType = saleType;
+	}
+
+	
+	
 	
 }

@@ -17,9 +17,10 @@ public interface UsersServiceInterface {
 	Tuser modifyUser(UsersRequest puserRequest, int pidRole);
 	Tuser getUserByEmail(String pemail);
 	Tuser changePass(PasswordRequest ppasswordRequest);
-
-	Tuser addToFavorite(Tuser pUser);
+	Tuser updateFavorites(Tuser pUser);
 	Tuser getUserByID(int pIdUser);
+	Tuser deleteUser(UsersRequest userRequest);
+	UserPOJO consultVendor(int pidUser);
 
 
 }

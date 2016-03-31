@@ -9,10 +9,7 @@
 package com.techflow.propiedadesCR.controllers;
 import javax.mail.*;
 import javax.mail.internet.*;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,8 +39,7 @@ public class MailController {
 	
 	@RequestMapping(value="/sendEmail", method = RequestMethod.POST)
 	public void sendEmail(@RequestBody MailRequest pmailInformation){
-			
-			System.out.println(propiedadesCR);
+		  
 		  EventPOJO event = pmailInformation.getEventP();
 		  
 	      String to = pmailInformation.getUserEmail();

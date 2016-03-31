@@ -51,26 +51,25 @@ public class LoginController {
 	    * @return response Retorna la respuesta del sevicio hacia el frontend.
 	    */	
 	@RequestMapping(value="/checkUser", method = RequestMethod.POST)
-	public LoginResponse getCheckedUser(@RequestBody LoginRequest ploginRequest) {
-		
-		System.out.println(gerardo);
-		
-		//HttpSession currentSession = httpRequest.getSession();
-		LoginResponse response = new LoginResponse();
-		
-		UserPOJO userLogged = loginService.checkUser(ploginRequest);
-	
-		if(userLogged==null){
-			response.setCode(401);
-			response.setErrorMessage("Unauthorized User");
-		}else{
-			response.setCode(200);
-			response.setUser(userLogged);
-			httpRequest.getSession().setAttribute("userLogged", userLogged);
-			//currentSession.setAttribute("idUser", userLogged.getIdUser());
-		}
-		
-		return response;
-	}
+	 public LoginResponse getCheckedUser(@RequestBody LoginRequest ploginRequest,HttpServletRequest servletRequest) {
+	  
+	  LoginResponse response = new LoginResponse();
+	  
+	  HttpSession currentSession = servletRequest.getSession();
+	  UserPOJO userLogged = loginService.checkUser(ploginRequest,currentSession);
+	  
+	  //loginService.checkUser(lr,response,currentSession);
+	  if(userLogged==null){
+	   response.setCode(401);
+	   response.setErrorMessage("Unauthorized User");
+	  }else{
+	   response.setCode(200);
+	   response.setUser(userLogged);
+	   httpRequest.getSession().setAttribute("userLogged", userLogged);
+	   currentSession.setAttribute("idUser", userLogged.getIdUser());
+	  }
+	  
+	  return response;
+	 }
 	
 }

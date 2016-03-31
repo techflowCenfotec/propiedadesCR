@@ -115,7 +115,7 @@
 						
 						$scope.modifyUser = function(event, $files) {
 							$scope.getDateWithFormat();
-							var file
+							var file;
 							
 							if($files[0] == undefined)
 								file = new File([],$scope.user.userImage);
