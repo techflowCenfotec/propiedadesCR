@@ -26,7 +26,10 @@
 			,"templates/roleView/roles"
 			,"templates/roleView/addRoles"
 			,"templates/banktodolistView/banktodolistList"
+			,"templates/banktodolistView/banktodolistAdminList"
 			,"templates/banktodolistView/banktodolistCreate"
+			,"templates/banktodolistView/banktodolistAdminItems"
+			
 			,"templates/testView/testFlow"
 			,"templates/testView/matchedPropertiesList"
 			,"templates/propertiesView/propertiesCreate"
@@ -37,6 +40,7 @@
 			,"templates/guidesView/createGuide"
 			,"templates/guidesView/consultGuide"
 			,"templates/propertiesView/propertyView"
+			,"templates/propertiesView/propertiesCompare"
 			,"templates/permissionsViews/adminView"
 			,"templates/roleView/editRoles"
 
@@ -61,41 +65,45 @@
 		}),
 			
 		$urlRouterProvider.when("/","/home")
-		.otherwise("/home"),
+		.otherwise("/home"); 
 
 		$stateProvider.state( "home", {
 			url:"/home",
 			templateUrl:"resources/app/templates/homeView/home.html"
-		})
-			}])
-	
-})();
-		
-//		$provide.factory('responseHttpInterceptor', function($q) {
-//			  return {
-//			    response: function(response) {
+		});
+		$provide.factory('responseHttpInterceptor', function($q) {
+			  return {
+			    response: function(response) {
 			   
-//			      return response;
-//		    },
-//			    responseError: function(response) {
+			      return response;
+		    },
+			    responseError: function(response) {
 			    	
-//			    	if(response.status === 401){
-//						window.location.href = "/propiedadesCR/#/login";
-//					}
-//			      return $q.reject(response);
-//			    }
-//			  };
-//			});
-//		$httpProvider.interceptors.push('responseHttpInterceptor');
+			    	if(response.status === 401){
+						window.location.href = "/propiedadesCR/#/login";
+					}
+			      return $q.reject(response);
+			    }
+			  };
+			});
+		$httpProvider.interceptors.push('responseHttpInterceptor');
 		
 		//RESPONSE INTERCEPTOR FOR ALL THE JQUERY CALLS: EX:THE JQGRID
-//		$.ajaxSetup({
-//		    beforeSend: function() {
-//		    },
-//		    complete: function(response) {
-//		    	if(response.status === 401){
-//		    		window.location.href = "/cenfoteca/login#/";
-//				}
-//		    }
-//		});
+		$.ajaxSetup({
+		    beforeSend: function() {
+		    },
+		    complete: function(response) {
+		    	if(response.status === 401){
+		    		window.location.href = "/cenfoteca/login#/";
+				}
+		    }
+		});
+	
+		
+		
+	}])
+			
+})();
+		
+
 		

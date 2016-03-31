@@ -16,6 +16,8 @@ package com.techflow.propiedadesCR.services;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,8 +42,11 @@ public class LoginService implements LoginServiceInterface {
 	    * @return userPOJO Retorna la respuesta del repositorio al controlador.
 	    */	
 	@Override
-	public UserPOJO checkUser(LoginRequest ploginRequest) {
+	public UserPOJO checkUser(LoginRequest ploginRequest,HttpSession pcurrentSession) {
 		
+	
+		
+			
 		UserPOJO userPOJO = null;
 		String password = ploginRequest.getPassword();
 		StringBuffer md5password = new StringBuffer();
@@ -71,8 +76,9 @@ public class LoginService implements LoginServiceInterface {
 			userPOJO.setRole(new RolePOJO());
 			BeanUtils.copyProperties(nuser, userPOJO);
 			BeanUtils.copyProperties(nuser.getTrole(), userPOJO.getRole());
-			
+				
 		}
+		pcurrentSession.setAttribute("idUser", userPOJO.getIdUser());
 		return userPOJO;
 	
 	}

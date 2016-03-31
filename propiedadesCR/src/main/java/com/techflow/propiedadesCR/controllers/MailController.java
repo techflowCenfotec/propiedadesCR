@@ -42,8 +42,7 @@ public class MailController {
 	
 	@RequestMapping(value="/sendEmail", method = RequestMethod.POST)
 	public void sendEmail(@RequestBody MailRequest pmailInformation){
-			
-			System.out.println(propiedadesCR);
+		  
 		  EventPOJO event = pmailInformation.getEventP();
 		  
 	      String to = pmailInformation.getUserEmail();

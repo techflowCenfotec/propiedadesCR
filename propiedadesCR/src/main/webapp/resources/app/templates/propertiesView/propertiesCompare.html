@@ -1,0 +1,77 @@
+<style>
+	md-chips.md-default-theme .md-chips, md-chips .md-chips{
+		box-shadow: none;
+	}
+</style>
+<div class="page page-table" ng-controller="CompareController">
+	<div class="row ui-section">
+		<div class="col-lg-8 clearfix">
+			<h2 class="section-header">Tabla comparativa</h2>
+		</div>
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-body table-responsive">
+					<table class="table no-margin">
+						<thead>
+							<tr>
+								<th class="col-md-2">Información General</th>
+								<th class="col-md-5">Propiedad en {{property1.tdistrict.name}}</th>
+								<th class="col-md-5">Propiedad en {{property2.tdistrict.name}}</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>Precio</td>
+								<td>{{property1.price | currency}}</td>
+								<td>{{property2.price | currency}}</td>
+							</tr>
+							<tr>
+								<td>Características de la propiedad</td>
+								<td>
+									<md-chips ng-model="property1.tbenefits" readonly="true">
+				                     	<md-chip-template>
+				                     		<span>
+				                     			{{$chip.benefit}}
+				                     		</span>
+				                     	</md-chip-template>
+				                    </md-chips>
+								</td>
+								<td>
+									<md-chips ng-model="property2.tbenefits" readonly="true">
+				                        <md-chip-template>
+				                        	<span>
+				                     			{{$chip.benefit}}
+				                     		</span>
+				                     	</md-chip-template>
+				                    </md-chips>
+								</td>
+							</tr>
+							<tr>
+								<td>Tipo</td>
+								<td>{{property1.tpropertyType.name}}</td>
+								<td>{{property2.tpropertyType.name}}</td>
+							</tr>
+							<tr>
+								<td>M<sup>2</sup> de construcción</td>
+								<td>{{property1.squareMeters}}</td>
+								<td>{{property2.squareMeters}}</td>
+							</tr>
+							<tr>
+								<td>Detalles</td>
+								<td>
+									<a data-ng-click="viewProperty(property1.idProperty)" 
+									href="#/templates/propertiesView/propertyView" class="btn btn-primary">Ver</a>
+								</td>
+								<td>
+									<a data-ng-click="viewProperty(property2.idProperty)" 
+									href="#/templates/propertiesView/propertyView" class="btn btn-primary">Ver</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<button class="btn btn-primary" data-ng-click="cancel()"><i class="zmdi zmdi-long-arrow-left"></i> Regresar</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -30,8 +30,7 @@
 			for(var i = 0; i<userPermissionsList.length;i++){
 				permission = userPermissionsList[i];
 				idPermission = permission.idPermissions;
-				console.log(idPermission);
-				console.log(userResponse);
+				
 
 				//1.admin
 				//2.comprador

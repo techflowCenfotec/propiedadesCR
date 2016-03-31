@@ -52,9 +52,6 @@ public class LoginController {
 	    */	
 	@RequestMapping(value="/checkUser", method = RequestMethod.POST)
 	public LoginResponse getCheckedUser(@RequestBody LoginRequest ploginRequest) {
-		
-		System.out.println(gerardo);
-		
 		//HttpSession currentSession = httpRequest.getSession();
 		LoginResponse response = new LoginResponse();
 		
