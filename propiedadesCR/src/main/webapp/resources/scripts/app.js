@@ -42,7 +42,8 @@ function() {
 		,"app.events"
 		,"app.eventsList"
 		,"app.eventConsult"
-		,"app.eventListAdmin"
+		,"app.eventsListAdmin"
+		,"app.modifyEvents"
 
 		
 		,"app.createUsers"

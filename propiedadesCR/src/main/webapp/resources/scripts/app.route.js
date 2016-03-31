@@ -22,6 +22,7 @@
 
 			,"templates/eventsView/eventConsult"
 			,"templates/eventsView/eventListAdmin"
+			,"templates/eventsView/modifyEvent"
 
 			,"templates/roleView/roles"
 			,"templates/roleView/addRoles"

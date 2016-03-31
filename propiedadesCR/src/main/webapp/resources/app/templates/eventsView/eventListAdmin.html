@@ -54,10 +54,11 @@
                     data-ng-class="{active: row == '-eventDate'}"></span>
                 </div></th>
                 
-<!--                   <th><div class="th">
+				<th><div class="th"> 
                	Modificar
-               </div></th> -->
-                   <th><div class="th"> 
+               </div></th>
+				
+               <th><div class="th"> 
                	Eliminar
                </div></th>
                 
@@ -68,7 +69,7 @@
                 <td>{{event.name}}</td>
                 <td>{{event.description}}</td>
                 <td>{{event.startDate}}</td>
-<!--                 <td><button class="btn btn-info" data-ng-click="modifyEvent(event.idEvent)">Modificar</button></td> -->
+                <td><a class="btn btn-info" data-ng-click="modifyEvents(event.idEvent)"  href='#/templates/eventsView/modifyEvent'>Modificar</a></td>
                 <td><button class="btn btn-danger" data-ng-click="showConfirm(event.idEvent)">Eliminar</button></td>
             </tr>
             </tbody>

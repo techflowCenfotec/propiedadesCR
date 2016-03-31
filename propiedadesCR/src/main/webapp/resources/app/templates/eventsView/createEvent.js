@@ -115,7 +115,7 @@
 								$scope.saveEvent = function($files) {
 
 									$scope.getDateWithFormat();
-									console.log(localStorage.getItem('idUserLogged'));
+									
 									var file;
 									if ($files[0] == undefined)
 										file = new File([],
