@@ -1,12 +1,25 @@
 package com.techflow.propiedadesCR.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.ServletContext;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.techflow.propiedadesCR.contracts.GuidesRequest;
+import com.techflow.propiedadesCR.contracts.UsersRequest;
 import com.techflow.propiedadesCR.ejb.Tbank;
 import com.techflow.propiedadesCR.ejb.Tguide;
+import com.techflow.propiedadesCR.ejb.Trole;
+import com.techflow.propiedadesCR.ejb.Tuser;
+import com.techflow.propiedadesCR.pojo.BankPOJO;
 import com.techflow.propiedadesCR.pojo.GuidePOJO;
+import com.techflow.propiedadesCR.pojo.RolePOJO;
+import com.techflow.propiedadesCR.pojo.UserPOJO;
 import com.techflow.propiedadesCR.repositories.GuidesRepository;
 
 @Service
@@ -33,6 +46,27 @@ public class GuidesService implements GuidesServiceInterface{
 		Tguide createdGuide = guidesRepository.save(newGuide);
 		
 		return createdGuide;
+	}
+	@Override
+	@Transactional
+	public List<GuidePOJO> getAllByBank(GuidesRequest pguidesRequest) {
+		Tbank bank = new Tbank();
+		bank.setIdBank(pguidesRequest.getGuide().getTbank().getIdBank());
+		List<Tguide> guides = guidesRepository.findAllByTbank(bank);
+		return generateGuidesDtos(guides);
+	}
+	private List<GuidePOJO> generateGuidesDtos(List<Tguide> pguides) {
+		List<GuidePOJO> uiGuides = new ArrayList<GuidePOJO>();
+		pguides.stream().forEach(u -> {
+			Tbank bank =u.getTbank();			
+			BankPOJO bankPOJO = new BankPOJO();
+			GuidePOJO dto = new GuidePOJO();
+			BeanUtils.copyProperties(bank, bankPOJO);
+			BeanUtils.copyProperties(u, dto);
+			dto.setTbank(bankPOJO);
+			uiGuides.add(dto);
+		});
+		return uiGuides;
 	}
 
 }
