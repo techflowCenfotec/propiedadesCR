@@ -46,7 +46,6 @@ import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.pojo.EventPOJO;
 import com.techflow.propiedadesCR.pojo.UserPOJO;
-
 import com.techflow.propiedadesCR.services.UsersServiceInterface;
 import com.techflow.propiedadesCR.utils.Utils;
 
@@ -82,6 +81,7 @@ public class UsersController {
 	 * @return response Retorna la respuesta del sevicio hacia el frontend.
 	 */
 	@RequestMapping(value = "/getAll", method = RequestMethod.POST)
+
 	public UsersResponse getAll(@RequestBody UsersRequest puserRequest) {
 
 		UsersResponse response = new UsersResponse();
@@ -96,12 +96,13 @@ public class UsersController {
 	 *    * Este método retorna todos los usuarios vendedores registrados en el
 	 * sistema
 	 *
-	 *    * @param puserResponse Este parámetro encapsula la información
-	 * solicitada en el metodo.
+	 * @param puserResponse
+	 *            Este parámetro encapsula la información solicitada en el
+	 *            metodo.
 	 *
-	 *   * @return response Retorna la respuesta del sevicio hacia el frontend.
-	 *   
+	 * @return response Retorna la respuesta del sevicio hacia el frontend.   
 	 */
+
 	@RequestMapping(value = "/getAllVendors", method = RequestMethod.POST)
 	public UsersResponse getAllVendors(@RequestBody UsersRequest puserRequest) {
 
@@ -233,51 +234,49 @@ public class UsersController {
 	}
 
 	/**
-	 * Este método registra un usuario en el sistema.
-	 *
-	 * @param pfile
-	 *            Imagen de perfil del usuario.
-	 * @param pidUser
-	 *            Identificador del usuario a modificar.
-	 * @param pidRol
-	 *            Rol del usuario en el sistema.
-	 * @param puserName
-	 *            Nombre de usuario.
-	 * @param pfirstName
-	 *            Primer apellido del usuario.
-	 * @param plastName
-	 *            Segundo apellido del usuario.
-	 * @param pphone1
-	 *            Teléfono del usuario.
-	 * @param pphone2
-	 *            Teléfono alternativo del usuario.
-	 * @param pemail
-	 *            Correo del usuario.
-	 * @param ppassword
-	 *            Contraseña del usaurio.
-	 * 
-	 * @return userResponse Retorna la respuesta del servicio hacia el frontend.
-	 *
-	 * @throws ParseException
-	 *             Esta exepción se lanza cuando el sistema es incapaz de
-	 *             transformar el String pbirthday a birthday ques es de tipo
-	 *             Date.
-	 */
-	@RequestMapping(value = "/modifyUser", method = RequestMethod.POST)
-	public UsersResponse modifyUser(@RequestParam("file") MultipartFile pfile, @RequestParam("idUser") int pidUser,
-			@RequestParam("idRol") int pidRole, @RequestParam("userName") String puserName,
-			@RequestParam("firstName") String pfirstName, @RequestParam("lastName") String plastName,
-			@RequestParam("phone1") String pphone1, @RequestParam("phone2") String pphone2,
-			@RequestParam("email") String pemail, @RequestParam("password") String ppassword,
-			@RequestParam("birthday") String pbirthday, @RequestParam("gender") String pgender) {
-
-		Date birthday = new Date();
-		try {
-			birthday = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(pbirthday);
-		} catch (java.text.ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		  * Este método registra un usuario en el sistema.
+		  *
+		  * @param pfile Imagen de perfil del usuario.
+		  * @param pidUser Identificador del usuario a modificar.
+		  * @param pidRol Rol del usuario en el sistema.
+	      * @param puserName Nombre de usuario.
+		  * @param pfirstName Primer apellido del usuario.
+		  * @param plastName Segundo apellido del usuario.
+	      * @param pphone1 Teléfono del usuario.
+	      * @param pphone2 Teléfono alternativo del usuario.
+	      * @param pemail Correo del usuario.
+	      * @param ppassword Contraseña del usaurio.
+	      * @param pbirthday Fecha de nacimiento del usuario.
+	      * @param pgender Género del usuario.
+	      *
+		  * @return userResponse Retorna la respuesta del servicio hacia el frontend.
+		  *
+		  * @throws ParseException Esta exepción se lanza cuando el sistema es incapaz de transformar
+		  * el String pbirthday a birthday ques es de tipo Date.
+		  */
+		@RequestMapping(value="/modifyUser", method = RequestMethod.POST)
+		public UsersResponse modifyUser(@RequestParam("file") MultipartFile pfile,
+				@RequestParam("idUser") int pidUser,
+				@RequestParam("idRol") int pidRole,
+				@RequestParam("userName") String puserName,
+				@RequestParam("firstName") String pfirstName,
+				@RequestParam("lastName") String plastName,
+				@RequestParam("phone1") String pphone1,
+				@RequestParam("phone2") String pphone2,
+				@RequestParam("email") String pemail,
+				@RequestParam("password") String ppassword,
+				@RequestParam("birthday") String pbirthday,
+				@RequestParam("gender") String pgender){	
+			
+			
+			
+			Date birthday = new Date();
+			  try {
+				birthday = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(pbirthday);
+			} catch (java.text.ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 
 		UsersResponse userResponse = new UsersResponse();
 		String resultFileName;
@@ -343,7 +342,7 @@ public class UsersController {
 
 		user.setTproperties2(properties);
 
-		Tuser nUser = usersService.addToFavorite(user);
+		Tuser nUser = usersService.updateFavorites(user);
 
 		if (nUser != null) {
 			response.setCode(200);
@@ -352,7 +351,7 @@ public class UsersController {
 
 		return response;
 	}
-
+	
 	/**
 	 * Este método realiza un borrado logico al usuario
 	 * 
@@ -377,70 +376,6 @@ public class UsersController {
 	}
 
 	/**
-	 * Este método envía un correo.
-	 * 
-	 * @param pmailInformation
-	 *            Encapsula la información del correo.
-	 * 
-	 * @exception IOException
-	 *                Esta excepción se lanza cuando ocurre un error al enviar
-	 *                el correo.
-	 */
-
-	@RequestMapping(value = "/sendEmail", method = RequestMethod.POST)
-	public UsersResponse sendEmail(@RequestBody UsersRequest puseRequest) {
-
-		UsersResponse response = new UsersResponse();
-
-		String to = puseRequest.getUser().getEmail();
-
-		String from = "propiedadescr.tech@gmail.com";
-		final String username = "propiedadescr.tech@gmail.com";
-		final String password = "mjjvwTechflow";
-
-		String host = "smtp.gmail.com";
-
-		Properties props = new Properties();
-		props.put("mail.smtp.auth", "true");
-		props.put("mail.smtp.starttls.enable", "true");
-		props.put("mail.smtp.host", host);
-		props.put("mail.smtp.port", "587");
-
-		Session session = Session.getInstance(props, new javax.mail.Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(username, password);
-			}
-		});
-
-		try {
-
-			Message message = new MimeMessage(session);
-
-			message.setFrom(new InternetAddress(from));
-
-			message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(to));
-
-			message.setSubject("PropiedadesCR");
-
-			message.setContent("<h3>Bienvenido a PropiedadesCR</h3>"
-					+ "<p>Estimado usuario gracias por haberse unido a la más grande empresa de bienes raices</p>"
-					+ "<p>de ser Costa Rica, toda la comunidad de PropiedadesCR le desea lo mejor.</p>"
-					+ "<p>Esperamos cumplir con sus expectativas</p>", "text/html");
-
-			Transport.send(message);
-			response.setCode(200);
-
-		} catch (MessagingException e) {
-			throw new RuntimeException(e);
-		}
-
-		response.setCode(500);
-
-		return response;
-
-	}
-
-	/**
 	 * Este método retorna el usuario que se desea consultar
 	 *
 	 * @param pidUser
@@ -457,5 +392,98 @@ public class UsersController {
 		response.setUser(user);
 		return response;
 	}
+
+		/**
+		  * Envía la información a agregar a la base de datos por medio de su servicio. 
+		  * 
+		  * @param pProperty Ejb que contiene la información de la entidad que
+		  * se desea remover de favoritos.
+		  * @param pIdUser Id del usuario. No debe ser nulo.
+		  * @return response La entidad del objeto actualizado.
+		  */
+		@RequestMapping(value="removeFavorite/{pIdUser}", method = RequestMethod.PUT)
+		public UsersResponse removeFavorite(@RequestBody Tproperty pProperty,
+				@PathVariable int pIdUser) {
+			UsersResponse response = new UsersResponse();
+			
+			Tuser user = usersService.getUserByID(pIdUser);
+			List<Tproperty> properties = user.getTproperties2();
+			
+			for (int i = 0; i < properties.size(); i++) {
+				if (properties.get(i).getIdProperty() == pProperty.getIdProperty()) {
+					user.getTproperties2().remove(i);
+				}
+			}
+			
+			Tuser nUser = usersService.updateFavorites(user);
+			
+			if (nUser != null) {
+				response.setCode(200);
+				response.setCodeMessage("Property removed form favorites");
+			}
+			
+			return response;
+		}
+		
+		@RequestMapping(value="/welcomeEmail", method = RequestMethod.POST)
+		public UsersResponse sendEmail(@RequestBody UsersRequest puserRequest){
+			 
+			 UsersResponse response = new UsersResponse();
+			  
+		      String to = puserRequest.getUser().getEmail();
+		      
+		      String from = "propiedadescr.tech@gmail.com";
+		      final String username = "propiedadescr.tech@gmail.com";
+		      final String password = "mjjvwTechflow";
+
+		      
+		      String host = "smtp.gmail.com";
+
+		      Properties props = new Properties();
+		      props.put("mail.smtp.auth", "true");
+		      props.put("mail.smtp.starttls.enable", "true");
+		      props.put("mail.smtp.host", host);
+		      props.put("mail.smtp.port", "587");
+
+		      
+		      Session session = Session.getInstance(props,
+		      new javax.mail.Authenticator() {
+		         protected PasswordAuthentication getPasswordAuthentication() {
+		            return new PasswordAuthentication(username, password);
+		         }
+		      });
+
+		      try {
+		         
+		         Message message = new MimeMessage(session);
+
+		         
+		         message.setFrom(new InternetAddress(from));
+
+		        
+		         message.setRecipients(Message.RecipientType.TO,
+		         InternetAddress.parse(to));
+
+		         
+		         message.setSubject("Información de evento");
+
+		         
+		         message.setSubject("Reiniciar contraseña");
+		         
+		         message.setContent("<h3>Bienvenido a PropiedadesCR</h3>"+
+		        		"<p>Reciba un cordial saludo de parte de la comunidad </p>"+
+		        		"<p>de PropiedadesCR, la comunidad m&aacute;s grande de bienes raices del país.</p>"+
+		        		"<p>Esperamos cumplir con sus expectativas.</p>","text/html");
+		         
+		         Transport.send(message);
+		         response.setCode(200);
+
+		        
+
+		      } catch (MessagingException e) {
+		            throw new RuntimeException(e);
+		      }
+		      return response;
+		}
 
 }

@@ -38,7 +38,9 @@
 			,"templates/errosView/500"
 
 			,"templates/guidesView/createGuide"
+			,"templates/guidesView/consultGuide"
 			,"templates/propertiesView/propertyView"
+			,"templates/propertiesView/propertiesCompare"
 			,"templates/permissionsViews/adminView"
 			,"templates/roleView/editRoles"
 

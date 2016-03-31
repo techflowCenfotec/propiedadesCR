@@ -95,6 +95,7 @@
         
         <script src="resources/app/templates/propertiesView/propertiesList.js"></script>
  	    <script src="resources/app/templates/propertiesView/propertiesCreate.js"></script>
+ 	    <script src="resources/app/templates/propertiesView/propertiesCompare.js"></script>
  	    <script src="resources/app/templates/propertiesView/propertyView.js"></script>
         <script src="resources/app/templates/usersView/usersList.js"></script>
         <script src="resources/app/templates/usersView/vendorsList.js"></script>
@@ -121,5 +122,6 @@
         <script src="resources/app/templates/permissionsViews/permissions.js"></script>
         <script src="resources/app/templates/roleView/editRoles.js"></script>
         <script src="resources/app/templates/guidesView/createGuide.js"></script>
+        <script src="resources/app/templates/guidesView/consultGuide.js"></script>        
         
         

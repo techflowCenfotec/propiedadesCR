@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techflow.propiedadesCR.contracts.BankToDoListItemRequest;
@@ -19,7 +18,6 @@ import com.techflow.propiedadesCR.ejb.TbankToDoList;
 import com.techflow.propiedadesCR.pojo.BankToDoListItemPOJO;
 import com.techflow.propiedadesCR.pojo.BankToDoListPOJO;
 import com.techflow.propiedadesCR.services.BankToDoListServiceInterface;
-import com.techflow.propiedadesCR.services.ToDoListServiceInterface;
 /**
 * <h1>Controlador del to-do list de los bancos</h1>
 * Esta clase es la encargada de recibir los pedidos del front-end

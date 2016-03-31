@@ -75,9 +75,15 @@ public class UserPOJO {
      */
 	private RolePOJO role;
 	/**
+
      * Calificaciones del vendedor.
      */
 	private List<UserRatingPOJO> vendorRatings;
+	/**
+	 * Lista de favoritos del usuario.
+	 */
+	private List<PropertyPOJO> tproperties2;
+
 
 	public UserPOJO() {
 		super();
@@ -167,6 +173,7 @@ public class UserPOJO {
 	public void setRole(RolePOJO trole) {
 		this.role = trole;
 	}
+
 	public List<UserRatingPOJO> getVendorRatings() {
 		return vendorRatings;
 	}
@@ -174,4 +181,11 @@ public class UserPOJO {
 		this.vendorRatings = vendorRatings;
 	}
 	                       
+	public List<PropertyPOJO> getTproperties2() {
+		return tproperties2;
+	}
+	public void setTproperties2(List<PropertyPOJO> tproperties2) {
+		this.tproperties2 = tproperties2;
+	}
+
 }
