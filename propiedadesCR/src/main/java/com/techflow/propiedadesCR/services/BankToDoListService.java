@@ -110,7 +110,7 @@ public class BankToDoListService implements BankToDoListServiceInterface{
 	@Transactional
 	public BankToDoListPOJO getBankToDoListById(BankToDoListRequest pbankToDoListRequest) {
 		TbankToDoList bankToDoList = new TbankToDoList();
-		bankToDoList = bankToDoListRepository.findOne(Integer.parseInt(pbankToDoListRequest.getSearchTerm()));
+		bankToDoList = bankToDoListRepository.findOne(pbankToDoListRequest.getBankToDoList().getIdtBank_to_do_list());
 
 		BankToDoListPOJO bankTodoList = new BankToDoListPOJO();
 		BeanUtils.copyProperties(bankToDoList, bankTodoList);

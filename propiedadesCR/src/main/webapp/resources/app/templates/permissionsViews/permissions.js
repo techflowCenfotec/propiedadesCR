@@ -30,6 +30,7 @@
 			for(var i = 0; i<userPermissionsList.length;i++){
 				permission = userPermissionsList[i];
 				idPermission = permission.idPermissions;
+				
 				//1.admin
 				//2.comprador
 				//3.vendedor

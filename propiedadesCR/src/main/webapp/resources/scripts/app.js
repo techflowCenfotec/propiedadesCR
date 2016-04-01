@@ -54,13 +54,16 @@ function() {
 	
 		
 		,"app.banktodolist"
+		,"app.banktodolistAdminItems"
 		,"app.banktodolistCreate"
 		,"app.testFlow"
 		,"app.matchedPropertiesList"
 		,"app.createGuide"
-
+		,"app.consultGuide"
+		
 		,"app.properties.create"
 		,"app.properties.view"
+		,'app.properties.compare'
 		,"app.permissionsManagment"
 		,"app.editRoles"
 		,"app.usertoDoList"

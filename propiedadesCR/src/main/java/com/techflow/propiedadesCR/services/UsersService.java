@@ -162,7 +162,7 @@ public class UsersService implements UsersServiceInterface{
 	  */
 	@Override
 	@Transactional
-	public Tuser addToFavorite(Tuser pUser) {
+	public Tuser updateFavorites(Tuser pUser) {
 		Tuser user =  usersRepository.save(pUser);
 		return user;
 	}

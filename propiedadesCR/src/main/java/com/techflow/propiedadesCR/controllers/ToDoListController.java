@@ -1,14 +1,21 @@
 package com.techflow.propiedadesCR.controllers;
 
+import java.util.ArrayList;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.techflow.propiedadesCR.contracts.BankToDoListRequest;
 import com.techflow.propiedadesCR.contracts.ToDoListRequest;
 import com.techflow.propiedadesCR.contracts.ToDoListResponse;
 import com.techflow.propiedadesCR.ejb.TToDoList;
+import com.techflow.propiedadesCR.pojo.BankToDoListPOJO;
+import com.techflow.propiedadesCR.pojo.ToDoListPOJO;
+import com.techflow.propiedadesCR.services.BankToDoListServiceInterface;
 import com.techflow.propiedadesCR.services.ToDoListServiceInterface;
 
 /**
@@ -28,6 +35,11 @@ public class ToDoListController {
      * Objeto que ofrece los servicios de los to-do list de los usuarios
      */
 	@Autowired private ToDoListServiceInterface toDoListService;
+	
+	/**
+     * Objeto que ofrece los servicios de los to-do list de los bancos
+     */
+	@Autowired private BankToDoListServiceInterface bankToDoListService;
 	
 	  /**
 	  * Este metodo sirve para cargar todos los to-do list del sistema
@@ -69,6 +81,7 @@ public class ToDoListController {
 		return response;
 	}
 	
+<<<<<<< HEAD
 	/**
 	* Este método permite eliminar un toDoList del sistema
 	* 
@@ -88,6 +101,29 @@ public class ToDoListController {
 			toDoListResponse.setCodeMessage("ToDoList deleted successfuly");
 		}
 		return toDoListResponse;
+=======
+	@RequestMapping(value="/generateUserToDoList", method=RequestMethod.POST)
+	public ToDoListResponse generateUserToDoList(@RequestBody ToDoListRequest ptoDoListRequest){
+		ToDoListResponse response = new ToDoListResponse();
+		BankToDoListRequest bankRequest = new BankToDoListRequest();
+		bankRequest.setBankToDoList(new BankToDoListPOJO());
+		//el id del to-do list pertenece al del to-do del banco
+		bankRequest.getBankToDoList().setIdtBank_to_do_list(ptoDoListRequest.getToDoList().getIdToDoList());
+		BankToDoListPOJO bankToDoList= bankToDoListService.getBankToDoListById(bankRequest);
+		
+		TToDoList newUserToDoList = toDoListService.generateUserToDoList(bankToDoList,ptoDoListRequest.getToDoList().getTuser().getIdUser());
+		ToDoListPOJO newUserToDoListPOJO = new ToDoListPOJO();
+		BeanUtils.copyProperties(newUserToDoList, newUserToDoListPOJO);
+		
+		if(newUserToDoList!=null){
+			response.setCode(200);
+			response.setCodeMessage("to-do list generated");
+			response.setToDoList(new ArrayList<ToDoListPOJO>() {{add(newUserToDoListPOJO);}});
+			
+		}
+		
+		return response;
+>>>>>>> f1634d795735a92eecd09ce198ea41a1eba6c1f2
 	}
 
 }

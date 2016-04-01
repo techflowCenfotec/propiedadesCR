@@ -1,0 +1,36 @@
+<section class="page-form-ele page"
+	data-ng-controller="ConsultGuideController" flow-init>
+
+	<md-input-container flex> <label>Banco</label> <md-select
+		ng-change="consultGuides()" ng-model="form.bank" aria-label="select"
+		required> <md-option ng-repeat="bank in banks"
+		value="{{bank.idBank}}"> {{bank.name}} </md-option> </md-select> </md-input-container>
+
+	<div layout layout-sm="column">
+		<md-input-container flex> <span flow-btn
+			data-ng-hide="$flow.files.length"> <input type="file"
+			aria-label="file" style="visibility: hidden; position: absolute;"
+			multiple="multiple" />
+		</span> </md-input-container>
+
+	</div>
+
+	<div class="col-md-12">
+		<div class="row">
+			<div data-ng-repeat="guide in guides" class="col-md-4">
+				<div class="card bg-white">
+					<div class="card-image">
+						<img width="250" height="250" src="resources/images/pdf_icon.png"> <span
+							class="card-title">{{guide.name}}</span>
+					</div>
+					<div class="card-action">
+						<a href={{guide.url}} download=“guide”>
+							<p>Descargar</p>
+
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

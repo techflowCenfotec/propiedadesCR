@@ -70,12 +70,12 @@ public class UsersController {
 	@Autowired private HttpServletRequest httpServletRequest;
 	
 	/**
-�  * Este método retorna todos los usuarios registrados en el sistema
+	* Este método retorna todos los usuarios registrados en el sistema
     *
-�  * @param puserResponse Este parámetro encapsula la información solicitada en el metodo.
+    * @param puserResponse Este parámetro encapsula la información solicitada en el metodo.
 	*
- �* @return response Retorna la respuesta del sevicio hacia el frontend.
-�  */
+	* @return response Retorna la respuesta del sevicio hacia el frontend.
+	*/
 	@RequestMapping(value="/getAll", method = RequestMethod.POST)
 	public UsersResponse getAll(@RequestBody UsersRequest puserRequest) {
 		
@@ -106,23 +106,25 @@ public class UsersController {
 		}
 	
 	  /**
-	�* Este método registra un usuario en el sistema.
+	  * Este método registra un usuario en el sistema.
 	  *
-	�* @param pfile Imagen de perfil del usuario.
-	� * @param pidRol Rol del usuario en el sistema.
-	�* @param puserName Nombre de usuario.
-	 �* @param pfirstName Primer apellido del usuario.
+	  * @param pfile Imagen de perfil del usuario.
+	  * @param pidRol Rol del usuario en el sistema.
+	  * @param puserName Nombre de usuario.
+	  * @param pfirstName Primer apellido del usuario.
 	  * @param plastName Segundo apellido del usuario.
       * @param pphone1 Teléfono del usuario.
       * @param pphone2 Teléfono alternativo del usuario.
       * @param pemail Correo del usuario.
       * @param ppassword Contraseña del usaurio.
+      * @param pbirthday Fecha de nacimiento del usuario.
+	  * @param pgender Género del usuario.
       * 
 	  * @return userResponse Retorna la respuesta del servicio hacia el frontend.
 	  *
 	  * @throws ParseException Esta exepción se lanza cuando el sistema es incapaz de transformar
 	  * el String pbirthday a birthday que es de tipo Date.
-	   */
+	  */
 	@RequestMapping(value ="/create", method = RequestMethod.POST)
 	public UsersResponse create(
 			@RequestParam("file") MultipartFile pfile,
@@ -190,11 +192,11 @@ public class UsersController {
 	
 	
 
-	/**
-�  * Este método retorna el usuario loggeado en la aplicación
-    *
-  ��* @return response Retorna la respuesta del sevicio hacia el frontend.
-�  */
+		/**
+		* Este método retorna el usuario loggeado en la aplicación
+	    *
+	    * @return response Retorna la respuesta del sevicio hacia el frontend.
+	    */
 		@RequestMapping(value ="/getUserLogged", method = RequestMethod.GET)
 		public UsersResponse getUserLogged(){
 			UsersResponse response = new UsersResponse();
@@ -203,12 +205,12 @@ public class UsersController {
 		}
 
 		/**
-	�  * Este método retorna el usuario que se desea consultar
+		* Este método retorna el usuario que se desea consultar
 		*
 	    * @param pidUser Identificador del usaurio que se consulta
 	    * 
-	 �* @return response Retorna la respuesta del sevicio hacia el frontend.
-	�  */			
+	    * @return response Retorna la respuesta del sevicio hacia el frontend.
+	    */			
 		@RequestMapping(value="/getUserById/{pidUser}", method = RequestMethod.GET)
 		public UsersResponse getConsultedUser(
 				@PathVariable int  pidUser){
@@ -234,12 +236,14 @@ public class UsersController {
 	      * @param pphone2 Teléfono alternativo del usuario.
 	      * @param pemail Correo del usuario.
 	      * @param ppassword Contraseña del usaurio.
-	      * 
+	      * @param pbirthday Fecha de nacimiento del usuario.
+	      * @param pgender Género del usuario.
+	      *
 		  * @return userResponse Retorna la respuesta del servicio hacia el frontend.
 		  *
 		  * @throws ParseException Esta exepción se lanza cuando el sistema es incapaz de transformar
 		  * el String pbirthday a birthday ques es de tipo Date.
-		   */
+		  */
 		@RequestMapping(value="/modifyUser", method = RequestMethod.POST)
 		public UsersResponse modifyUser(@RequestParam("file") MultipartFile pfile,
 				@RequestParam("idUser") int pidUser,
@@ -312,8 +316,8 @@ public class UsersController {
 		  * Envía la información a agregar a la base de datos por medio de su servicio. 
 		  * 
 		  * @param pProperty Ejb que contiene la información de la entidad que
-		  * se desea crear.
-		  * @param pIdProperty Id de la propiedad. No debe ser nulo.
+		  * se desea agregar a favoritos.
+		  * @param pIdUser Id del usuario. No debe ser nulo.
 		  * @return response La entidad del objeto actualizado.
 		  */
 		@RequestMapping(value="addToFavorite/{pIdUser}", method = RequestMethod.PUT)
@@ -328,11 +332,43 @@ public class UsersController {
 			
 			user.setTproperties2(properties);
 			
-			Tuser nUser = usersService.addToFavorite(user);
+			Tuser nUser = usersService.updateFavorites(user);
 			
 			if (nUser != null) {
 				response.setCode(200);
 				response.setCodeMessage("Property added to favorites");
+			}
+			
+			return response;
+		}
+		
+		/**
+		  * Envía la información a agregar a la base de datos por medio de su servicio. 
+		  * 
+		  * @param pProperty Ejb que contiene la información de la entidad que
+		  * se desea remover de favoritos.
+		  * @param pIdUser Id del usuario. No debe ser nulo.
+		  * @return response La entidad del objeto actualizado.
+		  */
+		@RequestMapping(value="removeFavorite/{pIdUser}", method = RequestMethod.PUT)
+		public UsersResponse removeFavorite(@RequestBody Tproperty pProperty,
+				@PathVariable int pIdUser) {
+			UsersResponse response = new UsersResponse();
+			
+			Tuser user = usersService.getUserByID(pIdUser);
+			List<Tproperty> properties = user.getTproperties2();
+			
+			for (int i = 0; i < properties.size(); i++) {
+				if (properties.get(i).getIdProperty() == pProperty.getIdProperty()) {
+					user.getTproperties2().remove(i);
+				}
+			}
+			
+			Tuser nUser = usersService.updateFavorites(user);
+			
+			if (nUser != null) {
+				response.setCode(200);
+				response.setCodeMessage("Property removed form favorites");
 			}
 			
 			return response;
@@ -398,6 +434,4 @@ public class UsersController {
 		      }
 		      return response;
 		}
-		
-		
 }

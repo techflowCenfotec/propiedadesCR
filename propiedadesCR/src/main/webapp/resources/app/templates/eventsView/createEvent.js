@@ -115,7 +115,7 @@
 								$scope.saveEvent = function($files) {
 
 									$scope.getDateWithFormat();
-									console.log(localStorage.getItem('idUserLogged'));
+									
 									var file;
 									if ($files[0] == undefined)
 										file = new File([],
@@ -170,6 +170,7 @@
 								NgMap.getMap().then(function(map) {
 									$scope.markerPos =  function() {
 										$scope.markerLoc = '['+ map.markers[0].position.lat() + ',' + map.markers[0].position.lng() +']';
+										
 									};
 									
 									

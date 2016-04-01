@@ -11,9 +11,11 @@ import org.springframework.stereotype.Service;
 
 import com.techflow.propiedadesCR.contracts.ToDoListRequest;
 import com.techflow.propiedadesCR.ejb.TToDoList;
-import com.techflow.propiedadesCR.ejb.Trole;
+import com.techflow.propiedadesCR.ejb.Titem;
 import com.techflow.propiedadesCR.ejb.Tuser;
+import com.techflow.propiedadesCR.pojo.BankToDoListPOJO;
 import com.techflow.propiedadesCR.pojo.ToDoListPOJO;
+import com.techflow.propiedadesCR.repositories.ToDoListItemsRepository;
 import com.techflow.propiedadesCR.repositories.ToDoListRepository;
 /**
 * <h1>Servicio de los to-do list de los usuarios</h1>
@@ -31,6 +33,11 @@ public class ToDoListService implements ToDoListServiceInterface{
      * Objeto que se comunica con la base de datos
      */
 	@Autowired private ToDoListRepository toDoListRepository;
+	
+	/**
+     * Objeto que se comunica con la base de datos
+     */
+	@Autowired private ToDoListItemsRepository toDoListItemsRepository;
 	
 	/**
 	  * Este metodo sirve para levantar todos los to-do list de los usuarios del sistema
@@ -84,16 +91,17 @@ public class ToDoListService implements ToDoListServiceInterface{
 		
 		return newToDoList;
 	}
+
 	
 	/**
-	  * Este método elimina lógicamente un toDoList en el sistema.
-	  *
-	  * @param ptoDoListRequest Contiene información del objeto a eliminar.
-      * 
-	  * @return newToDo Devuelve el toDoList eliminado con sus nuevos datos.
-	  *
-	  *@author  Valeria Ramírez 
-	  */
+	�* Este método elimina lógicamente un toDoList en el sistema.
+	 *
+	�* @param ptoDoListRequest Contiene información del objeto a eliminar.
+      	 * 
+	 * @return newToDo Devuelve el toDoList eliminado con sus nuevos datos.
+	 *
+	 *@author  Valeria Ramírez 
+	 */
 	@Override
 	@Transactional
 	public TToDoList deleteToDoList(ToDoListRequest ptoDoListRequest){
@@ -106,4 +114,36 @@ public class ToDoListService implements ToDoListServiceInterface{
 		return newToDo;
 	}
 
+	@Override
+	public TToDoList generateUserToDoList(BankToDoListPOJO pbankToDoList, int pidUser) {
+		
+		//ArrayList<Titem> items = new ArrayList<Titem>();
+		
+		TToDoList newToDoList = new TToDoList();
+		newToDoList.setName(pbankToDoList.getName());
+		newToDoList.setDescription(pbankToDoList.getDescription());
+		newToDoList.setTuser(new Tuser());
+		newToDoList.getTuser().setIdUser(pidUser);
+		newToDoList.setActive((byte) 1);
+		
+		TToDoList newToDo = toDoListRepository.save(newToDoList);
+		
+		if(pbankToDoList.getTbankItems() != null){
+			pbankToDoList.getTbankItems().stream().forEach(item->{
+				Titem newItem = new Titem();
+				BeanUtils.copyProperties(item, newItem);
+				newItem.setTToDoList(newToDoList);
+				newItem.getTToDoList().setIdToDoList(newToDo.getIdToDoList());
+				toDoListItemsRepository.save(newItem);
+				//items.add(newItem);
+			});
+		}
+		
+		//newToDoList.setTitems(items);
+		
+		
+		return newToDo;
+	}
+
 }
+
