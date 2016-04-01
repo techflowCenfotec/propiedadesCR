@@ -119,9 +119,8 @@ public class BankToDoListController {
 	}
 	
 	/**
-	  * Este metodo sirve para levantar un to-do list especifico con sus items
-	  * @param pbankToDoListItemRequest Este parametro es la peticion del front-end
-	  * que se usa para obtener el id del to-do list a consultar
+	  * Este metodo sirve para levantar eliminar un item de un to-do list
+	  * @param pid Este parametro es el id del item a borrar
 	  * @return response Resultado de la peticion
 	  */
 	@RequestMapping(value ="/deleteItem", method = RequestMethod.DELETE)
