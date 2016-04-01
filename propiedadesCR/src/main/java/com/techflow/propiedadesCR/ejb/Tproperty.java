@@ -50,6 +50,7 @@ public class Tproperty implements Serializable {
 	private byte isSold;
 	private Date soldDate;
 	private String saleType;
+	private int totalViews;
 	
 
 	public Tproperty() {
@@ -257,7 +258,7 @@ public class Tproperty implements Serializable {
 
 		return tpropertyImage;
 	}
-
+	@Column(name="offer_percentage")
 	public double getOfferPecentage() {
 		return offerPecentage;
 	}
@@ -267,7 +268,7 @@ public class Tproperty implements Serializable {
 		this.offerPecentage = offerPecentage;
 	}
 
-
+	@Column(name="is_sold")
 	public byte getIsSold() {
 		return isSold;
 	}
@@ -277,7 +278,7 @@ public class Tproperty implements Serializable {
 		this.isSold = isSold;
 	}
 
-
+	@Column(name="sold_type")
 	public Date getSoldDate() {
 		return soldDate;
 	}
@@ -287,7 +288,7 @@ public class Tproperty implements Serializable {
 		this.soldDate = soldDate;
 	}
 
-
+	@Column(name="sale_type")
 	public String getSaleType() {
 		return saleType;
 	}
@@ -295,6 +296,16 @@ public class Tproperty implements Serializable {
 
 	public void setSaleType(String saleType) {
 		this.saleType = saleType;
+	}
+
+	@Column(name="total_views")
+	public int getTotalViews() {
+		return totalViews;
+	}
+
+
+	public void setTotalViews(int totalViews) {
+		this.totalViews = totalViews;
 	}
 	
 	

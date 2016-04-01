@@ -14,10 +14,12 @@
 package com.techflow.propiedadesCR.controllers;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import java.util.Random;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -485,5 +487,28 @@ public class UsersController {
 		      }
 		      return response;
 		}
+		
+		 
+		  /**
+		   * Generate a random String suitable for use as a temporary password.
+		   *
+		   * @return String suitable for use as a temporary password
+		   * @since 2.4
+		   */
+		  public static String generateRandomPassword()
+		  {
+			  Random RANDOM = new SecureRandom();
+			  
+			  int PASSWORD_LENGTH = 8;
+		      String letters = "abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789+@";
+
+		      String pw = "";
+		      for (int i=0; i<PASSWORD_LENGTH; i++)
+		      {
+		          int index = (int)(RANDOM.nextDouble()*letters.length());
+		          pw += letters.substring(index, index+1);
+		      }
+		      return pw;
+		  }
 
 }

@@ -46,7 +46,7 @@ public class PasswordController {
 	 * @exception IOException Esta excepción se lanza cuando ocurre un error al enviar el correo.
 	 */
 	
-	@RequestMapping(value="/welcomeEmail", method = RequestMethod.POST)
+	@RequestMapping(value="/sendEmail", method = RequestMethod.POST)
 	public PasswordResponse sendEmail(@RequestBody PasswordRequest pmailInformation){
 		
 		Tuser user = new Tuser();
@@ -93,11 +93,30 @@ public class PasswordController {
 	         
 	         message.setSubject("Reiniciar contraseña");
 	         
-	         message.setContent("<h3>Cambio de contraseña</h3>"+
-	        		"<p>Estimado usuario se nos ha notificado que se ha pedido hacer un cambio de contraseña</p>"+
-	        		"<p>de ser así por favor hacer clic en Cambiar contraseña, de no ser así omita el mensaje.</p>"+
-	        		"<p>Un cordial saludo, PropiedadesCR</p>"+
-	        		"<a href='http://localhost:8080/propiedadesCR/#/templates/resetPasswordView/resetPassword' class='btn btn-link'>Cambiar contrase&ntilde;a</a>","text/html");
+	         message.setContent("<!Doctype html>"
+	    +"  <html>"
+        +"	 <head>"
+	    +"	 <meta charset='utf-8'>"
+		+"	 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css' integrity='sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7' crossorigin='anonymous'>"
+	    +"	 </head>"
+		+"	  <body>"
+	    +"	  <div class='container'>"
+	    +"  		<div class='header clearfix'>"	
+		+"	  			<h2 class='text-muted'>PropiedadesCR</h2>"
+		+"	   		</div>"
+		+"	       		<div class='row'>"
+		+"	        		<div class='col-xs-12 col-md-8'>"
+		+"	        			<div class='jumbotron'>"
+		+"	      					<h3>Cambio de contraseña</h3>"
+		+"        				    <p>Estimado usuario se nos ha notificado que se ha pedido hacer un cambio de contraseña de ser así por favor hacer clic en 'Cambiar contraseña',de no ser así omita este mensaje.</p>"
+		+"	        				Un cordial saludo</p>"
+		+"	         				<a href='http://localhost:8080/propiedadesCR/#/templates/resetPasswordView/resetPassword' class='btn btn-link'>Cambiar contrase&ntilde;a</a>"
+		+"	    	        			</div>"
+		+" 	        		</div>"
+        +"	        </div>"
+		+"	   </div>"
+	    +"	</body>"
+	    +"</html>","text/html");
 	         
 	         Transport.send(message);
 	         response.setCode(200);
