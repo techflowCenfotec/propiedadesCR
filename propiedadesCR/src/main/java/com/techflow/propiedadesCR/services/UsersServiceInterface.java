@@ -19,8 +19,9 @@ public interface UsersServiceInterface {
 	Tuser changePass(PasswordRequest ppasswordRequest);
 	Tuser updateFavorites(Tuser pUser);
 	Tuser getUserByID(int pIdUser);
-	Tuser deleteUser(UsersRequest userRequest);
+
 	UserPOJO consultVendor(int pidUser);
+	Tuser getUserAdmin();
 
 
 }

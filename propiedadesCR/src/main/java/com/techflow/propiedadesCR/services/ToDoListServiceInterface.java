@@ -11,6 +11,7 @@ public interface ToDoListServiceInterface {
 	List<ToDoListPOJO> getAll(ToDoListRequest ptoDoListRequest);
 
 	TToDoList saveToDoList(ToDoListRequest ptoDoListRequest);
+	TToDoList deleteToDoList(ToDoListRequest ptoDoListRequest);
 
 	TToDoList generateUserToDoList(BankToDoListPOJO bankToDoList, int idUser);
 }

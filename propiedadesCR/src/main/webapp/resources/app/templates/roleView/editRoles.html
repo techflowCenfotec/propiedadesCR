@@ -30,8 +30,8 @@
                                         <div layout layout-sm="column">
                                             <md-input-container flex=70> 
                                                 <label for="">Nuevo nombre</label>
-                                                <input type="text" 
-                                                class="form-control" required data-ng-model="form.newRoleName"><span></span></md-input-container>
+                                                <input type="text" md-maxlength="40"
+                                                class="form-control" value = "consultRoleName" required data-ng-model="form.newRoleName"><span></span></md-input-container>
                                         </div>
                                         <div class="row">
                                             <div class="col-lg-8 col-lg-offset-2">
@@ -51,7 +51,7 @@
                                                             md-ink-ripple="" 
                                                             md-ink-ripple-checkbox="">
                                                                 <div class="md-icon"></div>
-                                                                <div class="md-ripple-container"></div>
+                                                                <div class="md-ripple-container"></div> 
                                                             </div>
                                                             <div class="md-label"></div>
                                                         </md-checkbox>
@@ -61,11 +61,14 @@
                                         </div>
                                     </div>
                                 </form>
-                                <button class="md-raised btn-w-md md-primary md-button md-ink-ripple" 
-                                type="button" data-ng-disabled="!canSubmit()">
-                                    <span class="ng-scope" ng-click="editRoles()">Modificar</span>
-                                    <div class="md-ripple-container"></div>
-                                </button>
+                        <div class=row>
+                            <div class="col-md-6">
+                                <button ng-click="editRoles()" type="submit" ui-wave class="btn btn-primary btn-w-md"
+                                    data-ng-disabled="canSubmit()" http-equiv="Refresh" content="5;url=http://www.cristalab.com">Modificar</button>
+                            </div>
+
+                        </div>
+
                             </div>
                         </div>
                     </div>
@@ -78,7 +81,7 @@
                     <h3 class="panel-title">Rol a modificar</h3>
                 </div>
                 <div class="panel-body">
-                    <strong style="width: 100px;">Nombre: {{consultRoleName}}</strong>
+            
                     <div class="panel panel-default panel-labeled">
                         <div class="panel-body">
                             <md-list role="list">
