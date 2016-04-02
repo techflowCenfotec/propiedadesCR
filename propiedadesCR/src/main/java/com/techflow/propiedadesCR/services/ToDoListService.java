@@ -96,10 +96,10 @@ public class ToDoListService implements ToDoListServiceInterface{
 
 	
 	/**
-	�* Este método elimina lógicamente un toDoList en el sistema.
+	 * Este método elimina lógicamente un toDoList en el sistema.
 	 *
-	�* @param ptoDoListRequest Contiene información del objeto a eliminar.
-      	 * 
+	 * @param ptoDoListRequest Contiene información del objeto a eliminar.
+     * 
 	 * @return newToDo Devuelve el toDoList eliminado con sus nuevos datos.
 	 *
 	 *@author  Valeria Ramírez 
@@ -107,11 +107,8 @@ public class ToDoListService implements ToDoListServiceInterface{
 	@Override
 	@Transactional
 	public TToDoList deleteToDoList(ToDoListRequest ptoDoListRequest){
-		TToDoList tTodoList = new TToDoList();
-		tTodoList.setIdToDoList(ptoDoListRequest.getToDoList().getIdToDoList());
+		TToDoList tTodoList = toDoListRepository.findOne(ptoDoListRequest.getToDoList().getIdToDoList());
 		tTodoList.setActive((byte) 0);
-		tTodoList.setName(ptoDoListRequest.getToDoList().getName());
-		tTodoList.setDescription(ptoDoListRequest.getToDoList().getDescription());
 		TToDoList newToDo = toDoListRepository.save(tTodoList);
 		return newToDo;
 	}
