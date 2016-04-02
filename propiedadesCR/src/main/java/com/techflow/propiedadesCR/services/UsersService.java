@@ -259,18 +259,7 @@ public class UsersService implements UsersServiceInterface{
 	
 	@Override
 	public Tuser getUserAdmin() {
-//		int id = 0;
-//		List<Tuser> users = usersRepository.findAll();
-//		//String email = "";
-//		users.stream().forEach(user -> {
-//			Tuser newUser = usersRepository.findOne(user.getIdUser());
-//			if(newUser.getTrole().getIdRole() == 1){
-//				id = newUser.getIdUser();
-//			}
-//		});
-//		 
 		 return usersRepository.findOne(1);
-
 	}
 
 	
