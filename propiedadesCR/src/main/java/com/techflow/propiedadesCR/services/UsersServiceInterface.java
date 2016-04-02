@@ -22,6 +22,7 @@ public interface UsersServiceInterface {
 
 	UserPOJO consultVendor(int pidUser);
 	Tuser getUserAdmin();
+	Tuser deleteUser(UsersRequest puserRequest);
 
 
 }
