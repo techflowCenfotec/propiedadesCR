@@ -60,9 +60,7 @@ public class WSFilter implements Filter, ApplicationContextAware{
 	    if(generalService.isLocal()){
    	chain.doFilter(servletRequest, servletResponse);
 	    }
-	else{
-	    	
-	    	 System.out.println("Session Object ------> " + currentSession.getAttribute("idUser"));
+	else{ 
 	 		if (currentSession.getAttribute("idUser") != null) {
 	 			chain.doFilter(servletRequest, servletResponse);
 	 		} else {

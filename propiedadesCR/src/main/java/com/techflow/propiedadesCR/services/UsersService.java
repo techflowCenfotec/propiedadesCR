@@ -99,7 +99,7 @@ public class UsersService implements UsersServiceInterface{
 	  * @return nuser Retorna el usuario creado.
 	  */
 	@Override
-	public Tuser saveUser(UsersRequest puserRequest, int pidRole) {
+	public UserPOJO saveUser(UsersRequest puserRequest, int pidRole) {
 		
 		Tuser user = new Tuser();
 		Trole role = new Trole();
@@ -124,9 +124,11 @@ public class UsersService implements UsersServiceInterface{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Tuser nuser = usersRepository.save(user);
+		UserPOJO userPOJO = new UserPOJO();
+		Tuser newUser = usersRepository.save(user);
+		BeanUtils.copyProperties(newUser, userPOJO);
 		
-		return nuser;
+		return userPOJO;
 	
 	}
 	
