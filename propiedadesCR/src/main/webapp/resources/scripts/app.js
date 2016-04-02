@@ -66,6 +66,7 @@ function() {
 		,'app.properties.compare'
 		,"app.permissionsManagment"
 		,"app.editRoles"
+		,"app.usertoDoList"
 		
 		//3rd Party Modules
 		,"ngMaterial"

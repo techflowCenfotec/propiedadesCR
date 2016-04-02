@@ -248,6 +248,19 @@ public class UsersService implements UsersServiceInterface{
 		return usersRepository.findOne(pIdUser);
 
 	}
+	
+	/**
+	  * Método encargado de retornar un usario administrador.
+	  *
+	  *	@author Valeria Ramírez Cordero
+	  * 
+	  * @return Tuser Retorna el usuario Administrador del sistema.
+	  */
+	
+	@Override
+	public Tuser getUserAdmin() {
+		 return usersRepository.findOne(1);
+	}
 
 	
 
