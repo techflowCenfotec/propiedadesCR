@@ -81,7 +81,6 @@ public class ToDoListController {
 		return response;
 	}
 	
-<<<<<<< HEAD
 	/**
 	* Este método permite eliminar un toDoList del sistema
 	* 
@@ -101,7 +100,7 @@ public class ToDoListController {
 			toDoListResponse.setCodeMessage("ToDoList deleted successfuly");
 		}
 		return toDoListResponse;
-=======
+	}
 	@RequestMapping(value="/generateUserToDoList", method=RequestMethod.POST)
 	public ToDoListResponse generateUserToDoList(@RequestBody ToDoListRequest ptoDoListRequest){
 		ToDoListResponse response = new ToDoListResponse();
