@@ -93,10 +93,6 @@
 				$scope.permissionsList= response.permission;
 			});
 
-			$timeout(function() {
-		        $location.path("/templates/roleView/roles"); 
-		        console.log("helou");
-		    }, 3000);
 		};
 
 		$scope.addPermissions = function toggleSelection(idPermissions,checkbox){
@@ -133,7 +129,6 @@
 	    }; 
 
 	    $scope.submitForm = function(event) {
-		  console.log("hi");
 		    $scope.editRoles(event);
 	        $scope.showInfoOnSubmit = true;
 	        return revert();
