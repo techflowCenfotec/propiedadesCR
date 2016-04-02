@@ -69,6 +69,8 @@ public class ToDoListService implements ToDoListServiceInterface{
 		ptoDoListList.stream().forEach(u -> {
 			ToDoListPOJO dto = new ToDoListPOJO();
 			BeanUtils.copyProperties(u, dto);
+			dto.setTuser(null);
+			dto.setTitems(null);
 			uiToDoList.add(dto);
 		});
 		return uiToDoList;
@@ -94,9 +96,9 @@ public class ToDoListService implements ToDoListServiceInterface{
 
 	
 	/**
-	�* Este método elimina lógicamente un toDoList en el sistema.
+	�* Este método elimina lógicamente un toDoList en el sistema.
 	 *
-	�* @param ptoDoListRequest Contiene información del objeto a eliminar.
+	�* @param ptoDoListRequest Contiene información del objeto a eliminar.
       	 * 
 	 * @return newToDo Devuelve el toDoList eliminado con sus nuevos datos.
 	 *
