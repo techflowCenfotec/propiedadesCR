@@ -7,23 +7,22 @@
 				height=100>
 		</div>
 
-
+		<!-- readonly="isReadonly" -->
 
 		<div class="profile-info">
 			<p>{{user.userName}} {{user.firstName}} {{user.lastName}}</p>
-			
-				<div class="col-md-3">
-					<p>Calificaci&oacute;n</p>
-				
-				
-					<uib-rating class="ui-rating size-h4 ui-rating-warning"
-						ng-model="rate" max="max" readonly="isReadonly"
-						on-hover="hoveringOver(value)" on-leave="overStar = null"
-						data-ng-click="saveRating(rate)" state-on="'fa fa-star'"
-						state-off="'fa fa-star-o'"></uib-rating>
-				
-		
-				</div>
+
+			<div class="col-md-3">
+				<p>Calificaci&oacute;n general</p>
+
+
+				<uib-rating class="ui-rating size-h4 ui-rating-warning"
+					ng-model="rate" max="max" readonly="isReadonly"
+					on-leave="overStar = null" state-on="'fa fa-star'"
+					state-off="'fa fa-star-o'"></uib-rating>
+
+
+			</div>
 		</div>
 	</header>
 
@@ -31,20 +30,62 @@
 
 
 
-	<div class="col-sm-8">
+	<div class="col-sm-12">
+
+
 		<div class="panel mini-box">
-			<h3>Fecha de nacimiento:</h3>
-			<p>{{user.birthday}}</p>
+			<div class="row">
+				<div class="col-sm-6">
+					<h3>Fecha de nacimiento:</h3>
+					<p>{{user.birthday}}</p>
 
 
 
-			<h3>Correo</h3>
-			<p>{{user.email}}</p>
+					<h3>G&eacute;nero</h3>
+					<p>{{user.gender}}</p>
+
+				</div>
+				<div class="col-sm-6">
+	
+					<h3>Correo</h3>
+					<p>{{user.email}}</p>
+					
+					<h3>Tel&eacute;fono:</h3>
+					<p>{{user.phone1}}</p>
+
+				</div>
+			</div>
+
+			<div class="divider divider-dashed divider-md pull-in"></div>
 
 
+			<p>Mi calificaci&oacute;n</p>
+
+
+			<uib-rating class="ui-rating size-h4 ui-rating-warning"
+				ng-model="myRate" max="max" on-hover="hoveringOver(value)"
+				on-leave="overStar = null" data-ng-click="saveRating(myRate)"
+				state-on="'fa fa-star'" state-off="'fa fa-star-o'"></uib-rating>
+			<div class="form-group">
+
+				<br> <label for="">Comentario</label>
+				<textarea class="form-control" rows="4" required
+					data-ng-model="form.comment"></textarea>
+			</div>
+
+
+			<div class=row>
+				<div class="col-md-6">
+					<button type="submit" ui-wave class="btn btn-primary btn-w-md"
+						data-ng-click=saveUserComment()>{{btnRateAndComment}}</button>
+				</div>
+			</div>
+			<div class="alert alert-info" data-ng-show="showInfo">Se
+							guardo la calificaci&oacute;n</div>
+			
+
+			<div class="divider divider-dashed divider-md pull-in"></div>
 
 		</div>
 	</div>
-
-	<div class="divider divider-lg"></div>
 </div>
