@@ -12,7 +12,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import javax.servlet.http.HttpSession;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -55,22 +55,22 @@ public class WSFilter implements Filter, ApplicationContextAware{
 			throws IOException, ServletException {
 		HttpServletRequest servletRequest = (HttpServletRequest)request;
 	    HttpServletResponse servletResponse = (HttpServletResponse) response;
-		
+	    HttpSession currentSession = servletRequest.getSession();
 	   
-//	    if(generalService.isLocal()){
+	    if(generalService.isLocal()){
    	chain.doFilter(servletRequest, servletResponse);
-//	    }
-	//else{
-//	    	
-//	    	 System.out.println("Session Object ------> " + currentSession.getAttribute("idUser"));
-//	 		if (currentSession.getAttribute("idUser") != null) {
-//	 			chain.doFilter(servletRequest, servletResponse);
-//	 		} else {
-//	 			logger.debug("Rejected: " + servletRequest.toString());
-//	 			servletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED);
-//	 		}
-//	 		
-//	    }
+	    }
+	else{
+	    	
+	    	 System.out.println("Session Object ------> " + currentSession.getAttribute("idUser"));
+	 		if (currentSession.getAttribute("idUser") != null) {
+	 			chain.doFilter(servletRequest, servletResponse);
+	 		} else {
+	 			logger.debug("Rejected: " + servletRequest.toString());
+	 			servletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+	 		}
+	 		
+	    }
 	}
 
 	public void destroy() {

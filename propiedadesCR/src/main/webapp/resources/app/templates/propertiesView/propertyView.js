@@ -1,11 +1,12 @@
+
 (function() {
 	'use strict';
 	
 	angular.module('app.properties.view', [])
 	
-	.controller('PropViewController', ['$scope', '$http', '$rootScope', PropViewController]);
+	.controller('PropViewController', ['$scope', '$http', '$rootScope','$mdDialog', PropViewController]);
 	
-	function PropViewController($scope, $http, $rootScope) {
+	function PropViewController($scope, $http, $rootScope, $mdDialog) {
 		var self = this;
 		self.district = {};
 		$scope.imageList = [];
@@ -22,9 +23,44 @@
 				district: '',
 		};
 		// Rating data
-		$scope.rate = 3;
+		//$scope.rate = 3;
         $scope.max = 5;
         $scope.isReadonly = false;
+        $scope.popUpVisible = false;
+        $scope.isRateVisible = true;
+        var ratingId = 0;
+        var userLoggerId= 0;
+        var userLoggedObj = {};
+        var userToNotify = {};
+        var userLoggedLink = 'rest/protected/users/getUserLogged';
+        var getIdProperty = localStorage.getItem('idProperty');
+        var linkById = 'rest/protected/rating/getRatingById';
+        var ratingRequest= {
+         		"pageNumber": 0,
+   				"pageSize": 0,
+   				"direction": "string",
+   				"sortBy": [
+   				"string"
+   				],
+   				"searchColumn": "string",
+   				"searchTerm": "string",
+   				"rating": {"tproperty": {"idProperty":getIdProperty}}
+		    };
+
+		
+		$http.post(linkById, ratingRequest)
+        .success(function(response) {
+         	$scope.rate = response.rating.averageRating;
+         	$scope.isReadonly = false;
+         	ratingId = response.rating.idRating;
+        });  
+
+        $http.get(userLoggedLink)
+        .success(function(response) {
+    		userLoggedObj = response.user;
+    		userLoggerId = userLoggedObj.idUser;
+        });  
+
 
         $scope.hoveringOver = function(value) {
             $scope.overStar = value;
@@ -39,6 +75,7 @@
 				$scope.imageList = response.property.tpropertyImages;
 				$scope.selectedType = $scope.property.tpropertyType;
 				$scope.selectedDistrict = $scope.property.tdistrict;
+				$scope.userToNotify = response.tusers;
 				
 				$http.get('rest/protected/districts/getDistrcitById/'+ 
 						$scope.property.tdistrict.idDisctrict)
@@ -73,7 +110,7 @@
 			.success(function(typeResponse) {
 				$scope.propertyTypeList = typeResponse.pTypes;
 			});
-		}
+		};
 		
 		$scope.init();
 		
@@ -102,30 +139,88 @@
 				}
 			});
 		};
-		
+
 		$scope.propertyRate = function(value) {
+			console.log(value);
 			// Cambiar id user al userLogged
-        	var bd = 'rest/protected/rating/addRating';
-        	var data = {
-        			  "pageNumber": 0,
-        			  "pageSize": 0,
-        			  "direction": "string",
-        			  "sortBy": [
-        			    "string"
-        			  ],
-        			  "searchColumn": "string",
-        			  "searchTerm": "string",
-        			  "rating": {
-        				  "tuser": { "idUser": $rootScope.userLogged.idUser},
-        				  "tproperty": { "idProperty": localStorage.getItem('idProperty')},
-        				  "averageRating": $scope.rate
-        			  }
-        			};
+			if($scope.rate === undefined){
+				var bd = 'rest/protected/rating/addRating';
+				var ratingRequest= {
+         		"pageNumber": 0,
+   				"pageSize": 0,
+   				"direction": "string",
+   				"sortBy": [
+   				"string"
+   				],
+   				"searchColumn": "string",
+  				"searchTerm": "string",
+   				"rating": {"idRating": 1}
+				};
         	
-        	$http.post(bd, data)
-        	.success(function(response) {
+        		$http.post(bd, data)
+        		.success(function(response) {
         		$scope.isReadonly = true;
-        	});
+        		});
+
+			}else{
+				$scope.isRateVisible = false;
+				$scope.popUpVisible = true;
+				console.log(getIdProperty);
+			}
+			
+        };
+
+		$scope.editRating = function (){
+			// Cambiar id user al userLogged
+			$scope.isReadonly = false;
+			var linkEditRate = 'rest/protected/rating/editRating';
+			var dataEdit = {
+  				"pageNumber": 0,
+  				"pageSize": 0,
+ 	 			"direction": "string",
+  				"sortBy": [
+    			"string"
+  				],
+  				"searchColumn": "string",
+  				"searchTerm": "string",
+  				"rating": {"idRating": ratingId,
+      				"averageRating": $scope.rate,
+      				"tproperty": {"idProperty":getIdProperty},
+      				"tuser": {"idUser": userLoggerId}}
+			}
+
+			$http.post(linkEditRate, dataEdit)
+        	.success(function(response) {
+         		//$scope.rate = response.rating.averageRating;
+         		console.log("successfully");
+         		$scope.isReadonly = false;
+		 		
+        	}); 
+
+        	$scope.popUpVisible = false;
+        	$scope.isRateVisible = true;
+        };
+
+        $scope.reportVendor = function(){
+        	var link = 'rest/protected/AdminEmail/sendEmail'
+        	$http.post(link, userToNotify)
+        	.success(function(response) {
+        		console.log(response);
+        	}); 
+        	$mdDialog.show(
+	            $mdDialog.alert()
+	                .parent(angular.element(document.querySelector('#popupContainer')))
+	                .clickOutsideToClose(true)
+	                .title('Reporte de vendedor')
+	                .content('Lamentamos su inconveniente '+
+	                    		'Hemos reportado el usuario en el sistema.')
+	                .ok('Aceptar')
+	            );
+        };
+
+        $scope.show = function(){
+        	$scope.popUpVisible=false;
+        	$scope.isRateVisible = true;
         };
 	};
 	

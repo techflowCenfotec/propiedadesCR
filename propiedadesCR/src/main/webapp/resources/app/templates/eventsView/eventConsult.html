@@ -1,6 +1,7 @@
 <div class="page page-profile" data-ng-controller="EventConsultController">
 
     <header class="profile-header">
+    
         <div class="profile-img">
             <img alt="" src={{event.eventImage}} class="img-circle" width=100 height=100>
         </div>
@@ -9,28 +10,53 @@
 
         <div class="profile-info">
             <p>{{event.name}}</p>
-            </ul>
+            
         </div>
     </header>
 
     <div class="divider divider-lg"></div>
     <div class="row">
-        
+        <div class="table-filters">
+            <div class="row">
+            <div class="col-sm-4 col-xs-6">
+              
+            </div>
+            <div class="col-sm-3 col-xs-6 filter-result-info">
+                              
+            </div>
+            </div>
+        </div>
         
        <div class="col-sm-8">
          <div class="panel mini-box">
          	<h3>Descripci&oacute;n del evento</h3>
             <p>{{event.description}}</p>
             
+            
+         	<h3>Dirreci&oacute;n del evento</h3>
+            <p>{{event.address}}</p>
       
         
             <h3>Fecha del evento</h3>
             <p>{{event.startDate}}</p>
-                <button class="btn btn-info" data-ng-click="attendEvent($event)"
+               
+                
+                <h3>Hora del evento</h3>
+                <p>{{event.startDate}}</p>
+                
+                
+            	<h3>Locaci&oacute;n del evento</h3>
+            	<map class="ui-map" zoom="11" center={{event.coordinates}} scrollwheel="false">
+			     <marker position={{event.coordinates}} title="drag me"draggable="true" on-dragend="markerPos()"></marker>
+										</map>
+                <p>{{event.location}}</p>
+                
+                 <button class="btn btn-info" data-ng-click="attendEvent($event)"
                 >Asistir a evento</button>
-            
          	
         </div>
     </div>
+ </div>
 
     <div class="divider divider-lg"></div>
+ </div>

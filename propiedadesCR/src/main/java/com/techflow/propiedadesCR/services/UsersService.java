@@ -162,7 +162,7 @@ public class UsersService implements UsersServiceInterface{
 	  */
 	@Override
 	@Transactional
-	public Tuser addToFavorite(Tuser pUser) {
+	public Tuser updateFavorites(Tuser pUser) {
 		Tuser user =  usersRepository.save(pUser);
 		return user;
 	}
@@ -247,6 +247,19 @@ public class UsersService implements UsersServiceInterface{
 	public Tuser getUserByID(int pIdUser) {
 		return usersRepository.findOne(pIdUser);
 
+	}
+	
+	/**
+	  * Método encargado de retornar un usario administrador.
+	  *
+	  *	@author Valeria Ramírez Cordero
+	  * 
+	  * @return Tuser Retorna el usuario Administrador del sistema.
+	  */
+	
+	@Override
+	public Tuser getUserAdmin() {
+		 return usersRepository.findOne(1);
 	}
 
 	

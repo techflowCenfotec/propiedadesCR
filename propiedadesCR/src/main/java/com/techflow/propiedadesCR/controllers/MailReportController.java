@@ -1,51 +1,51 @@
 /**
- * <h1>Controlador de correo</h1>
+ * <h1>Controlador de correo de reportes de usuarios</h1>
  * Esta clase es  encargada de recibir la información entre el BackEnd y el FrondEnd
  * 
- * @author María Jesús Gutiérrez Calvo.
+ * @author Valeria Ramírez Cordero.
  * @version 1.0
- * @since 12/03/2016
+ * @since 24/03/2016
  */
 package com.techflow.propiedadesCR.controllers;
-import javax.mail.*;
-import javax.mail.internet.*;
+
+import java.util.Properties;
+
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.techflow.propiedadesCR.contracts.MailRequest;
-import com.techflow.propiedadesCR.pojo.EventPOJO;
-
-import java.util.Properties;
-
-
-
+import com.techflow.propiedadesCR.contracts.UsersRequest;
+import com.techflow.propiedadesCR.ejb.Tuser;
+import com.techflow.propiedadesCR.pojo.UserPOJO;
+import com.techflow.propiedadesCR.services.UsersServiceInterface;
 
 @RestController
-@RequestMapping(value="rest/protected/email")
-public class MailController {
-	
+@RequestMapping(value="rest/protected/AdminEmail")
+public class MailReportController {
 	/**
 	 * Este método envía el correo.
-	 * @param pmailInformation Encapsula la información del correo.
+	 * @param pmailInformation Encapsula la información que contiene los datos del usuario
+	 * a ser reportado.
 	 * @exception IOException Esta excepción se lanza cuando ocurre un error al enviar el correo.
 	 */
-	
-	//@Autowired  private Environment env;
-	@Value("${mail.username}")
-	private String propiedadesCR;
-	
+	@Autowired private UsersServiceInterface usersService;
 	@RequestMapping(value="/sendEmail", method = RequestMethod.POST)
-	public void sendEmail(@RequestBody MailRequest pmailInformation){
+	public void sendEmail(@RequestBody UsersRequest pmailInformation){
 		  
-		  EventPOJO event = pmailInformation.getEventP();
+		  UserPOJO userInfo = pmailInformation.getUser();
+		  Tuser admin = usersService.getUserAdmin();
 		  
-	      String to = pmailInformation.getUserEmail();
+	      String to = admin.getEmail();
 	      
 	      String from = "propiedadescr.tech@gmail.com";
 	      final String username = "propiedadescr.tech@gmail.com";
@@ -80,17 +80,15 @@ public class MailController {
 	         InternetAddress.parse(to));
 
 	         
-	         message.setSubject("Información de evento");
+	         message.setSubject("Reporte de usuario");
 
 	         
-	         message.setText("Gracias por utilizar PropiedadesCR, \n"
-	         		+ "\n A continuación encontrará la información del evento"
-	         		+ "\n Lugar: "+event.getAddress().toString()
-                    + "\n Fecha:"+ event.getStartDate().toString()
-	         		//+ "\n Hora: "+ "por definir"
-	         		+ "\n Descripción del evento:"+ event.getDescription()
+	         message.setText("Se ha reportado el siguiente vendedor, \n"
+	         		+ "\n A continuación encontrará la información del usuario"
+	         		+ "\n Nombre: "+ userInfo.getUserName()
+	         		+ "\n Apellido:"+ userInfo.getFirstName()
+	         		+ "\n Correo: "+ userInfo.getEmail()
 	         		+ "\n Gracias por utilizar la aplicación PropiedadesCR");
-
 	         
 	         Transport.send(message);
 
@@ -100,5 +98,5 @@ public class MailController {
 	            throw new RuntimeException(e);
 	      }
 	}
-}
 
+}

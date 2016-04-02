@@ -4,6 +4,14 @@
             <h2 class="section-header">Propiedades</h2>
         </div>
         <div class="col-md-12">
+        	<div class="panel-body">
+        		<div class="callout callout-info">
+        			<div>Para comparar propiedades, seleccione las propiedades deseadas y luego presione el botón de 
+						<a class="btn btn-primary" ng-class="compare()" data-ng-click="compare()" 
+						href="#/templates/propertiesView/propertiesCompare">Comparar</a>
+					</div>     			
+        		</div>
+        	</div>
             <div class=column ng-repeat="property in propertiesList | limitTo:quantity">
                 <div class="col-md-4">
                     <div class="card bg-white">
@@ -12,14 +20,17 @@
                             <span class="card-title">{{property.price | currency}} - {{property.tdistrict.name}}</span>
                         </div>
                         <div class="card-content">
-                            <a class="card-button pull-right" href="javascript:;" data-ng-click="">
-                                <button class="btn btn-icon btn-icon-round btn-floating btn-danger" 
-                                data-ng-click="addToFavorites(property.idProperty)"><i class="fa fa-heart"></i></button>
+                            <a class="card-button pull-right" data-ng-click="">
+                                <button ng-model="heart" class="btn btn-icon btn-icon-round btn-floating btn-default" 
+                                ng-class="checkFavorites(property.idProperty)" data-ng-click="addToFavorites(property.idProperty)">
+                                		<i class="fa fa-heart"></i>
+                                </button>
                             </a>
                             <p>{{property.address}}</p>
                         </div>
                         <div class="card-action">
-                            <a data-ng-click="viewProperty(property.idProperty)" href="#/templates/propertiesView/propertyView" class="btn btn-default">Consultar propiedad</a>
+                            <a data-ng-click="viewProperty(property.idProperty)" href="#/templates/propertiesView/propertyView" class="btn btn-default">Detalles</a>
+                            <a data-ng-click="compareProperty(property.idProperty)" ng-class="selected(property.idProperty)">Seleccione para comparar</a>
                         </div>
                     </div>
                 </div>

@@ -28,6 +28,7 @@
 	    original = angular.copy($scope.form);
 	    function revert(){
 	        $scope.form = angular.copy(original);
+	        $scope.form_banktodolistCreate.$setUntouched();
 	        return $scope.form_banktodolistCreate.$setPristine();
 	    };
 	   	$scope.canRevert =  function () {
@@ -38,12 +39,12 @@
 	    };    
 	   	$scope.submitForm = function(event) {
 		  
-		    $scope.saveUser(event);
+		    $scope.saveBankToDoList(event);
 	        $scope.showInfoOnSubmit = true;
 	        return revert();
 	    };
 	    
-	    $scope.saveUser = function(event){
+	    $scope.saveBankToDoList = function(event){
 	    	
 	    	if(this.form_banktodolistCreate.$valid){
 	    		$scope.onError = false;
