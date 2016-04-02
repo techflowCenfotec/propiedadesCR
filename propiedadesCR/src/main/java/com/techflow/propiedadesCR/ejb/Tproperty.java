@@ -1,7 +1,7 @@
 package com.techflow.propiedadesCR.ejb;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.Lob;
+
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
+import java.util.Date;
 
 
 /**
@@ -45,6 +46,12 @@ public class Tproperty implements Serializable {
 	private List<TpropertyRating> tpropertyRatings;
 	private List<Tuser> tusers;
 	private List<TpropertyImage> tpropertyImages;
+	private double offerPecentage;
+	private byte isSold;
+	private Date soldDate;
+	private String saleType;
+	private int totalViews;
+	
 
 	public Tproperty() {
 	}
@@ -251,5 +258,57 @@ public class Tproperty implements Serializable {
 
 		return tpropertyImage;
 	}
+	@Column(name="offer_percentage")
+	public double getOfferPecentage() {
+		return offerPecentage;
+	}
+
+
+	public void setOfferPecentage(double offerPecentage) {
+		this.offerPecentage = offerPecentage;
+	}
+
+	@Column(name="is_sold")
+	public byte getIsSold() {
+		return isSold;
+	}
+
+
+	public void setIsSold(byte isSold) {
+		this.isSold = isSold;
+	}
+
+	@Column(name="sold_type")
+	public Date getSoldDate() {
+		return soldDate;
+	}
+
+
+	public void setSoldDate(Date soldDate) {
+		this.soldDate = soldDate;
+	}
+
+	@Column(name="sale_type")
+	public String getSaleType() {
+		return saleType;
+	}
+
+
+	public void setSaleType(String saleType) {
+		this.saleType = saleType;
+	}
+
+	@Column(name="total_views")
+	public int getTotalViews() {
+		return totalViews;
+	}
+
+
+	public void setTotalViews(int totalViews) {
+		this.totalViews = totalViews;
+	}
+	
+	
+	
 
 }

@@ -66,10 +66,12 @@
                	Modificar
                
                 </div></th>
-                   <th><div class="th">
+                
+                <th><div class="th">
                	Eliminar
                
                 </div></th>
+                 
                 
             </tr>
             </thead>
@@ -81,7 +83,9 @@
                 <td>{{users.phone2}}</td>
                 <td><a class="btn btn-info" data-ng-click="modifyUser(users.idUser)"
                 href="#/templates/usersView/modifyUser">Modificar</a></td>
-                <td><button class="btn btn-danger">Eliminar</button></td>
+                 <td><a class="btn btn-danger" data-ng-click="deleteUser(users)"
+                >Eliminar</a></td>
+             
             </tr>
             </tbody>
         </table>

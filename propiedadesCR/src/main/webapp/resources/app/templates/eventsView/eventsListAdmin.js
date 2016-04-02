@@ -25,7 +25,7 @@
 		var init;
 		$http.post(link,request).success(function(response) {
 			$scope.events= response.events;
-			console.log($scope.events);
+			
 			init();
 		
 			
@@ -75,7 +75,7 @@
         	  var data = $.param({
                   id: id,
               });
-    		 console.log(data);
+    		 
     		$http["delete"]('rest/protected/events/delete?'+data)
             .success(function (data, status, headers) {
             	$scope.currentPageList = _.without($scope.currentPageList,_.findWhere($scope.currentPageList,{idEvent:id}));

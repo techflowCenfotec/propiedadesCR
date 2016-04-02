@@ -7,11 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techflow.propiedadesCR.contracts.BankToDoListRequest;
-import com.techflow.propiedadesCR.contracts.BankToDoListResponse;
 import com.techflow.propiedadesCR.contracts.ToDoListRequest;
 import com.techflow.propiedadesCR.contracts.ToDoListResponse;
 import com.techflow.propiedadesCR.ejb.TToDoList;
@@ -83,6 +81,26 @@ public class ToDoListController {
 		return response;
 	}
 	
+	/**
+	* Este método permite eliminar un toDoList del sistema
+	* 
+	* @param prolesRequest Este parámetro es la peticion del front-end
+	* que se utiliza para acceder al método deseado
+	* 
+	* @return toDoListResponse Resultado que contiene la respuesta
+	* de que el toDoList haya sido modificado exitosamente o no
+	*
+	*/ 
+	@RequestMapping(value ="/delete", method = RequestMethod.POST)
+	public ToDoListResponse deleteToDoList(@RequestBody ToDoListRequest ptoDoListRequest){
+		ToDoListResponse toDoListResponse = new ToDoListResponse();
+		TToDoList deleteToDo = toDoListService.deleteToDoList(ptoDoListRequest);
+		if(deleteToDo!= null){
+			toDoListResponse.setCode(200);
+			toDoListResponse.setCodeMessage("ToDoList deleted successfuly");
+		}
+		return toDoListResponse;
+	}
 	@RequestMapping(value="/generateUserToDoList", method=RequestMethod.POST)
 	public ToDoListResponse generateUserToDoList(@RequestBody ToDoListRequest ptoDoListRequest){
 		ToDoListResponse response = new ToDoListResponse();

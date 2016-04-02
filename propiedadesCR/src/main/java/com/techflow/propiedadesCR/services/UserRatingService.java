@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import com.techflow.propiedadesCR.contracts.UserRatingRequest;
 import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.ejb.TuserRating;
+import com.techflow.propiedadesCR.pojo.UserRatingPOJO;
 import com.techflow.propiedadesCR.repositories.UserRatingRepository;
 
 @Service
@@ -52,5 +53,51 @@ public class UserRatingService implements UserRatingServiceInterface{
 		
 		return nRating;
 	}
-
+	
+	/**
+	  * Este método consulta el rating de un usuario a un vendedor
+	  *
+	  * @param puserRating Encapsula los datos requeridos por el usuario.
+      * 
+	  * @return nRating Retorna el rating del usuario a un vendedor.
+	  */
+	@Override
+	public UserRatingPOJO getRating(UserRatingRequest puserRating) {
+		TuserRating userRating = new TuserRating();
+		UserRatingPOJO userRatingPOJO = new UserRatingPOJO();
+		Tuser client = new Tuser();
+		Tuser vendor = new Tuser();
+		client.setIdUser(puserRating.getIdClient());
+		vendor.setIdUser(puserRating.getIdVendor());
+		userRating = userRatingRepository.findByTuser1AndTuser2(client, vendor);
+		BeanUtils.copyProperties(userRating, userRatingPOJO);
+		
+		return userRatingPOJO;
+	}
+	
+	/**
+	  * Este método modifica el rating de un usuario en el sistema.
+	  *
+	  * @param puserRating Encapsula los datos requeridos por el usuario.
+      * 
+	  * @return nRating Retorna el rating modificado a un usuario.
+	  */
+	@Override
+	public TuserRating modifyRating(UserRatingRequest puserRating) {
+		TuserRating userRating = new TuserRating();
+		Tuser client = new Tuser();
+		Tuser vendor = new Tuser();
+		BeanUtils.copyProperties(puserRating.getRating(), userRating);
+		client.setIdUser(puserRating.getIdClient());
+		vendor.setIdUser(puserRating.getIdVendor());
+		userRating.setTuser1(client);
+		userRating.setTuser2(vendor);
+		userRating.setIdRating(puserRating.getRating().getIdRating());
+		TuserRating nRating = userRatingRepository.save(userRating);
+		
+		return nRating;
+		
+	}
+	
+	
 }
