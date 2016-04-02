@@ -122,7 +122,6 @@ public class ToDoListController {
 		}
 		
 		return response;
->>>>>>> f1634d795735a92eecd09ce198ea41a1eba6c1f2
 	}
 
 }
