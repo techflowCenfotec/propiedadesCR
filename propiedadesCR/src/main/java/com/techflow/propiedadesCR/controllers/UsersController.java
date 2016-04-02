@@ -14,10 +14,12 @@
 package com.techflow.propiedadesCR.controllers;
 
 import java.io.IOException;
+import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Properties;
+import java.util.Random;
 
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -154,7 +156,7 @@ public class UsersController {
 			@RequestParam("phone2") String pphone2, @RequestParam("email") String pemail,
 			@RequestParam("password") String ppassword, @RequestParam("birthday") String pbirthday,
 			@RequestParam("gender") String pgender) {
-
+		String  pass ="";
 		Date birthday = new Date();
 		try {
 			birthday = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(pbirthday);
@@ -179,7 +181,11 @@ public class UsersController {
 			user.setPhone1(pphone1);
 			user.setPhone2(pphone2);
 			user.setEmail(pemail);
-			user.setPassword(ppassword);
+			if(ppassword.equals("null")){
+				pass = generateRandomPassword();
+				user.setPassword(pass);
+			}else
+				user.setPassword(ppassword);
 			user.setEmail(pemail);
 			user.setBirthday(birthday);
 			user.setGender(pgender);
@@ -188,9 +194,11 @@ public class UsersController {
 			user.setFirstTime((byte) 0);
 			UsersRequest userRequest = new UsersRequest();
 			userRequest.setUser(user);
-			Tuser recentlyCreatedUser = usersService.saveUser(userRequest, pidRole);
+			UserPOJO recentlyCreatedUser = usersService.saveUser(userRequest, pidRole);
 
 			if (recentlyCreatedUser != null) {
+				recentlyCreatedUser.setPassword(pass);
+				userResponse.setUser(recentlyCreatedUser);
 				userResponse.setCode(200);
 				userResponse.setCodeMessage("User created ");
 			}
@@ -295,6 +303,7 @@ public class UsersController {
 			user.setPhone1(pphone1);
 			user.setPhone2(pphone2);
 			user.setEmail(pemail);
+			user.setPassword(ppassword);
 			user.setPassword(ppassword);
 			user.setEmail(pemail);
 			user.setBirthday(birthday);
@@ -465,15 +474,13 @@ public class UsersController {
 		         InternetAddress.parse(to));
 
 		         
-		         message.setSubject("Información de evento");
-
-		         
-		         message.setSubject("Reiniciar contraseña");
+		         message.setSubject("PropiedadesCR");
 		         
 		         message.setContent("<h3>Bienvenido a PropiedadesCR</h3>"+
-		        		"<p>Reciba un cordial saludo de parte de la comunidad </p>"+
-		        		"<p>de PropiedadesCR, la comunidad m&aacute;s grande de bienes raices del país.</p>"+
-		        		"<p>Esperamos cumplir con sus expectativas.</p>","text/html");
+		        		"<p>Estimado usuario gracias por haberse unido a la más grande empresa de bienes raices</p>"+
+		        		"<p>de ser Costa Rica, toda la comunidad de PropiedadesCR le desea lo mejor.</p>"
+		        		+ "<p>Su contraseña es " +puserRequest.getUser().getPassword()+"</p>"+
+		        		"<p>Esperamos cumplir con sus expectativas</p>","text/html");
 		         
 		         Transport.send(message);
 		         response.setCode(200);
@@ -485,5 +492,25 @@ public class UsersController {
 		      }
 		      return response;
 		}
+		
+		 
+		  /**
+		   * Este metodo genera una contraseña al azar.
+		   *
+		   * @return Retorna la contraseña.
+		   */
+		  public static String generateRandomPassword()
+		  {
+			  Random RANDOM = new SecureRandom();
+			  int PASSWORD_LENGTH = 8;
+		      String letters = "abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ23456789+@";
+		      String password = "";
+		      for (int i=0; i<PASSWORD_LENGTH; i++)
+		      {
+		          int index = (int)(RANDOM.nextDouble()*letters.length());
+		          password += letters.substring(index, index+1);
+		      }
+		      return password;
+		  }
 
 }

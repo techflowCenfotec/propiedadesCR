@@ -44,6 +44,7 @@
 			,"templates/propertiesView/propertiesCompare"
 			,"templates/permissionsViews/adminView"
 			,"templates/roleView/editRoles"
+			,"templates/toDoListView/listToDoList"
 
 		], 
 

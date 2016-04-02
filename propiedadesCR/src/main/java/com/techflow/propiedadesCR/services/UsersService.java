@@ -99,7 +99,7 @@ public class UsersService implements UsersServiceInterface{
 	  * @return nuser Retorna el usuario creado.
 	  */
 	@Override
-	public Tuser saveUser(UsersRequest puserRequest, int pidRole) {
+	public UserPOJO saveUser(UsersRequest puserRequest, int pidRole) {
 		
 		Tuser user = new Tuser();
 		Trole role = new Trole();
@@ -124,9 +124,11 @@ public class UsersService implements UsersServiceInterface{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Tuser nuser = usersRepository.save(user);
+		UserPOJO userPOJO = new UserPOJO();
+		Tuser newUser = usersRepository.save(user);
+		BeanUtils.copyProperties(newUser, userPOJO);
 		
-		return nuser;
+		return userPOJO;
 	
 	}
 	
@@ -251,6 +253,19 @@ public class UsersService implements UsersServiceInterface{
 	public Tuser getUserByID(int pIdUser) {
 		return usersRepository.findOne(pIdUser);
 
+	}
+	
+	/**
+	  * Método encargado de retornar un usario administrador.
+	  *
+	  *	@author Valeria Ramírez Cordero
+	  * 
+	  * @return Tuser Retorna el usuario Administrador del sistema.
+	  */
+	
+	@Override
+	public Tuser getUserAdmin() {
+		 return usersRepository.findOne(1);
 	}
 
 	/**

@@ -78,6 +78,12 @@ public class GuidesController {
 		
 		return response;
 	}
+	/**
+	 * 
+	 * Este método envía los datos a la base de datos para traer la guia.
+	 * @return response Retorna la respuesta del BackEnd al FrondEnd
+	 * 
+	 */
 	
 	@RequestMapping(value="/getGuidesByBank", method = RequestMethod.POST)
 	public GuidesResponse getGuidesByBank(

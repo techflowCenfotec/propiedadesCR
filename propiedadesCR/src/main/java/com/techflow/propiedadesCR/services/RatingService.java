@@ -1,5 +1,8 @@
 package com.techflow.propiedadesCR.services;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -9,6 +12,7 @@ import com.techflow.propiedadesCR.contracts.RatingRequest;
 import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.TpropertyRating;
 import com.techflow.propiedadesCR.ejb.Tuser;
+import com.techflow.propiedadesCR.pojo.RatingPOJO;
 import com.techflow.propiedadesCR.repositories.RatingRepository;
 
 /**
@@ -53,6 +57,55 @@ public class RatingService implements RatingServiceInterface {
 		TpropertyRating nRating = ratingRepository.save(rating);
 		
 		return nRating;
+	}
+
+
+	/**
+	  * Método encargado de modificar la calificación de la propiedad
+	  * ya que la entidad puede cambiar al ser almacenda.
+	  * 
+	  * @author Valeria Ramírez
+	  * 
+	  * @param pRating Contiene la infomarción a editar en la base de 
+	  * datos por medio del repositorio. No debe ser nulo.
+	  * 
+	  * @return nRating Una entidad del tipo.
+	  */
+	public TpropertyRating editRating(RatingRequest pRating) {
+		TpropertyRating rating = new TpropertyRating();
+		Tuser user = new Tuser();
+		Tproperty property =  new Tproperty();
+	
+		BeanUtils.copyProperties(pRating.getRating(), rating);
+		user.setIdUser(pRating.getRating().getTuser().getIdUser());
+		property.setIdProperty(pRating.getRating().getTproperty().getIdProperty());
+		rating.setIdRating(pRating.getRating().getIdRating());
+		rating.setTuser(user);
+		rating.setTproperty(property);
+	
+		TpropertyRating nRating = ratingRepository.save(rating);
+	
+		return nRating;
+	}
+	
+	/**
+	 * Método que se encarga de levantar la consulta de  un rating
+	 * 
+	 * @author Valeria Ramírez
+	 *
+	 * @param pratingRequest Parámetro que contiene información del rating 
+	 * que se desea consultar
+	 * 
+	 * @return ratingData Objeto que contiene la información del rating consultado
+	 */
+	public RatingPOJO getRatingById(RatingRequest pratingRequest){
+		//TpropertyRating propertyRating = ratingRepository.findOne(pratingRequest.getRating().getIdRating());
+		TpropertyRating propertyRating = ratingRepository.findOne(pratingRequest.getRating().getTproperty().getIdProperty());
+		RatingPOJO ratingData = new RatingPOJO();
+		BeanUtils.copyProperties(propertyRating, ratingData);
+		ratingData.setAverageRating(propertyRating.getAverageRating());
+		ratingData.setIdRating(propertyRating.getIdRating());
+		return ratingData;
 	}
 
 }

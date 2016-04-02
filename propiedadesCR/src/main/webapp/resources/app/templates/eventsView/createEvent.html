@@ -51,15 +51,16 @@
 						</div>
 
 						<div layout layout-sm="column">
-							<md-input-container flex=50> <label for="">Nombre</label>
-							<input type="text" class="form-control" required
-								data-ng-model="form.name"> </md-input-container>
-						</div>
+						<md-input-container flex=70> <label for="">Nombre</label><input type="text" md-maxlength="40" 
+                                        class="form-control" required data-ng-model="form.name"><span></span>
+                       </md-input-container>
+                        </div>
 							<div class="form-group">
-
-							<br> <label for="">Direcci&oacute;n Exacta</label>
-							<textarea class="form-control" rows="4" required
+						<br><label for="">Direcci&oacute;n Exacta</label>
+						
+							<textarea type="text" maxlength="50" class="form-control" rows="4" required
 								data-ng-model="form.direction"></textarea>
+						
 						</div>
 						<div class="row">
 							<div class="col-md-12">
@@ -78,7 +79,7 @@
 						<div class="form-group">
 
 							<br> <label for="">Descripci&oacute;n</label>
-							<textarea class="form-control" rows="10" required
+							<textarea maxlength="50" class="form-control" rows="10" required
 								data-ng-model="form.description"></textarea>
 						</div>
 						<div class=row>

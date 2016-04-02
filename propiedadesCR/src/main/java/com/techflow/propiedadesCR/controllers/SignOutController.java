@@ -18,10 +18,16 @@ import com.techflow.propiedadesCR.pojo.UserPOJO;
 @RestController
 @RequestMapping(value="rest/protected/signOut")
 public class SignOutController {
+	/**
+	 * Este objeto mantiene la sesión en el backend
+	 */
 	
 	@Autowired private HttpServletRequest httpRequest;
 	
-	
+		/**
+	    * Este método retorna el usuario que esta cerrando sesión
+	    *@return response Retorna la respuesta del sevicio hacia el frontend.
+	    */	
 	@RequestMapping(value="/signOut", method = RequestMethod.GET)
 	public BaseResponse getSignOut() {
 		
