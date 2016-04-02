@@ -9,7 +9,7 @@
 		'$mdToast',
 		'$location',
 		'$timeout',
-		function($scope, $http, $upload, $mdToast, $location, $$timeout){
+		function($scope, $http, $upload, $mdToast, $location, $timeout){
 		
 		$scope.permissionsList = [];
 		$scope.consultPermissions = [];
@@ -83,14 +83,6 @@
 						    .position($scope.getToastPosition())
 						    .hideDelay(1000)
 						    );
-					
-						
-						// $timeout(function(){ 
-  				 			$location.path("/templates/roleView/roles"); 
-						// },5000);
-						 
-						 // .setTimeout($scope.reload(), 5000);
-
 						 return revert();
 				});
 			
@@ -98,8 +90,13 @@
 	    		$scope.onError = true;
 	    	}
 	    	$http.post(link,request).success(function(response) {
-			$scope.permissionsList= response.permission;
+				$scope.permissionsList= response.permission;
 			});
+
+			$timeout(function() {
+		        $location.path("/templates/roleView/roles"); 
+		        console.log("helou");
+		    }, 3000);
 		};
 
 		$scope.addPermissions = function toggleSelection(idPermissions,checkbox){
@@ -136,7 +133,7 @@
 	    }; 
 
 	    $scope.submitForm = function(event) {
-		  
+		  console.log("hi");
 		    $scope.editRoles(event);
 	        $scope.showInfoOnSubmit = true;
 	        return revert();
