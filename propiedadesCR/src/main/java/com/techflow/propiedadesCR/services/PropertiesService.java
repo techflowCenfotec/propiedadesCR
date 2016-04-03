@@ -1,6 +1,7 @@
 package com.techflow.propiedadesCR.services;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -250,7 +251,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 	public Tproperty setPropertySold(PropertiesRequest pProperty){
 		Tproperty property = propertiesRepository.findByIdProperty(pProperty.getProperty().getIdProperty());
 		property.setIsSold((byte) 1);
-		property.setSoldDate(property.getSoldDate());
+		property.setSoldDate(new Date());
 		Tproperty propertySold= propertiesRepository.save(property);
 		return propertySold;
 	}
