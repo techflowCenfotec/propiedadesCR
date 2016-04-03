@@ -59,23 +59,29 @@ public class GuidesController {
 		String acceptedExtension = ".pdf";
 		String receivedExtension = pfile.getOriginalFilename().substring(pfile.getOriginalFilename().length()-4);
 		String resultFileName = "";
+		Tguide createdGuide = null;
 		
 		if(acceptedExtension.equals(receivedExtension)){
 			resultFileName = Utils.writeToFile(pfile,servletContext,"guides");
+
+			GuidePOJO newGuide = new GuidePOJO();
+			newGuide.setUrl(resultFileName);
+			newGuide.setName(pname);
+			newGuide.setTbank(new BankPOJO());
+			newGuide.getTbank().setIdBank(pidBank);
+			
+			createdGuide = guidesService.saveGuide(newGuide);
+			
+		}else{
+			response.setCode(501);
+			response.setCodeMessage("Formato no valido");
+			
 		}
 		
-		GuidePOJO newGuide = new GuidePOJO();
-		newGuide.setUrl(resultFileName);
-		newGuide.setName(pname);
-		newGuide.setTbank(new BankPOJO());
-		newGuide.getTbank().setIdBank(pidBank);
-		
-		Tguide createdGuide = guidesService.saveGuide(newGuide);
 		if(createdGuide!=null){
 			response.setCode(200);
 			response.setCodeMessage("created succesfully");
 		}
-		
 		return response;
 	}
 	

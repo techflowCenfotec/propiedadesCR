@@ -145,6 +145,7 @@
 		$scope.propertyRate = function(value) {
 			console.log(value);
 			// Cambiar id user al userLogged
+			if($scope.rate === undefined){
         	var bd = 'rest/protected/rating/addRating';
         	var data = {
         			  "pageNumber": 0,
