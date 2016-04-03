@@ -135,7 +135,7 @@ public class BankToDoListService implements BankToDoListServiceInterface{
 	/**
 	  * Este metodo sirve para eliminar un objeto del sistema
 	  * @param pid Este parametro es el id del item a eliminar
-	  * @return bankToDoList Objeto to-do list del banco y sus items
+	  * @return boolean resultado de metodo
 	  */
 	@Override
 	public Boolean deleteItem(int pid) {
