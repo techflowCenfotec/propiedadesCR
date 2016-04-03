@@ -4,9 +4,11 @@
 	
 	angular.module('app.properties.view', [])
 	
-	.controller('PropViewController', ['$scope', '$http', '$rootScope','$mdDialog', PropViewController]);
-	
-	function PropViewController($scope, $http, $rootScope, $mdDialog) {
+	.controller('PropViewController', ['$scope', '$http', '$rootScope', PropViewController])
+    .controller('ModalDemoCtrl', ['$scope', '$uibModal', '$log', ModalDemoCtrl])
+    .controller('ModalInstanceCtrl', ['$scope', '$uibModalInstance', ModalInstanceCtrl]);
+
+	function PropViewController($scope, $http, $rootScope) {
 		var self = this;
 		self.district = {};
 		$scope.imageList = [];
@@ -144,21 +146,25 @@
 			console.log(value);
 			// Cambiar id user al userLogged
 			if($scope.rate === undefined){
-				var bd = 'rest/protected/rating/addRating';
-				var ratingRequest= {
-         		"pageNumber": 0,
-   				"pageSize": 0,
-   				"direction": "string",
-   				"sortBy": [
-   				"string"
-   				],
-   				"searchColumn": "string",
-  				"searchTerm": "string",
-   				"rating": {"idRating": 1}
-				};
+        	var bd = 'rest/protected/rating/addRating';
+        	var data = {
+        			  "pageNumber": 0,
+        			  "pageSize": 0,
+        			  "direction": "string",
+        			  "sortBy": [
+        			    "string"
+        			  ],
+        			  "searchColumn": "string",
+        			  "searchTerm": "string",
+        			  "rating": {
+        				  "tuser": { "idUser": $rootScope.userLogged.idUser},
+        				  "tproperty": { "idProperty": localStorage.getItem('idProperty')},
+        				  "averageRating": $scope.rate
+        			  }
+        			};
         	
-        		$http.post(bd, data)
-        		.success(function(response) {
+        	$http.post(bd, data)
+        	.success(function(response) {
         		$scope.isReadonly = true;
         		});
 
@@ -222,6 +228,102 @@
         	$scope.popUpVisible=false;
         	$scope.isRateVisible = true;
         };
+
+
+
 	};
+
+	function ModalDemoCtrl($scope, $uibModal, $log) {
+        $scope.items = ['item1', 'item2', 'item3'];
+
+        $scope.animationsEnabled = true;
+
+        $scope.open = function (size) {
+
+            var modalInstance = $uibModal.open({
+                animation: $scope.animationsEnabled,
+                templateUrl: 'myModalContent.html',
+                controller: 'ModalInstanceCtrl',
+                size: size,
+                resolve: {
+                    items: function () {
+                        return $scope.items;
+                    }
+                }
+            });
+
+            modalInstance.result.then(function (selectedItem) {
+                $scope.selected = selectedItem;
+            }, function () {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+        };
+
+        $scope.toggleAnimation = function () {
+            $scope.animationsEnabled = !$scope.animationsEnabled;
+        };
+    }
+
+    function ModalInstanceCtrl($scope, $uibModalInstance) {
+        var original;
+        $scope.form = { 	
+	        amount: '',
+	        minAmount: '',
+	        quota: '',
+	        financingAmount:'',
+	        netFamilyIncome:''
+	    };
+
+        $scope.cancel = function() {
+            $uibModalInstance.dismiss("cancel");
+        };
+
+        original = angular.copy($scope.form);
+        $scope.canSubmit = function() {
+	        return $scope.form_banktodolistCreate.$valid && !angular.equals($scope.form, original);
+	    };
+
+	    $scope.calculate = function() {
+		
+		/* variables:*/
+			var coin // moneda
+			var interestRate // tasa de interes
+			var months // meses
+			var amount // monto
+			var futureValue // futuro valor (siempre en 0 )
+			var prima // primaima
+			var commission // comision
+			var totalAmount // total monto
+			var familyIncome // ingreso familiar
+			var payment // payment
+			var financingAmount // monto a financiar
+
+	    	/*seteo de valores basicos*/
+
+			coin='$'
+			interestRate= 0.0060
+			months= 300
+			amount= $scope.form.amount
+			futureValue= 0
+			prima= amount*0.2
+			commission= amount*0.015
+			financingAmount= amount-prima;
+			totalAmount= (amount-prima)+commission;
+			
+			//payment= ( interestRate * ( totalAmount * Math.pow ( (interestRate+1), months ) + futureValue ) ) / ( ( interestRate + 1 ) * ( Math.pow ( (interestRate+1), months) -1 ) );
+			
+			payment= (-(totalAmount) + (-(totalAmount) / ((Math.pow(1+interestRate,360)) - 1))) * -interestRate;
+			
+			if((payment/0.5)<1000){ familyIncome=1000 }
+			else{ familyIncome=(payment/0.5) };
+	       
+			$scope.form.minAmount = coin+prima;
+			$scope.form.financingAmount = coin+financingAmount;
+			$scope.form.quota = coin+(payment = Math.round(payment * 100) / 100);
+			$scope.form.netFamilyIncome = coin+(familyIncome = Math.round(familyIncome * 100) / 100);
+			
+	    };
+
+    };
 	
 })();

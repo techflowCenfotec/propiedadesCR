@@ -16,4 +16,6 @@ public interface BankToDoListServiceInterface {
 	TbankItem saveBankToDoListItem(BankToDoListItemRequest pbankToDoListItemRequest);
 
 	BankToDoListPOJO getBankToDoListById(BankToDoListRequest pbankToDoListRequest);
+
+	Boolean deleteItem(int pid);
 }

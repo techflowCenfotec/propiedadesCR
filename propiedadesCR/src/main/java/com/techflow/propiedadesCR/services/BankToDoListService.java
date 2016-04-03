@@ -62,6 +62,7 @@ public class BankToDoListService implements BankToDoListServiceInterface{
 		BeanUtils.copyProperties(pbankToDoListRequest.getBankToDoList(), bankToDoList);
 		bankToDoList.setTbank(new Tbank());
 		BeanUtils.copyProperties(pbankToDoListRequest.getBankToDoList().getTbank(), bankToDoList.getTbank());
+		bankToDoList.setActive((byte) 1);
 
 		TbankToDoList newBankToDoList = bankToDoListRepository.save(bankToDoList);
 		return newBankToDoList;
@@ -129,6 +130,20 @@ public class BankToDoListService implements BankToDoListServiceInterface{
 		bankTodoList.setTbankItems(temp);
 		
 		return bankTodoList;
+	}
+
+	/**
+	  * Este metodo sirve para eliminar un objeto del sistema
+	  * @param pid Este parametro es el id del item a eliminar
+	  * @return boolean resultado de metodo
+	  */
+	@Override
+	public Boolean deleteItem(int pid) {
+		if(	bankToDoListItemRepository.exists(pid)){	
+			bankToDoListItemRepository.delete(pid);
+			return true;
+		}		
+		return false;
 	}
 
 

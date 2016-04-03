@@ -20,6 +20,8 @@
 	     $http.post(toDoListLink,toDoListrequest).success(function(response){
 	     	//console.log(response);
 	     	$scope.items = response.bankToDoList[0].tbankItems;
+	     	localStorage.setItem('idToDoList',undefined);
+	     	//console.log(localStorage.getItem('idToDoList'));
 	     });
 
 
@@ -39,17 +41,17 @@
 	  	$scope.canSubmit = function() {
 	        return $scope.form_banktodolistAdminItems.$valid && !angular.equals($scope.form, original);
 	    };    
-	   	$scope.submitForm = function(event) {
+	   	$scope.submitForm = function(Item) {
 		  
-		    $scope.saveItem(event);
+		    $scope.saveItem(Item);
 	        $scope.showInfoOnSubmit = true;
 	        $timeout(function() {
 		                $scope.showInfoOnSubmit = false;
-		    }, 5000);
+		    }, 3000);
 	        return revert();
 	    };
 	    
-	    $scope.saveItem = function(event){
+	    $scope.saveItem = function(Item){
 	    	
 	    	if(this.form_banktodolistAdminItems.$valid){
 				var addItemLink = 'rest/protected/banktodolist/createItem';
@@ -66,5 +68,16 @@
 	    		$scope.onError = true;
 	    	}
 	    };
+
+	     $scope.deleteItem = function(id){
+        	  var data = $.param({
+                  id: id,
+              });
+
+    		$http["delete"]('rest/protected/banktodolist/deleteItem?'+data)
+            .success(function (data, status, headers) {
+            	$scope.items = _.without($scope.items,_.findWhere($scope.items,{idtBank_item:id}));
+            })
+        };
 	}]);
 })();
