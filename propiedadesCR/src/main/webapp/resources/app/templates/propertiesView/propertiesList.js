@@ -51,6 +51,10 @@
 		
 		// Stores single id value
 		$scope.viewProperty = function(pIdProperty) {
+			$http.get('rest/protected/properties/saveView/' + pIdProperty).success(
+					function(){
+						console.log('Mas 1');
+					});
 			localStorage.setItem('idProperty', pIdProperty);
 		}
 		

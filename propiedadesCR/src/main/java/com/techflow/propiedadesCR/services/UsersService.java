@@ -322,7 +322,8 @@ public class UsersService implements UsersServiceInterface{
 		pRatings.stream().forEach(u -> {
 			UserRatingPOJO userRatingPOJO = new UserRatingPOJO();
 			BeanUtils.copyProperties(u, userRatingPOJO);
-			
+			userRatingPOJO.setTuser1(new UserPOJO());
+			BeanUtils.copyProperties(u.getTuser1(), userRatingPOJO.getTuser1());
 			uiRatings.add(userRatingPOJO);
 		});
 		user.setVendorRatings(uiRatings);

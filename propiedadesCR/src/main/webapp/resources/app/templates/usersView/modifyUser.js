@@ -161,10 +161,6 @@
 					           + $scope.form.birthday.getHours() + ':'
 					           + $scope.form.birthday.getMinutes() + ':'
 					           + $scope.form.birthday.getSeconds();
-					         
-					         console.log($scope.form.birthday);
-					         console.log($scope.dateWithFormat);
-					       
 					        };
 
 						

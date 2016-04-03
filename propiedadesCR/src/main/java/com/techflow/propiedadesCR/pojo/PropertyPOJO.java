@@ -85,7 +85,10 @@ public class PropertyPOJO {
      * Tipo de venta de la propiedad.
      */
 	private String saleType;
-	
+	/**
+     * Tipo de venta de la propiedad.
+     */
+	private int totalViews;
 	
 	public PropertyPOJO() {
 		super();
@@ -236,6 +239,14 @@ public class PropertyPOJO {
 
 	public void setSaleType(String saleType) {
 		this.saleType = saleType;
+	}
+
+	public int getTotalViews() {
+		return totalViews;
+	}
+
+	public void setTotalViews(int totalViews) {
+		this.totalViews = totalViews;
 	}
 
 	

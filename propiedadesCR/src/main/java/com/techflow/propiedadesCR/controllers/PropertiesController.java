@@ -148,4 +148,22 @@ public class PropertiesController {
 		ArrayList<PropertyPOJO> propertiesWithBenefits = propertiesService.getPropertiesWithBenefits();
 		return propertiesWithBenefits;
 	}
+	/**
+	 * Este metodo guarda una vista a la propiedad
+	 *  
+	 *  @param pIdProperty Id de la propiedad. No debe ser nulo.
+	 *  
+	 * @return response Un objeto response de la propiedad.
+	 */
+	@RequestMapping(value="saveView/{pIdProperty}", method=RequestMethod.GET)
+	public PropertiesResponse saveView(@PathVariable int pIdProperty) {
+		PropertiesResponse response = new PropertiesResponse();
+		PropertiesRequest request = new PropertiesRequest();
+		PropertyPOJO property = propertiesService.propertyViews(pIdProperty,request);
+		
+		response.setProperty(property);
+		
+		return response;
+	}
+	
 }

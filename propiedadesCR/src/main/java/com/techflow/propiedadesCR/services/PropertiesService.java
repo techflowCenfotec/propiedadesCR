@@ -154,13 +154,13 @@ public class PropertiesService implements PropertiesServiceInterface {
 		Tdistrict district = new Tdistrict();
 		TpropertyType pType = new TpropertyType();
 		Tproperty nProperty = new Tproperty();
-		
-		for (int i = 0; i < pProperty.getIdBenefits().size(); i++) {
-			Tbenefit benefit = new Tbenefit();
-			benefit.setIdBenefit(pProperty.getIdBenefits().get(i).intValue());
-			lBenefits.add(benefit);
+		if(pProperty.getIdBenefits() !=null){
+			for (int i = 0; i < pProperty.getIdBenefits().size(); i++) {
+				Tbenefit benefit = new Tbenefit();
+				benefit.setIdBenefit(pProperty.getIdBenefits().get(i).intValue());
+				lBenefits.add(benefit);
+			}
 		}
-		
 		DistrictPOJO dist = pProperty.getProperty().getTdistrict();
 		BeanUtils.copyProperties(dist, district);
 		PropertyTypePOJO type = pProperty.getProperty().getTpropertyType();
@@ -239,4 +239,29 @@ public class PropertiesService implements PropertiesServiceInterface {
 		
 		return uiProperties;
 	}
+	
+	/**
+	  * Este metodo le suma una vista a la propiedad.
+	  * 
+	  * @param pidProperty Identificador de la propiedad que se esta viendo.
+	  * @param  request Contiene la infomarción a almacenar.
+	  * 
+	  * @return response Retorna la propiedad que se esta modificando.
+	  */
+	@Override
+	public PropertyPOJO propertyViews(int pIdProperty,PropertiesRequest request) {
+		Tproperty property = getPropertyById(pIdProperty);
+		PropertyPOJO newProperty = new PropertyPOJO();
+		newProperty.setTdistrict(new DistrictPOJO());
+		newProperty.setTpropertyType(new PropertyTypePOJO());
+		property.setTotalViews(property.getTotalViews()+1);
+		BeanUtils.copyProperties(property, newProperty);
+		BeanUtils.copyProperties(property.getTdistrict(),newProperty.getTdistrict());
+		BeanUtils.copyProperties(property.getTpropertyType(),newProperty.getTpropertyType());
+		newProperty.setTbenefits(benefitsDtos(property.getTbenefits()));
+		request.setProperty(newProperty);
+		saveProperty(request);
+		return newProperty;
+	}
+
 }

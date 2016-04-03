@@ -19,6 +19,10 @@ public class UserRatingPOJO {
      * Promedio del rating
      */
 	private double averageRating;
+	/**
+	 * Usuario cliente
+	 */
+	private UserPOJO Tuser1;
 	
 	public int getIdRating() {
 		return idRating;
@@ -31,6 +35,12 @@ public class UserRatingPOJO {
 	}
 	public void setAverageRating(double averageRating) {
 		this.averageRating = averageRating;
+	}
+	public UserPOJO getTuser1() {
+		return Tuser1;
+	}
+	public void setTuser1(UserPOJO tuser1) {
+		Tuser1 = tuser1;
 	}
 	
 	

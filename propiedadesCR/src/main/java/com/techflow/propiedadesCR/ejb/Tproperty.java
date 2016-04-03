@@ -278,7 +278,7 @@ public class Tproperty implements Serializable {
 		this.isSold = isSold;
 	}
 
-	@Column(name="sold_type")
+	@Column(name="sold_date")
 	public Date getSoldDate() {
 		return soldDate;
 	}
