@@ -243,6 +243,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 	 * Retorna la propiedad que se vendio.
 	 * @param pProperty Contiene la informacion a almacenar en la base de datos.
 	 * @return propertySold retorna el objeto propiedad que se vendio. 
+	 * @author María Jesús Gutiérrez Calvo.
 	 */
 	@Override
 	

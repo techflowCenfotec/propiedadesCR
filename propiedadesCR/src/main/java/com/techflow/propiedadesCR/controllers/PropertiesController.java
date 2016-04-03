@@ -152,6 +152,7 @@ public class PropertiesController {
 	 * Solicita la información de la propiedad a través del servicio.
 	 * @param ppropertyRequest Información de la propiedad a vender.
 	 * @return response Objeto de la propiedad vendida.
+	 * @author María Jesús Gutiérrez Calvo
 	 */
 	@RequestMapping(value="/setPropertySold",method=RequestMethod.POST)
 	public PropertiesResponse setPropertySold(@RequestBody PropertiesRequest ppropertyRequest){
