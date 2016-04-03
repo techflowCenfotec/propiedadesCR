@@ -23,6 +23,7 @@ import com.techflow.propiedadesCR.pojo.PropertyImagePOJO;
 import com.techflow.propiedadesCR.pojo.PropertyPOJO;
 import com.techflow.propiedadesCR.pojo.PropertyTypePOJO;
 import com.techflow.propiedadesCR.pojo.RatingPOJO;
+import com.techflow.propiedadesCR.repositories.BenefitsRepository;
 import com.techflow.propiedadesCR.repositories.PropertiesRepository;
 
 /**
@@ -41,6 +42,10 @@ public class PropertiesService implements PropertiesServiceInterface {
 	 * Atributo de acceso al repositorio de las propiedades.
 	 */
 	@Autowired private PropertiesRepository propertiesRepository;
+	/**
+	 * Atributo de acceso al repositorio de los beneficios de las propiedades.
+	 */
+	@Autowired private BenefitsRepository benefitsRepository;
 	
 	/**
 	  * Retorna una lista de objetos PropertyPOJO
@@ -171,6 +176,43 @@ public class PropertiesService implements PropertiesServiceInterface {
 		nProperty.setTpropertyType(pType);
 		nProperty.setTbenefits(lBenefits);
 		nProperty.setActive((byte)1);
+		
+		Tproperty resProperty =  propertiesRepository.save(nProperty);
+		return resProperty;
+	}
+	
+	/**
+	 * Actualiza los datos de la propiedad deseada. Retorna la entidad almacenada por si hay que 
+	 * realizar operaciones adicionales.
+	 * 
+	 * @param pProperty Contiene la infomarción a almacenar a la base de 
+	  * datos por medio del repositorio. No debe ser nulo.
+	 * @param pIdProperty Id de la propiedad. No debe ser nulo.
+	 * @return nProperty Una entidad del tipo.
+	 */
+	@Override
+	@Transactional
+	public Tproperty updateProperty(PropertiesRequest pProperty, 
+			int pIdProperty) {
+		List<Tbenefit> lBenefits = new ArrayList<Tbenefit>();
+		Tdistrict district = new Tdistrict();
+		TpropertyType pType = new TpropertyType();
+		Tproperty nProperty = getPropertyById(pIdProperty);
+		
+		pProperty.getProperty().getTbenefits().stream().forEach(u -> {
+			Tbenefit benefit = benefitsRepository.findOne(u.getIdBenefit());
+			lBenefits.add(benefit);
+		});
+		
+		BeanUtils.copyProperties(pProperty.getProperty().getTdistrict(), district);
+		BeanUtils.copyProperties(pProperty.getProperty().getTpropertyType(), pType);
+		nProperty.setTdistrict(district);
+		nProperty.setTpropertyType(pType);
+		nProperty.setTbenefits(lBenefits);
+		nProperty.setAddress(pProperty.getProperty().getAddress());
+		nProperty.setPrice(pProperty.getProperty().getPrice());
+		nProperty.setSquareMeters(pProperty.getProperty().getSquareMeters());
+		nProperty.setCoordinates(pProperty.getProperty().getCoordinates());
 		
 		Tproperty resProperty =  propertiesRepository.save(nProperty);
 		return resProperty;

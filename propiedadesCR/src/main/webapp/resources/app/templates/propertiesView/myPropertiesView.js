@@ -3,9 +3,9 @@
 	
 	angular.module('app.properties.myProperties', [])
 	
-	.controller('MyPropertiesController', ['$scope', '$http', '$rootScope', MyPropertiesController]);
+	.controller('MyPropertiesController', ['$scope', '$http', '$rootScope', '$state', '$mdDialog', MyPropertiesController]);
 	
-	function MyPropertiesController($scope, $http, $rootScope) {
+	function MyPropertiesController($scope, $http, $rootScope, $state, $mdDialog) {
 		$scope.propertiesList = [];
 		
 		$scope.init = function() {
@@ -22,11 +22,27 @@
 		
 		$scope.init();
 		
-		$scope.deleteProperty = function(pIdProperty) {
-			$http.put('rest/protected/properties/delete/' + pIdProperty)
-			.success(function(response) {
-				console.log('deleted');
-			});
+		$scope.modifyProperty = function(pIdProperty) {
+			localStorage.setItem('idProperty', pIdProperty);
+			$state.go('templates/propertiesView/propertiesModify');
+		};
+		
+		$scope.deleteProperty = function(pIdProperty, ev) {
+			
+			 var confirm = $mdDialog.confirm()
+			             .title('Desea eliminar la propiedad?')
+			             .content('Una vez eliminada la información no podrá ser obtenida de nuevo')
+			             .ariaLabel('Eliminar Propiedad')
+			             .targetEvent(ev)
+			             .ok('Eliminar')
+			             .cancel('Cancelar');
+			 $mdDialog.show(confirm).then(function() {
+				 $http.put('rest/protected/properties/delete/' + pIdProperty)
+					.success(function(response) {
+						$state.reload('templates/propertiesView/myPropertiesView');
+					});
+			 });
+			
 		}
 	}
 	

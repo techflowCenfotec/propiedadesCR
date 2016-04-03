@@ -3,19 +3,24 @@
 
 	angular.module('app.properties',[])
 
-	.controller('PropertiesListController', ['$scope', '$http', '$rootScope', PropertiesListController]);
+	.controller('PropertiesListController', ['$scope', '$http', '$uibModal', '$rootScope', '$log', PropertiesListController]);
 	
-	function PropertiesListController($scope, $http, $rootScope) {
+	function PropertiesListController($scope, $http, $uibModal, $rootScope, $log) {
 		 $scope.propertiesList = [];
 		 $scope.compareList = [];
 		 $scope.favorites = [];
+		 $scope.isCollapsed = false;
 		
 		$scope.init = function() {
+			var active = 1;
 			var user = 1;
 			
 			$http.get('rest/protected/properties/getAll')
 			.success(function(response) {
-				$scope.propertiesList = response.properties;
+				for (var i = 0; i < response.properties.length; i++) {
+					if(response.properties[i].active == active) 
+						$scope.propertiesList.push(response.properties[i]);
+				}
 				
 				$http.get('rest/protected/users/getUserById/' + user)
 				.success(function(response) {
@@ -58,6 +63,14 @@
 			var idx = $scope.favorites.indexOf(pIdProperty);
 			if (idx > -1) return "btn btn-danger";
 			else return "btn btn-default"
+		}
+		
+		$scope.isReadyToCompare = function() {
+			if ($scope.compareList.length == 2) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 		
 		$scope.addToFavorites = function(pIdProperty) {

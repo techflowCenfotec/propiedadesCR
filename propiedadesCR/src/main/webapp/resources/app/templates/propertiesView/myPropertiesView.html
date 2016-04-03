@@ -15,8 +15,8 @@
                             <p>{{property.address}}</p>
                         </div>
                         <div class="card-action">
-                            <button data-ng-click="" class="btn btn-default"><i class="fa fa-pencil fa-fw"></i> Modificar</button>
-                            <button data-ng-click="deleteProperty(property.idProperty)" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> Eliminar</button>
+                            <button data-ng-click="modifyProperty(property.idProperty)" class="btn btn-default"><i class="fa fa-pencil fa-fw"></i> Modificar</button>
+                            <button data-ng-click="deleteProperty(property.idProperty, $event)" class="btn btn-danger"><i class="fa fa-trash-o fa-lg"></i> Eliminar</button>
                         </div>
                     </div>
                 </div>

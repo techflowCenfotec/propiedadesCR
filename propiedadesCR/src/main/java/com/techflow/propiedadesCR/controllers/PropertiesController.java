@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -123,6 +124,14 @@ public class PropertiesController {
 	}
 	
 	/**
+	 * Elimina completamente la imagen seleccionada.
+	 */
+	@RequestMapping(value="/deleteImage", method=RequestMethod.DELETE)
+	public void deleteImage(@RequestParam("imageId") int pImageId){
+		imagesService.deleteImage(pImageId);
+	}
+	
+	/**
 	 * Solicita la información de la propiedad a través del servicio.
 	 *  
 	 *  @param pIdProperty Id de la propiedad. No debe ser nulo.
@@ -147,6 +156,31 @@ public class PropertiesController {
 	public List<PropertyPOJO> getPropertiesWithBenefits() {
 		ArrayList<PropertyPOJO> propertiesWithBenefits = propertiesService.getPropertiesWithBenefits();
 		return propertiesWithBenefits;
+	}
+	
+	/**
+	 * Actualiza los datos de la propiedad seleccionada.
+	 * 
+	 * @param pIdProperty Id de la propiedad. No debe ser nulo.
+	 * @return response Un objeto response de la propiedad.
+	 */
+	@RequestMapping(value="update/{pIdProperty}", method=RequestMethod.PUT)
+	public PropertiesResponse updateProperty(@PathVariable int pIdProperty, 
+			@RequestBody PropertiesRequest pPropRequest) {
+		PropertiesResponse response = new PropertiesResponse();
+		PropertyPOJO property = new PropertyPOJO();
+		
+		Tproperty nProperty = propertiesService.updateProperty(pPropRequest, pIdProperty);
+
+		property.setIdProperty(nProperty.getIdProperty());
+		
+		if(nProperty!=null){
+			response.setCode(200);
+			response.setCodeMessage("Property modified succesfully!");
+			response.setProperty(property);
+		}
+		
+		return response;
 	}
 	
 	/**
