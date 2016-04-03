@@ -148,4 +148,20 @@ public class PropertiesController {
 		ArrayList<PropertyPOJO> propertiesWithBenefits = propertiesService.getPropertiesWithBenefits();
 		return propertiesWithBenefits;
 	}
+	/**
+	 * Solicita la información de la propiedad a través del servicio.
+	 * @param ppropertyRequest Información de la propiedad a vender.
+	 * @return response Objeto de la propiedad vendida.
+	 */
+	@RequestMapping(value="/setPropertySold",method=RequestMethod.POST)
+	public PropertiesResponse setPropertySold(@RequestBody PropertiesRequest ppropertyRequest){
+		PropertiesResponse response = new PropertiesResponse();
+		Tproperty propertiesSold = propertiesService.setPropertySold(ppropertyRequest);
+		
+		if(propertiesSold!=null){
+			response.setCode(200);
+			response.setCodeMessage("property sold succes");
+		}
+		return response;
+	}
 }

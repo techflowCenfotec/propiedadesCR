@@ -239,4 +239,19 @@ public class PropertiesService implements PropertiesServiceInterface {
 		
 		return uiProperties;
 	}
+	/**
+	 * Retorna la propiedad que se vendio.
+	 * @param pProperty Contiene la informacion a almacenar en la base de datos.
+	 * @return propertySold retorna el objeto propiedad que se vendio. 
+	 */
+	@Override
+	
+	public Tproperty setPropertySold(PropertiesRequest pProperty){
+		Tproperty property = propertiesRepository.findByIdProperty(pProperty.getProperty().getIdProperty());
+		property.setIsSold((byte) 1);
+		property.setSoldDate(property.getSoldDate());
+		Tproperty propertySold= propertiesRepository.save(property);
+		return propertySold;
+	}
+	
 }
