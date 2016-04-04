@@ -10,4 +10,5 @@ public interface PropertyImagesServiceInterface {
 	List<PropertyImagePOJO> getAll();
 	TpropertyImage getImageById(int pIdPropiedad);
 	TpropertyImage savePropertyImg(TpropertyImage pPropertyImg);
+	void deleteImage(int pImageId);
 }

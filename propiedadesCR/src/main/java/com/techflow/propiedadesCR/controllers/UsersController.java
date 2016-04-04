@@ -357,6 +357,7 @@ public class UsersController {
 			response.setCodeMessage("Property added to favorites");
 		}
 
+
 		return response;
 	}
 	
@@ -491,8 +492,7 @@ public class UsersController {
 		      }
 		      return response;
 		}
-		
-		 
+
 		  /**
 		   * Este metodo genera una contraseña al azar.
 		   *
@@ -530,5 +530,6 @@ public class UsersController {
 
 				return response;
 			}
+
 
 }

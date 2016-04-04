@@ -4,13 +4,30 @@
             <h2 class="section-header">Propiedades</h2>
         </div>
         <div class="col-md-12">
-        	<div class="panel-body">
+        	<div class="panel-body" uib-collapse="!isReadyToCompare()">
         		<div class="callout callout-info">
-        			<div>Para comparar propiedades, seleccione las propiedades deseadas y luego presione el botón de 
-						<a class="btn btn-primary" ng-class="compare()" data-ng-click="compare()" 
-						href="#/templates/propertiesView/propertiesCompare">Comparar</a>
+        			<div>
+        				<p>Para comparar propiedades, seleccione las propiedades deseadas y luego presione el botón de 
+							<a class="btn btn-primary" ng-class="compare()" data-ng-click="compare()" 
+							href="#/templates/propertiesView/propertiesCompare">Comparar</a>
+						</p>
 					</div>     			
         		</div>
+        	</div>
+        	<div class="row">
+	        	<div class="panel-body">
+	        		<div class="col-lg-8">
+	        			<div class="input-group">
+                            <input type="text" class="form-control">
+                            <span class="input-group-btn">
+	        					<button class="btn btn-success" type="button"><i class="fa fa-search"></i></button>
+	        				</span>
+                         </div>
+                    </div>
+	                <div class="col-lg-4">
+		        		<benefits></benefits>
+	        		</div>
+	        	</div>
         	</div>
             <div class=column ng-repeat="property in propertiesList | limitTo:quantity">
                 <div class="col-md-4">

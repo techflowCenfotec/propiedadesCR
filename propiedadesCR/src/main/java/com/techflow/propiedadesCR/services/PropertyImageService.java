@@ -83,4 +83,13 @@ public class PropertyImageService implements PropertyImagesServiceInterface {
 	public TpropertyImage getImageById(int pIdPropiedad) {
 		return imageRepository.findOne(pIdPropiedad);
 	}
+	
+	/**
+	 * Elimina de la base de datos la imagen seleccionada.
+	 */
+	@Override
+	@Transactional
+	public void deleteImage(int pImageId) {
+		imageRepository.delete(pImageId);
+	}
 }
