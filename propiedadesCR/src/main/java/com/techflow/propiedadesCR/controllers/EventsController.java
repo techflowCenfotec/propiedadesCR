@@ -169,6 +169,76 @@ public class EventsController {
 		}
 		return response;
 	}
+	/**
+	 * Este método modifica el evento recibido por medio del id
+	 * @param pfile archivo subido por el usuario
+	 * @param pidEvent identificador del evento
+	 * @param pname nombre del evento
+	 * @param pdescription descripción del evento
+	 * @param pstartDate fecha del evento
+	 * @param paddress dirección del evento
+	 * @param pcoordinates locación del evento
+	 * @param pidUser id del usuario en sesion
+	 * @return
+	 */
+	@RequestMapping(value="/modifyEvent", method = RequestMethod.POST)
+	public EventsResponse modifyEvent(@RequestParam("file") MultipartFile pfile,
+			@RequestParam("idEvent") int pidEvent,
+			@RequestParam("name") String pname,
+			@RequestParam("description") String pdescription,
+			@RequestParam("start_date") String pstartDate,
+			@RequestParam("address") String paddress,
+			@RequestParam("coordinates") String pcoordinates,
+			@RequestParam("id_user") int pidUser){	
+		
+		
+		
+		Date startDate = new Date();
+		  try {
+			startDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").parse(pstartDate);
+		} catch (java.text.ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		EventsResponse response = new EventsResponse();
+		String resultFileName;
+
+		if(pfile.getSize()==0)
+		 resultFileName = pfile.getOriginalFilename();
+		else			
+		 resultFileName = Utils.writeToFile(pfile,servletContext);
+		
+		if(!resultFileName.equals("")){
+			
+			EventPOJO event = new EventPOJO();
+			event.setIdEvent(pidEvent);
+			event.setName(pname);
+			event.setDescription(pdescription);
+			event.setStartDate(startDate);
+			event.setEventImage(resultFileName);
+			event.setAddress(paddress);
+			event.setCoordinates(pcoordinates);
+			event.setActive((byte)1);
+			EventsRequest eventRequest = new EventsRequest();
+			eventRequest.setEvent(event);
+			Tevent recentlyCreatedEvent = eventsService.modifyEvent(eventRequest,pidUser);
+
+			
+			if(recentlyCreatedEvent != null){
+				response.setCode(200);
+				response.setCodeMessage("Event modified ");
+			}
+			
+		}else{
+			response.setCode(409);
+			response.setErrorMessage("create/edit conflict");
+		}
+	
+		return response;		
+		
+	}
+
 	
 	
   }

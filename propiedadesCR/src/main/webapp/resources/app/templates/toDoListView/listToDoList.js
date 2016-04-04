@@ -21,11 +21,13 @@
         $scope.currentPage = 1;
         $scope.currentPage = [];
         $scope.toastPosition = angular.extend({},last);
+        $scope.userLoggedId = 0;
 //
         var link = 'rest/protected/todolist/getAll';
-        var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","toDoList": {}};
         var init;
         var linDelete = 'rest/protected/todolist/delete';
+        var userLoggedObj = {};
+        var userLoggedLink = 'rest/protected/users/getUserLogged';
         var last = {
             bottom: false,
             top: true,
@@ -40,11 +42,34 @@
             return $scope.currentPageList = $scope.filteredEvents.slice(start, end);
         };
 
-        
-        $http.post(link,request).success(function(response) {
-            $scope.rolesList= response.toDoList;
-            init();
+        $http.get(userLoggedLink).success(function(response) {
+            
+            userLoggedObj = response.user;
+            $scope.userLoggedId = userLoggedObj.idUser;
+            console.log($scope.userLoggedId);
+
+                    var request = {
+                                  "pageNumber": 0,
+                                  "pageSize": 0,
+                                  "direction": "string",
+                                  "sortBy": [
+                                    "string"
+                                  ],
+                                  "searchColumn": "string",
+                                  "searchTerm": "string",
+                                  "toDoList": {
+                                   "tuser": {"idUser": $scope.userLoggedId}
+                                }
+                                };
+                    $http.post(link,request).success(function(response) {
+                        $scope.currentPageList = response.toDoList;
+                        console.log(response.toDoList);
+                        console.log(request);
+                    });
         });
+        
+         
+       
 
         function select(page) {
             var end, start;
