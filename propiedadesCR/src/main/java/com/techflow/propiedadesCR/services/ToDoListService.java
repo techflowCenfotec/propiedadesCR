@@ -166,6 +166,25 @@ public class ToDoListService implements ToDoListServiceInterface{
 	  pojo.setTitems(uiRatings);
 	 }
 
+	@Override
+	public ToDoListPOJO saveMyItems(ToDoListRequest ptoDoListRequest) {
+		TToDoList toDoList = new TToDoList();
+		ToDoListPOJO pojo = new ToDoListPOJO();
+		 List<ToDoListItemPOJO> uiItems = new ArrayList<ToDoListItemPOJO>();
+		BeanUtils.copyProperties(ptoDoListRequest.getToDoList(), pojo);
+		BeanUtils.copyProperties(ptoDoListRequest.getToDoList(), toDoList);
+		ptoDoListRequest.getToDoList().getTitems().stream().forEach(u ->{
+			Titem item = new Titem();
+			ToDoListItemPOJO itemPOJO = new ToDoListItemPOJO();
+			BeanUtils.copyProperties(u, item);
+			item.setTToDoList(toDoList);
+			BeanUtils.copyProperties(toDoListItemsRepository.save(item),itemPOJO);
+			uiItems.add(itemPOJO);
+		});
+		pojo.setTitems(uiItems);
+		return pojo;
+	}
+
 
 }
 

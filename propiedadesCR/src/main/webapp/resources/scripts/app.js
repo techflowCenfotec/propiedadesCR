@@ -61,6 +61,7 @@ function() {
 		,"app.matchedPropertiesList"
 		,"app.createGuide"
 		,"app.consultGuide"
+		,"app.myToDoList"
 		
 		,"app.properties.create"
 		,"app.properties.view"

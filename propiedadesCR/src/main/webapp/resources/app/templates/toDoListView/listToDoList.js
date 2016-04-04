@@ -3,8 +3,8 @@
 
     angular.module('app.usertoDoList', [])
     .controller('usertoDoListController',
-        ['$scope','$filter','$http', '$upload','$mdToast',
-        function($scope,$filter,$http,$upload, $mdToast){
+        ['$scope','$filter','$http', '$upload','$mdToast',"$location",
+        function($scope,$filter,$http,$upload, $mdToast,$location){
 //datagrid
         $scope.rolesList = [];
         $scope.searchKeywords = '';
@@ -46,7 +46,7 @@
             
             userLoggedObj = response.user;
             $scope.userLoggedId = userLoggedObj.idUser;
-            console.log($scope.userLoggedId);
+           
 
                     var request = {
                                   "pageNumber": 0,
@@ -63,8 +63,7 @@
                                 };
                     $http.post(link,request).success(function(response) {
                         $scope.currentPageList = response.toDoList;
-                        console.log(response.toDoList);
-                        console.log(request);
+                       
                     });
         });
         
@@ -117,7 +116,7 @@
             localStorage.setItem('idRoleModify',id);
         }
         $scope.deleteRole = function(id, name, description){
-            console.log(id);
+           
             var requestDelete ={
             "pageNumber": 0,
             "pageSize": 0,
@@ -157,5 +156,11 @@
 
             last = angular.extend({},current);
         };
+        $scope.consultToDoList = function(id){
+        	
+        	localStorage.setItem('idMyToDoList',id);
+        	$location.path("/templates/toDoListView/myToDoList");
+        	
+        }
     }]);
 })();
