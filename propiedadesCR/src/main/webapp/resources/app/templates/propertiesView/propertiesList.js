@@ -73,6 +73,11 @@
 			}
 		}
 		
+		$scope.$on("filterAction", function(e, benefitsList) {
+			$scope.propertiesSort = _.sortBy(benefitsList, 'benefit')
+			console.log($scope.propertiesSort);
+		});
+		
 		$scope.addToFavorites = function(pIdProperty) {
 			var user = 1;
 			// $rootScope.userLogged.idUser

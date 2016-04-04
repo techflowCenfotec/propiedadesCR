@@ -10,7 +10,7 @@
 			templateUrl: 'resources/app/templates/propertiesView/benefitDirective.html',
 			link: function($scope) {
 				$scope.animationsEnabled = true;
-				$scope.buttonLabel = 'Características';
+				$scope.buttonLabel = 'Buscar Características';
 					
 		        $scope.open = function (size) {
 		        	
@@ -52,9 +52,15 @@
 		
 		$scope.init();
 		
-        $scope.ok = function() {
-        	
-            $uibModalInstance.close();
+        $scope.buscar = function() {
+        	$scope.checkedList = [];
+        	for (var i = 0; i < $scope.benefitsList.length; i++) {
+				if ($scope.benefitsList[i].checked == true) {
+					$scope.checkedList.push($scope.benefitsList[i]);
+				}
+			}
+        	$scope.$root.$broadcast("filterAction", $scope.checkedList);
+            $uibModalInstance.dismiss();
         };
 
         $scope.cancel = function() {
