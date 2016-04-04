@@ -512,5 +512,24 @@ public class UsersController {
 		      }
 		      return password;
 		  }
+		  
+		  /**
+		   * Este metodo se encarga de devolver una lista con las propiedades
+		   * favoritas del usuario.
+		   * @author Valeria Ramírez Cordero
+		   * @param puserRequest 
+		   * @return Retorna la contraseña.
+		   */
+			@RequestMapping(value = "/getMyFavoriteProperties", method = RequestMethod.POST)
+
+			public PropertiesResponse getMyFavoriteProperties(@RequestBody UsersRequest puserRequest) {
+
+				PropertiesResponse response = new PropertiesResponse();
+				response.setCode(200);
+				response.setCodeMessage("List of favorites success!");
+				response.setProperties(usersService.getAllFavorites(puserRequest)); 
+
+				return response;
+			}
 
 }

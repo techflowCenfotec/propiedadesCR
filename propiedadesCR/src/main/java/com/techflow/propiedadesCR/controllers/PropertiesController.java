@@ -148,4 +148,28 @@ public class PropertiesController {
 		ArrayList<PropertyPOJO> propertiesWithBenefits = propertiesService.getPropertiesWithBenefits();
 		return propertiesWithBenefits;
 	}
+	
+	/**
+	* Este método permite poner una propiedad en oferta
+	* @author Valeria Ramírez Cordero
+	* @param ppropertiesRequest Este parámetro es la peticion del front-end
+	* que se utiliza para acceder al método deseado
+	*  @return propertiesResponse Resultado que contiene la respuesta
+	* de que el rol haya sido puesto en oferta exitosamente o no
+	*
+	*/ 
+	
+	@RequestMapping(value ="/setPropertyOnSale", method = RequestMethod.POST)
+	public PropertiesResponse setPropertyOnSale(@RequestBody PropertiesRequest ppropertiesRequest){
+		
+		PropertiesResponse propertiesResponse = new PropertiesResponse();
+		Tproperty propertySale = propertiesService.setPropertyOnSale(ppropertiesRequest);
+		
+		if(propertySale!= null){
+			propertiesResponse.setCode(200);
+			propertiesResponse.setCodeMessage("Property on Sale success");
+			
+		}
+		return propertiesResponse;
+	}
 }

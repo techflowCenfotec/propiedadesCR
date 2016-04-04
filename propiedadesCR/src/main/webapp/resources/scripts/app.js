@@ -67,6 +67,7 @@ function() {
 		,"app.permissionsManagment"
 		,"app.editRoles"
 		,"app.usertoDoList"
+		,"app.favoritesManagment"
 		
 		//3rd Party Modules
 		,"ngMaterial"

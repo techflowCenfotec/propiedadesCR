@@ -239,4 +239,17 @@ public class PropertiesService implements PropertiesServiceInterface {
 		
 		return uiProperties;
 	}
+	
+	/**
+	  * Método encargado de poner una propiedad en oferta.
+	  * @author Valeria Ramírez Cordero
+	  * @param ppropertyRequest Objeto que contiene el porcentaje de la oferta.
+	  * @return newProperty Devuelve el objeto modificado con la oferta de la propiedad.
+	  */
+	public Tproperty setPropertyOnSale(PropertiesRequest ppropertyRequest){
+		Tproperty property = propertiesRepository.findByIdProperty(ppropertyRequest.getProperty().getIdProperty());
+		property.setOfferPecentage(ppropertyRequest.getProperty().getOfferPecentage());
+		Tproperty newProperty = propertiesRepository.save(property);
+		return newProperty;
+	}
 }
