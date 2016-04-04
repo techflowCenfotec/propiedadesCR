@@ -80,13 +80,14 @@ public class MailReportController {
 	         
 	         message.setSubject("Reporte de usuario");
 
-	         
+	        
 	         message.setText("Se ha reportado el vendedor, \n"
 	         		//+ "\n A continuación encontrará la información del usuario"
 	         		//+ "\n Nombre: "+ userInfo.getUserName()
 	         		//+ "\n Apellido:"+ userInfo.getFirstName()
 	         		//+ "\n Correo: "+ userInfo.getEmail()
 	         		+ "\n Gracias por utilizar la aplicación PropiedadesCR");
+
 	         
 	         Transport.send(message);
 

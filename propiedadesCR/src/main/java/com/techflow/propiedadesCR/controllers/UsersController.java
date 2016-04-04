@@ -13,7 +13,6 @@
 */
 package com.techflow.propiedadesCR.controllers;
 
-import java.io.IOException;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Date;

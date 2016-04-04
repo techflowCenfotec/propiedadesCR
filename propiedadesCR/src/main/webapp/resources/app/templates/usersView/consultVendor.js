@@ -12,7 +12,7 @@ angular
 				'$rootScope',
 				'$mdDialog',
 				'$timeout',
-				function($scope, $http, $rootScope, $mdDialo,$timeout) {
+				function($scope, $http, $rootScope, $mdDialog,$timeout) {
 
 					$scope.user = {};
 					$scope.rate = 0;
@@ -168,6 +168,39 @@ angular
 						}
 						$scope.rate = generalRating / i;
 					}
+
+					$scope.reportVendor = function(){
+						var userToNotify = {
+							"pageNumber": 0,
+  							"pageSize": 0,
+  							"direction": "string",
+  							"sortBy": [
+    							"string"
+  							],
+  							"searchColumn": "string",
+  							"searchTerm": "string",
+  							"user": {"userName":$scope.user.userName,
+  									"firstName":$scope.user.firstName,
+  									"email": $scope.user.email
+  							}
+						};
+						console.log(userToNotify);
+        				var link = 'rest/protected/AdminEmail/sendEmail'
+        				$http.post(link, userToNotify)
+        				.success(function(response) {
+        					console.log(response);
+        				}); 
+        				$mdDialog.show(
+	            			$mdDialog.alert()
+	                			.parent(angular.element(document.querySelector('#popupContainer')))
+	                			.clickOutsideToClose(true)
+	                			.title('Reporte de vendedor')
+	                			.content('Lamentamos su inconveniente '+
+	                    					'Hemos reportado el usuario en el sistema.')
+	                			.ok('Aceptar')
+	           			);
+        			};
+
 
 				} ]);
 })();
