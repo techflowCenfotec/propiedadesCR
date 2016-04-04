@@ -1,34 +1,38 @@
 (function() {
 	"use strict";
 
-	angular.module('app.properties',[])
+	angular.module('app.favoritesManagment',[])
 
-	.controller('PropertiesListController', ['$scope', '$http', '$uibModal', '$rootScope', '$log', PropertiesListController]);
+	.controller('favoritesController', ['$scope', '$http', '$rootScope',function($scope,$http){  
 	
-	function PropertiesListController($scope, $http, $uibModal, $rootScope, $log) {
+	
 		 $scope.propertiesList = [];
 		 $scope.compareList = [];
 		 $scope.favorites = [];
-		 $scope.isCollapsed = false;
 		
 		$scope.init = function() {
-			var active = 1;
 			var user = 1;
-			
-			$http.get('rest/protected/properties/getAll')
-			.success(function(response) {
-				for (var i = 0; i < response.properties.length; i++) {
-					if(response.properties[i].active == active) 
-						$scope.propertiesList.push(response.properties[i]);
-				}
-				
-				$http.get('rest/protected/users/getUserById/' + user)
+			var userObj = {};
+			var userId = 0;
+			var link = 'rest/protected/users/getUserLogged';
+			$http.get(link).success(function(response){
+				userObj = response;
+				userId = userObj.idUser;
+				console.log(userObj);
+
+				$http.post('rest/protected/users/getMyFavoriteProperties', userObj)
 				.success(function(response) {
-					for (var i = 0; i < response.user.tproperties2.length; i++) {
+					$scope.propertiesList = response.properties;
+					console.log($scope.propertiesList);
+					$http.get('rest/protected/users/getUserById/' + user)
+					.success(function(response) {
+						for (var i = 0; i < response.user.tproperties2.length; i++) {
 						$scope.favorites.push(response.user.tproperties2[i].idProperty);
-					}
+						}
+
+					});
 				});
-			});
+			});	
 		};
 		
 		$scope.init();
@@ -56,10 +60,6 @@
 		
 		// Stores single id value
 		$scope.viewProperty = function(pIdProperty) {
-			$http.get('rest/protected/properties/saveView/' + pIdProperty).success(
-					function(){
-						
-					});
 			localStorage.setItem('idProperty', pIdProperty);
 		}
 		
@@ -68,19 +68,6 @@
 			if (idx > -1) return "btn btn-danger";
 			else return "btn btn-default"
 		}
-		
-		$scope.isReadyToCompare = function() {
-			if ($scope.compareList.length == 2) {
-				return true;
-			} else {
-				return false;
-			}
-		}
-		
-		$scope.$on("filterAction", function(e, benefitsList) {
-			$scope.propertiesSort = _.sortBy(benefitsList, 'benefit')
-			console.log($scope.propertiesSort);
-		});
 		
 		$scope.addToFavorites = function(pIdProperty) {
 			var user = 1;
@@ -111,6 +98,8 @@
 				}
 			});
 		}
-	}
 	
+	}]);
+
 })();
+

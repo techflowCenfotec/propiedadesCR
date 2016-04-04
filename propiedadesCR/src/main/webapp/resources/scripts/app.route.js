@@ -47,6 +47,7 @@
 			,"templates/permissionsViews/adminView"
 			,"templates/roleView/editRoles"
 			,"templates/toDoListView/listToDoList"
+			,"templates/propertyFavoritesView/favoritesList"
 
 		], 
 

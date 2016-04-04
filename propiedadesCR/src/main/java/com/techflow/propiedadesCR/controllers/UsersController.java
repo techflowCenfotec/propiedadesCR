@@ -13,7 +13,6 @@
 */
 package com.techflow.propiedadesCR.controllers;
 
-import java.io.IOException;
 import java.security.SecureRandom;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -358,6 +357,7 @@ public class UsersController {
 			response.setCodeMessage("Property added to favorites");
 		}
 
+
 		return response;
 	}
 	
@@ -492,8 +492,7 @@ public class UsersController {
 		      }
 		      return response;
 		}
-		
-		 
+
 		  /**
 		   * Este metodo genera una contraseña al azar.
 		   *
@@ -512,5 +511,25 @@ public class UsersController {
 		      }
 		      return password;
 		  }
+		  
+		  /**
+		   * Este metodo se encarga de devolver una lista con las propiedades
+		   * favoritas del usuario.
+		   * @author Valeria Ramírez Cordero
+		   * @param puserRequest 
+		   * @return Retorna la contraseña.
+		   */
+			@RequestMapping(value = "/getMyFavoriteProperties", method = RequestMethod.POST)
+
+			public PropertiesResponse getMyFavoriteProperties(@RequestBody UsersRequest puserRequest) {
+
+				PropertiesResponse response = new PropertiesResponse();
+				response.setCode(200);
+				response.setCodeMessage("List of favorites success!");
+				response.setProperties(usersService.getAllFavorites(puserRequest)); 
+
+				return response;
+			}
+
 
 }
