@@ -256,4 +256,19 @@ public class PropertiesController {
 		}
 		return response;
 	}
+	
+	/**
+	 * Devuelve una lista con las propiedades que le pertenecen al vendedor 
+	 * @param ppropertyRequest id del vendedor.
+	 * @return response lista de propiedades.
+	 */
+	@RequestMapping(value="/getPropertiesByIdVendor",method=RequestMethod.POST)
+	public PropertiesResponse getPropertiesByIdVendor(@RequestBody PropertiesRequest pPropertiesRequest){
+		PropertiesResponse response = new PropertiesResponse();
+		response.setProperties(propertiesService.getPropertiesByIdVendor(pPropertiesRequest));
+		response.setCode(200);
+		response.setCodeMessage("properties fetch successfully");
+		
+		return response;
+	}
 }

@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular.module('app.salesReport', ['ngecharts'])
-	.controller('salesReportController',['$scope','$http','$timeout',function($scope,$http,$timeout){
+	.controller('salesReportController',['$scope','$http','$timeout','$rootScope',function($scope,$http,$timeout,$rootScope){
         // Build ECharts with Bar, Line, Pie, Radar, Scatter, Chord, Gauge, Funnel
 
         //llamar a backend para tener mis propiedades
@@ -12,88 +12,66 @@
 		var offersSold = [0,0,0,0,0,0,0,0,0,0,0,0];
 
         var properties = [
-		    {
-		      // "squareMeters": 0,
-		      // "address": "string",
-		      "soldDate": new Date(1459760227000),
-		      // "tuser": {},
-		      // "saleType": "string",
-		      // "coordinates": "string",
-		      // "active": "string",
-		      // "idProperty": 0,
-		      "offerPecentage": 0,
-		      // "tpropertyType": {},
-		      "price": 25000,
-		      "isSold": 1
-		    },
-		    {
-		      // "squareMeters": 0,
-		      // "address": "string",
-		      "soldDate": new Date(),
-		      // "tuser": {},
-		      // "saleType": "string",
-		      // "coordinates": "string",
-		      // "active": "string",
-		      // "idProperty": 0,
-		      "offerPecentage": 0,
-		      // "tpropertyType": {},
-		      "price": 100000,
-		      "isSold": 1
-		    }
+		    // {
+		    //   // "squareMeters": 0,
+		    //   // "address": "string",
+		    //   "soldDate": new Date(1459760227000),
+		    //   // "tuser": {},
+		    //   // "saleType": "string",
+		    //   // "coordinates": "string",
+		    //   // "active": "string",
+		    //   // "idProperty": 0,
+		    //   "offerPecentage": 0,
+		    //   // "tpropertyType": {},
+		    //   "price": 25000,
+		    //   "isSold": 1
+		    // },
+		    // {
+		    //   // "squareMeters": 0,
+		    //   // "address": "string",
+		    //   "soldDate": new Date(),
+		    //   // "tuser": {},
+		    //   // "saleType": "string",
+		    //   // "coordinates": "string",
+		    //   // "active": "string",
+		    //   // "idProperty": 0,
+		    //   "offerPecentage": 0,
+		    //   // "tpropertyType": {},
+		    //   "price": 100000,
+		    //   "isSold": 1
+		    // }
 
   		];
-  		console.log(properties)
-  		//llamar metodos desde un init();
-  		calculateTotalSoldByMoth();
-  		calculatePropertiesSoldByMoth();
+      var soldProperties=[];
 
-  		function calculateTotalSoldByMoth(){
-  			var actualYear = new Date().getFullYear();
-  			console.log(properties[0].soldDate.getMonth());
-  			console.log(actualYear);
+      var request = {
+            "pageNumber": 0,
+            "pageSize": 0,
+            "direction": "",
+            "sortBy": [""],
+            "searchColumn": "string",
+            "searchTerm": "",
+            "property": {
+              "tuser":{"idUser":$rootScope.userLogged.idUser}
+            }
+        };
 
-  			for (var i = 1; i < 13; i++) {
-  				for (var j = 0; j < properties.length; j++) {
-  					if(properties[j].soldDate.getMonth()==i && properties[j].soldDate.getFullYear()==actualYear){
-  						monthTotals[i-1] += properties[j].price;
-  					}
-  				}
-  			}
-  			console.log(monthTotals);
-  		}
-
-  		function calculatePropertiesSoldByMoth(){
-  			var actualYear = new Date().getFullYear();
-
-  			for (var i = 1; i < 13; i++) {
-  				for (var j = 0; j < properties.length; j++) {
-  					if(properties[j].soldDate.getMonth()==i && properties[j].soldDate.getFullYear()==actualYear){
-  						propertiesSold[i-1] += 1;
-  					}
-  				}
-  			}
-  			console.log(propertiesSold);
-  		}
+        $http.post('rest/protected/properties/getPropertiesByIdVendor', request)
+          .success(function(response) {
+          properties = response.properties;
+          for (var i = 0; i < properties.length; i++) {
+            if(properties[i].isSold==1)
+              properties[i].soldDate = new Date(properties[i].soldDate);
+              soldProperties.push(properties[i]);
+          }
+          console.log(soldProperties);
+          init();
+        });
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        $scope.chart = {};
-        
+      function init(){
+        calculateTotalSoldByMoth();
+        calculatePropertiesSoldByMoth();
         $scope.chart.options = {
             title : {
                 text: 'Ventas',
@@ -149,6 +127,53 @@
                 }
             ]
         };
+      }
+  		function calculateTotalSoldByMoth(){
+  			var actualYear = new Date().getFullYear();
+  			console.log(soldProperties[0].soldDate.getMonth());
+  			console.log(actualYear);
+
+  			for (var i = 1; i < 13; i++) {
+  				for (var j = 0; j < soldProperties.length; j++) {
+  					if(soldProperties[j].soldDate.getMonth()==i && soldProperties[j].soldDate.getFullYear()==actualYear){
+  						monthTotals[i-1] += soldProperties[j].price;
+  					}
+  				}
+  			}
+  			console.log(monthTotals);
+  		}
+
+  		function calculatePropertiesSoldByMoth(){
+  			var actualYear = new Date().getFullYear();
+
+  			for (var i = 1; i < 13; i++) {
+  				for (var j = 0; j < soldProperties.length; j++) {
+  					if(soldProperties[j].soldDate.getMonth()==i && soldProperties[j].soldDate.getFullYear()==actualYear){
+  						propertiesSold[i-1] += 1;
+  					}
+  				}
+  			}
+  			console.log(propertiesSold);
+  		}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        $scope.chart = {};
         
         
        

@@ -20,4 +20,5 @@ public interface PropertiesServiceInterface {
 	PropertyPOJO propertyViews(int pIdProperty,PropertiesRequest request);
 
 	Tproperty setPropertySold(PropertiesRequest pProperty);
+	List<PropertyPOJO> getPropertiesByIdVendor(PropertiesRequest pPropertiesRequest);
 }
