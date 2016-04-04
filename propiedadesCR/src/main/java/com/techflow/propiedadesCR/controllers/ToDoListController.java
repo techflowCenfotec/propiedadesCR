@@ -123,5 +123,15 @@ public class ToDoListController {
 		
 		return response;
 	}
+	
+	@RequestMapping(value="/getMyTodoList", method=RequestMethod.POST)
+	 public ToDoListResponse getMyToDoList(@RequestBody ToDoListRequest ptoDoListRequest){
+	  ToDoListResponse response = new ToDoListResponse();
+	  response.setMyTodoList(toDoListService.getMyItems(ptoDoListRequest));
 
+	  
+	  return response;
+	
+	}
+	
 }

@@ -14,6 +14,7 @@ import com.techflow.propiedadesCR.ejb.TToDoList;
 import com.techflow.propiedadesCR.ejb.Titem;
 import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.pojo.BankToDoListPOJO;
+import com.techflow.propiedadesCR.pojo.ToDoListItemPOJO;
 import com.techflow.propiedadesCR.pojo.ToDoListPOJO;
 import com.techflow.propiedadesCR.repositories.ToDoListItemsRepository;
 import com.techflow.propiedadesCR.repositories.ToDoListRepository;
@@ -143,6 +144,28 @@ public class ToDoListService implements ToDoListServiceInterface{
 		
 		return newToDo;
 	}
+
+	@Override
+	 public ToDoListPOJO getMyItems(ToDoListRequest ptoDoListRequest) {
+	  TToDoList todoList = new TToDoList();
+	  ToDoListPOJO pojo = new ToDoListPOJO();
+	  todoList = toDoListRepository.getByIdToDoList(ptoDoListRequest.getToDoList().getIdToDoList());
+	  BeanUtils.copyProperties(todoList, pojo);
+	  todoList.setTitems(todoList.getTitems());
+	  generateItemsDtos(todoList.getTitems(),pojo);
+	  return pojo;
+	 }
+	 private void generateItemsDtos(List<Titem> pItems,ToDoListPOJO pojo) {
+	  List<ToDoListItemPOJO> uiRatings = new ArrayList<ToDoListItemPOJO>();
+	  pItems.stream().forEach(u -> {
+	   ToDoListItemPOJO itemPOJO = new ToDoListItemPOJO();
+	   BeanUtils.copyProperties(u, itemPOJO);
+	   
+	   uiRatings.add(itemPOJO);
+	  });
+	  pojo.setTitems(uiRatings);
+	 }
+
 
 }
 

@@ -2,6 +2,9 @@ package com.techflow.propiedadesCR.ejb;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.List;
 
 
@@ -78,6 +81,7 @@ public class TToDoList implements Serializable {
 
 	//bi-directional many-to-one association to Titem
 	@OneToMany(mappedBy="TToDoList")
+	
 	public List<Titem> getTitems() {
 		return this.titems;
 	}
