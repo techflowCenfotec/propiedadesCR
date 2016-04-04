@@ -58,14 +58,23 @@
 
 			<div class="divider divider-dashed divider-md pull-in"></div>
 
+			<div class="col-md-12">
+				<div class="col-md-6">
+					<p>Mi calificaci&oacute;n</p>
 
-			<p>Mi calificaci&oacute;n</p>
-
-
-			<uib-rating class="ui-rating size-h4 ui-rating-warning"
-				ng-model="myRate" max="max" on-hover="hoveringOver(value)"
-				on-leave="overStar = null" data-ng-click="saveRating(myRate)"
-				state-on="'fa fa-star'" state-off="'fa fa-star-o'"></uib-rating>
+					<uib-rating class="ui-rating size-h4 ui-rating-warning"
+					ng-model="myRate" max="max" on-hover="hoveringOver(value)"
+					on-leave="overStar = null" data-ng-click="saveRating(myRate)"
+					state-on="'fa fa-star'" state-off="'fa fa-star-o'"></uib-rating>
+				</div>
+				<div class="col-md-6">
+					<div class = "panel-body padding-md">
+						<p>Se encuentra inconforme con este vendedor?</p>
+						<div class="divider"></div>
+						<md-button class="btn-xs md-button md-ink-ripple" ng-click="reportVendor()" >Reportar Vendedor</md-button>
+					</div>
+				</div>
+			</div>
 			<div class="form-group">
 
 				<br> <label for="">Comentario</label>
