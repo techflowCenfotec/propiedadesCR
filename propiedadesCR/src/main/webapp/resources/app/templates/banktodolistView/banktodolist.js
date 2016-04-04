@@ -91,7 +91,7 @@
                   "toDoList": {"idToDoList":pidToDoList, "tuser":{"idUser":idUser}} };
 
             $http.post(generateLink,toDoRequest).success(function(response) {
-                //$scope.todolistList= response.bankToDoList;
+                $location.url("templates/toDoListView/listToDoList");
             });
 
         };

@@ -22,7 +22,8 @@
                                             required
                                             name="type_something"
                                             data-ng-trim='false'
-                                            data-ng-model="form.name">
+                                            data-ng-model="form.name"
+                                            md-maxlength="40">
                                             </md-input-container>
 
                                             
@@ -41,8 +42,10 @@
                                             required
                                             name="type_something"
                                             data-ng-trim='false'
-                                            data-ng-model="form.description">
-                                            </md-input-container>
+                                            data-ng-model="form.description"
+                                            md-maxlength="40">
+                                            </md-input-container
+                                            >
                                           </div>
                                 <button type="submit" ui-wave class="btn btn-primary btn-w-md"
                                     data-ng-disabled="!canSubmit()">Modificar</button>
