@@ -36,7 +36,7 @@
 			,"templates/testView/matchedPropertiesList"
 			,"templates/propertiesView/propertiesCreate"
 
-			
+			,"templates/salesReportView/salesReport"			
 			,"templates/errosView/500"
 
 			,"templates/guidesView/createGuide"

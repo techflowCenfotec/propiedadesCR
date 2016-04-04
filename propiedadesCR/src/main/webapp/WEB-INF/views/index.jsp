@@ -125,5 +125,5 @@
         <script src="resources/app/templates/guidesView/createGuide.js"></script>
         <script src="resources/app/templates/guidesView/consultGuide.js"></script>        
         <script src="resources/app/templates/toDoListView/listToDoList.js"></script>
-        
+        <script src="resources/app/templates/salesReportView/salesReport.js"></script>
         

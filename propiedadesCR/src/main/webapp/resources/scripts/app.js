@@ -53,7 +53,7 @@ function() {
 		,"app.vendorsList"
 		,"app.consultVendor"
 	
-		
+		,"app.salesReport"		
 		,"app.banktodolist"
 		,"app.banktodolistAdminItems"
 		,"app.banktodolistCreate"
