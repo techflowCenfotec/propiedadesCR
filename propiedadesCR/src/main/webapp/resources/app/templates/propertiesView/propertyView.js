@@ -7,7 +7,7 @@
 
 	.controller('PropViewController', ['$scope', '$http', '$rootScope','$mdDialog','$timeout', PropViewController])
     .controller('ModalDemoCtrl', ['$scope', '$uibModal', '$log', ModalDemoCtrl])
-    .controller('ModalInstanceCtrl', ['$scope', '$uibModalInstance', ModalInstanceCtrl]);
+    .controller('LocalModalInstanceCtrl', ['$scope', '$uibModalInstance', LocalModalInstanceCtrl]);
 	
 	function PropViewController($scope, $http, $rootScope, $mdDialog, $timeout) {
 
@@ -284,7 +284,7 @@
             var modalInstance = $uibModal.open({
                 animation: $scope.animationsEnabled,
                 templateUrl: 'myModalContent.html',
-                controller: 'ModalInstanceCtrl',
+                controller: 'LocalModalInstanceCtrl',
                 size: size,
                 resolve: {
                     items: function () {
@@ -305,9 +305,10 @@
         };    
 	}
 
-    function ModalInstanceCtrl($scope, $uibModalInstance) {
+    function LocalModalInstanceCtrl($scope, $uibModalInstance) {
         var original;
-        $scope.form = { 	
+
+        $scope.calculatorForm = { 	
 	        amount: '',
 	        minAmount: '',
 	        quota: '',
@@ -319,9 +320,10 @@
             $uibModalInstance.dismiss("cancel");
         };
 
-        original = angular.copy($scope.form);
+        original = angular.copy($scope.calculatorForm);
+
         $scope.canSubmit = function() {
-	        return $scope.form_banktodolistCreate.$valid && !angular.equals($scope.form, original);
+	        return $scope.form_banktodolistCreate.$valid && !angular.equals($scope.calculatorForm, original);
 	    };
 
 	    $scope.calculate = function() {
@@ -344,7 +346,7 @@
 			coin='$'
 			interestRate= 0.0060
 			months= 300
-			amount= $scope.form.amount
+			amount= $scope.calculatorForm.amount
 			futureValue= 0
 			prima= amount*0.2
 			commission= amount*0.015
@@ -358,10 +360,10 @@
 			if((payment/0.5)<1000){ familyIncome=1000 }
 			else{ familyIncome=(payment/0.5) };
 	       
-			$scope.form.minAmount = coin+prima;
-			$scope.form.financingAmount = coin+financingAmount;
-			$scope.form.quota = coin+(payment = Math.round(payment * 100) / 100);
-			$scope.form.netFamilyIncome = coin+(familyIncome = Math.round(familyIncome * 100) / 100);
+			$scope.calculatorForm.minAmount = coin+prima;
+			$scope.calculatorForm.financingAmount = coin+financingAmount;
+			$scope.calculatorForm.quota = coin+(payment = Math.round(payment * 100) / 100);
+			$scope.calculatorForm.netFamilyIncome = coin+(familyIncome = Math.round(familyIncome * 100) / 100);
 			
 	    };
     };
