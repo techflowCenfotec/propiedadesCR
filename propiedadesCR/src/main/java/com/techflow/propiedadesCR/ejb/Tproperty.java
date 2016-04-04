@@ -162,6 +162,7 @@ public class Tproperty implements Serializable {
 	//bi-directional many-to-one association to Tuser
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_vendor")
+	@JsonIgnore
 	public Tuser getTuser() {
 		return this.tuser;
 	}

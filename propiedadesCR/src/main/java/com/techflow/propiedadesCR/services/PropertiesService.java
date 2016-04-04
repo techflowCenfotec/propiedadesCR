@@ -15,6 +15,7 @@ import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.TpropertyImage;
 import com.techflow.propiedadesCR.ejb.TpropertyReview;
 import com.techflow.propiedadesCR.ejb.TpropertyType;
+import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.pojo.BenefitsPOJO;
 import com.techflow.propiedadesCR.pojo.DistrictPOJO;
 import com.techflow.propiedadesCR.pojo.PropertyImagePOJO;
@@ -141,6 +142,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 		List<Tbenefit> lBenefits = new ArrayList<Tbenefit>();
 		Tdistrict district = new Tdistrict();
 		TpropertyType pType = new TpropertyType();
+		Tuser user = new Tuser();
 		Tproperty nProperty = new Tproperty();
 		if(pProperty.getIdBenefits() !=null){
 			for (int i = 0; i < pProperty.getIdBenefits().size(); i++) {
@@ -149,14 +151,13 @@ public class PropertiesService implements PropertiesServiceInterface {
 				lBenefits.add(benefit);
 			}
 		}
-		DistrictPOJO dist = pProperty.getProperty().getTdistrict();
-		BeanUtils.copyProperties(dist, district);
-		PropertyTypePOJO type = pProperty.getProperty().getTpropertyType();
-		BeanUtils.copyProperties(type, pType);
-		PropertyPOJO prop = pProperty.getProperty();
-		BeanUtils.copyProperties(prop, nProperty);
+		BeanUtils.copyProperties(pProperty.getProperty().getTdistrict(), district);
+		BeanUtils.copyProperties(pProperty.getProperty().getTpropertyType(), pType);
+		BeanUtils.copyProperties(pProperty.getProperty().getTuser(), user);
+		BeanUtils.copyProperties(pProperty.getProperty(), nProperty);
 		nProperty.setTdistrict(district);
 		nProperty.setTpropertyType(pType);
+		nProperty.setTuser(user);
 		nProperty.setTbenefits(lBenefits);
 		nProperty.setActive((byte)1);
 		

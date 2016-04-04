@@ -3,9 +3,9 @@
 	
 	angular.module('app.properties.create', [])
 	
-	.controller('CreatePropController', ['$scope', '$http', '$upload', 'NgMap', '$state', CreatePropController]);
+	.controller('CreatePropController', ['$scope', '$http', '$upload', 'NgMap', '$state', '$rootScope', CreatePropController]);
 
-	function CreatePropController($scope, $http, $upload, NgMap, $state) {
+	function CreatePropController($scope, $http, $upload, NgMap, $state, $rootScope) {
 		
 		var original;
 		var self = this;
@@ -20,6 +20,7 @@
 		$scope.markerLoc = null;
 		//scope variables
 		$scope.requestObject = {
+				selectedSaleType: '',
 				province: '',
 				county: '',
 				district: '',
@@ -39,17 +40,17 @@
 		original = angular.copy($scope.requestObject);
 		
 		$scope.init = function() {
-			$http.get('rest/protected/province/getAll', $scope.requestObject)
+			$http.get('rest/protected/province/getAll')
 			.success(function(provincesResponse) {
 				$scope.provinceList = provincesResponse.provinces;
 			});
 			
-			$http.get('rest/protected/benefits/getAll', $scope.requestObject)
+			$http.get('rest/protected/benefits/getAll')
 			.success(function(benefitsResponse) {
 				self.benefitsList = benefitsResponse.benefits;
 			});
 			
-			$http.get('rest/protected/propertyTypes/getAll', $scope.requestObject)
+			$http.get('rest/protected/propertyTypes/getAll')
 			.success(function(typeResponse) {
 				$scope.propertyTypeList = typeResponse.pTypes;
 			});
@@ -163,6 +164,8 @@
 							"price": $scope.requestObject.price,
 							"tdistrict": { "idDisctrict": $scope.requestObject.district},
 							"tpropertyType": { "idPropertyType": $scope.requestObject.type},
+							"tuser": {"idUser": $rootScope.userLogged.idUser},
+							"saleType": $scope.requestObject.selectedSaleType,
 							"address": $scope.requestObject.address,
 							"coordinates": $scope.markerLoc
 						},

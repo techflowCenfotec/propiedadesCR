@@ -89,7 +89,7 @@
         };
         
 		$scope.init = function() {
-			var bd = 'rest/protected/properties/getByPropertyId/' + +localStorage.getItem('idProperty');
+			var bd = 'rest/protected/properties/getByPropertyId/' +localStorage.getItem('idProperty');
 			$http.get(bd)
 			.success(function(response) {
 				$scope.property = response.property;
