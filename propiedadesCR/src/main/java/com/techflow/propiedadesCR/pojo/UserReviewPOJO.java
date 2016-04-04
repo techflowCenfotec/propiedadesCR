@@ -10,11 +10,11 @@
 */
 package com.techflow.propiedadesCR.pojo;
 
-public class UserRatingPOJO {
+public class UserReviewPOJO {
 	/**
      * Identificador del rating.
      */
-	private int idRating;
+	private int idReview;
 	/**
      * Promedio del rating
      */
@@ -23,12 +23,16 @@ public class UserRatingPOJO {
 	 * Usuario cliente
 	 */
 	private UserPOJO Tuser1;
+	/**
+	 * Comentario del cliente
+	 */
+	private String comment;
 	
-	public int getIdRating() {
-		return idRating;
+	public int getIdReview() {
+		return idReview;
 	}
-	public void setIdRating(int idRating) {
-		this.idRating = idRating;
+	public void setIdReview(int idReview) {
+		this.idReview = idReview;
 	}
 	public double getAverageRating() {
 		return averageRating;
@@ -41,6 +45,12 @@ public class UserRatingPOJO {
 	}
 	public void setTuser1(UserPOJO tuser1) {
 		Tuser1 = tuser1;
+	}
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
 	}
 	
 	

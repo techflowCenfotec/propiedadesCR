@@ -1,19 +1,18 @@
 package com.techflow.propiedadesCR.services;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.techflow.propiedadesCR.contracts.RatingRequest;
+import com.techflow.propiedadesCR.contracts.ReviewPropertyRequest;
 import com.techflow.propiedadesCR.ejb.Tproperty;
-import com.techflow.propiedadesCR.ejb.TpropertyRating;
+import com.techflow.propiedadesCR.ejb.TpropertyReview;
 import com.techflow.propiedadesCR.ejb.Tuser;
-import com.techflow.propiedadesCR.pojo.RatingPOJO;
-import com.techflow.propiedadesCR.repositories.RatingRepository;
+import com.techflow.propiedadesCR.pojo.ReviewPropertyPOJO;
+import com.techflow.propiedadesCR.repositories.ReviewRepository;
 
 /**
 * <h1>Servicio de Calificaciones</h1>
@@ -31,7 +30,7 @@ public class RatingService implements RatingServiceInterface {
 	 * Atributo de acceso al repositorio de las calificaciones de
 	 * las propiedades.
 	 */
-	@Autowired private RatingRepository ratingRepository;
+	@Autowired private ReviewRepository reviewRepository;
 	
 	/**
 	  * Agrega la calificación de la propiedad. Retorna la entidad almacenada por si hay que realizar operaciones adicionales
@@ -43,8 +42,8 @@ public class RatingService implements RatingServiceInterface {
 	  */
 	@Override
 	@Transactional
-	public TpropertyRating addRating(RatingRequest pRating) {
-		TpropertyRating rating = new TpropertyRating();
+	public TpropertyReview addRating(ReviewPropertyRequest pRating) {
+		TpropertyReview rating = new TpropertyReview();
 		Tuser user = new Tuser();
 		Tproperty property =  new Tproperty();
 		
@@ -53,8 +52,9 @@ public class RatingService implements RatingServiceInterface {
 		property.setIdProperty(pRating.getRating().getTproperty().getIdProperty());
 		rating.setTuser(user);
 		rating.setTproperty(property);
+		rating.setRegistrationDate(new Date());
 		
-		TpropertyRating nRating = ratingRepository.save(rating);
+		TpropertyReview nRating = reviewRepository.save(rating);
 		
 		return nRating;
 	}
@@ -71,19 +71,20 @@ public class RatingService implements RatingServiceInterface {
 	  * 
 	  * @return nRating Una entidad del tipo.
 	  */
-	public TpropertyRating editRating(RatingRequest pRating) {
-		TpropertyRating rating = new TpropertyRating();
+	public TpropertyReview editRating(ReviewPropertyRequest pRating) {
+		TpropertyReview rating = new TpropertyReview();
 		Tuser user = new Tuser();
 		Tproperty property =  new Tproperty();
 	
 		BeanUtils.copyProperties(pRating.getRating(), rating);
 		user.setIdUser(pRating.getRating().getTuser().getIdUser());
 		property.setIdProperty(pRating.getRating().getTproperty().getIdProperty());
-		rating.setIdRating(pRating.getRating().getIdRating());
+		rating.setIdReview(pRating.getRating().getIdReview());
 		rating.setTuser(user);
 		rating.setTproperty(property);
+		rating.setRegistrationDate(new Date());
 	
-		TpropertyRating nRating = ratingRepository.save(rating);
+		TpropertyReview nRating = reviewRepository.save(rating);
 	
 		return nRating;
 	}
@@ -98,13 +99,17 @@ public class RatingService implements RatingServiceInterface {
 	 * 
 	 * @return ratingData Objeto que contiene la información del rating consultado
 	 */
-	public RatingPOJO getRatingById(RatingRequest pratingRequest){
+	public ReviewPropertyPOJO getRatingById(ReviewPropertyRequest pratingRequest){
 		//TpropertyRating propertyRating = ratingRepository.findOne(pratingRequest.getRating().getIdRating());
-		TpropertyRating propertyRating = ratingRepository.findOne(pratingRequest.getRating().getTproperty().getIdProperty());
-		RatingPOJO ratingData = new RatingPOJO();
+		Tuser user = new Tuser();
+		Tproperty property = new Tproperty();
+		BeanUtils.copyProperties(pratingRequest.getRating().getTuser(), user);
+		BeanUtils.copyProperties(pratingRequest.getRating().getTproperty(), property);
+		TpropertyReview propertyRating = reviewRepository.findByTuserAndTproperty(user,property);
+		ReviewPropertyPOJO ratingData = new ReviewPropertyPOJO();
 		BeanUtils.copyProperties(propertyRating, ratingData);
 		ratingData.setAverageRating(propertyRating.getAverageRating());
-		ratingData.setIdRating(propertyRating.getIdRating());
+		ratingData.setIdReview(propertyRating.getIdReview());
 		return ratingData;
 	}
 

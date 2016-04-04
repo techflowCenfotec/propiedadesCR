@@ -5,8 +5,8 @@
 
 	.controller(
 			'ModifyUserController',
-			[ '$scope', '$http', '$location', '$upload','$mdToast',
-					function($scope, $http, $location, $upload, $mdToast) {
+			[ '$scope', '$http', '$location', '$upload','$mdToast','$timeout',
+					function($scope, $http, $location, $upload, $mdToast,$timeout) {
 				
 						validate();
 						
@@ -49,7 +49,7 @@
 				            };
 					    
 					    
-						$scope.toastPosition = angular.extend({},last);
+					
 						
 						original = angular.copy($scope.form);
 						
@@ -140,12 +140,13 @@
 								},
 								file : file,
 							}).success(function(data, status, headers, config) {
-								$mdToast.show(
-						                $mdToast.simple()
-						                    .content('Se ha modificado el usuario!')
-						                    .position($scope.getToastPosition())
-						                    .hideDelay(3000)
-						            );
+
+								$scope.showInfoOnSubmit= true;
+								  $timeout(function(){
+							          $scope.showInfoOnSubmit = false;
+							          $location.path("/templates/usersView/usersList")
+							       }, 3000);
+								 
 							}).error(function(data){
 						
 							});

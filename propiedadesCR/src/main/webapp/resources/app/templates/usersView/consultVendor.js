@@ -63,7 +63,7 @@
 													generalRating(response.user.vendorRatings);
 													$scope.user = response.user;
 													$scope.clients = response.user.vendorRatings;
-													
+													console.log($scope.clients);
 													for(var index in $scope.clients){
 														if($scope.clients[index]!=undefined){
 															if($scope.clients[index].tuser1.idUser===$rootScope.userLogged.idUser)
@@ -117,7 +117,8 @@
 															$timeout(
 																	function() {
 																		$scope.showInfo = false;
-																	}, 3000);
+																		getAverage()
+																	}, 1000);
 														});
 									} else {
 
@@ -129,8 +130,9 @@
 											"searchColumn" : "string",
 											"searchTerm" : "",
 											"rating" : {
-												"idRating" : $scope.userRating.idRating,
-												"averageRating" : $scope.userRate
+												"idReview" : $scope.userRating.idReview,
+												"averageRating" : $scope.userRate,
+												"comment" :$scope.form.comment,
 											},
 											"idClient" : localStorage
 													.getItem('idUser'),
@@ -142,26 +144,35 @@
 														request)
 												.success(
 														function() {
+														
 															$scope.showInfo = true;
-															
+															getAverage();
 															$timeout(
 																	function() {
 																		$scope.showInfo = false;
 																		disable();
-																	}, 3000);
+																	}, 1000);
 														});
 									}
 
-									var linkRequestVendor = 'rest/protected/users/getVendorById/'
-											+ localStorage.getItem('idVendor');
-									$http
-											.get(linkRequestVendor)
-											.success(
-													function(response) {
-														validate();
-														generalRating(response.user.vendorRatings);
-													});
+									
 
+								}
+								
+								function getAverage(){
+									var linkRequestVendor = 'rest/protected/users/getVendorById/'
+										+ localStorage.getItem('idVendor');
+								$http
+										.get(linkRequestVendor)
+										.success(
+												function(response) {
+													validate();
+													var generalRating = 0;
+													for (var i = 0; i < response.user.vendorRatings.length; i++) {
+														generalRating += response.user.vendorRatings[i].averageRating;
+													}
+													$scope.rate = generalRating / i;
+												});
 								}
 
 								function generalRating(ratings) {

@@ -78,7 +78,7 @@ public class UserPOJO {
 
      * Calificaciones del vendedor.
      */
-	private List<UserRatingPOJO> vendorRatings;
+	private List<UserReviewPOJO> vendorRatings;
 	/**
 	 * Lista de favoritos del usuario.
 	 */
@@ -174,10 +174,10 @@ public class UserPOJO {
 		this.role = trole;
 	}
 
-	public List<UserRatingPOJO> getVendorRatings() {
+	public List<UserReviewPOJO> getVendorRatings() {
 		return vendorRatings;
 	}
-	public void setVendorRatings(List<UserRatingPOJO> vendorRatings) {
+	public void setVendorRatings(List<UserReviewPOJO> vendorRatings) {
 		this.vendorRatings = vendorRatings;
 	}
 	                       

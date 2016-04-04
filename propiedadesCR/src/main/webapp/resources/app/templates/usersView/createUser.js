@@ -111,6 +111,7 @@
 								  $timeout(function(){
 							          $scope.showInfoOnSubmit = false;
 							       }, 3000);
+								
 								var inf={
 										  "pageNumber": 0,
 										  "pageSize": 0,

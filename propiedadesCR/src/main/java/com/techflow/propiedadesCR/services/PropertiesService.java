@@ -12,17 +12,15 @@ import com.techflow.propiedadesCR.contracts.PropertiesRequest;
 import com.techflow.propiedadesCR.ejb.Tbenefit;
 import com.techflow.propiedadesCR.ejb.Tdistrict;
 import com.techflow.propiedadesCR.ejb.Tproperty;
-import com.techflow.propiedadesCR.ejb.TpropertyComment;
+import com.techflow.propiedadesCR.ejb.TpropertyReview;
 import com.techflow.propiedadesCR.ejb.TpropertyImage;
-import com.techflow.propiedadesCR.ejb.TpropertyRating;
 import com.techflow.propiedadesCR.ejb.TpropertyType;
 import com.techflow.propiedadesCR.pojo.BenefitsPOJO;
-import com.techflow.propiedadesCR.pojo.CommentsPOJO;
 import com.techflow.propiedadesCR.pojo.DistrictPOJO;
 import com.techflow.propiedadesCR.pojo.PropertyImagePOJO;
 import com.techflow.propiedadesCR.pojo.PropertyPOJO;
 import com.techflow.propiedadesCR.pojo.PropertyTypePOJO;
-import com.techflow.propiedadesCR.pojo.RatingPOJO;
+import com.techflow.propiedadesCR.pojo.ReviewPropertyPOJO;
 import com.techflow.propiedadesCR.repositories.PropertiesRepository;
 
 /**
@@ -70,8 +68,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 			dto.setTbenefits(benefitsDtos(u.getTbenefits()));
 			dto.setTuser(null);
 			dto.setTpropertyImages(imagesDtos(u.getTpropertyImages()));
-			dto.setTpropertyComments(null);
-			dto.setTpropertyRatings(null);
+			dto.setTpropertyReviews(null);
 			dto.setTusers(null);
 			uiProperties.add(dto);
 		});
@@ -111,27 +108,13 @@ public class PropertiesService implements PropertiesServiceInterface {
 	}
 	
 	/**
-	  * Toma los comentarios de los ejbs y los convierte en POJOs.
-	  * 
-	  * @param pComments Lista de ejb de comentarios. No debe ser nula.
-	  * @return commentsList Todas las entidades de tipo POJO.
-	  */
-	private List<CommentsPOJO> commentsDtos(List<TpropertyComment> pComments) {
-		List<CommentsPOJO> commentsList = new ArrayList<CommentsPOJO>();
-		pComments.stream().forEach(u -> {
-			
-		});
-		return commentsList;
-	}
-	
-	/**
 	  * Toma las calificaciones de los ejbs y los convierte en POJOs.
 	  * 
 	  * @param pRatings Lista de ejb de calificaciones. No debe ser nula.
 	  * @return ratingsList Todas las entidades de tipo POJO.
 	  */
-	private List<RatingPOJO> ratingDtos(List<TpropertyRating> pRatings) {
-		List<RatingPOJO> ratingsList = new ArrayList<RatingPOJO>();
+	private List<ReviewPropertyPOJO> reviewsDtos(List<TpropertyReview> pRatings) {
+		List<ReviewPropertyPOJO> ratingsList = new ArrayList<ReviewPropertyPOJO>();
 		pRatings.stream().forEach(u -> {
 			
 		});

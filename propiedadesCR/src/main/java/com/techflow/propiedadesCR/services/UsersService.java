@@ -24,10 +24,10 @@ import com.techflow.propiedadesCR.contracts.PasswordRequest;
 import com.techflow.propiedadesCR.contracts.UsersRequest;
 import com.techflow.propiedadesCR.ejb.Trole;
 import com.techflow.propiedadesCR.ejb.Tuser;
-import com.techflow.propiedadesCR.ejb.TuserRating;
+import com.techflow.propiedadesCR.ejb.TuserReview;
 import com.techflow.propiedadesCR.pojo.RolePOJO;
 import com.techflow.propiedadesCR.pojo.UserPOJO;
-import com.techflow.propiedadesCR.pojo.UserRatingPOJO;
+import com.techflow.propiedadesCR.pojo.UserReviewPOJO;
 import com.techflow.propiedadesCR.repositories.UsersRepository;
 
 
@@ -307,7 +307,7 @@ public class UsersService implements UsersServiceInterface{
 			userPOJO.setRole(rolePOJO);
 			BeanUtils.copyProperties(nuser, userPOJO);
 		}
-		generateRateDtos(nuser.getTuserRatings2(), userPOJO);
+		generateReviewsDtos(nuser.getTuserReviews2(), userPOJO);
 		return userPOJO;
 		
 	}
@@ -317,10 +317,10 @@ public class UsersService implements UsersServiceInterface{
 	  * @param pusers Lista de usuarios.
 	  *
 	  */
-	private void generateRateDtos(List<TuserRating> pRatings,UserPOJO user) {
-		List<UserRatingPOJO> uiRatings = new ArrayList<UserRatingPOJO>();
-		pRatings.stream().forEach(u -> {
-			UserRatingPOJO userRatingPOJO = new UserRatingPOJO();
+	private void generateReviewsDtos(List<TuserReview> pReviews,UserPOJO user) {
+		List<UserReviewPOJO> uiRatings = new ArrayList<UserReviewPOJO>();
+		pReviews.stream().forEach(u -> {
+			UserReviewPOJO userRatingPOJO = new UserReviewPOJO();
 			BeanUtils.copyProperties(u, userRatingPOJO);
 			userRatingPOJO.setTuser1(new UserPOJO());
 			BeanUtils.copyProperties(u.getTuser1(), userRatingPOJO.getTuser1());
