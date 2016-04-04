@@ -1,18 +1,18 @@
 package com.techflow.propiedadesCR.contracts;
 
-import com.techflow.propiedadesCR.pojo.UserRatingPOJO;
+import com.techflow.propiedadesCR.pojo.UserReviewPOJO;
 
-public class UserRatingRequest extends BaseRequest{
+public class UserReviewRequest extends BaseRequest{
 
-	UserRatingPOJO rating;
+	UserReviewPOJO rating;
 	int idClient;
 	int idVendor;
 	
-	public UserRatingPOJO getRating() {
+	public UserReviewPOJO getRating() {
 		return rating;
 	}
 	
-	public void setRating(UserRatingPOJO rating) {
+	public void setRating(UserReviewPOJO rating) {
 		this.rating = rating;
 	}
 	public int getIdClient() {

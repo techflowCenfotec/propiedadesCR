@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -203,10 +202,28 @@ public class PropertiesController {
 			response.setCodeMessage("Property modified succesfully!");
 			response.setProperty(property);
 		}
+		return response;
+	}
+
+	/**
+	 * Este metodo guarda una vista a la propiedad
+	 *  
+	 *  @param pIdProperty Id de la propiedad. No debe ser nulo.
+	 *  
+	 * @return response Un objeto response de la propiedad.
+	 */
+	@RequestMapping(value="saveView/{pIdProperty}", method=RequestMethod.GET)
+	public PropertiesResponse saveView(@PathVariable int pIdProperty) {
+		PropertiesResponse response = new PropertiesResponse();
+		PropertiesRequest request = new PropertiesRequest();
+		PropertyPOJO property = propertiesService.propertyViews(pIdProperty,request);
+		
+		response.setProperty(property);
 		
 		return response;
 	}
 	
+
 	/**
 	 * Actualiza el estado de la propiedad de activo a inactivo. Realiza un borrado
 	 * lógico de la propiedad para propósitos de reportes sobre las propiedades
@@ -222,4 +239,5 @@ public class PropertiesController {
 		propertiesService.deleteProperty(property);
 
 	}
+
 }

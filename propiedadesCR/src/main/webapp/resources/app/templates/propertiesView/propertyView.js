@@ -4,11 +4,13 @@
 	
 	angular.module('app.properties.view', [])
 	
-	.controller('PropViewController', ['$scope', '$http', '$rootScope','$mdDialog', PropViewController])
+
+	.controller('PropViewController', ['$scope', '$http', '$rootScope','$mdDialog','$timeout', PropViewController])
     .controller('ModalDemoCtrl', ['$scope', '$uibModal', '$log', ModalDemoCtrl])
     .controller('ModalInstanceCtrl', ['$scope', '$uibModalInstance', ModalInstanceCtrl]);
+	
+	function PropViewController($scope, $http, $rootScope, $mdDialog, $timeout) {
 
-	function PropViewController($scope, $http, $rootScope,$mdDialog) {
 		var self = this;
 		self.district = {};
 		$scope.imageList = [];
@@ -25,11 +27,22 @@
 				district: '',
 		};
 		// Rating data
-		//$scope.rate = 3;
+		$scope.rate = 0;
         $scope.max = 5;
         $scope.isReadonly = false;
         $scope.popUpVisible = false;
         $scope.isRateVisible = true;
+        $scope.btnRateAndComment = 'Guardar';
+        $scope.hasRateAndComment = false;
+        $scope.isCreated = false;
+		$scope.edit = true;
+		$scope.myReadOnly = false;
+		$scope.myCommentTextArea = false;
+		$scope.myCommentP = true;
+		$scope.userRate = 0;
+		$scope.form = {
+				comment : '',
+		}
         var ratingId = 0;
         var userLoggerId= 0;
         var userLoggedObj = {};
@@ -46,7 +59,8 @@
    				],
    				"searchColumn": "string",
    				"searchTerm": "string",
-   				"rating": {"tproperty": {"idProperty":getIdProperty}}
+   				"rating": {"tproperty": {"idProperty":getIdProperty},
+   						   "tuser":{"idUser":$rootScope.userLogged.idUser}}
 		    };
 
 		
@@ -54,7 +68,12 @@
         .success(function(response) {
          	$scope.rate = response.rating.averageRating;
          	$scope.isReadonly = false;
-         	ratingId = response.rating.idRating;
+         	ratingId = response.rating.idReview;
+         
+         	$scope.hasRateAndComment = true;
+         	$scope.btnRateAndComment = 'Modificar';
+         	disable();
+         
         });  
 
         $http.get(userLoggedLink)
@@ -141,77 +160,87 @@
 				}
 			});
 		};
-
-		$scope.propertyRate = function(value) {
-			console.log(value);
-			// Cambiar id user al userLogged
-			if($scope.rate === undefined){
-        	var bd = 'rest/protected/rating/addRating';
-        	var data = {
-        			  "pageNumber": 0,
-        			  "pageSize": 0,
-        			  "direction": "string",
-        			  "sortBy": [
-        			    "string"
-        			  ],
-        			  "searchColumn": "string",
-        			  "searchTerm": "string",
-        			  "rating": {
-        				  "tuser": { "idUser": $rootScope.userLogged.idUser},
-        				  "tproperty": { "idProperty": localStorage.getItem('idProperty')},
-        				  "averageRating": $scope.rate
-        			  }
-        			};
-        	
-        	$http.post(bd, data)
-        	.success(function(response) {
-        		$scope.isReadonly = true;
-        		});
-
-			}else{
-				$scope.isRateVisible = false;
-				$scope.popUpVisible = true;
-				console.log(getIdProperty);
-			}
+		$scope.saveRating = function(value) {
 			
-        };
+			$scope.userRate = value;
+		}
 
-		$scope.editRating = function (){
-			// Cambiar id user al userLogged
-			$scope.isReadonly = false;
-			var linkEditRate = 'rest/protected/rating/editRating';
-			var dataEdit = {
-  				"pageNumber": 0,
-  				"pageSize": 0,
- 	 			"direction": "string",
-  				"sortBy": [
-    			"string"
-  				],
-  				"searchColumn": "string",
-  				"searchTerm": "string",
-  				"rating": {"idRating": ratingId,
-      				"averageRating": $scope.rate,
-      				"tproperty": {"idProperty":getIdProperty},
-      				"tuser": {"idUser": userLoggerId}}
+
+		$scope.saveReview = function() {
+			var request;
+			if($scope.hasRateAndComment != true){
+				request = {
+					"pageNumber" : 0,
+					"pageSize" : 0,
+					"direction" : "",
+					"sortBy" : [ "" ],
+					"searchColumn" : "string",
+					"searchTerm" : "",
+					"rating" : {
+						"averageRating" : $scope.userRate,
+						"tuser":{"idUser":$rootScope.userLogged.idUser},
+						"tproperty":{"idProperty":getIdProperty},
+						"comment":$scope.form.comment
+					},
+					
+				};
+				$http
+						.post(
+								'rest/protected/rating/addRating',
+								request)
+						.success(
+								function() {
+									$scope.hasRateAndComment = true;
+						         	$scope.btnRateAndComment = 'Modificar';
+									$scope.showInfo = true;
+									$timeout(
+											function() {
+												$scope.showInfo = false;
+												getAverage()
+											}, 1000);
+								});
+			}else {
+				request = {
+						"pageNumber" : 0,
+						"pageSize" : 0,
+						"direction" : "",
+						"sortBy" : [ "" ],
+						"searchColumn" : "string",
+						"searchTerm" : "",
+						"rating" : {
+							"idReview":ratingId,
+							"averageRating" : $scope.userRate,
+							"tuser":{"idUser":$rootScope.userLogged.idUser},
+							"tproperty":{"idProperty":getIdProperty},
+							"comment":$scope.form.comment
+						},
+					"idClient" : localStorage
+							.getItem('idUser'),
+					"idVendor" : $scope.user.idUser
+				};
+				$http
+						.post(
+								'rest/protected/rating/editRating',
+								request)
+						.success(
+								function() {
+								
+									$scope.showInfo = true;
+									$timeout(
+											function() {
+												$scope.showInfo = false;
+												disable();
+											}, 1000);
+								});
 			}
-
-			$http.post(linkEditRate, dataEdit)
-        	.success(function(response) {
-         		//$scope.rate = response.rating.averageRating;
-         		console.log("successfully");
-         		$scope.isReadonly = false;
-		 		
-        	}); 
-
-        	$scope.popUpVisible = false;
-        	$scope.isRateVisible = true;
-        };
-
+				disable();
+		}
+		
         $scope.reportVendor = function(){
         	var link = 'rest/protected/AdminEmail/sendEmail'
         	$http.post(link, userToNotify)
         	.success(function(response) {
-        		console.log(response);
+        		
         	}); 
         	$mdDialog.show(
 	            $mdDialog.alert()
@@ -228,11 +257,23 @@
         	$scope.popUpVisible=false;
         	$scope.isRateVisible = true;
         };
-
-
-
+        
+        function disable(){
+			$scope.isCreated = true;
+			$scope.myCommentTextArea = true;
+			$scope.myCommentP = false;
+			$scope.edit = false;
+			$scope.myReadOnly = true;
+		}
+		$scope.editReview = function(){
+			$scope.isCreated = false;
+			$scope.myCommentTextArea = false;
+			$scope.myCommentP = true;
+			$scope.edit = true;
+			$scope.myReadOnly = false;
+		};
 	};
-
+	
 	function ModalDemoCtrl($scope, $uibModal, $log) {
         $scope.items = ['item1', 'item2', 'item3'];
 
@@ -261,8 +302,8 @@
 
         $scope.toggleAnimation = function () {
             $scope.animationsEnabled = !$scope.animationsEnabled;
-        };
-    }
+        };    
+	}
 
     function ModalInstanceCtrl($scope, $uibModalInstance) {
         var original;
@@ -323,7 +364,6 @@
 			$scope.form.netFamilyIncome = coin+(familyIncome = Math.round(familyIncome * 100) / 100);
 			
 	    };
-
     };
-	
 })();
+

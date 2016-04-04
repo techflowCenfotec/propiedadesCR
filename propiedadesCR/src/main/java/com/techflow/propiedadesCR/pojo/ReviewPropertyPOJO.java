@@ -8,12 +8,12 @@ package com.techflow.propiedadesCR.pojo;
 * @version 1.0
 * @since 26/2/2016
 */
-public class RatingPOJO {
+public class ReviewPropertyPOJO {
 	
 	/*
 	 * Id de la calificación
 	 */
-	private int idRating;
+	private int idReview;
 	/*
 	 * Promedio de las calificaciones de
 	 * la propiedad.
@@ -28,15 +28,19 @@ public class RatingPOJO {
 	 * la propiedad.
 	 */
 	private UserPOJO tuser;
+	/*
+	 * Comentario a la propiedad.
+	 */
+	private String comment;
 	
-	public RatingPOJO() {
+	public ReviewPropertyPOJO() {
 		super();
 	}
-	public int getIdRating() {
-		return idRating;
+	public int getIdReview() {
+		return idReview;
 	}
-	public void setIdRating(int idRating) {
-		this.idRating = idRating;
+	public void setIdReview(int idReview) {
+		this.idReview = idReview;
 	}
 	public double getAverageRating() {
 		return averageRating;
@@ -56,4 +60,11 @@ public class RatingPOJO {
 	public void setTuser(UserPOJO tuser) {
 		this.tuser = tuser;
 	}
+	public String getComment() {
+		return comment;
+	}
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
+	
 }

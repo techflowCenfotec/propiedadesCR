@@ -17,5 +17,6 @@ public interface PropertiesServiceInterface {
 	Tproperty setPropertyOnSale(PropertiesRequest ppropertyRequest);
 	Tproperty updateProperty(PropertiesRequest pProperty, int pIdProperty);
 	void deleteProperty(Tproperty pProperty);
+	PropertyPOJO propertyViews(int pIdProperty,PropertiesRequest request);
 
 }

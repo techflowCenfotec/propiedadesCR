@@ -53,14 +53,11 @@ public class PropertyPOJO {
      * Usuario que registra la propiedad para la venta. Sólo usuarios de tipo vendedor.
      */
 	private UserPOJO tuser;
-	/**
-     * Comentarios acerca la propiedad.
-     */
-	private List<CommentsPOJO> tpropertyComments; //Change to POJO
+
 	/**
      * Calificación de la propiedad.
      */
-	private List<RatingPOJO> tpropertyRatings; //Change to POJO
+	private List<ReviewPropertyPOJO> tpropertyReviews; //Change to POJO
 	/**
      * Lista de usuarios de la propiedad.
      */
@@ -85,7 +82,10 @@ public class PropertyPOJO {
      * Tipo de venta de la propiedad.
      */
 	private String saleType;
-	
+	/**
+     * Tipo de venta de la propiedad.
+     */
+	private int totalViews;
 	
 	public PropertyPOJO() {
 		super();
@@ -174,25 +174,14 @@ public class PropertyPOJO {
 		this.tuser = tuser;
 	}
 
-	public List<CommentsPOJO> getTpropertyComments() {
-		return tpropertyComments;
+	public List<ReviewPropertyPOJO> getTpropertyReviews() {
+		return tpropertyReviews;
 	}
 
-	public void setTpropertyComments(List<CommentsPOJO> tpropertyComments) {
-		this.tpropertyComments = tpropertyComments;
+	public void setTpropertyReviews(List<ReviewPropertyPOJO> tpropertyReviews) {
+		this.tpropertyReviews = tpropertyReviews;
 	}
 
-	public List<RatingPOJO> getTpropertyRatings() {
-		return tpropertyRatings;
-	}
-
-	public void setTpropertyRatings(List<RatingPOJO> tpropertyRatings) {
-		this.tpropertyRatings = tpropertyRatings;
-	}
-
-	public List<UserPOJO> getTusers() {
-		return tusers;
-	}
 
 	public void setTusers(List<UserPOJO> tusers) {
 		this.tusers = tusers;
@@ -236,6 +225,14 @@ public class PropertyPOJO {
 
 	public void setSaleType(String saleType) {
 		this.saleType = saleType;
+	}
+
+	public int getTotalViews() {
+		return totalViews;
+	}
+
+	public void setTotalViews(int totalViews) {
+		this.totalViews = totalViews;
 	}
 
 	

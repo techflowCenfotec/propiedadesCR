@@ -34,8 +34,11 @@
                     <div class="card bg-white">
                         <div class="card-image">
                             <img src="{{property.tpropertyImages[0].propertyImage}}" height="200">
-                            <span class="card-title">{{property.price | currency}} - {{property.tdistrict.name}}</span>
+                            <span class="card-title">{{property.price | currency}} - {{property.tdistrict.name}}<br>
+                            Total de vistas: {{property.totalViews}}</span>
+                            
                         </div>
+                      
                         <div class="card-content">
                             <a class="card-button pull-right" data-ng-click="">
                                 <button ng-model="heart" class="btn btn-icon btn-icon-round btn-floating btn-default" 
