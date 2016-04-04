@@ -7,12 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techflow.propiedadesCR.contracts.BankToDoListItemRequest;
 import com.techflow.propiedadesCR.contracts.BankToDoListItemResponse;
 import com.techflow.propiedadesCR.contracts.BankToDoListRequest;
 import com.techflow.propiedadesCR.contracts.BankToDoListResponse;
+import com.techflow.propiedadesCR.contracts.EventsResponse;
 import com.techflow.propiedadesCR.ejb.TbankItem;
 import com.techflow.propiedadesCR.ejb.TbankToDoList;
 import com.techflow.propiedadesCR.pojo.BankToDoListItemPOJO;
@@ -114,5 +116,25 @@ public class BankToDoListController {
 		
 		return response;
 	}
+	
+	/**
+	  * Este metodo sirve para levantar eliminar un item de un to-do list
+	  * @param pid Este parametro es el id del item a borrar
+	  * @return response Resultado de la peticion
+	  */
+	@RequestMapping(value ="/deleteItem", method = RequestMethod.DELETE)
+	public BankToDoListItemResponse delete(@RequestParam("id")  int pid){
+		
+		BankToDoListItemResponse response = new BankToDoListItemResponse();
+		Boolean state = bankToDoListService.deleteItem(pid);
+		
+		if(state){
+			response.setCode(200);
+			response.setCodeMessage("item delete success");
+			
+		}
+		return response;
+	}
+	
 	
 }
