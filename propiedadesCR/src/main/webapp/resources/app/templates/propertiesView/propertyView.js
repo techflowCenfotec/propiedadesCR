@@ -4,11 +4,11 @@
 	
 	angular.module('app.properties.view', [])
 	
-	.controller('PropViewController', ['$scope', '$http', '$rootScope', PropViewController])
+	.controller('PropViewController', ['$scope', '$http', '$rootScope','$mdDialog', PropViewController])
     .controller('ModalDemoCtrl', ['$scope', '$uibModal', '$log', ModalDemoCtrl])
     .controller('ModalInstanceCtrl', ['$scope', '$uibModalInstance', ModalInstanceCtrl]);
 
-	function PropViewController($scope, $http, $rootScope) {
+	function PropViewController($scope, $http, $rootScope,$mdDialog) {
 		var self = this;
 		self.district = {};
 		$scope.imageList = [];

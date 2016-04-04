@@ -42,7 +42,7 @@ public class MailReportController {
 	@RequestMapping(value="/sendEmail", method = RequestMethod.POST)
 	public void sendEmail(@RequestBody UsersRequest pmailInformation){
 		  
-		  UserPOJO userInfo = pmailInformation.getUser();
+		  //UserPOJO userInfo = pmailInformation.getUser();
 	      String to = "propiedadescr.tech@gmail.com";
 	      
 	      String from = "propiedadescr.tech@gmail.com";
@@ -81,11 +81,11 @@ public class MailReportController {
 	         message.setSubject("Reporte de usuario");
 
 	         
-	         message.setText("Se ha reportado el siguiente vendedor, \n"
-	         		+ "\n A continuación encontrará la información del usuario"
-	         		+ "\n Nombre: "+ userInfo.getUserName()
-	         		+ "\n Apellido:"+ userInfo.getFirstName()
-	         		+ "\n Correo: "+ userInfo.getEmail()
+	         message.setText("Se ha reportado el vendedor, \n"
+	         		//+ "\n A continuación encontrará la información del usuario"
+	         		//+ "\n Nombre: "+ userInfo.getUserName()
+	         		//+ "\n Apellido:"+ userInfo.getFirstName()
+	         		//+ "\n Correo: "+ userInfo.getEmail()
 	         		+ "\n Gracias por utilizar la aplicación PropiedadesCR");
 	         
 	         Transport.send(message);
