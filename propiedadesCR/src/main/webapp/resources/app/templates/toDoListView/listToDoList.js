@@ -3,8 +3,8 @@
 
     angular.module('app.usertoDoList', [])
     .controller('usertoDoListController',
-        ['$scope','$filter','$http', '$upload','$mdToast',
-        function($scope,$filter,$http,$upload, $mdToast){
+        ['$scope','$filter','$http', '$upload','$mdToast',"$location",
+        function($scope,$filter,$http,$upload, $mdToast,$location){
 //datagrid
         $scope.rolesList = [];
         $scope.searchKeywords = '';
@@ -21,11 +21,13 @@
         $scope.currentPage = 1;
         $scope.currentPage = [];
         $scope.toastPosition = angular.extend({},last);
+        $scope.userLoggedId = 0;
 //
         var link = 'rest/protected/todolist/getAll';
-        var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","toDoList": {}};
         var init;
         var linDelete = 'rest/protected/todolist/delete';
+        var userLoggedObj = {};
+        var userLoggedLink = 'rest/protected/users/getUserLogged';
         var last = {
             bottom: false,
             top: true,
@@ -40,11 +42,33 @@
             return $scope.currentPageList = $scope.filteredEvents.slice(start, end);
         };
 
-        
-        $http.post(link,request).success(function(response) {
-            $scope.rolesList= response.toDoList;
-            init();
+        $http.get(userLoggedLink).success(function(response) {
+            
+            userLoggedObj = response.user;
+            $scope.userLoggedId = userLoggedObj.idUser;
+           
+
+                    var request = {
+                                  "pageNumber": 0,
+                                  "pageSize": 0,
+                                  "direction": "string",
+                                  "sortBy": [
+                                    "string"
+                                  ],
+                                  "searchColumn": "string",
+                                  "searchTerm": "string",
+                                  "toDoList": {
+                                   "tuser": {"idUser": $scope.userLoggedId}
+                                }
+                                };
+                    $http.post(link,request).success(function(response) {
+                        $scope.currentPageList = response.toDoList;
+                       
+                    });
         });
+        
+         
+       
 
         function select(page) {
             var end, start;
@@ -92,7 +116,7 @@
             localStorage.setItem('idRoleModify',id);
         }
         $scope.deleteRole = function(id, name, description){
-            console.log(id);
+           
             var requestDelete ={
             "pageNumber": 0,
             "pageSize": 0,
@@ -132,5 +156,11 @@
 
             last = angular.extend({},current);
         };
+        $scope.consultToDoList = function(id){
+        	
+        	localStorage.setItem('idMyToDoList',id);
+        	$location.path("/templates/toDoListView/myToDoList");
+        	
+        }
     }]);
 })();

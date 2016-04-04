@@ -239,5 +239,36 @@ public class PropertiesController {
 		propertiesService.deleteProperty(property);
 
 	}
-
+	/**
+	 * Solicita la información de la propiedad a través del servicio.
+	 * @param ppropertyRequest Información de la propiedad a vender.
+	 * @return response Objeto de la propiedad vendida.
+	 * @author María Jesús Gutiérrez Calvo
+	 */
+	@RequestMapping(value="/setPropertySold",method=RequestMethod.POST)
+	public PropertiesResponse setPropertySold(@RequestBody PropertiesRequest ppropertyRequest){
+		PropertiesResponse response = new PropertiesResponse();
+		Tproperty propertiesSold = propertiesService.setPropertySold(ppropertyRequest);
+		
+		if(propertiesSold!=null){
+			response.setCode(200);
+			response.setCodeMessage("property sold succes");
+		}
+		return response;
+	}
+	
+	/**
+	 * Devuelve una lista con las propiedades que le pertenecen al vendedor 
+	 * @param ppropertyRequest id del vendedor.
+	 * @return response lista de propiedades.
+	 */
+	@RequestMapping(value="/getPropertiesByIdVendor",method=RequestMethod.POST)
+	public PropertiesResponse getPropertiesByIdVendor(@RequestBody PropertiesRequest pPropertiesRequest){
+		PropertiesResponse response = new PropertiesResponse();
+		response.setProperties(propertiesService.getPropertiesByIdVendor(pPropertiesRequest));
+		response.setCode(200);
+		response.setCodeMessage("properties fetch successfully");
+		
+		return response;
+	}
 }

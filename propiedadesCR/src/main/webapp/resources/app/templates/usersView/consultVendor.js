@@ -12,7 +12,7 @@
 							'$rootScope',
 							'$mdDialog',
 							'$timeout',
-							function($scope, $http, $rootScope, $mdDialo,
+							function($scope, $http, $rootScope, $mdDialog,
 									$timeout) {
 								
 								var original;

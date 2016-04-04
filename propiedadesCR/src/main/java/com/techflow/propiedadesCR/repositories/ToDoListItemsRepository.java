@@ -6,4 +6,5 @@ import com.techflow.propiedadesCR.ejb.Titem;
 
 public interface ToDoListItemsRepository extends CrudRepository<Titem, Integer> {
 
+		
 }

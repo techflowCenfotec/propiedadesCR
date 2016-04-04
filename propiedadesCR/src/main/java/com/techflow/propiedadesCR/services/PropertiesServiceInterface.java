@@ -19,4 +19,6 @@ public interface PropertiesServiceInterface {
 	void deleteProperty(Tproperty pProperty);
 	PropertyPOJO propertyViews(int pIdProperty,PropertiesRequest request);
 
+	Tproperty setPropertySold(PropertiesRequest pProperty);
+	List<PropertyPOJO> getPropertiesByIdVendor(PropertiesRequest pPropertiesRequest);
 }

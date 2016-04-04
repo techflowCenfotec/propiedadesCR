@@ -474,13 +474,31 @@ public class UsersController {
 		         InternetAddress.parse(to));
 
 		         
-		         message.setSubject("PropiedadesCR");
+		         message.setSubject("Bienvenido a PropiedadesCR");
 		         
-		         message.setContent("<h3>Bienvenido a PropiedadesCR</h3>"+
-		        		"<p>Estimado usuario gracias por haberse unido a la más grande empresa de bienes raices</p>"+
-		        		"<p>de ser Costa Rica, toda la comunidad de PropiedadesCR le desea lo mejor.</p>"
-		        		+ "<p>Su contraseña es " +puserRequest.getUser().getPassword()+"</p>"+
-		        		"<p>Esperamos cumplir con sus expectativas</p>","text/html");
+		         message.setContent("<!Doctype html>"
+		        		  +"     <html>"
+		        		  +"  	 <head>"
+		        		  +"  	 <meta charset='utf-8'>"
+		        		  +"  	 </head>"
+		        		  +"  	  <body>"
+		        		  +"  	  <div style='padding-right: 15px;padding-left: 15px;margin-right: auto;margin-left: auto;width: 970px;'>"
+		        		  +"  	  		<div>"
+		        		  +"  	  			<h2 style=' color: #777;'>PropiedadesCR</h2>"
+		        		  +"  	   		</div>"
+		        		  +"  	       		<div style='margin-right: -15px; margin-left: -15px;'>"
+		        		  +"    	        		<div class='col-xs-12 col-md-8'>"
+		        		  +"  	        			<div style='padding-top: 30px;padding-bottom: 30px;margin-bottom: 30px;color: inherit;background-color: #eee;padding-right: 60px;padding-left: 60px;'>"
+		        		  +"  	      					<h3>Bienvenido a PropiedadesCR</h3>"
+		        		  +"  	        				<p style='margin-bottom: 20px;font-size: 16px;font-weight: 300;ine-height: 1.4;'>Estimado usuario gracias por haberse unido a la más grande empresa de bienes raices de Costa Rica, toda la comunidad de PropiedadesCR le desea lo mejor.</p>"
+		        		  +"  	        				<p style='margin-bottom: 20px;font-size: 16px;font-weight: 300;ine-height: 1.4;'>Su contraseña es " +puserRequest.getUser().getPassword()+"</p>"
+		        		  +"  	         				<p style='margin-bottom: 20px;font-size: 16px;font-weight: 300;ine-height: 1.4;'>Esperamos cumplir con sus expectativas</p>"
+		        		  +"  	        			</div>"
+		        		  +"  	        		</div>"
+		        		  +"  	        </div>"
+		        		  +"  	   </div>"
+		        		  +"   	</body>"
+		        		  +"  </html>","text/html");
 		         
 		         Transport.send(message);
 		         response.setCode(200);

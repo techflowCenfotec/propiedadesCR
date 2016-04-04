@@ -42,7 +42,8 @@ function() {
 		,"app.events"
 		,"app.eventsList"
 		,"app.eventConsult"
-		,"app.eventListAdmin"
+		,"app.eventsListAdmin"
+		,"app.modifyEvents"
 
 		
 		,"app.createUsers"
@@ -52,7 +53,7 @@ function() {
 		,"app.vendorsList"
 		,"app.consultVendor"
 	
-		
+		,"app.salesReport"		
 		,"app.banktodolist"
 		,"app.banktodolistAdminItems"
 		,"app.banktodolistCreate"
@@ -60,6 +61,7 @@ function() {
 		,"app.matchedPropertiesList"
 		,"app.createGuide"
 		,"app.consultGuide"
+		,"app.myToDoList"
 		
 		,"app.properties.create"
 		,"app.properties.view"
@@ -184,7 +186,12 @@ function(){
 			e.consultMyProfile = function(myId){
 				localStorage.setItem('idUser',myId);
 			};
-			
+			e.signOut = function(){
+				$rootScope.userLogged = null;
+				$http.get('rest/protected/signOut/signOut').success(function(){
+					
+				});
+			}
 		}
 
 		angular.module("app")

@@ -109,5 +109,24 @@ public class EventsService implements EventsServiceInterface {
 		}		
 		return false;
 	}
+	
+	/*
+	 * Este método modifica el evento por medio del id  recibido.
+	 * @param pidUser Id del usuario.
+	 * @return nEvent retorna el evento modificado.
+	 */
+	@Override
+	public Tevent modifyEvent(EventsRequest peventRequest, int pidUser) {
+		
+		Tevent event = new Tevent();
+		Tuser user = new Tuser();
+		user.setIdUser(pidUser);
+		BeanUtils.copyProperties(peventRequest.getEvent(), event);
+		event.setTuser(user);
+		Tevent nEvent = eventsRepository.save(event);
+		
+		return nEvent;
+	
+	}
 
 }

@@ -1,6 +1,7 @@
 package com.techflow.propiedadesCR.services;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.BeanUtils;
@@ -313,5 +314,61 @@ public class PropertiesService implements PropertiesServiceInterface {
 		return newProperty;
 	}
 
-
+	/**
+	 * Retorna la propiedad que se vendio.
+	 * @param pProperty Contiene la informacion a almacenar en la base de datos.
+	 * @return propertySold retorna el objeto propiedad que se vendio. 
+	 * @author María Jesús Gutiérrez Calvo.
+	 */
+	@Override
+	
+	public Tproperty setPropertySold(PropertiesRequest pProperty){
+		Tproperty property = propertiesRepository.findByIdProperty(pProperty.getProperty().getIdProperty());
+		property.setIsSold((byte) 1);
+		property.setSoldDate(new Date());
+		Tproperty propertySold= propertiesRepository.save(property);
+		return propertySold;
+	}
+	
+	/**
+	 * Retorna la propiedad que se vendio.
+	 * @param pProperty Contiene la informacion del vendedor.
+	 * @return propertySold retorna la lista de objetos property. 
+	 * @author Jimmi Vila
+	 */
+	@Override
+	public List<PropertyPOJO> getPropertiesByIdVendor(PropertiesRequest pPropertiesRequest) {
+		ArrayList<PropertyPOJO> vendorProperties = new ArrayList<PropertyPOJO>();
+		
+		List<Tproperty> pProperties= propertiesRepository.findAll();
+		
+		List<PropertyPOJO> uiProperties = new ArrayList<PropertyPOJO>();
+		pProperties.stream().forEach(u -> {
+			PropertyPOJO dto = new PropertyPOJO();
+			BeanUtils.copyProperties(u, dto);
+			BeanUtils.copyProperties(u.getTdistrict(), dto.getTdistrict());
+			BeanUtils.copyProperties(u.getTpropertyType(), dto.getTpropertyType());
+			dto.setTbenefits(benefitsDtos(u.getTbenefits()));
+			dto.getTuser().setIdUser(u.getTuser().getIdUser());
+			dto.setSoldDate(u.getSoldDate());
+			dto.setTpropertyImages(imagesDtos(u.getTpropertyImages()));
+			dto.setTpropertyReviews(null);
+			dto.setTusers(null);
+			uiProperties.add(dto);
+		});
+		
+		int idVendor = pPropertiesRequest.getProperty().getTuser().getIdUser();
+		
+		uiProperties.stream().forEach(property->{
+			if(property.getTuser().getIdUser() == idVendor){
+				property.setTbenefits(null);
+				property.setTpropertyType(null);
+				property.getTdistrict().setTcounty(null);
+				property.setTuser(null);
+				vendorProperties.add(property);
+			}
+		});
+		
+		return vendorProperties;
+	}
 }

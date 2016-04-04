@@ -22,6 +22,7 @@
 
 			,"templates/eventsView/eventConsult"
 			,"templates/eventsView/eventListAdmin"
+			,"templates/eventsView/modifyEvent"
 
 			,"templates/roleView/roles"
 			,"templates/roleView/addRoles"
@@ -35,7 +36,7 @@
 			,"templates/testView/matchedPropertiesList"
 			,"templates/propertiesView/propertiesCreate"
 
-			
+			,"templates/salesReportView/salesReport"			
 			,"templates/errosView/500"
 
 			,"templates/guidesView/createGuide"
@@ -47,7 +48,11 @@
 			,"templates/permissionsViews/adminView"
 			,"templates/roleView/editRoles"
 			,"templates/toDoListView/listToDoList"
+
 			,"templates/propertyFavoritesView/favoritesList"
+
+			,"templates/toDoListView/myToDoList"
+
 
 		], 
 
