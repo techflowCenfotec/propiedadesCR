@@ -65,9 +65,13 @@ function() {
 		,"app.properties.create"
 		,"app.properties.view"
 		,'app.properties.compare'
+		,"app.properties.myProperties"
+		,"benefitsDirective"
+		,"app.properties.modify"
 		,"app.permissionsManagment"
 		,"app.editRoles"
 		,"app.usertoDoList"
+		,"app.favoritesManagment"
 		
 		//3rd Party Modules
 		,"ngMaterial"

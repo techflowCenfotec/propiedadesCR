@@ -1,0 +1,170 @@
+<style>
+.gallery-box .thumbnail {
+    height: 188px;
+    width: 188px;
+}
+.gallery-box {
+	width: 200px;
+	padding: 5px;
+	margin: 7px;
+	float: left;
+	min-height: 200px;
+	border: 1px solid #ddd;
+	overflow: hidden;
+}
+</style>
+
+<section class="page-form-ele page" ng-controller="propertyModifyController as ctrl">
+<div class="row ui-section">
+        <div class="col-lg-8 clearfix"> <h2 class="section-header">Modificar Propiedad</h2> </div>
+        <div class="col-md-12">
+            <section class="panel panel-default">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-8 col-lg-offset-2">
+
+                            <div layout="column" ng-cloak class="md-inline-form">
+                                <div layout-padding>
+                                    <form id="propertiesForm" class="form-validation" name="propertiesForm" flow-init>
+                                    	<div class="col-xl-12">
+          					  				<div class="panel panel-default">
+                								<div class="panel-body padding-lg-h">
+			                                    	<div class="row">
+								                        <div class="col-md-6">
+								                            <div class="ih-item ih-material" ng-repeat="image in imageList">
+								                                <a href="javascript:;">
+								                                    <div class="img">
+								                                        <img ng-src="{{image.propertyImage}}" alt="">
+								                                    </div>
+								                                    <div class="info">
+								                                        <div class="info-mask bg-primary"></div>
+								                                        <div class="info-content">
+								                                            <div class="info-inner">
+								                                                <button class="btn btn-danger" ng-click="deletePropertyImage(image.idPropertyImage)">
+								                                                <i class="fa fa-times"></i></button>
+								                                            </div>
+								                                        </div>
+								                                    </div>
+								                                </a>
+								                            </div>                            
+								                        </div>
+					                   	 			</div>
+					                    		</div>
+					                    	</div>
+					                    </div>
+                                    	<div class="row">
+	                                    	<div class="gallery-box" ng-repeat="file in $flow.files">
+	                                    		<div class="thumbnail" ng-show="$flow.files.length">
+	                                    			<img flow-img="file"/>
+	                                    		</div>
+	                                    		<div class="btn-group">
+	                                    			<a class="btn btn-xs btn-danger" ng-click="file.cancel()">Remover</a>
+	                                    		</div>
+	                                    	</div>
+                                    	</div>
+                                    	<span class="btn btn-default" flow-btn ng-hide="canAddImg($flow.files.length)">
+                                    		Subir imágenes
+                                    		<input type="file" 
+                                    			style="visibility:hidden; position:absolute" 
+                                    			multiple="multiple"/>
+                                    	</span>
+                                        <div layout layout-sm="column">
+                                    		<md-input-container flex>
+	                                        	<label>Provincia</label>
+	                                            <md-select ng-model="requestObject.province" aria-label="select" 
+	                                            ng-change="onChangeProvince()" ng-model-options="{trackBy: '$value.idProvince'}">
+		                                             <md-option ng-repeat="province in provinceList" ng-value="province">
+		                                             	{{province.name}}
+		                                             </md-option>
+	                                             </md-select>
+	                                        </md-input-container>
+	                                        <md-input-container flex>
+	                                            <label>Cantón</label>
+	                                            <md-select ng-model="requestObject.county" aria-label="select" 
+	                                            ng-change="onChangeCounty()" ng-model-options="{trackBy: '$value.idCounty'}">
+	                                                <md-option ng-repeat="county in countyList" ng-value="county">
+	                                                    {{county.name}}
+	                                                </md-option>
+	                                            </md-select>
+	                                        </md-input-container>
+	                                        <md-input-container flex>
+	                                            <label>Distrito</label>
+	                                            <md-select ng-model="requestObject.district" ng-model-options="{trackBy: '$value.idDisctrict'}">
+	                                                <md-option ng-repeat="district in districtList" ng-value="district">
+	                                                   {{district.name}}
+	                                                </md-option>
+	                                            </md-select>
+	                                        </md-input-container>
+	                                    </div>
+                                        <md-input-container class="md-block">
+                                            <label>Dirección</label>
+                                            <input ng-model="property.address">
+                                        </md-input-container>
+                                        <md-chips ng-model="property.tbenefits" readonly="ctrl.readonly"
+				                                    delete-button-label="Eliminar etiqueta"
+				                                    md-transform-chip="ctrl.transformChip($chip)"
+				                                    secondary-placeholder="Características de la propiedad"
+				                                    md-require-match="true" required>
+				                                    <md-autocomplete md-selected-item="ctrl.selectedItem" md-search-text="requestObject.searchText" 
+				                                    md-items="item in querySearch(requestObject.searchText)" md-item-text="item.benefit" 
+				                                    placeholder="Características">
+					                                    <span md-highlight-text="requestObject.searchText">
+					                                    	{{item.benefit}}
+					                                    </span>
+				                                    </md-autocomplete>
+				                                    <md-chip-template>
+				                                    	<span>
+				                                    		{{$chip.benefit}}
+				                                    	</span>
+				                                    </md-chip-template>
+				                                    </md-chips>
+				                        <div class="divider divider-md"></div>
+                                        <div layout layout-sm="column">
+                                            <md-input-container flex>
+                                                <label>Precio</label>
+                                                <input ng-model="property.price">
+                                            </md-input-container>
+                                            <md-input-container flex>
+                                                <label>Tipo de propiedad</label>
+                                                <md-select ng-model="selectedType" ng-model-options="{trackBy: '$value.idPropertyType'}">
+                                                    <md-option ng-repeat="type in propertyTypeList" ng-value="type">
+                                                        {{type.name}}
+                                                    </md-option>
+                                                </md-select>
+                                            </md-input-container>
+                                        </div>
+                                        <div layout layout-sm="column">
+                                        	<md-input-container flex>
+                                                <label>Metros de construcción</label>
+                                                <input ng-model="property.squareMeters">
+                                            </md-input-container>
+                                        </div>
+                                        <div class="row">
+                                          	<div class="col-md-12">
+                                          		<section class="panel panel-default">
+                                          			<div class="panel-body">
+                                          				<map class="ui-map" zoom="16" center="{{property.coordinates}}" scrollwheel="false">
+								                            <marker position="{{property.coordinates}}" title="drag me" draggable="true" on-dragend="ctrl.markerPos()"></marker>
+								                        </map>
+								                    </div>
+								                </section>
+								            </div>
+								        </div>
+	                                      <md-button type="submit" class="md-raised btn-w-md md-primary" 
+	                                      	data-ng-disabled="!canSubmit($flow.files.length, imageList.length)" ng-click="updateProperty($event, $flow.files)">Modificar</md-button>
+		                                  <md-button class="btn-w-md" data-ng-click="cancel()">Regresar</md-button>
+		                                  <div class="divider"></div>
+                                    	  <div class="alert alert-info" data-ng-show="showInfoOnSubmit">
+                                    	  	Propiedad modificada exitosamente!
+                                    	  </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </section>    
+        </div>
+    </div>
+</section>

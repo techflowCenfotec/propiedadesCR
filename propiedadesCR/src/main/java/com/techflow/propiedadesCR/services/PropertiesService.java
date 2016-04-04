@@ -13,17 +13,16 @@ import com.techflow.propiedadesCR.contracts.PropertiesRequest;
 import com.techflow.propiedadesCR.ejb.Tbenefit;
 import com.techflow.propiedadesCR.ejb.Tdistrict;
 import com.techflow.propiedadesCR.ejb.Tproperty;
-import com.techflow.propiedadesCR.ejb.TpropertyComment;
 import com.techflow.propiedadesCR.ejb.TpropertyImage;
-import com.techflow.propiedadesCR.ejb.TpropertyRating;
+import com.techflow.propiedadesCR.ejb.TpropertyReview;
 import com.techflow.propiedadesCR.ejb.TpropertyType;
 import com.techflow.propiedadesCR.pojo.BenefitsPOJO;
-import com.techflow.propiedadesCR.pojo.CommentsPOJO;
 import com.techflow.propiedadesCR.pojo.DistrictPOJO;
 import com.techflow.propiedadesCR.pojo.PropertyImagePOJO;
 import com.techflow.propiedadesCR.pojo.PropertyPOJO;
 import com.techflow.propiedadesCR.pojo.PropertyTypePOJO;
-import com.techflow.propiedadesCR.pojo.RatingPOJO;
+import com.techflow.propiedadesCR.pojo.ReviewPropertyPOJO;
+import com.techflow.propiedadesCR.repositories.BenefitsRepository;
 import com.techflow.propiedadesCR.repositories.PropertiesRepository;
 
 /**
@@ -42,6 +41,10 @@ public class PropertiesService implements PropertiesServiceInterface {
 	 * Atributo de acceso al repositorio de las propiedades.
 	 */
 	@Autowired private PropertiesRepository propertiesRepository;
+	/**
+	 * Atributo de acceso al repositorio de los beneficios de las propiedades.
+	 */
+	@Autowired private BenefitsRepository benefitsRepository;
 	
 	/**
 	  * Retorna una lista de objetos PropertyPOJO
@@ -71,8 +74,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 			dto.setTbenefits(benefitsDtos(u.getTbenefits()));
 			dto.setTuser(null);
 			dto.setTpropertyImages(imagesDtos(u.getTpropertyImages()));
-			dto.setTpropertyComments(null);
-			dto.setTpropertyRatings(null);
+			dto.setTpropertyReviews(null);
 			dto.setTusers(null);
 			uiProperties.add(dto);
 		});
@@ -112,27 +114,13 @@ public class PropertiesService implements PropertiesServiceInterface {
 	}
 	
 	/**
-	  * Toma los comentarios de los ejbs y los convierte en POJOs.
-	  * 
-	  * @param pComments Lista de ejb de comentarios. No debe ser nula.
-	  * @return commentsList Todas las entidades de tipo POJO.
-	  */
-	private List<CommentsPOJO> commentsDtos(List<TpropertyComment> pComments) {
-		List<CommentsPOJO> commentsList = new ArrayList<CommentsPOJO>();
-		pComments.stream().forEach(u -> {
-			
-		});
-		return commentsList;
-	}
-	
-	/**
 	  * Toma las calificaciones de los ejbs y los convierte en POJOs.
 	  * 
 	  * @param pRatings Lista de ejb de calificaciones. No debe ser nula.
 	  * @return ratingsList Todas las entidades de tipo POJO.
 	  */
-	private List<RatingPOJO> ratingDtos(List<TpropertyRating> pRatings) {
-		List<RatingPOJO> ratingsList = new ArrayList<RatingPOJO>();
+	private List<ReviewPropertyPOJO> reviewsDtos(List<TpropertyReview> pRatings) {
+		List<ReviewPropertyPOJO> ratingsList = new ArrayList<ReviewPropertyPOJO>();
 		pRatings.stream().forEach(u -> {
 			
 		});
@@ -155,13 +143,13 @@ public class PropertiesService implements PropertiesServiceInterface {
 		Tdistrict district = new Tdistrict();
 		TpropertyType pType = new TpropertyType();
 		Tproperty nProperty = new Tproperty();
-		
-		for (int i = 0; i < pProperty.getIdBenefits().size(); i++) {
-			Tbenefit benefit = new Tbenefit();
-			benefit.setIdBenefit(pProperty.getIdBenefits().get(i).intValue());
-			lBenefits.add(benefit);
+		if(pProperty.getIdBenefits() !=null){
+			for (int i = 0; i < pProperty.getIdBenefits().size(); i++) {
+				Tbenefit benefit = new Tbenefit();
+				benefit.setIdBenefit(pProperty.getIdBenefits().get(i).intValue());
+				lBenefits.add(benefit);
+			}
 		}
-		
 		DistrictPOJO dist = pProperty.getProperty().getTdistrict();
 		BeanUtils.copyProperties(dist, district);
 		PropertyTypePOJO type = pProperty.getProperty().getTpropertyType();
@@ -172,6 +160,43 @@ public class PropertiesService implements PropertiesServiceInterface {
 		nProperty.setTpropertyType(pType);
 		nProperty.setTbenefits(lBenefits);
 		nProperty.setActive((byte)1);
+		
+		Tproperty resProperty =  propertiesRepository.save(nProperty);
+		return resProperty;
+	}
+	
+	/**
+	 * Actualiza los datos de la propiedad deseada. Retorna la entidad almacenada por si hay que 
+	 * realizar operaciones adicionales.
+	 * 
+	 * @param pProperty Contiene la infomarción a almacenar a la base de 
+	  * datos por medio del repositorio. No debe ser nulo.
+	 * @param pIdProperty Id de la propiedad. No debe ser nulo.
+	 * @return nProperty Una entidad del tipo.
+	 */
+	@Override
+	@Transactional
+	public Tproperty updateProperty(PropertiesRequest pProperty, 
+			int pIdProperty) {
+		List<Tbenefit> lBenefits = new ArrayList<Tbenefit>();
+		Tdistrict district = new Tdistrict();
+		TpropertyType pType = new TpropertyType();
+		Tproperty nProperty = getPropertyById(pIdProperty);
+		
+		pProperty.getProperty().getTbenefits().stream().forEach(u -> {
+			Tbenefit benefit = benefitsRepository.findOne(u.getIdBenefit());
+			lBenefits.add(benefit);
+		});
+		
+		BeanUtils.copyProperties(pProperty.getProperty().getTdistrict(), district);
+		BeanUtils.copyProperties(pProperty.getProperty().getTpropertyType(), pType);
+		nProperty.setTdistrict(district);
+		nProperty.setTpropertyType(pType);
+		nProperty.setTbenefits(lBenefits);
+		nProperty.setAddress(pProperty.getProperty().getAddress());
+		nProperty.setPrice(pProperty.getProperty().getPrice());
+		nProperty.setSquareMeters(pProperty.getProperty().getSquareMeters());
+		nProperty.setCoordinates(pProperty.getProperty().getCoordinates());
 		
 		Tproperty resProperty =  propertiesRepository.save(nProperty);
 		return resProperty;
@@ -240,6 +265,54 @@ public class PropertiesService implements PropertiesServiceInterface {
 		
 		return uiProperties;
 	}
+	
+	/**
+	  * Método encargado de poner una propiedad en oferta.
+	  * @author Valeria Ramírez Cordero
+	  * @param ppropertyRequest Objeto que contiene el porcentaje de la oferta.
+	  * @return newProperty Devuelve el objeto modificado con la oferta de la propiedad.
+	  */
+	public Tproperty setPropertyOnSale(PropertiesRequest ppropertyRequest){
+		Tproperty property = propertiesRepository.findByIdProperty(ppropertyRequest.getProperty().getIdProperty());
+		property.setOfferPecentage(ppropertyRequest.getProperty().getOfferPecentage());
+		Tproperty newProperty = propertiesRepository.save(property);
+		return newProperty;
+	}
+	/*
+	 * Actualiza el estado de la propiedad de activo a inactivo para
+	 * propósitos de reportes de las propiedades.
+	 * 
+	 */
+	@Override
+	@Transactional
+	public void deleteProperty(Tproperty pProperty) {
+		propertiesRepository.save(pProperty);
+
+	}
+	/*
+	  * Este metodo le suma una vista a la propiedad.
+	  * 
+	  * @param pidProperty Identificador de la propiedad que se esta viendo.
+	  * @param  request Contiene la infomarción a almacenar.
+	  * 
+	  * @return response Retorna la propiedad que se esta modificando.
+	  */
+	@Override
+	public PropertyPOJO propertyViews(int pIdProperty,PropertiesRequest request) {
+		Tproperty property = getPropertyById(pIdProperty);
+		PropertyPOJO newProperty = new PropertyPOJO();
+		newProperty.setTdistrict(new DistrictPOJO());
+		newProperty.setTpropertyType(new PropertyTypePOJO());
+		property.setTotalViews(property.getTotalViews()+1);
+		BeanUtils.copyProperties(property, newProperty);
+		BeanUtils.copyProperties(property.getTdistrict(),newProperty.getTdistrict());
+		BeanUtils.copyProperties(property.getTpropertyType(),newProperty.getTpropertyType());
+		newProperty.setTbenefits(benefitsDtos(property.getTbenefits()));
+		request.setProperty(newProperty);
+		saveProperty(request);
+		return newProperty;
+	}
+
 	/**
 	 * Retorna la propiedad que se vendio.
 	 * @param pProperty Contiene la informacion a almacenar en la base de datos.
@@ -255,5 +328,4 @@ public class PropertiesService implements PropertiesServiceInterface {
 		Tproperty propertySold= propertiesRepository.save(property);
 		return propertySold;
 	}
-	
 }

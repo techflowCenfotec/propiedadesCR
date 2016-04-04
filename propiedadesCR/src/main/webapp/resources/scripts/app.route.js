@@ -42,10 +42,13 @@
 			,"templates/guidesView/createGuide"
 			,"templates/guidesView/consultGuide"
 			,"templates/propertiesView/propertyView"
+			,"templates/propertiesView/propertiesModify"
 			,"templates/propertiesView/propertiesCompare"
+			,"templates/propertiesView/myPropertiesView"
 			,"templates/permissionsViews/adminView"
 			,"templates/roleView/editRoles"
 			,"templates/toDoListView/listToDoList"
+			,"templates/propertyFavoritesView/favoritesList"
 
 		], 
 

@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.techflow.propiedadesCR.contracts.RatingRequest;
-import com.techflow.propiedadesCR.contracts.RatingResponse;
-import com.techflow.propiedadesCR.ejb.TpropertyRating;
-import com.techflow.propiedadesCR.pojo.RatingPOJO;
+import com.techflow.propiedadesCR.contracts.ReviewPropertyRequest;
+import com.techflow.propiedadesCR.contracts.ReviewPropertyResponse;
+import com.techflow.propiedadesCR.ejb.TpropertyReview;
+import com.techflow.propiedadesCR.pojo.ReviewPropertyPOJO;
 import com.techflow.propiedadesCR.services.RatingServiceInterface;
 
 @RestController
@@ -26,13 +26,13 @@ public class RatingController {
 	  * @return response La entidad del objeto creado.
 	  */
 	@RequestMapping(value="/addRating", method = RequestMethod.POST)
-	public RatingResponse addRating(@RequestBody RatingRequest pRating) {
-		RatingResponse response =  new RatingResponse();
-		RatingPOJO rating = new RatingPOJO();
+	public ReviewPropertyResponse addRating(@RequestBody ReviewPropertyRequest pRating) {
+		ReviewPropertyResponse response =  new ReviewPropertyResponse();
+		ReviewPropertyPOJO rating = new ReviewPropertyPOJO();
 		
-		TpropertyRating nRating = ratingService.addRating(pRating);
+		TpropertyReview nRating = ratingService.addRating(pRating);
 		
-		rating.setIdRating(nRating.getIdRating());
+		rating.setIdReview(nRating.getIdReview());
 		
 		if (nRating != null) {
 			response.setCode(200);
@@ -44,13 +44,13 @@ public class RatingController {
 	}
 	
 	@RequestMapping(value="/editRating", method = RequestMethod.POST)
-	public RatingResponse editRating(@RequestBody RatingRequest pRating) {
-		RatingResponse response =  new RatingResponse();
-		RatingPOJO rating = new RatingPOJO();
+	public ReviewPropertyResponse editRating(@RequestBody ReviewPropertyRequest pRating) {
+		ReviewPropertyResponse response =  new ReviewPropertyResponse();
+		ReviewPropertyPOJO rating = new ReviewPropertyPOJO();
 		
-		TpropertyRating nRating = ratingService.editRating(pRating);
+		TpropertyReview nRating = ratingService.editRating(pRating);
 		
-		rating.setIdRating(nRating.getIdRating());
+		rating.setIdReview(nRating.getIdReview());
 		
 		if (nRating != null) {
 			response.setCode(200);
@@ -62,13 +62,16 @@ public class RatingController {
 	}
 	
 	@RequestMapping(value="/getRatingById", method = RequestMethod.POST)
-	public RatingResponse getRatingById(@RequestBody RatingRequest pRating) {
-		RatingResponse ratingResponse = new RatingResponse();
+	public ReviewPropertyResponse getRatingById(@RequestBody ReviewPropertyRequest pRating) {
+		ReviewPropertyResponse ratingResponse = new ReviewPropertyResponse();
+		ReviewPropertyPOJO ratingProperty = new ReviewPropertyPOJO();
 		
-		
+		ratingProperty = ratingService.getRatingById(pRating);
+		ratingResponse.setRating(ratingProperty);
 		ratingResponse.setCode(200);
 		ratingResponse.setCodeMessage("rating fetch success");
-		ratingResponse.setRating(ratingService.getRatingById(pRating));
+		
+		//ratingResponse.setRating(ratingService.getRatingById(pRating));
 		return ratingResponse;
 	}
 }

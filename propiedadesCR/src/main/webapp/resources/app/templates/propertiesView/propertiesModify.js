@@ -1,24 +1,21 @@
 (function() {
-	'use strict';
+	angular.module('app.properties.modify', [])
 	
-	angular.module('app.properties.create', [])
+	.controller('propertyModifyController', ['$scope', '$http', '$upload', 'NgMap', '$state', propertyModifyController]);
 	
-	.controller('CreatePropController', ['$scope', '$http', '$upload', 'NgMap', '$state', CreatePropController]);
-
-	function CreatePropController($scope, $http, $upload, NgMap, $state) {
-		
-		var original;
+	function propertyModifyController($scope, $http, $upload, NgMap, $state) {
 		var self = this;
-		self.readonly = false;
+		var original;
+		self.district = {};
 		self.tags = [];
-		self.provinceList = [];
 		self.benefitsList = [];
-		self.propertyTypeList = [];
-		//Benefits tags info
-		self.selectedItem = null;
-		self.searchText = null;
 		$scope.markerLoc = null;
-		//scope variables
+		$scope.imageList = [];
+		$scope.propertyTypeList = [];
+		$scope.provinceList = [];
+		$scope.property = {};
+		$scope.selectedType = {};
+		$scope.selectedDistrict = {};
 		$scope.requestObject = {
 				province: '',
 				county: '',
@@ -29,33 +26,68 @@
 		};
 		
 		$scope.onError = false;
-		$scope.selected = [];
-		//Map variables and default values
-		$scope.map = {
-				"center": '[9.926989, -84.091201]',
-				"zoom": 11
-		};
-
+		
 		original = angular.copy($scope.requestObject);
 		
 		$scope.init = function() {
+			var bd = 'rest/protected/properties/getByPropertyId/' + localStorage.getItem('idProperty');
+			$http.get(bd)
+			.success(function(response) {
+				$scope.property = response.property;
+				$scope.imageList = response.property.tpropertyImages;
+				$scope.selectedType = $scope.property.tpropertyType;
+				$scope.requestObject.district = $scope.property.tdistrict;
+				
+				$http.get('rest/protected/districts/getDistrcitById/'+ 
+						$scope.property.tdistrict.idDisctrict)
+				.success(function(response) {
+					$scope.requestObject.county = response.district.tcounty;
+					
+					// Provincia del cantón seleccionado
+					$http.get('rest/protected/counties/getCountyById/'+ 
+							$scope.requestObject.county.idCounty)
+					.success(function(response) {
+						$scope.requestObject.province = response.county.tprovince;
+					});
+				});
+			});
+			
 			$http.get('rest/protected/province/getAll', $scope.requestObject)
 			.success(function(provincesResponse) {
 				$scope.provinceList = provincesResponse.provinces;
 			});
 			
-			$http.get('rest/protected/benefits/getAll', $scope.requestObject)
-			.success(function(benefitsResponse) {
-				self.benefitsList = benefitsResponse.benefits;
+			$http.get('rest/protected/counties/getAll', $scope.requestObject)
+			.success(function(countyResponse) {
+				$scope.countyList = countyResponse.counties;
+			});
+			
+			$http.get('rest/protected/districts/getAll', $scope.requestObject)
+			.success(function(districtResponse) {
+				$scope.districtList = districtResponse.districts;
 			});
 			
 			$http.get('rest/protected/propertyTypes/getAll', $scope.requestObject)
 			.success(function(typeResponse) {
 				$scope.propertyTypeList = typeResponse.pTypes;
 			});
-		};
+			
+			$http.get('rest/protected/benefits/getAll', $scope.requestObject)
+			.success(function(benefitsResponse) {
+				self.benefitsList = benefitsResponse.benefits;
+			});
+		}
 		
 		$scope.init();
+		
+		$scope.deletePropertyImage = function(pidPropertyImage) {
+			var data = $.param({
+				imageId: pidPropertyImage,
+			});
+			var idx = $scope.imageList.indexOf(pidPropertyImage);
+			if (idx == -1) { $scope.imageList.splice(idx, 1) };
+			$http["delete"]('rest/protected/properties/deleteImage?' + data);
+		}
 		
 		$scope.transformChip = function(chip) {
 			// If it is an object, it's already a known chip
@@ -91,11 +123,12 @@
 		
 		$scope.onChangeProvince = function() {
 			$scope.countyList = [];
+			$scope.districtList = [];
 			
 			$http.get('rest/protected/counties/getAll')
 			.success(function(countyResponse) {
 				for(var i = 0; i < countyResponse.counties.length; i++) {
-					if(countyResponse.counties[i].tprovince.idProvince === $scope.requestObject.province){
+					if(countyResponse.counties[i].tprovince.idProvince === $scope.requestObject.province.idProvince){
 						$scope.countyList.push(countyResponse.counties[i]);
 					}
 				}
@@ -108,7 +141,7 @@
 			$http.get('rest/protected/districts/getAll')
 			.success(function(districtResponse) {
 				for(var i = 0; i < districtResponse.districts.length; i++) {
-					if(districtResponse.districts[i].tcounty.idCounty === $scope.requestObject.county){
+					if(districtResponse.districts[i].tcounty.idCounty === $scope.requestObject.county.idCounty){
 						$scope.districtList.push(districtResponse.districts[i]);
 					}
 				}
@@ -126,12 +159,12 @@
 			return !angular.equals($scope.requestObject, original)
 					|| !$scope.propertiesForm.$pristine;
 		};
-		$scope.canSubmit = function(length) {
-			return this.propertiesForm.$valid && length > 0
+		$scope.canSubmit = function(imgList, length) {
+			return this.propertiesForm.$valid && imgList > 0 || this.propertiesForm.$valid && length > 0
 					&& !angular.equals($scope.requestObject, original);
 		};
-		$scope.submitForm = function(event, $files) {
-			$scope.saveProperty(event, $files);
+		$scope.updateProperty = function(event) {
+			$scope.updateProperty(event, $files);
 		};
 		$scope.canAddImg = function(length) {
 			return length >= 5;
@@ -139,18 +172,12 @@
 		
 		// Routes to list view on cancel
 		$scope.cancel = function() {
-			$state.go('templates/propertiesView/propertiesList', {},  {reload: true});
+			$state.go('templates/propertiesView/myPropertiesView', {},  {reload: true});
 		}
 		
-        //Submits new property information
-		$scope.saveProperty = function(event, $files) {
+		$scope.updateProperty = function(event, $files) {
 			if(this.propertiesForm.$valid) {
 				$scope.onError = false;
-				var idBenefits = [];
-
-				for(var i = 0; i < self.tags.length; i++){
-					idBenefits.push(self.tags[i].idBenefit);
-				}
 				var request = {
 						"pageNumber": 0,
 						"pageSize": 0,
@@ -159,17 +186,17 @@
 						"searchColumn": "string",
 						"searchTerm": "",
 						"property": {
-							"squareMeters": $scope.requestObject.meters,
-							"price": $scope.requestObject.price,
-							"tdistrict": { "idDisctrict": $scope.requestObject.district},
-							"tpropertyType": { "idPropertyType": $scope.requestObject.type},
-							"address": $scope.requestObject.address,
+							"squareMeters": $scope.property.squareMeters,
+							"price": $scope.property.price,
+							"tdistrict": { "idDisctrict": $scope.requestObject.district.idDisctrict},
+							"tpropertyType": { "idPropertyType": $scope.selectedType.idPropertyType},
+							"tbenefits": $scope.property.tbenefits,
+							"address": $scope.property.address,
 							"coordinates": $scope.markerLoc
-						},
-						"idBenefits": idBenefits
+						}
 				};
 
-				$http.post('rest/protected/properties/create', request)
+				$http.put('rest/protected/properties/update/' + localStorage.getItem('idProperty'), request)
 					.success(function(res) {
 						for(var i = 0; i < $files.length; i++) {
 							var file = $files[i].file;
@@ -183,9 +210,11 @@
 							});
 						}
 						$scope.showInfoOnSubmit= true;
-						$state.go('templates/propertiesView/propertiesList', {},  {reload: true});
+						$state.go('templates/propertiesView/myPropertiesView', {},  {reload: true});
 				});
 			}
 		}
+		
 	}
+	
 })();

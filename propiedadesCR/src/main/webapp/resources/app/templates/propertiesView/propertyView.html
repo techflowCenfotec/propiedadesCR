@@ -1,12 +1,16 @@
 
 <section class="page-form-ele page" ng-controller="PropViewController">
-    <div class="row ui-section">
-        <div class="col-lg-8 clearfix"> <h2 class="section-header">Propiedad en {{property.tdistrict.name}}</h2> </div>
-        <div class="col-md-12">
-            <section class="panel panel-default">
-                <div class="panel-body">
-                    <div class="row">
-                        <div class="col-lg-8 col-lg-offset-2">
+	<div class="row ui-section">
+		<div class="col-lg-8 clearfix">
+			<h2 class="section-header">Propiedad en
+				{{property.tdistrict.name}}</h2>
+		</div>
+		<div class="col-md-12">
+			<section class="panel panel-default">
+				<div class="panel-body">
+					<div class="row">
+						<div class="col-lg-8 col-lg-offset-2">
+
 
                             <div layout="column" ng-cloak class="md-inline-form inputdemoBasicUsage">
                                 <div layout-padding>
@@ -25,8 +29,7 @@
 								                                        <div class="info-mask bg-primary"></div>
 								                                        <div class="info-content">
 								                                            <div class="info-inner">
-								                                                <h3>Lorem Ipsum</h3>
-								                                                <p>Dolor sit amet, consectetur adipiscing elit.</p>
+								                                                <p>Zoom Icon</p>
 								                                            </div>
 								                                        </div>
 								                                    </div>
@@ -118,78 +121,62 @@
 								                    </div>
 								                </section>
 								            </div>
-								        </div>
-								        <div  class="divider divider-dashed divider-md pull-in"></div>
-								        <h3 ng-show="isRateVisible">Calificar propiedad</h3>
-								        <div ng-show="isRateVisible" class="panel-body padding-md">
-				                            <uib-rating class="ui-rating size-h3 ui-rating-warning"
-				                            ng-model="rate"
-				                            max="max"
-				                            readonly="isReadonly"
-				                            on-hover="hoveringOver(value)"
-				                            on-leave="overStar = null"
-				                            state-on="'fa fa-star'"
-				                            state-off="'fa fa-star-o'"></uib-rating>
-				                            <div class="divider"></div>
-											<md-button class="md-raised btn-w-sm md-primary" ng-click="propertyRate(value)">Calificar propiedad</md-button>
-				                        </div>
-				                        <div class="divider"></div>
-
-				                        <div class="md-dialog-focus-trap" tabindex="0"></div>
-				                        <md-dialog md-theme="default" 
-                							aria-label="Alert Dialog Demo" 
-                							ng-class="dialog.css" 
-                							class="md-default-theme md-transition-in" 
-                							role="alertdialog" 
-                							tabindex="-1" 
-                							aria-describedby="dialog_18" 
-                							ng-show="popUpVisible"
-                							style="">
-                								<md-dialog-content class="md-dialog-content" 
-                								role="document" 
-                								tabindex="-1" 
-                								id="dialog_18"
-                								ng-show="popUpVisible">
-                									<h2 class="md-title ng-binding">Modificar calificación</h2>
-                									<!-- ngIf: ::dialog.mdHtmlContent --><!-- ngIf: ::!dialog.mdHtmlContent -->
-				                            		<uib-rating class="ui-rating size-h3 ui-rating-warning"
-				                           			ng-model="rate"
-				                            		max="max"
-				                            		readonly="isReadonly"
-				                            		aria-valuenow="val"
-				                            		on-hover="hoveringOver(value)"
-				                            		on-leave="overStar = null"
-				                            		state-on="'fa fa-star'"
-				                            		state-off="'fa fa-star-o'"></uib-rating>
-		           									<md-dialog-actions><!-- ngIf: dialog.$type == 'confirm' -->
-                										<button class="md-primary md-button md-default-theme md-ink-ripple" 
-                										type="button" 
-                										ng-transclude=""
-                										md-autofocus="dialog.$type!='confirm'">
-                										<span class="ng-binding ng-scope" ng-click="editRating()">Aceptar</span>
-                										</button>
-                										<button class="md-primary md-button md-default-theme md-ink-ripple" 
-                										type="button" 
-                										ng-transclude=""
-                										md-autofocus="dialog.$type!='confirm'">
-                										<span class="ng-binding ng-scope" ng-click="show()">Cancelar</span>
-                										</button>
-
-                									</md-dialog-actions>
-                								</md-dialog-content>
-                								<div class="divider"></div>
-                								<div class="md-dialog-focus-trap" tabindex="0">
-                								</div>
-                							</md-dialog>
-                							 <div class="divider"></div>
-                							<h3>Reportar Vendedor</h3>
-								        	<div class="panel-body padding-md">
-								        		<h4>Se encuentra inconforme con el vendedor de esta propiedad?</h4>
-				                            <div class="divider"></div>
-											<md-button class="md-raised btn-w-sm md-primary" ng-click="reportVendor()" >Reportar</md-button>
-				                        </div>
-
+								        </div>						
                                     </form>
+                                    				<div class="divider divider-dashed divider-md pull-in"></div>
+										
+											<p>Mi calificaci&oacute;n</p>
+
+
+
+										<uib-rating class="ui-rating size-h4 ui-rating-warning"
+											ng-model="rate" max="max" on-hover="hoveringOver(value)"
+											readonly="myReadOnly" on-leave="overStar = null"
+											data-ng-click="saveRating(rate)" state-on="'fa fa-star'"
+											state-off="'fa fa-star-o'"></uib-rating>
+										<div class="form-group">
+
+											<br> <label for="">Comentario</label>
+											<textarea class="form-control" rows="4" required
+												data-ng-hide="myCommentTextArea"
+												data-ng-model="form.comment"></textarea>
+											<p data-ng-hide="myCommentP">"Lorem ipsum dolor sit amet,
+												consectetur adipiscing elit, sed do eiusmod tempor
+												incididunt ut labore et dolore magna aliqua. Ut enim ad
+												minim veniam, quis nostrud exercitation ullamco laboris nisi
+												ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+												reprehenderit in voluptate velit esse cillum dolore eu
+												fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+												proident, sunt in culpa qui officia deserunt mollit anim id
+												est laborum."</p>
+										</div>
+
+										<p class="btn" data-ng-hide="edit"
+											data-ng-click="editReview()">
+											<i class="zmdi zmdi-edit"></i> Editar
+										</p>
+
+										<div class=row>
+											<div class="col-md-6">
+												<button type="submit" ui-wave
+													class="btn btn-primary btn-w-md" data-ng-hide="isCreated"
+													data-ng-click=saveReview()>{{btnRateAndComment}}</button>
+											</div>
+										</div>
+										
+										<div class="alert alert-info" data-ng-show="showInfo">Se guardo
+										la calificaci&oacute;n</div>
+										
+										<div class="divider divider-dashed divider-md pull-in"></div>
+
+										<h3>Reportar Vendedor</h3>
+										<div class="panel-body padding-md">
+											<h4>Se encuentra inconforme con el vendedor de esta
+												propiedad?</h4>
+											<div class="divider"></div>
+											<md-button class="md-raised btn-w-sm md-primary"
+												ng-click="reportVendor()">Reportar</md-button>
+										</div>
                                 </div>
                             </div>
 
@@ -234,7 +221,7 @@
                                             required
                                             name="type_something"
                                             data-ng-trim='false'
-                                            data-ng-model="form.amount">
+                                            data-ng-model="calculatorForm.amount">
                                             </md-input-container>
 
                                           </div>
@@ -246,7 +233,7 @@
                                             disabled
                                             name="type_something"
                                             data-ng-trim='false'
-                                            data-ng-model="form.minAmount">
+                                            data-ng-model="calculatorForm.minAmount">
                                             </md-input-container>
                                           </div>
                                           <div layout layout-sm="column">
@@ -257,7 +244,7 @@
                                             disabled
                                             name="type_something"
                                             data-ng-trim='false'
-                                            data-ng-model="form.quota">
+                                            data-ng-model="calculatorForm.quota">
                                             </md-input-container>
                                           </div>
                                           <div layout layout-sm="column">
@@ -268,7 +255,7 @@
                                             disabled
                                             name="type_something"
                                             data-ng-trim='false'
-                                            data-ng-model="form.financingAmount">
+                                            data-ng-model="calculatorForm.financingAmount">
                                             </md-input-container>
                                           </div>
                                           <div layout layout-sm="column">
@@ -279,7 +266,7 @@
                                             disabled
                                             name="type_something"
                                             data-ng-trim='false'
-                                            data-ng-model="form.netFamilyIncome">
+                                            data-ng-model="calculatorForm.netFamilyIncome">
                                             </md-input-container>
                                           </div>
                                           <button type="submit" ui-wave class="btn btn-primary btn-w-md"
@@ -298,13 +285,11 @@
                             </div>
                         </script>
 
-
-
                         <md-button class="md-raised btn-w-md md-primary" ng-click="open()">Calcular Financiamiento de la propiedad</md-button>
                         <span class="space"></span>
                         
 
-                    </div>
+                  </div>
                 </div>
             </section>
         </div>

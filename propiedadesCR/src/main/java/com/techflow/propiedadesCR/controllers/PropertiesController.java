@@ -123,6 +123,14 @@ public class PropertiesController {
 	}
 	
 	/**
+	 * Elimina completamente la imagen seleccionada.
+	 */
+	@RequestMapping(value="/deleteImage", method=RequestMethod.DELETE)
+	public void deleteImage(@RequestParam("imageId") int pImageId){
+		imagesService.deleteImage(pImageId);
+	}
+	
+	/**
 	 * Solicita la información de la propiedad a través del servicio.
 	 *  
 	 *  @param pIdProperty Id de la propiedad. No debe ser nulo.
@@ -147,6 +155,89 @@ public class PropertiesController {
 	public List<PropertyPOJO> getPropertiesWithBenefits() {
 		ArrayList<PropertyPOJO> propertiesWithBenefits = propertiesService.getPropertiesWithBenefits();
 		return propertiesWithBenefits;
+	}
+	
+	/**
+
+	* Este método permite poner una propiedad en oferta
+	* @author Valeria Ramírez Cordero
+	* @param ppropertiesRequest Este parámetro es la peticion del front-end
+	* que se utiliza para acceder al método deseado
+	*  @return propertiesResponse Resultado que contiene la respuesta
+	* de que el rol haya sido puesto en oferta exitosamente o no
+	*
+	*/ 
+	
+	@RequestMapping(value ="/setPropertyOnSale", method = RequestMethod.POST)
+	public PropertiesResponse setPropertyOnSale(@RequestBody PropertiesRequest ppropertiesRequest){
+		
+		PropertiesResponse propertiesResponse = new PropertiesResponse();
+		Tproperty propertySale = propertiesService.setPropertyOnSale(ppropertiesRequest);
+		
+		if(propertySale!= null){
+			propertiesResponse.setCode(200);
+			propertiesResponse.setCodeMessage("Property on Sale success");
+			
+		}
+		return propertiesResponse;
+	}
+	/*
+	 * Actualiza los datos de la propiedad seleccionada.
+	 * 
+	 * @param pIdProperty Id de la propiedad. No debe ser nulo.
+	 * @return response Un objeto response de la propiedad.
+	 */
+	@RequestMapping(value="update/{pIdProperty}", method=RequestMethod.PUT)
+	public PropertiesResponse updateProperty(@PathVariable int pIdProperty, 
+			@RequestBody PropertiesRequest pPropRequest) {
+		PropertiesResponse response = new PropertiesResponse();
+		PropertyPOJO property = new PropertyPOJO();
+		
+		Tproperty nProperty = propertiesService.updateProperty(pPropRequest, pIdProperty);
+
+		property.setIdProperty(nProperty.getIdProperty());
+		
+		if(nProperty!=null){
+			response.setCode(200);
+			response.setCodeMessage("Property modified succesfully!");
+			response.setProperty(property);
+		}
+		return response;
+	}
+
+	/**
+	 * Este metodo guarda una vista a la propiedad
+	 *  
+	 *  @param pIdProperty Id de la propiedad. No debe ser nulo.
+	 *  
+	 * @return response Un objeto response de la propiedad.
+	 */
+	@RequestMapping(value="saveView/{pIdProperty}", method=RequestMethod.GET)
+	public PropertiesResponse saveView(@PathVariable int pIdProperty) {
+		PropertiesResponse response = new PropertiesResponse();
+		PropertiesRequest request = new PropertiesRequest();
+		PropertyPOJO property = propertiesService.propertyViews(pIdProperty,request);
+		
+		response.setProperty(property);
+		
+		return response;
+	}
+	
+
+	/**
+	 * Actualiza el estado de la propiedad de activo a inactivo. Realiza un borrado
+	 * lógico de la propiedad para propósitos de reportes sobre las propiedades
+	 * vendidas.
+	 * 
+	 * @param pIdProperty Id de la propiedad. No debe ser nulo.
+	 */
+	@RequestMapping(value="delete/{pIdProperty}", method=RequestMethod.PUT)
+	public void deleteProperty(@PathVariable int pIdProperty) {
+		Tproperty property = propertiesService.getPropertyById(pIdProperty);
+		property.setActive((byte)0);
+		
+		propertiesService.deleteProperty(property);
+
 	}
 	/**
 	 * Solicita la información de la propiedad a través del servicio.
