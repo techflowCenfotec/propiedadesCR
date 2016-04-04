@@ -49,7 +49,14 @@ public class ToDoListService implements ToDoListServiceInterface{
 	@Transactional
 	public List<ToDoListPOJO> getAll(ToDoListRequest ptoDoListRequest) {
 		List<TToDoList> toDoList = toDoListRepository.findAll();
-		return generateToDoListDtos(toDoList);
+		List<TToDoList> correctToDos= new ArrayList<TToDoList>();
+		toDoList.stream().forEach(toDo -> {
+			TToDoList tToDoList = toDoListRepository.findOne(toDo.getIdToDoList());
+			if(toDo.getActive()==1){
+				correctToDos.add(tToDoList);
+			}
+		});
+		return generateToDoListDtos(correctToDos);
 	}
 	
 	/**
@@ -62,6 +69,8 @@ public class ToDoListService implements ToDoListServiceInterface{
 		ptoDoListList.stream().forEach(u -> {
 			ToDoListPOJO dto = new ToDoListPOJO();
 			BeanUtils.copyProperties(u, dto);
+			dto.setTuser(null);
+			dto.setTitems(null);
 			uiToDoList.add(dto);
 		});
 		return uiToDoList;
@@ -83,6 +92,25 @@ public class ToDoListService implements ToDoListServiceInterface{
 		TToDoList newToDoList = toDoListRepository.save(toDoList);
 		
 		return newToDoList;
+	}
+
+	
+	/**
+	 * Este método elimina lógicamente un toDoList en el sistema.
+	 *
+	 * @param ptoDoListRequest Contiene información del objeto a eliminar.
+     * 
+	 * @return newToDo Devuelve el toDoList eliminado con sus nuevos datos.
+	 *
+	 *@author  Valeria Ramírez 
+	 */
+	@Override
+	@Transactional
+	public TToDoList deleteToDoList(ToDoListRequest ptoDoListRequest){
+		TToDoList tTodoList = toDoListRepository.findOne(ptoDoListRequest.getToDoList().getIdToDoList());
+		tTodoList.setActive((byte) 0);
+		TToDoList newToDo = toDoListRepository.save(tTodoList);
+		return newToDo;
 	}
 
 	@Override
@@ -117,3 +145,4 @@ public class ToDoListService implements ToDoListServiceInterface{
 	}
 
 }
+

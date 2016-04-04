@@ -11,7 +11,7 @@ public interface UsersServiceInterface {
 
 	List<UserPOJO> getAll(UsersRequest puserRequest);
 	List<UserPOJO> getAllVendors(UsersRequest puserRequest);
-	Tuser saveUser(UsersRequest puserRequest,int pidRole);
+	UserPOJO saveUser(UsersRequest puserRequest,int pidRole);
 	UserPOJO consultUser(int pidUser);
 
 	Tuser modifyUser(UsersRequest puserRequest, int pidRole);
@@ -19,6 +19,10 @@ public interface UsersServiceInterface {
 	Tuser changePass(PasswordRequest ppasswordRequest);
 	Tuser updateFavorites(Tuser pUser);
 	Tuser getUserByID(int pIdUser);
+
+	UserPOJO consultVendor(int pidUser);
+	Tuser getUserAdmin();
+	Tuser deleteUser(UsersRequest puserRequest);
 
 
 }

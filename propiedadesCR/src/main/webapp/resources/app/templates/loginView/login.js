@@ -6,8 +6,8 @@
 			
 		$scope.incorrect = true;
 		$scope.user ={
-			userName:'',
-			password:'',
+			userName:'jorge.argds@gmail.com',
+			password:'Food9leak',
 		}
 		
 		validate();

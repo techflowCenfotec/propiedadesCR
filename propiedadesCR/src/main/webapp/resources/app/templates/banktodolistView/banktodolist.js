@@ -99,7 +99,12 @@
         $scope.consultToDoList = function(pidToDoList){
             localStorage.setItem('idToDoList',pidToDoList);
             $location.url("templates/banktodolistView/banktodolistAdminItems");
-        }
+        };
+
+        $scope.modifyToDoList = function(pidToDoList){
+            localStorage.setItem('idToDoList',pidToDoList);
+            $location.url("templates/banktodolistView/banktodolistModify");
+        };
     
 	}]);
 

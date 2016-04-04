@@ -59,7 +59,8 @@ function() {
 		,"app.testFlow"
 		,"app.matchedPropertiesList"
 		,"app.createGuide"
-
+		,"app.consultGuide"
+		
 		,"app.properties.create"
 		,"app.properties.view"
 		,'app.properties.compare'
@@ -68,6 +69,7 @@ function() {
 		,"app.properties.modify"
 		,"app.permissionsManagment"
 		,"app.editRoles"
+		,"app.usertoDoList"
 		
 		//3rd Party Modules
 		,"ngMaterial"

@@ -77,7 +77,7 @@ public class LocalController {
 	 * @exception IOException Esta excepción se lanza cuando ocurre un error al enviar el correo.
 	 */
 	
-	@RequestMapping(value="/sendEmail", method = RequestMethod.POST)
+	@RequestMapping(value="/welcomeEmail", method = RequestMethod.POST)
 	public UsersResponse sendEmail(@RequestBody UsersRequest puseRequest){
 		
 	
@@ -210,7 +210,7 @@ public class LocalController {
 				user.setFirstTime((byte)0);
 				UsersRequest userRequest = new UsersRequest();
 				userRequest.setUser(user);
-				Tuser recentlyCreatedUser = usersService.saveUser(userRequest, pidRole);
+				UserPOJO recentlyCreatedUser = usersService.saveUser(userRequest, pidRole);
 
 				
 				if(recentlyCreatedUser != null){

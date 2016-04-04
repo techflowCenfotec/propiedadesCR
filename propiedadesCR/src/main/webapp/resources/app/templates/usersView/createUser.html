@@ -128,29 +128,14 @@
 								required> {{role.rolName}} </md-option> </md-select> </md-input-container>
 						</div>
 
-						<div layout layout-sm="column">
-							<md-input-container flex=35> <label for="">Contrase&ntilde;a</label>
-							<input type="password" class="form-control" name="password"
-								data-ng-trim='false' data-ng-model="form.password"
-								data-ng-minlength="8" data-ng-maxlength="20"
-								title="La contraseña debe contener al menos una mayuscúla, una minuscúla, un caracter especial(número o símbolo), mínimo 8 caracteres y máximo 20"
-								data-ng-pattern="/(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z])/"
-								required> <span></span> </md-input-container>
-
-							<md-input-container flex=35> <label for="">Confirme
-								contrase&ntilde;a</label> <input type="password" class="form-control"
-								required name="confirmPassword" data-ng-trim='false'
-								data-ng-model="form.confirmPassword" data-match="form.password">
-							<span></span> </md-input-container>
-
-						</div>
+						
 						<p>
 							<strong style="display: inline-block; width: 100px;">G&eacute;nero</strong>
 							<md-radio-group required class="ui-md-radio-group-inline"
 								ng-model="form.gender"> <md-radio-button
 								value="Hombre">Hombre</md-radio-button> <md-radio-button
 								value="Mujer">Mujer</md-radio-button> <md-radio-button
-								value="Otro">Otro</md-radio-button> </md-radio-group>
+								value="Otro">Interg&eacute;nero</md-radio-button> </md-radio-group>
 						</p>
 
 
