@@ -52,7 +52,7 @@ public class ToDoListService implements ToDoListServiceInterface{
 		List<TToDoList> correctToDos= new ArrayList<TToDoList>();
 		toDoList.stream().forEach(toDo -> {
 			TToDoList tToDoList = toDoListRepository.findOne(toDo.getIdToDoList());
-			if(toDo.getActive()==1){
+			if(toDo.getActive()==1 && toDo.getTuser().getIdUser() == ptoDoListRequest.getToDoList().getTuser().getIdUser()){
 				correctToDos.add(tToDoList);
 			}
 		});

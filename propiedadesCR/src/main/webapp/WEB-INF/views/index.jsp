@@ -104,10 +104,11 @@
         <script src="resources/app/templates/usersView/modifyUser.js"></script>
         <script src="resources/app/templates/usersView/consultVendor.js"></script>
 
-        <script src="resources/app/templates/eventsView/createEvent.js"></script>
+        <script src= "resources/app/templates/eventsView/createEvent.js"></script>
         <script src= "resources/app/templates/eventsView/eventsList.js"></script>
 	    <script src= "resources/app/templates/eventsView/eventConsult.js"></script>
         <script src= "resources/app/templates/eventsView/eventsListAdmin.js"></script>
+        <script src= "resources/app/templates/eventsView/modifyEvents.js"></script>
         
         
         <script src="resources/app/templates/roleView/roles.js"></script>
