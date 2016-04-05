@@ -309,6 +309,9 @@ public class PropertiesService implements PropertiesServiceInterface {
 		BeanUtils.copyProperties(property.getTdistrict(),newProperty.getTdistrict());
 		BeanUtils.copyProperties(property.getTpropertyType(),newProperty.getTpropertyType());
 		newProperty.setTbenefits(benefitsDtos(property.getTbenefits()));
+		newProperty.setTuser(null);
+		newProperty.setTusers(null);
+		newProperty.setTpropertyReviews(null);
 		request.setProperty(newProperty);
 		saveProperty(request);
 		return newProperty;
