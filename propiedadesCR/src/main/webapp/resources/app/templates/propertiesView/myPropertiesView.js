@@ -9,12 +9,13 @@
 		$scope.propertiesList = [];
 		
 		$scope.init = function() {
-			var active = 1;
+			var active = 1,
+				sold = 0;
 			
 			$http.get('rest/protected/properties/getAll')
 			.success(function(response) {
 				for (var i = 0; i < response.properties.length; i++) {
-					if(response.properties[i].active == active) 
+					if(response.properties[i].active == active && response.properties[i].isSold == sold) 
 						$scope.propertiesList.push(response.properties[i]);
 				}
 			});
