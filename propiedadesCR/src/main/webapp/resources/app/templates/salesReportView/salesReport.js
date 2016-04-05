@@ -59,12 +59,14 @@
         $http.post('rest/protected/properties/getPropertiesByIdVendor', request)
           .success(function(response) {
           properties = response.properties;
+          // console.log(properties);
           for (var i = 0; i < properties.length; i++) {
-            if(properties[i].isSold==1)
+            if(properties[i].isSold==1){
               properties[i].soldDate = new Date(properties[i].soldDate);
               soldProperties.push(properties[i]);
+            }
           }
-          console.log(soldProperties);
+          // console.log(soldProperties);
           init();
         });
 
@@ -130,8 +132,7 @@
       }
   		function calculateTotalSoldByMoth(){
   			var actualYear = new Date().getFullYear();
-  			console.log(soldProperties[0].soldDate.getMonth());
-  			console.log(actualYear);
+  			// console.log(soldProperties);
 
   			for (var i = 1; i < 13; i++) {
   				for (var j = 0; j < soldProperties.length; j++) {
@@ -140,7 +141,7 @@
   					}
   				}
   			}
-  			console.log(monthTotals);
+  			// console.log(monthTotals);
   		}
 
   		function calculatePropertiesSoldByMoth(){
@@ -153,7 +154,7 @@
   					}
   				}
   			}
-  			console.log(propertiesSold);
+  			// console.log(propertiesSold);
   		}
 
 
