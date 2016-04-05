@@ -7,7 +7,7 @@
 
 	.controller('PropViewController', ['$scope', '$http', '$rootScope','$mdDialog','$timeout', PropViewController])
     .controller('ModalDemoCtrl', ['$scope', '$uibModal', '$log', ModalDemoCtrl])
-    .controller('LocalModalInstanceCtrl', ['$scope', '$uibModalInstance', LocalModalInstanceCtrl]);
+    .controller('LocalModalInstanceCtrl', ['$scope', '$uibModalInstance','price', LocalModalInstanceCtrl]);
 	
 	function PropViewController($scope, $http, $rootScope, $mdDialog, $timeout) {
 
@@ -275,7 +275,6 @@
 	};
 	
 	function ModalDemoCtrl($scope, $uibModal, $log) {
-        $scope.items = ['item1', 'item2', 'item3'];
 
         $scope.animationsEnabled = true;
 
@@ -287,8 +286,8 @@
                 controller: 'LocalModalInstanceCtrl',
                 size: size,
                 resolve: {
-                    items: function () {
-                        return $scope.items;
+                    price: function () {
+                        return $scope.property.price;
                     }
                 }
             });
@@ -305,7 +304,7 @@
         };    
 	}
 
-    function LocalModalInstanceCtrl($scope, $uibModalInstance) {
+    function LocalModalInstanceCtrl($scope, $uibModalInstance,price) {
         var original;
 
         $scope.calculatorForm = { 	
@@ -315,6 +314,8 @@
 	        financingAmount:'',
 	        netFamilyIncome:''
 	    };
+	    $scope.calculatorForm.amount = price;
+	    calculateTotals();
 
         $scope.cancel = function() {
             $uibModalInstance.dismiss("cancel");
@@ -327,8 +328,11 @@
 	    };
 
 	    $scope.calculate = function() {
-		
-		/* variables:*/
+			calculateTotals();
+	    };
+
+	    function calculateTotals(){
+	    			/* variables:*/
 			var coin // moneda
 			var interestRate // tasa de interes
 			var months // meses
@@ -365,7 +369,7 @@
 			$scope.calculatorForm.quota = coin+(payment = Math.round(payment * 100) / 100);
 			$scope.calculatorForm.netFamilyIncome = coin+(familyIncome = Math.round(familyIncome * 100) / 100);
 			
-	    };
+	    }
     };
 })();
 
