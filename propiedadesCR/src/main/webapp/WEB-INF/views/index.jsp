@@ -81,6 +81,7 @@
         <script src="resources/scripts/ui.js"></script>
         <script src="resources/scripts/app.js"></script>
         <script src="resources/scripts/app.route.js"></script>
+        <script src="resources/scripts/directives/benefitsDirective.js"></script>
         <script src="resources/bower_components/underscore/underscore.js"></script>
         <script src="resources/non_bower_components/angular-file-upload-shim.min.js"></script>
   		<script src="resources/non_bower_components/angular-file-upload.min.js"></script>
@@ -97,6 +98,8 @@
  	    <script src="resources/app/templates/propertiesView/propertiesCreate.js"></script>
  	    <script src="resources/app/templates/propertiesView/propertiesCompare.js"></script>
  	    <script src="resources/app/templates/propertiesView/propertyView.js"></script>
+ 	    <script src="resources/app/templates/propertiesView/myPropertiesView.js"></script>
+ 	    <script src="resources/app/templates/propertiesView/propertiesModify.js"></script>
         <script src="resources/app/templates/usersView/usersList.js"></script>
         <script src="resources/app/templates/usersView/vendorsList.js"></script>
         <script src="resources/app/templates/usersView/createUser.js"></script>
@@ -104,10 +107,11 @@
         <script src="resources/app/templates/usersView/modifyUser.js"></script>
         <script src="resources/app/templates/usersView/consultVendor.js"></script>
 
-        <script src="resources/app/templates/eventsView/createEvent.js"></script>
+        <script src= "resources/app/templates/eventsView/createEvent.js"></script>
         <script src= "resources/app/templates/eventsView/eventsList.js"></script>
 	    <script src= "resources/app/templates/eventsView/eventConsult.js"></script>
         <script src= "resources/app/templates/eventsView/eventsListAdmin.js"></script>
+        <script src= "resources/app/templates/eventsView/modifyEvents.js"></script>
         
         
         <script src="resources/app/templates/roleView/roles.js"></script>
@@ -124,5 +128,10 @@
         <script src="resources/app/templates/guidesView/createGuide.js"></script>
         <script src="resources/app/templates/guidesView/consultGuide.js"></script>        
         <script src="resources/app/templates/toDoListView/listToDoList.js"></script>
-        
+
+        <script src="resources/app/templates/propertyFavoritesView/favoritesList.js"></script>
+        <script src="resources/app/templates/salesReportView/salesReport.js"></script>
+
+        <script src="resources/app/templates/toDoListView/myToDoList.js"></script>
+
         

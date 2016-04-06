@@ -43,9 +43,7 @@ public class MailReportController {
 	public void sendEmail(@RequestBody UsersRequest pmailInformation){
 		  
 		  UserPOJO userInfo = pmailInformation.getUser();
-		  Tuser admin = usersService.getUserAdmin();
-		  
-	      String to = admin.getEmail();
+	      String to = "propiedadescr.tech@gmail.com";
 	      
 	      String from = "propiedadescr.tech@gmail.com";
 	      final String username = "propiedadescr.tech@gmail.com";
@@ -82,13 +80,14 @@ public class MailReportController {
 	         
 	         message.setSubject("Reporte de usuario");
 
-	         
-	         message.setText("Se ha reportado el siguiente vendedor, \n"
+	        
+	         message.setText("Se ha reportado el vendedor, \n"
 	         		+ "\n A continuación encontrará la información del usuario"
 	         		+ "\n Nombre: "+ userInfo.getUserName()
 	         		+ "\n Apellido:"+ userInfo.getFirstName()
 	         		+ "\n Correo: "+ userInfo.getEmail()
 	         		+ "\n Gracias por utilizar la aplicación PropiedadesCR");
+
 	         
 	         Transport.send(message);
 

@@ -3,6 +3,8 @@ package com.techflow.propiedadesCR.ejb;
 import java.io.Serializable;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 
 /**
  * The persistent class for the titems database table.
@@ -54,6 +56,7 @@ public class Titem implements Serializable {
 	//bi-directional many-to-one association to TToDoList
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_to_do_list")
+	
 	public TToDoList getTToDoList() {
 		return this.TToDoList;
 	}

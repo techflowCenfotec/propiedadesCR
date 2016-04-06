@@ -1,6 +1,6 @@
 <section class="page-form-ele page"
 	data-ng-controller="ConsultGuideController" flow-init>
-
+	<p>Por favor seleccione un banco</p>
 	<md-input-container flex> <label>Banco</label> <md-select
 		ng-change="consultGuides()" ng-model="form.bank" aria-label="select"
 		required> <md-option ng-repeat="bank in banks"
@@ -24,7 +24,7 @@
 							class="card-title">{{guide.name}}</span>
 					</div>
 					<div class="card-action">
-						<a href={{guide.url}} download=“guide”>
+						<a href={{guide.url}} download=ï¿½guideï¿½>
 							<p>Descargar</p>
 
 						</a>

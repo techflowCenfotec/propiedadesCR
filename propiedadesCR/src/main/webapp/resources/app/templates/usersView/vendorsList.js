@@ -37,6 +37,8 @@
 			   validate();	
 			   $scope.vendors= response.users;
 			   $scope.vendorsList = $scope.vendors;
+			   $scope.vendorsList = _.difference($scope.vendorsList,_.where($scope.vendorsList,{active:0}));
+	            
 			   
 		});
 		

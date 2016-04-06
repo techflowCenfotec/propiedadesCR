@@ -5,6 +5,7 @@ import java.util.List;
 import com.techflow.propiedadesCR.contracts.PasswordRequest;
 import com.techflow.propiedadesCR.contracts.UsersRequest;
 import com.techflow.propiedadesCR.ejb.Tuser;
+import com.techflow.propiedadesCR.pojo.PropertyPOJO;
 import com.techflow.propiedadesCR.pojo.UserPOJO;
 
 public interface UsersServiceInterface {
@@ -23,6 +24,5 @@ public interface UsersServiceInterface {
 	UserPOJO consultVendor(int pidUser);
 	Tuser getUserAdmin();
 	Tuser deleteUser(UsersRequest puserRequest);
-
-
+	List<PropertyPOJO> getAllFavorites(UsersRequest puserRequest);
 }

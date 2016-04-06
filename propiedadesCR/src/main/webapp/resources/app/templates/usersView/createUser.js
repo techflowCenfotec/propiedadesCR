@@ -14,6 +14,7 @@
 					function($scope, $http, $location, $upload,$timeout) {
 
 						var original;
+						$scope.maxDate = new Date();
 						$scope.dateWithFormat = '';
 						$scope.roles ={};
 						$scope.emailExist =false;
@@ -110,6 +111,7 @@
 								  $timeout(function(){
 							          $scope.showInfoOnSubmit = false;
 							       }, 3000);
+								
 								var inf={
 										  "pageNumber": 0,
 										  "pageSize": 0,

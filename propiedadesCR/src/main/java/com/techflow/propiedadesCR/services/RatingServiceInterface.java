@@ -2,14 +2,14 @@ package com.techflow.propiedadesCR.services;
 
 import java.util.List;
 
-import com.techflow.propiedadesCR.contracts.RatingRequest;
-import com.techflow.propiedadesCR.ejb.TpropertyRating;
-import com.techflow.propiedadesCR.pojo.RatingPOJO;
+import com.techflow.propiedadesCR.contracts.ReviewPropertyRequest;
+import com.techflow.propiedadesCR.ejb.TpropertyReview;
+import com.techflow.propiedadesCR.pojo.ReviewPropertyPOJO;
 
 
 public interface RatingServiceInterface {
 
-	TpropertyRating addRating(RatingRequest pRating);
-	TpropertyRating editRating(RatingRequest pRating);
-	RatingPOJO getRatingById(RatingRequest pRating);
+	TpropertyReview addRating(ReviewPropertyRequest pRating);
+	TpropertyReview editRating(ReviewPropertyRequest pRating);
+	ReviewPropertyPOJO getRatingById(ReviewPropertyRequest pRating);
 }
