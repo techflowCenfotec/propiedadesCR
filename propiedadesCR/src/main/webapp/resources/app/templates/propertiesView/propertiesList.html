@@ -49,7 +49,7 @@
                             <p>{{property.address}}</p>
                         </div>
                         <div class="card-action">
-                            <a data-ng-click="viewProperty(property.idProperty)" href="#/templates/propertiesView/propertyView" class="btn btn-default">Detalles</a>
+                            <a data-ng-click="viewProperty(property.idProperty,property.tuser.idUser)" href="#/templates/propertiesView/propertyView" class="btn btn-default">Detalles</a>
                             <a data-ng-click="compareProperty(property.idProperty)" ng-class="selected(property.idProperty)">Comparar</a>
                         </div>
                     </div>

@@ -212,11 +212,10 @@ public class PropertiesController {
 	 *  
 	 * @return response Un objeto response de la propiedad.
 	 */
-	@RequestMapping(value="saveView/{pIdProperty}", method=RequestMethod.GET)
-	public PropertiesResponse saveView(@PathVariable int pIdProperty) {
+	@RequestMapping(value="/saveView", method=RequestMethod.POST)
+	public PropertiesResponse saveView(@RequestBody PropertiesRequest propertyRequest) {
 		PropertiesResponse response = new PropertiesResponse();
-		PropertiesRequest request = new PropertiesRequest();
-		PropertyPOJO property = propertiesService.propertyViews(pIdProperty,request);
+		PropertyPOJO property = propertiesService.propertyViews(propertyRequest);
 		
 		response.setProperty(property);
 		

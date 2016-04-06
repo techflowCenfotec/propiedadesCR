@@ -17,6 +17,7 @@
 			
 			$http.get('rest/protected/properties/getAll')
 			.success(function(response) {
+				
 				for (var i = 0; i < response.properties.length; i++) {
 					if(response.properties[i].active == active && response.properties[i].isSold == sold) 
 						$scope.propertiesList.push(response.properties[i]);
@@ -55,8 +56,22 @@
 		}
 		
 		// Stores single id value
-		$scope.viewProperty = function(pIdProperty) {
-			$http.get('rest/protected/properties/saveView/' + pIdProperty).success(
+		$scope.viewProperty = function(pIdProperty,idUser) {
+						var viewRequest = {"pageNumber": 0,
+					"pageSize": 0,
+					"direction": "",
+					"sortBy": [""],
+					"searchColumn": "string",
+					"searchTerm": "",
+					"property": {
+						"idProperty":pIdProperty,
+						"tuser":{"idUser":idUser}
+					},
+					"idBenefits": [
+					               0
+					             ]
+			}
+			$http.post('rest/protected/properties/saveView', viewRequest).success(
 					function(){
 						
 					});
@@ -79,7 +94,7 @@
 		
 		$scope.$on("filterAction", function(e, benefitsList) {
 			$scope.propertiesSort = _.sortBy(benefitsList, 'benefit')
-			console.log($scope.propertiesSort);
+			
 		});
 		
 		$scope.addToFavorites = function(pIdProperty) {
