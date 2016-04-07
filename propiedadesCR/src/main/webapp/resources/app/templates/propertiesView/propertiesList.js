@@ -85,25 +85,24 @@
 		});
 		
 		$scope.keywords = function(post) {
-		      var isMatch = false;
+			var isMatch = false;
 		      
-		      if ($scope.keyword) {
-		        var parts = $scope.keyword.split(', ');
+		    if ($scope.keyword) {
+		      var parts = $scope.keyword.split(', ');
 		        
-		        parts.forEach(function(part) {
-		          var rx = new RegExp(part, "i"); //i: case insensitive
-		          post.tbenefits.forEach(function(caract) {
-		            if (rx.test(caract.benefit)) {
-		              isMatch = true;
-		            }
-		          });
+		      parts.forEach(function(part) {
+		        var rx = new RegExp(part, "i"); //i: case insensitive
+		        post.tbenefits.forEach(function(caract) {
+		          if (rx.test(caract.benefit)) {
+		            isMatch = true;
+		          }
 		        });
-		      } else {
-		        isMatch = true;
-		      }
-		      
-		      return isMatch;
-		    };
+		      });
+		     } else {
+		       isMatch = true;
+		     }
+		   return isMatch;
+		};
 		
 		$scope.addToFavorites = function(pIdProperty) {
 			var db = 'rest/protected/users/addToFavorite/' + $rootScope.userLogged.idUser;
