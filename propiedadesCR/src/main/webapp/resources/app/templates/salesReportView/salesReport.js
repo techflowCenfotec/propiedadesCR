@@ -134,10 +134,10 @@
   			var actualYear = new Date().getFullYear();
   			// console.log(soldProperties);
 
-  			for (var i = 1; i < 13; i++) {
+  			for (var i = 0; i < 12; i++) {
   				for (var j = 0; j < soldProperties.length; j++) {
   					if(soldProperties[j].soldDate.getMonth()==i && soldProperties[j].soldDate.getFullYear()==actualYear){
-  						monthTotals[i-1] += soldProperties[j].price;
+  						monthTotals[i] += soldProperties[j].price;
   					}
   				}
   			}
@@ -147,10 +147,10 @@
   		function calculatePropertiesSoldByMoth(){
   			var actualYear = new Date().getFullYear();
 
-  			for (var i = 1; i < 13; i++) {
+  			for (var i = 0; i < 12; i++) {
   				for (var j = 0; j < soldProperties.length; j++) {
   					if(soldProperties[j].soldDate.getMonth()==i && soldProperties[j].soldDate.getFullYear()==actualYear){
-  						propertiesSold[i-1] += 1;
+  						propertiesSold[i] += 1;
   					}
   				}
   			}
