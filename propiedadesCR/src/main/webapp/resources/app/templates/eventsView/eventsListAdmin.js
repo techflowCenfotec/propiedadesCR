@@ -1,8 +1,8 @@
 (function() {
 	"use strict";
 
-	angular.module("app.eventListAdmin",[])
-		.controller('listAdminEventController',['$scope','$filter','$http','$mdDialog',function($scope,$filter,$http,$mdDialog){
+	angular.module("app.eventsListAdmin",[])
+		.controller('listAdminEventController',['$scope','$filter','$http','$mdDialog','$location',function($scope,$filter,$http,$mdDialog,$location){
 		
 		$scope.status = '  ';
 		$scope.events=[];
@@ -91,12 +91,17 @@
                         .ok('Eliminar')
                         .cancel('Cancelar');
             $mdDialog.show(confirm).then(function() {
-                $scope.status = 'Usuario eliminado.';
+                $scope.status = 'Evento eliminado.';
                 $scope.deleteEvent(id);
             }, function() {
-                $scope.status = 'Usuario no eliminado.';
+                $scope.status = 'Evento no eliminado.';
             });
         };
+        
+        $scope.modifyEvents = function(id){
+        	localStorage.setItem('idEventModify',id);
+        	
+        }
 		
 	}]);
 })();

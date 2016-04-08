@@ -15,4 +15,5 @@ public class PropertyImageResponse extends BaseResponse {
 	public void setImages(List<PropertyImagePOJO> images) {
 		this.images = images;
 	}
+	
 }

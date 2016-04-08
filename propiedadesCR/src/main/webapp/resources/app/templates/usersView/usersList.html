@@ -45,6 +45,15 @@
                     data-ng-class="{active: row == '-email'}"></span>
                 </div></th>
                 <th><div class="th">
+                Rol
+                <span class="fa fa-angle-up"
+                    data-ng-click=" order('role') "
+                    data-ng-class="{active: row == 'role'}"></span>
+                <span class="fa fa-angle-down"
+                    data-ng-click=" order('-role') "
+                    data-ng-class="{active: row == '-role'}"></span>
+                </div></th>
+                <th><div class="th">
                 Tel&eacute;fono 1
                 <span class="fa fa-angle-up"
                     data-ng-click=" order('phone1') "
@@ -53,17 +62,13 @@
                     data-ng-click=" order('-phone1') "
                     data-ng-class="{active: row == '-phone1'}"></span>
                 </div></th>
-                <th><div class="th">
-                Tel&eacute;fono 2
-                <span class="fa fa-angle-up"
-                    data-ng-click=" order('phone2') "
-                    data-ng-class="{active: row == 'phone2'}"></span>
-                <span class="fa fa-angle-down"
-                    data-ng-click=" order('-phone2') "
-                    data-ng-class="{active: row == '-phone2'}"></span>
-                </div></th>
                   <th><div class="th">
                	Modificar
+               
+                </div></th>
+                
+                <th><div class="th">
+               	Eliminar
                
                 </div></th>
                  
@@ -74,10 +79,12 @@
             <tr data-ng-repeat="users in currentPageList">
                 <td>{{users.userName}}</td>
                 <td>{{users.email}}</td>
-                <td>{{users.phone1}}</td>
+                <td>{{users.role.rolName}}</td>
                 <td>{{users.phone2}}</td>
                 <td><a class="btn btn-info" data-ng-click="modifyUser(users.idUser)"
                 href="#/templates/usersView/modifyUser">Modificar</a></td>
+                 <td><a class="btn btn-danger" data-ng-click="deleteUser(users)"
+                >Eliminar</a></td>
              
             </tr>
             </tbody>

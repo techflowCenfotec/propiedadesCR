@@ -14,6 +14,7 @@ import com.techflow.propiedadesCR.ejb.TToDoList;
 import com.techflow.propiedadesCR.ejb.Titem;
 import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.pojo.BankToDoListPOJO;
+import com.techflow.propiedadesCR.pojo.ToDoListItemPOJO;
 import com.techflow.propiedadesCR.pojo.ToDoListPOJO;
 import com.techflow.propiedadesCR.repositories.ToDoListItemsRepository;
 import com.techflow.propiedadesCR.repositories.ToDoListRepository;
@@ -52,7 +53,7 @@ public class ToDoListService implements ToDoListServiceInterface{
 		List<TToDoList> correctToDos= new ArrayList<TToDoList>();
 		toDoList.stream().forEach(toDo -> {
 			TToDoList tToDoList = toDoListRepository.findOne(toDo.getIdToDoList());
-			if(toDo.getActive()==1){
+			if(toDo.getActive()==1 && toDo.getTuser().getIdUser() == ptoDoListRequest.getToDoList().getTuser().getIdUser()){
 				correctToDos.add(tToDoList);
 			}
 		});
@@ -143,6 +144,47 @@ public class ToDoListService implements ToDoListServiceInterface{
 		
 		return newToDo;
 	}
+
+	@Override
+	 public ToDoListPOJO getMyItems(ToDoListRequest ptoDoListRequest) {
+	  TToDoList todoList = new TToDoList();
+	  ToDoListPOJO pojo = new ToDoListPOJO();
+	  todoList = toDoListRepository.getByIdToDoList(ptoDoListRequest.getToDoList().getIdToDoList());
+	  BeanUtils.copyProperties(todoList, pojo);
+	  todoList.setTitems(todoList.getTitems());
+	  generateItemsDtos(todoList.getTitems(),pojo);
+	  return pojo;
+	 }
+	 private void generateItemsDtos(List<Titem> pItems,ToDoListPOJO pojo) {
+	  List<ToDoListItemPOJO> uiRatings = new ArrayList<ToDoListItemPOJO>();
+	  pItems.stream().forEach(u -> {
+	   ToDoListItemPOJO itemPOJO = new ToDoListItemPOJO();
+	   BeanUtils.copyProperties(u, itemPOJO);
+	   
+	   uiRatings.add(itemPOJO);
+	  });
+	  pojo.setTitems(uiRatings);
+	 }
+
+	@Override
+	public ToDoListPOJO saveMyItems(ToDoListRequest ptoDoListRequest) {
+		TToDoList toDoList = new TToDoList();
+		ToDoListPOJO pojo = new ToDoListPOJO();
+		 List<ToDoListItemPOJO> uiItems = new ArrayList<ToDoListItemPOJO>();
+		BeanUtils.copyProperties(ptoDoListRequest.getToDoList(), pojo);
+		BeanUtils.copyProperties(ptoDoListRequest.getToDoList(), toDoList);
+		ptoDoListRequest.getToDoList().getTitems().stream().forEach(u ->{
+			Titem item = new Titem();
+			ToDoListItemPOJO itemPOJO = new ToDoListItemPOJO();
+			BeanUtils.copyProperties(u, item);
+			item.setTToDoList(toDoList);
+			BeanUtils.copyProperties(toDoListItemsRepository.save(item),itemPOJO);
+			uiItems.add(itemPOJO);
+		});
+		pojo.setTitems(uiItems);
+		return pojo;
+	}
+
 
 }
 

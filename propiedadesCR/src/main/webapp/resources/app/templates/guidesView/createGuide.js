@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular.module('app.createGuide', [])
-	.controller('CreateGuideController',['$scope','$http', '$location','$upload',function($scope,$http,$location,$upload){
+	.controller('CreateGuideController',['$scope','$http', '$location','$upload','$timeout',function($scope,$http,$location,$upload,$timeout){
 		var original;
 	    $scope.onError = false;
 	    $scope.requestObject = {};
@@ -20,14 +20,14 @@
 	    $http.post(linkBanks,request).success(function(response){
 	    	$scope.banks = response.banks;
 	    });
-
-
+	    
 	   	var link = 'rest/protected/guides/saveguide';
 		var request = {};
 		
 	    original = angular.copy($scope.form);
 	    function revert(){
 	        $scope.form = angular.copy(original);
+	        $scope.form_banktodolistCreate.$setUntouched(); 
 	        return $scope.form_banktodolistCreate.$setPristine();
 	    };
 	   	$scope.canRevert =  function () {
@@ -39,6 +39,9 @@
 	   	$scope.submitForm = function(event,$files) {
 		  
 		    $scope.saveGuide(event, $files);
+		    $timeout(function() {
+		        $scope.showInfoOnSubmit = false;
+		    }, 3000);
 	       
 	    };
 	    
@@ -48,31 +51,32 @@
 
 			file = $files[0].file;
 
-			console.log($upload);
-			console.log($files);
-
-			console.log(file);
-
 			$scope.upload = $upload
-					.upload(
-							{
-								url : link,
-								data : {
-									idBank : $scope.form.bank,
-									name : $scope.form.name
-								},
-								file : file,
-							})
-					.success(
-							function(data, status,
-									headers, config) {
-								if($files[0] != undefined)
-									$files[0].cancel();
-								
-								$scope.showInfoOnSubmit = true;
-								return revert();
-							});
-};
+				.upload(
+						{
+							url : link,
+							data : {
+								idBank : $scope.form.bank,
+								name : $scope.form.name
+							},
+							file : file,
+						})
+				.success(
+						function(response) {
+							if($files[0] != undefined)
+								$files[0].cancel();
+							console.log(response);
+							if(response.code!=501){
+								revert();
+								$scope.message = 'Se ha agregado la guia';
+							}else{
+								$scope.message = 'Formato del archivo invalido, se esperaba un PDF'
+							}
+
+							$scope.showInfoOnSubmit = true;
+							
+						});
+			};
 	}]);
 	
 })();

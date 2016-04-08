@@ -2,6 +2,9 @@ package com.techflow.propiedadesCR.ejb;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.Date;
 
 
@@ -10,29 +13,30 @@ import java.util.Date;
  * 
  */
 @Entity
-@Table(name="tproperty_comments")
-@NamedQuery(name="TpropertyComment.findAll", query="SELECT t FROM TpropertyComment t")
-public class TpropertyComment implements Serializable {
+@Table(name="tproperty_reviews")
+@NamedQuery(name="TpropertyReview.findAll", query="SELECT t FROM TpropertyReview t")
+public class TpropertyReview implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private int idComment;
+	private int idReview;
 	private String comment;
 	private Date registrationDate;
 	private Tproperty tproperty;
 	private Tuser tuser;
-
-	public TpropertyComment() {
+	private double averageRating;
+	
+	public TpropertyReview() {
 	}
 
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	@Column(name="id_comment")
-	public int getIdComment() {
-		return this.idComment;
+	@Column(name="id_review")
+	public int getIdReview() {
+		return this.idReview;
 	}
 
-	public void setIdComment(int idComment) {
-		this.idComment = idComment;
+	public void setIdReview(int idReview) {
+		this.idReview = idReview;
 	}
 
 
@@ -60,6 +64,7 @@ public class TpropertyComment implements Serializable {
 	//bi-directional many-to-one association to Tproperty
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_property")
+	@JsonIgnore
 	public Tproperty getTproperty() {
 		return this.tproperty;
 	}
@@ -72,6 +77,7 @@ public class TpropertyComment implements Serializable {
 	//bi-directional many-to-one association to Tuser
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_user")
+	@JsonIgnore
 	public Tuser getTuser() {
 		return this.tuser;
 	}
@@ -80,4 +86,14 @@ public class TpropertyComment implements Serializable {
 		this.tuser = tuser;
 	}
 
+	@Column(name="average_rating")
+	public double getAverageRating() {
+		return averageRating;
+	}
+
+
+	public void setAverageRating(double averageRating) {
+		this.averageRating = averageRating;
+	}
+	
 }

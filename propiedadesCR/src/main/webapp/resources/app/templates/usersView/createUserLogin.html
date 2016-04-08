@@ -115,8 +115,11 @@
 							data-ng-minlength="10" data-ng-maxlength="30" required
 								data-ng-model="form.email" data-ng-pattern="/^.+@.+\..+$/">
 							<span></span> </md-input-container>
-							<p data-ng-show="emailExist">El correo ingresado ya existe en la aplicaci&oacute;n</p>
+							
 						</div>
+						
+						<p data-ng-show="emailExist">El correo ingresado ya existe en
+							la aplicaci&oacute;n</p>
 						
 						<div layout layout-sm="column">
 							<md-input-container flex=35>
@@ -149,7 +152,7 @@
 								ng-model="form.gender"> <md-radio-button
 								value="Hombre">Hombre</md-radio-button> <md-radio-button
 								value="Mujer">Mujer</md-radio-button> <md-radio-button
-								value="Otro">Otro</md-radio-button> </md-radio-group>
+								value="Otro">Interg&eacute;nero</md-radio-button> </md-radio-group>
 						</p>
 
 

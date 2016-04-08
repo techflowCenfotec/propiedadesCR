@@ -10,20 +10,24 @@
 */
 package com.techflow.propiedadesCR.services;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
-import java.security.*;
 import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import com.techflow.propiedadesCR.contracts.PasswordRequest;
 import com.techflow.propiedadesCR.contracts.UsersRequest;
+import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.Trole;
 import com.techflow.propiedadesCR.ejb.Tuser;
+import com.techflow.propiedadesCR.pojo.PropertyPOJO;
+import com.techflow.propiedadesCR.ejb.TuserReview;
 import com.techflow.propiedadesCR.pojo.RolePOJO;
 import com.techflow.propiedadesCR.pojo.UserPOJO;
+import com.techflow.propiedadesCR.pojo.UserReviewPOJO;
 import com.techflow.propiedadesCR.repositories.UsersRepository;
 
 
@@ -95,7 +99,7 @@ public class UsersService implements UsersServiceInterface{
 	  * @return nuser Retorna el usuario creado.
 	  */
 	@Override
-	public Tuser saveUser(UsersRequest puserRequest, int pidRole) {
+	public UserPOJO saveUser(UsersRequest puserRequest, int pidRole) {
 		
 		Tuser user = new Tuser();
 		Trole role = new Trole();
@@ -120,9 +124,11 @@ public class UsersService implements UsersServiceInterface{
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		Tuser nuser = usersRepository.save(user);
+		UserPOJO userPOJO = new UserPOJO();
+		Tuser newUser = usersRepository.save(user);
+		BeanUtils.copyProperties(newUser, userPOJO);
 		
-		return nuser;
+		return userPOJO;
 	
 	}
 	
@@ -262,6 +268,97 @@ public class UsersService implements UsersServiceInterface{
 		 return usersRepository.findOne(1);
 	}
 
-	
+	/**
+	 * Este método realiza un borrado logico al usuario
+	 * 
+	 * @param puserRequest Encapsula la información del correo.
+	 *
+	 *@return response Retorna el objeto al que se le aplicó el borrado.
+	 */
+	@Override
+	public Tuser deleteUser(UsersRequest puserRequest) {
+		
+		Tuser user = new Tuser();
+		user.setTrole(new Trole());
+		BeanUtils.copyProperties(puserRequest.getUser(), user);
+		BeanUtils.copyProperties(puserRequest.getUser().getRole(),user.getTrole());
+		return usersRepository.save(user);
+		
 
+	}
+	/**
+	  * Este retorna el vendedor que se consulto.
+	  *
+	  * @param pidUser Identificador del usuario.
+      * 
+	  * @return userPOJO Retorna el usuario consultado.
+	  */
+	@Override
+	public UserPOJO consultVendor(int pidUser){
+		
+		Tuser nuser = usersRepository.findByIdUser(pidUser);
+		UserPOJO userPOJO =null;
+		
+		if (null != nuser){
+			Trole role =nuser.getTrole();			
+			RolePOJO rolePOJO = new RolePOJO();
+			BeanUtils.copyProperties(role, rolePOJO);
+			userPOJO = new UserPOJO();
+			userPOJO.setRole(rolePOJO);
+			BeanUtils.copyProperties(nuser, userPOJO);
+		}
+		generateReviewsDtos(nuser.getTuserReviews2(), userPOJO);
+		return userPOJO;
+		
+	}
+	/**
+	  * Este método genera los objetos POJOS que se retornaran a la UI.
+	  *
+	  * @param pusers Lista de usuarios.
+	  *
+	  */
+	private void generateReviewsDtos(List<TuserReview> pReviews,UserPOJO user) {
+		List<UserReviewPOJO> uiRatings = new ArrayList<UserReviewPOJO>();
+		pReviews.stream().forEach(u -> {
+			UserReviewPOJO userRatingPOJO = new UserReviewPOJO();
+			BeanUtils.copyProperties(u, userRatingPOJO);
+			userRatingPOJO.setTuser1(new UserPOJO());
+			BeanUtils.copyProperties(u.getTuser1(), userRatingPOJO.getTuser1());
+			uiRatings.add(userRatingPOJO);
+		});
+		user.setVendorRatings(uiRatings);
+	}
+	
+	/**
+	  * Este método se encarga de retornar las propiedades favoritas de un usuario.
+	  * 
+	  * @author Valeria Ramírez Cordero
+	  * 
+	  *@param puserRequest Objeto que contiene el id del.
+	  *
+	  */
+	public List<PropertyPOJO> getAllFavorites(UsersRequest puserRequest){
+		
+		Tuser userLogged = usersRepository.findOne(puserRequest.getUser().getIdUser());
+		List<PropertyPOJO> favoritesList = new ArrayList<PropertyPOJO>();
+		List<Tproperty> propertiesList = userLogged.getTproperties2();
+		
+		propertiesList.stream().forEach(property ->{
+			PropertyPOJO propertyPOJO = new PropertyPOJO();
+			BeanUtils.copyProperties(property, propertyPOJO);
+			
+			propertyPOJO.setTpropertyImages(null);
+		
+			propertyPOJO.setTuser(null);
+			propertyPOJO.setTusers(null);
+			propertyPOJO.setCoordinates(null);
+			propertyPOJO.setSaleType(null);
+			propertyPOJO.setSoldDate(null);
+			propertyPOJO.setTbenefits(null);;
+			favoritesList.add(propertyPOJO);
+			
+		});
+		return favoritesList;
+	}
 }
+

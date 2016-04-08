@@ -1,7 +1,7 @@
 package com.techflow.propiedadesCR.ejb;
 
 import java.io.Serializable;
-import javax.persistence.*;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
-import javax.persistence.Lob;
+
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
@@ -20,6 +20,7 @@ import javax.persistence.Table;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
+import java.util.Date;
 
 
 /**
@@ -41,10 +42,15 @@ public class Tproperty implements Serializable {
 	private Tdistrict tdistrict;
 	private TpropertyType tpropertyType;
 	private Tuser tuser;
-	private List<TpropertyComment> tpropertyComments;
-	private List<TpropertyRating> tpropertyRatings;
+	private List<TpropertyReview> tpropertyReviews;
 	private List<Tuser> tusers;
 	private List<TpropertyImage> tpropertyImages;
+	private double offerPecentage;
+	private byte isSold;
+	private Date soldDate;
+	private String saleType;
+	private int totalViews;
+	
 
 	public Tproperty() {
 	}
@@ -156,6 +162,7 @@ public class Tproperty implements Serializable {
 	//bi-directional many-to-one association to Tuser
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_vendor")
+	@JsonIgnore
 	public Tuser getTuser() {
 		return this.tuser;
 	}
@@ -167,54 +174,28 @@ public class Tproperty implements Serializable {
 
 	//bi-directional many-to-one association to TpropertyComment
 	@OneToMany(mappedBy="tproperty")
-	public List<TpropertyComment> getTpropertyComments() {
-		return this.tpropertyComments;
-	}
-
-	public void setTpropertyComments(List<TpropertyComment> tpropertyComments) {
-		this.tpropertyComments = tpropertyComments;
-	}
-
-	public TpropertyComment addTpropertyComment(TpropertyComment tpropertyComment) {
-		getTpropertyComments().add(tpropertyComment);
-		tpropertyComment.setTproperty(this);
-
-		return tpropertyComment;
-	}
-
-	public TpropertyComment removeTpropertyComment(TpropertyComment tpropertyComment) {
-		getTpropertyComments().remove(tpropertyComment);
-		tpropertyComment.setTproperty(null);
-
-		return tpropertyComment;
-	}
-
-
-	//bi-directional many-to-one association to TpropertyRating
-	@OneToMany(mappedBy="tproperty")
 	@JsonIgnore
-	public List<TpropertyRating> getTpropertyRatings() {
-		return this.tpropertyRatings;
+	public List<TpropertyReview> getTpropertyReviews() {
+		return this.tpropertyReviews;
 	}
 
-	public void setTpropertyRatings(List<TpropertyRating> tpropertyRatings) {
-		this.tpropertyRatings = tpropertyRatings;
+	public void setTpropertyReviews(List<TpropertyReview> tpropertyReviews) {
+		this.tpropertyReviews = tpropertyReviews;
 	}
 
-	public TpropertyRating addTpropertyRating(TpropertyRating tpropertyRating) {
-		getTpropertyRatings().add(tpropertyRating);
-		tpropertyRating.setTproperty(this);
+	public TpropertyReview addTpropertyReviews(TpropertyReview tpropertyReviews) {
+		getTpropertyReviews().add(tpropertyReviews);
+		tpropertyReviews.setTproperty(this);
 
-		return tpropertyRating;
+		return tpropertyReviews;
 	}
 
-	public TpropertyRating removeTpropertyRating(TpropertyRating tpropertyRating) {
-		getTpropertyRatings().remove(tpropertyRating);
-		tpropertyRating.setTproperty(null);
+	public TpropertyReview removeTpropertyComment(TpropertyReview tpropertyReviews) {
+		getTpropertyReviews().remove(tpropertyReviews);
+		tpropertyReviews.setTproperty(null);
 
-		return tpropertyRating;
+		return tpropertyReviews;
 	}
-
 
 	//bi-directional many-to-many association to Tuser
 	@ManyToMany(mappedBy="tproperties2")
@@ -251,5 +232,57 @@ public class Tproperty implements Serializable {
 
 		return tpropertyImage;
 	}
+	@Column(name="offer_percentage")
+	public double getOfferPecentage() {
+		return offerPecentage;
+	}
+
+
+	public void setOfferPecentage(double offerPecentage) {
+		this.offerPecentage = offerPecentage;
+	}
+
+	@Column(name="is_sold")
+	public byte getIsSold() {
+		return isSold;
+	}
+
+
+	public void setIsSold(byte isSold) {
+		this.isSold = isSold;
+	}
+
+	@Column(name="sold_date")
+	public Date getSoldDate() {
+		return soldDate;
+	}
+
+
+	public void setSoldDate(Date soldDate) {
+		this.soldDate = soldDate;
+	}
+
+	@Column(name="sale_type")
+	public String getSaleType() {
+		return saleType;
+	}
+
+
+	public void setSaleType(String saleType) {
+		this.saleType = saleType;
+	}
+
+	@Column(name="total_views")
+	public int getTotalViews() {
+		return totalViews;
+	}
+
+
+	public void setTotalViews(int totalViews) {
+		this.totalViews = totalViews;
+	}
+	
+	
+	
 
 }

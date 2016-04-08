@@ -22,6 +22,7 @@
 
 			,"templates/eventsView/eventConsult"
 			,"templates/eventsView/eventListAdmin"
+			,"templates/eventsView/modifyEvent"
 
 			,"templates/roleView/roles"
 			,"templates/roleView/addRoles"
@@ -29,21 +30,29 @@
 			,"templates/banktodolistView/banktodolistAdminList"
 			,"templates/banktodolistView/banktodolistCreate"
 			,"templates/banktodolistView/banktodolistAdminItems"
-			
+			,"templates/banktodolistView/banktodolistModify"
+
 			,"templates/testView/testFlow"
 			,"templates/testView/matchedPropertiesList"
 			,"templates/propertiesView/propertiesCreate"
 
-			
+			,"templates/salesReportView/salesReport"			
 			,"templates/errosView/500"
 
 			,"templates/guidesView/createGuide"
 			,"templates/guidesView/consultGuide"
 			,"templates/propertiesView/propertyView"
+			,"templates/propertiesView/propertiesModify"
 			,"templates/propertiesView/propertiesCompare"
+			,"templates/propertiesView/myPropertiesView"
 			,"templates/permissionsViews/adminView"
 			,"templates/roleView/editRoles"
 			,"templates/toDoListView/listToDoList"
+
+			,"templates/propertyFavoritesView/favoritesList"
+
+			,"templates/toDoListView/myToDoList"
+
 
 		], 
 

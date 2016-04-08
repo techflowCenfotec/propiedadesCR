@@ -15,6 +15,7 @@ import java.util.List;
 
 
 
+
 public class UserPOJO {
 	
 	/**
@@ -74,9 +75,15 @@ public class UserPOJO {
      */
 	private RolePOJO role;
 	/**
+
+     * Calificaciones del vendedor.
+     */
+	private List<UserReviewPOJO> vendorRatings;
+	/**
 	 * Lista de favoritos del usuario.
 	 */
 	private List<PropertyPOJO> tproperties2;
+
 
 	public UserPOJO() {
 		super();
@@ -166,10 +173,19 @@ public class UserPOJO {
 	public void setRole(RolePOJO trole) {
 		this.role = trole;
 	}
+
+	public List<UserReviewPOJO> getVendorRatings() {
+		return vendorRatings;
+	}
+	public void setVendorRatings(List<UserReviewPOJO> vendorRatings) {
+		this.vendorRatings = vendorRatings;
+	}
+	                       
 	public List<PropertyPOJO> getTproperties2() {
 		return tproperties2;
 	}
 	public void setTproperties2(List<PropertyPOJO> tproperties2) {
 		this.tproperties2 = tproperties2;
 	}
+
 }

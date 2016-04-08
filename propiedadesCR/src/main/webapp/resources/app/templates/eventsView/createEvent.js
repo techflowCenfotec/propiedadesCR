@@ -13,8 +13,9 @@
 							'$upload',
 							'NgMap',
 							'$rootScope',
+							'$timeout',
 							
-							function($scope, $http, $location, $upload,NgMap,$rootScope) {
+							function($scope, $http, $location, $upload,NgMap,$rootScope,$timeout) {
 									
 								var original;
 								$scope.onError = false;
@@ -88,6 +89,9 @@
 								$scope.submitForm = function(event, $files) {
 
 									$scope.saveEvent(event, $files);
+									$timeout(function(){
+								        $location.path("/templates/eventsView/eventsList"); 
+								    }, 3000);
 
 								};
 

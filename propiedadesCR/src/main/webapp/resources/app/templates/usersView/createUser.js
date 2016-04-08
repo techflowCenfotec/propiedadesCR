@@ -10,9 +10,11 @@
 					'$http',
 					'$location',
 					'$upload',
-					function($scope, $http, $location, $upload) {
+					'$timeout',
+					function($scope, $http, $location, $upload,$timeout) {
 
 						var original;
+						$scope.maxDate = new Date();
 						$scope.dateWithFormat = '';
 						$scope.roles ={};
 						$scope.emailExist =false;
@@ -28,8 +30,6 @@
 							lastName : '',
 							phone1 : '',
 							phone2 : '',
-							password : '',
-							confirmPassword : '',
 							birthday: new Date(),
 							role: '',
 							gender:'',
@@ -98,7 +98,7 @@
 									phone1 : $scope.form.phone1,
 									phone2 : $scope.form.phone2,
 									email : $scope.form.email,
-									password : $scope.form.password,
+									password : null,
 									birthday : $scope.dateWithFormat,
 									gender : $scope.form.gender,
 								},
@@ -108,6 +108,9 @@
 								$files[0].cancel();
 								
 								$scope.showInfoOnSubmit= true;
+								  $timeout(function(){
+							          $scope.showInfoOnSubmit = false;
+							       }, 3000);
 								
 								var inf={
 										  "pageNumber": 0,
@@ -118,9 +121,9 @@
 										  ],
 										  "searchColumn": "string",
 										  "searchTerm": "string",
-										  "user": {"email":$scope.form.email}
+										  "user": {"email":$scope.form.email,"password":data.user.password}
 										}
-								$http.post('rest/local/welcomeEmail',inf).success(function(){
+								$http.post('rest/protected/users/welcomeEmail',inf).success(function(){
 									
 									
 								})
