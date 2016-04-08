@@ -19,7 +19,7 @@
 			
 			,"templates/eventsView/createEvent"
 			,"templates/eventsView/eventsList"
-
+			
 			,"templates/eventsView/eventConsult"
 			,"templates/eventsView/eventListAdmin"
 			,"templates/eventsView/modifyEvent"
@@ -104,7 +104,7 @@
 		    },
 		    complete: function(response) {
 		    	if(response.status === 401){
-		    		window.location.href = "/cenfoteca/login#/";
+		    		window.location.href = "/login";
 				}
 		    }
 		});
