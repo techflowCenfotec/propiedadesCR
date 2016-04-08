@@ -123,9 +123,17 @@
 								            </div>
 								        </div>						
                                     </form>
-                                    				<div class="divider divider-dashed divider-md pull-in"></div>
+                                    <p>Calificaci&oacute;n general de la Propiedad</p>
+
+
+									<uib-rating class="ui-rating size-h4 ui-rating-warning"
+										ng-model="average" max="max" readonly="true"
+										on-leave="overStar = null" state-on="'fa fa-star'"
+										state-off="'fa fa-star-o'"></uib-rating>
 										
-											<p>Mi calificaci&oacute;n</p>
+                                    <div class="divider divider-dashed divider-md pull-in"></div>
+										
+									<p>Mi calificaci&oacute;n</p>
 
 
 

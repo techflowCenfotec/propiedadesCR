@@ -40,6 +40,7 @@
 		$scope.myCommentTextArea = false;
 		$scope.myCommentP = true;
 		$scope.userRate = 0;
+		$scope.average = 0; // Property Average
 		$scope.form = {
 				comment : '',
 		}
@@ -96,6 +97,7 @@
 				$scope.imageList = response.property.tpropertyImages;
 				$scope.selectedType = $scope.property.tpropertyType;
 				$scope.selectedDistrict = $scope.property.tdistrict;
+				averagePropertyRating($scope.property.tpropertyReviews);
 				$scope.userToNotify = response.tusers;
 				
 				$http.get('rest/protected/districts/getDistrcitById/'+ 
@@ -272,6 +274,14 @@
 			$scope.edit = true;
 			$scope.myReadOnly = false;
 		};
+		
+		function averagePropertyRating(ratings) {
+			var rating = 0;
+			for (var i = 0; i < ratings.length; i++) {
+				rating += ratings[i].averageRating;
+			}
+			$scope.average = rating / i;
+		}
 	};
 	
 	function ModalDemoCtrl($scope, $uibModal, $log) {
