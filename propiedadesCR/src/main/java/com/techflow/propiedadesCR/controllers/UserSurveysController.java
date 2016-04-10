@@ -3,15 +3,20 @@ package com.techflow.propiedadesCR.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.techflow.propiedadesCR.contracts.TagsMatchedResponse;
 import com.techflow.propiedadesCR.contracts.UserSurveyMatchResultResponse;
 import com.techflow.propiedadesCR.contracts.UserSurveysRequest;
 import com.techflow.propiedadesCR.contracts.UserSurveysResponse;
+import com.techflow.propiedadesCR.ejb.Tbenefit;
+import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.TuserSurvey;
 import com.techflow.propiedadesCR.pojo.BenefitsPOJO;
 import com.techflow.propiedadesCR.pojo.PropertyPOJO;
@@ -142,5 +147,41 @@ public class UserSurveysController {
 	public UserSurveyPOJO getUserSurveyById(int idUserSurvey){
 		return userSurveysService.getUserSurveyById(idUserSurvey);
 	}
+	
+	/**
+	  * Este metodo sirve para obtener una lista de beneficios y un arreglo de booleanos para saber cuales de los tags 
+	  * hicieron match
+	  * @param idUserSurvey Este parametro es el id del cuestionario a consultar
+	  * @param idProperty Este parametro es el id de la propiedad consultada
+	  * @return tagsResume resumen de los tags que coincidieron
+	  */
+	@RequestMapping(value="/getMatchedTagsByProperty",method=RequestMethod.POST)
+	public TagsMatchedResponse getMatchedTagsByProperty(@RequestParam("idSurvey") int idSurvey, @RequestParam("idProperty") int idProperty){
+		TagsMatchedResponse response = new TagsMatchedResponse();
+
+		UserSurveyPOJO userSurvey = getUserSurveyById(idSurvey);
+		Tproperty property = propertiesService.getPropertyById(idProperty);
+		
+		int userTags = userSurvey.getTanswers().size();
+		boolean[] matchedTags = new boolean[userTags];
+		
+		for (int i = 0; i < userTags; i++) {
+			for(Tbenefit benefit : property.getTbenefits()) {
+				if(benefit.getBenefit().toLowerCase().equals(userSurvey.getTanswers().get(i).getResult().toLowerCase())){
+					matchedTags[i] = true;
+					break;
+				}else{
+					matchedTags[i] = false;
+				}
+			}
+		}
+		
+		response.setCode(200);
+		response.setCodeMessage("tags fetched");
+		response.setMatchedTags(matchedTags);
+		response.setTags(userSurvey.getTanswers());
+		return response;
+	}
+	
 
 }

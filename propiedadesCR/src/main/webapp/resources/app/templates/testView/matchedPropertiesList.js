@@ -3,12 +3,30 @@
 
 	angular.module('app.matchedPropertiesList', [])
 	.controller('MatchedPropertiesListController',['$scope','$http', '$location','$rootScope',function($scope,$http,$location,$rootScope){
-		$scope.properties =  $rootScope.matchedPropertiesList.properties;
-		var porcentages = $rootScope.matchedPropertiesList.porcentages;
+		
+		var userSurvey = $rootScope.userSurvey;
+		console.log($rootScope.userSurvey);
+		//function getMatchResult(){
 
-		for (var i = 0 ; i < $scope.properties.length; i++) {
-			$scope.properties[i].porcentage = porcentages[i];
+			var matchLink = "rest/protected/usersurveys/generatematchbysurvey";
+			var userSurveyMatchResultRequest = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "","searchTerm": "","userSurvey": userSurvey};
+			
+			$http.post(matchLink, userSurveyMatchResultRequest).success(function(response) {
+			 	$scope.matchedPropertiesList = response;
+			 	init();
+			});
+		//};
+
+		function init(){
+
+			$scope.properties =  $scope.matchedPropertiesList.properties;
+			var porcentages = $scope.matchedPropertiesList.porcentages;
+
+			for (var i = 0 ; i < $scope.properties.length; i++) {
+				$scope.properties[i].porcentage = porcentages[i];
+			}
 		}
+		
 
 		$scope.viewProperty = function(pIdProperty) {
 			localStorage.setItem('idProperty', pIdProperty);
