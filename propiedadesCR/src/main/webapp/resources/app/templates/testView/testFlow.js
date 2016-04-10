@@ -111,6 +111,14 @@
         $scope.canExit = false;
         $scope.stepActive = true;
 
+        //agregar lista de tags que se usaron para generar el match de acuerdo al resultado
+        //modal
+        //tipo propiedad
+        //vender alquilar
+
+
+
+        
 	}]);
 	
 })();
