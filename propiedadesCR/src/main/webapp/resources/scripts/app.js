@@ -73,6 +73,7 @@ function() {
 		,"app.editRoles"
 		,"app.usertoDoList"
 		,"app.favoritesManagment"
+		,"app.matchedTagsDirective"
 		
 		//3rd Party Modules
 		,"ngMaterial"

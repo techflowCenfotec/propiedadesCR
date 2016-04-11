@@ -4,8 +4,10 @@
 	angular.module('app.matchedPropertiesList', [])
 	.controller('MatchedPropertiesListController',['$scope','$http', '$location','$rootScope',function($scope,$http,$location,$rootScope){
 		
-		var userSurvey = $rootScope.userSurvey;
-		console.log($rootScope.userSurvey);
+		var userSurvey = {"idSurvey":7};//$rootScope.userSurvey;
+		$scope.userSurvey = userSurvey;
+
+		//console.log($rootScope.userSurvey);
 		//function getMatchResult(){
 
 			var matchLink = "rest/protected/usersurveys/generatematchbysurvey";
@@ -13,6 +15,7 @@
 			
 			$http.post(matchLink, userSurveyMatchResultRequest).success(function(response) {
 			 	$scope.matchedPropertiesList = response;
+			 	console.log($scope.matchedPropertiesList);
 			 	init();
 			});
 		//};
