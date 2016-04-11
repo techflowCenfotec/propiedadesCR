@@ -1,0 +1,141 @@
+<style>
+.divRow{
+    padding-top: 23px;
+}
+
+.rowContainer{
+    padding-top: 20px;
+    padding-left: 1px;
+    margin: 0 0 auto;
+}
+</style>
+
+<div class="page page-table" data-ng-controller="tutorialController" >
+    <div class="col-xs-12">
+
+        <div class = "col-xs-2 rowContainer">
+            <div class = "row divRow">
+                <div ng-hide = "false">
+                    <i class="fa fa-chevron-left fa-2x"></i>
+                </div>
+            </div>
+            <div  class = "row divRow" >
+                <div ng-hide = "false">
+                    <i class="fa fa-chevron-left fa-2x"></i>
+                </div>
+            </div>
+            <div  class = "row divRow">
+                <div ng-hide = "false">
+                    <i class="fa fa-chevron-left fa-2x"></i>
+                </div>
+            </div>
+            
+        </div>
+        <div class = "col-xs-10">
+            <section class="panel panle-default">
+                <div class="dialog-demo-content" layout="row" layout-wrap="" layout-margin="">
+                    <md-button class="md-primary md-raised" ng-click="showWelcomeDialog($event)" flex="60" flex-gt-md="auto">
+                        Tab Dialog
+                    </md-button>
+                </div>
+
+                <script type="text/ng-template" id="dialog1.tmpl.html">
+                    <md-dialog aria-label="Lucky day"  ng-cloak>
+                        <form>
+
+                            <md-toolbar>
+                                <div class="md-toolbar-tools">
+                                    <h2>Tutorial</h2>
+                                    <span flex></span>
+                                    <md-button class="md-icon-button" ng-click="cancel()">
+                                        <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                                    </md-button>
+                                </div>
+                            </md-toolbar>
+
+                            <md-dialog-content>
+                                <div class="md-dialog-content">
+                                    <h2>Bienvenido a PropiedadesCR!</h2>
+                                    <p>Nuestra idea es que su experiencia de usuario sea la mejor posible.</p>
+                                    <p>A continuación le daremos una breve explicación de lo que la aplicación ofrece.</p>
+                                </div>
+                            </md-dialog-content>
+                            <md-dialog-actions layout="row">
+                                <span flex></span>
+                                <md-button ng-click="answer('useful',$event)" style="margin-right:20px;">Aceptar</md-button>
+                            </md-dialog-actions>
+                        </form>
+                    </md-dialog>
+            </script>
+
+            <script type="text/ng-template" id="dialog2.tmpl.html">
+                <md-dialog aria-label="Lucky day"  ng-cloak>
+                    <form>
+
+                        <md-dialog-content>
+                            <div class="md-dialog-content">
+                                <h2>Propiedades</h2>
+                                <p>A continuación se señala el menú de propiedades, el cual contiene la información de las propiedades</p>
+                                <p>Para continuar presione siguiente</p>
+                            </div>
+                        </md-dialog-content>
+
+                        <md-dialog-actions layout="row">
+                            <span flex></span>
+                            <md-button class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closePropDialog($event)" style="margin-right:20px;">
+                                <span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
+                                <span class = "ng-scope">Seguiente</span></md-button>
+                        </md-dialog-actions>
+                    </form>
+                </md-dialog>
+            </script>
+
+            <script type="text/ng-template" id="dialog3.tmpl.html">
+                <md-dialog aria-label="Lucky day"  ng-cloak>
+                    <form>
+
+                        <md-dialog-content>
+                            <div class="md-dialog-content">
+                                <h2>Menú Principal</h2>
+                                <p>Para interactuar con las propiedades puede acceder al menú principal</p>
+                                <p>Para continuar presione siguiente</p>
+                            </div>
+                        </md-dialog-content>
+
+                        <md-dialog-actions layout="row">
+                            <span flex></span>
+                            <md-button  class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closePrincPDialog($event)" style="margin-right:20px;">
+                                <span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
+                                <span class = "ng-scope">Seguiente</span></md-button></md-button>
+                         </md-dialog-actions>
+                    </form>
+                </md-dialog>
+            </script>
+
+            <script type="text/ng-template" id="dialog4.tmpl.html">
+                <md-dialog aria-label="Lucky day"  ng-cloak>
+                    <form>
+
+                        <md-dialog-content>
+                            <div class="md-dialog-content">
+                                <h2>Propiedades y sus necesidades</h2>
+                                <p>Para hacer una búsqueda inteligente de propiedades de acuerdo a sus necesidades</p>
+                                <p>puede acceder donde apunta la flecha</p>
+                                <p>Para continuar presione siguiente</p>
+                            </div>
+                        </md-dialog-content>
+
+                        <md-dialog-actions layout="row">
+                            <span flex></span>
+                            <md-button class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closePrincioalQA($event)" style="margin-right:20px;">        <span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
+                                <span class = "ng-scope">Seguiente</span></md-button>
+                            </md-button>
+
+                         </md-dialog-actions>
+                    </form>
+                </md-dialog>
+            </script>
+</section>
+</div>
+</div>
+</div>
