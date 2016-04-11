@@ -3,9 +3,9 @@
 	
 	angular.module('app.properties.create', [])
 	
-	.controller('CreatePropController', ['$scope', '$http', '$upload', 'NgMap', CreatePropController]);
+	.controller('CreatePropController', ['$scope', '$http', '$upload', 'NgMap', '$state', '$rootScope', CreatePropController]);
 
-	function CreatePropController($scope, $http, $upload, NgMap) {
+	function CreatePropController($scope, $http, $upload, NgMap, $state, $rootScope) {
 		
 		var original;
 		var self = this;
@@ -20,6 +20,7 @@
 		$scope.markerLoc = null;
 		//scope variables
 		$scope.requestObject = {
+				selectedSaleType: '',
 				province: '',
 				county: '',
 				district: '',
@@ -32,24 +33,24 @@
 		$scope.selected = [];
 		//Map variables and default values
 		$scope.map = {
-				center: '[9.935697,-84.1483646]',
-				zoom: 11
+				"center": '[9.926989, -84.091201]',
+				"zoom": 11
 		};
 
 		original = angular.copy($scope.requestObject);
 		
 		$scope.init = function() {
-			$http.get('rest/protected/province/getAll', $scope.requestObject)
+			$http.get('rest/protected/province/getAll')
 			.success(function(provincesResponse) {
 				$scope.provinceList = provincesResponse.provinces;
 			});
 			
-			$http.get('rest/protected/benefits/getAll', $scope.requestObject)
+			$http.get('rest/protected/benefits/getAll')
 			.success(function(benefitsResponse) {
 				self.benefitsList = benefitsResponse.benefits;
 			});
 			
-			$http.get('rest/protected/propertyTypes/getAll', $scope.requestObject)
+			$http.get('rest/protected/propertyTypes/getAll')
 			.success(function(typeResponse) {
 				$scope.propertyTypeList = typeResponse.pTypes;
 			});
@@ -118,8 +119,8 @@
 		// Form validations
 		function revert() {
 		    $scope.requestObject = angular.copy(original);	
-		    $scope.propertiesForm.$setPristine()
-            $scope.propertiesForm.$setUntouched();
+		    this.propertiesForm.$setPristine()
+            this.propertiesForm.$setUntouched();
 		    return;
 		};
 		$scope.canRevert = function() {
@@ -136,6 +137,12 @@
 		$scope.canAddImg = function(length) {
 			return length >= 5;
 		};
+		
+		// Routes to list view on cancel
+		$scope.cancel = function() {
+			$state.go('templates/propertiesView/propertiesList', {},  {reload: true});
+		}
+		
         //Submits new property information
 		$scope.saveProperty = function(event, $files) {
 			if(this.propertiesForm.$valid) {
@@ -157,6 +164,8 @@
 							"price": $scope.requestObject.price,
 							"tdistrict": { "idDisctrict": $scope.requestObject.district},
 							"tpropertyType": { "idPropertyType": $scope.requestObject.type},
+							"tuser": {"idUser": $rootScope.userLogged.idUser},
+							"saleType": $scope.requestObject.selectedSaleType,
 							"address": $scope.requestObject.address,
 							"coordinates": $scope.markerLoc
 						},
@@ -177,8 +186,7 @@
 							});
 						}
 						$scope.showInfoOnSubmit= true;
-						return revert();
-				}).error(function(err) {
+						$state.go('templates/propertiesView/propertiesList', {},  {reload: true});
 				});
 			}
 		}

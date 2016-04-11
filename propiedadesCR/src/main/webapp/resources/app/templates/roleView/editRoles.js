@@ -85,6 +85,10 @@
 						    );
 						 return revert();
 				});
+				$timeout(function(){
+		        $location.path("/templates/roleView/roles"); 
+		    }, 3000);
+
 			
 			}else{
 	    		$scope.onError = true;

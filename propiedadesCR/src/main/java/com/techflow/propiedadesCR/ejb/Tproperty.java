@@ -42,8 +42,7 @@ public class Tproperty implements Serializable {
 	private Tdistrict tdistrict;
 	private TpropertyType tpropertyType;
 	private Tuser tuser;
-	private List<TpropertyComment> tpropertyComments;
-	private List<TpropertyRating> tpropertyRatings;
+	private List<TpropertyReview> tpropertyReviews;
 	private List<Tuser> tusers;
 	private List<TpropertyImage> tpropertyImages;
 	private double offerPecentage;
@@ -163,6 +162,7 @@ public class Tproperty implements Serializable {
 	//bi-directional many-to-one association to Tuser
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="id_vendor")
+	@JsonIgnore
 	public Tuser getTuser() {
 		return this.tuser;
 	}
@@ -174,54 +174,28 @@ public class Tproperty implements Serializable {
 
 	//bi-directional many-to-one association to TpropertyComment
 	@OneToMany(mappedBy="tproperty")
-	public List<TpropertyComment> getTpropertyComments() {
-		return this.tpropertyComments;
-	}
-
-	public void setTpropertyComments(List<TpropertyComment> tpropertyComments) {
-		this.tpropertyComments = tpropertyComments;
-	}
-
-	public TpropertyComment addTpropertyComment(TpropertyComment tpropertyComment) {
-		getTpropertyComments().add(tpropertyComment);
-		tpropertyComment.setTproperty(this);
-
-		return tpropertyComment;
-	}
-
-	public TpropertyComment removeTpropertyComment(TpropertyComment tpropertyComment) {
-		getTpropertyComments().remove(tpropertyComment);
-		tpropertyComment.setTproperty(null);
-
-		return tpropertyComment;
-	}
-
-
-	//bi-directional many-to-one association to TpropertyRating
-	@OneToMany(mappedBy="tproperty")
 	@JsonIgnore
-	public List<TpropertyRating> getTpropertyRatings() {
-		return this.tpropertyRatings;
+	public List<TpropertyReview> getTpropertyReviews() {
+		return this.tpropertyReviews;
 	}
 
-	public void setTpropertyRatings(List<TpropertyRating> tpropertyRatings) {
-		this.tpropertyRatings = tpropertyRatings;
+	public void setTpropertyReviews(List<TpropertyReview> tpropertyReviews) {
+		this.tpropertyReviews = tpropertyReviews;
 	}
 
-	public TpropertyRating addTpropertyRating(TpropertyRating tpropertyRating) {
-		getTpropertyRatings().add(tpropertyRating);
-		tpropertyRating.setTproperty(this);
+	public TpropertyReview addTpropertyReviews(TpropertyReview tpropertyReviews) {
+		getTpropertyReviews().add(tpropertyReviews);
+		tpropertyReviews.setTproperty(this);
 
-		return tpropertyRating;
+		return tpropertyReviews;
 	}
 
-	public TpropertyRating removeTpropertyRating(TpropertyRating tpropertyRating) {
-		getTpropertyRatings().remove(tpropertyRating);
-		tpropertyRating.setTproperty(null);
+	public TpropertyReview removeTpropertyComment(TpropertyReview tpropertyReviews) {
+		getTpropertyReviews().remove(tpropertyReviews);
+		tpropertyReviews.setTproperty(null);
 
-		return tpropertyRating;
+		return tpropertyReviews;
 	}
-
 
 	//bi-directional many-to-many association to Tuser
 	@ManyToMany(mappedBy="tproperties2")
@@ -278,7 +252,7 @@ public class Tproperty implements Serializable {
 		this.isSold = isSold;
 	}
 
-	@Column(name="sold_type")
+	@Column(name="sold_date")
 	public Date getSoldDate() {
 		return soldDate;
 	}

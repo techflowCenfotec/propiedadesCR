@@ -1,0 +1,33 @@
+<div class="page">
+	<section class="row ui-section" ng-controller="favoritesController">
+        <div class="col-lg-8 clearfix">
+            <h2 class="section-header">Propiedades</h2>
+        </div>
+        <div class="col-md-12">
+        
+            <div class=column ng-repeat="property in propertiesList | limitTo:quantity">
+                <div class="col-md-4">
+                    <div class="card bg-white">
+                        <div class="card-image">
+                            <img src="{{property.tpropertyImages[0].propertyImage}}" height="200">
+                            <span class="card-title">{{property.price | currency}} - {{property.tdistrict.name}}</span>
+                        </div>
+                        <div class="card-content">
+                            <a class="card-button pull-right" data-ng-click="">
+                                <button ng-model="heart" class="btn btn-icon btn-icon-round btn-floating btn-default" 
+                                ng-class="checkFavorites(property.idProperty)" data-ng-click="addToFavorites(property.idProperty)">
+                                		<i class="fa fa-heart"></i>
+                                </button>
+                            </a>
+                            <p>{{property.address}}</p>
+                        </div>
+                        <div class="card-action">
+                            <a data-ng-click="viewProperty(property.idProperty)" href="#/templates/propertiesView/propertyView" class="btn btn-default">Detalles</a>
+                            <a data-ng-click="compareProperty(property.idProperty)" ng-class="selected(property.idProperty)">Seleccione para comparar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>                
+    </section>
+</div>

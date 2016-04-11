@@ -1,0 +1,130 @@
+<style>
+.thumbnail {
+	max-width: 200px;
+	max-height: 150px;
+	line-height: 20px;
+	margin-bottom: 5px;
+}
+</style>
+<div class="page-form-ele page" data-ng-controller="ModifyEventsController" flow-init>
+
+	<div class="row ui-section">
+		<div class="col-lg-8 clearfix">
+			<h2 class="section-header">Modificar Evento</h2>
+		</div>
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<form name="form_createEvent" class="form-validation"
+						data-ng-submit="submitForm($event,$flow.files)">
+						<div class="row">
+							<div>
+								<div class="col-lg-8 collg-offset-2">
+
+									<div>
+										<div data-ng-hide="$flow.files.length">
+											<img class="thumbnail"
+												src={{event.eventImage}}
+												width="200" height="200" />
+										</div>
+
+										<div data-ng-show="$flow.files.length">
+											<img class="thumbnail" flow-img="$flow.files[0]" width="200"
+												height="200" />
+										</div>
+
+										<div>
+											<span class="btn btn-default" flow-btn
+												data-ng-hide="$flow.files.length"> Subir foto de
+												evento <input type="file"
+												style="visibility: hidden; position: absolute;"
+												multiple="multiple" />
+
+											</span> <a class="btn btn-danger" data-ng-show="$flow.files.length"
+												data-ng-click="$flow.files[0].cancel()"> Remover </a>
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+
+						<div layout layout-sm="column">
+							<md-input-container flex=50> <label for="">Nombre</label>
+							<input type="text" class="form-control" required
+								data-ng-model="form.name"> </md-input-container>
+						</div>
+							<div class="form-group">
+
+							<br> <label for="">Direcci&oacute;n Exacta</label>
+							<textarea class="form-control" rows="4" required
+								data-ng-model="form.direction"></textarea>
+						</div>
+						<div class="row">
+							<div class="col-md-12">
+								<section class="panel panel-default">
+									<div class="panel-body">
+										<map class="ui-map" zoom="11" center={{event.coordinates}}
+											scrollwheel="false">
+											<marker position={{event.coordinates}} title="drag me"
+												draggable="true" on-dragend="markerPos()"></marker>
+										</map>
+									</div>
+								</section>
+							</div>
+						</div>
+						
+						<div class="form-group">
+
+							<br> <label for="">Descripci&oacute;n</label>
+							<textarea class="form-control" rows="10" required
+								data-ng-model="form.description"></textarea>
+						</div>
+						<div class=row>
+							<div class="col-lg-4 col-lg-offset-2">
+								<div class="input-group ui-datepicker">
+									<input type="text" class="form-control"
+										uib-datepicker-popup="{{format}}"
+										data-ng-model="form.eventDate" is-open="popup1.opened"
+										min-date="minDate" max-date="maxDate"
+										datepicker-options="dateOptions"
+										date-disabled="disabled(date, mode)" ng-required="true"
+										close-text="Close" alt-input-formats="altInputFormats" /> <span
+										class="input-group-addon" ng-click="open1()"><i
+										class="fa fa-calendar"></i></span>
+								</div>
+								<div class="callout callout-info">
+									<p>Fecha del evento: {{form.eventDate | date:'fullDate'}}</p>
+								</div>
+							</div>
+						</div>
+<!-- 						<div class="row">
+							<div class="col-lg-4 col-lg-offset-2">
+								<div ng-model="form.eventDate" ng-change="changed()"
+									style="display: inline-block;">
+									<uib-timepicker class="ui-timepicker" hour-step="hstep"
+										minute-step="mstep" show-meridian="ismeridian"></uib-timepicker>
+									<p>Hora del evento: {{form.eventDate | date:'shortTime'}}</p>
+								</div>
+							</div>
+						</div> -->
+						
+
+
+
+
+						<button type="submit" ui-wave class="btn btn-primary btn-w-md"
+							data-ng-disabled="!canSubmit()">Modificar</button>
+
+
+						<div class="alert alert-info" data-ng-show="showInfoOnSubmit">Evento
+							modificado</div>
+
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>

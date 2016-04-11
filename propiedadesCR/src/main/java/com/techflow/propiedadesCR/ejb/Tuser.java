@@ -50,13 +50,10 @@ public class Tuser implements Serializable {
 	private List<Tmessage> tmessages1;
 	private List<Tmessage> tmessages2;
 	private List<Tproperty> tproperties1;
-	private List<TpropertyComment> tpropertyComments;
-	private List<TpropertyRating> tpropertyRatings;
-	private List<TuserComment> tuserComments1;
-	private List<TuserComment> tuserComments2;
+	private List<TpropertyReview> tpropertyReviews;
 	private List<TuserPattern> tuserPatterns;
-	private List<TuserRating> tuserRatings1;
-	private List<TuserRating> tuserRatings2;
+	private List<TuserReview> tuserReviews1;
+	private List<TuserReview> tuserReviews2;
 	private List<TuserSurvey> tuserSurveys;
 	private List<Tproperty> tproperties2;
 	private Trole trole;
@@ -320,102 +317,26 @@ public class Tuser implements Serializable {
 
 	//bi-directional many-to-one association to TpropertyComment
 	@OneToMany(mappedBy="tuser")
-	public List<TpropertyComment> getTpropertyComments() {
-		return this.tpropertyComments;
+	public List<TpropertyReview> getTpropertyReviews() {
+		return this.tpropertyReviews;
 	}
 
-	public void setTpropertyComments(List<TpropertyComment> tpropertyComments) {
-		this.tpropertyComments = tpropertyComments;
+	public void setTpropertyReviews(List<TpropertyReview> tpropertyReviews) {
+		this.tpropertyReviews = tpropertyReviews;
 	}
 
-	public TpropertyComment addTpropertyComment(TpropertyComment tpropertyComment) {
-		getTpropertyComments().add(tpropertyComment);
-		tpropertyComment.setTuser(this);
+	public TpropertyReview addTpropertyReviews(TpropertyReview tpropertyReview) {
+		getTpropertyReviews().add(tpropertyReview);
+		tpropertyReview.setTuser(this);
 
-		return tpropertyComment;
+		return tpropertyReview;
 	}
 
-	public TpropertyComment removeTpropertyComment(TpropertyComment tpropertyComment) {
-		getTpropertyComments().remove(tpropertyComment);
-		tpropertyComment.setTuser(null);
+	public TpropertyReview removeTpropertyReviews(TpropertyReview tpropertyReview) {
+		getTpropertyReviews().remove(tpropertyReview);
+		tpropertyReview.setTuser(null);
 
-		return tpropertyComment;
-	}
-
-
-	//bi-directional many-to-one association to TpropertyRating
-	@OneToMany(mappedBy="tuser")
-	@JsonIgnore
-	public List<TpropertyRating> getTpropertyRatings() {
-		return this.tpropertyRatings;
-	}
-
-	public void setTpropertyRatings(List<TpropertyRating> tpropertyRatings) {
-		this.tpropertyRatings = tpropertyRatings;
-	}
-
-	public TpropertyRating addTpropertyRating(TpropertyRating tpropertyRating) {
-		getTpropertyRatings().add(tpropertyRating);
-		tpropertyRating.setTuser(this);
-
-		return tpropertyRating;
-	}
-
-	public TpropertyRating removeTpropertyRating(TpropertyRating tpropertyRating) {
-		getTpropertyRatings().remove(tpropertyRating);
-		tpropertyRating.setTuser(null);
-
-		return tpropertyRating;
-	}
-
-
-	//bi-directional many-to-one association to TuserComment
-	@OneToMany(mappedBy="tuser1")
-	public List<TuserComment> getTuserComments1() {
-		return this.tuserComments1;
-	}
-
-	public void setTuserComments1(List<TuserComment> tuserComments1) {
-		this.tuserComments1 = tuserComments1;
-	}
-
-	public TuserComment addTuserComments1(TuserComment tuserComments1) {
-		getTuserComments1().add(tuserComments1);
-		tuserComments1.setTuser1(this);
-
-		return tuserComments1;
-	}
-
-	public TuserComment removeTuserComments1(TuserComment tuserComments1) {
-		getTuserComments1().remove(tuserComments1);
-		tuserComments1.setTuser1(null);
-
-		return tuserComments1;
-	}
-
-
-	//bi-directional many-to-one association to TuserComment
-	@OneToMany(mappedBy="tuser2")
-	public List<TuserComment> getTuserComments2() {
-		return this.tuserComments2;
-	}
-
-	public void setTuserComments2(List<TuserComment> tuserComments2) {
-		this.tuserComments2 = tuserComments2;
-	}
-
-	public TuserComment addTuserComments2(TuserComment tuserComments2) {
-		getTuserComments2().add(tuserComments2);
-		tuserComments2.setTuser2(this);
-
-		return tuserComments2;
-	}
-
-	public TuserComment removeTuserComments2(TuserComment tuserComments2) {
-		getTuserComments2().remove(tuserComments2);
-		tuserComments2.setTuser2(null);
-
-		return tuserComments2;
+		return tpropertyReview;
 	}
 
 
@@ -446,51 +367,53 @@ public class Tuser implements Serializable {
 
 	//bi-directional many-to-one association to TuserRating
 	@OneToMany(mappedBy="tuser1")
-	public List<TuserRating> getTuserRatings1() {
-		return this.tuserRatings1;
+	@JsonIgnore
+	public List<TuserReview> getTuserReviews1() {
+		return this.tuserReviews1;
 	}
 
-	public void setTuserRatings1(List<TuserRating> tuserRatings1) {
-		this.tuserRatings1 = tuserRatings1;
+	public void setTuserReviews1(List<TuserReview> tuserReviews1) {
+		this.tuserReviews1 = tuserReviews1;
 	}
 
-	public TuserRating addTuserRatings1(TuserRating tuserRatings1) {
-		getTuserRatings1().add(tuserRatings1);
-		tuserRatings1.setTuser1(this);
+	public TuserReview addTuserReviews1(TuserReview tuserReviews1) {
+		getTuserReviews1().add(tuserReviews1);
+		tuserReviews1.setTuser1(this);
 
-		return tuserRatings1;
+		return tuserReviews1;
 	}
 
-	public TuserRating removeTuserRatings1(TuserRating tuserRatings1) {
-		getTuserRatings1().remove(tuserRatings1);
-		tuserRatings1.setTuser1(null);
+	public TuserReview removeTuserReviews1(TuserReview tuserReviews1) {
+		getTuserReviews1().remove(tuserReviews1);
+		tuserReviews1.setTuser1(null);
 
-		return tuserRatings1;
+		return tuserReviews1;
 	}
 
 
 	//bi-directional many-to-one association to TuserRating
 	@OneToMany(mappedBy="tuser2")
-	public List<TuserRating> getTuserRatings2() {
-		return this.tuserRatings2;
+	@JsonIgnore
+	public List<TuserReview> getTuserReviews2() {
+		return this.tuserReviews2;
 	}
 
-	public void setTuserRatings2(List<TuserRating> tuserRatings2) {
-		this.tuserRatings2 = tuserRatings2;
+	public void setTuserReviews2(List<TuserReview> tuserReviews2) {
+		this.tuserReviews2 = tuserReviews2;
 	}
 
-	public TuserRating addTuserRatings2(TuserRating tuserRatings2) {
-		getTuserRatings2().add(tuserRatings2);
-		tuserRatings2.setTuser2(this);
+	public TuserReview addTuserReviews2(TuserReview tuserReviews2) {
+		getTuserReviews2().add(tuserReviews2);
+		tuserReviews2.setTuser2(this);
 
-		return tuserRatings2;
+		return tuserReviews2;
 	}
 
-	public TuserRating removeTuserRatings2(TuserRating tuserRatings2) {
-		getTuserRatings2().remove(tuserRatings2);
-		tuserRatings2.setTuser2(null);
+	public TuserReview removeTuserReviews2(TuserReview tuserReviews2) {
+		getTuserReviews2().remove(tuserReviews2);
+		tuserReviews2.setTuser2(null);
 
-		return tuserRatings2;
+		return tuserReviews2;
 	}
 
 

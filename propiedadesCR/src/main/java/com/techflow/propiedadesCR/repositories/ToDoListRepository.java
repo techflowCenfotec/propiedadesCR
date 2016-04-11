@@ -19,4 +19,5 @@ public interface ToDoListRepository extends CrudRepository<TToDoList,Integer>{
 	 * que existen en la base de datos
 	 */
 	List<TToDoList> findAll();
+	TToDoList getByIdToDoList(int id);
 }
