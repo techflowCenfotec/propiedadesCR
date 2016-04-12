@@ -9,6 +9,7 @@
     $scope.principalMenu = true;
     $scope.eventsMenu = true;
     $scope.userId = 0;
+    $scope.show = "display: block;"
     var init = showWelcomeDialog();
     var link = 'rest/protected/users/getUserLogged';
 
