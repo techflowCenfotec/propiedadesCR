@@ -45,6 +45,38 @@
 			 });
 			
 		}
+        $scope.showConfirm = function(id) {
+        	$scope.status = '  ';
+            var confirm = $mdDialog.confirm()
+                        .title('¿Desea cambiar el estado de la propiedad a vendido?')
+                        .content('Una vez cambiado el estado a vendido la propiedad no podrá ser obtenida de nuevo')
+                        .ariaLabel('Lucky day')
+                        .ok('Si')
+                        .cancel('No');
+            $mdDialog.show(confirm).then(function() {
+                $scope.status = 'Propiedad vendida.';
+                var soldRequest = {
+                		  "pageNumber": 0,
+                		  "pageSize": 0,
+                		  "direction": "string",
+                		  "sortBy": [
+                		    "string"
+                		  ],
+                		  "searchColumn": "string",
+                		  "searchTerm": "string",
+                		  "property": {"idProperty":id},
+                		  "idBenefits": [
+                		    0
+                		  ]
+                }
+                		
+                $http.post('rest/protected/properties/setPropertySold',soldRequest).success(function(){
+                	$scope.propertiesList = _.without($scope.propertiesList,_.findWhere($scope.propertiesList,{idProperty:id}));
+                });
+            }, function() {
+                $scope.status = 'Propiedad no vendida.';
+            });
+        };
 	}
 	
 })();

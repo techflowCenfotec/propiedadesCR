@@ -284,7 +284,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 	  */
 	public Tproperty setPropertyOnSale(PropertiesRequest ppropertyRequest){
 		Tproperty property = propertiesRepository.findByIdProperty(ppropertyRequest.getProperty().getIdProperty());
-		property.setOfferPecentage(ppropertyRequest.getProperty().getOfferPecentage());
+		property.setOfferPercentage(ppropertyRequest.getProperty().getOfferPercentage());
 		Tproperty newProperty = propertiesRepository.save(property);
 		return newProperty;
 	}

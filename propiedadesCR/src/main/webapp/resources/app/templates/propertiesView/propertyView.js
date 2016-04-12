@@ -351,7 +351,7 @@
         };    
 	}
 
-    function LocalModalInstanceCtrl($scope, $uibModalInstance,price) {
+    	function LocalModalInstanceCtrl($scope,$uibModalInstance,price){
         var original;
 
         $scope.calculatorForm = { 	
@@ -418,6 +418,7 @@
 			$scope.calculatorForm.netFamilyIncome = coin+(familyIncome = Math.round(familyIncome * 100) / 100);
 			
 	    }
-    };
+    	}
+    
 })();
 
