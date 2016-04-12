@@ -548,6 +548,31 @@ public class UsersController {
 
 				return response;
 			}
+			
+			/**
+			* Este método permite modificar el estado de un usuario
+			* 
+			* @param UsersRequest Este parámetro es la peticion del front-end
+			* que se utiliza para acceder al método deseado
+			* 
+			* @return userResponse Resultado que contiene la respuesta
+			* de que el usuario haya sido modificado exitosamente o no
+			*
+			*/ 
+			
+			@RequestMapping(value ="/notFirstTime", method = RequestMethod.POST)
+			public UsersResponse notFirstTime(@RequestBody UsersRequest puserRequest){
+				
+				UsersResponse userResponse = new UsersResponse();
+				Tuser userNotFirstTime = usersService.notFirstTime(puserRequest);
+				
+				if(userNotFirstTime!= null){
+					userResponse.setCode(200);
+					userResponse.setCodeMessage("success");
+					
+				}
+				return userResponse;
+			}
 
 
 }

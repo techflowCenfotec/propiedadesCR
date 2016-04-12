@@ -2,31 +2,25 @@
     'use strict';
 
     angular.module('app.tutorial', [])
-    .controller('tutorialController',['$scope','$mdDialog',function($scope,$mdDialog){
-        
+    .controller('tutorialController',['$scope','$mdDialog','$http','$location','$timeout',function($scope,$mdDialog,$http,$location,$timeout){
 
-//         $scope.showConfirm = function() {
-//             $scope.status = '  ';
-//             var confirm = $mdDialog.confirm()
-//             .title('¿Está seguro que desea eliminar el evento?')
-// //          .content('All of the banks have agreed to <span class="debt-be-gone">forgive</span> you your debts.')
-//             .ariaLabel('Lucky day')
-//             .ok('Eliminar')
-//             .cancel('Cancelar');
-//             $mdDialog.show(confirm).then(function() {
-//             }, function() {
-
-//             });
-//         };
     $scope.status = '  ';
+    $scope.propertiesMenu = true;
+    $scope.principalMenu = true;
+    $scope.eventsMenu = true;
+    $scope.userId = 0;
+    var init = showWelcomeDialog();
+    var link = 'rest/protected/users/getUserLogged';
+
+    var userResponse = {};
 
 
-        $scope.showWelcomeDialog = function(ev) {
+        function showWelcomeDialog(){
+ 
             $mdDialog.show({
             controller: DialogController,
             templateUrl: 'dialog1.tmpl.html',
             parent: angular.element(document.body),
-            targetEvent: ev,
             clickOutsideToClose:false
             })
                 .then(function(answer) {
@@ -36,7 +30,8 @@
                 });
         };
 
-        function showPropertiesDialog(ev) {
+        function showPrincipal(ev) {
+            $scope.principalMenu = false;
             $mdDialog.show({
             controller: DialogController,
             templateUrl: 'dialog2.tmpl.html',
@@ -51,7 +46,9 @@
                 });
         };
 
-        function showPrincipal(ev) {
+        function showPropertiesDialog(ev) {
+            $scope.principalMenu = true;
+            $scope.propertiesMenu = false;
             $mdDialog.show({
             controller: DialogController,
             templateUrl: 'dialog3.tmpl.html',
@@ -66,7 +63,10 @@
                 });
         };
 
-        function showPrincipalQA(ev) {
+
+        function showEvents(ev) {
+            $scope.propertiesMenu = true;
+            $scope.eventsMenu = false;
             $mdDialog.show({
             controller: DialogController,
             templateUrl: 'dialog4.tmpl.html',
@@ -81,7 +81,47 @@
                 });
         };
 
-        function DialogController($scope, $mdDialog) {
+
+        function showPrincipalQA(ev) {
+            $scope.eventsMenu = true;
+       
+            $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'dialog5.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:false
+            })
+                .then(function(answer) {
+                $scope.status = 'You said the information was "' + answer + '".';
+                }, function() {
+                $scope.status = 'You cancelled the dialog.';
+                });
+        };
+
+            $http.get(link).success(function(response) {
+                console.log("hey");
+                userResponse = response.user;
+                $scope.userId = userResponse.idUser;
+                var userLink = 'rest/protected/users/notFirstTime'
+                var userRequest = {
+                  "pageNumber": 0,
+                  "pageSize": 0,
+                  "direction": "string",
+                  "sortBy": [
+                    "string"
+                  ],
+                  "searchColumn": "string",
+                  "searchTerm": "string",
+                  "user": {"idUser":$scope.userId}
+                };
+                console.log(userRequest);
+                $http.post(userLink, userRequest).success(function(response) {
+                    console.log(response);
+                });
+        });
+        function DialogController($scope, $mdDialog, $location, $timeout) {
+        
             $scope.hide = function() {
                 $mdDialog.hide();
             };
@@ -90,21 +130,29 @@
             };
             $scope.answer = function(answer,ev) {
                 $mdDialog.hide(answer);
+                showPrincipal(ev);
+            };
+
+
+            $scope.closePrincPDialog = function(ev) {
+                $mdDialog.hide();
                 showPropertiesDialog(ev);
             };
 
             $scope.closePropDialog = function(ev) {
                 $mdDialog.hide();
-                showPrincipal(ev);
+                showEvents(ev);
             };
 
-            $scope.closePrincPDialog = function(ev) {
+            $scope.closeEvents = function(ev) {
                 $mdDialog.hide();
                 showPrincipalQA(ev);
             };
-
             $scope.closePrincioalQA = function(ev) {
                 $mdDialog.hide();
+                $timeout(function(){
+                $location.path("/propiedadesCR/app#/home"); 
+            }, 2000);
             };
         };
 

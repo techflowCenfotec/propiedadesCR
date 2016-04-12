@@ -360,5 +360,21 @@ public class UsersService implements UsersServiceInterface{
 		});
 		return favoritesList;
 	}
+	
+	/**
+	  * Este método cambiia el estado de un usuario
+	  * para que no sea su primera vez en la aplicación.
+	  *
+	  * @param puserRequest Contiene información del objeto a modificar.
+      * 
+	  * @return newUser Devuelve el usuario con su nuevo estado.
+	  */
+	
+	public Tuser notFirstTime(UsersRequest puserRequest) {
+		Tuser user = usersRepository.findOne(puserRequest.getUser().getIdUser());
+		user.setFirstTime((byte) 1);;
+		Tuser newUser = usersRepository.save(user);
+		return newUser;
+	}
 }
 
