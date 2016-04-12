@@ -1,11 +1,23 @@
 package com.techflow.propiedadesCR.ejb;
 
 import java.io.Serializable;
-import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
+import java.util.Date;
 import java.util.List;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /**
@@ -18,11 +30,12 @@ import java.util.List;
 public class TToDoList implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int idToDoList;
-	private byte active;
+	private byte isDone;
 	private String description;
 	private String name;
 	private Tuser tuser;
 	private List<Titem> titems;
+	private Date registrationDate;
 
 	public TToDoList() {
 	}
@@ -38,13 +51,13 @@ public class TToDoList implements Serializable {
 	public void setIdToDoList(int idToDoList) {
 		this.idToDoList = idToDoList;
 	}
-	
-	public byte getActive() {
-		return this.active;
+	@Column(name="is_done")
+	public byte getIsDone() {
+		return this.isDone;
 	}
 
-	public void setActive(byte active) {
-		this.active = active;
+	public void setIsDone(byte isDone) {
+		this.isDone = isDone;
 	}
 
 
@@ -103,5 +116,13 @@ public class TToDoList implements Serializable {
 
 		return titem;
 	}
+	@Temporal(TemporalType.DATE)
+	@Column(name="registration_date")
+	public Date getRegistrationDate() {
+		return this.registrationDate;
+	}
 
+	public void setRegistrationDate(Date registrationDate) {
+		this.registrationDate = registrationDate;
+	}
 }

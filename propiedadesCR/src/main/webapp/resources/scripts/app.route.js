@@ -16,10 +16,11 @@
 			,"templates/usersView/modifyUser"
 			,"templates/usersView/vendorsList"
 			,"templates/usersView/consultVendor"
+			,"templates/usersView/modifyProfile"
 			
 			,"templates/eventsView/createEvent"
 			,"templates/eventsView/eventsList"
-
+			
 			,"templates/eventsView/eventConsult"
 			,"templates/eventsView/eventListAdmin"
 			,"templates/eventsView/modifyEvent"
@@ -37,7 +38,7 @@
 			,"templates/propertiesView/propertiesCreate"
 
 			,"templates/salesReportView/salesReport"			
-			,"templates/errosView/500"
+			,"templates/errorsView/500"
 
 			,"templates/guidesView/createGuide"
 			,"templates/guidesView/consultGuide"
@@ -52,6 +53,7 @@
 			,"templates/propertyFavoritesView/favoritesList"
 
 			,"templates/toDoListView/myToDoList"
+			,"templates/reportsView/bankReport"
 
 
 		], 
@@ -104,7 +106,7 @@
 		    },
 		    complete: function(response) {
 		    	if(response.status === 401){
-		    		window.location.href = "/cenfoteca/login#/";
+		    		window.location.href = "/login";
 				}
 		    }
 		});

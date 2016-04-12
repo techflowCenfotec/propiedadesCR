@@ -6,9 +6,9 @@ import com.techflow.propiedadesCR.pojo.UserReviewPOJO;
 
 public interface UserReviewServiceInterface {
 	
-	TuserReview saveRating(UserReviewRequest puserRating);
+	UserReviewPOJO saveRating(UserReviewRequest puserRating);
 
 	UserReviewPOJO getRating(UserReviewRequest puserRating);
 
-	TuserReview modifyRating(UserReviewRequest puserRequest);
+	UserReviewPOJO modifyRating(UserReviewRequest puserRequest);
 }

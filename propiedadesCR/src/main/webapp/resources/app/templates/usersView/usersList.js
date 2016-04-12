@@ -2,7 +2,7 @@
 	"use strict";
 
 	angular.module("app.usersList",[])
-		.controller('listUsersController',['$scope','$filter','$http',function($scope,$filter,$http){
+		.controller('listUsersController',['$scope','$filter','$http','dbService',function($scope,$filter,$http,dbService){
 		
 	
 		
@@ -23,26 +23,14 @@
         $scope.currentPage = 1;
         $scope.currentPage = [];
 
-		validate();
-        
-        
-        
-    	function validate(){
-    		$http.get("rest/protected/database/checkDB").success(function(data){
-    			if(data.code!==200){
-
-    				var path = "#/templates/errorsView/500";
-    				
-        			window.location.href = path;
-    			}
-    		});
-    		}	
-        
+		
+     
+        dbService.checkDB();
         var link = 'rest/protected/users/getAll';
 		var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","user": {}};
 		var init;
 		$http.post(link,request).success(function(response) {
-			validate();
+			//dbService.checkDB();
 			$scope.users= response.users;
 
 			init();

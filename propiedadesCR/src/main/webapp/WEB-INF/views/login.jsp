@@ -62,4 +62,5 @@
 	<script src="resources/app/templates/resetPasswordView/forgotPassword.js"></script>
 	<script src="resources/app/templates/resetPasswordView/resetPassword.js"></script>
 	<script src="resources/app/templates/usersView/createUserLogin.js"></script>
+	<script src="resources/scripts/services/dbService.js"></script>
 	

@@ -69,7 +69,7 @@ public class PropertyPOJO {
 	/**
      * Oferta de la propiedad.
      */
-	private double offerPecentage;
+	private double offerPercentage;
 	/**
      * Estado de la propiedad.
      */
@@ -195,12 +195,12 @@ public class PropertyPOJO {
 		this.tpropertyImages = tpropertyImages;
 	}
 
-	public double getOfferPecentage() {
-		return offerPecentage;
+	public double getOfferPercentage() {
+		return offerPercentage;
 	}
 
-	public void setOfferPecentage(double offerPecentage) {
-		this.offerPecentage = offerPecentage;
+	public void setOfferPercentage(double offerPercentage) {
+		this.offerPercentage = offerPercentage;
 	}
 
 	public byte getIsSold() {

@@ -45,8 +45,9 @@ public class UserRatingController {
 	@RequestMapping(value="/saveRating", method = RequestMethod.POST)
 	public UserReviewResponse saveRating(@RequestBody UserReviewRequest puserRequest) {
 		UserReviewResponse userRatingResponse = new UserReviewResponse();
+		userRatingResponse.setUserRating(userRatingService.saveRating(puserRequest));
 	
-		if(userRatingService.saveRating(puserRequest)!=null)
+		if(userRatingResponse.getUserRating()!=null)
 			userRatingResponse.setCode(200);
 		else
 			userRatingResponse.setCode(400);
@@ -89,8 +90,9 @@ public class UserRatingController {
 	@RequestMapping(value="/modifyRating", method = RequestMethod.POST)
 	public UserReviewResponse modifyRating(@RequestBody UserReviewRequest puserRequest) {
 		UserReviewResponse userRatingResponse = new UserReviewResponse();
-	
-		if(userRatingService.modifyRating(puserRequest)!=null)
+		userRatingResponse.setUserRating(userRatingService.modifyRating(puserRequest));
+		
+		if(userRatingResponse.getUserRating()!=null)
 			userRatingResponse.setCode(200);
 		else
 			userRatingResponse.setCode(400);

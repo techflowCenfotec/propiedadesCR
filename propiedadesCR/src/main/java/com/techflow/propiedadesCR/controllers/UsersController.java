@@ -30,6 +30,7 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,6 +47,7 @@ import com.techflow.propiedadesCR.contracts.UsersResponse;
 import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.pojo.EventPOJO;
+import com.techflow.propiedadesCR.pojo.RolePOJO;
 import com.techflow.propiedadesCR.pojo.UserPOJO;
 import com.techflow.propiedadesCR.services.UsersServiceInterface;
 import com.techflow.propiedadesCR.utils.Utils;
@@ -313,8 +315,13 @@ public class UsersController {
 			UsersRequest userRequest = new UsersRequest();
 			userRequest.setUser(user);
 			Tuser recentlyCreatedUser = usersService.modifyUser(userRequest, pidRole);
-
+			UserPOJO userPOJO = new UserPOJO();
+			BeanUtils.copyProperties(recentlyCreatedUser, userPOJO);
 			if (recentlyCreatedUser != null) {
+				RolePOJO role = new RolePOJO();
+				BeanUtils.copyProperties(recentlyCreatedUser.getTrole(), role);
+				userPOJO.setRole(role);
+				userResponse.setUser(userPOJO);
 				userResponse.setCode(200);
 				userResponse.setCodeMessage("User modified ");
 			}

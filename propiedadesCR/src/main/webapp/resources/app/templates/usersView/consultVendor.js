@@ -31,6 +31,7 @@
 								$scope.myReadOnly = false;
 								$scope.myCommentTextArea = false;
 								$scope.myCommentP = true;
+								$scope.userComment = '';
 								$scope.form = {
 									comment : '',
 								}
@@ -64,7 +65,8 @@
 													generalRating(response.user.vendorRatings);
 													$scope.user = response.user;
 													$scope.clients = response.user.vendorRatings;
-													console.log($scope.clients);
+													
+													
 													for(var index in $scope.clients){
 														if($scope.clients[index]!=undefined){
 															if($scope.clients[index].tuser1.idUser===$rootScope.userLogged.idUser)
@@ -91,6 +93,7 @@
 
 								$scope.saveUserComment = function() {
 									var request;
+									
 									if ($scope.hasRateAndComment != true) {
 										request = {
 											"pageNumber" : 0,
@@ -100,7 +103,8 @@
 											"searchColumn" : "string",
 											"searchTerm" : "",
 											"rating" : {
-												"averageRating" : $scope.userRate
+												"averageRating" : $scope.userRate,
+												"comment" : $scope.form.comment
 											},
 											"idClient" : localStorage
 													.getItem('idUser'),
@@ -111,8 +115,11 @@
 														'rest/protected/userRating/saveRating',
 														request)
 												.success(
-														function() {
-
+														function(response) {
+															
+															$scope.userRating = response.userRating;
+															$scope.form.comment = response.userRating.comment;
+															$scope.userComment = response.userRating.comment;
 															$scope.showInfo = true;
 															getRate();
 															$timeout(
@@ -133,7 +140,7 @@
 											"rating" : {
 												"idReview" : $scope.userRating.idReview,
 												"averageRating" : $scope.userRate,
-												"comment" :$scope.form.comment,
+												"comment" :$,
 											},
 											"idClient" : localStorage
 													.getItem('idUser'),
@@ -144,8 +151,10 @@
 														'rest/protected/userRating/modifyRating',
 														request)
 												.success(
-														function() {
-														
+														function(response) {
+															$scope.userRating = response.userRating;
+															$scope.form.comment = response.userRating.comment;
+															$scope.userComment = response.userRating.comment;
 															$scope.showInfo = true;
 															getAverage();
 															$timeout(
@@ -209,14 +218,23 @@
 											function(
 													response) {
 												if (response.userRating != null) {
+								
 													$scope.myRate = response.userRating.averageRating;
+													$scope.userComment = response.userRating.comment;
 													$scope.hasRateAndComment = true;
 													$scope.btnRateAndComment = 'Modificar';
 													$scope.userRating = response.userRating;
+													
 												}
 												disable();
 											});
 								}
+								
+								$scope.cancel = function (){
+									$scope.myRate =$scope.userRating.averageRating;
+									disable();
+								}
+								
 								function disable(){
 									$scope.isCreated = true;
 									$scope.myCommentTextArea = true;
@@ -225,6 +243,7 @@
 									$scope.myReadOnly = true;
 								}
 								$scope.editComment = function(){
+									$scope.form.comment = $scope.userComment;
 									$scope.isCreated = false;
 									$scope.myCommentTextArea = false;
 									$scope.myCommentP = true;
@@ -248,11 +267,11 @@
   									"email": $scope.user.email
   							}
 						};
-						console.log(userToNotify);
+						
         				var link = 'rest/protected/AdminEmail/sendEmail'
         				$http.post(link, userToNotify)
         				.success(function(response) {
-        					console.log(response);
+        					
         				}); 
         				$mdDialog.show(
 	            			$mdDialog.alert()

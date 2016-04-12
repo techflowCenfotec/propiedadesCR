@@ -11,6 +11,7 @@
 		 $scope.favorites = [];
 		 $scope.isCollapsed = false;
 		 $scope.selectedBenefits = [];
+		 $scope.selected =[];
 		
 		$scope.init = function() {
 			var active = 1,
@@ -18,6 +19,7 @@
 			
 			$http.get('rest/protected/properties/getAll')
 			.success(function(response) {
+				
 				for (var i = 0; i < response.properties.length; i++) {
 					if(response.properties[i].active == active && response.properties[i].isSold == sold) 
 						$scope.propertiesList.push(response.properties[i]);
@@ -56,8 +58,22 @@
 		}
 		
 		// Stores single id value
-		$scope.viewProperty = function(pIdProperty) {
-			$http.get('rest/protected/properties/saveView/' + pIdProperty).success(
+		$scope.viewProperty = function(pIdProperty,idUser) {
+						var viewRequest = {"pageNumber": 0,
+					"pageSize": 0,
+					"direction": "",
+					"sortBy": [""],
+					"searchColumn": "string",
+					"searchTerm": "",
+					"property": {
+						"idProperty":pIdProperty,
+						"tuser":{"idUser":idUser}
+					},
+					"idBenefits": [
+					               0
+					             ]
+			}
+			$http.post('rest/protected/properties/saveView', viewRequest).success(
 					function(){
 						
 					});
@@ -80,30 +96,37 @@
 		
 		// Bring BenefitList from modal. Assigned to keyword for search
 		$scope.$on("filterAction", function(e, benefitsList) {
+			$scope.propertiesSort = _.sortBy(benefitsList, 'benefit')
+			
+
 			$scope.selectedBenefits = benefitsList;
 			$scope.keyword = _.pluck($scope.selectedBenefits, 'benefit').join(', ');
+
 		});
+		$scope.exists = function(){
+			console.log('gg');
+			return true;
+		}
 		
 		$scope.keywords = function(post) {
-		      var isMatch = false;
+			var isMatch = false;
 		      
-		      if ($scope.keyword) {
-		        var parts = $scope.keyword.split(', ');
+		    if ($scope.keyword) {
+		      var parts = $scope.keyword.split(', ');
 		        
-		        parts.forEach(function(part) {
-		          var rx = new RegExp(part, "i"); //i: case insensitive
-		          post.tbenefits.forEach(function(caract) {
-		            if (rx.test(caract.benefit)) {
-		              isMatch = true;
-		            }
-		          });
+		      parts.forEach(function(part) {
+		        var rx = new RegExp(part, "i"); //i: case insensitive
+		        post.tbenefits.forEach(function(caract) {
+		          if (rx.test(caract.benefit)) {
+		            isMatch = true;
+		          }
 		        });
-		      } else {
-		        isMatch = true;
-		      }
-		      
-		      return isMatch;
-		    };
+		      });
+		     } else {
+		       isMatch = true;
+		     }
+		   return isMatch;
+		};
 		
 		$scope.addToFavorites = function(pIdProperty) {
 			var db = 'rest/protected/users/addToFavorite/' + $rootScope.userLogged.idUser;

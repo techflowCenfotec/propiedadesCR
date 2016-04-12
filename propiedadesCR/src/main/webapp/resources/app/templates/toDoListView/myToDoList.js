@@ -33,6 +33,7 @@
 	     $http.post(toDoListLink,toDoListrequest).success(function(response){
 	     	
 	     	$scope.items = response.myTodoList.titems;
+	     	
 	     	checkItems();
 	     	
 	     });
@@ -89,7 +90,8 @@
         		if($scope.items[i].done ==1){
         			$scope.selected.push($scope.items[i])
         			$scope.myItems.push($scope.items[i]);
-        		}
+        		}else
+        			$scope.myItems.push($scope.items[i]);
         	}
         }
         function myItems(item){
