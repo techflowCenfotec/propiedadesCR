@@ -23,9 +23,12 @@
 		var restLink = "rest/protected/questions/getquestionswithoptions";
 		var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "","searchTerm": "","question": {}};
 		$http.post(restLink, request).success(function(response) {
+
 			$scope.questions = response.questions;
+
+
 		});
-		
+
 		function saveSurvey(){
 
 			var userSurvey =  {"tanswers": $scope.answers,"tuser": {"idUser":userId}};
@@ -42,6 +45,7 @@
 		function generateMatchResult(){
 			//guarda el cuestionario recien creado
 			$rootScope.userSurvey = newUserSurvey;
+			localStorage.setItem("idSurvey",newUserSurvey.idSurvey);
 			console.log($scope.answers);
 			// var matchLink = "rest/protected/usersurveys/generatematchbysurvey";
 			// var userSurveyMatchResultRequest = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "","searchTerm": "","userSurvey": newUserSurvey};
@@ -57,12 +61,14 @@
 
 			if(option.result != null){
 				if(!answerAlreadyExist(option, idQuestion)){
-					$scope.answers.push({ "result":option.result, "tquestion": {"idQuestion":idQuestion} });
+					var tags = calculateCantAnswersByOption(option);
+					for (var i = 0; i < tags.length; i++) {
+						$scope.answers.push({ "result":tags[i], "tquestion": {"idQuestion":idQuestion} });
+					}
 				}
 			}else{
 				answerAlreadyExist("delete", idQuestion)
-
-			}			
+			}
 			getNextQuestion(option.idNextQuestion);
 
 		};	
@@ -114,6 +120,37 @@
 
         $scope.canExit = false;
         $scope.stepActive = true;
+
+
+        function calculateCantAnswersByOption(option){
+        	var optionCharArray = option.result.split('');
+        	var optionsResult = [''];
+        	// console.log(option.result)
+        	// console.log(optionCharArray);
+        	var isThereAComa = false;
+        	
+        	var optionsResultIndex = 0;
+        	for (var i = 0; i < optionCharArray.length; i++) {
+
+        		if(optionCharArray[i] == ','){
+        			isThereAComa = true;
+        		}else{
+        			isThereAComa = false;
+        		}
+
+        		if(!isThereAComa){
+        			optionsResult[optionsResultIndex] += optionCharArray[i];
+        		}else{
+        			optionsResultIndex++;
+        			optionsResult[optionsResultIndex] = '';
+        		}
+
+        		
+        	}
+
+        	console.log(optionsResult);
+        	return optionsResult;
+        }
 
         //agregar lista de tags que se usaron para generar el match de acuerdo al resultado
         //modal

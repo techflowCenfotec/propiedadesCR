@@ -16,9 +16,6 @@
 
 				$scope.idProperty = attr.idproperty;
 				$scope.idSurvey = attr.idsurvey;
-				
-				console.log(attr.idproperty);
-				console.log(attr.idsurvey);
 
 		        $scope.open = function () {
 		        	

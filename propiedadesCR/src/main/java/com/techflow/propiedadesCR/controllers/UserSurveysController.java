@@ -88,13 +88,20 @@ public class UserSurveysController {
 		UserSurveyPOJO userSurvey = getUserSurveyById(puserSurveyRequest.getUserSurvey().getIdSurvey());
 		//calcular el porcentage del match
 		int userTags = userSurvey.getTanswers().size();
+		String saleType = userSurvey.getTanswers().get(0).getResult();
+		String propertyType = userSurvey.getTanswers().get(1).getResult();
+		
+		//////////////////////////////pruebas para mejorar la logica;
+		properties = filtrarPropiedades(saleType,propertyType,properties);
+		
+		////////////////////////////////////////////////////////////
 		
 		for (PropertyPOJO property : properties) {
-			int matchedTags = 0;
+			int matchedTags = 2;
 			for (BenefitsPOJO benefit : property.getTbenefits()) {
 				
 				for(int i=0;i<userTags;i++){
-					if(benefit.getBenefit().equals(userSurvey.getTanswers().get(i).getResult())){
+					if(benefit.getBenefit().toLowerCase().equals(userSurvey.getTanswers().get(i).getResult().toLowerCase())){
 						matchedTags++;
 					}
 				}
@@ -112,8 +119,8 @@ public class UserSurveysController {
 		
 		allProperties.stream().forEach(property->{
 			property.setTbenefits(null);
-			property.setTpropertyType(null);
-			property.setTdistrict(null);
+			property.getTpropertyType().setTproperties(null);;
+			property.getTdistrict().setTcounty(null);
 			property.setTuser(null);
 			for (int i = 0; i < idsProperties.size(); i++) {
 				if(property.getIdProperty()==idsProperties.get(i)){
@@ -128,6 +135,17 @@ public class UserSurveysController {
 		return response;
 	}
 	
+	private List<PropertyPOJO> filtrarPropiedades(String psaleType, String ppropertyType, List<PropertyPOJO> pproperties) {
+		ArrayList<PropertyPOJO> filterProperties = new ArrayList<PropertyPOJO>();
+		
+		for (PropertyPOJO property : pproperties) {
+			if(property.getSaleType().toLowerCase().equals(psaleType.toLowerCase()) && property.getTpropertyType().getName().toLowerCase().equals(ppropertyType.toLowerCase())){
+				filterProperties.add(property);
+			}
+		}
+		return filterProperties;
+	}
+
 	/**
 	  * Este metodo sirve para generar el porcentaje de match por cada propiedad
 	  * @param puserTags Cantidad de tags por usuario
@@ -164,8 +182,16 @@ public class UserSurveysController {
 		
 		int userTags = userSurvey.getTanswers().size();
 		boolean[] matchedTags = new boolean[userTags];
+		/////////////////////////////////
 		
-		for (int i = 0; i < userTags; i++) {
+		if(property.getSaleType().toLowerCase().equals(userSurvey.getTanswers().get(0).getResult().toLowerCase()) && property.getTpropertyType().getName().toLowerCase().equals(userSurvey.getTanswers().get(1).getResult().toLowerCase())){
+			matchedTags[0] = true;
+			matchedTags[1] = true;
+		}
+		
+		/////////////////////
+		
+		for (int i = 2; i < userTags; i++) {
 			for(Tbenefit benefit : property.getTbenefits()) {
 				if(benefit.getBenefit().toLowerCase().equals(userSurvey.getTanswers().get(i).getResult().toLowerCase())){
 					matchedTags[i] = true;

@@ -4,7 +4,8 @@
 	angular.module('app.matchedPropertiesList', [])
 	.controller('MatchedPropertiesListController',['$scope','$http', '$location','$rootScope',function($scope,$http,$location,$rootScope){
 		
-		var userSurvey = {"idSurvey":7};//$rootScope.userSurvey;
+
+		var userSurvey = {"idSurvey":localStorage.getItem('idSurvey')};//$rootScope.userSurvey;
 		$scope.userSurvey = userSurvey;
 
 		//console.log($rootScope.userSurvey);
@@ -15,7 +16,7 @@
 			
 			$http.post(matchLink, userSurveyMatchResultRequest).success(function(response) {
 			 	$scope.matchedPropertiesList = response;
-			 	console.log($scope.matchedPropertiesList);
+			 	console.log(localStorage.getItem("idSurvey"));
 			 	init();
 			});
 		//};

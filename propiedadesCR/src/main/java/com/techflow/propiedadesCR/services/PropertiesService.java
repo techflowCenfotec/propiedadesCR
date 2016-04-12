@@ -250,6 +250,9 @@ public class PropertiesService implements PropertiesServiceInterface {
 		propertiesEjb.stream().forEach(property->{
 			PropertyPOJO dto = new PropertyPOJO();
 			dto.setIdProperty(property.getIdProperty());
+			dto.setSaleType(property.getSaleType());
+			dto.setTpropertyType(new PropertyTypePOJO());
+			dto.getTpropertyType().setName(property.getTpropertyType().getName());
 			
 			ArrayList<BenefitsPOJO> propertyBenefits = new ArrayList<BenefitsPOJO>();
 			
