@@ -4,6 +4,9 @@
 	angular.module('app.testFlow', [])
 	.controller('testFlowController',['$scope','$http', '$timeout', 'WizardHandler','$location','$rootScope',function($scope,$http, $timeout, WizardHandler,$location,$rootScope){
 
+		//cuestionario creado
+		var newUserSurvey;
+
 		//necesario para guardar las respuestas
 		var userId = $rootScope.userLogged.idUser;
 
@@ -25,7 +28,6 @@
 		
 		function saveSurvey(){
 
-			var newUserSurvey;
 			var userSurvey =  {"tanswers": $scope.answers,"tuser": {"idUser":userId}};
 
 			var saveLink = "rest/protected/usersurveys/create";
@@ -33,25 +35,27 @@
 			
 			$http.post(saveLink, userSurveyRequest).success(function(response) {
 			 	newUserSurvey = response.userSurveys[0];
-			 	generateMatchResult(newUserSurvey);
+			 	generateMatchResult();
 			});
 		};
 
-		function generateMatchResult(newUserSurvey){
-
-			var matchLink = "rest/protected/usersurveys/generatematchbysurvey";
-			var userSurveyMatchResultRequest = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "","searchTerm": "","userSurvey": newUserSurvey};
+		function generateMatchResult(){
+			//guarda el cuestionario recien creado
+			$rootScope.userSurvey = newUserSurvey;
+			console.log($scope.answers);
+			// var matchLink = "rest/protected/usersurveys/generatematchbysurvey";
+			// var userSurveyMatchResultRequest = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "","searchTerm": "","userSurvey": newUserSurvey};
 			
-			$http.post(matchLink, userSurveyMatchResultRequest).success(function(response) {
-			 	$rootScope.matchedPropertiesList = response;
+			// $http.post(matchLink, userSurveyMatchResultRequest).success(function(response) {
+			//  	$rootScope.matchedPropertiesList = response;
 			 	$location.url("templates/testView/matchedPropertiesList");
-			});
+			// });
 		};
 
 
 		$scope.catchAnswer = function(option, idQuestion){
 
-			if(option.result != ""){
+			if(option.result != null){
 				if(!answerAlreadyExist(option, idQuestion)){
 					$scope.answers.push({ "result":option.result, "tquestion": {"idQuestion":idQuestion} });
 				}
@@ -111,6 +115,14 @@
         $scope.canExit = false;
         $scope.stepActive = true;
 
+        //agregar lista de tags que se usaron para generar el match de acuerdo al resultado
+        //modal
+        //tipo propiedad
+        //vender alquilar
+
+
+
+        
 	}]);
 	
 })();

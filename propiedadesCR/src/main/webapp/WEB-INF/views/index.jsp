@@ -83,6 +83,7 @@
         <script src="resources/scripts/app.js"></script>
         <script src="resources/scripts/app.route.js"></script>
         <script src="resources/scripts/directives/benefitsDirective.js"></script>
+        <script src="resources/scripts/directives/matchedTagsDirective.js"></script>
         <script src="resources/bower_components/underscore/underscore.js"></script>
         <script src="resources/non_bower_components/angular-file-upload-shim.min.js"></script>
   		<script src="resources/non_bower_components/angular-file-upload.min.js"></script>

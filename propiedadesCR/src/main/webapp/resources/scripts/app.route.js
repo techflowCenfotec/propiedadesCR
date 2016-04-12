@@ -9,21 +9,17 @@
 		n = [
 			"templates/propertiesView/propertiesList"
 			,"templates/reportsView/reports"
-						
 			,"templates/usersView/usersList"
 			,"templates/usersView/createUser"			
 			,"templates/usersView/consultUser"
 			,"templates/usersView/modifyUser"
 			,"templates/usersView/vendorsList"
 			,"templates/usersView/consultVendor"
-			
 			,"templates/eventsView/createEvent"
 			,"templates/eventsView/eventsList"
-
 			,"templates/eventsView/eventConsult"
 			,"templates/eventsView/eventListAdmin"
 			,"templates/eventsView/modifyEvent"
-
 			,"templates/roleView/roles"
 			,"templates/roleView/addRoles"
 			,"templates/banktodolistView/banktodolistList"
@@ -31,14 +27,11 @@
 			,"templates/banktodolistView/banktodolistCreate"
 			,"templates/banktodolistView/banktodolistAdminItems"
 			,"templates/banktodolistView/banktodolistModify"
-
 			,"templates/testView/testFlow"
 			,"templates/testView/matchedPropertiesList"
 			,"templates/propertiesView/propertiesCreate"
-
 			,"templates/salesReportView/salesReport"			
 			,"templates/errosView/500"
-
 			,"templates/guidesView/createGuide"
 			,"templates/guidesView/consultGuide"
 			,"templates/propertiesView/propertyView"
@@ -51,11 +44,9 @@
 			,"templates/tutorialView/tutorialView"
 
 			,"templates/propertyFavoritesView/favoritesList"
-
 			,"templates/toDoListView/myToDoList"
-
-
 		], 
+
 
 		t = function($urlRouterProvider) {
 
@@ -67,8 +58,8 @@
 				url: t,
 				templateUrl: "resources/app/" + $urlRouterProvider + ".html"
 			},
-			
 			$stateProvider.state($urlRouterProvider,n),$stateProvider
+
 		},
 			
 		n.forEach(function($stateProvider) {

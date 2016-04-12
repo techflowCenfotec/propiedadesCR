@@ -74,6 +74,7 @@ function() {
 		,"app.usertoDoList"
 		,"app.favoritesManagment"
 		,"app.tutorial"
+		,"app.matchedTagsDirective"
 		
 		//3rd Party Modules
 		,"ngMaterial"

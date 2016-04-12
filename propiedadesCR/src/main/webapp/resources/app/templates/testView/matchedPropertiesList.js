@@ -3,12 +3,33 @@
 
 	angular.module('app.matchedPropertiesList', [])
 	.controller('MatchedPropertiesListController',['$scope','$http', '$location','$rootScope',function($scope,$http,$location,$rootScope){
-		$scope.properties =  $rootScope.matchedPropertiesList.properties;
-		var porcentages = $rootScope.matchedPropertiesList.porcentages;
+		
+		var userSurvey = {"idSurvey":7};//$rootScope.userSurvey;
+		$scope.userSurvey = userSurvey;
 
-		for (var i = 0 ; i < $scope.properties.length; i++) {
-			$scope.properties[i].porcentage = porcentages[i];
+		//console.log($rootScope.userSurvey);
+		//function getMatchResult(){
+
+			var matchLink = "rest/protected/usersurveys/generatematchbysurvey";
+			var userSurveyMatchResultRequest = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "","searchTerm": "","userSurvey": userSurvey};
+			
+			$http.post(matchLink, userSurveyMatchResultRequest).success(function(response) {
+			 	$scope.matchedPropertiesList = response;
+			 	console.log($scope.matchedPropertiesList);
+			 	init();
+			});
+		//};
+
+		function init(){
+
+			$scope.properties =  $scope.matchedPropertiesList.properties;
+			var porcentages = $scope.matchedPropertiesList.porcentages;
+
+			for (var i = 0 ; i < $scope.properties.length; i++) {
+				$scope.properties[i].porcentage = porcentages[i];
+			}
 		}
+		
 
 		$scope.viewProperty = function(pIdProperty) {
 			localStorage.setItem('idProperty', pIdProperty);
