@@ -106,6 +106,7 @@
         <script src="resources/app/templates/usersView/consultUser.js"></script>
         <script src="resources/app/templates/usersView/modifyUser.js"></script>
         <script src="resources/app/templates/usersView/consultVendor.js"></script>
+         <script src="resources/app/templates/usersView/modifyProfile.js"></script>
 
         <script src= "resources/app/templates/eventsView/createEvent.js"></script>
         <script src= "resources/app/templates/eventsView/eventsList.js"></script>
@@ -133,5 +134,6 @@
         <script src="resources/app/templates/salesReportView/salesReport.js"></script>
 
         <script src="resources/app/templates/toDoListView/myToDoList.js"></script>
-
+		<script src="resources/app/templates/reportsView/bankReport.js"></script>
+		<script src="resources/scripts/services/dbService.js"></script>
         

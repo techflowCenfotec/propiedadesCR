@@ -7,7 +7,7 @@
 				height=100>
 		</div>
 
-		<!-- readonly="isReadonly" -->
+	
 
 		<div class="profile-info">
 			<p>{{user.userName}} {{user.firstName}} {{user.lastName}}</p>
@@ -90,7 +90,7 @@
 						uib-collapse="isCreated" data-ng-click=saveUserComment()>{{btnRateAndComment}}</button>
 				</div>
 				<div class="col-xs-6">
-					<button type="submit" ui-wave class="btn btn-danger btn-w-md"
+					<button type="submit" ui-wave class="btn btn-danger btn-w-md" data-ng-show="hasRateAndComment"
 						uib-collapse="isCreated" data-ng-click=cancel()>Cancelar</button>
 				</div>
 			</div>

@@ -9,7 +9,8 @@
 					'$http',
 					'$rootScope',
 					'$mdDialog',
-					function($scope, $http, $rootScope, $mdDialog) {
+					'$state',
+					function($scope, $http, $rootScope, $mdDialog,$state) {
 
 						$scope.user = {};
 						$scope.rate = 0;
@@ -51,6 +52,9 @@
 			$http.post('rest/protected/userRating/saveRating',request).success(function(){
 				
 			})
+		}
+		$scope.editProfile = function(user){
+			$state.go("templates/usersView/modifyProfile");
 		}
 	}]);
 })();

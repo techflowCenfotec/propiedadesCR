@@ -33,6 +33,9 @@ public class RatingController {
 		TpropertyReview nRating = ratingService.addRating(pRating);
 		
 		rating.setIdReview(nRating.getIdReview());
+		rating.setComment(nRating.getComment());
+		rating.setAverageRating(nRating.getAverageRating());
+		
 		
 		if (nRating != null) {
 			response.setCode(200);
@@ -51,6 +54,8 @@ public class RatingController {
 		TpropertyReview nRating = ratingService.editRating(pRating);
 		
 		rating.setIdReview(nRating.getIdReview());
+		rating.setComment(nRating.getComment());
+		rating.setAverageRating(nRating.getAverageRating());
 		
 		if (nRating != null) {
 			response.setCode(200);

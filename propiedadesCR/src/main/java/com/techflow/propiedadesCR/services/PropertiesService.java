@@ -126,7 +126,12 @@ public class PropertiesService implements PropertiesServiceInterface {
 	private List<ReviewPropertyPOJO> reviewsDtos(List<TpropertyReview> pRatings) {
 		List<ReviewPropertyPOJO> ratingsList = new ArrayList<ReviewPropertyPOJO>();
 		pRatings.stream().forEach(u -> {
-			
+			ReviewPropertyPOJO dtoReview = new ReviewPropertyPOJO();
+			UserPOJO user = new UserPOJO();
+			BeanUtils.copyProperties(u, dtoReview);
+			BeanUtils.copyProperties(u.getTuser(),user);
+			dtoReview.setTuser(user);
+			ratingsList.add(dtoReview);
 		});
 		return ratingsList;
 	}
@@ -233,6 +238,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 			BeanUtils.copyProperties(property, nProperty);
 			BeanUtils.copyProperties(property.getTdistrict(), nProperty.getTdistrict());
 			BeanUtils.copyProperties(property.getTpropertyType(), nProperty.getTpropertyType());
+			nProperty.setTpropertyReviews(reviewsDtos(property.getTpropertyReviews()));
 		}
 		
 		return nProperty;

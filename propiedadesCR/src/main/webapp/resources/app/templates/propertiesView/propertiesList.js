@@ -11,6 +11,7 @@
 		 $scope.favorites = [];
 		 $scope.isCollapsed = false;
 		 $scope.selectedBenefits = [];
+		 $scope.selected =[];
 		
 		$scope.init = function() {
 			var active = 1,
@@ -102,6 +103,10 @@
 			$scope.keyword = _.pluck($scope.selectedBenefits, 'benefit').join(', ');
 
 		});
+		$scope.exists = function(){
+			console.log('gg');
+			return true;
+		}
 		
 		$scope.keywords = function(post) {
 			var isMatch = false;

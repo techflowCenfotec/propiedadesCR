@@ -16,6 +16,7 @@
 			,"templates/usersView/modifyUser"
 			,"templates/usersView/vendorsList"
 			,"templates/usersView/consultVendor"
+			,"templates/usersView/modifyProfile"
 			
 			,"templates/eventsView/createEvent"
 			,"templates/eventsView/eventsList"
@@ -37,7 +38,7 @@
 			,"templates/propertiesView/propertiesCreate"
 
 			,"templates/salesReportView/salesReport"			
-			,"templates/errosView/500"
+			,"templates/errorsView/500"
 
 			,"templates/guidesView/createGuide"
 			,"templates/guidesView/consultGuide"
@@ -52,6 +53,7 @@
 			,"templates/propertyFavoritesView/favoritesList"
 
 			,"templates/toDoListView/myToDoList"
+			,"templates/reportsView/bankReport"
 
 
 		], 

@@ -62,7 +62,8 @@
                                 }
                                 };
                     $http.post(link,request).success(function(response) {
-                        $scope.currentPageList = response.toDoList;
+                        $scope.rolesList = response.toDoList;
+                        init();
                        
                     });
         });

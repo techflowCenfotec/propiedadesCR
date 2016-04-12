@@ -93,6 +93,7 @@
 
 								$scope.saveUserComment = function() {
 									var request;
+									
 									if ($scope.hasRateAndComment != true) {
 										request = {
 											"pageNumber" : 0,
@@ -102,7 +103,8 @@
 											"searchColumn" : "string",
 											"searchTerm" : "",
 											"rating" : {
-												"averageRating" : $scope.userRate
+												"averageRating" : $scope.userRate,
+												"comment" : $scope.form.comment
 											},
 											"idClient" : localStorage
 													.getItem('idUser'),
@@ -114,6 +116,7 @@
 														request)
 												.success(
 														function(response) {
+															
 															$scope.userRating = response.userRating;
 															$scope.form.comment = response.userRating.comment;
 															$scope.userComment = response.userRating.comment;
@@ -137,7 +140,7 @@
 											"rating" : {
 												"idReview" : $scope.userRating.idReview,
 												"averageRating" : $scope.userRate,
-												"comment" :$scope.form.comment,
+												"comment" :$,
 											},
 											"idClient" : localStorage
 													.getItem('idUser'),
