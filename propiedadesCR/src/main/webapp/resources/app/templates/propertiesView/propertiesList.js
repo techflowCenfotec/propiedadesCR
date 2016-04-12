@@ -105,30 +105,24 @@
 		};
 		
 		$scope.addToFavorites = function(pIdProperty) {
-			var db = 'rest/protected/users/addToFavorite/' + $rootScope.userLogged.idUser;
-			var dbRemove = 'rest/protected/users/removeFavorite/' + $rootScope.userLogged.idUser;
+			var idx = $scope.favorites.indexOf(pIdProperty);
+			var db = 'rest/protected/users/updateFavorite/' + $rootScope.userLogged.idUser;
 			var data = {
 				"idProperty": pIdProperty	
 			};
 			
 			$http.get('rest/protected/users/getUserById/' + $rootScope.userLogged.idUser)
 			.success(function(response) {
-				if ($scope.favorites.length == 0) {
-					$http.put(db, data)
-					.success(function(response) {});
-				} else {
-					for (var i = 0; i < $scope.favorites.length; i++) {
-						if ($scope.favorites[i] == pIdProperty) {
-							$http.put(dbRemove, data)
-							.success(function(response) {
-							});
-						} else {
-							$http.put(db, data)
-							.success(function(response) {
-							});
-						}
-					}
-				}
+				
+				if (idx == -1) $scope.favorites.push(pIdProperty);
+				else $scope.favorites.splice(idx, 1);
+				
+				$http.put(db, data)
+				.success(function(response) {
+					
+				});
+				
+				
 			});
 		}
 	}

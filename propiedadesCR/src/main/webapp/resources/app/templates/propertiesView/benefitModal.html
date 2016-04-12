@@ -2,10 +2,25 @@
 	<h3>Características de la Propiedad</h3>
 </div>
 <div class="modal-body">
-	<span ng-repeat="item in benefitsList" class="list-unstyled">
-		<md-checkbox type="checkbox" ng-model="item.checked"><span>{{ item.benefit }}</span>
-		</md-checkbox>
-	</span>
+	<div class="col-md-12">
+		<div class="panel panel-default">
+			<div class="panel-body">
+				<table class="table no-margin">
+					<thead>
+						<tr>
+							<th>Características</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="item in benefitsList">
+							<td><md-checkbox type="checkbox" ng-model="item.checked">
+								<span>{{ item.benefit }}</span> </md-checkbox></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
 <div class="modal-footer">
 	<button ui-wave class="btn btn-flat btn-default" ng-click="cancel()">Cancelar</button>

@@ -10,9 +10,20 @@
 		
 		$scope.init = function() {
 			var active = 1,
-				sold = 0;
+				sold = 0,
+				request = {
+		            "pageNumber": 0,
+		            "pageSize": 0,
+		            "direction": "",
+		            "sortBy": [""],
+		            "searchColumn": "string",
+		            "searchTerm": "",
+		            "property": {
+		              "tuser":{"idUser":$rootScope.userLogged.idUser}
+		            }
+		        };
 			
-			$http.get('rest/protected/properties/getAll')
+			$http.post('rest/protected/properties/getPropertiesByIdVendor', request)
 			.success(function(response) {
 				for (var i = 0; i < response.properties.length; i++) {
 					if(response.properties[i].active == active && response.properties[i].isSold == sold) 

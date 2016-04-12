@@ -51,6 +51,7 @@
                         <div class="card-action">
                             <a data-ng-click="viewProperty(property.idProperty)" href="#/templates/propertiesView/propertyView" class="btn btn-default">Detalles</a>
                             <a data-ng-click="compareProperty(property.idProperty)" ng-class="selected(property.idProperty)">Comparar</a>
+                            <span class="badge badge-danger"><i class="fa fa-heart"></i> {{property.tusers.length}}</span>
                         </div>
                     </div>
                 </div>
