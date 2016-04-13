@@ -6,7 +6,6 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.codehaus.jackson.map.util.BeanUtil;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +20,6 @@ import com.techflow.propiedadesCR.pojo.ToDoListPOJO;
 import com.techflow.propiedadesCR.pojo.UserPOJO;
 import com.techflow.propiedadesCR.repositories.ToDoListItemsRepository;
 import com.techflow.propiedadesCR.repositories.ToDoListRepository;
-
-import antlr.StringUtils;
 /**
 * <h1>Servicio de los to-do list de los usuarios</h1>
 * Esta clase es la encargada de ofrecer los servicios
