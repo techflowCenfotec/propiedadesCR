@@ -17,7 +17,6 @@
 
 
         function showWelcomeDialog(){
- 
             $mdDialog.show({
             controller: DialogController,
             templateUrl: 'dialog1.tmpl.html',
@@ -47,9 +46,7 @@
                 });
         };
 
-        function showPropertiesDialog(ev) {
-            $scope.principalMenu = true;
-            $scope.propertiesMenu = false;
+        function showBankToDo(ev) {
             $mdDialog.show({
             controller: DialogController,
             templateUrl: 'dialog3.tmpl.html',
@@ -64,10 +61,7 @@
                 });
         };
 
-
-        function showEvents(ev) {
-            $scope.propertiesMenu = true;
-            $scope.eventsMenu = false;
+        function showPropertiesQA(ev) {
             $mdDialog.show({
             controller: DialogController,
             templateUrl: 'dialog4.tmpl.html',
@@ -82,10 +76,7 @@
                 });
         };
 
-
-        function showPrincipalQA(ev) {
-            $scope.eventsMenu = true;
-       
+        function showConsultGuides(ev) {
             $mdDialog.show({
             controller: DialogController,
             templateUrl: 'dialog5.tmpl.html',
@@ -100,27 +91,137 @@
                 });
         };
 
-            $http.get(link).success(function(response) {
-                console.log("hey");
-                userResponse = response.user;
-                $scope.userId = userResponse.idUser;
-                var userLink = 'rest/protected/users/notFirstTime'
-                var userRequest = {
-                  "pageNumber": 0,
-                  "pageSize": 0,
-                  "direction": "string",
-                  "sortBy": [
-                    "string"
-                  ],
-                  "searchColumn": "string",
-                  "searchTerm": "string",
-                  "user": {"idUser":$scope.userId}
-                };
-                console.log(userRequest);
-                $http.post(userLink, userRequest).success(function(response) {
-                    console.log(response);
+        function showUserToDo(ev) {
+            $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'dialog6.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:false
+            })
+                .then(function(answer) {
+                $scope.status = 'You said the information was "' + answer + '".';
+                }, function() {
+                $scope.status = 'You cancelled the dialog.';
                 });
+        };
+//************************************************************************
+        function showPropertiesDialog(ev) {
+            $scope.principalMenu = true;
+            $scope.propertiesMenu = false;
+            $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'dialog7.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:false
+            })
+                .then(function(answer) {
+                $scope.status = 'You said the information was "' + answer + '".';
+                }, function() {
+                $scope.status = 'You cancelled the dialog.';
+                });
+        };
+
+        function showPropertiesList(ev) {
+            $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'dialog8.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:false
+            })
+                .then(function(answer) {
+                $scope.status = 'You said the information was "' + answer + '".';
+                }, function() {
+                $scope.status = 'You cancelled the dialog.';
+                });
+        };
+
+        function showFaveProperties(ev) {
+            $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'dialog9.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:false
+            })
+                .then(function(answer) {
+                $scope.status = 'You said the information was "' + answer + '".';
+                }, function() {
+                $scope.status = 'You cancelled the dialog.';
+                });
+        };
+//***************************************************************************************************
+
+        function showEvents(ev) {
+            $scope.propertiesMenu = true;
+            $scope.eventsMenu = false;
+            $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'dialog10.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:false
+            })
+                .then(function(answer) {
+                $scope.status = 'You said the information was "' + answer + '".';
+                }, function() {
+                $scope.status = 'You cancelled the dialog.';
+                });
+        };
+
+        function showListEvents(ev) {
+            $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'dialog11.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:false
+            })
+                .then(function(answer) {
+                $scope.status = 'You said the information was "' + answer + '".';
+                }, function() {
+                $scope.status = 'You cancelled the dialog.';
+                });
+        };
+
+//*********************************************************
+
+        function showSellers(ev) {
+            $mdDialog.show({
+            controller: DialogController,
+            templateUrl: 'dialog12.tmpl.html',
+            parent: angular.element(document.body),
+            targetEvent: ev,
+            clickOutsideToClose:false
+            })
+                .then(function(answer) {
+                $scope.status = 'You said the information was "' + answer + '".';
+                }, function() {
+                $scope.status = 'You cancelled the dialog.';
+                });
+        };
+
+        $http.get(link).success(function(response) {
+            userResponse = response.user;
+            $scope.userId = userResponse.idUser;
+            var userLink = 'rest/protected/users/notFirstTime'
+            var userRequest = {
+                "pageNumber": 0,
+                "pageSize": 0,
+                "direction": "string",
+                "sortBy": [
+                "string"
+                ],
+                "searchColumn": "string",
+                "searchTerm": "string",
+                "user": {"idUser":$scope.userId}
+            };
+            $http.post(userLink, userRequest).success(function(response) {
+            });
         });
+
         function DialogController($scope, $mdDialog, $location, $timeout) {
         
             $scope.hide = function() {
@@ -134,26 +235,60 @@
                 showPrincipal(ev);
             };
 
-
             $scope.closePrincPDialog = function(ev) {
+                $mdDialog.hide();
+                showBankToDo(ev);
+            };
+
+            $scope.closesBankToDo = function(ev) {
+                $mdDialog.hide();
+                showPropertiesQA(ev);
+            };
+            $scope.closePropertiesQA = function(ev) {
+                $mdDialog.hide();
+                showConsultGuides(ev);
+            };
+            $scope.closeConsultGuides = function(ev) {
+                $mdDialog.hide();
+                showUserToDo(ev);
+            };
+            $scope.closeUserToDo = function(ev) {
                 $mdDialog.hide();
                 showPropertiesDialog(ev);
             };
 
+
             $scope.closePropDialog = function(ev) {
+                $mdDialog.hide();
+                showPropertiesList(ev);
+            };
+
+            $scope.closePropertiesList = function(ev) {
+                $mdDialog.hide();
+                showFaveProperties(ev);
+            };
+
+            $scope.closeFaveProperties = function(ev) {
                 $mdDialog.hide();
                 showEvents(ev);
             };
 
+
             $scope.closeEvents = function(ev) {
                 $mdDialog.hide();
-                showPrincipalQA(ev);
+                showListEvents(ev);
             };
-            $scope.closePrincioalQA = function(ev) {
+
+            $scope.closeListEvents = function(ev) {
+                $mdDialog.hide();
+                showSellers(ev);
+            };
+
+            $scope.closeSellers = function(ev) {
                 $mdDialog.hide();
                 $timeout(function(){
-                $location.path("/propiedadesCR/app#/home"); 
-            }, 2000);
+                    $location.path("/propiedadesCR/app#/home"); 
+                }, 2000);
             };
         };
 
