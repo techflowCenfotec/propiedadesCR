@@ -1,0 +1,441 @@
+#preguntas
+
+
+
+INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (1,'Cuál es su necesidad?', 1);
+
+
+INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (2,'Que desea?', 1);
+
+INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (3,'Tiene hijos?', 1);
+
+INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (4,'Piensa tener hijos a futuro?', 1);
+
+INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (5,'Cuantos planea tener (tiene)?', 1);
+
+INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (6,'Tiene mascota(s)?', 1);
+
+INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (7,'De que tamaño son?', 1);
+
+INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (8,'Cuenta con vehículo(s)?', 1);
+
+INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (9,'Cuantos vehículos posee?', 1);
+
+INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (10,'Con que frecuencia los usa?', 1);
+
+INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (11,'Desea zonas verdes?', 1);
+
+INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (12,'Le gusta salir de compras?', 1);
+
+INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (13,'Frecuenta centros médicos?', 1);
+
+INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (14,'Pasa mucho tiempo en su casa?', 1);
+
+INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (15,'Desea fuentes alternas de energía?', 1);
+
+
+INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (16,'Cuál es su necesidad?', 1);
+
+#opciones
+
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('1', 'Alquilar', 'Alquiler', '2');
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('1', 'Comprar', 'Venta', '2');
+
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('2', 'Casa', 'Casa', '3');
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('2', 'Apartamento', 'Apartamento', '3');
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('2', 'Condominio', 'Condominio', '3');
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('2', 'Residencial', 'Residencial', '3');
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('2', 'Estudio', 'Estudio', '3');
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('2', 'Habitacion', 'Habitacion', '3');
+
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('3', 'Si', null, '5');
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('3', 'No', null, '4');
+
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('4', 'Si', null, '5');
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('4', 'No', '1 Habitación', '6');
+
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('5', '1', '2 Habitaciones', '6');
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('5', '2', '3 Habitaciones', '6');
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('5', '3 o más', '4 o más Habitaciones', '6');
+
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('6', 'Si', null, '7');
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('6', 'No', null, '8');
+
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('7', 'Grande(s)', 'Patio', '8');
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('7', 'Pequeño(s)', null, '8');
+
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('8', 'Si', null, '9');
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('8', 'No', null, '11');
+
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('9', '1', '1 Garaje', '10');
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('9', '2', '2 Garajes', '10');
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('9', '3 o más', '3 o más Garajes', '10');
+
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('10', 'Ocasionalmente', null, '11');
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('10', 'Diario', 'Gasolinera', '11');
+
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('11', 'Si', 'Jardín', '12');
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('11', 'No necesariamente', null, '12');
+
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('12', 'Si', 'Centros comerciales', '13');
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('12', 'No soy fanático', null, '13');
+
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('13', 'Si', 'Centros médicos', null);
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('13', 'No', null, null);
+
+
+#beneficios
+
+
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Patio');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Jardín');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('1 Garaje');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('2 Garajes');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('3 o más Garajes');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('2 Habitaciones');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('3 Habitaciones');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('4 o más Habitaciones');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Centro comercial');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Centros de salud');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Escuela');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Supermercados');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Pulperia');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Universidad');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Gasolinera');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Guarderia');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Energia alterna');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Tanque de agua');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('1 baño');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('2 baños');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('3 o más baños');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('medio baño');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Piscina');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Bodega');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Atico');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Sala de eventos');
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Playa');
+
+
+
+
+
+
+# Roles
+
+
+INSERT INTO `propiedades_sch`.`tRoles` (`id_role`, `rol_name`, `active`) VALUES ('1', 'Administrador', 1);
+
+INSERT INTO `propiedades_sch`.`tRoles` (`id_role`, `rol_name`, `active`) VALUES ('2', 'Comprador', 1);
+
+INSERT INTO `propiedades_sch`.`tRoles` (`id_role`, `rol_name`, `active`) VALUES ('3', 'Vendedor', 1);
+
+
+# Provincias 
+
+
+INSERT INTO `propiedades_sch`.`tProvinces` (`id_province`, `code`, `name`) VALUES ('1', '1', 'San José');
+
+INSERT INTO `propiedades_sch`.`tProvinces` (`id_province`, `code`, `name`) VALUES ('2', '2', 'Alajuela');
+
+INSERT INTO `propiedades_sch`.`tProvinces` (`id_province`, `code`, `name`) VALUES ('3', '3', 'Cartago');
+
+INSERT INTO `propiedades_sch`.`tProvinces` (`id_province`, `code`, `name`) VALUES ('4', '4', 'Heredia');
+
+INSERT INTO `propiedades_sch`.`tProvinces` (`id_province`, `code`, `name`) VALUES ('5', '5', 'Guanacaste');
+
+INSERT INTO `propiedades_sch`.`tProvinces` (`id_province`, `code`, `name`) VALUES ('6', '6', 'Puntarenas');
+
+INSERT INTO `propiedades_sch`.`tProvinces` (`id_province`, `code`, `name`) VALUES ('7', '7', 'Limón');
+
+
+
+# Cantones
+
+
+INSERT INTO `propiedades_sch`.`tCounties` (`id_county`, `id_province`, `code`, `name`) VALUES ('1', '1', '109', 'Santa Ana');
+
+INSERT INTO `propiedades_sch`.`tCounties` (`id_county`, `id_province`, `code`, `name`) VALUES ('2', '1', '111', 'Coronado');
+
+INSERT INTO `propiedades_sch`.`tCounties` (`id_county`, `id_province`, `code`, `name`) VALUES ('3', '1', '113', 'Tibas');
+
+INSERT INTO `propiedades_sch`.`tCounties` (`id_county`, `id_province`, `code`, `name`) VALUES ('4', '2', '202', 'San Ramón');
+
+INSERT INTO `propiedades_sch`.`tCounties` (`id_county`, `id_province`, `code`, `name`) VALUES ('5', '2', '205', 'Atenas');
+
+INSERT INTO `propiedades_sch`.`tCounties` (`id_county`, `id_province`, `code`, `name`) VALUES ('6', '3', '302', 'Paraíso');
+
+INSERT INTO `propiedades_sch`.`tCounties` (`id_county`, `id_province`, `code`, `name`) VALUES ('7', '3', '305', 'Turrialba');
+
+INSERT INTO `propiedades_sch`.`tCounties` (`id_county`, `id_province`, `code`, `name`) VALUES ('8', '4', '403', 'Santo Domingo');
+
+INSERT INTO `propiedades_sch`.`tCounties` (`id_county`, `id_province`, `code`, `name`) VALUES ('9', '4', '404', 'Santa Barbara');
+
+
+
+#Distritos
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('1', '1', '10901', 'Santa Ana');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('2', '1', '10902', 'Salitral');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('3', '2', '11101', 'San Isidro');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('4', '2', '11102', 'San Rafael');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('5', '3', '11301', 'San Juan');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('6', '3', '11302', 'Cinco Esquinas');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('7', '4', '20201', 'San Ramón');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('8', '4', '20202', 'Santiago');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('9', '5', '20501', 'Atenas');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('10', '5', '20502', 'Jesús');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('11', '6', '30201', 'Paraíso');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('12', '6', '30202', 'Santiago');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('13', '7', '30501', 'Turrialba');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('14', '7', '30502', 'La Suiza');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('15', '8', '40301', 'Santo Domingo');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('16', '8', '40302', 'San Vicente');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('17', '9', '40401', 'Santa Bárbara');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('18', '9', '40402', 'San Pedro');
+
+
+#permisos
+
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (1,'Principal');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (2,'Agregar lista de tareas');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (3,'Ver lista de tareas');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (4,'Administrar lista de tareas');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (5,'Propiedades personalizadas');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (6,'Agregar guía de banco');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (7,'Consultar guías');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (8,'Ver tareas de usuario');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (9,'Propiedades');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (10,'Registrar propiedad');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (11,'Mis propiedades');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (12,'Ver propiedades');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (13,'Mis propiedades favoritas');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (14,'Eventos');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (15,'Agregar evento');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (16,'Ver eventos');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (17,'Lista de eventos');
+
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (18,'Ver Vendedores');
+
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (19,'Usuarios');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (20,'Agregar usuarios');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (21,'Ver usuarios');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (22,'Ver roles');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (23,'Agregar roles');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (24,'Reportes');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (25,'Reporte de ventas');
+
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (26,'Reporte bancario');
+
+
+
+
+#Permisos roles
+
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('1', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('2', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('3', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('4', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('5', '1');
+
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('6', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('7', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('8', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('9', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('10', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('11', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('12', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('13', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('14', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('15', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('16', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('17', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('18', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('19', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('20', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('21', '1');
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('22', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('23', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('24', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('25', '1');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('26', '1');
+
+
+
+#Bancos
+
+
+INSERT INTO `propiedades_sch`.`tBank` (`id_bank`, `name`) VALUES ('1', 'Banco de Costa Rica');
+
+INSERT INTO `propiedades_sch`.`tBank` (`id_bank`, `name`) VALUES ('2', 'Banco Nacional');
+
+INSERT INTO `propiedades_sch`.`tBank` (`id_bank`, `name`) VALUES ('3', 'BAC San José');
+
+
+
+
+#Tipos de propiedad
+
+
+INSERT INTO `propiedades_sch`.`tProperty_type` (`id_property_type`, `name`) VALUES ('1', 'Casa');
+INSERT INTO `propiedades_sch`.`tProperty_type` (`id_property_type`, `name`) VALUES ('2', 'Apartamento');
+
+INSERT INTO `propiedades_sch`.`tProperty_type` (`id_property_type`, `name`) VALUES ('3', 'Condiminio');
+
+INSERT INTO `propiedades_sch`.`tProperty_type` (`id_property_type`, `name`) VALUES ('4', 'Residencial');
+
+INSERT INTO `propiedades_sch`.`tProperty_type` (`id_property_type`, `name`) VALUES ('5', 'Estudio');
+INSERT INTO `propiedades_sch`.`tProperty_type` (`id_property_type`, `name`) VALUES ('6', 'Habitación');
+
+
+
+
+#Admin
+
+INSERT INTO `propiedades_sch`.`tUsers` (`id_user`, `user_name`, `first_name`, `last_name`, `phone_1`, `phone_2`, `email`, `password`, `id_rol`, `active`, `first_time`, `user_image`, `gender`, `birthday`) VALUES (1, 'Jorge', 'Arguedas', 'Arrieta', '22697168', '84099459', 'jorge.argds@gmail.com', '5cb01845ff62171cd4ade0e46bdcfc5f', 1, 1, 1, 'http://localhost:8080/propiedadesCR/resources/images/default_user_image.png', 'Hombre', '1993-10-28');
