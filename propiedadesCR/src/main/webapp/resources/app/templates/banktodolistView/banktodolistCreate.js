@@ -3,7 +3,7 @@
 
 	angular.module("app.banktodolistCreate",[])
 
-	.controller('banktodolistCreateController',['$scope','$http','$timeout','$location',function($scope,$http,$timeout,$location){
+	.controller('banktodolistCreateController',['$scope','$http','$timeout','$location','dbService',function($scope,$http,$timeout,$location,dbService){
 	    var original;
 	    var modify = false;
 	    $scope.onError = false;
@@ -13,12 +13,15 @@
 	        description: '',
 	        bank: ''
 	    };
+	    
+	    dbService.checkDB();
 
  		var idToDoList = localStorage.getItem('idToDoList');
-
-
+ 		
+ 		
 	    if(idToDoList!='undefined'){
 	    	////todo list
+	    	
 		    var toDoListLink = 'rest/protected/banktodolist/getById';
 		    var toDoListrequest = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","bankToDoList": {"idtBank_to_do_list": idToDoList }};
 		    		 
@@ -60,7 +63,7 @@
 	        return $scope.form_banktodolistCreate.$valid && !angular.equals($scope.form, original);
 	    };    
 	   	$scope.submitForm = function(event) {
-		  
+	   	    dbService.checkDB();
 		    $scope.saveBankToDoList(event);
 	        $scope.showInfoOnSubmit = true;
 	        $timeout(function() {

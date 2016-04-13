@@ -3,7 +3,7 @@
 
 	angular.module("app.banktodolistAdminItems",[])
 
-	.controller('banktodolistAdminItemsController',['$scope','$http','$timeout',function($scope,$http,$timeout){
+	.controller('banktodolistAdminItemsController',['$scope','$http','$timeout','dbService',function($scope,$http,$timeout,dbService){
 		var original;
 		var idToDoList = localStorage.getItem('idToDoList');
 	    $scope.onError = false;
@@ -13,6 +13,8 @@
 	    };
 	    $scope.items = [];
 
+	    dbService.checkDB();
+	    
 	    ////todo list
 	    var toDoListLink = 'rest/protected/banktodolist/getById';
 	    var toDoListrequest = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","bankToDoList": {"idtBank_to_do_list": idToDoList }};
@@ -52,7 +54,7 @@
 	    };
 	    
 	    $scope.saveItem = function(Item){
-	    	
+	    	 dbService.checkDB();
 	    	if(this.form_banktodolistAdminItems.$valid){
 				var addItemLink = 'rest/protected/banktodolist/createItem';
 				var addItemRequest = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","bankToDoListItem": {"name": $scope.form.name,"tbankToDoList": {"idtBank_to_do_list":idToDoList}}};
@@ -70,6 +72,7 @@
 	    };
 
 	     $scope.deleteItem = function(id){
+	    	 dbService.checkDB();
         	  var data = $.param({
                   id: id,
               });
