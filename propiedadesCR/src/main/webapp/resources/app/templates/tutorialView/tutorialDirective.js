@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('app.tutorial', [])
-    .controller('tutorialController',['$scope','$mdDialog','$http','$location','$timeout',function($scope,$mdDialog,$http,$location,$timeout){
+    .controller('tutorialController',['$scope','$mdDialog','$http','$location','$timeout','dbService',function($scope,$mdDialog,$http,$location,$timeout,dbService){
 
     $scope.status = '  ';
     $scope.showMenu = false;
@@ -25,7 +25,7 @@
     
 
     var userResponse = {};
-
+    dbService.checkDB();
 
         function showWelcomeDialog(){
             console.log($scope.$broadcast("dropDown"));
@@ -251,8 +251,9 @@
                 $scope.status = 'You cancelled the dialog.';
                 });
         };
-
+        
         $http.get(link).success(function(response) {
+        	dbService.checkDB();
             userResponse = response.user;
             $scope.userId = userResponse.idUser;
             var userLink = 'rest/protected/users/notFirstTime'

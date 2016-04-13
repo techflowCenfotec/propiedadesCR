@@ -3,20 +3,10 @@
 
 	angular.module("app.vendorsList",[])
 
-	.controller("VendorsListController",["$scope","$http",function($scope,$http) {
+	.controller("VendorsListController",["$scope","$http",'dbService',function($scope,$http,dbService) {
 		
 		
-		validate();
-		
-		function validate(){
-		$http.get("rest/protected/database/checkDB").success(function(data){
-			if(data.code!==200){
-				var path = "#/templates/errorsView/500";
-				
-    			window.location.href = path;
-			}
-		});
-		}
+	
 		
 		$scope.vendors = [];
 
@@ -32,7 +22,7 @@
 				  "searchTerm": "string",
 				  "user": {}
 				}
-		
+		dbService.checkDB();
 		$http.post(link,request).success(function(response) {
 			   validate();	
 			   $scope.vendors= response.users;
