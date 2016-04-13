@@ -76,6 +76,7 @@ function() {
 		,"app.favoritesManagment"
 		,"app.bankReport"
 		,"DataBaseService"
+		,"app.matchedTagsDirective"
 		
 		//3rd Party Modules
 		,"ngMaterial"
@@ -112,7 +113,7 @@ function(){
 			year:2016,
 			layout:"wide",
 			menu:"vertical",
-			isMenuCollapsed:!0,
+			isMenuCollapsed:!1,
 			fixedHeader:!0,
 			fixedSidebar:!0,
 			pageTransition:e[0],

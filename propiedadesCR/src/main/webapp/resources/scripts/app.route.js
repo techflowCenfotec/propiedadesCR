@@ -9,7 +9,6 @@
 		n = [
 			"templates/propertiesView/propertiesList"
 			,"templates/reportsView/reports"
-						
 			,"templates/usersView/usersList"
 			,"templates/usersView/createUser"			
 			,"templates/usersView/consultUser"
@@ -24,7 +23,6 @@
 			,"templates/eventsView/eventConsult"
 			,"templates/eventsView/eventListAdmin"
 			,"templates/eventsView/modifyEvent"
-
 			,"templates/roleView/roles"
 			,"templates/roleView/addRoles"
 			,"templates/banktodolistView/banktodolistList"
@@ -32,11 +30,9 @@
 			,"templates/banktodolistView/banktodolistCreate"
 			,"templates/banktodolistView/banktodolistAdminItems"
 			,"templates/banktodolistView/banktodolistModify"
-
 			,"templates/testView/testFlow"
 			,"templates/testView/matchedPropertiesList"
 			,"templates/propertiesView/propertiesCreate"
-
 			,"templates/salesReportView/salesReport"			
 			,"templates/errorsView/500"
 

@@ -1,0 +1,23 @@
+ <div class="modal-header">
+    <h3>Resultado de búsqueda</h3>
+</div>
+<div class="modal-body">
+
+    <div layout="column" ng-cloak class="md-inline-form">
+    <div layout-padding>
+        <div class="panel-body text-center">
+        <h3>Criterios de búsqueda</h3>
+        <br>
+        <div ng-repeat="tag in userTags">
+           <button ng-class="setColor($index)" ui-wave="" tooltip-placement="right" uib-tooltip="{{setMessage($index)}}" tooltip-append-to-body="true"><span class="ink wave-animate" style="height: 160px; width: 160px; top: -70.4px; left: 0.4375px;"></span>{{tag.result}}</button>
+        </div>
+        </div>
+        <div class="alert alert-info">Este es el resultado de la búsqueda inteligente, los resultados se obtuvieron de acuerdo a las respuestas dadas en el cuestionario</div>
+    </div>
+</div>
+
+
+</div>
+<div class="modal-footer">
+    <button ui-wave class="btn btn-flat btn-primary" ng-click="cancel()">OK</button>
+</div>
