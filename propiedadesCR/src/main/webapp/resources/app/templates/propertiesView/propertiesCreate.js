@@ -17,7 +17,7 @@
 		//Benefits tags info
 		self.selectedItem = null;
 		self.searchText = null;
-		$scope.markerLoc = null;
+		$scope.markerLoc = '[9.928003, -84.094463]';
 		//scope variables
 		$scope.requestObject = {
 				selectedSaleType: '',
@@ -32,10 +32,6 @@
 		$scope.onError = false;
 		$scope.selected = [];
 		//Map variables and default values
-		$scope.map = {
-				"center": '[9.926989, -84.091201]',
-				"zoom": 11
-		};
 
 		original = angular.copy($scope.requestObject);
 		
@@ -85,7 +81,7 @@
 		
 		// Google maps
 		NgMap.getMap().then(function(map) {
-			self.markerPos =  function() {
+			$scope.markerPos =  function() {
 				$scope.markerLoc = '['+ map.markers[0].position.lat() + ',' + map.markers[0].position.lng() +']';
 			};
 		});
