@@ -72,16 +72,34 @@ public class PropertiesService implements PropertiesServiceInterface {
 			PropertyPOJO dto = new PropertyPOJO();
 			BeanUtils.copyProperties(u, dto);
 			BeanUtils.copyProperties(u.getTdistrict(), dto.getTdistrict());
-			BeanUtils.copyProperties(u.getTpropertyType(), dto.getTpropertyType());
+			BeanUtils.copyProperties(u.getTpropertyType(), dto.getTpropertyType());	
 			dto.getTpropertyType().setTproperties(null);
 			dto.setTbenefits(benefitsDtos(u.getTbenefits()));
 			dto.setTpropertyImages(imagesDtos(u.getTpropertyImages()));
 			dto.setTpropertyReviews(null);
+			dto.setTusers(generateUsersDtos(u.getTusers()));
 			dto.setTuser(null);
-			dto.setTusers(null);
+			
 			uiProperties.add(dto);
 		});
 		return uiProperties;
+	}
+	
+	/**
+	  * Toma los usuarios de los ejbs y los convierte en POJOs.
+	  * 
+	  * @param pUsers Lista de ejb de usuarios. No debe ser nula.
+	  * @return usersPOJOS Todas las entidades de tipo POJO.
+	  */
+	private List<UserPOJO> generateUsersDtos(List<Tuser> pUsers) {
+		List<UserPOJO> usersPOJOS = new ArrayList<UserPOJO>();
+		pUsers.stream().forEach(u -> {
+			UserPOJO user = new UserPOJO();
+			BeanUtils.copyProperties(u, user);
+			user.setTproperties2(null);	
+			usersPOJOS.add(user);
+		});
+		return usersPOJOS;
 	}
 	
 	/**
