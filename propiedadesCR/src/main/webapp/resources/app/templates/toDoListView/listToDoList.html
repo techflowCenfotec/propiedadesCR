@@ -29,27 +29,26 @@
               <th><div class="th"> 
                     Nombre
                     <span class="fa fa-angle-up"
-                    data-ng-click=" order('roleName') "
-                    data-ng-class="{active: row == 'rolName'}"></span>
+                    data-ng-click=" order('name') "
+                    data-ng-class="{active: row == 'name'}"></span>
                     <span class="fa fa-angle-down"
-                    data-ng-click=" order('-rolName') "
-                    data-ng-class="{active: row == '-rolName'}"></span>
+                    data-ng-click=" order('-name') "
+                    data-ng-class="{active: row == '-name'}"></span>
                     </div></th>     
                                   <th><div class="th"> 
                     Descripción
                     <span class="fa fa-angle-up"
-                    data-ng-click=" order('roleName') "
-                    data-ng-class="{active: row == 'rolName'}"></span>
+                    data-ng-click=" order('description') "
+                    data-ng-class="{active: row == 'description'}"></span>
                     <span class="fa fa-angle-down"
-                    data-ng-click=" order('-rolName') "
-                    data-ng-class="{active: row == '-rolName'}"></span>
+                    data-ng-click=" order('-description') "
+                    data-ng-class="{active: row == '-description'}"></span>
                     </div></th> 
-
-                    <th><div class="th">
-                        Eliminar
-                    </div></th>
                     <th><div class="th">
                         Consultar
+                    </div></th>
+                    <th><div class="th">
+                        Eliminar
                     </div></th>
                 </tr>
             </thead>
@@ -58,10 +57,10 @@
 
                 <td>{{rolesList.name}}</td>
                 <td>{{rolesList.description}}</td>
-                <td>
-                    <button class="btn btn-danger" 
-                    data-ng-click="deleteRole(rolesList.idToDoList, rolesList.name,  rolesList.description)">Eliminar</button></td>
+                
             		<td><button class="btn btn-info" data-ng-click="consultToDoList(rolesList.idToDoList)">Seleccionar</button></td>
+            		<td><button class="btn btn-danger" 
+                    data-ng-click="deleteRole(rolesList.idToDoList, rolesList.name,  rolesList.description)">Eliminar</button></td>
             </tr>
             </tbody>
         </table> 

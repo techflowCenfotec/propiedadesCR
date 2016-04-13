@@ -2,29 +2,19 @@
 	"use strict";
 
 	angular.module("app.login",[])
-	.controller('LoginController', ['$scope','$http','$rootScope', function($scope,$http,$rootScope) {
+	.controller('LoginController', ['$scope','$http','$rootScope','dbService', function($scope,$http,$rootScope,dbService) {
 			
 		$scope.incorrect = true;
 		$scope.user ={
-			userName:'',
-			password:'',
+			userName:'jorge.argds@gmail.com',
+			password:'Food9leak',
 		}
 		
-		validate();
-		
-		function validate(){
-		$http.get("rest/local/checkDB").success(function(data){
-			if(data.code!==200){
-				var path = "#/templates/errorsView/500";
-				
-    			window.location.href = path;
-			}
-		});
-		}
+		dbService.localCheckDB();
 		
 		$scope.checkUser = function(){
 			
-			validate();
+			
 			$http.post('rest/login/checkUser',$scope.user).success(function (loginResponse){
 				var path = "";
 				if(loginResponse.code ==200){

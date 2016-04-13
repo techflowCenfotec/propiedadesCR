@@ -134,13 +134,13 @@
 									phone1 : $scope.form.phone1,
 									phone2 : $scope.form.phone2,
 									email : $scope.form.email,
-									password : $scope.user.password,
+									password : '',
 									birthday : $scope.dateWithFormat,
 									gender : $scope.form.gender,
 								},
 								file : file,
 							}).success(function(data, status, headers, config) {
-
+								
 								$scope.showInfoOnSubmit= true;
 								  $timeout(function(){
 							          $scope.showInfoOnSubmit = false;

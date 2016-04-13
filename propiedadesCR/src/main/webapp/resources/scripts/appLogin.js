@@ -35,6 +35,7 @@ function() {
 		,"app.forgotPassword"
 		,"app.resetPassword"
 		,"app.createUserLogin"
+		,"DataBaseService"
 
 		//3rd Party Modules
 		,"ngMaterial"

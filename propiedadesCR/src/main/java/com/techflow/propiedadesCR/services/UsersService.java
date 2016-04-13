@@ -189,7 +189,9 @@ public class UsersService implements UsersServiceInterface{
 		Trole role = new Trole();
 		role.setIdRole(pidRole);
 		BeanUtils.copyProperties(puserRequest.getUser(), user);
+		user.setPassword(usersRepository.findOne(puserRequest.getUser().getIdUser()).getPassword());
 		user.setTrole(role);
+	
 		Tuser nuser = usersRepository.save(user);
 		
 		return nuser;

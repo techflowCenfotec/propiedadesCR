@@ -15,8 +15,11 @@
 			,"templates/usersView/modifyUser"
 			,"templates/usersView/vendorsList"
 			,"templates/usersView/consultVendor"
+			,"templates/usersView/modifyProfile"
+			
 			,"templates/eventsView/createEvent"
 			,"templates/eventsView/eventsList"
+			
 			,"templates/eventsView/eventConsult"
 			,"templates/eventsView/eventListAdmin"
 			,"templates/eventsView/modifyEvent"
@@ -31,7 +34,8 @@
 			,"templates/testView/matchedPropertiesList"
 			,"templates/propertiesView/propertiesCreate"
 			,"templates/salesReportView/salesReport"			
-			,"templates/errosView/500"
+			,"templates/errorsView/500"
+
 			,"templates/guidesView/createGuide"
 			,"templates/guidesView/consultGuide"
 			,"templates/propertiesView/propertyView"
@@ -41,12 +45,13 @@
 			,"templates/permissionsViews/adminView"
 			,"templates/roleView/editRoles"
 			,"templates/toDoListView/listToDoList"
-			,"templates/tutorialView/tutorialView"
-
 			,"templates/propertyFavoritesView/favoritesList"
-			,"templates/toDoListView/myToDoList"
-		], 
 
+			,"templates/toDoListView/myToDoList"
+			,"templates/reportsView/bankReport"
+
+
+		], 
 
 		t = function($urlRouterProvider) {
 
@@ -58,8 +63,8 @@
 				url: t,
 				templateUrl: "resources/app/" + $urlRouterProvider + ".html"
 			},
+			
 			$stateProvider.state($urlRouterProvider,n),$stateProvider
-
 		},
 			
 		n.forEach(function($stateProvider) {
@@ -96,7 +101,7 @@
 		    },
 		    complete: function(response) {
 		    	if(response.status === 401){
-		    		window.location.href = "/cenfoteca/login#/";
+		    		window.location.href = "/login";
 				}
 		    }
 		});

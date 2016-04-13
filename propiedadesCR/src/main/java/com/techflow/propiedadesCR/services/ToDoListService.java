@@ -1,6 +1,7 @@
 package com.techflow.propiedadesCR.services;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -16,6 +17,7 @@ import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.pojo.BankToDoListPOJO;
 import com.techflow.propiedadesCR.pojo.ToDoListItemPOJO;
 import com.techflow.propiedadesCR.pojo.ToDoListPOJO;
+import com.techflow.propiedadesCR.pojo.UserPOJO;
 import com.techflow.propiedadesCR.repositories.ToDoListItemsRepository;
 import com.techflow.propiedadesCR.repositories.ToDoListRepository;
 /**
@@ -53,7 +55,7 @@ public class ToDoListService implements ToDoListServiceInterface{
 		List<TToDoList> correctToDos= new ArrayList<TToDoList>();
 		toDoList.stream().forEach(toDo -> {
 			TToDoList tToDoList = toDoListRepository.findOne(toDo.getIdToDoList());
-			if(toDo.getActive()==1 && toDo.getTuser().getIdUser() == ptoDoListRequest.getToDoList().getTuser().getIdUser()){
+			if(toDo.getTuser().getIdUser() == ptoDoListRequest.getToDoList().getTuser().getIdUser()){
 				correctToDos.add(tToDoList);
 			}
 		});
@@ -69,8 +71,10 @@ public class ToDoListService implements ToDoListServiceInterface{
 		List<ToDoListPOJO> uiToDoList = new ArrayList<ToDoListPOJO>();
 		ptoDoListList.stream().forEach(u -> {
 			ToDoListPOJO dto = new ToDoListPOJO();
+			UserPOJO user = new UserPOJO();
 			BeanUtils.copyProperties(u, dto);
-			dto.setTuser(null);
+			BeanUtils.copyProperties(u.getTuser(), user);
+			dto.setTuser(user);
 			dto.setTitems(null);
 			uiToDoList.add(dto);
 		});
@@ -107,24 +111,32 @@ public class ToDoListService implements ToDoListServiceInterface{
 	 */
 	@Override
 	@Transactional
-	public TToDoList deleteToDoList(ToDoListRequest ptoDoListRequest){
+	public boolean deleteToDoList(ToDoListRequest ptoDoListRequest){
 		TToDoList tTodoList = toDoListRepository.findOne(ptoDoListRequest.getToDoList().getIdToDoList());
-		tTodoList.setActive((byte) 0);
-		TToDoList newToDo = toDoListRepository.save(tTodoList);
-		return newToDo;
+		tTodoList.getTitems().stream().forEach(u ->{
+			toDoListItemsRepository.delete(u);
+		});
+		toDoListRepository.delete(tTodoList);
+		return true;
+		
 	}
-
+	/**
+	 * Este método crear lógicamente un toDoList en el sistema para un usuario.
+	 *
+	 * @param ptoDoListRequest Contiene información del usuario y el to-do list.
+     * 
+	 * @return newToDo Devuelve el toDoList creado para el usuario con sus nuevos datos.
+	 */
 	@Override
 	public TToDoList generateUserToDoList(BankToDoListPOJO pbankToDoList, int pidUser) {
-		
-		//ArrayList<Titem> items = new ArrayList<Titem>();
-		
+				
 		TToDoList newToDoList = new TToDoList();
-		newToDoList.setName(pbankToDoList.getName());
+		pbankToDoList.setTbank(pbankToDoList.getTbank());
+		newToDoList.setName(pbankToDoList.getTbank().getName());
 		newToDoList.setDescription(pbankToDoList.getDescription());
 		newToDoList.setTuser(new Tuser());
 		newToDoList.getTuser().setIdUser(pidUser);
-		newToDoList.setActive((byte) 1);
+		newToDoList.setIsDone((byte) 0);	
 		
 		TToDoList newToDo = toDoListRepository.save(newToDoList);
 		
@@ -135,16 +147,22 @@ public class ToDoListService implements ToDoListServiceInterface{
 				newItem.setTToDoList(newToDoList);
 				newItem.getTToDoList().setIdToDoList(newToDo.getIdToDoList());
 				toDoListItemsRepository.save(newItem);
-				//items.add(newItem);
+			
 			});
 		}
 		
-		//newToDoList.setTitems(items);
-		
-		
+
 		return newToDo;
 	}
-
+	/**
+	 * Este método trae los items que le pertenecen a un usuario en especifico.
+	 *
+	 * @param ptoDoListRequest Contiene información del objeto
+     * 
+	 * @return pojo Devuelve el pojo de los items del to do list perteneciente a un usuario.
+	 *
+	 *@author  Maria Jesus Gutierrez Calvo 
+	 */
 	@Override
 	 public ToDoListPOJO getMyItems(ToDoListRequest ptoDoListRequest) {
 	  TToDoList todoList = new TToDoList();
@@ -158,21 +176,30 @@ public class ToDoListService implements ToDoListServiceInterface{
 	 private void generateItemsDtos(List<Titem> pItems,ToDoListPOJO pojo) {
 	  List<ToDoListItemPOJO> uiRatings = new ArrayList<ToDoListItemPOJO>();
 	  pItems.stream().forEach(u -> {
-	   ToDoListItemPOJO itemPOJO = new ToDoListItemPOJO();
-	   BeanUtils.copyProperties(u, itemPOJO);
+	  ToDoListItemPOJO itemPOJO = new ToDoListItemPOJO();
+	  BeanUtils.copyProperties(u, itemPOJO);
 	   
 	   uiRatings.add(itemPOJO);
 	  });
 	  pojo.setTitems(uiRatings);
 	 }
-
+	 /**
+		 * Este método guarda los items del to do list que le pertenecen a un usuario en especifico.
+		 *
+		 * @param ptoDoListRequest Contiene información del objeto a guardar
+	     * 
+		 * @return pojo Devuelve el pojo de los items del to do list.
+		 *
+		 *@author  Maria Jesus Gutierrez Calvo
+		 */
 	@Override
 	public ToDoListPOJO saveMyItems(ToDoListRequest ptoDoListRequest) {
-		TToDoList toDoList = new TToDoList();
+		TToDoList toDoList = toDoListRepository.findOne(ptoDoListRequest.getToDoList().getIdToDoList());
 		ToDoListPOJO pojo = new ToDoListPOJO();
-		 List<ToDoListItemPOJO> uiItems = new ArrayList<ToDoListItemPOJO>();
-		BeanUtils.copyProperties(ptoDoListRequest.getToDoList(), pojo);
-		BeanUtils.copyProperties(ptoDoListRequest.getToDoList(), toDoList);
+		boolean isDone = true;
+		List<ToDoListItemPOJO> uiItems = new ArrayList<ToDoListItemPOJO>();
+		BeanUtils.copyProperties(toDoList, pojo);
+		
 		ptoDoListRequest.getToDoList().getTitems().stream().forEach(u ->{
 			Titem item = new Titem();
 			ToDoListItemPOJO itemPOJO = new ToDoListItemPOJO();
@@ -181,8 +208,46 @@ public class ToDoListService implements ToDoListServiceInterface{
 			BeanUtils.copyProperties(toDoListItemsRepository.save(item),itemPOJO);
 			uiItems.add(itemPOJO);
 		});
+		for (ToDoListItemPOJO toDoListItemPOJO : uiItems) {
+			if(toDoListItemPOJO.getDone()==0){
+				isDone = false;
+			}
+		}
+		
+		if(isDone){
+			toDoList.setIsDone((byte)1);
+			toDoList.setRegistrationDate(new Date());
+			
+		}else{
+			toDoList.setIsDone((byte)0);
+			toDoList.setRegistrationDate(null);
+		}
+		toDoListRepository.save(toDoList);	
+		
 		pojo.setTitems(uiItems);
 		return pojo;
+	}
+
+	/**
+	  * Este metodo sirve para cargar todos los to-do list que esten completos del sistema
+	  * @param ptoDoListRequest Este parametro es la peticion del usuario
+	  * que se usa para acceder al metodo deseado
+	  * @return response Resultado con la lista de to-do list del sistema
+	  */
+	@Override
+	public List<ToDoListPOJO> getAllFinished() {
+		List<TToDoList> toDoList = toDoListRepository.findAll();
+		List<TToDoList> correctToDos= new ArrayList<TToDoList>();
+		toDoList.stream().forEach(toDo -> {
+			TToDoList tToDoList = toDoListRepository.findOne(toDo.getIdToDoList());
+			if(toDo.getIsDone()==1
+					&& toDo.getRegistrationDate().toString().substring(0, 4).equals(new Date().toString().substring(24, 28))){
+				
+				correctToDos.add(tToDoList);
+			}
+		});
+		return generateToDoListDtos(correctToDos);
+		
 	}
 
 

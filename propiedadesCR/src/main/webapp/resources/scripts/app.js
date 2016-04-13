@@ -52,6 +52,7 @@ function() {
 		,"app.modifyUser"
 		,"app.vendorsList"
 		,"app.consultVendor"
+		,"app.modifyProfile"
 	
 		,"app.salesReport"		
 		,"app.banktodolist"
@@ -73,6 +74,8 @@ function() {
 		,"app.editRoles"
 		,"app.usertoDoList"
 		,"app.favoritesManagment"
+		,"app.bankReport"
+		,"DataBaseService"
 		,"app.tutorial"
 		,"app.matchedTagsDirective"
 		

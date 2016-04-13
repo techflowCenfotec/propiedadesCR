@@ -10,9 +10,20 @@
 		
 		$scope.init = function() {
 			var active = 1,
-				sold = 0;
+				sold = 0,
+				request = {
+		            "pageNumber": 0,
+		            "pageSize": 0,
+		            "direction": "",
+		            "sortBy": [""],
+		            "searchColumn": "string",
+		            "searchTerm": "",
+		            "property": {
+		              "tuser":{"idUser":$rootScope.userLogged.idUser}
+		            }
+		        };
 			
-			$http.get('rest/protected/properties/getAll')
+			$http.post('rest/protected/properties/getPropertiesByIdVendor', request)
 			.success(function(response) {
 				for (var i = 0; i < response.properties.length; i++) {
 					if(response.properties[i].active == active && response.properties[i].isSold == sold) 
@@ -45,6 +56,38 @@
 			 });
 			
 		}
+        $scope.showConfirm = function(id) {
+        	$scope.status = '  ';
+            var confirm = $mdDialog.confirm()
+                        .title('¿Desea cambiar el estado de la propiedad a vendido?')
+                        .content('Una vez cambiado el estado a vendido la propiedad no podrá ser obtenida de nuevo')
+                        .ariaLabel('Lucky day')
+                        .ok('Si')
+                        .cancel('No');
+            $mdDialog.show(confirm).then(function() {
+                $scope.status = 'Propiedad vendida.';
+                var soldRequest = {
+                		  "pageNumber": 0,
+                		  "pageSize": 0,
+                		  "direction": "string",
+                		  "sortBy": [
+                		    "string"
+                		  ],
+                		  "searchColumn": "string",
+                		  "searchTerm": "string",
+                		  "property": {"idProperty":id},
+                		  "idBenefits": [
+                		    0
+                		  ]
+                }
+                		
+                $http.post('rest/protected/properties/setPropertySold',soldRequest).success(function(){
+                	$scope.propertiesList = _.without($scope.propertiesList,_.findWhere($scope.propertiesList,{idProperty:id}));
+                });
+            }, function() {
+                $scope.status = 'Propiedad no vendida.';
+            });
+        };
 	}
 	
 })();

@@ -11,11 +11,13 @@ public interface ToDoListServiceInterface {
 	List<ToDoListPOJO> getAll(ToDoListRequest ptoDoListRequest);
 
 	TToDoList saveToDoList(ToDoListRequest ptoDoListRequest);
-	TToDoList deleteToDoList(ToDoListRequest ptoDoListRequest);
+	boolean deleteToDoList(ToDoListRequest ptoDoListRequest);
 
 	TToDoList generateUserToDoList(BankToDoListPOJO bankToDoList, int idUser);
 
 	ToDoListPOJO getMyItems(ToDoListRequest ptoDoListRequest);
 
 	ToDoListPOJO saveMyItems(ToDoListRequest ptoDoListRequest);
+
+	List<ToDoListPOJO> getAllFinished();
 }

@@ -21,6 +21,7 @@
 		$scope.selectedDistrict = {};
 		$scope.selectedCounty = {};
 		$scope.selectedProvince = {};
+		$scope.propertyReview = {};
 		$scope.requestObject = {
 				province: '',
 				county: '',
@@ -40,10 +41,13 @@
 		$scope.myCommentTextArea = false;
 		$scope.myCommentP = true;
 		$scope.userRate = 0;
+		$scope.average = 0; // Property Average
+		$scope.clients = {};
+		$scope.userComment = '';
 		$scope.form = {
 				comment : '',
 		}
-        var ratingId = 0;
+		$scope.ratingId = 0;
         var userLoggerId= 0;
         var userLoggedObj = {};
         var userToNotify = {};
@@ -66,9 +70,11 @@
 		
 		$http.post(linkById, ratingRequest)
         .success(function(response) {
+        	$scope.propertyReview = response.rating;
          	$scope.rate = response.rating.averageRating;
+         	$scope.userComment = response.rating.comment;
          	$scope.isReadonly = false;
-         	ratingId = response.rating.idReview;
+         	$scope.ratingId = response.rating.idReview;
          
          	$scope.hasRateAndComment = true;
          	$scope.btnRateAndComment = 'Modificar';
@@ -92,10 +98,13 @@
 			var bd = 'rest/protected/properties/getByPropertyId/' +localStorage.getItem('idProperty');
 			$http.get(bd)
 			.success(function(response) {
+			
 				$scope.property = response.property;
 				$scope.imageList = response.property.tpropertyImages;
 				$scope.selectedType = $scope.property.tpropertyType;
 				$scope.selectedDistrict = $scope.property.tdistrict;
+				averagePropertyRating($scope.property.tpropertyReviews);
+				getClientsList($scope.property.tpropertyReviews);
 				$scope.userToNotify = response.tusers;
 				
 				$http.get('rest/protected/districts/getDistrcitById/'+ 
@@ -189,7 +198,11 @@
 								'rest/protected/rating/addRating',
 								request)
 						.success(
-								function() {
+								function(reviewResponse) {
+									$scope.form.comment = reviewResponse.rating.comment;
+									$scope.userComment = reviewResponse.rating.comment;
+									$scope.ratingId = reviewResponse.rating.idReview;
+									$scope.propertyReview = reviewResponse.rating;
 									$scope.hasRateAndComment = true;
 						         	$scope.btnRateAndComment = 'Modificar';
 									$scope.showInfo = true;
@@ -208,7 +221,7 @@
 						"searchColumn" : "string",
 						"searchTerm" : "",
 						"rating" : {
-							"idReview":ratingId,
+							"idReview":$scope.ratingId,
 							"averageRating" : $scope.userRate,
 							"tuser":{"idUser":$rootScope.userLogged.idUser},
 							"tproperty":{"idProperty":getIdProperty},
@@ -223,17 +236,26 @@
 								'rest/protected/rating/editRating',
 								request)
 						.success(
-								function() {
-								
+								function(reviewResponse) {
+									
+									$scope.form.comment = reviewResponse.rating.comment;
+									$scope.userComment = reviewResponse.rating.comment;
+									$scope.propertyReview = reviewResponse.rating;
 									$scope.showInfo = true;
 									$timeout(
 											function() {
+												
 												$scope.showInfo = false;
 												disable();
 											}, 1000);
 								});
 			}
 				disable();
+		}
+		$scope.cancelar = function (){
+			
+			$scope.rate =$scope.propertyReview.averageRating;
+			disable();
 		}
 		
         $scope.reportVendor = function(){
@@ -272,6 +294,31 @@
 			$scope.edit = true;
 			$scope.myReadOnly = false;
 		};
+		
+		function averagePropertyRating(ratings) {
+			var rating = 0;
+			for (var i = 0; i < ratings.length; i++) {
+				rating += ratings[i].averageRating;
+			}
+			$scope.average = rating / i;
+		}
+		function getClientsList(clients){
+			$scope.clients = clients;
+			
+			
+			for(var index in $scope.clients){
+				if($scope.clients[index]!=undefined){
+					if($scope.clients[index].tuser.idUser===$rootScope.userLogged.idUser)
+						$scope.clients =  _.without($scope.clients, $scope.clients[index]);	
+				}
+			}
+			for(var index in $scope.clients){
+				if($scope.clients[index]!=undefined){
+					if($scope.clients[index].tuser.active===0)
+						$scope.clients =  _.without($scope.clients, $scope.clients[index]);	
+				}
+			}
+		}
 	};
 	
 	function ModalDemoCtrl($scope, $uibModal, $log) {
@@ -304,7 +351,7 @@
         };    
 	}
 
-    function LocalModalInstanceCtrl($scope, $uibModalInstance,price) {
+    	function LocalModalInstanceCtrl($scope,$uibModalInstance,price){
         var original;
 
         $scope.calculatorForm = { 	
@@ -330,6 +377,7 @@
 	    $scope.calculate = function() {
 			calculateTotals();
 	    };
+	    
 
 	    function calculateTotals(){
 	    			/* variables:*/
@@ -370,6 +418,7 @@
 			$scope.calculatorForm.netFamilyIncome = coin+(familyIncome = Math.round(familyIncome * 100) / 100);
 			
 	    }
-    };
+    	}
+    
 })();
 

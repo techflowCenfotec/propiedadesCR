@@ -152,6 +152,7 @@
 				for(var i = 0; i < self.tags.length; i++){
 					idBenefits.push(self.tags[i].idBenefit);
 				}
+				
 				var request = {
 						"pageNumber": 0,
 						"pageSize": 0,
@@ -171,12 +172,11 @@
 						},
 						"idBenefits": idBenefits
 				};
-
+				
 				$http.post('rest/protected/properties/create', request)
 					.success(function(res) {
 						for(var i = 0; i < $files.length; i++) {
 							var file = $files[i].file;
-							
 							$scope.upload = $upload.upload({
 								url: 'rest/protected/properties/createImage',
 								data: {

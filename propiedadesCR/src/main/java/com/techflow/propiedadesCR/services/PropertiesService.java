@@ -23,6 +23,7 @@ import com.techflow.propiedadesCR.pojo.PropertyImagePOJO;
 import com.techflow.propiedadesCR.pojo.PropertyPOJO;
 import com.techflow.propiedadesCR.pojo.PropertyTypePOJO;
 import com.techflow.propiedadesCR.pojo.ReviewPropertyPOJO;
+import com.techflow.propiedadesCR.pojo.UserPOJO;
 import com.techflow.propiedadesCR.repositories.BenefitsRepository;
 import com.techflow.propiedadesCR.repositories.PropertiesRepository;
 
@@ -72,10 +73,11 @@ public class PropertiesService implements PropertiesServiceInterface {
 			BeanUtils.copyProperties(u, dto);
 			BeanUtils.copyProperties(u.getTdistrict(), dto.getTdistrict());
 			BeanUtils.copyProperties(u.getTpropertyType(), dto.getTpropertyType());
+			dto.getTpropertyType().setTproperties(null);
 			dto.setTbenefits(benefitsDtos(u.getTbenefits()));
-			dto.setTuser(null);
 			dto.setTpropertyImages(imagesDtos(u.getTpropertyImages()));
 			dto.setTpropertyReviews(null);
+			dto.setTuser(null);
 			dto.setTusers(null);
 			uiProperties.add(dto);
 		});
@@ -123,7 +125,12 @@ public class PropertiesService implements PropertiesServiceInterface {
 	private List<ReviewPropertyPOJO> reviewsDtos(List<TpropertyReview> pRatings) {
 		List<ReviewPropertyPOJO> ratingsList = new ArrayList<ReviewPropertyPOJO>();
 		pRatings.stream().forEach(u -> {
-			
+			ReviewPropertyPOJO dtoReview = new ReviewPropertyPOJO();
+			UserPOJO user = new UserPOJO();
+			BeanUtils.copyProperties(u, dtoReview);
+			BeanUtils.copyProperties(u.getTuser(),user);
+			dtoReview.setTuser(user);
+			ratingsList.add(dtoReview);
 		});
 		return ratingsList;
 	}
@@ -145,7 +152,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 		TpropertyType pType = new TpropertyType();
 		Tuser user = new Tuser();
 		Tproperty nProperty = new Tproperty();
-		if(pProperty.getIdBenefits() !=null){
+		if(pProperty.getIdBenefits() != null){
 			for (int i = 0; i < pProperty.getIdBenefits().size(); i++) {
 				Tbenefit benefit = new Tbenefit();
 				benefit.setIdBenefit(pProperty.getIdBenefits().get(i).intValue());
@@ -198,6 +205,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 		nProperty.setPrice(pProperty.getProperty().getPrice());
 		nProperty.setSquareMeters(pProperty.getProperty().getSquareMeters());
 		nProperty.setCoordinates(pProperty.getProperty().getCoordinates());
+		nProperty.setSaleType(pProperty.getProperty().getSaleType());
 		
 		Tproperty resProperty =  propertiesRepository.save(nProperty);
 		return resProperty;
@@ -230,6 +238,10 @@ public class PropertiesService implements PropertiesServiceInterface {
 			BeanUtils.copyProperties(property, nProperty);
 			BeanUtils.copyProperties(property.getTdistrict(), nProperty.getTdistrict());
 			BeanUtils.copyProperties(property.getTpropertyType(), nProperty.getTpropertyType());
+			nProperty.setTpropertyReviews(reviewsDtos(property.getTpropertyReviews()));
+			nProperty.getTpropertyType().setTproperties(null);
+			nProperty.setTuser(null);
+			nProperty.setTusers(null);
 		}
 		
 		return nProperty;
@@ -278,7 +290,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 	  */
 	public Tproperty setPropertyOnSale(PropertiesRequest ppropertyRequest){
 		Tproperty property = propertiesRepository.findByIdProperty(ppropertyRequest.getProperty().getIdProperty());
-		property.setOfferPecentage(ppropertyRequest.getProperty().getOfferPecentage());
+		property.setOfferPercentage(ppropertyRequest.getProperty().getOfferPercentage());
 		Tproperty newProperty = propertiesRepository.save(property);
 		return newProperty;
 	}
@@ -302,8 +314,9 @@ public class PropertiesService implements PropertiesServiceInterface {
 	  * @return response Retorna la propiedad que se esta modificando.
 	  */
 	@Override
-	public PropertyPOJO propertyViews(int pIdProperty,PropertiesRequest request) {
-		Tproperty property = getPropertyById(pIdProperty);
+	public PropertyPOJO propertyViews(PropertiesRequest request) {
+		Tproperty property = new Tproperty();
+		property = getPropertyById(request.getProperty().getIdProperty());
 		PropertyPOJO newProperty = new PropertyPOJO();
 		newProperty.setTdistrict(new DistrictPOJO());
 		newProperty.setTpropertyType(new PropertyTypePOJO());
@@ -311,12 +324,17 @@ public class PropertiesService implements PropertiesServiceInterface {
 		BeanUtils.copyProperties(property, newProperty);
 		BeanUtils.copyProperties(property.getTdistrict(),newProperty.getTdistrict());
 		BeanUtils.copyProperties(property.getTpropertyType(),newProperty.getTpropertyType());
+		
 		newProperty.setTbenefits(benefitsDtos(property.getTbenefits()));
-		newProperty.setTuser(null);
+		newProperty.setTuser(request.getProperty().getTuser());
+		newProperty.setTpropertyImages(imagesDtos(property.getTpropertyImages()));
+		newProperty.setTpropertyType(new PropertyTypePOJO());
+		BeanUtils.copyProperties(property.getTpropertyType(),newProperty.getTpropertyType());
+		
 		newProperty.setTusers(null);
 		newProperty.setTpropertyReviews(null);
 		request.setProperty(newProperty);
-		saveProperty(request);
+		updateProperty(request,newProperty.getIdProperty());
 		return newProperty;
 	}
 
