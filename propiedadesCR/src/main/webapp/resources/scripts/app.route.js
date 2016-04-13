@@ -49,6 +49,7 @@
 
 			,"templates/toDoListView/myToDoList"
 			,"templates/reportsView/bankReport"
+			,"templates/tutorialView/tutorialView"
 
 
 		], 

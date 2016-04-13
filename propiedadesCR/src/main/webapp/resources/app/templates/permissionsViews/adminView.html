@@ -13,22 +13,22 @@
                 <ul ng-show="addTodolist">
                     <li><a md-button aria-label="meanu" href="#/templates/banktodolistView/banktodolistCreate"><i class="fa fa-circle color-success"></i><span>Agregar Lista de Tareas</span></a></li>
                 </ul>
-                <ul ng-show="viewTodolist">
+                <ul ng-show="viewTodolist" style="{{makeShow()}}">
                     <li><a md-button aria-label="meanu" href="#/templates/banktodolistView/banktodolistList"><i class="fa fa-circle color-success"></i><span>Ver Lista de Tareas</span></a></li>
                 </ul>
                 <ul ng-show="adminTodolist">
                     <li><a md-button aria-label="meanu" href="#/templates/banktodolistView/banktodolistAdminList"><i class="fa fa-circle color-success"></i><span>Administrar Lista de Tareas</span></a></li>
                 </ul>
-                <ul ng-show="test">
+                <ul ng-show="test" style="{{makeShow()}}">
                     <li><a md-button aria-label="meanu" href="#/templates/testView/testFlow"><i class="fa fa-circle color-success"></i><span>Propiedades Personalizadas</span></a></li>
                 </ul>
                 <ul ng-show="addGuide">
                     <li><a md-button aria-label="meanu" href="#/templates/guidesView/createGuide"><i class="fa fa-circle color-success"></i><span>Agregar Guía de Banco</span></a></li>
                 </ul>
-                <ul ng-show="viewGuides">
+                <ul ng-show="viewGuides" style="{{makeShow()}}">
                     <li><a md-button aria-label="meanu" href="#/templates/guidesView/consultGuide"><i class="fa fa-circle color-success"></i><span>Consultar guias</span></a></li>
                 </ul>
-                <ul ng-show="viewMyTodolist">
+                <ul ng-show="viewMyTodolist" style="{{makeShow()}}">
                     <li><a md-button aria-label="meanu" href="#/templates/toDoListView/listToDoList"><i class="fa fa-circle color-success"></i><span>Ver Tareas de Usuario</span></a></li>
                 </ul>
                  
@@ -45,11 +45,11 @@
                     <li><a md-button aria-label="meanu" href="#/templates/propertiesView/myPropertiesView"><i class="fa fa-circle color-success"></i><span>Mis propiedades</span></a></li>
                 </ul>
                 
-                <ul ng-show="viewProperties">
+                <ul ng-show="viewProperties" style="{{propShow()}}">
                     <li><a md-button aria-label="meanu" href="#/templates/propertiesView/propertiesList"><i class="fa fa-circle color-success"></i><span>Ver Propiedades</span></a></li>
                 </ul>
 
-                <ul ng-show="viewFavorites">
+                <ul ng-show="viewFavorites" style="{{propShow()}}">
                     <li><a md-button aria-label="meanu" href="#/templates/propertyFavoritesView/favoritesList"><i class="fa fa-circle color-success"></i><span>Mis propiedades favoritas</span></a></li>
                 </ul>
             </li>
@@ -60,7 +60,7 @@
                 <ul ng-show="addEvent">
                     <li><a md-button aria-label="meanu" href="#/templates/eventsView/createEvent"><i class="fa fa-circle color-success"></i><span>Agregar Evento</span></a></li>
                 </ul>
-                <ul ng-show="viewEvents">
+                <ul ng-show="viewEvents"  style="{{eventShow()}}">
                     <li><a md-button aria-label="meanu" href="#/templates/eventsView/eventListAdmin"><i class="fa fa-circle color-success"></i><span>Ver Eventos</span></a></li>
                 </ul>
 
@@ -68,8 +68,9 @@
                     <li><a md-button aria-label="meanu" href="#/templates/eventsView/eventsList"><i class="fa fa-circle color-success"></i><span>Lista de Eventos</span></a></li>
                 </ul>
             </li>
-              <li ng-show="sellersView"><a md-button aria-label="meanu"  href="#/templates/usersView/vendorsList"><i class="zmdi zmdi-accounts-alt"></i>
-                <span>Ver vendedores</span></a>
+
+            <li ng-show="sellersView"><a md-button aria-label="meanu"  href="#/templates/usersView/vendorsList"><i class="zmdi zmdi-accounts-alt"></i>
+                <span>Ver vendedores</span></a></li>
 
             <li ng-show="showUsers"><a md-button aria-label="meanu" href="#"><i class="zmdi zmdi-account"></i>
                 <span>Usuarios</span></a>

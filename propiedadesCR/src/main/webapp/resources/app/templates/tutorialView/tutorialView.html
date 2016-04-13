@@ -1,18 +1,45 @@
 <style>
+.divController{
+   height: 602px;
+   background-color:white;
+}
 .divRow{
     
     padding-top: 23px;
     height: 51px;
+    opacity:107px;
 }
 
-.divProperties{
-    padding-top: 33px;
-}
 
 .rowContainer{
     padding-top: 20px;
     padding-left: 1px;
     
+}
+
+.rowPrincipalContainer{
+    padding-top: 77px;
+    padding-left: 1px;
+    
+}
+.divPrincipalRows{
+    
+    padding-top: 5px;
+    height: 51px;
+     opacity:107px;
+}
+
+.divSideRowUp{
+    
+    padding-top: 9px;
+    height: 47px;
+    opacity:107px;
+}
+.divSideRowDown{
+    
+    padding-bottom: 1px;
+    height: 51px;
+    opacity:107px;
 }
 
 .arrows {
@@ -26,10 +53,10 @@
 }
 </style>
 
-<div class="page page-table" data-ng-controller="tutorialController" >
+<div class="page page-table divController" data-ng-controller="tutorialController" >
     <div class="col-xs-12">
 
-        <div class = "col-xs-2 rowContainer">
+        <div ng-show = "showMenu" class = "col-xs-2 rowContainer">
             <div class = "row divRow">
                 <div ng-hide = "principalMenu">
                     <i class="fa fa-chevron-left fa-2x animated arrows shake"></i></div></div>
@@ -40,11 +67,26 @@
                 <div ng-hide = "eventsMenu">
                     <i class="fa fa-chevron-left fa-2x animated arrows shake"></i></div></div>
             <div  class = "row divRow">
-                <div ng-hide = "true    ">
+                <div ng-hide = "vendorsMenu">
+                    <i class="fa fa-chevron-left fa-2x animated arrows shake"></i></div></div>
+        </div>
+
+        <div ng-show = "showPrincipalMenu" class = "col-xs-2 rowPrincipalContainer">
+            <div class = "row divSideRowUp">
+                <div ng-hide = "bankToDo">
+                    <i class="fa fa-chevron-left fa-2x animated arrows shake focus-trap"></i></div></div>
+            <div  class = "row divPrincipalRows" >
+                <div ng-hide = "propertiesQuestions">
+                    <i class="fa fa-chevron-left fa-2x animated arrows shake"></i></div></div>
+            <div  class = "row divPrincipalRows">
+                <div ng-hide = "consultGuides">
+                    <i class="fa fa-chevron-left fa-2x animated arrows shake"></i></div></div>
+            <div  class = "row divSideRowDown">
+                <div ng-hide = "userToDo">
                     <i class="fa fa-chevron-left fa-2x animated arrows shake"></i></div></div>
         </div>
         <div class = "col-xs-10">
-            <section class="panel panle-default">
+            <section>
                 <div class="dialog-demo-content" layout="row" layout-wrap="" layout-margin=""></div>
 <!--************************************************BIENVENIDA***********************************************************-->
                 <script type="text/ng-template" id="dialog1.tmpl.html">
@@ -68,14 +110,13 @@
             </script>
 <!--************************************************MENU PRINCIPAL***********************************************************-->
             <script type="text/ng-template" id="dialog2.tmpl.html">
-                <md-dialog aria-label="Lucky day" class=" animated fadeInLeft" ng-cloak>
+                <md-dialog aria-label="Lucky day" class=" animated fadeInDownBig" ng-cloak>
                     <form>
 
                         <md-dialog-content>
                             <div class="md-dialog-content">
                                 <h2>Menú Principal</h2>
                                 <p style= "font-size:15px">Para interactuar con las propiedades puede acceder al menú principal</p>
-                                <p style= "font-size:15px">Para continuar presione siguiente</p>
                             </div>
                         </md-dialog-content>
 
@@ -83,20 +124,21 @@
                             <span flex></span>
                             <md-button  class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closePrincPDialog($event)" style="margin-right:20px;">
                                 <span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
-                                <span class = "ng-scope">Seguiente</span></md-button></md-button>
+                                <span class = "ng-scope">Siguiente</span></md-button></md-button>
                          </md-dialog-actions>
                     </form>
                 </md-dialog>
             </script>
 <!--************************************************TAREAS DEL BANCO*********************************************************-->
             <script type="text/ng-template" id="dialog3.tmpl.html">
-                <md-dialog aria-label="Lucky day" class=" animated fadeInLeft" ng-cloak>
+                <md-dialog aria-label="Lucky day" class=" animated fadeInRightBig" ng-cloak>
                     <form>
 
                         <md-dialog-content>
                             <div class="md-dialog-content">
-                                <h2>Tareas del Banco</h2>
-                                <p style= "font-size:15px">Esta función permite ver la lista de requisitos que solicita cada entidad bancaria para un trámite en específico</p>
+                                <h2>Tareas del Banco</h2>  
+                                <p style= "font-size:15px">Esta función permite ver la lista de requisitos que solicita cada</p>
+                                 <p>entidad bancaria para un trámite en específico</p>
                             </div>
                         </md-dialog-content>
 
@@ -104,28 +146,28 @@
                             <span flex></span>
                             <md-button  class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closesBankToDo($event)" style="margin-right:20px;">
                                 <span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
-                                <span class = "ng-scope">Seguiente</span></md-button></md-button>
+                                <span class = "ng-scope">Siguiente</span></md-button></md-button>
                          </md-dialog-actions>
                     </form>
                 </md-dialog>
             </script>
 <!--***********************************PROPIEDADES  Y SUS NECESIDADES*******************************************************-->
             <script type="text/ng-template" id="dialog4.tmpl.html">
-                <md-dialog aria-label="Lucky day" class=" animated fadeInLeft" ng-cloak>
+                <md-dialog aria-label="Lucky day" class=" animated fadeInRightBig" ng-cloak>
                     <form>
 
                         <md-dialog-content>
                             <div class="md-dialog-content">
-                                <h2>Propiedades y sus necesidades</h2>
-                                <p style= "font-size:15px">Para encontrar propiedades que se ajusten
-                                a sus necesidades puede acceder donde muestra la flecha</p>
+                                <h2>Propiedades y sus necesidades</h2>                    
+                                <p style= "font-size:15px">Para encontrar propiedades que se ajusten a sus necesidades puede </p>
+                                <p>acceder donde muestra la flecha</p>
                             </div>
                         </md-dialog-content>
 
                         <md-dialog-actions layout="row">
                             <span flex></span>
                             <md-button class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closePropertiesQA($event)" style="margin-right:20px;"><span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
-                                <span class = "ng-scope">Seguiente</span></md-button>
+                                <span class = "ng-scope">Siguiente</span></md-button>
                             </md-button>
 
                          </md-dialog-actions>
@@ -134,20 +176,21 @@
             </script>
 <!--************************************************CONSULTAR GUIAS**********************************************************-->
             <script type="text/ng-template" id="dialog5.tmpl.html">
-                <md-dialog aria-label="Lucky day" class=" animated fadeInLeft" ng-cloak>
+                <md-dialog aria-label="Lucky day" class=" animated fadeInRightBig" ng-cloak>
                     <form>
 
                         <md-dialog-content>
                             <div class="md-dialog-content">
-                                <h2>Consultar Guías</h2>
-                                <p style= "font-size:15px">Aquí podrá descargar la información necesaria para realizar un trámite con una entidad bancaria</p>
+                                <h2>Consultar Guías</h2>  
+                                <p style= "font-size:15px">Aquí podrá descargar la información necesaria para realizar un trámite</p>
+                                <p>con una entidad bancaria</p>
                             </div>
                         </md-dialog-content>
 
                         <md-dialog-actions layout="row">
                             <span flex></span>
                             <md-button class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closeConsultGuides($event)" style="margin-right:20px;"><span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
-                                <span class = "ng-scope">Seguiente</span></md-button>
+                                <span class = "ng-scope">Siguiente</span></md-button>
                             </md-button>
 
                          </md-dialog-actions>
@@ -156,20 +199,22 @@
             </script>
 <!--*******************************************VER TAREAS DE USUARIO*********************************************************-->
             <script type="text/ng-template" id="dialog6.tmpl.html">
-                <md-dialog aria-label="Lucky day" class=" animated fadeInLeft" ng-cloak>
+                <md-dialog aria-label="Lucky day" class=" animated fadeInRightBig" ng-cloak>
                     <form>
 
                         <md-dialog-content>
                             <div class="md-dialog-content">
                                 <h2>Ver tareas de usuario</h2>
-                                <p style= "font-size:15px">Aquí podrá ver los requisitos que debe cumplir para poder realizar un trámite con una entidad bancaria</p>
+                                                           Para interactuar con las propiedades puede acceder al menú principal
+                                <p style= "font-size:15px">Aquí podrá ver los requisitos que debe cumplir para poder realizar un</p> 
+                                <p> trámite con una entidad bancaria</p>
                             </div>
                         </md-dialog-content>
 
                         <md-dialog-actions layout="row">
                             <span flex></span>
                             <md-button class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closeUserToDo($event)" style="margin-right:20px;"><span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
-                                <span class = "ng-scope">Seguiente</span></md-button>
+                                <span class = "ng-scope">Siguiente</span></md-button>
                             </md-button>
 
                          </md-dialog-actions>
@@ -178,14 +223,13 @@
             </script>
 <!--**********************************************MENU PROPIEDADES***********************************************************-->
             <script type="text/ng-template" id="dialog7.tmpl.html">
-                <md-dialog aria-label="Lucky day" class=" animated fadeInLeft" ng-cloak>
+                <md-dialog aria-label="Lucky day" class=" animated fadeInDownBig" ng-cloak>
                     <form>
 
                         <md-dialog-content>
                             <div class="md-dialog-content">
                                 <h2>Menú de Propiedades</h2>
-                                <p style= "font-size:15px">Contiene la información de las propiedades disponibles para la venta o alquiler</p>
-                                <p style= "font-size:15px">Para continuar presione siguiente</p>
+                                <p style= "font-size:15px">Contiene la información de las propiedades disponibles para la venta o </p>       <p>alquiler</p>
                             </div>
                         </md-dialog-content>
 
@@ -193,21 +237,21 @@
                             <span flex></span>
                             <md-button class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closePropDialog($event)" style="margin-right:20px;">
                                 <span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
-                                <span class = "ng-scope">Seguiente</span></md-button>
+                                <span class = "ng-scope">Siguiente</span></md-button>
                         </md-dialog-actions>
                     </form>
                 </md-dialog>
             </script>
 <!--************************************************VER PROPIEDADES*********************************************************-->
             <script type="text/ng-template" id="dialog8.tmpl.html">
-                <md-dialog aria-label="Lucky day" class=" animated fadeInLeft" ng-cloak>
+                <md-dialog aria-label="Lucky day" class=" animated fadeInRightBig" ng-cloak>
                     <form>
 
                         <md-dialog-content>
                             <div class="md-dialog-content">
-                                <h2>Ver propiedades</h2>
-                                <p style= "font-size:15px">Aquí podrá ver la información detallada de las propiedades que se encuentran registradas en el sistema</p>
-                                <p style= "font-size:15px">Para continuar presione siguiente</p>
+                                <h2>Ver propiedades</h2>   
+                                <p style= "font-size:15px">Aquí podrá ver la información detallada de las propiedades que se</p>
+                                <p>encuentran registradas en el sistema</p>
                             </div>
                         </md-dialog-content>
 
@@ -215,21 +259,22 @@
                             <span flex></span>
                             <md-button class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closePropertiesList($event)" style="margin-right:20px;">
                                 <span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
-                                <span class = "ng-scope">Seguiente</span></md-button>
+                                <span class = "ng-scope">Siguiente</span></md-button>
                         </md-dialog-actions>
                     </form>
                 </md-dialog>
             </script>
 <!--****************************************MIS PROPIEDADES FAVORITAS********************************************************-->
             <script type="text/ng-template" id="dialog9.tmpl.html">
-                <md-dialog aria-label="Lucky day" class=" animated fadeInLeft" ng-cloak>
+                <md-dialog aria-label="Lucky day" class=" animated fadeInRightBig" ng-cloak>
                     <form>
 
                         <md-dialog-content>
                             <div class="md-dialog-content">
                                 <h2>Mis propiedades favoritas</h2>
-                                <p style= "font-size:15px">Aquí podrá ver la información detallada de las propiedades que ha marcado como favoritas</p>
-                                <p style= "font-size:15px">Para continuar presione siguiente</p>
+                                                           
+                                <p style= "font-size:15px">Aquí podrá ver la información detallada de las propiedades que ha</p>
+                                <p>marcado como favoritas</p>
                             </div>
                         </md-dialog-content>
 
@@ -237,20 +282,21 @@
                             <span flex></span>
                             <md-button class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closeFaveProperties($event)" style="margin-right:20px;">
                                 <span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
-                                <span class = "ng-scope">Seguiente</span></md-button>
+                                <span class = "ng-scope">Siguiente</span></md-button>
                         </md-dialog-actions>
                     </form>
                 </md-dialog>
             </script>
 <!--***********************************************MENU DE EVENTOS***********************************************************-->
             <script type="text/ng-template" id="dialog10.tmpl.html">
-                <md-dialog aria-label="Lucky day" class=" animated fadeInLeft" ng-cloak>
+                <md-dialog aria-label="Lucky day" class=" animated fadeInDown" ng-cloak>
                     <form>
 
                         <md-dialog-content>
                             <div class="md-dialog-content">
-                                <h2>Menú de Eventos</h2>
-                                <p style= "font-size:15px">La aplicación maneja eventos relacionados a la muestra de propiedades en venta.</p>
+                                <h2>Menú de Eventos</h2>   
+                                <p style= "font-size:15px">La aplicación maneja eventos relacionados a la muestra de propiedades</p>
+                                <p>en venta.</p>
                             </div>
                         </md-dialog-content>
 
@@ -258,28 +304,28 @@
                             <span flex></span>
                             <md-button class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closeEvents($event)" style="margin-right:20px;">
                                 <span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
-                                <span class = "ng-scope">Seguiente</span></md-button>
+                                <span class = "ng-scope">Siguiente</span></md-button>
                         </md-dialog-actions>
                     </form>
                 </md-dialog>
             </script>
 <!--************************************************VER EVENTOS***********************************************************-->
             <script type="text/ng-template" id="dialog11.tmpl.html">
-                <md-dialog aria-label="Lucky day"  ng-cloak>
+                <md-dialog aria-label="Lucky day"  class=" animated fadeInRightBig" ng-cloak>
                     <form>
 
                         <md-dialog-content>
                             <div class="md-dialog-content">
                                 <h2>Ver Eventos</h2>
-                                <p>Aquí podrá la información detallada de los eventos. Además de poder asistir a un evento de su interés</p>
+                                <p>Aquí podrá la información detallada de los eventos. Además de poder</p>
+                                <p>asistir a un evento de su interés</p>
                             </div>
                         </md-dialog-content>
 
                         <md-dialog-actions layout="row">
                             <span flex></span>
-                            <p>Para continuar presione siguiente</p>
                             <md-button class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closeListEvents($event)" style="margin-right:20px;"><span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
-                                <span class = "ng-scope">Seguiente</span></md-button>
+                                <span class = "ng-scope">Siguiente</span></md-button>
                             </md-button>
                          </md-dialog-actions>
                     </form>
@@ -287,7 +333,7 @@
             </script>
 <!--************************************************VER VENDEDORES***********************************************************-->
             <script type="text/ng-template" id="dialog12.tmpl.html">
-                <md-dialog aria-label="Lucky day"  ng-cloak>
+                <md-dialog aria-label="Lucky day"  class=" animated fadeInDownBig" ng-cloak>
                     <form>
 
                         <md-dialog-content>
@@ -299,9 +345,8 @@
 
                         <md-dialog-actions layout="row">
                             <span flex></span>
-                            <p>Para continuar presione siguiente</p>
                             <md-button class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closeSellers($event)" style="margin-right:20px;"><span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
-                                <span class = "ng-scope">Seguiente</span></md-button>
+                                <span class = "ng-scope">Siguiente</span></md-button>
                             </md-button>
                          </md-dialog-actions>
                     </form>

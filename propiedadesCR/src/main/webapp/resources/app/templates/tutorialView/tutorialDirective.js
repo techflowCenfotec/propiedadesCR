@@ -5,18 +5,31 @@
     .controller('tutorialController',['$scope','$mdDialog','$http','$location','$timeout',function($scope,$mdDialog,$http,$location,$timeout){
 
     $scope.status = '  ';
-    $scope.propertiesMenu = true;
+    $scope.showMenu = false;
     $scope.principalMenu = true;
+    $scope.propertiesMenu = true;
     $scope.eventsMenu = true;
+    $scope.vendorsMenu = true;
+    $scope.showPrincipalMenu = false;
+    $scope.bankToDo = true;
+    $scope.propertiesQuestions = true;
+    $scope.consultGuides = true;
+    $scope.userToDo = true;
     $scope.userId = 0;
-    $scope.show = "display: block;"
     var init = showWelcomeDialog();
     var link = 'rest/protected/users/getUserLogged';
+    var myStyle = "display: none;";
+    localStorage.setItem('style',myStyle);
+    localStorage.setItem('propStyle',myStyle);
+    localStorage.setItem('eveStyle',myStyle);
+    
 
     var userResponse = {};
 
 
         function showWelcomeDialog(){
+            console.log($scope.$broadcast("dropDown"));
+            $scope.showMenu = false;
             $mdDialog.show({
             controller: DialogController,
             templateUrl: 'dialog1.tmpl.html',
@@ -31,6 +44,7 @@
         };
 
         function showPrincipal(ev) {
+            $scope.showMenu = true;
             $scope.principalMenu = false;
             $mdDialog.show({
             controller: DialogController,
@@ -47,6 +61,11 @@
         };
 
         function showBankToDo(ev) {
+            myStyle = "display: block";
+            localStorage.setItem('style',myStyle);
+            $scope.showMenu = false;
+            $scope.showPrincipalMenu = true;
+            $scope.bankToDo = false;
             $mdDialog.show({
             controller: DialogController,
             templateUrl: 'dialog3.tmpl.html',
@@ -62,6 +81,8 @@
         };
 
         function showPropertiesQA(ev) {
+            $scope.bankToDo = true;
+            $scope.propertiesQuestions = false;
             $mdDialog.show({
             controller: DialogController,
             templateUrl: 'dialog4.tmpl.html',
@@ -77,6 +98,8 @@
         };
 
         function showConsultGuides(ev) {
+            $scope.propertiesQuestions = true;
+            $scope.consultGuides = false;
             $mdDialog.show({
             controller: DialogController,
             templateUrl: 'dialog5.tmpl.html',
@@ -92,6 +115,8 @@
         };
 
         function showUserToDo(ev) {
+            $scope.consultGuides = true;
+            $scope.userToDo = false;
             $mdDialog.show({
             controller: DialogController,
             templateUrl: 'dialog6.tmpl.html',
@@ -107,7 +132,12 @@
         };
 //************************************************************************
         function showPropertiesDialog(ev) {
+            myStyle = "display: none";
+            localStorage.setItem('style',myStyle);
             $scope.principalMenu = true;
+            $scope.showPrincipalMenu = false;
+            $scope.userToDo = true;
+            $scope.showMenu = true;
             $scope.propertiesMenu = false;
             $mdDialog.show({
             controller: DialogController,
@@ -124,6 +154,12 @@
         };
 
         function showPropertiesList(ev) {
+            var prop = "display: block";
+            localStorage.setItem('propStyle',prop);
+            $scope.showMenu = false;
+            $scope.propertiesMenu = true;
+            $scope.showPrincipalMenu = true;
+            $scope.propertiesQuestions = false;
             $mdDialog.show({
             controller: DialogController,
             templateUrl: 'dialog8.tmpl.html',
@@ -139,6 +175,8 @@
         };
 
         function showFaveProperties(ev) {
+            $scope.propertiesQuestions = true;
+            $scope.consultGuides = false;
             $mdDialog.show({
             controller: DialogController,
             templateUrl: 'dialog9.tmpl.html',
@@ -155,7 +193,10 @@
 //***************************************************************************************************
 
         function showEvents(ev) {
-            $scope.propertiesMenu = true;
+            var prop = "display: none";
+            localStorage.setItem('propStyle',prop);
+            $scope.showPrincipalMenu = false;
+            $scope.showMenu = true;
             $scope.eventsMenu = false;
             $mdDialog.show({
             controller: DialogController,
@@ -172,6 +213,12 @@
         };
 
         function showListEvents(ev) {
+            var eve = "display: block";
+            localStorage.setItem('eveStyle',eve);
+            $scope.showMenu = true;
+            $scope.eventsMenu = true;
+            $scope.vendorsMenu = false;
+
             $mdDialog.show({
             controller: DialogController,
             templateUrl: 'dialog11.tmpl.html',
@@ -189,6 +236,8 @@
 //*********************************************************
 
         function showSellers(ev) {
+            var eve = "display: none";
+            localStorage.setItem('eveStyle',eve);
             $mdDialog.show({
             controller: DialogController,
             templateUrl: 'dialog12.tmpl.html',
