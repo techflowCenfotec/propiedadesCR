@@ -66,7 +66,7 @@
                     <li><a md-button aria-label="meanu" href="#/templates/eventsView/eventsList"><i class="fa fa-circle color-success"></i><span>Lista de Eventos</span></a></li>
                 </ul>
             </li>
-              <li ng-show="showVendors"><a md-button aria-label="meanu"  href="#/templates/usersView/vendorsList"><i class="zmdi zmdi-accounts-alt"></i>
+              <li ng-show="sellersView"><a md-button aria-label="meanu"  href="#/templates/usersView/vendorsList"><i class="zmdi zmdi-accounts-alt"></i>
                 <span>Ver vendedores</span></a>
 
             <li ng-show="showUsers"><a md-button aria-label="meanu" href="#"><i class="zmdi zmdi-account"></i>
@@ -90,6 +90,9 @@
                 <span>Reportes</span></a>
                 <ul ng-show="sellsReport">
                     <li><a md-button aria-label="meanu" href="#/templates/salesReportView/salesReport"><i class="fa fa-circle color-success"></i><span>Reporte de ventas</span></a></li>
+                </ul>
+                <ul ng-show="banksReport">
+                    <li><a md-button aria-label="meanu" href="#/templates/reportsView/bankReport"><i class="fa fa-circle color-success"></i><span>Reporte de ventas</span></a></li>
                 </ul>
                 
             </li>
