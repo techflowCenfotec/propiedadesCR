@@ -73,13 +73,12 @@ public class PropertiesService implements PropertiesServiceInterface {
 			BeanUtils.copyProperties(u, dto);
 			BeanUtils.copyProperties(u.getTdistrict(), dto.getTdistrict());
 			BeanUtils.copyProperties(u.getTpropertyType(), dto.getTpropertyType());
-			BeanUtils.copyProperties(u.getTusers(), dto.getTusers());
+			dto.getTpropertyType().setTproperties(null);
 			dto.setTbenefits(benefitsDtos(u.getTbenefits()));
-			UserPOJO user = new UserPOJO();
-			BeanUtils.copyProperties(u.getTuser(),user);
-			dto.setTuser(user);
 			dto.setTpropertyImages(imagesDtos(u.getTpropertyImages()));
 			dto.setTpropertyReviews(null);
+			dto.setTuser(null);
+			dto.setTusers(null);
 			uiProperties.add(dto);
 		});
 		return uiProperties;
@@ -240,6 +239,9 @@ public class PropertiesService implements PropertiesServiceInterface {
 			BeanUtils.copyProperties(property.getTdistrict(), nProperty.getTdistrict());
 			BeanUtils.copyProperties(property.getTpropertyType(), nProperty.getTpropertyType());
 			nProperty.setTpropertyReviews(reviewsDtos(property.getTpropertyReviews()));
+			nProperty.getTpropertyType().setTproperties(null);
+			nProperty.setTuser(null);
+			nProperty.setTusers(null);
 		}
 		
 		return nProperty;
