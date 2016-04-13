@@ -77,10 +77,10 @@ INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id
 INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('11', 'Si', 'Jardín', '12');
 INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('11', 'No necesariamente', null, '12');
 
-INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('12', 'Si', 'Centros comerciales', '13');
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('12', 'Si', 'Centro comercial', '13');
 INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('12', 'No soy fanático', null, '13');
 
-INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('13', 'Si', 'Centros médicos', null);
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('13', 'Si', 'Centro médico', null);
 INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('13', 'No', null, null);
 
 
@@ -106,7 +106,7 @@ INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('4 o más Habitacio
 
 INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Centro comercial');
 
-INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Centros de salud');
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Centro médico');
 
 INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Escuela');
 
