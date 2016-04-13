@@ -173,8 +173,8 @@
                                         </md-input-container>
                                         <div layout layout-sm="column">
                                             <md-input-container flex>
-                                                <label>Porcentaje de oferta</label>
-                                                <input type="text"
+                                                <label>Porcentaje de oferta (Debe ser un numero)</label>
+                                                <input  type="number"
                                             class="form-control"
                                             required
                                             name="type_something"
@@ -227,11 +227,20 @@
                             </div>
 		
                         </script>
-	<div class="panel panel-default">
-		<h5>Oferta de propiedad</h5>
-		<button class="btn btn-danger" ng-click="removeOffer()"
-			data-ng-show="hasAnOffer">Remover oferta de la propiedad</button>
-		<md-button class="md-raised btn-w-md md-primary" ng-click="open()"
-			data-ng-hide="hasAnOffer">Poner propiedad en oferta</md-button>
-	</div>
+          
+         
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<h5>Oferta de propiedad</h5>
+					<button class="btn btn-danger" ng-click="removeOffer()"
+						data-ng-show="hasAnOffer">Remover oferta de la propiedad</button>
+					<md-button class="md-raised btn-w-md md-primary" ng-click="open()"
+						data-ng-hide="hasAnOffer">Poner propiedad en oferta</md-button>
+				</div>
+			</div>
+		
+	
 </section>
+
+		
+

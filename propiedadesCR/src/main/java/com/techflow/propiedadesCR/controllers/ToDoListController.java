@@ -101,6 +101,14 @@ public class ToDoListController {
 		
 		return toDoListResponse;
 	}
+	
+	/**
+	 * Este método crear lógicamente un toDoList en el sistema para un usuario.
+	 *
+	 * @param ptoDoListRequest Contiene información del usuario y el to-do list.
+     * 
+	 * @return newToDo Devuelve el toDoList creado para el usuario con sus nuevos datos.
+	 */
 	@RequestMapping(value="/generateUserToDoList", method=RequestMethod.POST)
 	public ToDoListResponse generateUserToDoList(@RequestBody ToDoListRequest ptoDoListRequest){
 		ToDoListResponse response = new ToDoListResponse();
@@ -124,6 +132,14 @@ public class ToDoListController {
 		return response;
 	}
 	
+	/**
+	  * Este metodo sirve para traer los to do list que pertenecen a un usuario en especifico.
+	  * @param ptoDoListRequest Este parametro es la peticion del usuario
+	  * que se usa para acceder al metodo deseado
+	  * @return response Resultado con la lista de to-do list perteneciente a un usuario en especifico.
+	  * 
+	  */
+	
 	@RequestMapping(value="/getMyTodoList", method=RequestMethod.POST)
 	 public ToDoListResponse getMyToDoList(@RequestBody ToDoListRequest ptoDoListRequest){
 	  ToDoListResponse response = new ToDoListResponse();
@@ -133,6 +149,13 @@ public class ToDoListController {
 	  return response;
 	
 	}
+	/**
+	  * Este metodo sirve para guardar los items que pertenecen a un to do list
+	  * @param ptoDoListRequest Este parametro es la peticion del usuario
+	  * que se usa para acceder al metodo deseado
+	  * @return response Resultado con la lista de los items del to-do list del sistema
+	  */
+	
 	@RequestMapping(value="/saveItems", method=RequestMethod.POST)
 	 public ToDoListResponse saveItems(@RequestBody ToDoListRequest ptoDoListRequest){
 	  ToDoListResponse response = new ToDoListResponse();

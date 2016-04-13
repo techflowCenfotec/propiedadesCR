@@ -123,7 +123,13 @@ public class ToDoListService implements ToDoListServiceInterface{
 		return true;
 		
 	}
-
+	/**
+	 * Este método crear lógicamente un toDoList en el sistema para un usuario.
+	 *
+	 * @param ptoDoListRequest Contiene información del usuario y el to-do list.
+     * 
+	 * @return newToDo Devuelve el toDoList creado para el usuario con sus nuevos datos.
+	 */
 	@Override
 	public TToDoList generateUserToDoList(BankToDoListPOJO pbankToDoList, int pidUser) {
 				
@@ -151,7 +157,15 @@ public class ToDoListService implements ToDoListServiceInterface{
 
 		return newToDo;
 	}
-
+	/**
+	 * Este método trae los items que le pertenecen a un usuario en especifico.
+	 *
+	 * @param ptoDoListRequest Contiene información del objeto
+     * 
+	 * @return pojo Devuelve el pojo de los items del to do list perteneciente a un usuario.
+	 *
+	 *@author  Maria Jesus Gutierrez Calvo 
+	 */
 	@Override
 	 public ToDoListPOJO getMyItems(ToDoListRequest ptoDoListRequest) {
 	  TToDoList todoList = new TToDoList();
@@ -172,7 +186,15 @@ public class ToDoListService implements ToDoListServiceInterface{
 	  });
 	  pojo.setTitems(uiRatings);
 	 }
-
+	 /**
+		 * Este método guarda los items del to do list que le pertenecen a un usuario en especifico.
+		 *
+		 * @param ptoDoListRequest Contiene información del objeto a guardar
+	     * 
+		 * @return pojo Devuelve el pojo de los items del to do list.
+		 *
+		 *@author  Maria Jesus Gutierrez Calvo
+		 */
 	@Override
 	public ToDoListPOJO saveMyItems(ToDoListRequest ptoDoListRequest) {
 		TToDoList toDoList = toDoListRepository.findOne(ptoDoListRequest.getToDoList().getIdToDoList());
