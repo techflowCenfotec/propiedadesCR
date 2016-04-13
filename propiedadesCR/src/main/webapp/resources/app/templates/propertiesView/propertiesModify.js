@@ -19,6 +19,7 @@
 		$scope.selectedType = {};
 		$scope.selectedDistrict = {};
 		$scope.requestObject = {
+				selectedSaleType: '',
 				province: '',
 				county: '',
 				district: '',
@@ -41,6 +42,7 @@
 				$scope.imageList = response.property.tpropertyImages;
 				$scope.selectedType = $scope.property.tpropertyType;
 				$scope.requestObject.district = $scope.property.tdistrict;
+				$scope.requestObject.selectedSaleType = $scope.property.saleType;
 				
 				if($scope.property.offerPercentage!=0)
 					$scope.hasAnOffer =true;
@@ -173,10 +175,10 @@
 		$scope.updateProperty = function(event) {
 			$scope.updateProperty(event, $files);
 		};
-		$scope.canAddImg = function(length) {
-			return length >= 5;
+		$scope.canAddImg = function(length, imgList) {
+			length = imgList;
+			return length >= 5 && imgList >= 5;
 		};
-		
 		// Routes to list view on cancel
 		$scope.cancel = function() {
 			$state.go('templates/propertiesView/myPropertiesView', {},  {reload: true});
@@ -198,6 +200,7 @@
 							"tdistrict": { "idDisctrict": $scope.requestObject.district.idDisctrict},
 							"tpropertyType": { "idPropertyType": $scope.selectedType.idPropertyType},
 							"tbenefits": $scope.property.tbenefits,
+							"saleType": $scope.requestObject.selectedSaleType,
 							"address": $scope.property.address,
 							"coordinates": $scope.markerLoc
 						}

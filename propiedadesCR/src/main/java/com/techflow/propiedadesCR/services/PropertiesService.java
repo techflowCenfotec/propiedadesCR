@@ -73,13 +73,13 @@ public class PropertiesService implements PropertiesServiceInterface {
 			BeanUtils.copyProperties(u, dto);
 			BeanUtils.copyProperties(u.getTdistrict(), dto.getTdistrict());
 			BeanUtils.copyProperties(u.getTpropertyType(), dto.getTpropertyType());
+			BeanUtils.copyProperties(u.getTusers(), dto.getTusers());
 			dto.setTbenefits(benefitsDtos(u.getTbenefits()));
 			UserPOJO user = new UserPOJO();
 			BeanUtils.copyProperties(u.getTuser(),user);
 			dto.setTuser(user);
 			dto.setTpropertyImages(imagesDtos(u.getTpropertyImages()));
 			dto.setTpropertyReviews(null);
-			dto.setTusers(null);
 			uiProperties.add(dto);
 		});
 		return uiProperties;
@@ -206,6 +206,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 		nProperty.setPrice(pProperty.getProperty().getPrice());
 		nProperty.setSquareMeters(pProperty.getProperty().getSquareMeters());
 		nProperty.setCoordinates(pProperty.getProperty().getCoordinates());
+		nProperty.setSaleType(pProperty.getProperty().getSaleType());
 		
 		Tproperty resProperty =  propertiesRepository.save(nProperty);
 		return resProperty;

@@ -1,4 +1,10 @@
-
+<style>
+ .carousel-inner>.item>img {
+      width: 70%;
+      height: 350px;
+      margin: auto;
+  }
+</style>
 <section class="page-form-ele page" ng-controller="PropViewController">
 	<div class="row ui-section">
 		<div class="col-lg-8 clearfix">
@@ -9,38 +15,29 @@
 			<section class="panel panel-default">
 				<div class="panel-body">
 					<div class="row">
+						<div class="container">
+							<br>
+							<div id="propCarousel" class="carousel slide" data-ride="carousel">
+								<ol class="carousel-indicators">
+									<li data-target="#propCarousel" data-slide-to="0" class="active"></li>
+									<li data-target="#propCarousel" data-slide-to="1"></li>
+									<li data-target="#propCarousel" data-slide-to="2"></li>
+									<li data-target="#propCarousel" data-slide-to="3"></li>
+									<li data-target="#propCarousel" data-slide-to="4"></li>
+								</ol>
+								<div class="carousel-inner" role="listbox">
+									<div class="item" ng-class="{active:!$index}"
+										ng-repeat="image in imageList" data-pause="hover">
+										<img ng-src="{{image.propertyImage}}" alt="" width="460"
+											height="345">
+									</div>
+								</div>
+							</div>
+						</div>
 						<div class="col-lg-8 col-lg-offset-2">
-
-
-							<div layout="column" ng-cloak
-								class="md-inline-form inputdemoBasicUsage">
+							<div layout="column" class="md-inline-form">
 								<div layout-padding>
 									<form name="userForm">
-										<div class="col-xl-12">
-											<div class="panel panel-default">
-												<div class="panel-body padding-lg-h">
-													<div class="row">
-														<div class="col-md-4">
-															<div class="ih-item ih-material"
-																ng-repeat="image in imageList">
-																<a href="javascript:;">
-																	<div class="img">
-																		<img ng-src="{{image.propertyImage}}" alt="">
-																	</div> <!-- <div class="info">
-								                                        <div class="info-mask bg-primary"></div>
-								                                        <div class="info-content">
-								                                            <div class="info-inner">
-								                                                <p>Zoom Icon</p>
-								                                            </div>
-								                                        </div>
-								                                    </div> -->
-																</a>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
 										<div layout layout-sm="column">
 											<md-input-container flex> <label>Provincia</label>
 											<md-select ng-model="selectedProvince" aria-label="select"

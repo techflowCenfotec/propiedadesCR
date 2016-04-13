@@ -95,11 +95,12 @@ public class PropertiesController {
 	  * 
 	  * @param pPropertyImages Imágenes de la propiedad.
 	  * @return response La entidad del objeto creado.
+	 * @throws InterruptedException 
 	  */
 	@RequestMapping(value="/createImage", method = RequestMethod.POST)
 	public PropertyImageResponse createImage(
 			@RequestParam("userId") int pIdProperty,
-			@RequestParam("file") MultipartFile pPropertyImage) {
+			@RequestParam("file") MultipartFile pPropertyImage) throws InterruptedException {
 		PropertyImageResponse response = new PropertyImageResponse();
 		
 		String resultFileName = Utils.writeToFile(pPropertyImage, servletContext);

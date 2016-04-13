@@ -21,50 +21,42 @@
 </style>
 
 <section class="page-form-ele page"
-	data-ng-controller="propertyModifyController as ctrl">
+	ng-controller="propertyModifyController as ctrl">
 	<div class="row ui-section">
 		<div class="col-lg-8 clearfix">
 			<h2 class="section-header">Modificar Propiedad</h2>
 		</div>
 		<div class="col-md-12">
 			<section class="panel panel-default">
-				<div class="panel-body">
+				<div class="panel-body padding-lg-h">
+					<div class="row">
+						<div class="col-xs-3" ng-repeat="image in imageList">
+							<div class="ih-item ih-material">
+								<a href="javascript:;">
+									<div class="img img-responsive">
+										<img ng-src="{{image.propertyImage}}" alt=""  style="max-height:150px; padding-bottom:4px;">
+									</div>
+									<div class="info">
+										<div class="info-mask bg-primary"></div>
+										<div class="info-content">
+											<div class="info-inner">
+												<button class="btn btn-danger"
+													ng-click="deletePropertyImage(image.idPropertyImage)">
+													<i class="fa fa-times"></i>
+												</button>
+											</div>
+										</div>
+									</div>
+								</a>
+							</div>
+						</div>
+					</div>
 					<div class="row">
 						<div class="col-lg-8 col-lg-offset-2">
-
 							<div layout="column" ng-cloak class="md-inline-form">
 								<div layout-padding>
 									<form id="propertiesForm" class="form-validation"
 										name="propertiesForm" flow-init>
-										<div class="col-xl-12">
-											<div class="panel panel-default">
-												<div class="panel-body padding-lg-h">
-													<div class="row">
-														<div class="col-md-6">
-															<div class="ih-item ih-material"
-																ng-repeat="image in imageList">
-																<a href="javascript:;">
-																	<div class="img">
-																		<img ng-src="{{image.propertyImage}}" alt="">
-																	</div>
-																	<div class="info">
-																		<div class="info-mask bg-primary"></div>
-																		<div class="info-content">
-																			<div class="info-inner">
-																				<button class="btn btn-danger"
-																					ng-click="deletePropertyImage(image.idPropertyImage)">
-																					<i class="fa fa-times"></i>
-																				</button>
-																			</div>
-																		</div>
-																	</div>
-																</a>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
 										<div class="row">
 											<div class="gallery-box" ng-repeat="file in $flow.files">
 												<div class="thumbnail" ng-show="$flow.files.length">
@@ -76,7 +68,7 @@
 											</div>
 										</div>
 										<span class="btn btn-default" flow-btn
-											ng-hide="canAddImg($flow.files.length)"> Subir
+											ng-hide="canAddImg($flow.files.length, imageList.length)"> Subir
 											imágenes <input type="file"
 											style="visibility: hidden; position: absolute"
 											multiple="multiple" />
@@ -147,8 +139,6 @@
 												</section>
 											</div>
 										</div>
-
-
 										<md-button type="submit" class="md-raised btn-w-md md-primary"
 											data-ng-disabled="!canSubmit($flow.files.length, imageList.length)"
 											ng-click="updateProperty($event, $flow.files)">Modificar</md-button>

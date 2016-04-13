@@ -417,19 +417,31 @@ public class UsersController {
 		  * @param pIdUser Id del usuario. No debe ser nulo.
 		  * @return response La entidad del objeto actualizado.
 		  */
-		@RequestMapping(value="removeFavorite/{pIdUser}", method = RequestMethod.PUT)
-		public UsersResponse removeFavorite(@RequestBody Tproperty pProperty,
+		@RequestMapping(value="updateFavorite/{pIdUser}", method = RequestMethod.PUT)
+		public UsersResponse updateFavorite(@RequestBody Tproperty pProperty,
 				@PathVariable int pIdUser) {
 			UsersResponse response = new UsersResponse();
-			
+			Boolean exists = true;
 			Tuser user = usersService.getUserByID(pIdUser);
 			List<Tproperty> properties = user.getTproperties2();
 			
-			for (int i = 0; i < properties.size(); i++) {
-				if (properties.get(i).getIdProperty() == pProperty.getIdProperty()) {
-					user.getTproperties2().remove(i);
+			if(properties.isEmpty()) {
+				properties.add(pProperty);
+				exists = false;
+			} else {
+				for (int i = 0; i < properties.size(); i++) {
+					if (properties.get(i).getIdProperty() == pProperty.getIdProperty()) {
+						properties.remove(i);
+						exists = false;
+					} 
 				}
 			}
+			
+			if (exists == true){
+				properties.add(pProperty);
+			}
+			
+			user.setTproperties2(properties);
 			
 			Tuser nUser = usersService.updateFavorites(user);
 			

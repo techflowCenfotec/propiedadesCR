@@ -187,6 +187,10 @@ public class PropertyPOJO {
 		this.tusers = tusers;
 	}
 
+	public List<UserPOJO> getTusers() {
+		return tusers;
+	}
+
 	public List<PropertyImagePOJO> getTpropertyImages() {
 		return tpropertyImages;
 	}
@@ -234,8 +238,5 @@ public class PropertyPOJO {
 	public void setTotalViews(int totalViews) {
 		this.totalViews = totalViews;
 	}
-
-	
-	
 	
 }
