@@ -100,14 +100,17 @@
 		// Bring BenefitList from modal. Assigned to keyword for search
 		$scope.$on("filterAction", function(e, benefitsList) {
 			$scope.propertiesSort = _.sortBy(benefitsList, 'benefit')
-			
 
 			$scope.selectedBenefits = benefitsList;
 			$scope.keyword = _.pluck($scope.selectedBenefits, 'benefit').join(', ');
 
 		});
+		
+		$scope.clearSearch = function() {
+			$scope.keyword = '';
+		}
+		
 		$scope.exists = function(){
-			console.log('gg');
 			return true;
 		}
 		
@@ -119,11 +122,13 @@
 		        
 		      parts.forEach(function(part) {
 		        var rx = new RegExp(part, "i"); //i: case insensitive
+		        
 		        post.tbenefits.forEach(function(caract) {
 		          if (rx.test(caract.benefit)) {
 		            isMatch = true;
 		          }
 		        });
+		        
 		      });
 		     } else {
 		       isMatch = true;

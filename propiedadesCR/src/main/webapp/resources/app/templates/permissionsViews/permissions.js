@@ -69,7 +69,6 @@
 		
 		var me = $scope.makeShow;
 		$http.get(link).success(function(response) {	
-			console.log(me);
 			userResponse = response;
 			userPermissionsList = userResponse.user.role.tpermissions;
 			var permission = {};
