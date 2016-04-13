@@ -76,6 +76,7 @@ function() {
 		,"app.favoritesManagment"
 		,"app.bankReport"
 		,"DataBaseService"
+		,"app.tutorial"
 		,"app.matchedTagsDirective"
 		
 		//3rd Party Modules
@@ -117,7 +118,7 @@ function(){
 			fixedHeader:!0,
 			fixedSidebar:!0,
 			pageTransition:e[0],
-			skin:"12"
+			skin:"24"
 		},
 		r= {
 			primary:"#009688",

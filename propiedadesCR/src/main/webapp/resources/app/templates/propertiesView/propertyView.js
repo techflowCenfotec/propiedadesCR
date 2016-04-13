@@ -98,7 +98,8 @@
 			var bd = 'rest/protected/properties/getByPropertyId/' +localStorage.getItem('idProperty');
 			$http.get(bd)
 			.success(function(response) {
-			
+				response.property.price -= (response.property.price*response.property.offerPercentage)/100;
+						
 				$scope.property = response.property;
 				$scope.imageList = response.property.tpropertyImages;
 				$scope.selectedType = $scope.property.tpropertyType;
