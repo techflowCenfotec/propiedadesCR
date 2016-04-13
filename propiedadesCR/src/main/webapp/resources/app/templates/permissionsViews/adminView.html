@@ -10,26 +10,26 @@
             <li class="nav-title"> <span data-translate="MENU"></span></li>
             <li ng-show="showPrincipal"><a md-button aria-label="meanu" href="#"><i class="zmdi zmdi-menu"></i>
                 <span>Principal</span></a>
-                <ul>
-                    <li  ng-show="showPrincipalAdmin"><a md-button aria-label="meanu" href="#/templates/banktodolistView/banktodolistCreate"><i class="fa fa-circle color-success"></i><span>Agregar Lista de Tareas</span></a></li>
+                <ul ng-show="addTodolist">
+                    <li><a md-button aria-label="meanu" href="#/templates/banktodolistView/banktodolistCreate"><i class="fa fa-circle color-success"></i><span>Agregar Lista de Tareas</span></a></li>
                 </ul>
-                <ul>
-                    <li><a md-button aria-label="meanu" href="#/templates/banktodolistView/banktodolistList"><i class="fa fa-circle color-success"></i><span>Tareas del Banco</span></a></li>
+                <ul ng-show="viewTodolist">
+                    <li><a md-button aria-label="meanu" href="#/templates/banktodolistView/banktodolistList"><i class="fa fa-circle color-success"></i><span>Ver Lista de Tareas</span></a></li>
                 </ul>
-                <ul>
-                    <li><a md-button aria-label="meanu" href="#/templates/banktodolistView/banktodolistAdminList"><i class="fa fa-circle color-success"></i><span>Administrar Tareas del Banco</span></a></li>
+                <ul ng-show="adminTodolist">
+                    <li><a md-button aria-label="meanu" href="#/templates/banktodolistView/banktodolistAdminList"><i class="fa fa-circle color-success"></i><span>Administrar Lista de Tareas</span></a></li>
                 </ul>
-                <ul>
-                    <li  ng-show="showPrincipal"><a md-button aria-label="meanu" href="#/templates/testView/testFlow"><i class="fa fa-circle color-success"></i><span>Propiedades Personalizadas</span></a></li>
+                <ul ng-show="test">
+                    <li><a md-button aria-label="meanu" href="#/templates/testView/testFlow"><i class="fa fa-circle color-success"></i><span>Propiedades Personalizadas</span></a></li>
                 </ul>
-                <ul>
-                    <li  ng-show="showPrincipalAdmin"><a md-button aria-label="meanu" href="#/templates/guidesView/createGuide"><i class="fa fa-circle color-success"></i><span>Agregar Guía de Banco</span></a></li>
+                <ul ng-show="addGuide">
+                    <li><a md-button aria-label="meanu" href="#/templates/guidesView/createGuide"><i class="fa fa-circle color-success"></i><span>Agregar Guía de Banco</span></a></li>
                 </ul>
-                <ul>
-                    <li  ng-show="showPrincipalAdmin"><a md-button aria-label="meanu" href="#/templates/guidesView/consultGuide"><i class="fa fa-circle color-success"></i><span>Consultar guias</span></a></li>
+                <ul ng-show="viewGuides">
+                    <li><a md-button aria-label="meanu" href="#/templates/guidesView/consultGuide"><i class="fa fa-circle color-success"></i><span>Consultar guias</span></a></li>
                 </ul>
-                <ul>
-                    <li  ng-show="showPrincipalAdmin"><a md-button aria-label="meanu" href="#/templates/toDoListView/listToDoList"><i class="fa fa-circle color-success"></i><span>Ver Tareas de Usuario</span></a></li>
+                <ul ng-show="viewMyTodolist">
+                    <li><a md-button aria-label="meanu" href="#/templates/toDoListView/listToDoList"><i class="fa fa-circle color-success"></i><span>Ver Tareas de Usuario</span></a></li>
                 </ul>
                  
             </li>
@@ -37,70 +37,64 @@
             <li ng-show="showProperties"><a md-button aria-label="meanu" href="#"><i class="zmdi zmdi-home"></i>
                 <span>Propiedades</span></a>
 
-                <ul>
-                    <li ng-hide="showRegisterProperty"><a md-button aria-label="meanu" href="#/templates/propertiesView/propertiesCreate"><i class="fa fa-circle color-success"></i><span>Registrar Propiedad</span></a></li>
+                <ul ng-show="addProperty">
+                    <li><a md-button aria-label="meanu" href="#/templates/propertiesView/propertiesCreate"><i class="fa fa-circle color-success"></i><span>Registrar Propiedad</span></a></li>
                 </ul>
                 
-                 <ul>
-                    <li ng-hide="showRegisterProperty"><a md-button aria-label="meanu" href="#/templates/propertiesView/myPropertiesView"><i class="fa fa-circle color-success"></i><span>Mis propiedades</span></a></li>
+                 <ul ng-show="myProperties">
+                    <li><a md-button aria-label="meanu" href="#/templates/propertiesView/myPropertiesView"><i class="fa fa-circle color-success"></i><span>Mis propiedades</span></a></li>
                 </ul>
                 
-                <ul>
-                    <li ng-hide="showRegisterProperty"><a md-button aria-label="meanu" href="#/templates/propertiesView/propertiesList"><i class="fa fa-circle color-success"></i><span>Ver Propiedades</span></a></li>
+                <ul ng-show="viewProperties">
+                    <li><a md-button aria-label="meanu" href="#/templates/propertiesView/propertiesList"><i class="fa fa-circle color-success"></i><span>Ver Propiedades</span></a></li>
                 </ul>
 
-                <ul style="display: block;">
+                <ul ng-show="viewFavorites">
                     <li><a md-button aria-label="meanu" href="#/templates/propertyFavoritesView/favoritesList"><i class="fa fa-circle color-success"></i><span>Mis propiedades favoritas</span></a></li>
                 </ul>
             </li>
 
             <li ng-show="showEvents"><a md-button aria-label="meanu" href="#"><i class="zmdi zmdi-local-bar"></i>
                 <span>Eventos</span> </a>
-                <ul>
 
-                <ul>
-                    <li ng-hide="showEventsCreate"><a md-button aria-label="meanu" href="#/templates/eventsView/createEvent"><i class="fa fa-circle color-success"></i><span>Agregar Evento</span></a></li>
+                <ul ng-show="addEvent">
+                    <li><a md-button aria-label="meanu" href="#/templates/eventsView/createEvent"><i class="fa fa-circle color-success"></i><span>Agregar Evento</span></a></li>
                 </ul>
-                    <li ng-show="showEventsAdmin"><a md-button aria-label="meanu" href="#/templates/eventsView/eventListAdmin"><i class="fa fa-circle color-success"></i><span>Ver Eventos</span></a></li>
+                <ul ng-show="viewEvents">
+                    <li><a md-button aria-label="meanu" href="#/templates/eventsView/eventListAdmin"><i class="fa fa-circle color-success"></i><span>Ver Eventos</span></a></li>
                 </ul>
 
-                <ul>
+                <ul ng-show="eventList">
                     <li><a md-button aria-label="meanu" href="#/templates/eventsView/eventsList"><i class="fa fa-circle color-success"></i><span>Lista de Eventos</span></a></li>
                 </ul>
             </li>
-              <li ng-show="showProperties"><a md-button aria-label="meanu"  href="#/templates/usersView/vendorsList"><i class="zmdi zmdi-accounts-alt"></i>
+              <li ng-show="sellersView"><a md-button aria-label="meanu"  href="#/templates/usersView/vendorsList"><i class="zmdi zmdi-accounts-alt"></i>
                 <span>Ver vendedores</span></a>
 
             <li ng-show="showUsers"><a md-button aria-label="meanu" href="#"><i class="zmdi zmdi-account"></i>
                 <span>Usuarios</span></a>
-                <ul>
+                <ul ng-show="addUser">
                     <li class="li-small"><a href="#/templates/usersView/createUser"><i class="fa fa-circle color-success"></i> <span>Agregar Usuarios</span></a></li>
-                <ul>
+                </ul>
+                <ul ng-show="viewUsers">
                     <li><a md-button aria-label="meanu" href="#/templates/usersView/usersList"><i class="fa fa-circle color-success"></i><span>Ver Usuarios</span></a></li>
                 </ul>
-
+                <ul ng-show="viewRoles">
                     <li class="li-small"><a href="#/templates/roleView/roles"><i class="fa fa-circle color-success"></i> <span>Ver Roles</span></a></li>
                 </ul>
-                <ul>
+                <ul ng-show="addRole">
                     <li><a md-button aria-label="meanu" href="#/templates/roleView/addRoles"><i class="fa fa-circle color-success"></i><span>Agregar Roles</span></a></li>
                 </ul>
 
             </li>
 
-            <li ng-show="showSecurity"><a md-button aria-label="meanu" href="#"><i class="zmdi zmdi-lock"></i>
-                <span>Seguridad</span></a>
-                <ul>
-                    <li><a md-button aria-label="meanu" href="#/form/elements"><i class="fa fa-circle color-success"></i><span>Lorem Ipsum</span></a></li>
-                </ul>
-                <ul>
-                    <li><a md-button aria-label="meanu" href="#/form/elements"><i class="fa fa-circle color-success"></i><span>Lorem Ipsum</span></a></li>
-                </ul>
-            </li>
-
             <li ng-show="showReports"><a md-button aria-label="meanu" href="#"><i class="zmdi zmdi-assignment"></i>
                 <span>Reportes</span></a>
-                <ul>
+                <ul ng-show="sellsReport">
                     <li><a md-button aria-label="meanu" href="#/templates/salesReportView/salesReport"><i class="fa fa-circle color-success"></i><span>Reporte de ventas</span></a></li>
+                </ul>
+                <ul ng-show="banksReport">
+                    <li><a md-button aria-label="meanu" href="#/templates/reportsView/bankReport"><i class="fa fa-circle color-success"></i><span>Reporte de ventas</span></a></li>
                 </ul>
                 
             </li>

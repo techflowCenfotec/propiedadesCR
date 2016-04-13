@@ -11,7 +11,6 @@
 		$scope.showUsers = false;
 		$scope.showSecurity = false;
 		$scope.showReports = false;
-
 		//PRINCIPAL
 		$scope.addTodolist = false;
 		$scope.viewTodolist = false;
@@ -20,6 +19,8 @@
 		$scope.addGuide = false;
 		$scope.viewGuides = false;
 		$scope.viewMyTodolist = false;
+		//VER VENDEDORES
+		$scope.sellersView = false;
 		//PROPIEDADES
 		$scope.addProperty = false;
 		$scope.myProperties = false;
@@ -68,9 +69,12 @@
 					$scope.showEvents = true;
 				}
 				if(idPermission == 18){
+					$scope.sellersView = true;
+				}
+				if(idPermission == 19){
 					$scope.showUsers = true; 
 				}
-				if(idPermission == 23){
+				if(idPermission == 24){
 					$scope.showReports = true;
 				}
 			}
@@ -141,16 +145,16 @@
 				if($scope.showUsers){
 					for (var i = 0; i < userPermissionsList.length; i++) {
 						
-						if(userPermissionsList[i].idPermissions == 19){
+						if(userPermissionsList[i].idPermissions == 20){
 							$scope.addUser = true;
 						}
-						if(userPermissionsList[i].idPermissions == 20){
+						if(userPermissionsList[i].idPermissions == 21){
 							$scope.viewUsers = true;
 						}
-						if(userPermissionsList[i].idPermissions == 21){
+						if(userPermissionsList[i].idPermissions == 22){
 							$scope.viewRoles = true;
 						}
-						if(userPermissionsList[i].idPermissions == 22){
+						if(userPermissionsList[i].idPermissions == 23){
 							$scope.addRole = true; 
 						}
 						
@@ -159,10 +163,10 @@
 				if($scope.showReports){
 					for (var i = 0; i < userPermissionsList.length; i++) {
 						
-						if(userPermissionsList[i].idPermissions == 24){
+						if(userPermissionsList[i].idPermissions == 25){
 							$scope.sellsReport = true;
 						}
-						if(userPermissionsList[i].idPermissions == 25){
+						if(userPermissionsList[i].idPermissions == 26){
 							$scope.banksReport = true;
 						}
 						

@@ -19,7 +19,7 @@
 									
 								var original;
 								$scope.onError = false;
-								$scope.markerLoc = null;
+								$scope.markerLoc = '[9.928003, -84.094463]';
 								$scope.requestObject = {};
 								$scope.maxDate = new Date(2020, 5, 22);
 								$scope.dateWithFormat = '';
