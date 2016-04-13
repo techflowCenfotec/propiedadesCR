@@ -14,11 +14,11 @@
 }
 </style>
 
-<section class="page-form-ele page" ng-controller="CreatePropController as ctrl">
+<div class="page-form-ele page" data-ng-controller="CreatePropController as ctrl">
 <div class="row ui-section">
         <div class="col-lg-8 clearfix"> <h2 class="section-header">Registrar Propiedad</h2> </div>
         <div class="col-md-12">
-            <section class="panel panel-default">
+            <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-8 col-lg-offset-2">
@@ -131,16 +131,15 @@
                                           	<div class="col-md-12">
                                           		<section class="panel panel-default">
                                           			<div class="panel-body">
-                                          				<map class="ui-map" zoom="{{map.zoom}}" center="{{map.center}}" scrollwheel="false">
-								                            <marker position="{{map.center}}" title="drag me" draggable="true" on-dragend="ctrl.markerPos()"></marker>
+                                          				<map class="ui-map" zoom="11" center="[9.928003, -84.094463]" scrollwheel="false">
+								                            <marker position="[9.928003, -84.094463]" title="drag me" draggable="true" on-dragend="markerPos()"></marker>
 								                        </map>
 								                    </div>
 								                </section>
 								             </div>
-								            </div>
+								           </div>
 	                                      <md-button type="submit" class="md-raised btn-w-md md-primary" 
 	                                      	data-ng-disabled="!canSubmit($flow.files.length)">Guardar</md-button>
-		                                  <!-- <md-button class="btn-w-md" data-ng-click="cancel()">Cancelar</md-button> -->
 		                                  <div class="divider"></div>
                                     	  <div class="alert alert-info" data-ng-show="showInfoOnSubmit">
                                     	  	Propiedad registrada satisfactoriamente!
@@ -152,7 +151,7 @@
                         </div>
                     </div>
                 </div>
-            </section>    
+            </div>    
         </div>
     </div>
-</section>
+</div>
