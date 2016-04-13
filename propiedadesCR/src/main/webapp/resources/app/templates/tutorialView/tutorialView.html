@@ -1,0 +1,359 @@
+<style>
+.divController{
+   height: 602px;
+   background-color:white;
+}
+.divRow{
+    
+    padding-top: 23px;
+    height: 51px;
+    opacity:107px;
+}
+
+
+.rowContainer{
+    padding-top: 20px;
+    padding-left: 1px;
+    
+}
+
+.rowPrincipalContainer{
+    padding-top: 77px;
+    padding-left: 1px;
+    
+}
+.divPrincipalRows{
+    
+    padding-top: 5px;
+    height: 51px;
+     opacity:107px;
+}
+
+.divSideRowUp{
+    
+    padding-top: 9px;
+    height: 47px;
+    opacity:107px;
+}
+.divSideRowDown{
+    
+    padding-bottom: 1px;
+    height: 51px;
+    opacity:107px;
+}
+
+.arrows {
+  -webkit-animation-duration: 10s;
+  -webkit-animation-iteration-count: infinite;
+  color: #339966;
+}
+.nextButtons {
+  -webkit-animation-duration: 1s;
+  -webkit-animation-iteration-count: infinite;
+}
+</style>
+
+<div class="page page-table divController" data-ng-controller="tutorialController" >
+    <div class="col-xs-12">
+
+        <div ng-show = "showMenu" class = "col-xs-2 rowContainer">
+            <div class = "row divRow">
+                <div ng-hide = "principalMenu">
+                    <i class="fa fa-chevron-left fa-2x animated arrows shake"></i></div></div>
+            <div  class = "row divRow" >
+                <div ng-hide = "propertiesMenu">
+                    <i class="fa fa-chevron-left fa-2x animated arrows shake"></i></div></div>
+            <div  class = "row divRow">
+                <div ng-hide = "eventsMenu">
+                    <i class="fa fa-chevron-left fa-2x animated arrows shake"></i></div></div>
+            <div  class = "row divRow">
+                <div ng-hide = "vendorsMenu">
+                    <i class="fa fa-chevron-left fa-2x animated arrows shake"></i></div></div>
+        </div>
+
+        <div ng-show = "showPrincipalMenu" class = "col-xs-2 rowPrincipalContainer">
+            <div class = "row divSideRowUp">
+                <div ng-hide = "bankToDo">
+                    <i class="fa fa-chevron-left fa-2x animated arrows shake focus-trap"></i></div></div>
+            <div  class = "row divPrincipalRows" >
+                <div ng-hide = "propertiesQuestions">
+                    <i class="fa fa-chevron-left fa-2x animated arrows shake"></i></div></div>
+            <div  class = "row divPrincipalRows">
+                <div ng-hide = "consultGuides">
+                    <i class="fa fa-chevron-left fa-2x animated arrows shake"></i></div></div>
+            <div  class = "row divSideRowDown">
+                <div ng-hide = "userToDo">
+                    <i class="fa fa-chevron-left fa-2x animated arrows shake"></i></div></div>
+        </div>
+        <div class = "col-xs-10">
+            <section>
+                <div class="dialog-demo-content" layout="row" layout-wrap="" layout-margin=""></div>
+<!--************************************************BIENVENIDA***********************************************************-->
+                <script type="text/ng-template" id="dialog1.tmpl.html">
+
+                    <md-dialog aria-label="Lucky day"  class=" animated flipInX" ng-cloak>
+                        <form>
+
+                            <md-dialog-content>
+                                <div class="md-dialog-content">
+                                    <h2 >Bienvenido(a) a PropiedadesCR</h2>
+                                    <p style= "font-size:15px">Nuestra meta es que su experiencia de usuario sea la mejor posible.</p>
+                                    <p style= "font-size:15px">A continuación le daremos una breve explicación de lo que la aplicación ofrece.</p>
+                                </div>
+                            </md-dialog-content>
+                            <md-dialog-actions layout="row">
+                                <span flex></span>
+                                <md-button class = "md-raised btn-w-md md-accent md-button md-ink-ripple animate nextButtons pulse" ng-click="answer('useful',$event)" style="margin-right:20px;">Aceptar</md-button>
+                            </md-dialog-actions>
+                        </form>
+                    </md-dialog>
+            </script>
+<!--************************************************MENU PRINCIPAL***********************************************************-->
+            <script type="text/ng-template" id="dialog2.tmpl.html">
+                <md-dialog aria-label="Lucky day" class=" animated fadeInDownBig" ng-cloak>
+                    <form>
+
+                        <md-dialog-content>
+                            <div class="md-dialog-content">
+                                <h2>Menú Principal</h2>
+                                <p style= "font-size:15px">Para interactuar con las propiedades puede acceder al menú principal</p>
+                            </div>
+                        </md-dialog-content>
+
+                        <md-dialog-actions layout="row">
+                            <span flex></span>
+                            <md-button  class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closePrincPDialog($event)" style="margin-right:20px;">
+                                <span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
+                                <span class = "ng-scope">Siguiente</span></md-button></md-button>
+                         </md-dialog-actions>
+                    </form>
+                </md-dialog>
+            </script>
+<!--************************************************TAREAS DEL BANCO*********************************************************-->
+            <script type="text/ng-template" id="dialog3.tmpl.html">
+                <md-dialog aria-label="Lucky day" class=" animated fadeInRightBig" ng-cloak>
+                    <form>
+
+                        <md-dialog-content>
+                            <div class="md-dialog-content">
+                                <h2>Tareas del Banco</h2>  
+                                <p style= "font-size:15px">Esta función permite ver la lista de requisitos que solicita cada</p>
+                                 <p>entidad bancaria para un trámite en específico</p>
+                            </div>
+                        </md-dialog-content>
+
+                        <md-dialog-actions layout="row">
+                            <span flex></span>
+                            <md-button  class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closesBankToDo($event)" style="margin-right:20px;">
+                                <span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
+                                <span class = "ng-scope">Siguiente</span></md-button></md-button>
+                         </md-dialog-actions>
+                    </form>
+                </md-dialog>
+            </script>
+<!--***********************************PROPIEDADES  Y SUS NECESIDADES*******************************************************-->
+            <script type="text/ng-template" id="dialog4.tmpl.html">
+                <md-dialog aria-label="Lucky day" class=" animated fadeInRightBig" ng-cloak>
+                    <form>
+
+                        <md-dialog-content>
+                            <div class="md-dialog-content">
+                                <h2>Propiedades y sus necesidades</h2>                    
+                                <p style= "font-size:15px">Para encontrar propiedades que se ajusten a sus necesidades puede </p>
+                                <p>acceder donde muestra la flecha</p>
+                            </div>
+                        </md-dialog-content>
+
+                        <md-dialog-actions layout="row">
+                            <span flex></span>
+                            <md-button class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closePropertiesQA($event)" style="margin-right:20px;"><span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
+                                <span class = "ng-scope">Siguiente</span></md-button>
+                            </md-button>
+
+                         </md-dialog-actions>
+                    </form>
+                </md-dialog>
+            </script>
+<!--************************************************CONSULTAR GUIAS**********************************************************-->
+            <script type="text/ng-template" id="dialog5.tmpl.html">
+                <md-dialog aria-label="Lucky day" class=" animated fadeInRightBig" ng-cloak>
+                    <form>
+
+                        <md-dialog-content>
+                            <div class="md-dialog-content">
+                                <h2>Consultar Guías</h2>  
+                                <p style= "font-size:15px">Aquí podrá descargar la información necesaria para realizar un trámite</p>
+                                <p>con una entidad bancaria</p>
+                            </div>
+                        </md-dialog-content>
+
+                        <md-dialog-actions layout="row">
+                            <span flex></span>
+                            <md-button class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closeConsultGuides($event)" style="margin-right:20px;"><span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
+                                <span class = "ng-scope">Siguiente</span></md-button>
+                            </md-button>
+
+                         </md-dialog-actions>
+                    </form>
+                </md-dialog>
+            </script>
+<!--*******************************************VER TAREAS DE USUARIO*********************************************************-->
+            <script type="text/ng-template" id="dialog6.tmpl.html">
+                <md-dialog aria-label="Lucky day" class=" animated fadeInRightBig" ng-cloak>
+                    <form>
+
+                        <md-dialog-content>
+                            <div class="md-dialog-content">
+                                <h2>Ver tareas de usuario</h2>
+                                                           Para interactuar con las propiedades puede acceder al menú principal
+                                <p style= "font-size:15px">Aquí podrá ver los requisitos que debe cumplir para poder realizar un</p> 
+                                <p> trámite con una entidad bancaria</p>
+                            </div>
+                        </md-dialog-content>
+
+                        <md-dialog-actions layout="row">
+                            <span flex></span>
+                            <md-button class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closeUserToDo($event)" style="margin-right:20px;"><span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
+                                <span class = "ng-scope">Siguiente</span></md-button>
+                            </md-button>
+
+                         </md-dialog-actions>
+                    </form>
+                </md-dialog>
+            </script>
+<!--**********************************************MENU PROPIEDADES***********************************************************-->
+            <script type="text/ng-template" id="dialog7.tmpl.html">
+                <md-dialog aria-label="Lucky day" class=" animated fadeInDownBig" ng-cloak>
+                    <form>
+
+                        <md-dialog-content>
+                            <div class="md-dialog-content">
+                                <h2>Menú de Propiedades</h2>
+                                <p style= "font-size:15px">Contiene la información de las propiedades disponibles para la venta o </p>       <p>alquiler</p>
+                            </div>
+                        </md-dialog-content>
+
+                        <md-dialog-actions layout="row">
+                            <span flex></span>
+                            <md-button class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closePropDialog($event)" style="margin-right:20px;">
+                                <span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
+                                <span class = "ng-scope">Siguiente</span></md-button>
+                        </md-dialog-actions>
+                    </form>
+                </md-dialog>
+            </script>
+<!--************************************************VER PROPIEDADES*********************************************************-->
+            <script type="text/ng-template" id="dialog8.tmpl.html">
+                <md-dialog aria-label="Lucky day" class=" animated fadeInRightBig" ng-cloak>
+                    <form>
+
+                        <md-dialog-content>
+                            <div class="md-dialog-content">
+                                <h2>Ver propiedades</h2>   
+                                <p style= "font-size:15px">Aquí podrá ver la información detallada de las propiedades que se</p>
+                                <p>encuentran registradas en el sistema</p>
+                            </div>
+                        </md-dialog-content>
+
+                        <md-dialog-actions layout="row">
+                            <span flex></span>
+                            <md-button class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closePropertiesList($event)" style="margin-right:20px;">
+                                <span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
+                                <span class = "ng-scope">Siguiente</span></md-button>
+                        </md-dialog-actions>
+                    </form>
+                </md-dialog>
+            </script>
+<!--****************************************MIS PROPIEDADES FAVORITAS********************************************************-->
+            <script type="text/ng-template" id="dialog9.tmpl.html">
+                <md-dialog aria-label="Lucky day" class=" animated fadeInRightBig" ng-cloak>
+                    <form>
+
+                        <md-dialog-content>
+                            <div class="md-dialog-content">
+                                <h2>Mis propiedades favoritas</h2>
+                                                           
+                                <p style= "font-size:15px">Aquí podrá ver la información detallada de las propiedades que ha</p>
+                                <p>marcado como favoritas</p>
+                            </div>
+                        </md-dialog-content>
+
+                        <md-dialog-actions layout="row">
+                            <span flex></span>
+                            <md-button class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closeFaveProperties($event)" style="margin-right:20px;">
+                                <span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
+                                <span class = "ng-scope">Siguiente</span></md-button>
+                        </md-dialog-actions>
+                    </form>
+                </md-dialog>
+            </script>
+<!--***********************************************MENU DE EVENTOS***********************************************************-->
+            <script type="text/ng-template" id="dialog10.tmpl.html">
+                <md-dialog aria-label="Lucky day" class=" animated fadeInDown" ng-cloak>
+                    <form>
+
+                        <md-dialog-content>
+                            <div class="md-dialog-content">
+                                <h2>Menú de Eventos</h2>   
+                                <p style= "font-size:15px">La aplicación maneja eventos relacionados a la muestra de propiedades</p>
+                                <p>en venta.</p>
+                            </div>
+                        </md-dialog-content>
+
+                        <md-dialog-actions layout="row">
+                            <span flex></span>
+                            <md-button class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closeEvents($event)" style="margin-right:20px;">
+                                <span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
+                                <span class = "ng-scope">Siguiente</span></md-button>
+                        </md-dialog-actions>
+                    </form>
+                </md-dialog>
+            </script>
+<!--************************************************VER EVENTOS***********************************************************-->
+            <script type="text/ng-template" id="dialog11.tmpl.html">
+                <md-dialog aria-label="Lucky day"  class=" animated fadeInRightBig" ng-cloak>
+                    <form>
+
+                        <md-dialog-content>
+                            <div class="md-dialog-content">
+                                <h2>Ver Eventos</h2>
+                                <p>Aquí podrá la información detallada de los eventos. Además de poder</p>
+                                <p>asistir a un evento de su interés</p>
+                            </div>
+                        </md-dialog-content>
+
+                        <md-dialog-actions layout="row">
+                            <span flex></span>
+                            <md-button class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closeListEvents($event)" style="margin-right:20px;"><span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
+                                <span class = "ng-scope">Siguiente</span></md-button>
+                            </md-button>
+                         </md-dialog-actions>
+                    </form>
+                </md-dialog>
+            </script>
+<!--************************************************VER VENDEDORES***********************************************************-->
+            <script type="text/ng-template" id="dialog12.tmpl.html">
+                <md-dialog aria-label="Lucky day"  class=" animated fadeInDownBig" ng-cloak>
+                    <form>
+
+                        <md-dialog-content>
+                            <div class="md-dialog-content">
+                                <h2>Ver vendedores</h2>
+                                <p>Aquí podrá ver e interactuar con  los vendedores de las propiedades.</p>
+                            </div>
+                        </md-dialog-content>
+
+                        <md-dialog-actions layout="row">
+                            <span flex></span>
+                            <md-button class = "md-raised btn-w-md md-accent md-button md-ink-ripple" ng-click="closeSellers($event)" style="margin-right:20px;"><span class = "fa fa-angle-double-right fa-1x ng-scope"></span>
+                                <span class = "ng-scope">Siguiente</span></md-button>
+                            </md-button>
+                         </md-dialog-actions>
+                    </form>
+                </md-dialog>
+            </script>
+<!--*************************************************************************************************************************-->
+        </section>
+    </div>
+</div>
+</div>

@@ -76,6 +76,7 @@ function() {
 		,"app.favoritesManagment"
 		,"app.bankReport"
 		,"DataBaseService"
+		,"app.tutorial"
 		,"app.matchedTagsDirective"
 		
 		//3rd Party Modules

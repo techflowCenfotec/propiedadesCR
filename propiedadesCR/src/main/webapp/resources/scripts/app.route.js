@@ -45,11 +45,11 @@
 			,"templates/permissionsViews/adminView"
 			,"templates/roleView/editRoles"
 			,"templates/toDoListView/listToDoList"
-
 			,"templates/propertyFavoritesView/favoritesList"
 
 			,"templates/toDoListView/myToDoList"
 			,"templates/reportsView/bankReport"
+			,"templates/tutorialView/tutorialView"
 
 
 		], 

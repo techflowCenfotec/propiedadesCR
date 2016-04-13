@@ -39,13 +39,37 @@
 		$scope.sellsReport = false;
 		$scope.banksReport = false;
 		
-
-
 		var userResponse = {};
 		var userPermissionsList = [];
 		var link = 'rest/protected/users/getUserLogged';
+
+		$scope.makeShow = function(){
+			var display = localStorage.getItem('style');
+			if(display === null){
+				display = "display: none;";
+			}
+			return display;
+		};
+
+		$scope.propShow = function(){
+			var display = localStorage.getItem('propStyle');
+			if(display === null){
+				display = "display: none;";
+			}
+			return display;
+		};
+
+		$scope.eventShow = function(){
+			var display = localStorage.getItem('eveStyle');
+			if(display === null){
+				display = "display: none;";
+			}
+			return display;
+		};
 		
-		$http.get(link).success(function(response) {
+		var me = $scope.makeShow;
+		$http.get(link).success(function(response) {	
+			console.log(me);
 			userResponse = response;
 			userPermissionsList = userResponse.user.role.tpermissions;
 			var permission = {};

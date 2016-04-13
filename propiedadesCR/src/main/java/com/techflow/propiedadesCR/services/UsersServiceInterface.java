@@ -25,4 +25,5 @@ public interface UsersServiceInterface {
 	Tuser getUserAdmin();
 	Tuser deleteUser(UsersRequest puserRequest);
 	List<PropertyPOJO> getAllFavorites(UsersRequest puserRequest);
+	Tuser notFirstTime(UsersRequest puserRequest);
 }

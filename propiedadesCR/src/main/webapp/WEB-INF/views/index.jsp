@@ -11,6 +11,7 @@
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,500,700,300,300italic,500italic|Roboto+Condensed:400,300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="resources/bower_components/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="resources/bower_components/material-design-iconic-font/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="resources/styles/animate.css">
         <!-- end Needs images -->
 
         <link rel="stylesheet" href="resources/styles/main.css">
@@ -138,3 +139,5 @@
 		<script src="resources/app/templates/reportsView/bankReport.js"></script>
 		<script src="resources/scripts/services/dbService.js"></script>
         
+        <script src="resources/app/templates/tutorialView/tutorialDirective.js"></script>
+
