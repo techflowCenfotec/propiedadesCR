@@ -108,13 +108,8 @@ public class UsersController {
 
 	@RequestMapping(value = "/getAllVendors", method = RequestMethod.POST)
 	public UsersResponse getAllVendors(@RequestBody UsersRequest puserRequest) {
+		return usersService.getAllVendors(puserRequest);
 
-		UsersResponse response = new UsersResponse();
-		response.setCode(200);
-		response.setCodeMessage("Users fetch successful");
-		response.setUsers(usersService.getAllVendors(puserRequest));
-
-		return response;
 	}
 
 	/**
