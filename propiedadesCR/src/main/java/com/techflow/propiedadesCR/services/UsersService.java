@@ -20,9 +20,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.techflow.propiedadesCR.contracts.PasswordRequest;
 import com.techflow.propiedadesCR.contracts.UsersRequest;
+import com.techflow.propiedadesCR.ejb.Tdistrict;
 import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.Trole;
 import com.techflow.propiedadesCR.ejb.Tuser;
+import com.techflow.propiedadesCR.pojo.DistrictPOJO;
 import com.techflow.propiedadesCR.pojo.PropertyPOJO;
 import com.techflow.propiedadesCR.ejb.TuserReview;
 import com.techflow.propiedadesCR.pojo.RolePOJO;
@@ -348,8 +350,6 @@ public class UsersService implements UsersServiceInterface{
 		propertiesList.stream().forEach(property ->{
 			PropertyPOJO propertyPOJO = new PropertyPOJO();
 			BeanUtils.copyProperties(property, propertyPOJO);
-			
-			propertyPOJO.setTpropertyImages(null);
 		
 			propertyPOJO.setTuser(null);
 			propertyPOJO.setTusers(null);
@@ -357,6 +357,8 @@ public class UsersService implements UsersServiceInterface{
 			propertyPOJO.setSaleType(null);
 			propertyPOJO.setSoldDate(null);
 			propertyPOJO.setTbenefits(null);;
+			propertyPOJO.setTdistrict(new DistrictPOJO());
+			propertyPOJO.getTdistrict().setName(property.getTdistrict().getName());
 			favoritesList.add(propertyPOJO);
 			
 		});
