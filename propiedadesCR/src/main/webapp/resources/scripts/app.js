@@ -185,7 +185,7 @@ function(){
 				$rootScope.userLogged = response.user;
 				e.userLogged = localStorage.getItem('userLogged');
 				localStorage.setItem('idUser',e.user.idUser);
-
+				console.log(response.user);
 				return e.user;
 			});
 			e.consultMyProfile = function(myId){

@@ -298,11 +298,16 @@ public class LocalController {
 	
 			
 			LoginResponse response = new LoginResponse();
-
-			httpServletRequest.getSession().setAttribute("userLogged", null);
-			currentSession.setAttribute("idUser", null);
+			System.out.println("Usuario ahora"+httpServletRequest.getSession().getAttribute("userLogged"));
 			
-
+			httpServletRequest.getSession().setAttribute("userLogged", null);
+			//System.out.println("Ahora"+currentSession.getAttribute("idUser"));
+			
+			currentSession.setAttribute("idUser", null);
+			//System.out.println("Despues"+currentSession.getAttribute("idUser"));
+			System.out.println("Despues ahora"+httpServletRequest.getSession().getAttribute("userLogged"));
+			
+			
 			return response;
 		}
 

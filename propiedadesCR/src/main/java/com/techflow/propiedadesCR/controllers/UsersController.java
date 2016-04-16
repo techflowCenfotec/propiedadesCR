@@ -215,7 +215,11 @@ public class UsersController {
 	@RequestMapping(value = "/getUserLogged", method = RequestMethod.GET)
 	public UsersResponse getUserLogged() {
 		UsersResponse response = new UsersResponse();
-		response.setUser((UserPOJO) httpServletRequest.getSession().getAttribute("userLogged"));
+		if(httpServletRequest.getSession().getAttribute("userLogged")!=null)
+			response.setUser((UserPOJO)httpServletRequest.getSession().getAttribute("userLogged"));
+			else
+				response.setUser(null);
+		
 		return response;
 	}
 
