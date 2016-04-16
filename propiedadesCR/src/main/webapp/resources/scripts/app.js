@@ -192,7 +192,7 @@ function(){
 				localStorage.setItem('idUser',myId);
 			};
 			e.signOut = function(){
-				$rootScope.userLogged = null;
+				$rootScope = null;
 				$http.get('rest/protected/signOut/signOut').success(function(){
 					
 				});

@@ -9,9 +9,13 @@
 			userName:'',
 			password:'',
 		}
+	
+		localStorage.setItem('load','0');
 		
 		dbService.localCheckDB();
-		
+		$http.get('rest/local/signOut').success(function(response){
+			
+		});
 		$scope.checkUser = function(){
 			
 			

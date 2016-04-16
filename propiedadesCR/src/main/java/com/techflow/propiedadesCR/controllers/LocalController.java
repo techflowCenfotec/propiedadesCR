@@ -27,6 +27,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,6 +40,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.mysql.jdbc.Connection;
 import com.techflow.propiedadesCR.contracts.BaseResponse;
+import com.techflow.propiedadesCR.contracts.LoginResponse;
 import com.techflow.propiedadesCR.contracts.RolesRequest;
 import com.techflow.propiedadesCR.contracts.RolesResponse;
 import com.techflow.propiedadesCR.contracts.UsersRequest;
@@ -53,6 +56,13 @@ import com.techflow.propiedadesCR.utils.Utils;
 public class LocalController {
 	
 	
+	/**
+	 * Este objeto mantiene la sesión en el backend
+	 */
+	
+	@Autowired private HttpServletRequest httpServletRequest;
+	
+	@Autowired private  HttpSession currentSession;
 	/**
      * Este objeto se utiliza para el manejo de archivos. 
      */
@@ -283,5 +293,18 @@ public class LocalController {
 				
 		
 		}
+		@RequestMapping(value="/signOut", method = RequestMethod.GET)
+		public LoginResponse getSignOut() {
+	
+			
+			LoginResponse response = new LoginResponse();
+
+			httpServletRequest.getSession().setAttribute("userLogged", null);
+			currentSession.setAttribute("idUser", null);
+			
+
+			return response;
+		}
+
 
 }

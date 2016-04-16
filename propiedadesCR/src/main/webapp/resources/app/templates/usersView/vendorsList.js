@@ -7,9 +7,9 @@
 		
 		$scope.vendors = [];
 		$scope.totalPages =0;
-		$scope.pageSize = 2;
+		$scope.pageSize = 10;
 		$scope.pageNumber = 0;
-        $scope.numPerPageOpt = [3, 5, 10, 20];
+        $scope.numPerPageOpt = [2, 5, 10, 20];
         $scope.numPerPage = $scope.numPerPageOpt[2];
         $scope.currentPage = 1;
         $scope.currentPage = [];

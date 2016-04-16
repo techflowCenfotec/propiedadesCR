@@ -18,12 +18,12 @@ import com.techflow.propiedadesCR.pojo.UserPOJO;
 @RestController
 @RequestMapping(value="rest/protected/signOut")
 public class SignOutController {
-	/**
-	 * Este objeto mantiene la sesión en el backend
-	 */
-	
-	@Autowired private HttpServletRequest httpRequest;
-	
+		/**
+		 * Este objeto mantiene la sesión en el backend
+		 */
+		@Autowired private HttpServletRequest httpServletRequest;
+		
+		@Autowired private  HttpSession currentSession;
 		/**
 	    * Este método retorna el usuario que esta cerrando sesión
 	    *@return response Retorna la respuesta del sevicio hacia el frontend.
@@ -33,20 +33,12 @@ public class SignOutController {
 		
 		
 		
-		HttpSession currentSession = httpRequest.getSession();
+	
 		BaseResponse response = new LoginResponse();
-//		
-//		UserPOJO userLogged = loginService.checkUser(ploginRequest);
-//	
-//		if(userLogged==null){
-//			response.setCode(401);
-//			response.setErrorMessage("Unauthorized User");
-//		}else{
-//			response.setCode(200);
-//			response.setUser(userLogged);
-		httpRequest.getSession().setAttribute("userLogged", null);
+
+		httpServletRequest.getSession().setAttribute("userLogged", null);
 		currentSession.setAttribute("idUser", null);
-//		}
+
 		
 		return response;
 	}
