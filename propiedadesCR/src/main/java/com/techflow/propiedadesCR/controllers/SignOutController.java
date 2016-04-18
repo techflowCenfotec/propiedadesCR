@@ -31,9 +31,6 @@ public class SignOutController {
 	@RequestMapping(value="/signOut", method = RequestMethod.GET)
 	public BaseResponse getSignOut() {
 		
-		
-		
-	
 		BaseResponse response = new LoginResponse();
 
 		httpServletRequest.getSession().setAttribute("userLogged", null);

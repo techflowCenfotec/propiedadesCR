@@ -36,7 +36,7 @@
 							gender:'',
 						};
 						
-						dbService.checkDB();
+						dbService.localCheckDB();
 
 						var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","role": {}};
 						

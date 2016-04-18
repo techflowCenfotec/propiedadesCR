@@ -88,7 +88,7 @@
 			    responseError: function(response) {
 			    	
 			    	if(response.status === 401){
-						window.location.href = "/propiedadesCR/#/login";
+						window.location.href = "/propiedadesCR/#/landingPage";
 					}
 			      return $q.reject(response);
 			    }
@@ -102,7 +102,7 @@
 		    },
 		    complete: function(response) {
 		    	if(response.status === 401){
-		    		window.location.href = "/login";
+		    		window.location.href = "/landingPage";
 				}
 		    }
 		});
