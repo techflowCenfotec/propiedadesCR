@@ -53,8 +53,6 @@
 	<!--Core JS-->
 	<script src="resources/scripts/vendor.js"></script>
 	<script src="resources/scripts/landingVendor/vendor.js"></script>
-	<script src="resources/bower_components/jquery/dist/jquery.min.js"></script>
-	<script src="resources/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 	
 	<script src="resources/scripts/ui.js"></script>
 	<script src="resources/scripts/appLogin.js"></script>
