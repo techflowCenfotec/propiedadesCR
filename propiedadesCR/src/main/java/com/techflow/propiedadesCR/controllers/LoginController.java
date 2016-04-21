@@ -41,8 +41,8 @@ public class LoginController {
 	/** 
      * Este objeto mantiene la sesión en el backend
      */
-	@Autowired private HttpServletRequest httpRequest;
-	
+	@Autowired private HttpServletRequest httpServletRequest;
+	@Autowired private HttpSession currentSession;
 	/**
 	    * Este método retorna el usuario que esta iniciando sesión
 	    *
@@ -55,7 +55,7 @@ public class LoginController {
 	  
 	  LoginResponse response = new LoginResponse();
 	  
-	  HttpSession currentSession = servletRequest.getSession();
+	 
 	  UserPOJO userLogged = loginService.checkUser(ploginRequest,currentSession);
 	  
 	  //loginService.checkUser(lr,response,currentSession);
@@ -65,7 +65,7 @@ public class LoginController {
 	  }else{
 	   response.setCode(200);
 	   response.setUser(userLogged);
-	   httpRequest.getSession().setAttribute("userLogged", userLogged);
+	   httpServletRequest.getSession().setAttribute("userLogged", userLogged);
 	   currentSession.setAttribute("idUser", userLogged.getIdUser());
 	  }
 	  

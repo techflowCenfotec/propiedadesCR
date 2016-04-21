@@ -15,7 +15,7 @@ INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) 
 
 INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (6,'Tiene mascota(s)?', 1);
 
-INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (7,'De que tamaño son?', 1);
+INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (7,'De que tama–o son?', 1);
 
 INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (8,'Cuenta con vehículo(s)?', 1);
 

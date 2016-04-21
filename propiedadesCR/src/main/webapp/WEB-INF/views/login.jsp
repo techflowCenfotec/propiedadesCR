@@ -6,6 +6,7 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Propiedades CR - Soluciones de Vivienda</title>
 
 <!-- Needs images, font... therefore can not be part of main.css -->
@@ -17,9 +18,12 @@
 	href="resources/bower_components/font-awesome/css/font-awesome.min.css">
 <link rel="stylesheet"
 	href="resources/bower_components/material-design-iconic-font/css/material-design-iconic-font.min.css">
+
 <!-- end Needs images -->
 
+<link rel="stylesheet" href="resources/styles/bootstrap.css">
 <link rel="stylesheet" href="resources/styles/main.css">
+<script src="resources/scripts/modernizr.custom.js"></script>
 
 </head>
 <body data-ng-app="app" id="app" class="app" data-custom-page
@@ -48,19 +52,30 @@
 
 	<!--Core JS-->
 	<script src="resources/scripts/vendor.js"></script>
+	<script src="resources/scripts/landingVendor/vendor.js"></script>
+	
 	<script src="resources/scripts/ui.js"></script>
 	<script src="resources/scripts/appLogin.js"></script>
 	<script src="resources/scripts/appLogin.route.js"></script>
 	<script src="resources/bower_components/underscore/underscore.js"></script>
-	
-	<script	src="resources/non_bower_components/angular-file-upload-shim.min.js"></script>
+
+	<!-- Scripts-->
+	<script
+		src="resources/non_bower_components/angular-file-upload-shim.min.js"></script>
 	<script src="resources/non_bower_components/angular-file-upload.min.js"></script>
 	<script src="resources/non_bower_components/ng-flow-standalone.min.js "></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script
+		src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 
 	<!--Custom JS files-->
 	<script src="resources/app/templates/loginView/login.js"></script>
-	<script src="resources/app/templates/resetPasswordView/forgotPassword.js"></script>
-	<script src="resources/app/templates/resetPasswordView/resetPassword.js"></script>
+	<script
+		src="resources/app/templates/resetPasswordView/forgotPassword.js"></script>
+	<script
+		src="resources/app/templates/resetPasswordView/resetPassword.js"></script>
 	<script src="resources/app/templates/usersView/createUserLogin.js"></script>
+	<script src="resources/app/templates/landingPageView/landingPage.js"></script>
 	<script src="resources/scripts/services/dbService.js"></script>
 	

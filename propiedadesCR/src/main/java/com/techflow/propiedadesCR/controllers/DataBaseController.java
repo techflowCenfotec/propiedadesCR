@@ -18,7 +18,7 @@ public class DataBaseController {
 	
 	@RequestMapping(value="/checkDB", method= RequestMethod.GET)
 	public BaseResponse checkDB(){
-		BaseResponse response = new BaseResponse();
+    BaseResponse response = new BaseResponse();
 	Connection connection = null;
 	try {
 	    connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/propiedades_sch", "root", "mjjv");

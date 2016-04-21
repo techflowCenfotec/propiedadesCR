@@ -108,13 +108,8 @@ public class UsersController {
 
 	@RequestMapping(value = "/getAllVendors", method = RequestMethod.POST)
 	public UsersResponse getAllVendors(@RequestBody UsersRequest puserRequest) {
+		return usersService.getAllVendors(puserRequest);
 
-		UsersResponse response = new UsersResponse();
-		response.setCode(200);
-		response.setCodeMessage("Users fetch successful");
-		response.setUsers(usersService.getAllVendors(puserRequest));
-
-		return response;
 	}
 
 	/**
@@ -220,7 +215,11 @@ public class UsersController {
 	@RequestMapping(value = "/getUserLogged", method = RequestMethod.GET)
 	public UsersResponse getUserLogged() {
 		UsersResponse response = new UsersResponse();
-		response.setUser((UserPOJO) httpServletRequest.getSession().getAttribute("userLogged"));
+		if(httpServletRequest.getSession().getAttribute("userLogged")!=null)
+			response.setUser((UserPOJO)httpServletRequest.getSession().getAttribute("userLogged"));
+			else
+				response.setUser(null);
+		
 		return response;
 	}
 

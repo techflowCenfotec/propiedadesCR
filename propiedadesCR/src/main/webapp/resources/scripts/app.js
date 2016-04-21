@@ -185,14 +185,13 @@ function(){
 				$rootScope.userLogged = response.user;
 				e.userLogged = localStorage.getItem('userLogged');
 				localStorage.setItem('idUser',e.user.idUser);
-
 				return e.user;
 			});
 			e.consultMyProfile = function(myId){
 				localStorage.setItem('idUser',myId);
 			};
 			e.signOut = function(){
-				$rootScope.userLogged = null;
+				$rootScope = null;
 				$http.get('rest/protected/signOut/signOut').success(function(){
 					
 				});

@@ -7,7 +7,6 @@ angular.module('DataBaseService', [])
   
   this.checkDB = function(){
 		$http.get("rest/protected/database/checkDB").success(function(data){
-		
 			if(data.code!==200){
 			$rootScope.userLogged = null;
 			$http.get('rest/protected/signOut/signOut').success(function(){

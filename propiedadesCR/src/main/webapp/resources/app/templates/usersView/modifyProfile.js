@@ -5,8 +5,8 @@
 
 	.controller(
 			'ModifyProfileController',
-			[ '$scope', '$http', '$location', '$upload','$mdToast','$timeout','$rootScope','$state',
-					function($scope, $http, $location, $upload, $mdToast,$timeout,$rootScope,$state) {
+			[ '$scope', '$http', '$location', '$upload','$mdToast','$timeout','$rootScope','$state','dbService',
+					function($scope, $http, $location, $upload, $mdToast,$timeout,$rootScope,$state,dbService) {
 				
 						var original;
 						$scope.dateWithFormat = '';
@@ -37,6 +37,8 @@
 						$scope.form.gender = $scope.user.gender;
 						$scope.form.birthday = new Date($scope.user.birthday);
 							
+						dbService.checkDB();
+						
 						$scope.canSubmit = function() {
 							return $scope.form_createUser.$valid
 									&& !angular.equals($scope.form, original);
@@ -50,9 +52,10 @@
 						};
 						
 						$scope.modifyUser = function(event, $files) {
+							dbService.checkDB();
 							$scope.getDateWithFormat();
 							var file;
-							
+	
 							if($files[0] == undefined)
 								file = new File([],$scope.user.userImage);
 							

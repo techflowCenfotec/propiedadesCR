@@ -11,6 +11,7 @@
 			
 			,"templates/resetPasswordView/forgotPassword"
 			,"templates/resetPasswordView/resetPassword"
+			,"templates/landingPageView/landingPage"
 			
 			,"templates/errorsView/500"
 			
@@ -35,12 +36,12 @@
 			return t($stateProvider)
 		}),
 			
-		$urlRouterProvider.when("/","/login")
-		.otherwise('/login');
+		$urlRouterProvider.when("/","/landingPage")
+		.otherwise('/landingPage');
 
-		$stateProvider.state( "login", {
-			url:"/login",
-			templateUrl:"resources/app/templates/loginView/login.html"
+		$stateProvider.state( "landingPage", {
+			url:"/landingPage",
+			templateUrl:"resources/app/templates/landingPageView/landingPage.html"
 		})
 	}])
 })();
