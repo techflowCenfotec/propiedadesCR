@@ -407,6 +407,31 @@ INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`)
 INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('26', '1');
 
 
+#comprador
+
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('1', '2');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('3', '2');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('5', '2');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('7', '2');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('8', '2');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('9', '2');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('12', '2');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('13', '2');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('14', '2');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('17', '2');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('18', '2');
+
 
 #Bancos
 
