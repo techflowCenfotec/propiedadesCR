@@ -60,12 +60,13 @@
                 <ul ng-show="addEvent">
                     <li><a md-button aria-label="meanu" href="#/templates/eventsView/createEvent"><i class="fa fa-circle color-success"></i><span>Agregar Evento</span></a></li>
                 </ul>
-                <ul ng-show="viewEvents"  style="{{eventShow()}}">
-                    <li><a md-button aria-label="meanu" href="#/templates/eventsView/eventListAdmin"><i class="fa fa-circle color-success"></i><span>Ver Eventos</span></a></li>
+                
+                <ul ng-show="eventList"  style="{{eventShow()}}">
+                    <li><a md-button aria-label="meanu" href="#/templates/eventsView/eventsList"><i class="fa fa-circle color-success"></i><span>Lista de Eventos</span></a></li>
                 </ul>
 
-                <ul ng-show="eventList">
-                    <li><a md-button aria-label="meanu" href="#/templates/eventsView/eventsList"><i class="fa fa-circle color-success"></i><span>Lista de Eventos</span></a></li>
+                <ul ng-show="viewEvents">
+                    <li><a md-button aria-label="meanu" href="#/templates/eventsView/eventListAdmin"><i class="fa fa-circle color-success"></i><span>Ver Eventos</span></a></li>
                 </ul>
             </li>
 
