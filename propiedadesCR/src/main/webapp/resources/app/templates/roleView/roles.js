@@ -2,9 +2,8 @@
 	'use strict';
 
 	angular.module('app.roles', [])
-	.controller('rolesController',
-        ['$scope','$filter','$http', '$upload','$mdToast',
-        function($scope,$filter,$http,$upload, $mdToast){
+	.controller('rolesController',['$scope','$filter','$http', '$upload','$mdToast', '$location',
+        function($scope,$filter,$http,$upload, $mdToast,$location){
 //datagrid
 		$scope.rolesList = [];
         $scope.searchKeywords = '';
@@ -130,5 +129,10 @@
 
             last = angular.extend({},current);
         };
+
+        $scope.go = function(){
+            $location.path("/templates/roleView/addRoles"); 
+        };
+
 	}]);
 })();
