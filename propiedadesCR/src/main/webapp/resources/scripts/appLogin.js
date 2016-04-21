@@ -32,6 +32,7 @@ function() {
 		,"app.i18n"
 		
 		,"app.login"
+		,"app.landing"
 		,"app.forgotPassword"
 		,"app.resetPassword"
 		,"app.createUserLogin"

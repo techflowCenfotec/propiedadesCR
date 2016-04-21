@@ -24,7 +24,8 @@
         $scope.currentPage = [];
 
 		
-     
+        
+        
         dbService.checkDB();
         var link = 'rest/protected/users/getAll';
 		var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","user": {}};

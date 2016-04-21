@@ -12,8 +12,9 @@
 							'$rootScope',
 							'$mdDialog',
 							'$timeout',
+							'dbService',
 							function($scope, $http, $rootScope, $mdDialog,
-									$timeout) {
+									$timeout,dbService) {
 								
 								var original;
 								$scope.user = {};
@@ -38,30 +39,15 @@
 								$scope.showInfo = false;
 								original = angular.copy($scope.form);
 								
-								validate();
-
-
-								function validate() {
-									$http
-											.get(
-													"rest/protected/database/checkDB")
-											.success(
-													function(data) {
-														if (data.code !== 200) {
-															var path = "#/templates/errorsView/500";
-
-															window.location.href = path;
-														}
-													});
-								}
-
+								dbService.checkDB();
+								
 								var link = 'rest/protected/users/getVendorById/'
 										+ localStorage.getItem('idVendor');
 								$http
 										.get(link)
 										.success(
 												function(response) {
-													validate();
+												
 													generalRating(response.user.vendorRatings);
 													$scope.user = response.user;
 													$scope.clients = response.user.vendorRatings;
@@ -92,8 +78,8 @@
 								}
 
 								$scope.saveUserComment = function() {
+									dbService.checkDB();
 									var request;
-									
 									if ($scope.hasRateAndComment != true) {
 										request = {
 											"pageNumber" : 0,
@@ -176,7 +162,7 @@
 										.get(linkRequestVendor)
 										.success(
 												function(response) {
-													validate();
+													
 													var generalRating = 0;
 													for (var i = 0; i < response.user.vendorRatings.length; i++) {
 														generalRating += response.user.vendorRatings[i].averageRating;

@@ -6,12 +6,14 @@
 			
 		$scope.incorrect = true;
 		$scope.user ={
-			userName:'jorge.argds@gmail.com',
-			password:'Food9leak',
+			userName:'',
+			password:'',
 		}
-		
+		localStorage.setItem('load','0');
 		dbService.localCheckDB();
-		
+		$http.get('rest/local/signOut').success(function(response){
+			
+		});
 		$scope.checkUser = function(){
 			
 			
