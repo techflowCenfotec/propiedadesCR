@@ -2,7 +2,7 @@
 	"use strict";
 
 	angular.module("app.eventsListAdmin",[])
-		.controller('listAdminEventController',['$scope','$filter','$http','$mdDialog','$location',function($scope,$filter,$http,$mdDialog,$location){
+		.controller('listAdminEventController',['$scope','$filter','$http','$mdDialog','$location','dbService',function($scope,$filter,$http,$mdDialog,$location,dbService){
 		
 		$scope.status = '  ';
 		$scope.events=[];
@@ -20,6 +20,8 @@
         $scope.currentPage = 1;
         $scope.currentPage = [];
 		
+        
+        dbService.chechDB();
         var link = 'rest/protected/events/getAllEvents';
 		var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","event": {}};
 		var init;

@@ -49,7 +49,7 @@
 	        $scope.showInfoOnSubmit = true;
 	        $timeout(function() {
 		                $scope.showInfoOnSubmit = false;
-		    }, 3000);
+		    }, 1000);
 	        return revert();
 	    };
 	    

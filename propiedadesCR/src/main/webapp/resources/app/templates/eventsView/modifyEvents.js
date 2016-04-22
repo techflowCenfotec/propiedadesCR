@@ -5,8 +5,8 @@
 
 	.controller(
 			'ModifyEventsController',
-			[ '$scope', '$http', '$location', '$upload','$mdToast', 'NgMap','$rootScope','$timeout',
-					function($scope, $http, $location, $upload, $mdToast, NgMap,$rootScope,$timeout) {
+			[ '$scope', '$http', '$location', '$upload','$mdToast', 'NgMap','$rootScope','$timeout','dbService',
+					function($scope, $http, $location, $upload, $mdToast, NgMap,$rootScope,$timeout,dbService) {
 				
 						validate();
 						
@@ -104,7 +104,7 @@
 						$scope.modifyEvents = function(event, $files) {
 							$scope.getDateWithFormat();
 							var file;
-							
+							dbService.checkDB();
 							if($files[0] == undefined)
 								file = new File([],$scope.event.eventImage);
 							
@@ -129,7 +129,7 @@
 								$timeout(function(){
 									$scope.showInfoOnSubmit = false;
 							        $location.path("/templates/eventsView/eventsList"); 
-							    }, 3000);
+							    }, 1000);
 
 							}).error(function(data){
 						

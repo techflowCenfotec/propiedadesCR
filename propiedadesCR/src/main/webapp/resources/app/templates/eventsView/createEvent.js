@@ -14,8 +14,9 @@
 							'NgMap',
 							'$rootScope',
 							'$timeout',
+							'dbService',
 							
-							function($scope, $http, $location, $upload,NgMap,$rootScope,$timeout) {
+							function($scope, $http, $location, $upload,NgMap,$rootScope,$timeout,dbService) {
 									
 								var original;
 								$scope.onError = false;
@@ -91,7 +92,7 @@
 									$scope.saveEvent(event, $files);
 									$timeout(function(){
 								        $location.path("/templates/eventsView/eventsList"); 
-								    }, 3000);
+								    }, 1000);
 
 								};
 
@@ -117,7 +118,7 @@
 
 								};
 								$scope.saveEvent = function($files) {
-
+									dbService.checkDB();
 									$scope.getDateWithFormat();
 									
 									var file;

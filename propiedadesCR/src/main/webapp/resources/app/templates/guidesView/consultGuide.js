@@ -8,7 +8,8 @@
 					'$http',
 					'$location',
 					'$upload',
-					function($scope, $http, $location, $upload) {
+					'dbService',
+					function($scope, $http, $location, $upload,dbService) {
 						var original;
 						$scope.onError = false;
 						$scope.requestObject = {};
@@ -28,7 +29,7 @@
 							bank : ''
 						};
 
-						// //lista de bancos
+						dbService.checkDB();
 						var linkBanks = 'rest/protected/banks/getAll';
 						var request = {
 							"pageNumber" : 0,
