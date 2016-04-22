@@ -70,7 +70,8 @@
 				answerAlreadyExist("delete", idQuestion)
 			}
 			getNextQuestion(option.idNextQuestion);
-
+        	console.log($scope.answers);
+        	isThereAPrevious();
 		};	
 
 		function getNextQuestion(pidNextQuestion){
@@ -113,13 +114,16 @@
 
 		$scope.resetAnswers = function(){
 			$scope.answers = [];
+	       	isThereAPrevious();
 		};
 
 
         //wizard
 
         $scope.canExit = false;
-        $scope.stepActive = true;
+        $scope.stepActive = false;
+        $scope.isPrevious = true;
+        //$scope.disabled = 'true';
 
 
         function calculateCantAnswersByOption(option){
@@ -145,21 +149,24 @@
         			optionsResult[optionsResultIndex] = '';
         		}
 
-        		
         	}
 
-        	console.log(optionsResult);
         	return optionsResult;
-        }
+        };
 
-        //agregar lista de tags que se usaron para generar el match de acuerdo al resultado
-        //modal
-        //tipo propiedad
-        //vender alquilar
+        $scope.previous = function(){
+			WizardHandler.wizard().previous();
+			isThereAPrevious();
+        };
 
+        function isThereAPrevious(){
+        	if(WizardHandler.wizard().currentStepNumber() == 0){
+        		$scope.isPrevious = true;
+        	}else{
+        		$scope.isPrevious = false;
+        	}
+        };
 
-
-        
 	}]);
 	
 })();
