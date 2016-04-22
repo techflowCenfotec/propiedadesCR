@@ -332,6 +332,11 @@
 	    	var porcentage = $scope.offerForm.offer/100*$scope.offerForm.originalPrice;
 	    	$scope.price = $scope.offerForm.originalPrice - porcentage;
 	    }
+
+	    // $scope.url = getURL();
+	    // $scope.getURL = function(){
+	    // 	return document.URL;
+	    // }
     };
 	
 })();
