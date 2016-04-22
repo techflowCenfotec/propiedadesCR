@@ -10,7 +10,6 @@
 			templateUrl: 'resources/app/templates/propertiesView/benefitDirective.html',
 			link: function($scope) {
 				$scope.animationsEnabled = true;
-				$scope.buttonLabel = 'Buscar Características';
 					
 		        $scope.open = function (size) {
 		        	

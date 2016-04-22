@@ -95,6 +95,8 @@
 										<md-input-container class="md-block"> <label>Dirección</label>
 										<input ng-model="property.address" md-maxlength="150" required />
 										</md-input-container>
+										<div class="row">
+											<div class="col-lg-11">
 										<md-chips ng-model="property.tbenefits"
 											readonly="ctrl.readonly"
 											delete-button-label="Eliminar etiqueta"
@@ -108,6 +110,11 @@
 										<span md-highlight-text="requestObject.searchText">
 											{{item.benefit}} </span> </md-autocomplete> <md-chip-template> <span>
 											{{$chip.benefit}} </span> </md-chip-template> </md-chips>
+										</div>
+											<div class="col-lg-1 benefit-alignment">
+												<benefits></benefits>
+											</div>
+										</div>
 										<div class="divider divider-md"></div>
 										<div layout layout-sm="column">
 											<md-input-container flex> <label>Precio</label>

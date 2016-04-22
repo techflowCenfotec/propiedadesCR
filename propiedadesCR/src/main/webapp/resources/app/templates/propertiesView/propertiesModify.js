@@ -123,6 +123,10 @@
 		        };
 		};
 		
+		$scope.$on("filterAction", function(e, benefitsList) {
+			$scope.property.tbenefits = benefitsList;
+		});
+		
 		// Google maps
 		NgMap.getMap().then(function(map) {
 			self.markerPos =  function() {

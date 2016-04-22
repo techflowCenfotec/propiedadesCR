@@ -79,6 +79,10 @@
 		        };
 		};
 		
+		$scope.$on("filterAction", function(e, benefitsList) {
+			self.tags = benefitsList;
+		});
+		
 		// Google maps
 		NgMap.getMap().then(function(map) {
 			$scope.markerPos =  function() {
