@@ -17,7 +17,7 @@
 		
 		original = angular.copy($scope.form);
 		
-		
+		console.log(localStorage.getItem("changePass"));
 		$scope.changePassword = function(){
 			var request=
 			{

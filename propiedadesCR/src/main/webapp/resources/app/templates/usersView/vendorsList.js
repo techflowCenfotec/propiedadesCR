@@ -30,7 +30,7 @@
 	     
 	     
 	     function getAllVendors(){
-	    	 var link = 'rest/protected/users/getAllVendors';
+	    	var link = 'rest/protected/users/getAllVendors';
 	 		var request = {
 	 				  "pageNumber": $scope.pageNumber,
 	 				  "pageSize": $scope.pageSize,

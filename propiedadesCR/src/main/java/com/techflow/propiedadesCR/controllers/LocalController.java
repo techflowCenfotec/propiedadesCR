@@ -293,6 +293,11 @@ public class LocalController {
 				
 		
 		}
+		/**
+		 * Este método permite cerrar la sesión del usuario
+		 * 
+		 * @return response Retorna la respuesta hacia la interfaz gráßfica
+		 */ 
 		@RequestMapping(value="/signOut", method = RequestMethod.GET)
 		public BaseResponse getSignOut() {
 			BaseResponse response = new LoginResponse();
@@ -303,6 +308,11 @@ public class LocalController {
 			
 			return response;
 		
+		}
+		@RequestMapping(value = "/getAllVendors", method = RequestMethod.POST)
+		public UsersResponse getAllVendors(@RequestBody UsersRequest puserRequest) {
+			return usersService.getAllVendors(puserRequest);
+
 		}
 
 

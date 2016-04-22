@@ -2,7 +2,7 @@
 	"use strict";
 
 	angular.module("app.home",[])
-	.controller('HomeController', ['$scope','$rootScope','$http','dbService', function($scope,$rootScope,$http,dbService) {
+	.controller('HomeController', ['$scope','$rootScope','$http','dbService','$state',function($scope,$rootScope,$http,dbService,$state) {
 		
 		
 		
@@ -10,5 +10,7 @@
 		
 	
 		dbService.checkDB();
+
+		
 		
 	}]);

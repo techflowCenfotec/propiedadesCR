@@ -59,7 +59,7 @@ public class LoginController {
 	  UserPOJO userLogged = loginService.checkUser(ploginRequest,currentSession);
 	  
 	  //loginService.checkUser(lr,response,currentSession);
-	  if(userLogged==null){
+	  if(userLogged==null || userLogged.getActive()==0){
 	   response.setCode(401);
 	   response.setErrorMessage("Unauthorized User");
 	  }else{

@@ -12,14 +12,12 @@ import com.techflow.propiedadesCR.contracts.BaseResponse;
 @RestController
 @RequestMapping(value="rest/protected/database")
 public class DataBaseController {
-
-	
-	
-	
+		
 	@RequestMapping(value="/checkDB", method= RequestMethod.GET)
 	public BaseResponse checkDB(){
     BaseResponse response = new BaseResponse();
 	Connection connection = null;
+	
 	try {
 	    connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/propiedades_sch", "root", "mjjv");
 	    response.setCode(200);

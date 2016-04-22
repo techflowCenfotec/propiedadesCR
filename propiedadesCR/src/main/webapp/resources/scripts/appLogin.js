@@ -136,7 +136,6 @@ function(){
 			a.$on("$stateChangeSuccess", function(e,a,n) {
 				t.scrollTo(0,0)
 			})
-			
 		}
 
 		angular.module("app")
