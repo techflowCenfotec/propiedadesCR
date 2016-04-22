@@ -1,23 +1,31 @@
+<style>
+.tbl-scroll {
+	height: 35em;
+    overflow: scroll;
+}
+</style>
 <div class="modal-header">
 	<h3>Características de la Propiedad</h3>
 </div>
 <div class="modal-body">
-	<div class="col-md-12">
-		<div class="panel panel-default">
-			<div class="panel-body">
-				<table class="table no-margin">
-					<thead>
-						<tr>
-							<th>Características</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr ng-repeat="item in benefitsList">
-							<td><md-checkbox type="checkbox" ng-model="item.checked">
-								<span>{{ item.benefit }}</span> </md-checkbox></td>
-						</tr>
-					</tbody>
-				</table>
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-body tbl-scroll">
+					<table class="table table-condensed">
+						<thead>
+							<tr>
+								<th>Características</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr ng-repeat="item in benefitsList">
+								<td><md-checkbox type="checkbox" ng-model="item.checked">
+									<span>{{ item.benefit }}</span> </md-checkbox></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -144,6 +144,10 @@
         $scope.go = function(){
             $location.path("/templates/banktodolistView/banktodolistCreate"); 
         };
+
+        $scope.addGuide = function(){
+            $location.path("/templates/guidesView/createGuide"); 
+        };
     
 	}]);
 

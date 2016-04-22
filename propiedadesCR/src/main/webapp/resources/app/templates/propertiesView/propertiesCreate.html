@@ -108,7 +108,7 @@
                                             <md-input-container flex>
                                                 <label>Precio ($)</label>
                                                 <input type="number" class="form-control" 
-                                                ng-model="requestObject.price" data-ng-maxlength=10 required/>
+                                                ng-model="requestObject.price" pattern="(?!0+)\d+" min="0" data-ng-maxlength=10 required/>
                                             </md-input-container>
                                             <md-input-container flex>
                                                 <label>Tipo propiedad</label>
@@ -123,7 +123,7 @@
 	                                          <md-input-container flex>
 	                                              <label>Metros cuadrados</label>
 	                                              <input type="number" class="form-control" 
-	                                              ng-model="requestObject.meters" data-ng-maxlength=10 required/>
+	                                              ng-model="requestObject.meters" pattern="(?!0+)\d+" min="0" data-ng-maxlength=10 required/>
 	                                          </md-input-container>
                                           </div>
                                           

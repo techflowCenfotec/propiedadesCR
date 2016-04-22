@@ -42,6 +42,16 @@
 		
 		$http.post(link,request).success(function(response) {
 			$scope.rolesList= response.role;
+            var newList = [];
+            console.log($scope.rolesList);
+            for(var i = 0 ; i < $scope.rolesList.length ; i++){
+                
+                if($scope.rolesList[i].idRole>3){
+                    newList.push($scope.rolesList[i]);
+                }
+            }
+    
+            $scope.rolesList = newList;
 			init();
 		});
 

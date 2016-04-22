@@ -5,18 +5,27 @@
 	angular.module('app.permissionsManagment', [])
 	.controller('permissionsController',['$scope','$http',function($scope,$http){
 
+
+
+
+
+		//principal
+		$scope.showAdmin = false;
 		$scope.showPrincipal = false;
 		$scope.showProperties = false;
 		$scope.showEvents = false;
-		$scope.showUsers = false;
-		$scope.showSecurity = false;
 		$scope.showReports = false;
-		//PRINCIPAL
-		$scope.addTodolist = false;
-		$scope.viewTodolist = false;
+
+		//Admin
+		$scope.viewUsers = false;
+		$scope.viewRoles = false;
 		$scope.adminTodolist = false;
+		$scope.viewEvents = false;
+
+		//PRINCIPAL
+		$scope.viewTodolist = false;
 		$scope.test = false;
-		$scope.addGuide = false;
+		// $scope.addGuide = false;
 		$scope.viewGuides = false;
 		$scope.viewMyTodolist = false;
 		//VER VENDEDORES
@@ -28,13 +37,8 @@
 		$scope.viewFavorites = false;
 		//EVENTOS
 		$scope.addEvent = false;
-		$scope.viewEvents = false;
 		$scope.eventList= false;
-		//USUARIOS
-		$scope.addUser = false;
-		$scope.viewUsers = false;
-		$scope.viewRoles = false;
-		$scope.addRole = false;
+		
 		//REPORTES
 		$scope.sellsReport = false;
 		$scope.banksReport = false;
@@ -83,21 +87,21 @@
 				//2.comprador
 				//3.vendedor
 				if(idPermission == 1){
+					$scope.showAdmin = true;
+				}
+				if(idPermission == 6){
 					$scope.showPrincipal = true;
 				}
-				if(idPermission == 9){
+				if(idPermission == 11){
 					$scope.showProperties = true;
 				}
-				if(idPermission == 14){
+				if(idPermission == 16){
 					$scope.showEvents = true;
 				}
-				if(idPermission == 18){
-					$scope.sellersView = true;
-				}
 				if(idPermission == 19){
-					$scope.showUsers = true; 
+					$scope.sellersView = true; 
 				}
-				if(idPermission == 24){
+				if(idPermission == 20){
 					$scope.showReports = true;
 				}
 			}
@@ -108,45 +112,59 @@
 
 		function checkPermissionsByModule(){
 			
-				if($scope.showPrincipal){
+				if($scope.showAdmin){
 					for (var i = 0; i < userPermissionsList.length; i++) {
 							
 						if(userPermissionsList[i].idPermissions == 2){
-							$scope.addTodolist = true;
+							$scope.viewUsers = true;
 						}
-						if(userPermissionsList[i].idPermissions == 3){
-							$scope.viewTodolist = true;
+						if(userPermissionsList[i].idPermissions == 3){		
+							$scope.viewRoles = true;
 						}
 						if(userPermissionsList[i].idPermissions == 4){
 							$scope.adminTodolist = true;
 						}
 						if(userPermissionsList[i].idPermissions == 5){
-							$scope.test = true; 
+							$scope.viewEvents = true; 
 						}
-						if(userPermissionsList[i].idPermissions == 6){
-							$scope.addGuide = true;
-						}
-						if(userPermissionsList[i].idPermissions == 7){
-							$scope.viewGuides = true;
-						}
-						if(userPermissionsList[i].idPermissions == 8){
-							$scope.viewMyTodolist = true;
-						}
+						
 					}
 				}
+
+				if($scope.showPrincipal){
+					for (var i = 0; i < userPermissionsList.length; i++) {
+							
+						if(userPermissionsList[i].idPermissions == 7){
+							$scope.viewTodolist = true;	
+						}
+						if(userPermissionsList[i].idPermissions == 8){		
+							$scope.test = true;	
+						}
+						
+						if(userPermissionsList[i].idPermissions == 9){		
+							$scope.viewGuides = true; 
+						}
+						if(userPermissionsList[i].idPermissions == 10){
+							$scope.viewMyTodolist = true;
+						}
+
+
+					}
+				}
+
 				if($scope.showProperties){
 					for (var i = 0; i < userPermissionsList.length; i++) {
 						
-						if(userPermissionsList[i].idPermissions == 10){
+						if(userPermissionsList[i].idPermissions == 12){
 							$scope.addProperty = true;
 						}
-						if(userPermissionsList[i].idPermissions == 11){
+						if(userPermissionsList[i].idPermissions == 13){
 							$scope.myProperties = true;
 						}
-						if(userPermissionsList[i].idPermissions == 12){
+						if(userPermissionsList[i].idPermissions == 14){
 							$scope.viewProperties = true;
 						}
-						if(userPermissionsList[i].idPermissions == 13){
+						if(userPermissionsList[i].idPermissions == 15){
 							$scope.viewFavorites = true; 
 						}
 					}
@@ -154,42 +172,22 @@
 				if($scope.showEvents){
 					for (var i = 0; i < userPermissionsList.length; i++) {
 						
-						if(userPermissionsList[i].idPermissions == 15){
+						if(userPermissionsList[i].idPermissions == 17){
 							$scope.addEvent = true;
 						}
-						if(userPermissionsList[i].idPermissions == 16){
-							$scope.viewEvents = true;
-						}
-						if(userPermissionsList[i].idPermissions == 17){
+						if(userPermissionsList[i].idPermissions == 18){
 							$scope.eventList = true;
 						}
 					}
 				}
-				if($scope.showUsers){
-					for (var i = 0; i < userPermissionsList.length; i++) {
-						
-						if(userPermissionsList[i].idPermissions == 20){
-							$scope.addUser = true;
-						}
-						if(userPermissionsList[i].idPermissions == 21){
-							$scope.viewUsers = true;
-						}
-						if(userPermissionsList[i].idPermissions == 22){
-							$scope.viewRoles = true;
-						}
-						if(userPermissionsList[i].idPermissions == 23){
-							$scope.addRole = true; 
-						}
-						
-					}
-				}
+				
 				if($scope.showReports){
 					for (var i = 0; i < userPermissionsList.length; i++) {
 						
-						if(userPermissionsList[i].idPermissions == 25){
+						if(userPermissionsList[i].idPermissions == 21){
 							$scope.sellsReport = true;
 						}
-						if(userPermissionsList[i].idPermissions == 26){
+						if(userPermissionsList[i].idPermissions == 22){
 							$scope.banksReport = true;
 						}
 						
