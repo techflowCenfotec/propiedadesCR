@@ -179,6 +179,10 @@ function(){
 			e.userLogged = {};
 			var link = 'rest/protected/users/getUserLogged';
 			
+			if(sessionStorage.getItem('reload')!='0'){
+				window.location.href ='/propiedadesCR/';
+			}
+			
 			$http.get(link).success(function(response){
 				localStorage.setItem('userLogged',response.user);
 				e.user = response.user;
@@ -191,9 +195,11 @@ function(){
 				localStorage.setItem('idUser',myId);
 			};
 			e.signOut = function(){
-				$rootScope = null;
 				$http.get('rest/protected/signOut/signOut').success(function(){
-					
+					console.log('si corro gg');
+					$rootScope.userLogged = null;
+					window.location.href ='/propiedadesCR/';
+					n.reload();
 				});
 			}
 		}
