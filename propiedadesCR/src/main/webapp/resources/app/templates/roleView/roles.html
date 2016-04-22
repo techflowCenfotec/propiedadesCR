@@ -24,7 +24,7 @@
             </div>
             <div class="col-md-8 filter-result-info"></div>
             <div class="col-md-1">
-                <button class="md-fab md-button md-ink-ripple editButton " type="button" ng-transclude="" aria-label="headphones" tooltip-placement="right" uib-tooltip="Agregar" tooltip-append-to-body="true" ng-click="go()">
+                <button class="md-fab md-button md-ink-ripple editButton " type="button" aria-label="headphones" tooltip-placement="right" uib-tooltip="Agregar" tooltip-append-to-body="true" ng-click="go()">
                     <span class=></span><div class="md-ripple-container"><i class="fa fa-plus" aria-hidden="true"></i></div></button></div>
             </div>
         </div>
@@ -52,8 +52,25 @@
                 </tr>
             </thead>
             <tbody>
-            <tr data-ng-repeat="rolesInSys in currentPageList">
+            <tr ng-init="metodo($index)">
+                <td>Administrador</td>
+                <td><a class="btn btn-info" ng-disabled = "true">Modificar</a></td>
+                <td><button class="btn btn-danger" ng-disabled = "true">Eliminar</button></td>
+            </tr>
 
+            <tr ng-init="metodo($index)">
+                <td>Comprador</td>
+                <td><a class="btn btn-info" ng-disabled = "true">Modificar</a></td>
+                <td><button class="btn btn-danger" ng-disabled = "true">Eliminar</button></td>
+            </tr>
+
+            <tr ng-init="metodo($index)">
+                <td>Vendedor</td>
+                <td><a class="btn btn-info" ng-disabled = "true">Modificar</a></td>
+                <td><button class="btn btn-danger" ng-disabled = "true">Eliminar</button></td>
+            </tr>
+
+            <tr data-ng-repeat="rolesInSys in rolesList" ng-init="metodo($index)">
                 <td>{{rolesInSys.rolName}}</td>
                 <td><a class="btn btn-info" data-ng-click="modifyRole(rolesInSys.idRole)"
                 href="#/templates/roleView/editRoles">Modificar</a></td>
