@@ -30,7 +30,7 @@
             right: false
         };
         $scope.toastPosition = angular.extend({},last);
-        dbService.checDB();
+        dbService.checkDB();
         var link = 'rest/protected/banktodolist/getAll';
 		var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","bankToDoList": {}};
 		var init;

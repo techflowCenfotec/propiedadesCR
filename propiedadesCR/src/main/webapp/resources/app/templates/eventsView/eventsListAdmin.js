@@ -21,7 +21,7 @@
         $scope.currentPage = [];
 		
         
-        dbService.chechDB();
+        dbService.checkDB();
         var link = 'rest/protected/events/getAllEvents';
 		var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","event": {}};
 		var init;

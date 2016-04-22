@@ -90,7 +90,7 @@
 				});
 				$timeout(function(){
 		        $location.path("/templates/roleView/roles"); 
-		    }, 3000);
+		    }, 1000);
 
 			
 			}else{
@@ -233,14 +233,15 @@
 		}
 
 		function addToPermissionsList(idPermissions,deactive){
-
+			var listOfPermissions = [];
 			var newPermissionObj = {"idPermissions":idPermissions};
 			if(!deactive){
 				for( var i in 	$scope.form.newPermissions){
 					if(idPermissions == $scope.form.newPermissions[i].idPermissions){
 						$scope.form.newPermissions.splice(i,1);
+						console.log($scope.form.newPermissions[i]);
+						}
 					}
-				}
 			}else{
 				$scope.form.newPermissions.push(newPermissionObj);
 			}
