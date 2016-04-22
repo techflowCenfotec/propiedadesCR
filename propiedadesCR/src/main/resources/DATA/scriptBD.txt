@@ -15,7 +15,7 @@ INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) 
 
 INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (6,'Tiene mascota(s)?', 1);
 
-INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (7,'De que tama–o son?', 1);
+INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (7,'De que tamaño son?', 1);
 
 INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (8,'Cuenta con vehículo(s)?', 1);
 
@@ -46,7 +46,7 @@ INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id
 INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('2', 'Condominio', 'Condominio', '3');
 INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('2', 'Residencial', 'Residencial', '3');
 INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('2', 'Estudio', 'Estudio', '3');
-INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('2', 'Habitacion', 'Habitacion', '3');
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('2', 'Habitación', 'Habitación', '3');
 
 INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('3', 'Si', null, '5');
 INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('3', 'No', null, '4');
@@ -118,9 +118,9 @@ INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Universidad');
 
 INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Gasolinera');
 
-INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Guarderia');
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Guardería');
 
-INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Energia alterna');
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Energía alterna');
 
 INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Tanque de agua');
 
@@ -136,7 +136,7 @@ INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Piscina');
 
 INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Bodega');
 
-INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Atico');
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Ático');
 
 INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Sala de eventos');
 INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('Playa');
@@ -294,62 +294,49 @@ INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`,
 #permisos
 
 
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (1,'Principal');
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (1,'Administración');
 
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (2,'Agregar lista de tareas');
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (2,'Administrar usuarios');
 
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (3,'Ver lista de tareas');
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (3,'Administrar roles');
 
 INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (4,'Administrar lista de tareas');
 
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (5,'Propiedades personalizadas');
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (5,'Administrar Eventos');
 
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (6,'Agregar guía de banco');
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (6,'Principal');
 
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (7,'Consultar guías');
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (7,'Tareas del banco');
 
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (8,'Ver tareas de usuario');
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (8,'Propiedades personalizadas');
 
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (9,'Propiedades');
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (9,'Consultar guías');
 
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (10,'Registrar propiedad');
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (10,'Mis listas de tareas');
 
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (11,'Mis propiedades');
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (11,'Propiedades');
 
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (12,'Ver propiedades');
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (12,'Registrar propiedad');
 
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (13,'Mis propiedades favoritas');
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (13,'Mis propiedades');
 
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (14,'Eventos');
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (14,'Ver propiedades');
 
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (15,'Agregar evento');
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (15,'Mis propiedades favoritas');
 
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (16,'Ver eventos');
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (16,'Eventos');
 
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (17,'Lista de eventos');
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (17,'Agregar evento');
 
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (18,'Lista de eventos');
 
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (18,'Ver Vendedores');
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (19,'Ver vendedores');
 
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (20,'Reportes');
 
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (19,'Usuarios');
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (21,'Reporte de ventas');
 
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (20,'Agregar usuarios');
-
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (21,'Ver usuarios');
-
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (22,'Ver roles');
-
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (23,'Agregar roles');
-
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (24,'Reportes');
-
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (25,'Reporte de ventas');
-
-INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (26,'Reporte bancario');
-
-
-
+INSERT INTO `propiedades_sch`.`tpermissions` (`id_permissions`,`description`) VALUES (22,'Reporte de bancos');
 
 #Permisos roles
 
@@ -396,25 +383,13 @@ INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`)
 INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('20', '1');
 
 INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('21', '1');
+
 INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('22', '1');
-
-INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('23', '1');
-
-INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('24', '1');
-
-INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('25', '1');
-
-INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('26', '1');
-
 
 #comprador
 
 
-INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('1', '2');
-
-INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('3', '2');
-
-INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('5', '2');
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('6', '2');
 
 INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('7', '2');
 
@@ -422,17 +397,55 @@ INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`)
 
 INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('9', '2');
 
-INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('12', '2');
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('10', '2');
 
-INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('13', '2');
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('11', '2');
 
 INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('14', '2');
 
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('15', '2');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('16', '2');
+
 INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('17', '2');
 
-INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('18', '2');
+
+#vendedor
 
 
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('1', '3');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('5', '3');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('6', '3');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('7', '3');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('8', '3');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('9', '3');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('10', '3');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('11', '3');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('12', '3');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('13', '3');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('14', '3');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('15', '3');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('16', '3');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('17', '3');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('18', '3');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('20', '3');
+
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('21', '3');
 #Bancos
 
 
