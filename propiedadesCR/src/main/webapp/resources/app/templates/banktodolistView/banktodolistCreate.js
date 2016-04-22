@@ -70,7 +70,7 @@
 		        $scope.showInfoOnSubmit = false;
        			$location.url("templates/banktodolistView/banktodolistAdminList");
 
-		    }, 3000);
+		    }, 1000);
 	        return revert();
 	    };
 	    
