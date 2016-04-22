@@ -4,13 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.techflow.propiedadesCR.contracts.PropertiesRequest;
+import com.techflow.propiedadesCR.contracts.PropertiesResponse;
 import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.pojo.PropertyPOJO;
 
 public interface PropertiesServiceInterface {
 	
 	ArrayList<PropertyPOJO> getPropertiesWithBenefits();
-	List<PropertyPOJO> getAll();
+	PropertiesResponse getAll(PropertiesRequest pPropertiesRequest);
+	List<PropertyPOJO> getAllProperties();
 	Tproperty getPropertyById(int pIdProperty);
 	PropertyPOJO getByPropertyId(int pIdProperty);
 	Tproperty saveProperty(PropertiesRequest pProperty);
@@ -20,5 +22,6 @@ public interface PropertiesServiceInterface {
 	PropertyPOJO propertyViews(PropertiesRequest prequest);
 
 	Tproperty setPropertySold(PropertiesRequest pProperty);
-	List<PropertyPOJO> getPropertiesByIdVendor(PropertiesRequest pPropertiesRequest);
+	PropertiesResponse getPropertiesByIdVendor(PropertiesRequest pPropertiesRequest);
+	List<PropertyPOJO> getPropertiesVendor(PropertiesRequest pPropertiesRequest);
 }

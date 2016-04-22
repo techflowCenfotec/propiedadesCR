@@ -6,10 +6,13 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.techflow.propiedadesCR.contracts.PropertiesRequest;
+import com.techflow.propiedadesCR.contracts.PropertiesResponse;
 import com.techflow.propiedadesCR.ejb.Tbenefit;
 import com.techflow.propiedadesCR.ejb.Tdistrict;
 import com.techflow.propiedadesCR.ejb.Tproperty;
@@ -51,11 +54,27 @@ public class PropertiesService implements PropertiesServiceInterface {
 	/**
 	  * Retorna una lista de objetos PropertyPOJO
 	  * 
-	  * @return uiProperties Todas las entidades del tipo.
+	  * @return response Retorna el response el cual contiene la lista de propiedades.
 	  */
 	@Override
 	@Transactional
-	public List<PropertyPOJO> getAll() {
+	public PropertiesResponse getAll(PropertiesRequest pPropertiesRequest) {
+		PropertiesResponse response = new PropertiesResponse();
+		Page<Tproperty> properties = propertiesRepository.findAll(new PageRequest(pPropertiesRequest.getPageNumber(),pPropertiesRequest.getPageSize()));
+		
+		response.setProperties(generatePropDtos(properties.getContent()));
+		response.setTotalPages(properties.getTotalPages());
+		response.setCode(200);
+		return response;
+	}
+	/**
+	  * Retorna una lista de objetos PropertyPOJO
+	  * 
+	  * @return response Retorna la lista de propiedades.
+	  */
+	@Override
+	@Transactional
+	public List<PropertyPOJO> getAllProperties() {
 		List<Tproperty> properties = propertiesRepository.findAll();
 		return generatePropDtos(properties);
 	}
@@ -375,11 +394,54 @@ public class PropertiesService implements PropertiesServiceInterface {
 	/**
 	 * Retorna la propiedad que se vendio.
 	 * @param pProperty Contiene la informacion del vendedor.
-	 * @return propertySold retorna la lista de objetos property. 
+	 * @return response Retorna la respuesta la cual contiene una lista de objetos property. 
 	 * @author Jimmi Vila
 	 */
 	@Override
-	public List<PropertyPOJO> getPropertiesByIdVendor(PropertiesRequest pPropertiesRequest) {
+	public PropertiesResponse getPropertiesByIdVendor(PropertiesRequest pPropertiesRequest) {
+		ArrayList<PropertyPOJO> vendorProperties = new ArrayList<PropertyPOJO>();
+		PropertiesResponse response = new PropertiesResponse();
+		Page<Tproperty> pProperties= propertiesRepository.findAll(new PageRequest(pPropertiesRequest.getPageNumber(),pPropertiesRequest.getPageSize()));
+		
+		List<PropertyPOJO> uiProperties = new ArrayList<PropertyPOJO>();
+		pProperties.getContent().stream().forEach(u -> {
+			PropertyPOJO dto = new PropertyPOJO();
+			BeanUtils.copyProperties(u, dto);
+			BeanUtils.copyProperties(u.getTdistrict(), dto.getTdistrict());
+			BeanUtils.copyProperties(u.getTpropertyType(), dto.getTpropertyType());
+			dto.setTbenefits(benefitsDtos(u.getTbenefits()));
+			dto.getTuser().setIdUser(u.getTuser().getIdUser());
+			dto.setSoldDate(u.getSoldDate());
+			dto.setTpropertyImages(imagesDtos(u.getTpropertyImages()));
+			dto.setTpropertyReviews(null);
+			dto.setTusers(null);
+			uiProperties.add(dto);
+		});
+		
+		int idVendor = pPropertiesRequest.getProperty().getTuser().getIdUser();
+		
+		uiProperties.stream().forEach(property->{
+			if(property.getTuser().getIdUser() == idVendor){
+				property.setTbenefits(null);
+				property.setTpropertyType(null);
+				property.getTdistrict().setTcounty(null);
+				property.setTuser(null);
+				vendorProperties.add(property);
+			}
+		});
+		response.setProperties(vendorProperties);
+		response.setTotalPages(pProperties.getTotalPages());
+		response.setCode(200);
+		return response;
+	}
+	/**
+	 * Retorna la propiedad que se vendio.
+	 * @param pProperty Contiene la informacion del vendedor.
+	 * @return response Retorna una lista de objetos property. 
+	 * @author Jimmi Vila
+	 */
+	@Override
+	public List<PropertyPOJO> getPropertiesVendor(PropertiesRequest pPropertiesRequest) {
 		ArrayList<PropertyPOJO> vendorProperties = new ArrayList<PropertyPOJO>();
 		
 		List<Tproperty> pProperties= propertiesRepository.findAll();

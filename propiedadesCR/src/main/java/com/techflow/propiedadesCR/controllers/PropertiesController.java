@@ -54,14 +54,12 @@ public class PropertiesController {
 	 *  
 	 * @return response Un objeto response de la propiedad.
 	 */
-	@RequestMapping(value="/getAll", method = RequestMethod.GET)
-	public PropertiesResponse getAll() {
-		PropertiesResponse response = new PropertiesResponse();
-		response.setCode(200);
-		response.setCodeMessage("Properties fetch successful");
-		response.setProperties(propertiesService.getAll());
+	@RequestMapping(value="/getAll", method = RequestMethod.POST)
+	public PropertiesResponse getAll(@RequestBody PropertiesRequest pPropRequest) {
 		
-		return response;
+		return propertiesService.getAll(pPropRequest);
+		
+		
 	}
 	
 	/**
@@ -264,8 +262,15 @@ public class PropertiesController {
 	 */
 	@RequestMapping(value="/getPropertiesByIdVendor",method=RequestMethod.POST)
 	public PropertiesResponse getPropertiesByIdVendor(@RequestBody PropertiesRequest pPropertiesRequest){
+	
+		return propertiesService.getPropertiesByIdVendor(pPropertiesRequest);
+		
+		
+	}
+	@RequestMapping(value="/getPropertiesVendor",method=RequestMethod.POST)
+	public PropertiesResponse getPropertiesVendor(@RequestBody PropertiesRequest pPropertiesRequest){
 		PropertiesResponse response = new PropertiesResponse();
-		response.setProperties(propertiesService.getPropertiesByIdVendor(pPropertiesRequest));
+		response.setProperties(propertiesService.getPropertiesVendor(pPropertiesRequest));
 		response.setCode(200);
 		response.setCodeMessage("properties fetch successfully");
 		

@@ -1,5 +1,5 @@
-(function() {
-	"use strict";
+(function() {	
+"use strict";
 
 	angular.module('app.favoritesManagment',[])
 
@@ -68,7 +68,7 @@
 		$scope.compare = function() {
 			localStorage.setItem("properties", JSON.stringify($scope.compareList));
 			if ($scope.compareList.length < 2) return "btn btn-primary disabled"
-			else return "btn btn-primary"
+			else return "btn btn-primary";
 		}
 		
 		// Stores single id value
@@ -97,7 +97,7 @@
 		$scope.checkFavorites = function(pIdProperty) {
 			var idx = $scope.favorites.indexOf(pIdProperty);
 			if (idx > -1) return "btn btn-danger";
-			else return "btn btn-default"
+			else return "btn btn-default";
 		}
 		
 		$scope.isReadyToCompare = function() {

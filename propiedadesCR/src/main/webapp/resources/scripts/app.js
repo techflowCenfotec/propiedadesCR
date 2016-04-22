@@ -189,6 +189,7 @@ function(){
 				$rootScope.userLogged = response.user;
 				e.userLogged = localStorage.getItem('userLogged');
 				localStorage.setItem('idUser',e.user.idUser);
+				localStorage.setItem('userPermissions',e.user.role.tpermissions);
 				return e.user;
 			});
 			e.consultMyProfile = function(myId){
@@ -198,6 +199,7 @@ function(){
 				$http.get('rest/protected/signOut/signOut').success(function(){
 					console.log('si corro gg');
 					$rootScope.userLogged = null;
+					ocalStorage.setItem('userPermissions', undefined);
 					window.location.href ='/propiedadesCR/';
 					n.reload();
 				});

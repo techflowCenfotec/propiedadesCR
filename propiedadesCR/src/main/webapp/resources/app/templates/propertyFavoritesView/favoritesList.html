@@ -4,15 +4,8 @@
             <h2 class="section-header">Propiedades</h2>
         </div>
         <div class="col-md-12">
-            <div class="panel-body" uib-collapse="!isReadyToCompare()">
-                <div class="callout callout-info">
-                    <div>
-
-                    </div>              
-                </div>
-            </div>
-
-            <div class=column ng-repeat="property in propertiesList | filter:keywords">
+        
+            <div class=column ng-repeat="property in propertiesList | limitTo:quantity">
                 <div class="col-md-4">
                     <div class="card bg-white">
                         <div class="card-image">
@@ -39,6 +32,7 @@
                     </div>
                 </div>
             </div>
-        </div>                
+        </div> 
+                          
     </section>
 </div>

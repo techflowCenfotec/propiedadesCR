@@ -74,7 +74,7 @@ public class UsersService implements UsersServiceInterface{
 		response.setUsers(generateUserDtos(users.getContent()));
 		response.setTotalPages(users.getTotalPages());
 		response.setCode(200);
-		response.setCodeMessage("Users fetch successful");
+		
 		return response;
 	}
 	
@@ -345,7 +345,7 @@ public class UsersService implements UsersServiceInterface{
 	  * 
 	  * @author Valeria Ramírez Cordero
 	  * 
-	  *@param puserRequest Objeto que contiene el id del.
+	  *@param favoritesList Retorna la lista de propiedades favoritas
 	  *
 	  */
 	public List<PropertyPOJO> getAllFavorites(UsersRequest puserRequest){

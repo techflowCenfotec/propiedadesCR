@@ -115,7 +115,7 @@ public class UserSurveysController {
 		}
 		
 		//levantar atributos de las propiedades con match para listarlos!
-		List<PropertyPOJO> allProperties = propertiesService.getAll();
+		List<PropertyPOJO> allProperties = propertiesService.getAllProperties();
 		
 		allProperties.stream().forEach(property->{
 			property.setTbenefits(null);
