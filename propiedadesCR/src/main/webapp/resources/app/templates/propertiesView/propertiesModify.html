@@ -111,7 +111,7 @@
 										<div class="divider divider-md"></div>
 										<div layout layout-sm="column">
 											<md-input-container flex> <label>Precio</label>
-											<input ng-model="property.price" data-ng-maxlength=10
+											<input ng-model="property.price" pattern="(?!0+)\d+" min="0" data-ng-maxlength=10
 												required> </md-input-container>
 											<md-input-container flex> <label>Tipo
 												de propiedad</label> <md-select ng-model="selectedType"
@@ -123,7 +123,7 @@
 										<div layout layout-sm="column">
 											<md-input-container flex> <label>Metros
 												de construcción</label> <input ng-model="property.squareMeters"
-												data-ng-maxlength=10 required /> </md-input-container>
+												pattern="(?!0+)\d+" min="0" data-ng-maxlength=10 required /> </md-input-container>
 										</div>
 										<div class="row">
 											<div class="col-md-12">

@@ -19,7 +19,7 @@
 		                templateUrl: 'resources/app/templates/propertiesView/benefitModal.html',
 		                controller: 'ModalInstanceCtrl',
 		                scope: $scope,
-		                size: 'lg'
+		                size: 'md'
 		            });
 
 		        };
