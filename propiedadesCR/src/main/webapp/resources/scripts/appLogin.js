@@ -37,6 +37,7 @@ function() {
 		,"app.resetPassword"
 		,"app.createUserLogin"
 		,"DataBaseService"
+		,"SessionService"
 
 		//3rd Party Modules
 		,"ngMaterial"
@@ -135,6 +136,7 @@ function(){
 			a.$on("$stateChangeSuccess", function(e,a,n) {
 				t.scrollTo(0,0)
 			})
+			
 		}
 
 		angular.module("app")

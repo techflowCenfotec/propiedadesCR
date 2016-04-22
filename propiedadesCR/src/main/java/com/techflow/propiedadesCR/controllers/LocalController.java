@@ -294,21 +294,15 @@ public class LocalController {
 		
 		}
 		@RequestMapping(value="/signOut", method = RequestMethod.GET)
-		public LoginResponse getSignOut() {
-	
-			
-			LoginResponse response = new LoginResponse();
-			System.out.println("Usuario ahora"+httpServletRequest.getSession().getAttribute("userLogged"));
-			
+		public BaseResponse getSignOut() {
+			BaseResponse response = new LoginResponse();
+
 			httpServletRequest.getSession().setAttribute("userLogged", null);
-			//System.out.println("Ahora"+currentSession.getAttribute("idUser"));
-			
 			currentSession.setAttribute("idUser", null);
-			//System.out.println("Despues"+currentSession.getAttribute("idUser"));
-			System.out.println("Despues ahora"+httpServletRequest.getSession().getAttribute("userLogged"));
-			
+
 			
 			return response;
+		
 		}
 
 

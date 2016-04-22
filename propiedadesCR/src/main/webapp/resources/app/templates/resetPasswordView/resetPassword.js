@@ -2,8 +2,9 @@
 	"use strict";
 
 	angular.module("app.resetPassword",['validation.match'])
-	.controller('resetPasswordController', ['$scope','$rootScope','$http', function($scope,$rootScope,$http) {
+	.controller('resetPasswordController', ['$scope','$rootScope','$http','sessionService', function($scope,$rootScope,$http,sessionService) {
 		
+		sessionService.checkSession();
 		$scope.notEquals = false;
 		var original;
 		$scope.form={

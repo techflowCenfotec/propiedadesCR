@@ -21,9 +21,8 @@
 
 <!-- end Needs images -->
 
-<link rel="stylesheet" href="resources/styles/bootstrap.css">
 <link rel="stylesheet" href="resources/styles/main.css">
-<script src="resources/scripts/modernizr.custom.js"></script>
+<link rel="stylesheet" href="resources/styles/carousel.css">
 
 </head>
 <body data-ng-app="app" id="app" class="app" data-custom-page
@@ -52,7 +51,6 @@
 
 	<!--Core JS-->
 	<script src="resources/scripts/vendor.js"></script>
-	<script src="resources/scripts/landingVendor/vendor.js"></script>
 	
 	<script src="resources/scripts/ui.js"></script>
 	<script src="resources/scripts/appLogin.js"></script>
@@ -78,4 +76,5 @@
 	<script src="resources/app/templates/usersView/createUserLogin.js"></script>
 	<script src="resources/app/templates/landingPageView/landingPage.js"></script>
 	<script src="resources/scripts/services/dbService.js"></script>
+	<script src="resources/scripts/services/sessionService.js"></script>
 	

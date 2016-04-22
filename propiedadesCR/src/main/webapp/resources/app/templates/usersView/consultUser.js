@@ -10,7 +10,7 @@
 					'$rootScope',
 					'$mdDialog',
 					'$state',
-					,'dbService',
+					'dbService',
 					function($scope, $http, $rootScope, $mdDialog,$state,dbService) {
 
 						$scope.user = {};
