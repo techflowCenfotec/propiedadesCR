@@ -2,19 +2,19 @@
 	"use strict";
 
 	angular.module("app.login",[])
-	.controller('LoginController', ['$scope','$http','$rootScope','dbService','$state', function($scope,$http,$rootScope,dbService,$state) {
+	.controller('LoginController', ['$scope','$http','$rootScope','dbService','sessionService', function($scope,$http,$rootScope,dbService,sessionService) {
 			
 		$scope.incorrect = true;
 		$scope.user ={
 			userName:'',
 			password:'',
 		}
-	
-		
-		if(sessionStorage.getItem('reload') !='1'){
-			sessionStorage.setItem('reload','1');
-			$state.reload();
-		}
+		sessionService.checkSession();
+		//Metodo para validar la sesion 
+//		if(sessionStorage.getItem('reload') !='1'){
+//			sessionStorage.setItem('reload','1');
+//			$state.reload();
+//		}
 		dbService.localCheckDB();
 		$http.get('rest/local/signOut').success(function(response){
 			

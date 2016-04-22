@@ -22,7 +22,7 @@
 <!-- end Needs images -->
 
 <link rel="stylesheet" href="resources/styles/main.css">
-
+<link rel="stylesheet" href="resources/styles/carousel.css">
 
 </head>
 <body data-ng-app="app" id="app" class="app" data-custom-page
@@ -76,4 +76,5 @@
 	<script src="resources/app/templates/usersView/createUserLogin.js"></script>
 	<script src="resources/app/templates/landingPageView/landingPage.js"></script>
 	<script src="resources/scripts/services/dbService.js"></script>
+	<script src="resources/scripts/services/sessionService.js"></script>
 	

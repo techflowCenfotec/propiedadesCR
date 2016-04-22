@@ -10,7 +10,8 @@
 					'$location',
 					'$upload',
 					'dbService',
-					function($scope, $http, $location, $upload,dbService) {
+					'sessionService',
+					function($scope, $http, $location, $upload,dbService,sessionService) {
 
 						var original;
 						$scope.dateWithFormat = '';
@@ -35,7 +36,7 @@
 							role: '',
 							gender:'',
 						};
-						
+						sessionService.checkSession();
 						dbService.localCheckDB();
 
 						var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","role": {}};
