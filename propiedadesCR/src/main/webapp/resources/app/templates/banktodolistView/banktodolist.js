@@ -140,6 +140,10 @@
 
             last = angular.extend({},current);
         };
+
+        $scope.go = function(){
+            $location.path("/templates/banktodolistView/banktodolistCreate"); 
+        };
     
 	}]);
 
