@@ -1,10 +1,11 @@
 package com.techflow.propiedadesCR.repositories;
 
-import java.util.List;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
-import com.techflow.propiedadesCR.ejb.Tguide;
 import com.techflow.propiedadesCR.ejb.Tbank;
+import com.techflow.propiedadesCR.ejb.Tguide;
 /**
 * <h1>Repositorio de guias</h1>
 * Esta clase se encarga de la comunicación con la base de datos
@@ -15,5 +16,5 @@ import com.techflow.propiedadesCR.ejb.Tbank;
 */
 public interface GuidesRepository extends CrudRepository<Tguide, Integer>{
 	
-   List<Tguide> findAllByTbank(Tbank pbank);
+   Page<Tguide> findAllByTbank(Tbank pbank, Pageable pageRequest);
 }

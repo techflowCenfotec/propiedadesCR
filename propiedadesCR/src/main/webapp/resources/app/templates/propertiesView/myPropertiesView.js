@@ -7,13 +7,21 @@
 	
 	function MyPropertiesController($scope, $http, $rootScope, $state, $mdDialog) {
 		$scope.propertiesList = [];
-		
+		$scope.totalPages =0;
+		$scope.pageSize = 10;
+		$scope.pageNumber = 0;
+        $scope.numPerPageOpt = [2, 5, 10, 20];
+        $scope.numPerPage = $scope.numPerPageOpt[2];
+        $scope.currentPage = 1;
+        $scope.currentPage = [];
+        
 		$scope.init = function() {
+			
 			var active = 1,
 				sold = 0,
 				request = {
-		            "pageNumber": 0,
-		            "pageSize": 0,
+		            "pageNumber": $scope.pageNumber,
+		            "pageSize": $scope.pageSize,
 		            "direction": "",
 		            "sortBy": [""],
 		            "searchColumn": "string",
@@ -22,12 +30,14 @@
 		              "tuser":{"idUser":$rootScope.userLogged.idUser}
 		            }
 		        };
-			
+				
 			$http.post('rest/protected/properties/getPropertiesByIdVendor', request)
 			.success(function(response) {
+				$scope.propertiesList = [];
 				for (var i = 0; i < response.properties.length; i++) {
 					if(response.properties[i].active == active && response.properties[i].isSold == sold) 
 						$scope.propertiesList.push(response.properties[i]);
+						$scope.totalPages = response.totalPages;
 				}
 			});
 		};
@@ -88,6 +98,15 @@
                 $scope.status = 'Propiedad no vendida.';
             });
         };
+        $scope.changePage = function(page){
+			$scope.pageNumber = page-1;
+			$scope.init();
+		};
+	        
+		 $scope.onNumPerPageChange = function(){
+			 $scope.pageSize = $scope.numPerPage;
+			$scope.init();
+	     };
 	}
 	
 })();

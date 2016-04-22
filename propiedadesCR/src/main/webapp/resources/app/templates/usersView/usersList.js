@@ -2,7 +2,8 @@
 	"use strict";
 
 	angular.module("app.usersList",[])
-		.controller('listUsersController',['$scope','$filter','$http','dbService',function($scope,$filter,$http,dbService){
+		.controller('listUsersController',['$scope','$filter','$http','dbService','$location','$rootScope',
+		                                   function($scope,$filter,$http,dbService,$location,$rootScope){
 		
 	
 		
@@ -25,13 +26,14 @@
 
 		
         
-        
         dbService.checkDB();
+       
+        
         var link = 'rest/protected/users/getAll';
 		var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","user": {}};
 		var init;
 		$http.post(link,request).success(function(response) {
-			//dbService.checkDB();
+			
 			$scope.users= response.users;
 
 			init();
@@ -99,11 +101,14 @@
         	"userImage": user.userImage}}
             	
         	$http.post('rest/protected/users/deleteUser',deleteRequest).success(function(){
-        		console.log("Se borro ak7");
         		$scope.currentPageList = _.without($scope.currentPageList,_.findWhere($scope.currentPageList,{idUser:parseInt(user.idUser)}));
         	});
         	
         }
-		
+        $scope.go = function(){
+        	$location.path("/templates/usersView/createUser");
+        	
+        }
+        
 	}]);
 })();

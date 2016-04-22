@@ -15,6 +15,13 @@
 						$scope.files = {};
 						$scope.banks = [];
 						$scope.guides = [];
+						$scope.totalPages =0;
+						$scope.pageSize = 10;
+						$scope.pageNumber = 0;
+				        $scope.numPerPageOpt = [2, 5, 10, 20];
+				        $scope.numPerPage = $scope.numPerPageOpt[2];
+				        $scope.currentPage = 1;
+				        $scope.currentPage = [];
 
 						$scope.form = {
 							name : '',
@@ -38,11 +45,21 @@
 									$scope.banks = response.banks;
 									
 								});
-
+						
+						$scope.changePage = function(page){
+							$scope.pageNumber = page-1;
+							$scope.consultGuides();
+						};
+					        
+						 $scope.onNumPerPageChange = function(){
+							 $scope.pageSize = $scope.numPerPage;
+							 $scope.consultGuides();
+					     };
+						
 						$scope.consultGuides = function() {
 							var req = {
-								"pageNumber" : 0,
-								"pageSize" : 0,
+								"pageNumber" : $scope.pageNumber,
+								"pageSize" : $scope.pageSize,
 								"direction" : "string",
 								"sortBy" : [ "string" ],
 								"searchColumn" : "string",
@@ -55,8 +72,8 @@
 							}
 							$http.post('rest/protected/guides/getGuidesByBank',req)
 								.success(function(response){
-									
 									$scope.guides = response.guides;
+									o$scope.totalPages = response.totalPages;
 								});
 							
 						}

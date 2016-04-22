@@ -3,7 +3,9 @@
 
 	angular.module("app.route", ["ui.router"])
 
-	.config(["$stateProvider","$urlRouterProvider","$provide","$httpProvider", function($stateProvider,$urlRouterProvider,$provide,$httpProvider){ 
+	.config(["$stateProvider","$urlRouterProvider","$provide","$httpProvider",
+	         function($stateProvider,$urlRouterProvider,$provide,$httpProvider){ 
+		console.log(localStorage.getItem('userPermissions'));
 		
 		var n,t;
 		n = [

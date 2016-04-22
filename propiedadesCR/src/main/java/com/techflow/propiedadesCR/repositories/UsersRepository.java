@@ -39,7 +39,7 @@ public interface UsersRepository extends CrudRepository<Tuser, Integer> {
 	/**
 	  * Este método retorna todos los usuarios registrados en el sistema.
 	  *
-	  * @return List<Tuser> Retorna la respuesta de la BD hacia el servicio. 
+	  * @return Page<Tuser> Retorna la respuesta de la BD hacia el servicio. 
 	  */
 	Page<Tuser> findAllByTrole(Trole role, Pageable pageRequest);
 	

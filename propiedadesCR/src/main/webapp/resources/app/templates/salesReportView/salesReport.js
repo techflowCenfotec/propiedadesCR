@@ -56,7 +56,7 @@
             }
         };
 
-        $http.post('rest/protected/properties/getPropertiesByIdVendor', request)
+        $http.post('rest/protected/properties/getPropertiesVendor', request)
           .success(function(response) {
           properties = response.properties;
           // console.log(properties);

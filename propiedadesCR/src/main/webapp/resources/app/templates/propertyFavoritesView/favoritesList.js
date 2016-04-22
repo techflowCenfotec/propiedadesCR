@@ -10,7 +10,9 @@
 		 $scope.compareList = [];
 		 $scope.favorites = [];
 		
+		
 		$scope.init = function() {
+			
 			var user = 1;
 			var userObj = {};
 			var userId = 0;
@@ -22,6 +24,7 @@
 
 				$http.post('rest/protected/users/getMyFavoriteProperties', userObj)
 				.success(function(response) {
+				
 					$scope.propertiesList = response.properties;
 					console.log($scope.propertiesList);
 					$http.get('rest/protected/users/getUserById/' + user)
@@ -98,6 +101,7 @@
 				}
 			});
 		}
+		 
 	
 	}]);
 
