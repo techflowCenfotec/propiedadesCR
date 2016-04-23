@@ -388,7 +388,6 @@ INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`)
 
 #comprador
 
-
 INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('6', '2');
 
 INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('7', '2');
@@ -409,9 +408,9 @@ INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`)
 
 INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('17', '2');
 
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('19', '2');
 
 #vendedor
-
 
 INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('1', '3');
 
@@ -455,9 +454,6 @@ INSERT INTO `propiedades_sch`.`tBank` (`id_bank`, `name`) VALUES ('2', 'Banco Na
 
 INSERT INTO `propiedades_sch`.`tBank` (`id_bank`, `name`) VALUES ('3', 'BAC San José');
 
-
-
-
 #Tipos de propiedad
 
 
@@ -471,9 +467,13 @@ INSERT INTO `propiedades_sch`.`tProperty_type` (`id_property_type`, `name`) VALU
 INSERT INTO `propiedades_sch`.`tProperty_type` (`id_property_type`, `name`) VALUES ('5', 'Estudio');
 INSERT INTO `propiedades_sch`.`tProperty_type` (`id_property_type`, `name`) VALUES ('6', 'Habitación');
 
-
-
-
 #Admin
 
-INSERT INTO `propiedades_sch`.`tUsers` (`id_user`, `user_name`, `first_name`, `last_name`, `phone_1`, `phone_2`, `email`, `password`, `id_rol`, `active`, `first_time`, `user_image`, `gender`, `birthday`) VALUES (1, 'Jorge', 'Arguedas', 'Arrieta', '22697168', '84099459', 'jorge.argds@gmail.com', '5cb01845ff62171cd4ade0e46bdcfc5f', 1, 1, 1, 'http://localhost:8080/propiedadesCR/resources/images/default_user_image.png', 'Hombre', '1993-10-28');
+INSERT INTO `propiedades_sch`.`tUsers` (`id_user`, `user_name`, `first_name`, `last_name`, `phone_1`, `phone_2`, `email`, `password`, `id_rol`, `active`, `first_time`, `user_image`, `gender`, `birthday`) VALUES (1, 'Admin', 'Admin', 'Admin', '22697168', '84099459', 'propiedadescr.tech@gmail.com', '5cb01845ff62171cd4ade0e46bdcfc5f', 1, 1, 0, 'http://localhost:8080/propiedadesCR/resources/images/default_user_image.png', 'Hombre', '1993-10-28');
+#Vendedor
+INSERT INTO `propiedades_sch`.`tUsers` (`id_user`, `user_name`, `first_name`, `last_name`, `phone_1`, `phone_2`, `email`, `password`, `id_rol`, `active`, `first_time`, `user_image`, `gender`, `birthday`) VALUES (2, 'Jimmi', 'Vila', 'Ccopa', '83299216', '88976527', 'jimmivco@gmail.com', '5cb01845ff62171cd4ade0e46bdcfc5f', 1, 3, 0, 'http://localhost:8080/propiedadesCR/resources/images/jimmi.jpg', 'Hombre', '1994-05-19');
+INSERT INTO `propiedades_sch`.`tUsers` (`id_user`, `user_name`, `first_name`, `last_name`, `phone_1`, `phone_2`, `email`, `password`, `id_rol`, `active`, `first_time`, `user_image`, `gender`, `birthday`) VALUES (3, 'Walter', 'Gómez', 'Villalta', '22697168', '84099459', 'wgomezv@ucenfotec.ac.cr', '5cb01845ff62171cd4ade0e46bdcfc5f', 1, 3, 0, 'http://localhost:8080/propiedadesCR/resources/images/walter.jpg', 'Hombre', '1993-10-28');
+INSERT INTO `propiedades_sch`.`tUsers` (`id_user`, `user_name`, `first_name`, `last_name`, `phone_1`, `phone_2`, `email`, `password`, `id_rol`, `active`, `first_time`, `user_image`, `gender`, `birthday`) VALUES (4, 'Jorge', 'Arguedas', 'Arrieta', '23687432', '123234255', 'jorge.argds@gmail.com', '5cb01845ff62171cd4ade0e46bdcfc5f', 1, 3, 0, 'http://localhost:8080/propiedadesCR/resources/images/jorge.jpg', 'Hombre', '1993-10-28');
+#Comprador
+INSERT INTO `propiedades_sch`.`tUsers` (`id_user`, `user_name`, `first_name`, `last_name`, `phone_1`, `phone_2`, `email`, `password`, `id_rol`, `active`, `first_time`, `user_image`, `gender`, `birthday`) VALUES (5, 'Maria', 'Gutierrez', 'Calvo', '23124564', '89987456', 'mgutierrez@gmail.com', '5cb01845ff62171cd4ade0e46bdcfc5f', 1, 2, 0, 'http://localhost:8080/propiedadesCR/resources/images/maria.png', 'mujer', '1993-10-28');
+INSERT INTO `propiedades_sch`.`tUsers` (`id_user`, `user_name`, `first_name`, `last_name`, `phone_1`, `phone_2`, `email`, `password`, `id_rol`, `active`, `first_time`, `user_image`, `gender`, `birthday`) VALUES (6, 'Valeria', 'Ramirez', 'Cordero', '22562222', '83562222', 'valeram96@gmail.com', '5cb01845ff62171cd4ade0e46bdcfc5f', 1, 2, 0, 'http://localhost:8080/propiedadesCR/resources/images/valeria.png', 'mujer', '1993-10-28');
