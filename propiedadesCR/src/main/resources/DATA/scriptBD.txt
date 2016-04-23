@@ -406,7 +406,7 @@ INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`)
 
 INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('16', '2');
 
-INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('17', '2');
+INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('18', '2');
 
 INSERT INTO `propiedades_sch`.`tpermissions_per_rol` (`id_permission`, `id_rol`) VALUES ('19', '2');
 
