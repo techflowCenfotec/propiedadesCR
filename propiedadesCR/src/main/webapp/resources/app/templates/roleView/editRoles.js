@@ -101,14 +101,26 @@
 			});
 
 		};
-
+		
 		$scope.addPermissions = function toggleSelection(idPermissions,checkbox){
-
-			if(!isModuleSelected(idPermissions,checkbox)){
-				singleItemSelected(idPermissions,checkbox);
-			}
-			
+			var newPermissionObj = {"idPermissions":idPermissions};
+			if(checkbox){
+				for( var i in 	$scope.form.newPermissions){
+					if(idPermissions === $scope.form.newPermissions[i].idPermissions){
+						$scope.form.newPermissions.splice(i,1);
+					}
+				}
+			}else{
+				$scope.form.newPermissions.push(newPermissionObj);
+			}	
   		};
+		// $scope.addPermissions = function toggleSelection(idPermissions,checkbox){
+
+		// 	if(!isModuleSelected(idPermissions,checkbox)){
+		// 		singleItemSelected(idPermissions,checkbox);
+		// 	}
+			
+  // 		};
 
   		original = angular.copy($scope.form);
 	    function revert(){
@@ -175,79 +187,79 @@
 
 		////////////////////////////////////////////////////////autoseleccionar por modulos
 		/////indices 1,6,11,16,20
-		function isModuleSelected(idPermissions,deactive){
-			var module = false;
-			switch(idPermissions){
-				case 1:
-				if(deactive)
-					autoSelectByModule(4,idPermissions,false);
-				else
-					autoSelectByModule(4,idPermissions,true);
-					module=true;
-				break;
-				case 6:
+		// function isModuleSelected(idPermissions,deactive){
+		// 	var module = false;
+		// 	switch(idPermissions){
+		// 		case 1:
+		// 		if(deactive)
+		// 			autoSelectByModule(4,idPermissions,false);
+		// 		else
+		// 			autoSelectByModule(4,idPermissions,true);
+		// 			module=true;
+		// 		break;
+		// 		case 6:
 
-				if(deactive)
-					autoSelectByModule(4,idPermissions,false);
-				else
-					autoSelectByModule(4,idPermissions,true);
-					module=true;
-				break;
-				case 11:
+		// 		if(deactive)
+		// 			autoSelectByModule(4,idPermissions,false);
+		// 		else
+		// 			autoSelectByModule(4,idPermissions,true);
+		// 			module=true;
+		// 		break;
+		// 		case 11:
 
-				if(deactive)
-					autoSelectByModule(4,idPermissions,false);
-				else
-					autoSelectByModule(4,idPermissions,true);
-					module=true;
-				break;
-				case 16:
+		// 		if(deactive)
+		// 			autoSelectByModule(4,idPermissions,false);
+		// 		else
+		// 			autoSelectByModule(4,idPermissions,true);
+		// 			module=true;
+		// 		break;
+		// 		case 16:
 
-				if(deactive)
-					autoSelectByModule(2,idPermissions,false);
-				else
-					autoSelectByModule(2,idPermissions,true);
-					module=true;
-				break;
-				case 20:
+		// 		if(deactive)
+		// 			autoSelectByModule(2,idPermissions,false);
+		// 		else
+		// 			autoSelectByModule(2,idPermissions,true);
+		// 			module=true;
+		// 		break;
+		// 		case 20:
 
-				if(deactive)
-					autoSelectByModule(2,idPermissions,false);
-				else
-					autoSelectByModule(2,idPermissions,true);
-					module=true;
-				break;					
-			}	
-			return module;
-		}
+		// 		if(deactive)
+		// 			autoSelectByModule(2,idPermissions,false);
+		// 		else
+		// 			autoSelectByModule(2,idPermissions,true);
+		// 			module=true;
+		// 		break;					
+		// 	}	
+		// 	return module;
+		// }
 
-		function autoSelectByModule(numberOfElements,idStart,state){
-			for (var i = idStart; i < idStart+numberOfElements; i++) {
-				$scope.permissionsList[i].state = state;
-				addToPermissionsList(i,state);
-			}
-		}
+		// function autoSelectByModule(numberOfElements,idStart,state){
+		// 	for (var i = idStart; i < idStart+numberOfElements; i++) {
+		// 		$scope.permissionsList[i].state = state;
+		// 		addToPermissionsList(i,state);
+		// 	}
+		// }
 
-		function singleItemSelected(idPermissions,deactive){
-			addToPermissionsList(idPermissions,!deactive);
-		}
+		// function singleItemSelected(idPermissions,deactive){
+		// 	addToPermissionsList(idPermissions,!deactive);
+		// }
 
-		function addToPermissionsList(idPermissions,deactive){
-			var listOfPermissions = [];
-			var newPermissionObj = {"idPermissions":idPermissions};
-			if(!deactive){
-				for( var i in 	$scope.form.newPermissions){
-					if(idPermissions == $scope.form.newPermissions[i].idPermissions){
-						$scope.form.newPermissions.splice(i,1);
-						console.log($scope.form.newPermissions[i]);
-						}
-					}
-			}else{
-				$scope.form.newPermissions.push(newPermissionObj);
-			}
-						console.log($scope.form.newPermissions)
+		// function addToPermissionsList(idPermissions,deactive){
+		// 	var listOfPermissions = [];
+		// 	var newPermissionObj = {"idPermissions":idPermissions};
+		// 	if(!deactive){
+		// 		for( var i in 	$scope.form.newPermissions){
+		// 			if(idPermissions == $scope.form.newPermissions[i].idPermissions){
+		// 				$scope.form.newPermissions.splice(i,1);
+		// 				console.log($scope.form.newPermissions[i]);
+		// 				}
+		// 			}
+		// 	}else{
+		// 		$scope.form.newPermissions.push(newPermissionObj);
+		// 	}
+		// 				console.log($scope.form.newPermissions)
 	
-		}
+		// }
 
 				        
 	}]);
