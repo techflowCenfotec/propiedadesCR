@@ -16,13 +16,13 @@ angular.module('DataBaseService', [])
 		});
   };
   this.localCheckDB = function(){
-		$http.get("rest/local/checkDB").success(function(data){
-			if(data.code!==200){
-				
-				var path = "#/templates/errorsView/500";	
-  			    window.location.href = path;
-			}
-		});
+//		$http.get("rest/local/checkDB").success(function(data){
+//			if(data.code!==200){
+//				
+//				var path = "#/templates/errorsView/500";	
+//  			    window.location.href = path;
+//			}
+//		});
 };
     
 }]);

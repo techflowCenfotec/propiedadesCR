@@ -13,7 +13,7 @@
 			,"templates/resetPasswordView/resetPassword"
 			,"templates/landingPageView/landingPage"
 			
-			,"templates/errorsView/500"
+			//,"templates/errorsView/500"
 			
 			,"templates/usersView/createUserLogin"
 		], 
