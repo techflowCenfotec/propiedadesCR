@@ -11,10 +11,10 @@
 		}
 		sessionService.checkSession();
 		//Metodo para validar la sesion 
-//		if(sessionStorage.getItem('reload') !='1'){
-//			sessionStorage.setItem('reload','1');
-//			$state.reload();
-//		}
+		if(sessionStorage.getItem('reload') !='1'){
+			sessionStorage.setItem('reload','1');
+			$state.reload();
+		}
 		dbService.localCheckDB();
 		$http.get('rest/local/signOut').success(function(response){
 			
