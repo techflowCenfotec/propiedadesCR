@@ -1025,10 +1025,10 @@ INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_propert
 	'4');
 #imagenes
 INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('4', 'http://localhost:8080/propiedadesCR/resources/images/prop41.jpg');
--- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('4', 'http://localhost:8080/propiedadesCR/resources/images/prop42.jpg');
--- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('4', 'http://localhost:8080/propiedadesCR/resources/images/prop43.jpg');
--- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('4', 'http://localhost:8080/propiedadesCR/resources/images/prop44.jpg');
--- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('4', 'http://localhost:8080/propiedadesCR/resources/images/prop45.jpg');
+# INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('4', 'http://localhost:8080/propiedadesCR/resources/images/prop42.jpg');
+# INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('4', 'http://localhost:8080/propiedadesCR/resources/images/prop43.jpg');
+# INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('4', 'http://localhost:8080/propiedadesCR/resources/images/prop44.jpg');
+# INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('4', 'http://localhost:8080/propiedadesCR/resources/images/prop45.jpg');
 
 #propiedad
 INSERT INTO `propiedades_sch`.`tproperties` (`id_property`, `square_meters`, `price`, `id_district`, `active`, `id_property_type`, `id_vendor`, `address`, `coordinates`, `offer_percentage`, `is_sold`, `sale_type`, `total_views`) VALUES 
@@ -1101,10 +1101,10 @@ INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_propert
 	'6');
 #imagenes
 INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('6', 'http://localhost:8080/propiedadesCR/resources/images/prop61.jpg');
--- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('6', 'http://localhost:8080/propiedadesCR/resources/images/prop62.jpg');
--- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('6', 'http://localhost:8080/propiedadesCR/resources/images/prop63.jpg');
--- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('6', 'http://localhost:8080/propiedadesCR/resources/images/prop64.jpg');
--- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('6', 'http://localhost:8080/propiedadesCR/resources/images/prop65.jpg');
+# INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('6', 'http://localhost:8080/propiedadesCR/resources/images/prop62.jpg');
+# INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('6', 'http://localhost:8080/propiedadesCR/resources/images/prop63.jpg');
+# INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('6', 'http://localhost:8080/propiedadesCR/resources/images/prop64.jpg');
+# INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('6', 'http://localhost:8080/propiedadesCR/resources/images/prop65.jpg');
 
 #propiedad
 INSERT INTO `propiedades_sch`.`tproperties` (`id_property`, `square_meters`, `price`, `id_district`, `active`, `id_property_type`, `id_vendor`, `address`, `coordinates`, `offer_percentage`, `is_sold`, `sale_type`, `total_views`) VALUES 
@@ -1151,8 +1151,8 @@ INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_propert
 INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('7', 'http://localhost:8080/propiedadesCR/resources/images/prop71.jpg');
 INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('7', 'http://localhost:8080/propiedadesCR/resources/images/prop72.jpg');
 INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('7', 'http://localhost:8080/propiedadesCR/resources/images/prop73.jpg');
--- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('7', 'http://localhost:8080/propiedadesCR/resources/images/prop74.jpg');
--- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('7', 'http://localhost:8080/propiedadesCR/resources/images/prop75.jpg');
+# INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('7', 'http://localhost:8080/propiedadesCR/resources/images/prop74.jpg');
+# INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('7', 'http://localhost:8080/propiedadesCR/resources/images/prop75.jpg');
 
 #propiedad
 INSERT INTO `propiedades_sch`.`tproperties` (`id_property`, `square_meters`, `price`, `id_district`, `active`, `id_property_type`, `id_vendor`, `address`, `coordinates`, `offer_percentage`, `is_sold`, `sale_type`, `total_views`) VALUES 
@@ -1225,8 +1225,8 @@ INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_propert
 INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('9', 'http://localhost:8080/propiedadesCR/resources/images/prop91.jpg');
 INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('9', 'http://localhost:8080/propiedadesCR/resources/images/prop92.jpg');
 INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('9', 'http://localhost:8080/propiedadesCR/resources/images/prop93.jpg');
--- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('9', 'http://localhost:8080/propiedadesCR/resources/images/prop94.jpg');
--- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('9', 'http://localhost:8080/propiedadesCR/resources/images/prop95.jpg');
+# INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('9', 'http://localhost:8080/propiedadesCR/resources/images/prop94.jpg');
+# INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('9', 'http://localhost:8080/propiedadesCR/resources/images/prop95.jpg');
 
 #propiedad
 INSERT INTO `propiedades_sch`.`tproperties` (`id_property`, `square_meters`, `price`, `id_district`, `active`, `id_property_type`, `id_vendor`, `address`, `coordinates`, `offer_percentage`, `is_sold`, `sale_type`, `total_views`) VALUES 
@@ -1254,6 +1254,67 @@ INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_propert
 #imagenes
 INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('10', 'http://localhost:8080/propiedadesCR/resources/images/prop101.jpg');
 INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('10', 'http://localhost:8080/propiedadesCR/resources/images/prop102.jpg');
--- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('10', 'http://localhost:8080/propiedadesCR/resources/images/prop103.jpg');
--- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('10', 'http://localhost:8080/propiedadesCR/resources/images/prop104.jpg');
--- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('10', 'http://localhost:8080/propiedadesCR/resources/images/prop105.jpg');
+# INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('10', 'http://localhost:8080/propiedadesCR/resources/images/prop103.jpg');
+# INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('10', 'http://localhost:8080/propiedadesCR/resources/images/prop104.jpg');
+# INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('10', 'http://localhost:8080/propiedadesCR/resources/images/prop105.jpg');
+
+#to do list
+
+INSERT INTO `propiedades_sch`.`tbank_to_do_list` (`idtBank_to_do_list`, `id_bank`, `name`, `description`, `active`) 
+VALUES ('1', '1', 'Guía hipotecaria del Banco de Costa Rica', 'Guía hipotecaria', 1);
+
+
+INSERT INTO `propiedades_sch`.`tbank_to_do_list` (`idtBank_to_do_list`, `id_bank`, `name`, `description`, `active`) 
+VALUES ('2', '2', 'Guía hipotecaria del Banco de Nacional', 'Guía hipotecaria', 1);
+
+
+INSERT INTO `propiedades_sch`.`tbank_to_do_list` (`idtBank_to_do_list`, `id_bank`, `name`, `description`, `active`) 
+VALUES ('3', '3', 'Guía hipotecaria del BAC San Jose', 'Guía hipotecaria', 1);
+
+
+
+
+INSERT INTO `propiedades_sch`.`tbank_item` (`idtBank_item`, `id_bank_to_do_list`, `name`) VALUES ('1', '1', 'Llevar cédula.');
+
+
+INSERT INTO `propiedades_sch`.`tbank_item` (`idtBank_item`, `id_bank_to_do_list`, `name`) VALUES ('2', '1', 'Llevar orden patronal.');
+
+
+INSERT INTO `propiedades_sch`.`tbank_item` (`idtBank_item`, `id_bank_to_do_list`, `name`) VALUES ('3', '1', 'No tener otros prestamos activos.');
+
+
+INSERT INTO `propiedades_sch`.`tbank_item` (`idtBank_item`, `id_bank_to_do_list`, `name`) VALUES ('4', '1', 'No tener deudas.');
+
+
+INSERT INTO `propiedades_sch`.`tbank_item` (`idtBank_item`, `id_bank_to_do_list`, `name`) VALUES ('5', '1', 'Planos de la casa.');
+
+
+
+INSERT INTO `propiedades_sch`.`tbank_item` (`idtBank_item`, `id_bank_to_do_list`, `name`) VALUES ('6', '2', 'Llevar cédula.');
+
+
+INSERT INTO `propiedades_sch`.`tbank_item` (`idtBank_item`, `id_bank_to_do_list`, `name`) VALUES ('7', '2', 'Llevar orden patronal.');
+
+
+INSERT INTO `propiedades_sch`.`tbank_item` (`idtBank_item`, `id_bank_to_do_list`, `name`) VALUES ('8', '2', 'No tener otros prestamos activos.');
+
+
+INSERT INTO `propiedades_sch`.`tbank_item` (`idtBank_item`, `id_bank_to_do_list`, `name`) VALUES ('9', '2', 'No tener deudas.');
+
+
+INSERT INTO `propiedades_sch`.`tbank_item` (`idtBank_item`, `id_bank_to_do_list`, `name`) VALUES ('10', '2', 'Planos de la casa.');
+
+
+INSERT INTO `propiedades_sch`.`tbank_item` (`idtBank_item`, `id_bank_to_do_list`, `name`) VALUES ('11', '3', 'Llevar cédula.');
+
+
+INSERT INTO `propiedades_sch`.`tbank_item` (`idtBank_item`, `id_bank_to_do_list`, `name`) VALUES ('12', '3', 'Llevar orden patronal.');
+
+
+INSERT INTO `propiedades_sch`.`tbank_item` (`idtBank_item`, `id_bank_to_do_list`, `name`) VALUES ('13', '3', 'No tener otros prestamos activos.');
+
+
+INSERT INTO `propiedades_sch`.`tbank_item` (`idtBank_item`, `id_bank_to_do_list`, `name`) VALUES ('14', '3', 'No tener deudas.');
+
+
+INSERT INTO `propiedades_sch`.`tbank_item` (`idtBank_item`, `id_bank_to_do_list`, `name`) VALUES ('15', '3', 'Planos de la casa.');
