@@ -33,7 +33,6 @@ INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) 
 
 INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (15,'Desea fuentes alternas de energía?', 1);
 
-
 INSERT INTO `propiedades_sch`.`tquestions` (`id_question`,`question`, `active`) VALUES (16,'Cuál es su necesidad?', 1);
 
 #opciones
@@ -78,7 +77,7 @@ INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id
 INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('11', 'No necesariamente', null, '12');
 
 INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('12', 'Si', 'Centro comercial', '13');
-INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('12', 'No soy fanático', null, '13');
+INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('12', 'No', null, '13');
 
 INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('13', 'Si', 'Centro médico', null);
 INSERT INTO `propiedades_sch`.`toptions` (`id_question`, `option`, `result`, `id_next_question`) VALUES ('13', 'No', null, null);
@@ -97,6 +96,8 @@ INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('1 Garaje');
 INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('2 Garajes');
 
 INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('3 o más Garajes');
+
+INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('1 Habitación');
 
 INSERT INTO `propiedades_sch`.`tbenefits` (`benefit`) VALUES ('2 Habitaciones');
 
@@ -196,8 +197,17 @@ INSERT INTO `propiedades_sch`.`tCounties` (`id_county`, `id_province`, `code`, `
 
 INSERT INTO `propiedades_sch`.`tCounties` (`id_county`, `id_province`, `code`, `name`) VALUES ('9', '4', '404', 'Santa Barbara');
 
+INSERT INTO `propiedades_sch`.`tCounties` (`id_county`, `id_province`, `code`, `name`) VALUES ('10', '5', '501', 'Liberia');
 
+INSERT INTO `propiedades_sch`.`tCounties` (`id_county`, `id_province`, `code`, `name`) VALUES ('11', '5', '502', 'Nicoya');
 
+INSERT INTO `propiedades_sch`.`tCounties` (`id_county`, `id_province`, `code`, `name`) VALUES ('12', '6', '601', 'Puntarenas');
+
+INSERT INTO `propiedades_sch`.`tCounties` (`id_county`, `id_province`, `code`, `name`) VALUES ('13', '6', '602', 'Esparza');
+
+INSERT INTO `propiedades_sch`.`tCounties` (`id_county`, `id_province`, `code`, `name`) VALUES ('14', '7', '701', 'Limón');
+
+INSERT INTO `propiedades_sch`.`tCounties` (`id_county`, `id_province`, `code`, `name`) VALUES ('15', '7', '702', 'Pococí');
 #Distritos
 
 
@@ -210,85 +220,415 @@ INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`,
 
 ('2', '1', '10902', 'Salitral');
 
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('3', '1', '10903', 'Pozos o Concepción');
 
 INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
 
-('3', '2', '11101', 'San Isidro');
-
-
-INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
-
-('4', '2', '11102', 'San Rafael');
-
+('4', '1', '10904', 'Uruca');
 
 INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
 
-('5', '3', '11301', 'San Juan');
-
+('5', '1', '10905', 'Piedades');
 
 INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
 
-('6', '3', '11302', 'Cinco Esquinas');
+('6', '1', '10906', 'Brasil');
 
 
 INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
 
-('7', '4', '20201', 'San Ramón');
+('7', '2', '11101', 'San Isidro');
 
 
 INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
 
-('8', '4', '20202', 'Santiago');
+('8', '2', '11102', 'San Rafael');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('9', '2', '11103', 'Dulce nombre');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('10', '2', '11104', 'Patalillo');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('11', '2', '11105', 'Cascajal');
 
 
 INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
 
-('9', '5', '20501', 'Atenas');
+('12', '3', '11301', 'San Juan');
 
 
 INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
 
-('10', '5', '20502', 'Jesús');
+('13', '3', '11302', 'Cinco Esquinas');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('14', '3', '11303', 'Anselmo Llorente');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('15', '3', '11304', 'León XIII');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('16', '3', '11305', 'Colima');
 
 
 INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
 
-('11', '6', '30201', 'Paraíso');
+('17', '4', '20201', 'San Ramón');
 
 
 INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
 
-('12', '6', '30202', 'Santiago');
+('18', '4', '20202', 'Santiago');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('19', '4', '20203', 'San Juan');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('20', '4', '20204', 'Piedades Norte');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('21', '4', '20205', 'Piedades Sur');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('22', '4', '20206', 'San Rafael');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('23', '4', '20207', 'San Isidro');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('24', '4', '20208', 'Angeles');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('25', '4', '20209', 'Alfaro');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('26', '4', '20210', 'Volio');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('27', '4', '20211', 'Concepción');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('28', '4', '20212', 'Zapotal');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('29', '4', '20213', 'San Isidro de Peñas Blancas');
 
 
 INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
 
-('13', '7', '30501', 'Turrialba');
+('30', '5', '20501', 'Atenas');
 
 
 INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
 
-('14', '7', '30502', 'La Suiza');
+('31', '5', '20502', 'Jesús');
 
 
 INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
 
-('15', '8', '40301', 'Santo Domingo');
+('32', '5', '20503', 'Mercedes');
 
 
 INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
 
-('16', '8', '40302', 'San Vicente');
+('33', '5', '20504', 'San Isidro');
 
 
 INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
 
-('17', '9', '40401', 'Santa Bárbara');
+('34', '5', '20505', 'Concepción');
 
 
 INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
 
-('18', '9', '40402', 'San Pedro');
+('35', '5', '20506', 'San José');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('36', '5', '20507', 'Santa Eulalia');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('37', '5', '20508', 'Escobal');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('38', '6', '30201', 'Paraíso');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('39', '6', '30202', 'Santiago');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('40', '6', '30203', 'Orosi');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('41', '6', '30204', 'Cachí');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('42', '6', '30205', 'Llanos de Sta Lucia');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('43', '7', '30501', 'Turrialba');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('44', '7', '30502', 'La Suiza');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('45', '7', '30503', 'Peralta');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('46', '7', '30504', 'Santa Cruz');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('47', '7', '30505', 'Santa Teresita');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('48', '7', '30506', 'Pavones');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('49', '7', '30507', 'Tuis');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('50', '7', '30508', 'Tayutic');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('51', '7', '30509', 'Santa Rosa');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('52', '7', '30510', 'Tres Equis');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('53', '7', '30511', 'La Isabel');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('54', '7', '30512', 'Chirripo');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('55', '8', '40301', 'Santo Domingo');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('56', '8', '40302', 'San Vicente');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('57', '8', '40303', 'San Miguel');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('58', '8', '40304', 'Paracito');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('59', '8', '40305', 'Santo Tómas');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('60', '8', '40306', 'Santa Rosa');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('61', '8', '40307', 'Tures');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('62', '8', '40308', 'Pará');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('63', '9', '40401', 'Santa Bárbara');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('64', '9', '40402', 'San Pedro');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('65', '9', '40403', 'San Juan');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('66', '9', '40404', 'Jesús');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('67', '9', '40405', 'Santo Domingo del Roble');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('68', '9', '40406', 'Puraba');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('69', '10', '50101', 'Liberia');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('70', '10', '50102', 'Cañas Dulces');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('71', '10', '50103', 'Mayorga');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('72', '10', '50104', 'Nacascolo');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('73', '10', '50105', 'Curubande');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('74', '11', '50201', 'Nicoya');
+
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('75', '11', '50202', 'Mansión');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('76', '11', '50203', 'San Antonio');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('77', '11', '50204', 'Quebrada Honda');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('78', '11', '50205', 'Sámara');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('79', '11', '50206', 'Nosara');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('80', '11', '50207', 'Belén de Nosarita');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('81', '12', '60101', 'Puntarenas');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('82', '12', '60102', 'Pitahaya');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('83', '12', '60103', 'Chomes');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('84', '12', '60104', 'Lepanto');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('85', '13', '60201', 'Espiritu Santo');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('86', '13', '60202', 'San Juan Grande');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('87', '13', '60203', 'Macacona');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('88', '13', '60204', 'San Rafael');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('89', '13', '60205', 'San Jerónimo');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('90', '14', '70101', 'Limón');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('91', '14', '70102', 'Valle La Estrella');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('92', '14', '70103', 'Río Blanco');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('93', '14', '70105', 'Matama');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('94', '15', '70201', 'Guápiles');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('95', '15', '70202', 'Jiménez');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('96', '15', '70203', 'Rita');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('97', '15', '70204', 'Roxana');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('98', '15', '70205', 'Cariari');
+
+INSERT INTO `propiedades_sch`.`tdistricts` (`id_disctrict`, `id_county`, `code`, `name`) VALUES 
+
+('99', '15', '70206', 'Colorado');
 
 
 #permisos
@@ -475,5 +815,445 @@ INSERT INTO `propiedades_sch`.`tUsers` (`id_user`, `user_name`, `first_name`, `l
 INSERT INTO `propiedades_sch`.`tUsers` (`id_user`, `user_name`, `first_name`, `last_name`, `phone_1`, `phone_2`, `email`, `password`, `id_rol`, `active`, `first_time`, `user_image`, `gender`, `birthday`) VALUES (3, 'Walter', 'Gómez', 'Villalta', '22697168', '84099459', 'wgomezv@ucenfotec.ac.cr', '5cb01845ff62171cd4ade0e46bdcfc5f', 3, 1, 0, 'http://localhost:8080/propiedadesCR/resources/images/walter.jpg', 'Hombre', '1993-10-28');
 INSERT INTO `propiedades_sch`.`tUsers` (`id_user`, `user_name`, `first_name`, `last_name`, `phone_1`, `phone_2`, `email`, `password`, `id_rol`, `active`, `first_time`, `user_image`, `gender`, `birthday`) VALUES (4, 'Jorge', 'Arguedas', 'Arrieta', '23687432', '123234255', 'jorge.argds@gmail.com', '5cb01845ff62171cd4ade0e46bdcfc5f', 3, 1, 0, 'http://localhost:8080/propiedadesCR/resources/images/jorge.jpg', 'Hombre', '1993-10-28');
 #Comprador
-INSERT INTO `propiedades_sch`.`tUsers` (`id_user`, `user_name`, `first_name`, `last_name`, `phone_1`, `phone_2`, `email`, `password`, `id_rol`, `active`, `first_time`, `user_image`, `gender`, `birthday`) VALUES (5, 'Maria', 'Gutierrez', 'Calvo', '23124564', '89987456', 'mgutierrez@gmail.com', '5cb01845ff62171cd4ade0e46bdcfc5f', 2, 1, 0, 'http://localhost:8080/propiedadesCR/resources/images/maria.png', 'mujer', '1993-10-28');
-INSERT INTO `propiedades_sch`.`tUsers` (`id_user`, `user_name`, `first_name`, `last_name`, `phone_1`, `phone_2`, `email`, `password`, `id_rol`, `active`, `first_time`, `user_image`, `gender`, `birthday`) VALUES (6, 'Valeria', 'Ramirez', 'Cordero', '22562222', '83562222', 'valeram96@gmail.com', '5cb01845ff62171cd4ade0e46bdcfc5f', 2, 1, 0, 'http://localhost:8080/propiedadesCR/resources/images/valeria.png', 'mujer', '1993-10-28');
+INSERT INTO `propiedades_sch`.`tUsers` (`id_user`, `user_name`, `first_name`, `last_name`, `phone_1`, `phone_2`, `email`, `password`, `id_rol`, `active`, `first_time`, `user_image`, `gender`, `birthday`) VALUES (5, 'Maria', 'Gutierrez', 'Calvo', '23124564', '89987456', 'mgutierresc@gmail.com', '5cb01845ff62171cd4ade0e46bdcfc5f', 2, 1, 1, 'http://localhost:8080/propiedadesCR/resources/images/maria.jpg', 'mujer', '1993-10-28');
+INSERT INTO `propiedades_sch`.`tUsers` (`id_user`, `user_name`, `first_name`, `last_name`, `phone_1`, `phone_2`, `email`, `password`, `id_rol`, `active`, `first_time`, `user_image`, `gender`, `birthday`) VALUES (6, 'Valeria', 'Ramirez', 'Cordero', '22562222', '83562222', 'valeram96@gmail.com', '5cb01845ff62171cd4ade0e46bdcfc5f', 2, 1, 0, 'http://localhost:8080/propiedadesCR/resources/images/valeria.jpg', 'mujer', '1993-10-28');
+
+
+
+#propiedades
+#cada propiedad tiene una relacion a beneficios vendedores,2,3,4
+
+#propiedad
+INSERT INTO `propiedades_sch`.`tproperties` (`id_property`, `square_meters`, `price`, `id_district`, `active`, `id_property_type`, `id_vendor`, `address`, `coordinates`, `offer_percentage`, `is_sold`, `sale_type`, `total_views`) VALUES 
+				#disctrito
+(1, 90, 200000, 11, 1, 1, 2, 'descripcion de la ubicacion de la propiedad', '[9.935442909687973,-84.10673678845217]', 0, 0, 'Venta', 0);
+#beneficios
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('1', 
+	'1');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('2', 
+	'1');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('3', 
+	'1');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('7', 
+	'1');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('10', 
+	'1');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('11', 
+	'1');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('12', 
+	'1');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('13', 
+	'1');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('14', 
+	'1');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('15', 
+	'1');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('16', 
+	'1');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('17', 
+	'1');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('18', 
+	'1');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('19', 
+	'1');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('20', 
+	'1');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('24', 
+	'1');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('25', 
+	'1');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('26', 
+	'1');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('27', 
+	'1');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('28', 
+	'1');
+
+#imagenes
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('1', 'http://localhost:8080/propiedadesCR/resources/images/prop11.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('1', 'http://localhost:8080/propiedadesCR/resources/images/prop12.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('1', 'http://localhost:8080/propiedadesCR/resources/images/prop13.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('1', 'http://localhost:8080/propiedadesCR/resources/images/prop14.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('1', 'http://localhost:8080/propiedadesCR/resources/images/prop15.jpg');
+
+
+#propiedad
+INSERT INTO `propiedades_sch`.`tproperties` (`id_property`, `square_meters`, `price`, `id_district`, `active`, `id_property_type`, `id_vendor`, `address`, `coordinates`, `offer_percentage`, `is_sold`, `sale_type`, `total_views`) VALUES 
+				#disctrito
+(2, 90, 200000, 2, 1, 1, 2, 'descripcion de la ubicacion de la propiedad', '[9.935442909687973,-84.10673678845217]', 0, 0, 'Venta', 0);
+
+#beneficios
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('1', 
+	'2');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('2', 
+	'2');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('4', 
+	'2');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('6', 
+	'2');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('10', 
+	'2');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('11', 
+	'2');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('12', 
+	'2');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('13', 
+	'2');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('14', 
+	'2');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('15', 
+	'2');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('16', 
+	'2');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('17', 
+	'2');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('18', 
+	'2');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('19', 
+	'2');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('21', 
+	'2');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('24', 
+	'2');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('25', 
+	'2');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('26', 
+	'2');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('27', 
+	'2');
+#imagenes
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('2', 'http://localhost:8080/propiedadesCR/resources/images/prop21.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('2', 'http://localhost:8080/propiedadesCR/resources/images/prop22.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('2', 'http://localhost:8080/propiedadesCR/resources/images/prop23.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('2', 'http://localhost:8080/propiedadesCR/resources/images/prop24.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('2', 'http://localhost:8080/propiedadesCR/resources/images/prop25.jpg');
+
+
+#propiedad
+INSERT INTO `propiedades_sch`.`tproperties` (`id_property`, `square_meters`, `price`, `id_district`, `active`, `id_property_type`, `id_vendor`, `address`, `coordinates`, `offer_percentage`, `is_sold`, `sale_type`, `total_views`) VALUES 
+				#disctrito
+(3, 90, 200000, 3, 1, 1, 2, 'descripcion de la ubicacion de la propiedad', '[9.935442909687973,-84.10673678845217]', 0, 0, 'Venta', 0);
+#beneficios
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('1', 
+	'3');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('2', 
+	'3');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('5', 
+	'3');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('8', 
+	'3');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('10', 
+	'3');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('11', 
+	'3');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('12', 
+	'3');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('13', 
+	'3');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('14', 
+	'3');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('15', 
+	'3');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('16', 
+	'3');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('17', 
+	'3');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('18', 
+	'3');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('19', 
+	'3');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('22', 
+	'3');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('24', 
+	'3');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('25', 
+	'3');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('26', 
+	'3');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('27', 
+	'3');
+#imagenes
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('3', 'http://localhost:8080/propiedadesCR/resources/images/prop31.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('3', 'http://localhost:8080/propiedadesCR/resources/images/prop32.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('3', 'http://localhost:8080/propiedadesCR/resources/images/prop33.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('3', 'http://localhost:8080/propiedadesCR/resources/images/prop34.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('3', 'http://localhost:8080/propiedadesCR/resources/images/prop35.jpg');
+
+#propiedad
+INSERT INTO `propiedades_sch`.`tproperties` (`id_property`, `square_meters`, `price`, `id_district`, `active`, `id_property_type`, `id_vendor`, `address`, `coordinates`, `offer_percentage`, `is_sold`, `sale_type`, `total_views`) VALUES 
+				#disctrito
+(4, 90, 200000, 4, 1, 1, 2, 'descripcion de la ubicacion de la propiedad', '[9.935442909687973,-84.10673678845217]', 0, 0, 'Venta', 0);
+
+#beneficios
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('1', 
+	'4');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('2', 
+	'4');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('3', 
+	'4');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('9', 
+	'4');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('10', 
+	'4');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('11', 
+	'4');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('12', 
+	'4');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('13', 
+	'4');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('14', 
+	'4');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('15', 
+	'4');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('16', 
+	'4');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('17', 
+	'4');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('18', 
+	'4');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('19', 
+	'4');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('23', 
+	'4');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('24', 
+	'4');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('25', 
+	'4');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('26', 
+	'4');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('27', 
+	'4');
+#imagenes
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('4', 'http://localhost:8080/propiedadesCR/resources/images/prop41.jpg');
+-- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('4', 'http://localhost:8080/propiedadesCR/resources/images/prop42.jpg');
+-- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('4', 'http://localhost:8080/propiedadesCR/resources/images/prop43.jpg');
+-- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('4', 'http://localhost:8080/propiedadesCR/resources/images/prop44.jpg');
+-- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('4', 'http://localhost:8080/propiedadesCR/resources/images/prop45.jpg');
+
+#propiedad
+INSERT INTO `propiedades_sch`.`tproperties` (`id_property`, `square_meters`, `price`, `id_district`, `active`, `id_property_type`, `id_vendor`, `address`, `coordinates`, `offer_percentage`, `is_sold`, `sale_type`, `total_views`) VALUES 
+				#disctrito
+(5, 90, 200000, 5, 1, 1, 2, 'descripcion de la ubicacion de la propiedad', '[9.935442909687973,-84.10673678845217]', 0, 0, 'Venta', 0);
+#beneficios
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('1', 
+	'5');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('3', 
+	'5');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('9', 
+	'5');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('10', 
+	'5');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('17', 
+	'5');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('18', 
+	'5');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('19', 
+	'5');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('23', 
+	'5');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('24', 
+	'5');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('25', 
+	'5');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('26', 
+	'5');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('27', 
+	'5');
+#imagenes
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('5', 'http://localhost:8080/propiedadesCR/resources/images/prop51.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('5', 'http://localhost:8080/propiedadesCR/resources/images/prop52.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('5', 'http://localhost:8080/propiedadesCR/resources/images/prop53.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('5', 'http://localhost:8080/propiedadesCR/resources/images/prop54.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('5', 'http://localhost:8080/propiedadesCR/resources/images/prop55.jpg');
+
+#propiedad
+INSERT INTO `propiedades_sch`.`tproperties` (`id_property`, `square_meters`, `price`, `id_district`, `active`, `id_property_type`, `id_vendor`, `address`, `coordinates`, `offer_percentage`, `is_sold`, `sale_type`, `total_views`) VALUES 
+				#disctrito
+(6, 90, 200000, 6, 1, 1, 2, 'descripcion de la ubicacion de la propiedad', '[9.935442909687973,-84.10673678845217]', 0, 0, 'Venta', 0);
+#beneficios
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('4', 
+	'6');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('7', 
+	'6');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('10', 
+	'6');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('11', 
+	'6');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('12', 
+	'6');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('13', 
+	'6');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('14', 
+	'6');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('15', 
+	'6');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('18', 
+	'6');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('19', 
+	'6');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('23', 
+	'6');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('24', 
+	'6');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('25', 
+	'6');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('26', 
+	'6');
+#imagenes
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('6', 'http://localhost:8080/propiedadesCR/resources/images/prop61.jpg');
+-- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('6', 'http://localhost:8080/propiedadesCR/resources/images/prop62.jpg');
+-- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('6', 'http://localhost:8080/propiedadesCR/resources/images/prop63.jpg');
+-- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('6', 'http://localhost:8080/propiedadesCR/resources/images/prop64.jpg');
+-- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('6', 'http://localhost:8080/propiedadesCR/resources/images/prop65.jpg');
+
+#propiedad
+INSERT INTO `propiedades_sch`.`tproperties` (`id_property`, `square_meters`, `price`, `id_district`, `active`, `id_property_type`, `id_vendor`, `address`, `coordinates`, `offer_percentage`, `is_sold`, `sale_type`, `total_views`) VALUES 
+				#disctrito
+(7, 90, 200000, 7, 1, 1, 2, 'descripcion de la ubicacion de la propiedad', '[9.935442909687973,-84.10673678845217]', 0, 0, 'Venta', 0);
+#beneficios
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('2', 
+	'7');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('3', 
+	'7');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('9', 
+	'7');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('10', 
+	'7');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('11', 
+	'7');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('12', 
+	'7');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('13', 
+	'7');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('14', 
+	'7');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('15', 
+	'7');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('16', 
+	'7');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('17', 
+	'7');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('18', 
+	'7');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('19', 
+	'7');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('23', 
+	'7');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('24', 
+	'7');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('25', 
+	'7');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('26', 
+	'7');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('27', 
+	'7');
+#imagenes
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('7', 'http://localhost:8080/propiedadesCR/resources/images/prop71.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('7', 'http://localhost:8080/propiedadesCR/resources/images/prop72.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('7', 'http://localhost:8080/propiedadesCR/resources/images/prop73.jpg');
+-- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('7', 'http://localhost:8080/propiedadesCR/resources/images/prop74.jpg');
+-- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('7', 'http://localhost:8080/propiedadesCR/resources/images/prop75.jpg');
+
+#propiedad
+INSERT INTO `propiedades_sch`.`tproperties` (`id_property`, `square_meters`, `price`, `id_district`, `active`, `id_property_type`, `id_vendor`, `address`, `coordinates`, `offer_percentage`, `is_sold`, `sale_type`, `total_views`) VALUES 
+				#disctrito
+(8, 90, 200000, 8, 1, 1, 2, 'descripcion de la ubicacion de la propiedad', '[9.935442909687973,-84.10673678845217]', 0, 0, 'Venta', 0);
+#beneficios
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('3', 
+	'8');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('9', 
+	'8');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('11', 
+	'8');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('13', 
+	'8');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('15', 
+	'8');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('17', 
+	'8');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('19', 
+	'8');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('22', 
+	'8');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('24', 
+	'8');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('26', 
+	'8');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('27', 
+	'8');
+#imagenes
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('8', 'http://localhost:8080/propiedadesCR/resources/images/prop81.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('8', 'http://localhost:8080/propiedadesCR/resources/images/prop82.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('8', 'http://localhost:8080/propiedadesCR/resources/images/prop83.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('8', 'http://localhost:8080/propiedadesCR/resources/images/prop84.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('8', 'http://localhost:8080/propiedadesCR/resources/images/prop85.jpg');
+
+#propiedad
+INSERT INTO `propiedades_sch`.`tproperties` (`id_property`, `square_meters`, `price`, `id_district`, `active`, `id_property_type`, `id_vendor`, `address`, `coordinates`, `offer_percentage`, `is_sold`, `sale_type`, `total_views`) VALUES 
+				#disctrito
+(9, 90, 200000, 9, 1, 1, 2, 'descripcion de la ubicacion de la propiedad', '[9.935442909687973,-84.10673678845217]', 0, 0, 'Venta', 0);
+#beneficios
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('1', 
+	'9');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('2', 
+	'9');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('4', 
+	'9');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('9', 
+	'9');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('12', 
+	'9');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('14', 
+	'9');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('16', 
+	'9');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('18', 
+	'9');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('19', 
+	'9');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('23', 
+	'9');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('24', 
+	'9');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('25', 
+	'9');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('26', 
+	'9');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('27', 
+	'9');
+#imagenes
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('9', 'http://localhost:8080/propiedadesCR/resources/images/prop91.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('9', 'http://localhost:8080/propiedadesCR/resources/images/prop92.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('9', 'http://localhost:8080/propiedadesCR/resources/images/prop93.jpg');
+-- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('9', 'http://localhost:8080/propiedadesCR/resources/images/prop94.jpg');
+-- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('9', 'http://localhost:8080/propiedadesCR/resources/images/prop95.jpg');
+
+#propiedad
+INSERT INTO `propiedades_sch`.`tproperties` (`id_property`, `square_meters`, `price`, `id_district`, `active`, `id_property_type`, `id_vendor`, `address`, `coordinates`, `offer_percentage`, `is_sold`, `sale_type`, `total_views`) VALUES 
+				#distrito
+(10, 90, 200000, 10, 1, 1, 2, 'descripcion de la ubicacion de la propiedad', '[9.935442909687973,-84.10673678845217]', 0, 0, 'Venta', 0);
+#beneficios
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('1', 
+	'10');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('3', 
+	'10');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('6', 
+	'10');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('15', 
+	'10');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('16', 
+	'10');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('17', 
+	'10');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('18', 
+	'10');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('19', 
+	'10');
+INSERT INTO `propiedades_sch`.`tbenefit_per_property` (`id_benefit`, `id_property`) VALUES ('20', 
+	'10');
+#imagenes
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('10', 'http://localhost:8080/propiedadesCR/resources/images/prop101.jpg');
+INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('10', 'http://localhost:8080/propiedadesCR/resources/images/prop102.jpg');
+-- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('10', 'http://localhost:8080/propiedadesCR/resources/images/prop103.jpg');
+-- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('10', 'http://localhost:8080/propiedadesCR/resources/images/prop104.jpg');
+-- INSERT INTO `propiedades_sch`.`tproperty_image` (`id_property`, `property_image`) VALUES ('10', 'http://localhost:8080/propiedadesCR/resources/images/prop105.jpg');

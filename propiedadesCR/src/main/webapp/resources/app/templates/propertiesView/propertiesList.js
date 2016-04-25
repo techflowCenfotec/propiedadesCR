@@ -121,7 +121,6 @@
 
 			$scope.selectedBenefits = benefitsList;
 			$scope.keyword = _.pluck($scope.selectedBenefits, 'benefit').join(', ');
-
 		});
 		
 		$scope.clearSearch = function() {

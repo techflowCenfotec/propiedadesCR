@@ -186,7 +186,7 @@
 							});
 						}
 						$scope.showInfoOnSubmit= true;
-						$state.go('templates/propertiesView/propertiesList', {},  {reload: true});
+						$state.go('templates/propertiesView/myPropertiesView', {},  {reload: true});
 				});
 			}
 		}
