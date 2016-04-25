@@ -39,11 +39,11 @@
 			.success(function(response) {
 				$scope.propertiesList = [];
 				for (var i = 0; i < response.properties.length; i++) {
-					if(response.properties[i].active == active && response.properties[i].isSold == sold) 
+					if(response.properties[i].active == active && response.properties[i].isSold == sold) { 
+						$scope.propertiesList.push(response.properties[i]);
 						//calcular el descuento
 						response.properties[i].price -= (response.properties[i].price*response.properties[i].offerPercentage)/100;
-						
-						$scope.propertiesList.push(response.properties[i]);
+					}
 				}
 				
 				$http.get('rest/protected/users/getUserById/' + $rootScope.userLogged.idUser)

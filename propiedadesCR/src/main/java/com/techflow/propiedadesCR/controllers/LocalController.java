@@ -282,37 +282,37 @@ public class LocalController {
 		@RequestMapping(value="/checkDB", method= RequestMethod.GET)
 			public BaseResponse checkDB(){
 			    BaseResponse response = new BaseResponse();
-				Connection connection = null;
-				String host ="";
-				String userName ="";
-				String pass = "";
-				try {
-					File file = new File("src/main/resources/application.properties");
-					FileInputStream fileInput = new FileInputStream(file);
-					Properties properties = new Properties();
-					properties.load(fileInput);
-					fileInput.close();
-
-					host = properties.getProperty("spring.datasource.url");
-					userName = 	properties.getProperty("spring.datasource.username");
-					pass = 	properties.getProperty("spring.datasource.password");	
-					
-				} catch (FileNotFoundException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-
-				try {
-				    connection = (Connection) DriverManager.getConnection(host, userName, pass);
+//				Connection connection = null;
+//				String host ="";
+//				String userName ="";
+//				String pass = "";
+//				try {
+//					File file = new File("src/main/resources/application.properties");
+//					FileInputStream fileInput = new FileInputStream(file);
+//					Properties properties = new Properties();
+//					properties.load(fileInput);
+//					fileInput.close();
+//
+//					host = properties.getProperty("spring.datasource.url");
+//					userName = 	properties.getProperty("spring.datasource.username");
+//					pass = 	properties.getProperty("spring.datasource.password");	
+//					
+//				} catch (FileNotFoundException e) {
+//					e.printStackTrace();
+//				} catch (IOException e) {
+//					e.printStackTrace();
+//				}
+//
+//				try {
+//				    connection = (Connection) DriverManager.getConnection(host, userName, pass);
 				    response.setCode(200);
 				    return response;
-				} catch (Exception e) {
-					response.setCode(500);
-				   return response;
-				} finally {
-				    if (connection != null) try { connection.close(); } catch (Exception ignore) {}
-				}
+//				} catch (Exception e) {
+//					response.setCode(500);
+//				   return response;
+//				} finally {
+//				    if (connection != null) try { connection.close(); } catch (Exception ignore) {}
+//				}
 						
 				
 		}
