@@ -34,7 +34,8 @@
 							<div class="ih-item ih-material">
 								<a href="javascript:;">
 									<div class="img img-responsive">
-										<img ng-src="{{image.propertyImage}}" alt=""  style="max-height:150px; padding-bottom:4px;">
+										<img ng-src="{{image.propertyImage}}" alt=""
+											style="max-height: 150px; padding-bottom: 4px;">
 									</div>
 									<div class="info">
 										<div class="info-mask bg-primary"></div>
@@ -68,8 +69,8 @@
 											</div>
 										</div>
 										<span class="btn btn-default" flow-btn
-											ng-hide="canAddImg($flow.files.length, imageList.length)"> Subir
-											imágenes <input type="file"
+											ng-hide="canAddImg($flow.files.length, imageList.length)">
+											Subir imágenes <input type="file"
 											style="visibility: hidden; position: absolute"
 											multiple="multiple" />
 										</span>
@@ -92,81 +93,7 @@
 											<md-option ng-repeat="district in districtList"
 												ng-value="district"> {{district.name}} </md-option> </md-select> </md-input-container>
 										</div>
-										<md-input-container class="md-block"> <label>Dirección</label>
-										<input ng-model="property.address" md-maxlength="150" required />
-										</md-input-container>
-										<div class="row">
-											<div class="col-lg-11">
-										<md-chips ng-model="property.tbenefits"
-											readonly="ctrl.readonly"
-											delete-button-label="Eliminar etiqueta"
-											md-transform-chip="ctrl.transformChip($chip)"
-											secondary-placeholder="Características de la propiedad"
-											md-require-match="true" required> <md-autocomplete
-											md-selected-item="ctrl.selectedItem"
-											md-search-text="requestObject.searchText"
-											md-items="item in querySearch(requestObject.searchText)"
-											md-item-text="item.benefit" placeholder="Características">
-										<span md-highlight-text="requestObject.searchText">
-											{{item.benefit}} </span> </md-autocomplete> <md-chip-template> <span>
-											{{$chip.benefit}} </span> </md-chip-template> </md-chips>
-										</div>
-											<div class="col-lg-1 benefit-alignment">
-												<benefits></benefits>
-											</div>
-										</div>
-										<div class="divider divider-md"></div>
-										<div layout layout-sm="column">
-											<md-input-container flex> <label>Precio</label>
-											<input ng-model="property.price" pattern="(?!0+)\d+" min="0" data-ng-maxlength=10
-												required> </md-input-container>
-											<md-input-container flex> <label>Tipo
-												de propiedad</label> <md-select ng-model="selectedType"
-												ng-model-options="{trackBy: '$value.idPropertyType'}"
-												required> <md-option
-												ng-repeat="type in propertyTypeList" ng-value="type">
-											{{type.name}} </md-option> </md-select> </md-input-container>
-										</div>
-										<div layout layout-sm="column">
-											<md-input-container flex> <label>Metros
-												de construcción</label> <input ng-model="property.squareMeters"
-												pattern="(?!0+)\d+" min="0" data-ng-maxlength=10 required /> </md-input-container>
-										</div>
-										<div class="row">
-											<div class="col-md-12">
-												<section class="panel panel-default">
-													<div class="panel-body">
-														<map class="ui-map" zoom="16"
-															center="{{property.coordinates}}" scrollwheel="false">
-															<marker position="{{property.coordinates}}"
-																title="drag me" draggable="true"
-																on-dragend="ctrl.markerPos()"></marker>
-														</map>
-													</div>
-												</section>
-											</div>
-										</div>
-										<md-button type="submit" class="md-raised btn-w-md md-primary"
-											data-ng-disabled="!canSubmit($flow.files.length, imageList.length)"
-											ng-click="updateProperty($event, $flow.files)">Modificar</md-button>
-										<md-button class="btn-w-md" data-ng-click="cancel()">Regresar</md-button>
-										<div class="divider"></div>
-										<div class="alert alert-info" data-ng-show="showInfoOnSubmit">
-											Propiedad modificada exitosamente!</div>
-									</form>
-								</div>
-							</div>
-
-						</div>
-					</div>
-				</div>
-			</section>
-		</div>
-	</div>
-
-
-
-	<script type="text/ng-template" id="offerModal.html">
+										<script type="text/ng-template" id="offerModal.html">
                                       <div class="modal-header">
                                 <h3>Oferta de propiedad</h3>
                             </div>
@@ -234,20 +161,94 @@
                             </div>
 		
                         </script>
-          
-         
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<h5>Oferta de propiedad</h5>
-					<button class="btn btn-danger" ng-click="removeOffer()"
-						data-ng-show="hasAnOffer">Remover oferta de la propiedad</button>
-					<md-button class="md-raised btn-w-md md-primary" ng-click="open()"
-						data-ng-hide="hasAnOffer">Poner propiedad en oferta</md-button>
+
+
+										<div class="panel panel-default">
+											<div class="panel-body">
+												<h5>Oferta de propiedad</h5>
+												<button class="btn btn-danger" ng-click="removeOffer()"
+													data-ng-show="hasAnOffer">Remover oferta de la
+													propiedad</button>
+												<md-button class="md-raised btn-w-md md-primary"
+													ng-click="openOffert()" data-ng-hide="hasAnOffer">Poner
+												propiedad en oferta</md-button>
+											</div>
+										</div>
+
+
+										<md-input-container class="md-block"> <label>Dirección</label>
+										<input ng-model="property.address" md-maxlength="150" required />
+										</md-input-container>
+										<div class="row">
+											<div class="col-lg-11">
+												<md-chips ng-model="property.tbenefits"
+													readonly="ctrl.readonly"
+													delete-button-label="Eliminar etiqueta"
+													md-transform-chip="ctrl.transformChip($chip)"
+													secondary-placeholder="Características de la propiedad"
+													md-require-match="true" required> <md-autocomplete
+													md-selected-item="ctrl.selectedItem"
+													md-search-text="requestObject.searchText"
+													md-items="item in querySearch(requestObject.searchText)"
+													md-item-text="item.benefit" placeholder="Características">
+												<span md-highlight-text="requestObject.searchText">
+													{{item.benefit}} </span> </md-autocomplete> <md-chip-template> <span>
+													{{$chip.benefit}} </span> </md-chip-template> </md-chips>
+											</div>
+											<div class="col-lg-1 benefit-alignment">
+												<benefits></benefits>
+											</div>
+										</div>
+										<div class="divider divider-md"></div>
+										<div layout layout-sm="column">
+											<md-input-container flex> <label>Precio</label>
+											<input ng-model="property.price" pattern="(?!0+)\d+" min="0"
+												data-ng-maxlength=10 required> </md-input-container>
+											<md-input-container flex> <label>Tipo
+												de propiedad</label> <md-select ng-model="selectedType"
+												ng-model-options="{trackBy: '$value.idPropertyType'}"
+												required> <md-option
+												ng-repeat="type in propertyTypeList" ng-value="type">
+											{{type.name}} </md-option> </md-select> </md-input-container>
+										</div>
+										<div layout layout-sm="column">
+											<md-input-container flex> <label>Metros
+												de construcción</label> <input ng-model="property.squareMeters"
+												pattern="(?!0+)\d+" min="0" data-ng-maxlength=10 required />
+											</md-input-container>
+										</div>
+										<div class="row">
+											<div class="col-md-12">
+												<section class="panel panel-default">
+													<div class="panel-body">
+														<map class="ui-map" zoom="16"
+															center="{{property.coordinates}}" scrollwheel="false">
+															<marker position="{{property.coordinates}}"
+																title="drag me" draggable="true"
+																on-dragend="ctrl.markerPos()"></marker>
+														</map>
+													</div>
+												</section>
+											</div>
+										</div>
+										<md-button type="submit" class="md-raised btn-w-md md-primary"
+											data-ng-disabled="!canSubmit($flow.files.length, imageList.length)"
+											ng-click="updateProperty($event, $flow.files)">Modificar</md-button>
+										<md-button class="btn-w-md" data-ng-click="cancel()">Regresar</md-button>
+										<div class="divider"></div>
+										<div class="alert alert-info" data-ng-show="showInfoOnSubmit">
+											Propiedad modificada exitosamente!</div>
+									</form>
+								</div>
+							</div>
+
+						</div>
+					</div>
 				</div>
-			</div>
-		
-	
+			</section>
+		</div>
+	</div>
 </section>
 
-		
+
 

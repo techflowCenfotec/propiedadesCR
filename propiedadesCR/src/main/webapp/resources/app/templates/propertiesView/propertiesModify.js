@@ -254,7 +254,7 @@
 		}
 		
 	
-	        $scope.open = function (size) {
+	        $scope.openOffert = function (size) {
 	        	localStorage.setItem('propertyPrice',$scope.property.price);
 	            var modalInstance = $uibModal.open({
 	                animation: $scope.animationsEnabled,
@@ -326,7 +326,7 @@
 				  $timeout(function(){
 			          $scope.showInfoOnSubmit = false;
 			          $uibModalInstance.dismiss("hasAnOffer");
-			       }, 1500);
+			       }, 1000);
             	
             });
 	    	
