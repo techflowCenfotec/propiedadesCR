@@ -2,9 +2,8 @@
 	'use strict';
 
 	angular.module('app.roles', [])
-	.controller('rolesController',
-        ['$scope','$filter','$http', '$upload','$mdToast',
-        function($scope,$filter,$http,$upload, $mdToast){
+	.controller('rolesController',['$scope','$filter','$http', '$upload','$mdToast', '$location',
+        function($scope,$filter,$http,$upload, $mdToast,$location){
 //datagrid
 		$scope.rolesList = [];
         $scope.searchKeywords = '';
@@ -43,6 +42,16 @@
 		
 		$http.post(link,request).success(function(response) {
 			$scope.rolesList= response.role;
+            var newList = [];
+            console.log($scope.rolesList);
+            for(var i = 0 ; i < $scope.rolesList.length ; i++){
+                
+                if($scope.rolesList[i].idRole>3){
+                    newList.push($scope.rolesList[i]);
+                }
+            }
+    
+            $scope.rolesList = newList;
 			init();
 		});
 
@@ -130,5 +139,10 @@
 
             last = angular.extend({},current);
         };
+
+        $scope.go = function(){
+            $location.path("/templates/roleView/addRoles"); 
+        };
+
 	}]);
 })();

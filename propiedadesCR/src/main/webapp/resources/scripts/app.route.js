@@ -3,27 +3,27 @@
 
 	angular.module("app.route", ["ui.router"])
 
-	.config(["$stateProvider","$urlRouterProvider","$provide","$httpProvider", function($stateProvider,$urlRouterProvider,$provide,$httpProvider){ 
+	.config(["$stateProvider","$urlRouterProvider","$provide","$httpProvider",
+	         function($stateProvider,$urlRouterProvider,$provide,$httpProvider){ 
 		
 		var n,t;
 		n = [
 			"templates/propertiesView/propertiesList"
 			,"templates/reportsView/reports"
-						
 			,"templates/usersView/usersList"
 			,"templates/usersView/createUser"			
 			,"templates/usersView/consultUser"
 			,"templates/usersView/modifyUser"
 			,"templates/usersView/vendorsList"
 			,"templates/usersView/consultVendor"
+			,"templates/usersView/modifyProfile"
 			
 			,"templates/eventsView/createEvent"
 			,"templates/eventsView/eventsList"
-
+			
 			,"templates/eventsView/eventConsult"
 			,"templates/eventsView/eventListAdmin"
 			,"templates/eventsView/modifyEvent"
-
 			,"templates/roleView/roles"
 			,"templates/roleView/addRoles"
 			,"templates/banktodolistView/banktodolistList"
@@ -31,13 +31,11 @@
 			,"templates/banktodolistView/banktodolistCreate"
 			,"templates/banktodolistView/banktodolistAdminItems"
 			,"templates/banktodolistView/banktodolistModify"
-
 			,"templates/testView/testFlow"
 			,"templates/testView/matchedPropertiesList"
 			,"templates/propertiesView/propertiesCreate"
-
 			,"templates/salesReportView/salesReport"			
-			,"templates/errosView/500"
+			,"templates/errorsView/500"
 
 			,"templates/guidesView/createGuide"
 			,"templates/guidesView/consultGuide"
@@ -48,10 +46,11 @@
 			,"templates/permissionsViews/adminView"
 			,"templates/roleView/editRoles"
 			,"templates/toDoListView/listToDoList"
-
 			,"templates/propertyFavoritesView/favoritesList"
 
 			,"templates/toDoListView/myToDoList"
+			,"templates/reportsView/bankReport"
+			,"templates/tutorialView/tutorialView"
 
 
 		], 
@@ -90,7 +89,7 @@
 			    responseError: function(response) {
 			    	
 			    	if(response.status === 401){
-						window.location.href = "/propiedadesCR/#/login";
+						window.location.href = "/propiedadesCR/#/landingPage";
 					}
 			      return $q.reject(response);
 			    }
@@ -104,7 +103,7 @@
 		    },
 		    complete: function(response) {
 		    	if(response.status === 401){
-		    		window.location.href = "/cenfoteca/login#/";
+		    		window.location.href = "/landingPage";
 				}
 		    }
 		});
@@ -114,6 +113,3 @@
 	}])
 			
 })();
-		
-
-		

@@ -15,9 +15,9 @@
 
                                 <div class="divider divider-lg"></div>
                                 
-                                <wizard on-finish="finished()" >
+                                <wizard on-finish="finished()" hide-indicators="true" >
                                     
-                                    <wz-step wz-title="{{question.idQuestion}}" canexit="" ng-repeat="question in questions">
+                                    <wz-step wz-title="{{question.idQuestion}}" canexit="" ng-repeat="question in questions" >
                                         <h2>{{question.question}}</h2>
                                         <div class="ui-wizard-content">
                                             
@@ -36,8 +36,10 @@
                                         </div>
                                         <div class="ui-wizard-actions">
                                             <md-button wz-reset ng-click="resetAnswers()" class="md-raised btn-w-md md-accent">Reiniciar</md-button>
-
+                                            <md-button ng-click="previous()" ng-disabled="isPrevious" class="md-raised btn-w-md md-primary">Anterior</md-button>
                                             <md-button ng-click="catchAnswer(radio.selectedOption,question.idQuestion)" ng-disabled="radio.selectedOption==undefined" class="md-raised btn-w-md md-primary">Siguiente</md-button>
+
+
                                             
                                         </div>
                                     </wz-step>

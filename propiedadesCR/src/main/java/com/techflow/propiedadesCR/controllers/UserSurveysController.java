@@ -3,15 +3,20 @@ package com.techflow.propiedadesCR.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.techflow.propiedadesCR.contracts.TagsMatchedResponse;
 import com.techflow.propiedadesCR.contracts.UserSurveyMatchResultResponse;
 import com.techflow.propiedadesCR.contracts.UserSurveysRequest;
 import com.techflow.propiedadesCR.contracts.UserSurveysResponse;
+import com.techflow.propiedadesCR.ejb.Tbenefit;
+import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.TuserSurvey;
 import com.techflow.propiedadesCR.pojo.BenefitsPOJO;
 import com.techflow.propiedadesCR.pojo.PropertyPOJO;
@@ -83,13 +88,20 @@ public class UserSurveysController {
 		UserSurveyPOJO userSurvey = getUserSurveyById(puserSurveyRequest.getUserSurvey().getIdSurvey());
 		//calcular el porcentage del match
 		int userTags = userSurvey.getTanswers().size();
+		String saleType = userSurvey.getTanswers().get(0).getResult();
+		String propertyType = userSurvey.getTanswers().get(1).getResult();
+		
+		//////////////////////////////pruebas para mejorar la logica;
+		properties = filtrarPropiedades(saleType,propertyType,properties);
+		
+		////////////////////////////////////////////////////////////
 		
 		for (PropertyPOJO property : properties) {
-			int matchedTags = 0;
+			int matchedTags = 2;
 			for (BenefitsPOJO benefit : property.getTbenefits()) {
 				
 				for(int i=0;i<userTags;i++){
-					if(benefit.getBenefit().equals(userSurvey.getTanswers().get(i).getResult())){
+					if(benefit.getBenefit().toLowerCase().equals(userSurvey.getTanswers().get(i).getResult().toLowerCase())){
 						matchedTags++;
 					}
 				}
@@ -103,12 +115,12 @@ public class UserSurveysController {
 		}
 		
 		//levantar atributos de las propiedades con match para listarlos!
-		List<PropertyPOJO> allProperties = propertiesService.getAll();
+		List<PropertyPOJO> allProperties = propertiesService.getAllProperties();
 		
 		allProperties.stream().forEach(property->{
 			property.setTbenefits(null);
-			property.setTpropertyType(null);
-			property.setTdistrict(null);
+			property.getTpropertyType().setTproperties(null);;
+			property.getTdistrict().setTcounty(null);
 			property.setTuser(null);
 			for (int i = 0; i < idsProperties.size(); i++) {
 				if(property.getIdProperty()==idsProperties.get(i)){
@@ -123,6 +135,17 @@ public class UserSurveysController {
 		return response;
 	}
 	
+	private List<PropertyPOJO> filtrarPropiedades(String psaleType, String ppropertyType, List<PropertyPOJO> pproperties) {
+		ArrayList<PropertyPOJO> filterProperties = new ArrayList<PropertyPOJO>();
+		
+		for (PropertyPOJO property : pproperties) {
+			if(property.getSaleType().toLowerCase().equals(psaleType.toLowerCase()) && property.getTpropertyType().getName().toLowerCase().equals(ppropertyType.toLowerCase())){
+				filterProperties.add(property);
+			}
+		}
+		return filterProperties;
+	}
+
 	/**
 	  * Este metodo sirve para generar el porcentaje de match por cada propiedad
 	  * @param puserTags Cantidad de tags por usuario
@@ -142,5 +165,49 @@ public class UserSurveysController {
 	public UserSurveyPOJO getUserSurveyById(int idUserSurvey){
 		return userSurveysService.getUserSurveyById(idUserSurvey);
 	}
+	
+	/**
+	  * Este metodo sirve para obtener una lista de beneficios y un arreglo de booleanos para saber cuales de los tags 
+	  * hicieron match
+	  * @param idUserSurvey Este parametro es el id del cuestionario a consultar
+	  * @param idProperty Este parametro es el id de la propiedad consultada
+	  * @return tagsResume resumen de los tags que coincidieron
+	  */
+	@RequestMapping(value="/getMatchedTagsByProperty",method=RequestMethod.POST)
+	public TagsMatchedResponse getMatchedTagsByProperty(@RequestParam("idSurvey") int idSurvey, @RequestParam("idProperty") int idProperty){
+		TagsMatchedResponse response = new TagsMatchedResponse();
+
+		UserSurveyPOJO userSurvey = getUserSurveyById(idSurvey);
+		Tproperty property = propertiesService.getPropertyById(idProperty);
+		
+		int userTags = userSurvey.getTanswers().size();
+		boolean[] matchedTags = new boolean[userTags];
+		/////////////////////////////////
+		
+		if(property.getSaleType().toLowerCase().equals(userSurvey.getTanswers().get(0).getResult().toLowerCase()) && property.getTpropertyType().getName().toLowerCase().equals(userSurvey.getTanswers().get(1).getResult().toLowerCase())){
+			matchedTags[0] = true;
+			matchedTags[1] = true;
+		}
+		
+		/////////////////////
+		
+		for (int i = 2; i < userTags; i++) {
+			for(Tbenefit benefit : property.getTbenefits()) {
+				if(benefit.getBenefit().toLowerCase().equals(userSurvey.getTanswers().get(i).getResult().toLowerCase())){
+					matchedTags[i] = true;
+					break;
+				}else{
+					matchedTags[i] = false;
+				}
+			}
+		}
+		
+		response.setCode(200);
+		response.setCodeMessage("tags fetched");
+		response.setMatchedTags(matchedTags);
+		response.setTags(userSurvey.getTanswers());
+		return response;
+	}
+	
 
 }

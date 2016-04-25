@@ -5,20 +5,10 @@
 
 	.controller(
 			'ModifyUserController',
-			[ '$scope', '$http', '$location', '$upload','$mdToast','$timeout',
-					function($scope, $http, $location, $upload, $mdToast,$timeout) {
+			[ '$scope', '$http', '$location', '$upload','$mdToast','$timeout','dbService',
+					function($scope, $http, $location, $upload, $mdToast,$timeout,dbService) {
 				
-						validate();
 						
-						function validate(){
-						$http.get("rest/protected/database/checkDB").success(function(data){
-							if(data.code!==200){
-								var path = "#/templates/errorsView/500";
-								
-				    			window.location.href = path;
-							}
-						});
-						}
 						var original;
 						$scope.dateWithFormat = '';
 						$scope.users = {};
@@ -27,7 +17,8 @@
 						$scope.popup1 = {
 							opened : false
 						};
-					
+						
+						dbService.checkDB();
 						var link = 'rest/protected/users/getUserById/'+localStorage.getItem('idUserModify');
 						$scope.form = {
 							name : '',
@@ -114,6 +105,7 @@
 						};
 						
 						$scope.modifyUser = function(event, $files) {
+							dbService.checkDB();
 							$scope.getDateWithFormat();
 							var file;
 							
@@ -134,13 +126,13 @@
 									phone1 : $scope.form.phone1,
 									phone2 : $scope.form.phone2,
 									email : $scope.form.email,
-									password : $scope.user.password,
+									password : '',
 									birthday : $scope.dateWithFormat,
 									gender : $scope.form.gender,
 								},
 								file : file,
 							}).success(function(data, status, headers, config) {
-
+								
 								$scope.showInfoOnSubmit= true;
 								  $timeout(function(){
 							          $scope.showInfoOnSubmit = false;

@@ -11,7 +11,8 @@
 					'$location',
 					'$upload',
 					'$timeout',
-					function($scope, $http, $location, $upload,$timeout) {
+					'dbService',
+					function($scope, $http, $location, $upload,$timeout,dbService) {
 
 						var original;
 						$scope.maxDate = new Date();
@@ -35,17 +36,7 @@
 							gender:'',
 						};
 						
-						validate();
-						
-						function validate(){
-						$http.get("rest/protected/database/checkDB").success(function(data){
-							if(data.code!==200){
-								var path = "#/templates/errorsView/500";
-								
-				    			window.location.href = path;
-							}
-						});
-						}
+						dbService.checkDB();
 						
 
 						  var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","role": {}};
@@ -78,7 +69,7 @@
 							$scope.saveUser(event, $files);
 						};
 						$scope.saveUser = function(event, $files) {
-							validate();
+							dbService.checkDB();
 							$scope.getDateWithFormat();
 							var file
 							

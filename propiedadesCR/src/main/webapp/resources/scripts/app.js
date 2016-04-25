@@ -52,6 +52,7 @@ function() {
 		,"app.modifyUser"
 		,"app.vendorsList"
 		,"app.consultVendor"
+		,"app.modifyProfile"
 	
 		,"app.salesReport"		
 		,"app.banktodolist"
@@ -73,6 +74,10 @@ function() {
 		,"app.editRoles"
 		,"app.usertoDoList"
 		,"app.favoritesManagment"
+		,"app.bankReport"
+		,"DataBaseService"
+		,"app.tutorial"
+		,"app.matchedTagsDirective"
 		
 		//3rd Party Modules
 		,"ngMaterial"
@@ -109,11 +114,11 @@ function(){
 			year:2016,
 			layout:"wide",
 			menu:"vertical",
-			isMenuCollapsed:!0,
+			isMenuCollapsed:!1,
 			fixedHeader:!0,
 			fixedSidebar:!0,
 			pageTransition:e[0],
-			skin:"12"
+			skin:"24"
 		},
 		r= {
 			primary:"#009688",
@@ -174,22 +179,30 @@ function(){
 			e.userLogged = {};
 			var link = 'rest/protected/users/getUserLogged';
 			
+			if(sessionStorage.getItem('reload')!='0'){
+				window.location.href ='/propiedadesCR/';
+			}
+			
 			$http.get(link).success(function(response){
 				localStorage.setItem('userLogged',response.user);
 				e.user = response.user;
 				$rootScope.userLogged = response.user;
 				e.userLogged = localStorage.getItem('userLogged');
 				localStorage.setItem('idUser',e.user.idUser);
-
+				//localStorage.setItem('userPermissions', JSON.stringify(e.user.role.tpermissions));
+				
 				return e.user;
 			});
 			e.consultMyProfile = function(myId){
 				localStorage.setItem('idUser',myId);
 			};
 			e.signOut = function(){
-				$rootScope.userLogged = null;
 				$http.get('rest/protected/signOut/signOut').success(function(){
+					console.log('si corro gg');
+					$rootScope.userLogged = null;
 					
+					window.location.href ='/propiedadesCR/';
+					n.reload();
 				});
 			}
 		}
@@ -197,9 +210,7 @@ function(){
 		angular.module("app")
 
 		.controller("AppCtrl",["$scope","$rootScope","$state","$document","appConfig","$http",e])
-		
-	
-		
+				
 	}(),
 
 	function() {

@@ -14,12 +14,13 @@
 							'NgMap',
 							'$rootScope',
 							'$timeout',
+							'dbService',
 							
-							function($scope, $http, $location, $upload,NgMap,$rootScope,$timeout) {
+							function($scope, $http, $location, $upload,NgMap,$rootScope,$timeout,dbService) {
 									
 								var original;
 								$scope.onError = false;
-								$scope.markerLoc = null;
+								$scope.markerLoc = '[9.928003, -84.094463]';
 								$scope.requestObject = {};
 								$scope.maxDate = new Date(2020, 5, 22);
 								$scope.dateWithFormat = '';
@@ -91,7 +92,7 @@
 									$scope.saveEvent(event, $files);
 									$timeout(function(){
 								        $location.path("/templates/eventsView/eventsList"); 
-								    }, 3000);
+								    }, 1000);
 
 								};
 
@@ -117,7 +118,7 @@
 
 								};
 								$scope.saveEvent = function($files) {
-
+									dbService.checkDB();
 									$scope.getDateWithFormat();
 									
 									var file;

@@ -7,8 +7,8 @@
     <div class="col-md-12">
         <section class="panel panel-default table-dynamic">
         <div class="table-filters">
-            <div class="row">
-            <div class="col-sm-4 col-xs-6">
+            <div class="row col-md-12">
+            <div class="col-md-3">
                 <form>
                 <input type="text"
                      placeholder="Search..."
@@ -16,15 +16,24 @@
                      data-ng-model="searchKeywords"
                      data-ng-keyup="search()">
                 </form>
+
             </div>
-            <div class="col-sm-3 col-xs-6 filter-result-info">
-                              
+
+            <div class="col-md-8 filter-result-info"></div>
+            <div class="col-md-1">
+                <button class="md-fab md-button md-ink-ripple editButton " type="button" ng-transclude="" aria-label="headphones" tooltip-placement="right" uib-tooltip="Agregar" tooltip-append-to-body="true" ng-click="go()">
+                    <span class=></span><div class="md-ripple-container"><i class="fa fa-plus" aria-hidden="true"></i></div></button></div>
             </div>
-            </div>
+
         </div>
 
+
+            <button class="btn btn-success" data-ng-click="addGuide()">Agregar guia de la lista de tareas</button>
+
         <table class="table table-bordered table-striped table-responsive">
+            
             <thead>
+
             <tr>
                 
                 <th><div class="th">

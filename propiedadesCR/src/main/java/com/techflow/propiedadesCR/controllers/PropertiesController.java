@@ -54,14 +54,12 @@ public class PropertiesController {
 	 *  
 	 * @return response Un objeto response de la propiedad.
 	 */
-	@RequestMapping(value="/getAll", method = RequestMethod.GET)
-	public PropertiesResponse getAll() {
-		PropertiesResponse response = new PropertiesResponse();
-		response.setCode(200);
-		response.setCodeMessage("Properties fetch successful");
-		response.setProperties(propertiesService.getAll());
+	@RequestMapping(value="/getAll", method = RequestMethod.POST)
+	public PropertiesResponse getAll(@RequestBody PropertiesRequest pPropRequest) {
 		
-		return response;
+		return propertiesService.getAll(pPropRequest);
+		
+		
 	}
 	
 	/**
@@ -95,11 +93,12 @@ public class PropertiesController {
 	  * 
 	  * @param pPropertyImages Imágenes de la propiedad.
 	  * @return response La entidad del objeto creado.
+	 * @throws InterruptedException 
 	  */
 	@RequestMapping(value="/createImage", method = RequestMethod.POST)
 	public PropertyImageResponse createImage(
 			@RequestParam("userId") int pIdProperty,
-			@RequestParam("file") MultipartFile pPropertyImage) {
+			@RequestParam("file") MultipartFile pPropertyImage) throws InterruptedException {
 		PropertyImageResponse response = new PropertyImageResponse();
 		
 		String resultFileName = Utils.writeToFile(pPropertyImage, servletContext);
@@ -212,11 +211,10 @@ public class PropertiesController {
 	 *  
 	 * @return response Un objeto response de la propiedad.
 	 */
-	@RequestMapping(value="saveView/{pIdProperty}", method=RequestMethod.GET)
-	public PropertiesResponse saveView(@PathVariable int pIdProperty) {
+	@RequestMapping(value="/saveView", method=RequestMethod.POST)
+	public PropertiesResponse saveView(@RequestBody PropertiesRequest propertyRequest) {
 		PropertiesResponse response = new PropertiesResponse();
-		PropertiesRequest request = new PropertiesRequest();
-		PropertyPOJO property = propertiesService.propertyViews(pIdProperty,request);
+		PropertyPOJO property = propertiesService.propertyViews(propertyRequest);
 		
 		response.setProperty(property);
 		
@@ -264,8 +262,15 @@ public class PropertiesController {
 	 */
 	@RequestMapping(value="/getPropertiesByIdVendor",method=RequestMethod.POST)
 	public PropertiesResponse getPropertiesByIdVendor(@RequestBody PropertiesRequest pPropertiesRequest){
+	
+		return propertiesService.getPropertiesByIdVendor(pPropertiesRequest);
+		
+		
+	}
+	@RequestMapping(value="/getPropertiesVendor",method=RequestMethod.POST)
+	public PropertiesResponse getPropertiesVendor(@RequestBody PropertiesRequest pPropertiesRequest){
 		PropertiesResponse response = new PropertiesResponse();
-		response.setProperties(propertiesService.getPropertiesByIdVendor(pPropertiesRequest));
+		response.setProperties(propertiesService.getPropertiesVendor(pPropertiesRequest));
 		response.setCode(200);
 		response.setCodeMessage("properties fetch successfully");
 		

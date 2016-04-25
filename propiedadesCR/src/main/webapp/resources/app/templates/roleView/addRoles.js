@@ -40,7 +40,7 @@
 			});
 			$timeout(function(){
 		        $location.path("/templates/roleView/roles"); 
-		    }, 3000);
+		    }, 1000);
 		};
 
 		$scope.addPermissions = function toggleSelection(idPermissions,checkbox){

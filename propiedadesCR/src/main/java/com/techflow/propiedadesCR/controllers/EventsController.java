@@ -57,15 +57,26 @@ public class EventsController {
 	
 	public EventsResponse getAll(@RequestBody EventsRequest peventRequest) {
 		
+		return eventsService.getAll(peventRequest);
 		
+	}
+	
+	/**
+	 * Este método trae todos los eventos registrados.
+	 * @param peventRequest Encapsula la información solicitada por el usuario.
+	 * @return response Se retorna la respuesta del BackEnd al FrondEnd.
+	 */
+	@RequestMapping(value="/getAllEvents", method = RequestMethod.POST)
+		
+	public EventsResponse getAllEvents(@RequestBody EventsRequest peventRequest) {
+			
 		EventsResponse response = new EventsResponse();
 		response.setCode(200);
 		response.setCodeMessage("Events fetch successful");
-		response.setEvents(eventsService.getAll(peventRequest));
+		response.setEvents(eventsService.getAllEvents(peventRequest));
 		
 		return response;
 	}
-	
 	/**
 	 * 
 	 * Este método envía los datos a la base de datos para registrar el evento.

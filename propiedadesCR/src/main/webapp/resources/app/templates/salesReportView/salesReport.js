@@ -56,12 +56,13 @@
             }
         };
 
-        $http.post('rest/protected/properties/getPropertiesByIdVendor', request)
+        $http.post('rest/protected/properties/getPropertiesVendor', request)
           .success(function(response) {
           properties = response.properties;
           // console.log(properties);
           for (var i = 0; i < properties.length; i++) {
             if(properties[i].isSold==1){
+              properties[i].price -= (properties[i].price*response.properties[i].offerPercentage)/100;
               properties[i].soldDate = new Date(properties[i].soldDate);
               soldProperties.push(properties[i]);
             }

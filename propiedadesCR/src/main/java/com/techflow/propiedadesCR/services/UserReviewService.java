@@ -9,8 +9,6 @@
 * @since 12/3/2016
 */
 
-
-
 package com.techflow.propiedadesCR.services;
 
 import java.util.Date;
@@ -26,23 +24,26 @@ import com.techflow.propiedadesCR.pojo.UserReviewPOJO;
 import com.techflow.propiedadesCR.repositories.UserReviewRepository;
 
 @Service
-public class UserReviewService implements UserReviewServiceInterface{
-	/**	 
-     * El objeto usersRatingRepository es el que se encarga de la comunicación con la BD. 
-     */
-	@Autowired private UserReviewRepository userRatingRepository;
-	
+public class UserReviewService implements UserReviewServiceInterface {
 	/**
-	  * Este método registra el rating de un usuario en el sistema.
-	  *
-	  * @param puserRating Encapsula los datos requeridos por el usuario.
-      * 
-	  * @return nRating Retorna el rating registrado a un usuario.
-	  */
+	 * El objeto usersRatingRepository es el que se encarga de la comunicación
+	 * con la BD.
+	 */
+	@Autowired
+	private UserReviewRepository userRatingRepository;
+
+	/**
+	 *   * Este método registra el rating de un usuario en el sistema.
+	 *
+	 *   * @param puserRating Encapsula los datos requeridos por el usuario.
+	 * 
+	 *   * @return nRating Retorna el rating registrado a un usuario.   
+	 */
 	@Override
-	public TuserReview saveRating(UserReviewRequest puserRating) {
+	public UserReviewPOJO saveRating(UserReviewRequest puserRating) {
 		// TODO Auto-generated method stub
 		TuserReview userReview = new TuserReview();
+		UserReviewPOJO pojo = new UserReviewPOJO();
 		Tuser client = new Tuser();
 		Tuser vendor = new Tuser();
 		BeanUtils.copyProperties(puserRating.getRating(), userReview);
@@ -50,20 +51,21 @@ public class UserReviewService implements UserReviewServiceInterface{
 		vendor.setIdUser(puserRating.getIdVendor());
 		userReview.setTuser1(client);
 		userReview.setTuser2(vendor);
-		userReview.setComment("Sup");
 		userReview.setRegistrationDate(new Date());
 		TuserReview nRating = userRatingRepository.save(userReview);
-		
-		return nRating;
+		BeanUtils.copyProperties(nRating, pojo);
+
+		return pojo;
+
 	}
-	
+
 	/**
-	  * Este método consulta el rating de un usuario a un vendedor
-	  *
-	  * @param puserRating Encapsula los datos requeridos por el usuario.
-      * 
-	  * @return nRating Retorna el rating del usuario a un vendedor.
-	  */
+	 *   * Este método consulta el rating de un usuario a un vendedor
+	 *
+	 *   * @param puserRating Encapsula los datos requeridos por el usuario.
+	 * 
+	 *   * @return nRating Retorna el rating del usuario a un vendedor.   
+	 */
 	@Override
 	public UserReviewPOJO getRating(UserReviewRequest puserRating) {
 		TuserReview userRating = new TuserReview();
@@ -74,22 +76,23 @@ public class UserReviewService implements UserReviewServiceInterface{
 		vendor.setIdUser(puserRating.getIdVendor());
 		userRating = userRatingRepository.findByTuser1AndTuser2(client, vendor);
 		BeanUtils.copyProperties(userRating, userRatingPOJO);
-		
+
 		return userRatingPOJO;
 	}
-	
+
 	/**
-	  * Este método modifica el rating de un usuario en el sistema.
-	  *
-	  * @param puserRating Encapsula los datos requeridos por el usuario.
-      * 
-	  * @return nRating Retorna el rating modificado a un usuario.
-	  */
+	 *   * Este método modifica el rating de un usuario en el sistema.
+	 *
+	 *   * @param puserRating Encapsula los datos requeridos por el usuario.
+	 * 
+	 *   * @return nRating Retorna el rating modificado a un usuario.   
+	 */
 	@Override
-	public TuserReview modifyRating(UserReviewRequest puserReview) {
+	public UserReviewPOJO modifyRating(UserReviewRequest puserReview) {
 		TuserReview userReview = new TuserReview();
 		Tuser client = new Tuser();
 		Tuser vendor = new Tuser();
+		UserReviewPOJO pojo = new UserReviewPOJO();
 		BeanUtils.copyProperties(puserReview.getRating(), userReview);
 		client.setIdUser(puserReview.getIdClient());
 		vendor.setIdUser(puserReview.getIdVendor());
@@ -98,10 +101,10 @@ public class UserReviewService implements UserReviewServiceInterface{
 		userReview.setIdReview(puserReview.getRating().getIdReview());
 		userReview.setRegistrationDate(new Date());
 		TuserReview nRating = userRatingRepository.save(userReview);
-		
-		return nRating;
-		
+		BeanUtils.copyProperties(nRating, pojo);
+
+		return pojo;
+
 	}
-	
-	
+
 }

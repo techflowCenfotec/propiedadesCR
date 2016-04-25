@@ -13,8 +13,8 @@ package com.techflow.propiedadesCR.repositories;
 
 import java.util.List;
 
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
 import com.techflow.propiedadesCR.ejb.Trole;
@@ -39,9 +39,9 @@ public interface UsersRepository extends CrudRepository<Tuser, Integer> {
 	/**
 	  * Este método retorna todos los usuarios registrados en el sistema.
 	  *
-	  * @return List<Tuser> Retorna la respuesta de la BD hacia el servicio. 
+	  * @return Page<Tuser> Retorna la respuesta de la BD hacia el servicio. 
 	  */
-	List<Tuser> findAllByTrole(Trole role);
+	Page<Tuser> findAllByTrole(Trole role, Pageable pageRequest);
 	
 	/**
 	  * Este método retorna el usuario con el correo a buscar.

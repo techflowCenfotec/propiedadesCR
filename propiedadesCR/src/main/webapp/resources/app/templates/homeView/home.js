@@ -2,20 +2,10 @@
 	"use strict";
 
 	angular.module("app.home",[])
-	.controller('HomeController', ['$scope','$rootScope','$http', function($scope,$rootScope,$http) {
+	.controller('HomeController', ['$scope','$rootScope','$http','dbService','$state',function($scope,$rootScope,$http,dbService,$state) {
 		
 		$("#myCarousel").carousel();
-	
-		validate();
-		
-		function validate(){
+		dbService.checkDB();
 
-		$http.get("rest/protected/database/checkDB").success(function(data){	
-			if(data.code!==200){
-				var path = "#/templates/errorsView/500";
-				
-    			window.location.href = path;
-			}
-		});
-		}
+		
 	}]);

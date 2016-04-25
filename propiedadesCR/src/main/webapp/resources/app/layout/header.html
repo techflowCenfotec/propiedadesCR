@@ -309,7 +309,7 @@
                 <a href="javascript:;" class="dropdown-toggle" uib-dropdown-toggle ng-disabled="disabled" md-button aria-label="profile">
                     <img src={{user.userImage}} alt="" class="img-circle img30_30">
                     <span class="hidden-xs">
-                        <span>{{user.userName}}</span>
+                        <span>{{user.userName}}, {{user.role.rolName}}</span>
                     </span>
                 </a>
                 <ul class="with-arrow pull-right dropdown-menu-scaleIn" uib-dropdown-menu>
@@ -327,7 +327,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="/propiedadesCR">
+                        <a>
                             <i class="zmdi zmdi-forward"></i>
                             <span data-ng-click="signOut()">Cerrar sesi&oacute;n</span>
                         </a>

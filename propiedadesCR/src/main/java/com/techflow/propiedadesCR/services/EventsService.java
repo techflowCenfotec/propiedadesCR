@@ -14,10 +14,13 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.techflow.propiedadesCR.contracts.EventsRequest;
+import com.techflow.propiedadesCR.contracts.EventsResponse;
 import com.techflow.propiedadesCR.ejb.Tevent;
 import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.pojo.EventPOJO;
@@ -36,12 +39,29 @@ public class EventsService implements EventsServiceInterface {
 	 * 
 	 * Este método trae una lista de todos los eventos registrados en la base de datos.
 	 * @param peventRequest Encapsula la información solicitada por el usuario.
-	 * @return uiEvents Genera los objetos POJO que se retornan a la IU. 
+	 * @return eventsResponse Se retorna la respuesta del BackEnd al FrondEnd
 	 */
-	public List<EventPOJO> getAll(EventsRequest peventRequest) {
+	public EventsResponse getAll(EventsRequest peventRequest) {
+		EventsResponse eventResponse = new EventsResponse();
+		Page<Tevent> events = eventsRepository.findAll(new PageRequest(peventRequest.getPageNumber(),peventRequest.getPageSize()));
+		eventResponse.setEvents(generateEventDtos(events.getContent()));
+		eventResponse.setTotalPages(events.getTotalPages());
+		eventResponse.setCode(200);
+		return eventResponse;
+	}
+	/**
+	 * 
+	 * Este método trae una lista de todos los eventos registrados en la base de datos.
+	 * @param peventRequest Encapsula la información solicitada por el usuario.
+	 * @return List<EventPOJO> Se retorna la lista de eventos.
+	 */
+	public List<EventPOJO> getAllEvents(EventsRequest peventRequest) {
+		
 		List<Tevent> events = eventsRepository.findAll();
+		
 		return generateEventDtos(events);
 	}
+	
 	/**
 	 * 
 	 * Este método genera los objetos POJO que se retornan a la IU.

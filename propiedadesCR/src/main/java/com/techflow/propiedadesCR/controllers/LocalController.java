@@ -13,6 +13,9 @@
 */
 package com.techflow.propiedadesCR.controllers;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.sql.DriverManager;
 import java.text.SimpleDateFormat;
@@ -27,6 +30,8 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -38,6 +43,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.mysql.jdbc.Connection;
 import com.techflow.propiedadesCR.contracts.BaseResponse;
+import com.techflow.propiedadesCR.contracts.LoginResponse;
 import com.techflow.propiedadesCR.contracts.RolesRequest;
 import com.techflow.propiedadesCR.contracts.RolesResponse;
 import com.techflow.propiedadesCR.contracts.UsersRequest;
@@ -53,6 +59,13 @@ import com.techflow.propiedadesCR.utils.Utils;
 public class LocalController {
 	
 	
+	/**
+	 * Este objeto mantiene la sesión en el backend
+	 */
+	
+	@Autowired private HttpServletRequest httpServletRequest;
+	
+	@Autowired private  HttpSession currentSession;
 	/**
      * Este objeto se utiliza para el manejo de archivos. 
      */
@@ -267,21 +280,64 @@ public class LocalController {
 		
 		
 		@RequestMapping(value="/checkDB", method= RequestMethod.GET)
-		public BaseResponse checkDB(){
-			BaseResponse response = new BaseResponse();
-		Connection connection = null;
-		try {
-		    connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/propiedades_sch", "root", "mjjv");
-		    response.setCode(200);
-		    return response;
-		} catch (Exception e) {
-			response.setCode(500);
-		   return response;
-		} finally {
-		    if (connection != null) try { connection.close(); } catch (Exception ignore) {}
-		}
+			public BaseResponse checkDB(){
+			    BaseResponse response = new BaseResponse();
+				Connection connection = null;
+				String host ="";
+				String userName ="";
+				String pass = "";
+				try {
+					File file = new File("src/main/resources/application.properties");
+					FileInputStream fileInput = new FileInputStream(file);
+					Properties properties = new Properties();
+					properties.load(fileInput);
+					fileInput.close();
+
+					host = properties.getProperty("spring.datasource.url");
+					userName = 	properties.getProperty("spring.datasource.username");
+					pass = 	properties.getProperty("spring.datasource.password");	
+					
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
+				try {
+				    connection = (Connection) DriverManager.getConnection(host, userName, pass);
+				    response.setCode(200);
+				    return response;
+				} catch (Exception e) {
+					response.setCode(500);
+				   return response;
+				} finally {
+				    if (connection != null) try { connection.close(); } catch (Exception ignore) {}
+				}
+						
 				
+		}
+		
+		/**
+		 * Este método permite cerrar la sesión del usuario
+		 * 
+		 * @return response Retorna la respuesta hacia la interfaz gráßfica
+		 */ 
+		@RequestMapping(value="/signOut", method = RequestMethod.GET)
+		public BaseResponse getSignOut() {
+			BaseResponse response = new LoginResponse();
+
+			httpServletRequest.getSession().setAttribute("userLogged", null);
+			currentSession.setAttribute("idUser", null);
+
+			
+			return response;
 		
 		}
+		@RequestMapping(value = "/getAllVendors", method = RequestMethod.POST)
+		public UsersResponse getAllVendors(@RequestBody UsersRequest puserRequest) {
+			return usersService.getAllVendors(puserRequest);
+
+		}
+
 
 }

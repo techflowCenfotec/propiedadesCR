@@ -3,7 +3,7 @@
 
 	angular.module("app.myToDoList",[])
 
-	.controller('myToDoListController',['$scope','$http','$timeout',function($scope,$http,$timeout){
+	.controller('myToDoListController',['$scope','$http','$timeout','dbService',function($scope,$http,$timeout,dbService){
 		var original;
 		var idToDoList = localStorage.getItem('idMyToDoList');
 	    $scope.onError = false;
@@ -16,7 +16,7 @@
 	    $scope.items = [];
 	    $scope.selected =[];
 	    $scope.myItems = [];
-	
+	    dbService.checkDB();
 	    ////todo list
 	    var toDoListLink = 'rest/protected/todolist/getMyTodoList';
 	    var toDoListrequest = {
@@ -33,6 +33,7 @@
 	     $http.post(toDoListLink,toDoListrequest).success(function(response){
 	     	
 	     	$scope.items = response.myTodoList.titems;
+	     	
 	     	checkItems();
 	     	
 	     });
@@ -66,6 +67,7 @@
         	return false;
         };
         $scope.saveItems = function(){
+        dbService.checkDB();
         var myItems =	{
         		  "pageNumber": 0,
         		  "pageSize": 0,
@@ -89,7 +91,8 @@
         		if($scope.items[i].done ==1){
         			$scope.selected.push($scope.items[i])
         			$scope.myItems.push($scope.items[i]);
-        		}
+        		}else
+        			$scope.myItems.push($scope.items[i]);
         	}
         }
         function myItems(item){

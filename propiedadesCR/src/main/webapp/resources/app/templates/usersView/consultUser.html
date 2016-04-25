@@ -35,16 +35,21 @@
 
 				</div>
 				<div class="col-sm-6">
-	
+
 					<h3>Correo</h3>
 					<p>{{user.email}}</p>
-					
+
 					<h3>Tel&eacute;fono:</h3>
 					<p>{{user.phone1}}</p>
 
 				</div>
-			</div>
-			</div>
+				<h5 class="btn btn-default" data-ng-hide="edit" data-ng-click="editProfile(user)">
+					<i class="zmdi zmdi-edit"></i> Editar perfil
+				</h5>
 
-	<div class="divider divider-lg"></div>
+			</div>
+		</div>
+
+		<div class="divider divider-lg"></div>
+	</div>
 </div>

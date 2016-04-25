@@ -45,7 +45,7 @@ public class Tproperty implements Serializable {
 	private List<TpropertyReview> tpropertyReviews;
 	private List<Tuser> tusers;
 	private List<TpropertyImage> tpropertyImages;
-	private double offerPecentage;
+	private double offerPercentage;
 	private byte isSold;
 	private Date soldDate;
 	private String saleType;
@@ -233,13 +233,13 @@ public class Tproperty implements Serializable {
 		return tpropertyImage;
 	}
 	@Column(name="offer_percentage")
-	public double getOfferPecentage() {
-		return offerPecentage;
+	public double getOfferPercentage() {
+		return offerPercentage;
 	}
 
 
-	public void setOfferPecentage(double offerPecentage) {
-		this.offerPecentage = offerPecentage;
+	public void setOfferPercentage(double offerPercentage) {
+		this.offerPercentage = offerPercentage;
 	}
 
 	@Column(name="is_sold")

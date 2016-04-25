@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.techflow.propiedadesCR.contracts.PasswordRequest;
 import com.techflow.propiedadesCR.contracts.UsersRequest;
+import com.techflow.propiedadesCR.contracts.UsersResponse;
 import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.pojo.PropertyPOJO;
 import com.techflow.propiedadesCR.pojo.UserPOJO;
@@ -11,7 +12,7 @@ import com.techflow.propiedadesCR.pojo.UserPOJO;
 public interface UsersServiceInterface {
 
 	List<UserPOJO> getAll(UsersRequest puserRequest);
-	List<UserPOJO> getAllVendors(UsersRequest puserRequest);
+	UsersResponse getAllVendors(UsersRequest puserRequest);
 	UserPOJO saveUser(UsersRequest puserRequest,int pidRole);
 	UserPOJO consultUser(int pidUser);
 
@@ -25,4 +26,5 @@ public interface UsersServiceInterface {
 	Tuser getUserAdmin();
 	Tuser deleteUser(UsersRequest puserRequest);
 	List<PropertyPOJO> getAllFavorites(UsersRequest puserRequest);
+	Tuser notFirstTime(UsersRequest puserRequest);
 }

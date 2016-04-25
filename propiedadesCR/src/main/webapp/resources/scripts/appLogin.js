@@ -32,9 +32,12 @@ function() {
 		,"app.i18n"
 		
 		,"app.login"
+		,"app.landing"
 		,"app.forgotPassword"
 		,"app.resetPassword"
 		,"app.createUserLogin"
+		,"DataBaseService"
+		,"SessionService"
 
 		//3rd Party Modules
 		,"ngMaterial"

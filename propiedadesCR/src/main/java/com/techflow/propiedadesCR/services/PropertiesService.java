@@ -6,10 +6,13 @@ import java.util.List;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.techflow.propiedadesCR.contracts.PropertiesRequest;
+import com.techflow.propiedadesCR.contracts.PropertiesResponse;
 import com.techflow.propiedadesCR.ejb.Tbenefit;
 import com.techflow.propiedadesCR.ejb.Tdistrict;
 import com.techflow.propiedadesCR.ejb.Tproperty;
@@ -23,6 +26,7 @@ import com.techflow.propiedadesCR.pojo.PropertyImagePOJO;
 import com.techflow.propiedadesCR.pojo.PropertyPOJO;
 import com.techflow.propiedadesCR.pojo.PropertyTypePOJO;
 import com.techflow.propiedadesCR.pojo.ReviewPropertyPOJO;
+import com.techflow.propiedadesCR.pojo.UserPOJO;
 import com.techflow.propiedadesCR.repositories.BenefitsRepository;
 import com.techflow.propiedadesCR.repositories.PropertiesRepository;
 
@@ -50,11 +54,27 @@ public class PropertiesService implements PropertiesServiceInterface {
 	/**
 	  * Retorna una lista de objetos PropertyPOJO
 	  * 
-	  * @return uiProperties Todas las entidades del tipo.
+	  * @return response Retorna el response el cual contiene la lista de propiedades.
 	  */
 	@Override
 	@Transactional
-	public List<PropertyPOJO> getAll() {
+	public PropertiesResponse getAll(PropertiesRequest pPropertiesRequest) {
+		PropertiesResponse response = new PropertiesResponse();
+		Page<Tproperty> properties = propertiesRepository.findAll(new PageRequest(pPropertiesRequest.getPageNumber(),pPropertiesRequest.getPageSize()));
+		
+		response.setProperties(generatePropDtos(properties.getContent()));
+		response.setTotalPages(properties.getTotalPages());
+		response.setCode(200);
+		return response;
+	}
+	/**
+	  * Retorna una lista de objetos PropertyPOJO
+	  * 
+	  * @return response Retorna la lista de propiedades.
+	  */
+	@Override
+	@Transactional
+	public List<PropertyPOJO> getAllProperties() {
 		List<Tproperty> properties = propertiesRepository.findAll();
 		return generatePropDtos(properties);
 	}
@@ -71,15 +91,34 @@ public class PropertiesService implements PropertiesServiceInterface {
 			PropertyPOJO dto = new PropertyPOJO();
 			BeanUtils.copyProperties(u, dto);
 			BeanUtils.copyProperties(u.getTdistrict(), dto.getTdistrict());
-			BeanUtils.copyProperties(u.getTpropertyType(), dto.getTpropertyType());
+			BeanUtils.copyProperties(u.getTpropertyType(), dto.getTpropertyType());	
+			dto.getTpropertyType().setTproperties(null);
 			dto.setTbenefits(benefitsDtos(u.getTbenefits()));
-			dto.setTuser(null);
 			dto.setTpropertyImages(imagesDtos(u.getTpropertyImages()));
 			dto.setTpropertyReviews(null);
-			dto.setTusers(null);
+			dto.setTusers(generateUsersDtos(u.getTusers()));
+			dto.setTuser(null);
+			
 			uiProperties.add(dto);
 		});
 		return uiProperties;
+	}
+	
+	/**
+	  * Toma los usuarios de los ejbs y los convierte en POJOs.
+	  * 
+	  * @param pUsers Lista de ejb de usuarios. No debe ser nula.
+	  * @return usersPOJOS Todas las entidades de tipo POJO.
+	  */
+	private List<UserPOJO> generateUsersDtos(List<Tuser> pUsers) {
+		List<UserPOJO> usersPOJOS = new ArrayList<UserPOJO>();
+		pUsers.stream().forEach(u -> {
+			UserPOJO user = new UserPOJO();
+			BeanUtils.copyProperties(u, user);
+			user.setTproperties2(null);	
+			usersPOJOS.add(user);
+		});
+		return usersPOJOS;
 	}
 	
 	/**
@@ -123,7 +162,12 @@ public class PropertiesService implements PropertiesServiceInterface {
 	private List<ReviewPropertyPOJO> reviewsDtos(List<TpropertyReview> pRatings) {
 		List<ReviewPropertyPOJO> ratingsList = new ArrayList<ReviewPropertyPOJO>();
 		pRatings.stream().forEach(u -> {
-			
+			ReviewPropertyPOJO dtoReview = new ReviewPropertyPOJO();
+			UserPOJO user = new UserPOJO();
+			BeanUtils.copyProperties(u, dtoReview);
+			BeanUtils.copyProperties(u.getTuser(),user);
+			dtoReview.setTuser(user);
+			ratingsList.add(dtoReview);
 		});
 		return ratingsList;
 	}
@@ -145,7 +189,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 		TpropertyType pType = new TpropertyType();
 		Tuser user = new Tuser();
 		Tproperty nProperty = new Tproperty();
-		if(pProperty.getIdBenefits() !=null){
+		if(pProperty.getIdBenefits() != null){
 			for (int i = 0; i < pProperty.getIdBenefits().size(); i++) {
 				Tbenefit benefit = new Tbenefit();
 				benefit.setIdBenefit(pProperty.getIdBenefits().get(i).intValue());
@@ -198,6 +242,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 		nProperty.setPrice(pProperty.getProperty().getPrice());
 		nProperty.setSquareMeters(pProperty.getProperty().getSquareMeters());
 		nProperty.setCoordinates(pProperty.getProperty().getCoordinates());
+		nProperty.setSaleType(pProperty.getProperty().getSaleType());
 		
 		Tproperty resProperty =  propertiesRepository.save(nProperty);
 		return resProperty;
@@ -230,6 +275,10 @@ public class PropertiesService implements PropertiesServiceInterface {
 			BeanUtils.copyProperties(property, nProperty);
 			BeanUtils.copyProperties(property.getTdistrict(), nProperty.getTdistrict());
 			BeanUtils.copyProperties(property.getTpropertyType(), nProperty.getTpropertyType());
+			nProperty.setTpropertyReviews(reviewsDtos(property.getTpropertyReviews()));
+			nProperty.getTpropertyType().setTproperties(null);
+			nProperty.setTuser(null);
+			nProperty.setTusers(null);
 		}
 		
 		return nProperty;
@@ -250,6 +299,9 @@ public class PropertiesService implements PropertiesServiceInterface {
 		propertiesEjb.stream().forEach(property->{
 			PropertyPOJO dto = new PropertyPOJO();
 			dto.setIdProperty(property.getIdProperty());
+			dto.setSaleType(property.getSaleType());
+			dto.setTpropertyType(new PropertyTypePOJO());
+			dto.getTpropertyType().setName(property.getTpropertyType().getName());
 			
 			ArrayList<BenefitsPOJO> propertyBenefits = new ArrayList<BenefitsPOJO>();
 			
@@ -275,7 +327,7 @@ public class PropertiesService implements PropertiesServiceInterface {
 	  */
 	public Tproperty setPropertyOnSale(PropertiesRequest ppropertyRequest){
 		Tproperty property = propertiesRepository.findByIdProperty(ppropertyRequest.getProperty().getIdProperty());
-		property.setOfferPecentage(ppropertyRequest.getProperty().getOfferPecentage());
+		property.setOfferPercentage(ppropertyRequest.getProperty().getOfferPercentage());
 		Tproperty newProperty = propertiesRepository.save(property);
 		return newProperty;
 	}
@@ -299,8 +351,9 @@ public class PropertiesService implements PropertiesServiceInterface {
 	  * @return response Retorna la propiedad que se esta modificando.
 	  */
 	@Override
-	public PropertyPOJO propertyViews(int pIdProperty,PropertiesRequest request) {
-		Tproperty property = getPropertyById(pIdProperty);
+	public PropertyPOJO propertyViews(PropertiesRequest request) {
+		Tproperty property = new Tproperty();
+		property = getPropertyById(request.getProperty().getIdProperty());
 		PropertyPOJO newProperty = new PropertyPOJO();
 		newProperty.setTdistrict(new DistrictPOJO());
 		newProperty.setTpropertyType(new PropertyTypePOJO());
@@ -308,12 +361,17 @@ public class PropertiesService implements PropertiesServiceInterface {
 		BeanUtils.copyProperties(property, newProperty);
 		BeanUtils.copyProperties(property.getTdistrict(),newProperty.getTdistrict());
 		BeanUtils.copyProperties(property.getTpropertyType(),newProperty.getTpropertyType());
+		
 		newProperty.setTbenefits(benefitsDtos(property.getTbenefits()));
-		newProperty.setTuser(null);
+		newProperty.setTuser(request.getProperty().getTuser());
+		newProperty.setTpropertyImages(imagesDtos(property.getTpropertyImages()));
+		newProperty.setTpropertyType(new PropertyTypePOJO());
+		BeanUtils.copyProperties(property.getTpropertyType(),newProperty.getTpropertyType());
+		
 		newProperty.setTusers(null);
 		newProperty.setTpropertyReviews(null);
 		request.setProperty(newProperty);
-		saveProperty(request);
+		updateProperty(request,newProperty.getIdProperty());
 		return newProperty;
 	}
 
@@ -336,11 +394,54 @@ public class PropertiesService implements PropertiesServiceInterface {
 	/**
 	 * Retorna la propiedad que se vendio.
 	 * @param pProperty Contiene la informacion del vendedor.
-	 * @return propertySold retorna la lista de objetos property. 
+	 * @return response Retorna la respuesta la cual contiene una lista de objetos property. 
 	 * @author Jimmi Vila
 	 */
 	@Override
-	public List<PropertyPOJO> getPropertiesByIdVendor(PropertiesRequest pPropertiesRequest) {
+	public PropertiesResponse getPropertiesByIdVendor(PropertiesRequest pPropertiesRequest) {
+		ArrayList<PropertyPOJO> vendorProperties = new ArrayList<PropertyPOJO>();
+		PropertiesResponse response = new PropertiesResponse();
+		Page<Tproperty> pProperties= propertiesRepository.findAll(new PageRequest(pPropertiesRequest.getPageNumber(),pPropertiesRequest.getPageSize()));
+		
+		List<PropertyPOJO> uiProperties = new ArrayList<PropertyPOJO>();
+		pProperties.getContent().stream().forEach(u -> {
+			PropertyPOJO dto = new PropertyPOJO();
+			BeanUtils.copyProperties(u, dto);
+			BeanUtils.copyProperties(u.getTdistrict(), dto.getTdistrict());
+			BeanUtils.copyProperties(u.getTpropertyType(), dto.getTpropertyType());
+			dto.setTbenefits(benefitsDtos(u.getTbenefits()));
+			dto.getTuser().setIdUser(u.getTuser().getIdUser());
+			dto.setSoldDate(u.getSoldDate());
+			dto.setTpropertyImages(imagesDtos(u.getTpropertyImages()));
+			dto.setTpropertyReviews(null);
+			dto.setTusers(null);
+			uiProperties.add(dto);
+		});
+		
+		int idVendor = pPropertiesRequest.getProperty().getTuser().getIdUser();
+		
+		uiProperties.stream().forEach(property->{
+			if(property.getTuser().getIdUser() == idVendor){
+				property.setTbenefits(null);
+				property.setTpropertyType(null);
+				property.getTdistrict().setTcounty(null);
+				property.setTuser(null);
+				vendorProperties.add(property);
+			}
+		});
+		response.setProperties(vendorProperties);
+		response.setTotalPages(pProperties.getTotalPages());
+		response.setCode(200);
+		return response;
+	}
+	/**
+	 * Retorna la propiedad que se vendio.
+	 * @param pProperty Contiene la informacion del vendedor.
+	 * @return response Retorna una lista de objetos property. 
+	 * @author Jimmi Vila
+	 */
+	@Override
+	public List<PropertyPOJO> getPropertiesVendor(PropertiesRequest pPropertiesRequest) {
 		ArrayList<PropertyPOJO> vendorProperties = new ArrayList<PropertyPOJO>();
 		
 		List<Tproperty> pProperties= propertiesRepository.findAll();

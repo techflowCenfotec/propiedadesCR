@@ -11,15 +11,38 @@
 		 $scope.favorites = [];
 		 $scope.isCollapsed = false;
 		 $scope.selectedBenefits = [];
-		
+		 $scope.selected =[];
+		 $scope.totalPages =0;
+		 $scope.pageSize = 10;
+		 $scope.pageNumber = 0;
+	     $scope.numPerPageOpt = [2, 5, 10, 20];
+	     $scope.numPerPage = $scope.numPerPageOpt[2];
+	     $scope.currentPage = 1;
+	     $scope.currentPage = [];
+	     
 		$scope.init = function() {
+			
 			var active = 1,
 				sold = 0;
-			
-			$http.get('rest/protected/properties/getAll')
+			var request = {
+		            "pageNumber": $scope.pageNumber,
+		            "pageSize": $scope.pageSize,
+		            "direction": "",
+		            "sortBy": [""],
+		            "searchColumn": "string",
+		            "searchTerm": "",
+		            "property": {
+		              "tuser":{"idUser":$rootScope.userLogged.idUser}
+		            }
+		        };
+			$http.post('rest/protected/properties/getAll',request)
 			.success(function(response) {
+				$scope.propertiesList = [];
 				for (var i = 0; i < response.properties.length; i++) {
 					if(response.properties[i].active == active && response.properties[i].isSold == sold) 
+						//calcular el descuento
+						response.properties[i].price -= (response.properties[i].price*response.properties[i].offerPercentage)/100;
+						
 						$scope.propertiesList.push(response.properties[i]);
 				}
 				
@@ -56,8 +79,22 @@
 		}
 		
 		// Stores single id value
-		$scope.viewProperty = function(pIdProperty) {
-			$http.get('rest/protected/properties/saveView/' + pIdProperty).success(
+		$scope.viewProperty = function(pIdProperty,idUser) {
+						var viewRequest = {"pageNumber": 0,
+					"pageSize": 0,
+					"direction": "",
+					"sortBy": [""],
+					"searchColumn": "string",
+					"searchTerm": "",
+					"property": {
+						"idProperty":pIdProperty,
+						"tuser":{"idUser":idUser}
+					},
+					"idBenefits": [
+					               0
+					             ]
+			}
+			$http.post('rest/protected/properties/saveView', viewRequest).success(
 					function(){
 						
 					});
@@ -80,58 +117,73 @@
 		
 		// Bring BenefitList from modal. Assigned to keyword for search
 		$scope.$on("filterAction", function(e, benefitsList) {
+			$scope.propertiesSort = _.sortBy(benefitsList, 'benefit')
+
 			$scope.selectedBenefits = benefitsList;
 			$scope.keyword = _.pluck($scope.selectedBenefits, 'benefit').join(', ');
+
 		});
 		
+		$scope.clearSearch = function() {
+			$scope.keyword = '';
+		}
+		
+		$scope.exists = function(){
+			return true;
+		}
+		
 		$scope.keywords = function(post) {
-		      var isMatch = false;
+			var isMatch = false;
 		      
-		      if ($scope.keyword) {
-		        var parts = $scope.keyword.split(', ');
+		    if ($scope.keyword) {
+		      var parts = $scope.keyword.split(', ');
 		        
-		        parts.forEach(function(part) {
-		          var rx = new RegExp(part, "i"); //i: case insensitive
-		          post.tbenefits.forEach(function(caract) {
-		            if (rx.test(caract.benefit)) {
-		              isMatch = true;
-		            }
-		          });
+		      parts.forEach(function(part) {
+		        var rx = new RegExp(part, "i"); //i: case insensitive
+		        
+		        post.tbenefits.forEach(function(caract) {
+		          if (rx.test(caract.benefit)) {
+		            isMatch = true;
+		          }
 		        });
-		      } else {
-		        isMatch = true;
-		      }
-		      
-		      return isMatch;
-		    };
+		        
+		      });
+		     } else {
+		       isMatch = true;
+		     }
+		   return isMatch;
+		};
 		
 		$scope.addToFavorites = function(pIdProperty) {
-			var db = 'rest/protected/users/addToFavorite/' + $rootScope.userLogged.idUser;
-			var dbRemove = 'rest/protected/users/removeFavorite/' + $rootScope.userLogged.idUser;
+			var idx = $scope.favorites.indexOf(pIdProperty);
+			var db = 'rest/protected/users/updateFavorite/' + $rootScope.userLogged.idUser;
 			var data = {
 				"idProperty": pIdProperty	
 			};
 			
 			$http.get('rest/protected/users/getUserById/' + $rootScope.userLogged.idUser)
 			.success(function(response) {
-				if ($scope.favorites.length == 0) {
-					$http.put(db, data)
-					.success(function(response) {});
-				} else {
-					for (var i = 0; i < $scope.favorites.length; i++) {
-						if ($scope.favorites[i] == pIdProperty) {
-							$http.put(dbRemove, data)
-							.success(function(response) {
-							});
-						} else {
-							$http.put(db, data)
-							.success(function(response) {
-							});
-						}
-					}
-				}
+				
+				if (idx == -1) $scope.favorites.push(pIdProperty);
+				else $scope.favorites.splice(idx, 1);
+				
+				$http.put(db, data)
+				.success(function(response) {
+					
+				});
+				
+				
 			});
 		}
+		  $scope.changePage = function(page){
+				$scope.pageNumber = page-1;
+				$scope.init();
+			};
+		        
+			 $scope.onNumPerPageChange = function(){
+				 $scope.pageSize = $scope.numPerPage;
+				$scope.init();
+		     };
 	}
 	
 })();

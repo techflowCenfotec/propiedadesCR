@@ -2,6 +2,8 @@ package com.techflow.propiedadesCR.repositories;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
 import com.techflow.propiedadesCR.ejb.Tproperty;
@@ -20,7 +22,13 @@ public interface PropertiesRepository extends CrudRepository<Tproperty, Integer>
 	/**
 	  * Retorna una lista de entidades.
 	  * 
-	  * @return List<Tproperty> Las entidades del tipo
+	  * @return Page<Tproperty> Las entidades del tipo
+	  */
+	Page<Tproperty> findAll(Pageable pageRequest);
+	/**
+	  * Retorna una lista de entidades.
+	  * 
+	  * @return Page<Tproperty> Las entidades del tipo
 	  */
 	List<Tproperty> findAll();
 	

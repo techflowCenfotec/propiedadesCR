@@ -14,11 +14,11 @@
 }
 </style>
 
-<section class="page-form-ele page" ng-controller="CreatePropController as ctrl">
+<div class="page-form-ele page" data-ng-controller="CreatePropController as ctrl">
 <div class="row ui-section">
         <div class="col-lg-8 clearfix"> <h2 class="section-header">Registrar Propiedad</h2> </div>
         <div class="col-md-12">
-            <section class="panel panel-default">
+            <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-8 col-lg-offset-2">
@@ -46,8 +46,8 @@
                                     	<p class="col-md-12">
                                     		<p style="display: inline-block; width: 100px;">Desea </p>
 	                                    	<md-radio-group class="ui-md-radio-group-inline" ng-model="requestObject.selectedSaleType" required>
-			                                    <md-radio-button value="Alquilar">Alquilar</md-radio-button>
-			                                    <md-radio-button value="Vender">Vender</md-radio-button>
+			                                    <md-radio-button value="Alquiler">Alquilar</md-radio-button>
+			                                    <md-radio-button value="Venta">Vender</md-radio-button>
 			                                </md-radio-group>
 		                                </p>
 		                                <div class="divider divider-lg divider-dashed"></div>
@@ -85,30 +85,31 @@
                                               <input ng-model="requestObject.address" md-maxlength="150" required/>
                                           </md-input-container>
                                           </div>
-                                            <md-chips ng-model="ctrl.tags" readonly="ctrl.readonly"
-				                                    delete-button-label="Eliminar etiqueta"
-				                                    md-transform-chip="ctrl.transformChip($chip)"
-				                                    secondary-placeholder="Características de la propiedad"
-				                                    md-require-match="true" required>
-				                                    <md-autocomplete md-selected-item="ctrl.selectedItem" md-search-text="requestObject.searchText" 
-				                                    md-items="item in querySearch(requestObject.searchText)" md-item-text="item.benefit" 
-				                                    placeholder="Características">
-					                                    <span md-highlight-text="requestObject.searchText">
-					                                    	{{item.benefit}}
-					                                    </span>
-				                                    </md-autocomplete>
-				                                    <md-chip-template>
-				                                    	<span>
-				                                    		{{$chip.benefit}}
-				                                    	</span>
-				                                    </md-chip-template>
-				                                    </md-chips>  
-				                        <div class="divider divider-md"></div>
+										<div class="row">
+											<div class="col-lg-11">
+												<md-chips ng-model="ctrl.tags" readonly="ctrl.readonly"
+													delete-button-label="Eliminar etiqueta"
+													md-transform-chip="ctrl.transformChip($chip)"
+													secondary-placeholder="Características de la propiedad"
+													md-require-match="true" required> <md-autocomplete
+													md-selected-item="ctrl.selectedItem"
+													md-search-text="requestObject.searchText"
+													md-items="item in querySearch(requestObject.searchText)"
+													md-item-text="item.benefit" placeholder="Características">
+												<span md-highlight-text="requestObject.searchText">
+													{{item.benefit}} </span> </md-autocomplete> <md-chip-template> <span>
+													{{$chip.benefit}} </span> </md-chip-template> </md-chips>
+											</div>
+											<div class="col-lg-1 benefit-alignment">
+												<benefits></benefits>
+											</div>
+										</div>
+										<div class="divider divider-md"></div>
                                         <div layout layout-sm="column">
                                             <md-input-container flex>
                                                 <label>Precio ($)</label>
                                                 <input type="number" class="form-control" 
-                                                ng-model="requestObject.price" data-ng-maxlength=10 required/>
+                                                ng-model="requestObject.price" pattern="(?!0+)\d+" min="0" data-ng-maxlength=10 required/>
                                             </md-input-container>
                                             <md-input-container flex>
                                                 <label>Tipo propiedad</label>
@@ -123,7 +124,7 @@
 	                                          <md-input-container flex>
 	                                              <label>Metros cuadrados</label>
 	                                              <input type="number" class="form-control" 
-	                                              ng-model="requestObject.meters" data-ng-maxlength=10 required/>
+	                                              ng-model="requestObject.meters" pattern="(?!0+)\d+" min="0" data-ng-maxlength=10 required/>
 	                                          </md-input-container>
                                           </div>
                                           
@@ -131,16 +132,15 @@
                                           	<div class="col-md-12">
                                           		<section class="panel panel-default">
                                           			<div class="panel-body">
-                                          				<map class="ui-map" zoom="{{map.zoom}}" center="{{map.center}}" scrollwheel="false">
-								                            <marker position="{{map.center}}" title="drag me" draggable="true" on-dragend="ctrl.markerPos()"></marker>
+                                          				<map class="ui-map" zoom="11" center="[9.928003, -84.094463]" scrollwheel="false">
+								                            <marker position="[9.928003, -84.094463]" title="drag me" draggable="true" on-dragend="markerPos()"></marker>
 								                        </map>
 								                    </div>
 								                </section>
 								             </div>
-								            </div>
+								           </div>
 	                                      <md-button type="submit" class="md-raised btn-w-md md-primary" 
 	                                      	data-ng-disabled="!canSubmit($flow.files.length)">Guardar</md-button>
-		                                  <!-- <md-button class="btn-w-md" data-ng-click="cancel()">Cancelar</md-button> -->
 		                                  <div class="divider"></div>
                                     	  <div class="alert alert-info" data-ng-show="showInfoOnSubmit">
                                     	  	Propiedad registrada satisfactoriamente!
@@ -152,7 +152,7 @@
                         </div>
                     </div>
                 </div>
-            </section>    
+            </div>    
         </div>
     </div>
-</section>
+</div>

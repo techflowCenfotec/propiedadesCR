@@ -1,15 +1,17 @@
 (function() {
 	angular.module('app.properties.modify', [])
 	
-	.controller('propertyModifyController', ['$scope', '$http', '$upload', 'NgMap', '$state', propertyModifyController]);
+	.controller('propertyModifyController', ['$scope', '$http', '$upload', 'NgMap', '$state','$uibModal','$log', propertyModifyController])
+    .controller('OfferModalCtrl', ['$scope', '$uibModalInstance','$http','$timeout', OfferModalCtrl]);
 	
-	function propertyModifyController($scope, $http, $upload, NgMap, $state) {
+	function propertyModifyController($scope, $http, $upload, NgMap, $state,$uibModal,$log) {
 		var self = this;
 		var original;
 		self.district = {};
 		self.tags = [];
 		self.benefitsList = [];
 		$scope.markerLoc = null;
+		$scope.animationsEnabled = true;
 		$scope.imageList = [];
 		$scope.propertyTypeList = [];
 		$scope.provinceList = [];
@@ -17,6 +19,7 @@
 		$scope.selectedType = {};
 		$scope.selectedDistrict = {};
 		$scope.requestObject = {
+				selectedSaleType: '',
 				province: '',
 				county: '',
 				district: '',
@@ -24,6 +27,7 @@
 				price: '',
 				meters: ''
 		};
+		$scope.hasAnOffer = false;
 		
 		$scope.onError = false;
 		
@@ -33,10 +37,15 @@
 			var bd = 'rest/protected/properties/getByPropertyId/' + localStorage.getItem('idProperty');
 			$http.get(bd)
 			.success(function(response) {
+			
 				$scope.property = response.property;
 				$scope.imageList = response.property.tpropertyImages;
 				$scope.selectedType = $scope.property.tpropertyType;
 				$scope.requestObject.district = $scope.property.tdistrict;
+				$scope.requestObject.selectedSaleType = $scope.property.saleType;
+				
+				if($scope.property.offerPercentage!=0)
+					$scope.hasAnOffer =true;
 				
 				$http.get('rest/protected/districts/getDistrcitById/'+ 
 						$scope.property.tdistrict.idDisctrict)
@@ -114,6 +123,10 @@
 		        };
 		};
 		
+		$scope.$on("filterAction", function(e, benefitsList) {
+			$scope.property.tbenefits = benefitsList;
+		});
+		
 		// Google maps
 		NgMap.getMap().then(function(map) {
 			self.markerPos =  function() {
@@ -166,10 +179,10 @@
 		$scope.updateProperty = function(event) {
 			$scope.updateProperty(event, $files);
 		};
-		$scope.canAddImg = function(length) {
-			return length >= 5;
+		$scope.canAddImg = function(length, imgList) {
+			length = imgList;
+			return length >= 5 && imgList >= 5;
 		};
-		
 		// Routes to list view on cancel
 		$scope.cancel = function() {
 			$state.go('templates/propertiesView/myPropertiesView', {},  {reload: true});
@@ -191,6 +204,7 @@
 							"tdistrict": { "idDisctrict": $scope.requestObject.district.idDisctrict},
 							"tpropertyType": { "idPropertyType": $scope.selectedType.idPropertyType},
 							"tbenefits": $scope.property.tbenefits,
+							"saleType": $scope.requestObject.selectedSaleType,
 							"address": $scope.property.address,
 							"coordinates": $scope.markerLoc
 						}
@@ -212,9 +226,121 @@
 						$scope.showInfoOnSubmit= true;
 						$state.go('templates/propertiesView/myPropertiesView', {},  {reload: true});
 				});
+				  
 			}
 		}
+		$scope.removeOffer = function (){
+			var offerRequest = {
+          		  "pageNumber": 0,
+          		  "pageSize": 0,
+          		  "direction": "string",
+          		  "sortBy": [
+          		    "string"
+          		  ],
+          		  "searchColumn": "string",
+          		  "searchTerm": "string",
+          		  "property": {"idProperty":localStorage.getItem('idProperty'),
+          			  "offerPercentage":0},
+          		  "idBenefits": [
+          		    0
+          		  ]
+          }
+          		
+          $http.post('rest/protected/properties/setPropertyOnSale',offerRequest).success(function(){
+       		
+          	$scope.hasAnOffer = false;
+          });
+            
+		}
 		
-	}
+	
+	        $scope.open = function (size) {
+	        	localStorage.setItem('propertyPrice',$scope.property.price);
+	            var modalInstance = $uibModal.open({
+	                animation: $scope.animationsEnabled,
+	                templateUrl: 'offerModal.html',
+	                controller: 'OfferModalCtrl',
+	                size: size,
+	                resolve: {
+	                    price: function () {
+	                      
+	                    }
+	                }
+	            });
+
+	            modalInstance.result.then(function (selectedItem) {
+	            
+	                $scope.selected = selectedItem;
+	            }, function (responseFromModal) {
+	            	if(responseFromModal==='hasAnOffer')
+	            		$scope.hasAnOffer = true;
+	              
+	            });
+	        };
+
+	        $scope.toggleAnimation = function () {
+	            $scope.animationsEnabled = !$scope.animationsEnabled;
+	        };  
+	
+	};
+	
+	function OfferModalCtrl($scope,$uibModalInstance,$http,$timeout){
+        var modalOriginal;
+      
+        $scope.price
+        $scope.offerForm = { 	
+	        offer: '',
+	        originalPrice: localStorage.getItem('propertyPrice'),
+	       
+	    };
+        $scope.cancel = function() {
+        
+            $uibModalInstance.dismiss("cancel");
+        };
+
+        modalOriginal = angular.copy($scope.offerForm);
+
+        $scope.canSubmit = function() {
+	        return $scope.form_offerCreate.$valid && !angular.equals($scope.offerForm, modalOriginal);
+	    };
+
+	    $scope.saveOffer = function() {
+            var offerRequest = {
+            		  "pageNumber": 0,
+            		  "pageSize": 0,
+            		  "direction": "string",
+            		  "sortBy": [
+            		    "string"
+            		  ],
+            		  "searchColumn": "string",
+            		  "searchTerm": "string",
+            		  "property": {"idProperty":localStorage.getItem('idProperty'),
+            			  "offerPercentage":$scope.offerForm.offer},
+            		  "idBenefits": [
+            		    0
+            		  ]
+            }
+            		
+            $http.post('rest/protected/properties/setPropertyOnSale',offerRequest).success(function(){
+            	$scope.showInfoOnSubmit= true;
+				  $timeout(function(){
+			          $scope.showInfoOnSubmit = false;
+			          $uibModalInstance.dismiss("hasAnOffer");
+			       }, 1500);
+            	
+            });
+	    	
+	    };
+	    
+	    $scope.calculateOffer = function(){
+	    	var porcentage = $scope.offerForm.offer/100*$scope.offerForm.originalPrice;
+	    	$scope.price = $scope.offerForm.originalPrice - porcentage;
+	    }
+
+	    // $scope.url = getURL();
+	    // $scope.getURL = function(){
+	    // 	return document.URL;
+	    // }
+    };
 	
 })();

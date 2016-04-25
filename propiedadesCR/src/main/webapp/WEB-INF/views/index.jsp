@@ -11,6 +11,7 @@
         <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,500,700,300,300italic,500italic|Roboto+Condensed:400,300' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="resources/bower_components/font-awesome/css/font-awesome.min.css">
         <link rel="stylesheet" href="resources/bower_components/material-design-iconic-font/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="resources/styles/animate.css">
         <!-- end Needs images -->
 
         <link rel="stylesheet" href="resources/styles/main.css">
@@ -82,6 +83,7 @@
         <script src="resources/scripts/app.js"></script>
         <script src="resources/scripts/app.route.js"></script>
         <script src="resources/scripts/directives/benefitsDirective.js"></script>
+        <script src="resources/scripts/directives/matchedTagsDirective.js"></script>
         <script src="resources/bower_components/underscore/underscore.js"></script>
         <script src="resources/non_bower_components/angular-file-upload-shim.min.js"></script>
   		<script src="resources/non_bower_components/angular-file-upload.min.js"></script>
@@ -106,6 +108,7 @@
         <script src="resources/app/templates/usersView/consultUser.js"></script>
         <script src="resources/app/templates/usersView/modifyUser.js"></script>
         <script src="resources/app/templates/usersView/consultVendor.js"></script>
+         <script src="resources/app/templates/usersView/modifyProfile.js"></script>
 
         <script src= "resources/app/templates/eventsView/createEvent.js"></script>
         <script src= "resources/app/templates/eventsView/eventsList.js"></script>
@@ -133,5 +136,8 @@
         <script src="resources/app/templates/salesReportView/salesReport.js"></script>
 
         <script src="resources/app/templates/toDoListView/myToDoList.js"></script>
-
+		<script src="resources/app/templates/reportsView/bankReport.js"></script>
+		<script src="resources/scripts/services/dbService.js"></script>
         
+        <script src="resources/app/templates/tutorialView/tutorialDirective.js"></script>
+

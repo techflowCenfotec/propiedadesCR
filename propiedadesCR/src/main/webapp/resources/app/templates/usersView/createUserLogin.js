@@ -9,7 +9,9 @@
 					'$http',
 					'$location',
 					'$upload',
-					function($scope, $http, $location, $upload) {
+					'dbService',
+					'sessionService',
+					function($scope, $http, $location, $upload,dbService,sessionService) {
 
 						var original;
 						$scope.dateWithFormat = '';
@@ -34,21 +36,10 @@
 							role: '',
 							gender:'',
 						};
-						
-						validate();
-						
-						function validate(){
-						$http.get("rest/protected/database/checkDB").success(function(data){
-							if(data.code!==200){
-								var path = "#/templates/errorsView/500";
-								
-				    			window.location.href = path;
-							}
-						});
-						}
-						
+						sessionService.checkSession();
+						dbService.localCheckDB();
 
-						  var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","role": {}};
+						var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","role": {}};
 						
 						$http.post('rest/local/getAll',request).success(function(response) {
 							$scope.roles= response.role;
@@ -79,7 +70,7 @@
 							$scope.saveUser(event, $files);
 						};
 						$scope.saveUser = function(event, $files) {
-							validate();
+							dbService.checkDB();
 							$scope.getDateWithFormat();
 							var file
 							

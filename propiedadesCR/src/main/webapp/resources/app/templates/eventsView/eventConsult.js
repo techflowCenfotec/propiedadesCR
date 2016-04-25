@@ -3,14 +3,14 @@
 
 	angular.module("app.eventConsult",[])
 
-	.controller('EventConsultController', ['$scope','$http','$rootScope','$mdDialog','NgMap',
-	                                       function($scope,$http,$rootScope,$mdDialog,NgMap) {
+	.controller('EventConsultController', ['$scope','$http','$rootScope','$mdDialog','NgMap','dbService',
+	                                       function($scope,$http,$rootScope,$mdDialog,NgMap,dbService) {
 		
 		$scope.event={};
 		
 		
 		
-		
+		dbService.checkDB();
 		var link = 'rest/protected/events/getById/'+localStorage.getItem('idEvent');
 		$http.get(link).success(function(response) {
 			 

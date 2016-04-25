@@ -16,13 +16,17 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.techflow.propiedadesCR.contracts.PasswordRequest;
 import com.techflow.propiedadesCR.contracts.UsersRequest;
+import com.techflow.propiedadesCR.contracts.UsersResponse;
 import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.Trole;
 import com.techflow.propiedadesCR.ejb.Tuser;
+import com.techflow.propiedadesCR.pojo.DistrictPOJO;
 import com.techflow.propiedadesCR.pojo.PropertyPOJO;
 import com.techflow.propiedadesCR.ejb.TuserReview;
 import com.techflow.propiedadesCR.pojo.RolePOJO;
@@ -60,13 +64,18 @@ public class UsersService implements UsersServiceInterface{
 	  *
 	  * @param pusersRequest Este parámetro encapsula la información solicitada por el usuario.
 	  *
-	  * @return uiUsers Retorna la respuesta del repositorio hacia el controlador.
+	  * @return response Retorna la respuesta del repositorio hacia el controlador.
 	  */
-	public List<UserPOJO> getAllVendors(UsersRequest pusersRequest) {
+	public UsersResponse getAllVendors(UsersRequest pusersRequest) {
+		UsersResponse response = new UsersResponse();
 		Trole role = new Trole();
-		role.setIdRole(3);
-		List<Tuser> users = usersRepository.findAllByTrole(role);
-		return generateUserDtos(users);
+		role.setIdRole(3);	
+		Page<Tuser> users = usersRepository.findAllByTrole(role,new PageRequest(pusersRequest.getPageNumber(),pusersRequest.getPageSize()));
+		response.setUsers(generateUserDtos(users.getContent()));
+		response.setTotalPages(users.getTotalPages());
+		response.setCode(200);
+		
+		return response;
 	}
 	
 	/**
@@ -189,7 +198,9 @@ public class UsersService implements UsersServiceInterface{
 		Trole role = new Trole();
 		role.setIdRole(pidRole);
 		BeanUtils.copyProperties(puserRequest.getUser(), user);
+		user.setPassword(usersRepository.findOne(puserRequest.getUser().getIdUser()).getPassword());
 		user.setTrole(role);
+	
 		Tuser nuser = usersRepository.save(user);
 		
 		return nuser;
@@ -334,7 +345,7 @@ public class UsersService implements UsersServiceInterface{
 	  * 
 	  * @author Valeria Ramírez Cordero
 	  * 
-	  *@param puserRequest Objeto que contiene el id del.
+	  *@param favoritesList Retorna la lista de propiedades favoritas
 	  *
 	  */
 	public List<PropertyPOJO> getAllFavorites(UsersRequest puserRequest){
@@ -346,8 +357,6 @@ public class UsersService implements UsersServiceInterface{
 		propertiesList.stream().forEach(property ->{
 			PropertyPOJO propertyPOJO = new PropertyPOJO();
 			BeanUtils.copyProperties(property, propertyPOJO);
-			
-			propertyPOJO.setTpropertyImages(null);
 		
 			propertyPOJO.setTuser(null);
 			propertyPOJO.setTusers(null);
@@ -355,10 +364,28 @@ public class UsersService implements UsersServiceInterface{
 			propertyPOJO.setSaleType(null);
 			propertyPOJO.setSoldDate(null);
 			propertyPOJO.setTbenefits(null);;
+			propertyPOJO.setTdistrict(new DistrictPOJO());
+			propertyPOJO.getTdistrict().setName(property.getTdistrict().getName());
 			favoritesList.add(propertyPOJO);
 			
 		});
 		return favoritesList;
+	}
+	
+	/**
+	  * Este método cambiia el estado de un usuario
+	  * para que no sea su primera vez en la aplicación.
+	  *
+	  * @param puserRequest Contiene información del objeto a modificar.
+      * 
+	  * @return newUser Devuelve el usuario con su nuevo estado.
+	  */
+	
+	public Tuser notFirstTime(UsersRequest puserRequest) {
+		Tuser user = usersRepository.findOne(puserRequest.getUser().getIdUser());
+		user.setFirstTime((byte) 1);;
+		Tuser newUser = usersRepository.save(user);
+		return newUser;
 	}
 }
 

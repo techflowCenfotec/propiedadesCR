@@ -2,7 +2,7 @@
 	"use strict";
 
 	angular.module("app.eventsListAdmin",[])
-		.controller('listAdminEventController',['$scope','$filter','$http','$mdDialog','$location',function($scope,$filter,$http,$mdDialog,$location){
+		.controller('listAdminEventController',['$scope','$filter','$http','$mdDialog','$location','dbService',function($scope,$filter,$http,$mdDialog,$location,dbService){
 		
 		$scope.status = '  ';
 		$scope.events=[];
@@ -20,7 +20,9 @@
         $scope.currentPage = 1;
         $scope.currentPage = [];
 		
-        var link = 'rest/protected/events/getAll';
+        
+        dbService.checkDB();
+        var link = 'rest/protected/events/getAllEvents';
 		var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","event": {}};
 		var init;
 		$http.post(link,request).success(function(response) {
@@ -86,7 +88,6 @@
         	$scope.status = '  ';
             var confirm = $mdDialog.confirm()
                         .title('¿Está seguro que desea eliminar el evento?')
-//                        .content('All of the banks have agreed to <span class="debt-be-gone">forgive</span> you your debts.')
                         .ariaLabel('Lucky day')
                         .ok('Eliminar')
                         .cancel('Cancelar');
@@ -101,6 +102,9 @@
         $scope.modifyEvents = function(id){
         	localStorage.setItem('idEventModify',id);
         	
+        }
+        $scope.go = function(){
+        	$location.path("/templates/eventsView/createEvent");	
         }
 		
 	}]);

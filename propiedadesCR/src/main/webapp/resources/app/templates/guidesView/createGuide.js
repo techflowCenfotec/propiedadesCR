@@ -2,7 +2,7 @@
 	'use strict';
 
 	angular.module('app.createGuide', [])
-	.controller('CreateGuideController',['$scope','$http', '$location','$upload','$timeout',function($scope,$http,$location,$upload,$timeout){
+	.controller('CreateGuideController',['$scope','$http', '$location','$upload','$timeout','dbService',function($scope,$http,$location,$upload,$timeout,dbService){
 		var original;
 	    $scope.onError = false;
 	    $scope.requestObject = {};
@@ -13,7 +13,7 @@
 	        bank: ''
 	    };
 
-	    ////lista de bancos
+	    dbService.checkDB();
 	    var linkBanks = 'rest/protected/banks/getAll';
 	    request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","bank": {} };
 	    		 
@@ -41,14 +41,13 @@
 		    $scope.saveGuide(event, $files);
 		    $timeout(function() {
 		        $scope.showInfoOnSubmit = false;
-		    }, 3000);
+		    }, 1000);
 	       
 	    };
 	    
 	    $scope.saveGuide = function($files){
-	    	
+	    	dbService.checkDB();
 	    	var file;
-
 			file = $files[0].file;
 
 			$scope.upload = $upload

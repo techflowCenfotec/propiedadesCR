@@ -2,8 +2,9 @@
 	"use strict";
 
 	angular.module("app.forgotPassword",[])
-	.controller('forgotPasswordController', ['$scope','$rootScope','$http', function($scope,$rootScope,$http) {
+	.controller('forgotPasswordController', ['$scope','$rootScope','$http','sessionService', function($scope,$rootScope,$http,sessionService) {
 		
+		sessionService.checkSession();
 		$scope.isCorrect = true;
 		$scope.form={
 				email:''

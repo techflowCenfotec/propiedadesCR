@@ -30,6 +30,7 @@ import javax.mail.internet.MimeMessage;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -46,6 +47,7 @@ import com.techflow.propiedadesCR.contracts.UsersResponse;
 import com.techflow.propiedadesCR.ejb.Tproperty;
 import com.techflow.propiedadesCR.ejb.Tuser;
 import com.techflow.propiedadesCR.pojo.EventPOJO;
+import com.techflow.propiedadesCR.pojo.RolePOJO;
 import com.techflow.propiedadesCR.pojo.UserPOJO;
 import com.techflow.propiedadesCR.services.UsersServiceInterface;
 import com.techflow.propiedadesCR.utils.Utils;
@@ -106,13 +108,8 @@ public class UsersController {
 
 	@RequestMapping(value = "/getAllVendors", method = RequestMethod.POST)
 	public UsersResponse getAllVendors(@RequestBody UsersRequest puserRequest) {
+		return usersService.getAllVendors(puserRequest);
 
-		UsersResponse response = new UsersResponse();
-		response.setCode(200);
-		response.setCodeMessage("Users fetch successful");
-		response.setUsers(usersService.getAllVendors(puserRequest));
-
-		return response;
 	}
 
 	/**
@@ -218,7 +215,11 @@ public class UsersController {
 	@RequestMapping(value = "/getUserLogged", method = RequestMethod.GET)
 	public UsersResponse getUserLogged() {
 		UsersResponse response = new UsersResponse();
-		response.setUser((UserPOJO) httpServletRequest.getSession().getAttribute("userLogged"));
+		if(httpServletRequest.getSession().getAttribute("userLogged")!=null)
+			response.setUser((UserPOJO)httpServletRequest.getSession().getAttribute("userLogged"));
+			else
+				response.setUser(null);
+		
 		return response;
 	}
 
@@ -313,8 +314,13 @@ public class UsersController {
 			UsersRequest userRequest = new UsersRequest();
 			userRequest.setUser(user);
 			Tuser recentlyCreatedUser = usersService.modifyUser(userRequest, pidRole);
-
+			UserPOJO userPOJO = new UserPOJO();
+			BeanUtils.copyProperties(recentlyCreatedUser, userPOJO);
 			if (recentlyCreatedUser != null) {
+				RolePOJO role = new RolePOJO();
+				BeanUtils.copyProperties(recentlyCreatedUser.getTrole(), role);
+				userPOJO.setRole(role);
+				userResponse.setUser(userPOJO);
 				userResponse.setCode(200);
 				userResponse.setCodeMessage("User modified ");
 			}
@@ -410,19 +416,31 @@ public class UsersController {
 		  * @param pIdUser Id del usuario. No debe ser nulo.
 		  * @return response La entidad del objeto actualizado.
 		  */
-		@RequestMapping(value="removeFavorite/{pIdUser}", method = RequestMethod.PUT)
-		public UsersResponse removeFavorite(@RequestBody Tproperty pProperty,
+		@RequestMapping(value="updateFavorite/{pIdUser}", method = RequestMethod.PUT)
+		public UsersResponse updateFavorite(@RequestBody Tproperty pProperty,
 				@PathVariable int pIdUser) {
 			UsersResponse response = new UsersResponse();
-			
+			Boolean exists = true;
 			Tuser user = usersService.getUserByID(pIdUser);
 			List<Tproperty> properties = user.getTproperties2();
 			
-			for (int i = 0; i < properties.size(); i++) {
-				if (properties.get(i).getIdProperty() == pProperty.getIdProperty()) {
-					user.getTproperties2().remove(i);
+			if(properties.isEmpty()) {
+				properties.add(pProperty);
+				exists = false;
+			} else {
+				for (int i = 0; i < properties.size(); i++) {
+					if (properties.get(i).getIdProperty() == pProperty.getIdProperty()) {
+						properties.remove(i);
+						exists = false;
+					} 
 				}
 			}
+			
+			if (exists == true){
+				properties.add(pProperty);
+			}
+			
+			user.setTproperties2(properties);
 			
 			Tuser nUser = usersService.updateFavorites(user);
 			
@@ -547,6 +565,31 @@ public class UsersController {
 				response.setProperties(usersService.getAllFavorites(puserRequest)); 
 
 				return response;
+			}
+			
+			/**
+			* Este método permite modificar el estado de un usuario
+			* 
+			* @param UsersRequest Este parámetro es la peticion del front-end
+			* que se utiliza para acceder al método deseado
+			* 
+			* @return userResponse Resultado que contiene la respuesta
+			* de que el usuario haya sido modificado exitosamente o no
+			*
+			*/ 
+			
+			@RequestMapping(value ="/notFirstTime", method = RequestMethod.POST)
+			public UsersResponse notFirstTime(@RequestBody UsersRequest puserRequest){
+				
+				UsersResponse userResponse = new UsersResponse();
+				Tuser userNotFirstTime = usersService.notFirstTime(puserRequest);
+				
+				if(userNotFirstTime!= null){
+					userResponse.setCode(200);
+					userResponse.setCodeMessage("success");
+					
+				}
+				return userResponse;
 			}
 
 

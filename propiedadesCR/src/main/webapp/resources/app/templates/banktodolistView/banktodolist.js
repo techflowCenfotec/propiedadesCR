@@ -4,7 +4,7 @@
 	angular.module('app.banktodolist', [])
 
 
-	.controller('banktodolistController',['$scope','$filter','$http','$location','$mdToast',function($scope,$filter,$http,$location,$mdToast){
+	.controller('banktodolistController',['$scope','$filter','$http','$location','$mdToast','dbService',function($scope,$filter,$http,$location,$mdToast,dbService){
 
 //datagrid
 		$scope.todolistList = [];
@@ -30,7 +30,7 @@
             right: false
         };
         $scope.toastPosition = angular.extend({},last);
-		
+        dbService.checkDB();
         var link = 'rest/protected/banktodolist/getAll';
 		var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","bankToDoList": {}};
 		var init;
@@ -139,6 +139,14 @@
             if ( current.left && last.right ) current.right = false;
 
             last = angular.extend({},current);
+        };
+
+        $scope.go = function(){
+            $location.path("/templates/banktodolistView/banktodolistCreate"); 
+        };
+
+        $scope.addGuide = function(){
+            $location.path("/templates/guidesView/createGuide"); 
         };
     
 	}]);

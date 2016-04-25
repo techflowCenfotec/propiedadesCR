@@ -10,7 +10,6 @@
 			templateUrl: 'resources/app/templates/propertiesView/benefitDirective.html',
 			link: function($scope) {
 				$scope.animationsEnabled = true;
-				$scope.buttonLabel = 'Buscar Características';
 					
 		        $scope.open = function (size) {
 		        	
@@ -19,7 +18,7 @@
 		                templateUrl: 'resources/app/templates/propertiesView/benefitModal.html',
 		                controller: 'ModalInstanceCtrl',
 		                scope: $scope,
-		                size: 'lg'
+		                size: 'md'
 		            });
 
 		        };

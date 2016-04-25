@@ -69,7 +69,7 @@ public class PropertyPOJO {
 	/**
      * Oferta de la propiedad.
      */
-	private double offerPecentage;
+	private double offerPercentage;
 	/**
      * Estado de la propiedad.
      */
@@ -187,6 +187,10 @@ public class PropertyPOJO {
 		this.tusers = tusers;
 	}
 
+	public List<UserPOJO> getTusers() {
+		return tusers;
+	}
+
 	public List<PropertyImagePOJO> getTpropertyImages() {
 		return tpropertyImages;
 	}
@@ -195,12 +199,12 @@ public class PropertyPOJO {
 		this.tpropertyImages = tpropertyImages;
 	}
 
-	public double getOfferPecentage() {
-		return offerPecentage;
+	public double getOfferPercentage() {
+		return offerPercentage;
 	}
 
-	public void setOfferPecentage(double offerPecentage) {
-		this.offerPecentage = offerPecentage;
+	public void setOfferPercentage(double offerPercentage) {
+		this.offerPercentage = offerPercentage;
 	}
 
 	public byte getIsSold() {
@@ -234,8 +238,5 @@ public class PropertyPOJO {
 	public void setTotalViews(int totalViews) {
 		this.totalViews = totalViews;
 	}
-
-	
-	
 	
 }

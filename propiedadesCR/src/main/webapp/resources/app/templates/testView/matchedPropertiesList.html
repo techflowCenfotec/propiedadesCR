@@ -4,7 +4,7 @@
             <h2 class="section-header">Propiedades Recomendadas</h2>
         </div>
         <div class="col-md-12">
-            <div class=column ng-repeat="property in properties | limitTo:quantity">
+            <div class=column ng-repeat="property in properties | orderBy:'property.porcentage'">
                 <div class="col-md-4">
                     <div class="card bg-white">
                         <div class="card-image">
@@ -14,13 +14,18 @@
                         <div class="card-content">
                             <a class="card-button pull-right" href="javascript:;" data-ng-click="">
                                 <button class="btn btn-icon btn-icon-round btn-floating btn-danger" 
-                                data-ng-click="addToFavorites(property.idProperty)"><i class="fa fa-heart"></i></button>
+                                data-ng-click="addToFavorites(property.idProperty)" ><i class="fa fa-heart"></i></button>
                             </a>
                             <p>{{property.address}}</p>
                             <p>Porcentage de match: {{property.porcentage}}%</p>
+                            <p>
+                            <span class="label label-info">{{property.saleType}}</span>
+                            <span class="label label-info">{{property.tpropertyType.name}}</span>
+                            </p>
                         </div>
                         <div class="card-action">
                             <a data-ng-click="viewProperty(property.idProperty)" href="#/templates/propertiesView/propertyView" class="btn btn-default">Consultar propiedad</a>
+                            <tags idProperty="{{property.idProperty}}" idSurvey="{{userSurvey.idSurvey}}"></tags>
                         </div>
                     </div>
                 </div>
