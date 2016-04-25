@@ -148,5 +148,18 @@ public class EventsService implements EventsServiceInterface {
 		return nEvent;
 	
 	}
+	@Override
+	public List<EventPOJO> getAllEventsByUser(int pidUser) {
+		ArrayList<EventPOJO> events = new ArrayList<>();
+		eventsRepository.findAll().stream().forEach(event->{
+			if(event.getTuser().getIdUser() ==pidUser){
+				EventPOJO nevent = new EventPOJO();
+				BeanUtils.copyProperties(event, nevent);
+				events.add(nevent);
+			}
+			
+		});
+		return events;
+	}
 
 }

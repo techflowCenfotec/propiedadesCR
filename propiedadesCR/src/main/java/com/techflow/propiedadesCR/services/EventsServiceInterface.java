@@ -14,4 +14,5 @@ public interface EventsServiceInterface {
 	Tevent saveEvent(EventsRequest peventRequest,int pidUser);
 	Tevent modifyEvent(EventsRequest peventRequest, int pidUser);
 	Boolean deleteEvent(int pid);
+	List<EventPOJO> getAllEventsByUser(int pidUser);
 }

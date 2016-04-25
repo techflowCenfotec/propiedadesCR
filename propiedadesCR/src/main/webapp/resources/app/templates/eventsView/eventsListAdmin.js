@@ -2,7 +2,7 @@
 	"use strict";
 
 	angular.module("app.eventsListAdmin",[])
-		.controller('listAdminEventController',['$scope','$filter','$http','$mdDialog','$location','dbService',function($scope,$filter,$http,$mdDialog,$location,dbService){
+		.controller('listAdminEventController',['$scope','$filter','$http','$mdDialog','$location','dbService','$rootScope',function($scope,$filter,$http,$mdDialog,$location,dbService,$rootScope){
 		
 		$scope.status = '  ';
 		$scope.events=[];
@@ -20,18 +20,23 @@
         $scope.currentPage = 1;
         $scope.currentPage = [];
 		
-        
         dbService.checkDB();
+        var init;
+
         var link = 'rest/protected/events/getAllEvents';
 		var request = {"pageNumber": 0,"pageSize": 0,"direction": "","sortBy": [""],"searchColumn": "string","searchTerm": "","event": {}};
-		var init;
-		$http.post(link,request).success(function(response) {
-			$scope.events= response.events;
-			
-			init();
 		
-			
-		});
+        $http({
+              url: 'rest/protected/events/getAllEventsByUser',
+              method: 'POST',
+              params: {idUser:$rootScope.userLogged.idUser}
+            }).success(function(response){
+                $scope.events= response.events;
+                // /console.log(response)
+                init();
+            });
+	
+
         function select(page) {
             var end, start;
             start = (page - 1) * $scope.numPerPage;       

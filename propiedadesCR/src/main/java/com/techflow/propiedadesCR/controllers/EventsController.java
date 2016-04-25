@@ -28,6 +28,7 @@ import com.techflow.propiedadesCR.contracts.EventsRequest;
 import com.techflow.propiedadesCR.contracts.EventsResponse;
 import com.techflow.propiedadesCR.ejb.Tevent;
 import com.techflow.propiedadesCR.pojo.EventPOJO;
+import com.techflow.propiedadesCR.pojo.UserPOJO;
 import com.techflow.propiedadesCR.services.EventsServiceInterface;
 import com.techflow.propiedadesCR.utils.Utils;
 
@@ -77,6 +78,24 @@ public class EventsController {
 		
 		return response;
 	}
+	
+	/**
+	 * Este método trae todos los eventos registrados por un usuario.
+	 * @param peventRequest Encapsula la información solicitada por el usuario.
+	 * @return response Se retorna la respuesta del BackEnd al FrondEnd.
+	 */
+	@RequestMapping(value="/getAllEventsByUser", method = RequestMethod.POST)
+		
+	public EventsResponse getAllEventsByUser(@RequestParam("idUser") int pidUser) {
+		
+		EventsResponse response = new EventsResponse();
+		response.setCode(200);
+		response.setCodeMessage("Events fetch successful");
+		response.setEvents(eventsService.getAllEventsByUser(pidUser));
+		
+		return response;
+	}
+	
 	/**
 	 * 
 	 * Este método envía los datos a la base de datos para registrar el evento.
